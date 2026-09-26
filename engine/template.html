@@ -1,4 +1,4 @@
-<!doctype html><html lang="{{LANG}}" data-theme="{{THEME_NAME}}" data-layout="{{LAYOUT}}"><head><meta charset="utf-8">
+<!doctype html><html lang="{{LANG}}" data-theme="{{THEME_NAME}}" data-layout="{{LAYOUT}}" data-tone="{{TONE}}"><head><meta charset="utf-8">
 <link rel="stylesheet" href="{{NM}}/katex/dist/katex.min.css">
 <link rel="stylesheet" href="{{NM}}/@fontsource/eb-garamond/400.css">
 <link rel="stylesheet" href="{{NM}}/@fontsource/eb-garamond/400-italic.css">
@@ -90,6 +90,17 @@ sup.fn{font-size:.62em;line-height:0;color:var(--acc);margin-left:.08em}
 .footnotes ol{list-style:none;padding:0;margin:0}
 .footnotes li{display:grid;grid-template-columns:1.6em 1fr;margin-bottom:.3em}
 .footnotes li>span{color:var(--acc)}
+/* ::: image, embedded in the page; on dark themes, on_dark decides how it meets the paper */
+figure.image{margin:1.1em auto;text-align:center}
+figure.image img{display:block;width:100%;height:auto;margin:0 auto}
+figure.image figcaption{font-size:.85em;font-style:italic;color:var(--mute);margin-top:.9em;line-height:1.3;hyphens:manual}
+[data-tone=dark] figure.plate img{box-shadow:0 0 0 .6em var(--ink);border-radius:.3em}
+[data-tone=dark] figure.invert img{filter:url(#on-dark-invert)}
+[data-tone=dark] figure.multiply img{filter:url(#on-dark-multiply)}
+/* layout: hero, the first image across the top of the page, at a size fixed in mm */
+.hero{flex:none;display:flex;align-items:center;justify-content:center;font-size:calc(11pt*var(--hs));margin-bottom:6mm}
+.hero figure.image{margin:0}
+.hero figure.image figcaption{font-size:1em;margin-top:4mm}
 .item .lbl{color:var(--acc);font-weight:600}
 .item.sub{margin-left:2.2em;font-size:.92em}.item.sub .lbl{font-weight:400}
 code{font-family:'JetBrains Mono',monospace;font-size:.85em}
@@ -99,6 +110,7 @@ ul{margin:.2em 0 .7em;padding-left:1.2em}
 <div class="frame"></div>
 <div class="page">
 {{HEADER}}
+{{HERO}}
 <main>
 <div class="flow">
 {{BODY}}

@@ -34,6 +34,13 @@ Jon Postel, Editor, September 1981. Section 3.1, the Internet Header Format, wit
 |---|---|---|---|
 | ![](docs/rfc-791-ivory.png) | ![](docs/rfc-791-white.png) | ![](docs/rfc-791-genesis.png) | ![](docs/rfc-791-blueprint.png) |
 
+### John Snow: the Broad Street cholera map
+John Snow, 1854. The map that traced the Soho outbreak to one water pump, with a short notice written for this poster (not a period text). Printed on the white and dark themes only: the scan has a pure white paper.
+
+| white | genesis | blueprint |
+|---|---|---|
+| ![](docs/snow-cholera-map-white.png) | ![](docs/snow-cholera-map-genesis.png) | ![](docs/snow-cholera-map-blueprint.png) |
+
 ## Download
 
 Vector PDFs are in [`dist/<paper>/`](dist), named `<paper>-<format>-<theme>.pdf`. Text, equations and figures are all vector, so they print sharp at any size.
@@ -73,6 +80,7 @@ Create `papers/<name>/` with:
 | `meta.yaml` | title, header, abstract, footer, columns, license (see existing papers) |
 | `text.md` | the text, in the small Markdown dialect documented in `engine/markdown.py` |
 | `figures.py` | optional: `FIGS = {"name": fn}`, each `fn()` returns an SVG string built with `engine/svg.py` |
+| images | optional: PNG, JPEG, GIF, WebP or SVG files for `::: image`, embedded in the PDF |
 | `style.css` | optional: paper-specific CSS; a rule on `:root[data-theme=genesis]` applies to one theme only |
 
 `text.md` is plain Markdown paragraphs and lists, plus these constructs (all listed in `engine/markdown.py`):
@@ -81,6 +89,7 @@ Create `papers/<name>/` with:
 |---|---|
 | `## Title`, `### Title`, `#### Title` | headings; with `numbered: true` they are numbered 1., 1.1., 1.1.1., and a title that starts with a number such as `3.1.` gets the same styling |
 | `::: figure <name>` | an SVG figure from `figures.py` |
+| `::: image <file> [caption="…"] [width=N%] [on_dark=plate\|invert\|multiply]` | an image from the folder of the paper, embedded in the page, `width` of its column (default 100%). On the dark themes, `plate` (default) keeps it on a light card, `invert` turns its white into the paper and its black into the ink (for line drawings), `multiply` melts its white into the paper (dark lines then vanish) |
 | `::: wide` … `:::` | a block across all the columns, holding any other syntax (code, math, figures, HTML) |
 | `::: wide cols=N` … `:::` | the `##` sections of the block side by side, one per left-aligned cell of an N-column grid (see `papers/rfc-1925`) |
 | `$$ … $$` | display math, rendered with KaTeX |
@@ -95,7 +104,9 @@ In `meta.yaml`, `title` and `license` are required and unknown keys are rejected
 | Key | Default | Effect |
 |---|---|---|
 | `lang` | `en` | language of the text, for hyphenation (English, French, German and many more) |
-| `layout` | `columns` | `centered` suits short texts: one column unless `columns` says otherwise, vertically centered on the page |
+| `layout` | `columns` | `centered` suits short texts: one column unless `columns` says otherwise, vertically centered on the page. `hero` puts the first `::: image` of the text across the top of the page, and the text in columns below |
+| `hero_height` | 50 | share of the page height given to the hero image, in % |
+| `themes` | all | the themes this paper is printed in, for instance `[white, genesis]` |
 | `columns` | 4, or 1 when centered | number of text columns |
 | `font_range` | `[8, 40]` | bounds of the search for the body size, in pt; the build warns when the text still fits at the maximum |
 | `max_font` | none | hard cap on the body size, in pt, so that a short text does not end up in giant type; reaching it is expected |
@@ -109,7 +120,7 @@ Only add texts whose license allows redistribution, and record it in `meta.yaml`
 
 ## How it works
 
-`engine/build.py` parses the Markdown, pre-renders math with KaTeX, injects SVG figures into an HTML template, then drives headless Chromium: for each format it waits for the fonts, binary-searches the largest body size that fits in whole hundredths of a point, checks it again on a freshly loaded page, prints a PDF at a fixed 594 mm design width, and scales it to the target format with pypdf, keeping the page vector and its content losslessly compressed. Themes are sets of CSS variables in `engine/themes.py`.
+`engine/build.py` parses the Markdown, pre-renders math with KaTeX, injects SVG figures into an HTML template, then drives headless Chromium: for each format it waits for the fonts, binary-searches the largest body size that fits in whole hundredths of a point, checks it again on a freshly loaded page, prints a PDF at a fixed 594 mm design width, and scales it to the target format with pypdf, keeping the page vector and its content losslessly compressed. Images are embedded in the page as data URIs, so every PDF is self-contained. Themes are sets of CSS variables in `engine/themes.py`.
 
 ## License
 

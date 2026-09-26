@@ -5,6 +5,11 @@ Blocks (separated by blank lines):
                              1.1.1. with meta.numbered, and a number that starts a title,
                              such as 3.1., is set the same way
   ::: figure <name>          SVG figure from the paper's figures.py
+  ::: image <file> [caption="..."] [width=N%] [on_dark=plate|invert|multiply]
+                             image from the paper's folder, embedded in the page; on dark
+                             themes plate keeps it on a light card, invert turns dark lines
+                             light, multiply blends it with the page; with meta.layout: hero,
+                             the first image goes to the top of the page
   ::: wide [cols=N]          block across all the columns, closed by a ":::" line, holding any
   ...                        of these blocks; with cols=N (default 1) its "## " sections sit side
   :::                        by side on a grid of N columns, one section per cell, in order
@@ -21,7 +26,7 @@ Inline: **bold**, *italic*, `code`, [n] / [n-m] citations, [^label] footnote cal
 (numbered in order of first call), smart quotes.
 Malformed input raises MarkdownError, which carries the line number.
 """
-import html, re
+import base64, html, re, shlex
 
 class MarkdownError(ValueError):
     def __init__(self, line, msg):
@@ -49,6 +54,9 @@ LABEL = re.compile(r'^\((\d+[a-z]?)\)\s+', re.M)
 NOTE_CALL = re.compile(r'\[\^([^\]\s]+)\]')
 NOTE_DEF = re.compile(r'\[\^([^\]\s]+)\]:\s+')
 WIDE = re.compile(r':::\s+wide(?:\s+cols=([1-9]\d*))?\s*$')
+IMAGE_TYPES = {'.png': 'image/png', '.jpg': 'image/jpeg', '.jpeg': 'image/jpeg', '.gif': 'image/gif',
+               '.webp': 'image/webp', '.svg': 'image/svg+xml'}
+ON_DARK = ('plate', 'invert', 'multiply')
 
 def is_wide(line):
     return line.startswith(':::') and line.split()[1:2] == ['wide']
@@ -98,8 +106,9 @@ def blocks(text, first=1):
 
 class Renderer:
     """State shared by the whole text: math, section numbers, footnotes."""
-    def __init__(self, figures, numbered):
-        self.figures, self.numbered = figures, numbered
+    def __init__(self, figures, numbered, assets=None, hero=False):
+        self.figures, self.numbered, self.assets = figures, numbered, assets
+        self.hero = {} if hero else None  # filled by the first image when the layout is hero
         self.math, self.nums, self.in_refs = [], [0, 0, 0], False  # nums: ##, ###, #### counters
         self.notes = {}  # label: (line of the definition, text)
         self.calls = {}  # label: line of the first call, in the order of first calls
@@ -129,7 +138,8 @@ class Renderer:
             elif re.match(r'#+\s', b):
                 raise MarkdownError(line, 'headings are "##", "###" or "####"')
             elif b.startswith(':::'):
-                out.append(self.directive(line, b))
+                if h := self.directive(line, b):
+                    out.append(h)
             elif m := NOTE_DEF.match(b):
                 if m.group(1) in self.notes:
                     raise MarkdownError(line, f'footnote [^{m.group(1)}] is defined twice')
@@ -183,12 +193,50 @@ class Renderer:
                 raise MarkdownError(line, f'expected "::: wide" or "::: wide cols=N", got "{head}"')
             return self.wide(int(m.group(1) or 1), '\n'.join(rest[:-1]), line + 1)
         words = head.split()
+        if words[1:2] == ['image'] and not rest:
+            return self.image(line, head)
         if words[1:2] != ['figure'] or len(words) != 3 or rest:
-            raise MarkdownError(line, f'expected "::: figure <name>" or "::: wide", got "{head}"')
+            raise MarkdownError(line, f'expected "::: figure <name>", "::: image <file>" or "::: wide", got "{head}"')
         if words[2] not in self.figures:
             known = ', '.join(sorted(self.figures)) or 'none, figures.py is missing or empty'
             raise MarkdownError(line, f'unknown figure "{words[2]}" (known: {known})')
         return f'<figure>{self.figures[words[2]]()}</figure>'
+
+    def image(self, line, head):
+        usage = '::: image <file> [caption="..."] [width=N%] [on_dark=plate|invert|multiply]'
+        try:
+            words = shlex.split(head)
+        except ValueError as e:
+            raise MarkdownError(line, f'{e} in "{head}"') from None
+        if len(words) < 3:
+            raise MarkdownError(line, f'expected {usage}')
+        opts = {}
+        for w in words[3:]:
+            key, eq, value = w.partition('=')
+            if not eq or key not in ('caption', 'width', 'on_dark') or key in opts:
+                raise MarkdownError(line, f'unexpected "{w}", expected {usage}')
+            opts[key] = value
+        width, mode = opts.get('width', '100%'), opts.get('on_dark', 'plate')
+        if not re.fullmatch(r'(100|[1-9]\d?)%', width):
+            raise MarkdownError(line, f'width must be a percentage from 1% to 100%, got "{width}"')
+        if mode not in ON_DARK:
+            raise MarkdownError(line, f'on_dark must be one of {", ".join(ON_DARK)}, got "{mode}"')
+        path = self.assets / words[2] if self.assets else None
+        if path is None or not path.is_file():
+            raise MarkdownError(line, f'image "{words[2]}" not found in the folder of the paper')
+        if path.suffix.lower() not in IMAGE_TYPES:
+            raise MarkdownError(line, f'unsupported image type "{path.suffix}" ({", ".join(IMAGE_TYPES)})')
+        data = path.read_bytes()
+        w, h = image_size(path, data)
+        img = {'src': f'data:{IMAGE_TYPES[path.suffix.lower()]};base64,{base64.b64encode(data).decode()}',
+               'w': w, 'h': h, 'mode': mode, 'caption': self.inline(opts.get('caption', ''), line)}
+        if self.hero == {}:
+            self.hero.update(img)
+            return ''
+        size = f' width="{w}" height="{h}"' if w else ''  # reserves the space before the image loads
+        caption = f'<figcaption>{img["caption"]}</figcaption>' if img['caption'] else ''
+        return (f'<figure class="image {mode}" style="width:{width}"><img src="{img["src"]}"{size} alt="">'
+                f'{caption}</figure>')
 
     def wide(self, cols, text, first):
         parts = self.render(text, first)
@@ -217,9 +265,21 @@ class Renderer:
                         for n, label in enumerate(self.calls, 1))
         return [f'<div class="footnotes"><ol>{notes}</ol></div>']
 
-def render(text, figures=None, numbered=False):
-    """Returns (html, math) where math is a list of TeX strings; html holds
-    placeholders <!--MATH:i--> to be replaced once KaTeX has run."""
-    r = Renderer(figures or {}, numbered)
+def image_size(path, data):
+    """Pixel size of an image, or (None, None) for an SVG that does not state it."""
+    if path.suffix.lower() == '.svg':
+        head = data[:2000].decode('utf-8', 'replace')
+        m = re.search(r'viewBox="[\d.\s-]*?([\d.]+)\s+([\d.]+)"', head)
+        return (round(float(m.group(1))), round(float(m.group(2)))) if m else (None, None)
+    from PIL import Image
+    with Image.open(path) as im:
+        return im.size
+
+def render(text, figures=None, numbered=False, assets=None, hero=False):
+    """Returns (html, math, hero). math is a list of TeX strings, and html holds
+    placeholders <!--MATH:i--> to be replaced once KaTeX has run. With hero, the first
+    image is kept out of the text and returned as a dict (src, w, h, mode, caption).
+    assets is the folder that ::: image files are read from."""
+    r = Renderer(figures or {}, numbered, assets, hero)
     out = r.render(text) + r.footnotes()
-    return '\n'.join(out), r.math
+    return '\n'.join(out), r.math, r.hero

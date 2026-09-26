@@ -1,0 +1,24 @@
+title: "John Snow: the Broad Street cholera map"
+title_html: "The Broad Street <em>Cholera Map</em>"
+kicker: "Soho, London · August and September 1854"
+author: "John Snow"
+byline: "Map 1 of <i>On the Mode of Communication of Cholera</i>, second edition, 1855"
+emblem: "†"
+layout: hero
+hero_height: 58
+columns: 3
+# the scan has a pure white paper, which looks pasted on the cream of the ivory theme
+themes: [white, genesis, blueprint]
+footer:
+  - "Map: John Snow, lithograph by C. F. Cheffins, 1854. Public domain."
+  - "<i>The notice is not a period text: it was written for this poster in 2026.</i>"
+  - "<span class=\"mono\">commons.wikimedia.org</span>"
+license:
+  text: "Public domain (map); the notice is covered by the MIT license of this repository"
+  holder: "John Snow, 1854"
+  source: "https://commons.wikimedia.org/wiki/File:Snow-cholera-map-1.jpg"
+  note: >-
+    The map was published in 1855 and its author died in 1858. The file is the digitally
+    enhanced scan from the UCLA Department of Epidemiology, as uploaded to Wikimedia
+    Commons (20124 x 18877 px), reduced to 4400 px and two tones for the poster. The
+    notice was written for this poster in 2026.

@@ -16,9 +16,10 @@ ROOT = pathlib.Path(__file__).resolve().parent.parent
 ENGINE = ROOT / "engine"
 sys.path.insert(0, str(ENGINE))
 import markdown
-from themes import THEMES, FORMATS
+from themes import THEMES, FORMATS, colour, dark
 
 DESIGN_W = 594  # every poster is laid out 594 mm wide, then scaled to the target format
+SIDE = 34      # left and right margin of the page in the template, mm
 MM = 72 / 25.4  # PDF points per mm
 PX = 96 / 25.4  # CSS pixels per mm
 # Without this flag Chromium lays text out with the hinting of the local fontconfig setup,
@@ -27,8 +28,10 @@ CHROMIUM_ARGS = ["--font-render-hinting=none"]
 BUNDLED_FONTS = ("EBGaramond", "JetBrainsMono", "KaTeX_")  # PostScript names of the node_modules fonts
 META_KEYS = {"title", "title_html", "title_size", "kicker", "author", "byline", "emblem", "abstract",
              "abstract_label", "numbered", "columns", "header_scale", "font_range", "max_font", "layout",
-             "footer", "lang", "license"}
-LAYOUTS = ("columns", "centered")  # centered: short texts, one column by default, vertically centered
+             "footer", "lang", "license", "themes", "hero_height"}
+# centered: short texts, one column by default, vertically centered;
+# hero: the first image of the text across the top of the page, the text in columns below
+LAYOUTS = ("columns", "centered", "hero")
 WARNINGS = []
 
 class BuildError(Exception):
@@ -56,6 +59,11 @@ def load_meta(paper_dir):
         errors.append("max_font must be a size in pt above the minimum of font_range")
     if m.get("layout", "columns") not in LAYOUTS:
         errors.append(f"layout must be one of {', '.join(LAYOUTS)}")
+    themes = m.get("themes", list(THEMES))
+    if not (isinstance(themes, list) and themes and set(themes) <= set(THEMES)):
+        errors.append(f"themes must be a list of some of {', '.join(THEMES)}")
+    if not isinstance(m.get("hero_height", 50), (int, float)) or not 10 <= m.get("hero_height", 50) <= 90:
+        errors.append("hero_height must be a percentage of the page height, from 10 to 90")
     if errors:
         raise BuildError(f"{rel(path)}: {'; '.join(errors)}")
     return m
@@ -102,26 +110,60 @@ def substitute(tpl, values):
     """Fills every {{KEY}} in one pass, so text inserted in the page is never read as a placeholder."""
     return re.sub(r"\{\{(\w+)\}\}", lambda k: str(values[k.group(1)]), tpl)
 
+def hero_html(img, height, share, hs):
+    """The hero image, scaled to fill its share of the page height without passing the margins.
+    Its size is fixed in mm, so that fitting the body size only moves the text."""
+    box = height * share / 100
+    pad = 4 * hs                          # room for the plate drawn around the image on dark themes
+    caption = 15 * hs if img["caption"] else 0  # up to two lines of caption
+    if not img["w"]:
+        raise BuildError("the hero image must state its size (an SVG needs a viewBox)")
+    k = min((DESIGN_W - 2 * SIDE - 2 * pad) / img["w"], (box - caption - 2 * pad) / img["h"])
+    cap = f'<figcaption>{img["caption"]}</figcaption>' if img["caption"] else ""
+    return (f'<div class="hero" style="height:{box:.2f}mm"><figure class="image {img["mode"]}">'
+            f'<img src="{img["src"]}" alt="" style="width:{img["w"] * k:.2f}mm;height:{img["h"] * k:.2f}mm">'
+            f'{cap}</figure></div>')
+
+def image_filters(theme):
+    """SVG filters for the on_dark modes of images. Chromium drops mix-blend-mode from PDFs, so
+    instead of blending with the page they compute the result over its flat paper colour:
+    invert turns white into the paper and black into the ink, multiply scales every channel
+    by the paper colour."""
+    paper, ink = colour(theme, "paper"), colour(theme, "ink")
+    invert = " ".join(f"{-(i - p) * .2126:.4f} {-(i - p) * .7152:.4f} {-(i - p) * .0722:.4f} 0 {i:.4f}"
+                      for p, i in zip(paper, ink))
+    multiply = " ".join(" ".join(f"{p:.4f}" if j == k else "0" for j in range(5)) for k, p in enumerate(paper))
+    matrix = lambda name, rows: (f'<filter id="on-dark-{name}" color-interpolation-filters="sRGB">'
+                                 f'<feColorMatrix type="matrix" values="{rows} 0 0 0 1 0"/></filter>')
+    return ('<svg width="0" height="0" style="position:absolute" aria-hidden="true">'
+            + matrix("invert", invert) + matrix("multiply", multiply) + "</svg>")
+
 def poster(paper_dir, m):
     """Returns html(theme, page height in mm, body size in pt), the page of the poster."""
     text = paper_dir / "text.md"
+    layout = m.get("layout", "columns")
     try:
-        body, tex = markdown.render(text.read_text(), load_figures(paper_dir), m.get("numbered", False))
+        body, tex, hero = markdown.render(text.read_text(), load_figures(paper_dir), m.get("numbered", False),
+                                          assets=paper_dir, hero=layout == "hero")
     except markdown.MarkdownError as e:
         raise BuildError(f"{rel(text)}:{e.line}: {e.msg}") from None
+    if layout == "hero" and not hero:
+        raise BuildError(f"{rel(text)}: layout: hero takes the first ::: image of the text, and there is none")
     for i, h in enumerate(katex(tex)):
         body = body.replace(f"<!--MATH:{i}-->", h)
     css = paper_dir / "style.css"
     tpl = (ENGINE / "template.html").read_text()
-    layout = m.get("layout", "columns")
     values = {"HEADER": header_html(m), "FOOTER": footer_html(m), "BODY": body, "LAYOUT": layout,
               "COLS": m.get("columns", 1 if layout == "centered" else 4), "HS": m.get("header_scale", 1),
               "TITLE_SIZE": m.get("title_size", "76pt"), "LANG": m.get("lang", "en"),
               "EXTRA_CSS": css.read_text() if css.exists() else "",
               "NM": (ROOT / "node_modules").as_uri()}
     def html(theme, height, fs):
-        return substitute(tpl, {**values, "THEME": THEMES[theme], "THEME_NAME": theme,
-                                "PH": f"{height:.2f}", "FS": f"{fs}pt"})
+        top = hero_html(hero, height, m.get("hero_height", 50), m.get("header_scale", 1)) if hero else ""
+        if hero or '<figure class="image ' in body:
+            top = image_filters(theme) + top
+        return substitute(tpl, {**values, "THEME": THEMES[theme], "THEME_NAME": theme, "HERO": top,
+                                "TONE": "dark" if dark(theme) else "light", "PH": f"{height:.2f}", "FS": f"{fs}pt"})
     return html
 
 LOAD_JS = """async () => {
@@ -136,8 +178,9 @@ FITS_JS = """async fs => {
     document.body.offsetHeight;
     await document.fonts.ready;
     const m = document.querySelector('main');
-    // code blocks clip their overflow and grid cells spill into their neighbours: both must fit too
-    const spilt = [...document.querySelectorAll('pre, .cell')].some(e => e.scrollWidth > e.clientWidth + 1);
+    // code blocks clip their overflow, grid cells and the hero spill into their neighbours: all must fit too
+    const spilt = [...document.querySelectorAll('pre, .cell')].some(e => e.scrollWidth > e.clientWidth + 1)
+        || [...document.querySelectorAll('.hero')].some(e => e.scrollHeight > e.clientHeight + 1);
     return !spilt && m.scrollWidth <= m.clientWidth + 1 && m.scrollHeight <= m.clientHeight + 1;
 }"""
 
@@ -214,6 +257,10 @@ def printed(fmt, fs):
 def build(paper, formats, themes, page, previews, check):
     paper_dir = ROOT / "papers" / paper
     m = load_meta(paper_dir)
+    themes = [t for t in themes if t in m.get("themes", THEMES)]
+    if not themes:
+        print(f"{paper}: skipped, its themes are {', '.join(m['themes'])}")
+        return
     html = poster(paper_dir, m)
     tmp, raw = ROOT / "build" / f"{paper}.html", ROOT / "build" / f"{paper}.pdf"  # per paper, for make -j
     tmp.parent.mkdir(exist_ok=True)
