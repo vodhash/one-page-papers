@@ -22,21 +22,8 @@ SOFTWARE.
 
 ---
 This license covers the code in engine/ and the figure scripts. Each text in
-papers/ keeps its own license, recorded in papers/<name>/meta.yaml:
-
-- papers/bitcoin: "Bitcoin: A Peer-to-Peer Electronic Cash System",
-  © 2008 Satoshi Nakamoto, MIT license (bitcoin.org). Text adapted from
-  github.com/karask/satoshi-paper.
-- papers/rfc-1925: "The Twelve Networking Truths", R. Callon, 1996.
-  "Distribution of this memo is unlimited."
-- papers/zen-of-python: "PEP 20: The Zen of Python", Tim Peters, 2004.
-  "This document has been placed in the public domain."
-- papers/rfc-791: "Internet Protocol", RFC 791, J. Postel, Editor, 1981,
-  excerpt (section 3.1). No copyright notice; "All RFCs may be freely
-  reproduced and translated (unmodified)" (www.rfc-editor.org/faq).
-- papers/snow-cholera-map: map by John Snow, 1854, public domain (scan from
-  the UCLA Department of Epidemiology via Wikimedia Commons). The notice is
-  not a period text: it was written for this poster and falls under the MIT
-  license above.
+papers/<category>/<slug>/ keeps its own license: the license block of its
+meta.yaml quotes the license or permission word for word, or says why the text
+is in the public domain, and the catalog of README.md sums it up.
 
 Fonts: EB Garamond and JetBrains Mono, SIL Open Font License.

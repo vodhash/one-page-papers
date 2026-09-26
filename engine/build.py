@@ -1,8 +1,9 @@
 #!/usr/bin/env python3
-"""Build one-page posters.
+"""Build one-page posters from papers/<category>/<slug>/.
 
     python3 engine/build.py                 # every paper, format and theme
-    python3 engine/build.py bitcoin         # one paper
+    python3 engine/build.py bitcoin         # one paper, by slug
+    python3 engine/build.py internet        # every paper of a category
     python3 engine/build.py rfc-1925 --formats A --themes white genesis
     python3 engine/build.py --check         # fit every poster and report problems, no output
 """
@@ -16,6 +17,7 @@ ROOT = pathlib.Path(__file__).resolve().parent.parent
 ENGINE = ROOT / "engine"
 sys.path.insert(0, str(ENGINE))
 import markdown
+from papers import discover
 from themes import THEMES, FORMATS, colour, dark
 
 DESIGN_W = 594  # every poster is laid out 594 mm wide, then scaled to the target format
@@ -27,7 +29,10 @@ CHROMIUM_ARGS = ["--font-render-hinting=none"]
 BUNDLED_FONTS = ("EBGaramond", "JetBrainsMono", "KaTeX_")  # PostScript names of the node_modules fonts
 META_KEYS = {"title", "title_html", "title_size", "kicker", "author", "byline", "emblem", "abstract",
              "abstract_label", "numbered", "columns", "header_scale", "font_range", "max_font", "layout",
-             "footer", "lang", "license", "themes", "hero_height"}
+             "footer", "lang", "license", "themes", "hero_height", "year", "authors", "min_print", "source"}
+LICENSE_KEYS = {"text", "holder", "notice", "basis", "note"}
+PRINT_SIZES = ("A3", "A2", "A1", "A0")  # the A file prints at each of them
+MIN_BODY = 8  # pt: min_print is the smallest size at which the body prints at least this large
 # centered: short texts, one column by default, vertically centered;
 # hero: the first image of the text across the top of the page, the text in columns below
 LAYOUTS = ("columns", "centered", "hero")
@@ -47,7 +52,22 @@ def load_meta(paper_dir):
     path = paper_dir / "meta.yaml"
     m = yaml.safe_load(path.read_text()) or {}
     errors = [f"unknown key '{k}'" for k in sorted(set(m) - META_KEYS)]
-    errors += [f"missing '{k}'" for k in ("title", "license") if not m.get(k)]
+    errors += [f"missing '{k}'" for k in ("title", "license", "year", "authors", "min_print", "source")
+               if not m.get(k)]
+    if m.get("authors") and not (isinstance(m["authors"], list) and all(isinstance(a, str) for a in m["authors"])):
+        errors.append("authors must be a list of names")
+    if m.get("year") and not isinstance(m["year"], (int, str)):
+        errors.append("year must be a number, or a text such as \"c. 400 BC\"")
+    if m.get("min_print") and m["min_print"] not in PRINT_SIZES:
+        errors.append(f"min_print must be one of {', '.join(PRINT_SIZES)}")
+    src = m.get("source")
+    if src and not (isinstance(src, dict) and set(src) == {"url", "retrieved", "edition"} and all(src.values())):
+        errors.append("source needs exactly url, retrieved (a date) and edition")
+    lic = m.get("license")
+    if lic and not (isinstance(lic, dict) and lic.get("text") and (lic.get("notice") or lic.get("basis"))
+                    and set(lic) <= LICENSE_KEYS):
+        errors.append("license needs text, and either notice (the license or permission, word for word) or "
+                      f"basis (why the text is in the public domain); its keys are {', '.join(sorted(LICENSE_KEYS))}")
     if len(m.get("footer") or []) > 3:
         errors.append("footer takes at most 3 cells")
     fr = m.get("font_range", [8, 40])
@@ -247,11 +267,15 @@ def write_pdf(raw, dst, size, m):
     w.write(dst)
 
 def save_preview(page, png):
-    png.parent.mkdir(exist_ok=True)
+    png.parent.mkdir(parents=True, exist_ok=True)
     im = Image.open(io.BytesIO(page.screenshot())).convert("RGB")
     im.thumbnail((600, 900))
     # at this size a 256-colour palette looks the same and makes the file 2.5 times smaller
     im.quantize(256, method=Image.Quantize.MEDIANCUT, dither=Image.Dither.NONE).save(png, optimize=True)
+
+def min_print(fs):
+    """Smallest ISO A size at which a body of fs pt at design size (A1) prints at MIN_BODY pt or more."""
+    return next((a for a in PRINT_SIZES if fs * 2 ** ((1 - int(a[1])) / 2) >= MIN_BODY), None)
 
 def printed(fmt, fs):
     """Body size once printed: the design is as wide as A1, every format is scaled from it."""
@@ -260,16 +284,17 @@ def printed(fmt, fs):
     return f"{fs * FORMATS[fmt][0] / DESIGN_W:.1f} pt printed"
 
 def build(paper, formats, themes, page, previews, check):
-    paper_dir = ROOT / "papers" / paper
+    paper_dir, slug = paper.dir, paper.slug
     m = load_meta(paper_dir)
-    themes = [t for t in themes if t in m.get("themes", THEMES)]
+    allowed = [t for t in THEMES if t in m.get("themes", THEMES)]
+    themes = [t for t in themes if t in allowed]
     if not themes:
-        print(f"{paper}: skipped, its themes are {', '.join(m['themes'])}")
+        print(f"{slug}: skipped, its themes are {', '.join(allowed)}")
         return
     html = poster(paper_dir, m)
-    tmp, raw = ROOT / "build" / f"{paper}.html", ROOT / "build" / f"{paper}.pdf"  # per paper, for make -j
+    tmp, raw = ROOT / "build" / f"{slug}.html", ROOT / "build" / f"{slug}.pdf"  # per paper, for make -j
     tmp.parent.mkdir(exist_ok=True)
-    out = ROOT / "dist" / paper
+    out = ROOT / "dist" / paper.category
     lo, hi = m.get("font_range", [8, 40])
     hi = m.get("max_font", hi)
     capped = "max_font" in m or m.get("layout") == "centered"
@@ -278,7 +303,7 @@ def build(paper, formats, themes, page, previews, check):
         height = DESIGN_W * H / W
         page.set_viewport_size({"width": round(DESIGN_W * PX), "height": round(height * PX)})
         load(page, tmp, html(themes[0], height, lo))
-        fs = best_font(page, lo, hi, f"{paper} {fmt}", capped)
+        fs = best_font(page, lo, hi, f"{slug} {fmt}", capped)
         # the search page keeps the fonts of every size it tried: settle on a size that also
         # fits a freshly loaded page, like the ones that get printed
         for _ in range(100):
@@ -287,32 +312,40 @@ def build(paper, formats, themes, page, previews, check):
                 break
             fs = round(fs - 0.01, 2)
         else:
-            raise BuildError(f"{paper} {fmt}: no body size fits a freshly loaded page")
+            raise BuildError(f"{slug} {fmt}: no body size fits a freshly loaded page")
         cap = ", the cap" if capped and fs == hi else ""
-        print(f"{paper} {fmt}: body {fs:.2f} pt at design size{cap} ({printed(fmt, fs)})")
+        print(f"{slug} {fmt}: body {fs:.2f} pt at design size{cap} ({printed(fmt, fs)})")
+        if fmt == "A" and min_print(fs) != m["min_print"]:
+            raise BuildError(f"{rel(paper_dir / 'meta.yaml')}: min_print must be {min_print(fs) or 'larger than A0'}, "
+                             f"the smallest size at which the body of {fs:.2f} pt prints at {MIN_BODY} pt or more")
         for i, th in enumerate(themes):
             load(page, tmp, html(th, height, fs))
             if not fits(page, fs):
-                raise BuildError(f"{paper} {fmt} {th}: the text overflows at {fs} pt")
+                raise BuildError(f"{slug} {fmt} {th}: the text overflows at {fs} pt")
             page.pdf(path=str(raw), width=f"{DESIGN_W}mm", height=f"{height:.2f}mm",
                      print_background=True, page_ranges="1")
             if i == 0:  # themes only change colours, every PDF uses the same fonts
                 for font, chars in system_fonts(raw).items():
-                    warn(f"{paper} {fmt}: {''.join(sorted(chars))} drawn with {font}, a system font, so the "
+                    warn(f"{slug} {fmt}: {''.join(sorted(chars))} drawn with {font}, a system font, so the "
                          "PDF depends on the machine; give these characters a bundled font in style.css")
             if check:
                 break
             out.mkdir(parents=True, exist_ok=True)
-            dst = out / f"{paper}-{fmt}-{th}.pdf"
+            dst = out / f"{slug}-{fmt}-{th}.pdf"
             write_pdf(raw, dst, (W, H), m)
             print("  ", rel(dst))
-            if previews and fmt == "A":
-                save_preview(page, ROOT / "docs" / f"{paper}-{th}.png")
+            if previews and fmt == "A" and th == allowed[0]:  # the thumbnail of the README catalog
+                save_preview(page, ROOT / "docs" / paper.category / f"{slug}.png")
 
 def main():
-    papers = sorted(p.name for p in (ROOT / "papers").iterdir() if (p / "meta.yaml").exists())
+    try:
+        papers = discover()
+    except ValueError as e:
+        sys.exit(f"error: {e}")
+    names = sorted({p.slug for p in papers} | {p.category for p in papers})
     ap = argparse.ArgumentParser(description="Build one-page posters into dist/ and docs/.")
-    ap.add_argument("papers", nargs="*", metavar="paper", help=f"default: every paper ({', '.join(papers)})")
+    ap.add_argument("names", nargs="*", metavar="paper|category",
+                    help=f"slugs or categories, default: every paper ({', '.join(names)})")
     ap.add_argument("--formats", nargs="+", choices=list(FORMATS), default=list(FORMATS))
     ap.add_argument("--themes", nargs="+", choices=list(THEMES), default=list(THEMES))
     ap.add_argument("--no-previews", action="store_true", help="leave docs/*.png untouched")
@@ -320,19 +353,20 @@ def main():
                     help="fit every poster and report problems without touching dist/ or docs/; "
                          "warnings make it fail too")
     a = ap.parse_args()
-    if unknown := sorted(set(a.papers) - set(papers)):
-        ap.error(f"unknown paper {', '.join(unknown)} (choose from {', '.join(papers)})")
+    if unknown := sorted(set(a.names) - set(names)):
+        ap.error(f"unknown paper or category {', '.join(unknown)} (choose from {', '.join(names)})")
+    targets = [p for p in papers if not a.names or p.slug in a.names or p.category in a.names]
     if not (ROOT / "node_modules").is_dir():
         sys.exit("error: node_modules is missing, run `make deps`")
     failed = []
     with sync_playwright() as pw:
         browser = pw.chromium.launch(args=CHROMIUM_ARGS)
         page = browser.new_page()
-        for paper in a.papers or papers:
+        for paper in targets:
             try:
                 build(paper, a.formats, a.themes, page, not a.no_previews, a.check)
             except BuildError as e:
-                failed.append(paper)
+                failed.append(paper.slug)
                 print(f"error: {e}", file=sys.stderr)
         browser.close()
     if failed or (a.check and WARNINGS):

@@ -25,15 +25,15 @@ jobs:
       - run: python -m playwright install --with-deps --only-shell chromium
       - name: Build every poster in every format and theme
         run: python engine/build.py --no-previews
-      - name: One zip per poster
+      - name: One zip per category
         run: |
           mkdir release
           cd dist
-          for paper in */; do zip -qr "../release/${paper%/}.zip" "$paper"; done
+          for category in */; do zip -qr "../release/${category%/}.zip" "$category"; done
       - name: Publish the release with the zips and every PDF
         env:
           GH_TOKEN: ${{ github.token }}
         run: |
           gh release create "$GITHUB_REF_NAME" release/*.zip dist/*/*.pdf \
             --title "$GITHUB_REF_NAME" \
-            --notes "Every poster in every format and theme: one zip per poster, or each PDF alone, named <paper>-<format>-<theme>.pdf. Formats: A (A1, prints at any ISO A size), 50x70 and 60x80 cm."
+            --notes "Every poster in every format and theme: one zip per category, or each PDF alone, named <paper>-<format>-<theme>.pdf. Formats: A (A1, prints at any ISO A size), 50x70 and 60x80 cm."

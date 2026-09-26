@@ -17,11 +17,18 @@ footer:
   - "Prepared for the Defense Advanced Research Projects Agency, Information Processing Techniques Office"
   - "<i>Excerpt: section 3.1, Internet Header Format</i>"
   - "<span class=\"mono\">doi:10.17487/RFC0791</span>"
+year: 1981
+authors: [Jon Postel]
+min_print: A1
+source:
+  url: https://www.rfc-editor.org/rfc/rfc791.txt
+  retrieved: 2026-09-26
+  edition: >-
+    RFC Editor plain-text edition. Excerpt: section 3.1 in full (3238 words, checked word for
+    word), with the preface and the three references that the section cites; page headers
+    and footers left out, drawings reproduced unchanged.
 license:
-  text: "Redistribution permitted"
+  text: "Free reproduction (RFC Editor)"
   holder: "Jon Postel, Editor, Information Sciences Institute, 1981"
-  source: "https://www.rfc-editor.org/rfc/rfc791.txt"
-  note: >-
-    Excerpt: section 3.1, with the preface and the cited references. RFC 791
-    carries no copyright notice, and the RFC Editor states that all RFCs may be
-    freely reproduced and translated, unmodified (https://www.rfc-editor.org/faq/).
+  notice: "All RFCs may be freely reproduced and translated (unmodified)."
+  note: "RFC Editor, https://www.rfc-editor.org/faq/. RFC 791 itself carries no copyright notice."

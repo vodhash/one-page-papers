@@ -6,44 +6,40 @@ Each paper is laid out in full on one page: every section, equation, code listin
 
 ## Papers
 
-### Bitcoin: A Peer-to-Peer Electronic Cash System
-Satoshi Nakamoto, 2008. Full text, 7 redrawn figures, genesis block in the footer.
+<!-- catalog:start -->
 
-| ivory | white | genesis | blueprint |
-|---|---|---|---|
-| ![](docs/bitcoin-ivory.png) | ![](docs/bitcoin-white.png) | ![](docs/bitcoin-genesis.png) | ![](docs/bitcoin-blueprint.png) |
+5 posters in 4 categories. A click on a poster downloads its PDF from the latest release, in the A format; *Print from* is the smallest A size at which its body text is at least 8 pt.
 
-### RFC 1925: The Twelve Networking Truths
-Ross Callon, 1 April 1996. Large type, readable from across the room.
+### Cryptocurrency
 
-| ivory | white | genesis | blueprint |
-|---|---|---|---|
-| ![](docs/rfc-1925-ivory.png) | ![](docs/rfc-1925-white.png) | ![](docs/rfc-1925-genesis.png) | ![](docs/rfc-1925-blueprint.png) |
+| | Paper | Authors | Year | Print from | License |
+|---|---|---|---|---|---|
+| <a href="https://github.com/vodhash/one-page-papers/releases/latest/download/bitcoin-A-ivory.pdf"><img src="docs/crypto/bitcoin.png" width="90" alt=""></a> | [Bitcoin: A Peer-to-Peer Electronic Cash System](https://github.com/vodhash/one-page-papers/releases/latest/download/bitcoin-A-ivory.pdf) | Satoshi Nakamoto | 2008 | A2 | MIT |
 
-### PEP 20: The Zen of Python
-Tim Peters, 2004. The nineteen aphorisms, set as a typographic poster; comfortable down to A3.
+### Internet & networking
 
-| ivory | white | genesis | blueprint |
-|---|---|---|---|
-| ![](docs/zen-of-python-ivory.png) | ![](docs/zen-of-python-white.png) | ![](docs/zen-of-python-genesis.png) | ![](docs/zen-of-python-blueprint.png) |
+| | Paper | Authors | Year | Print from | License |
+|---|---|---|---|---|---|
+| <a href="https://github.com/vodhash/one-page-papers/releases/latest/download/rfc-791-A-ivory.pdf"><img src="docs/internet/rfc-791.png" width="90" alt=""></a> | [RFC 791: Internet Protocol](https://github.com/vodhash/one-page-papers/releases/latest/download/rfc-791-A-ivory.pdf) | Jon Postel | 1981 | A1 | Free reproduction (RFC Editor) |
+| <a href="https://github.com/vodhash/one-page-papers/releases/latest/download/rfc-1925-A-ivory.pdf"><img src="docs/internet/rfc-1925.png" width="90" alt=""></a> | [RFC 1925: The Twelve Networking Truths](https://github.com/vodhash/one-page-papers/releases/latest/download/rfc-1925-A-ivory.pdf) | Ross Callon | 1996 | A3 | Distribution unlimited |
 
-### RFC 791: Internet Protocol (excerpt)
-Jon Postel, Editor, September 1981. Section 3.1, the Internet Header Format, with Figure 4 across the page, drawn exactly as in the RFC. Dense text: print at A1 or larger.
+### Software practice
 
-| ivory | white | genesis | blueprint |
-|---|---|---|---|
-| ![](docs/rfc-791-ivory.png) | ![](docs/rfc-791-white.png) | ![](docs/rfc-791-genesis.png) | ![](docs/rfc-791-blueprint.png) |
+| | Paper | Authors | Year | Print from | License |
+|---|---|---|---|---|---|
+| <a href="https://github.com/vodhash/one-page-papers/releases/latest/download/zen-of-python-A-ivory.pdf"><img src="docs/software/zen-of-python.png" width="90" alt=""></a> | [PEP 20: The Zen of Python](https://github.com/vodhash/one-page-papers/releases/latest/download/zen-of-python-A-ivory.pdf) | Tim Peters | 2004 | A3 | Public domain |
 
-### John Snow: the Broad Street cholera map
-John Snow, 1854. The map that traced the Soho outbreak to one water pump, with a short notice written for this poster (not a period text).
+### Historical data visualization
 
-| ivory | white | genesis | blueprint |
-|---|---|---|---|
-| ![](docs/snow-cholera-map-ivory.png) | ![](docs/snow-cholera-map-white.png) | ![](docs/snow-cholera-map-genesis.png) | ![](docs/snow-cholera-map-blueprint.png) |
+| | Paper | Authors | Year | Print from | License |
+|---|---|---|---|---|---|
+| <a href="https://github.com/vodhash/one-page-papers/releases/latest/download/snow-cholera-map-A-ivory.pdf"><img src="docs/data-viz/snow-cholera-map.png" width="90" alt=""></a> | [John Snow: the Broad Street cholera map](https://github.com/vodhash/one-page-papers/releases/latest/download/snow-cholera-map-A-ivory.pdf) | John Snow | 1854 | A3 | Public domain (map); notice: MIT |
+
+<!-- catalog:end -->
 
 ## Download
 
-The PDFs are attached to the [latest release](https://github.com/vodhash/one-page-papers/releases/latest): one zip per poster, or each PDF alone, named `<paper>-<format>-<theme>.pdf`. Text, equations and figures are all vector, so they print sharp at any size.
+The PDFs are attached to the [latest release](https://github.com/vodhash/one-page-papers/releases/latest): one zip per category, or each PDF alone, named `<paper>-<format>-<theme>.pdf`. Text, equations and figures are all vector, so they print sharp at any size.
 
 | Format | File size | Prints at |
 |---|---|---|
@@ -51,9 +47,9 @@ The PDFs are attached to the [latest release](https://github.com/vodhash/one-pag
 | `50x70` | 50 × 70 cm | 50 × 70 cm |
 | `60x80` | 60 × 80 cm | 60 × 80 cm |
 
-Themes: `ivory` (warm paper), `white` (pure white), `genesis` (dark, bitcoin orange), `blueprint` (navy).
+Themes: `ivory` (warm paper), `white` (pure white), `genesis` (dark, bitcoin orange), `blueprint` (navy). The catalog shows each poster in the first of its themes.
 
-**Print tips.** For dense papers like Bitcoin, A2 is the smallest comfortable size (8.7 pt body text; `make check` prints the size of every paper at every format). Use matte paper, 200 g/m² or heavier. Dark themes are best printed by a professional lab.
+**Print tips.** Print a poster at its *Print from* size or larger: below it, its body text falls under 8 pt (`make check` prints the body size of every paper at every format). Use matte paper, 200 g/m² or heavier. Dark themes are best printed by a professional lab.
 
 ## Build
 
@@ -61,23 +57,25 @@ Requires Node.js, Python 3 and Make. `make deps` uses [uv](https://docs.astral.s
 
 ```bash
 make deps      # node_modules and .venv at the pinned versions, plus headless Chromium
-make           # every paper × format × theme, into dist/ and docs/
-make bitcoin   # a single paper
-make check     # fit every poster and report problems, without touching dist/ or docs/
+make           # every paper × format × theme into dist/ and docs/, then the catalog of this README
+make bitcoin   # a single paper, by its slug
+make internet  # every paper of a category
+make readme    # the catalog of this README, from the meta.yaml files and PENDING.md
+make check     # fit every poster and check the catalog, without touching dist/ or docs/
 .venv/bin/python engine/build.py rfc-1925 --formats A --themes genesis
 ```
 
-Builds are deterministic: rebuilding unchanged sources rewrites byte-identical files, so a commit only carries the previews in `docs/` of the posters that changed. The PDFs in `dist/` are not versioned: pushing a `v*` tag makes GitHub Actions build them all and attach them to a release. Versions are pinned (`package-lock.json`, and `requirements.txt`, whose Playwright version fixes the Chromium build), and Chromium lays text out without the local font hinting settings, to keep the layout independent of the machine.
+Builds are deterministic: rebuilding unchanged sources rewrites byte-identical files, so a commit only carries the previews in `docs/` of the posters that changed. The PDFs in `dist/<category>/` are not versioned: pushing a `v*` tag makes GitHub Actions build them all and attach them to a release. Versions are pinned (`package-lock.json`, and `requirements.txt`, whose Playwright version fixes the Chromium build), and Chromium lays text out without the local font hinting settings, to keep the layout independent of the machine.
 
-`make check` also runs on GitHub Actions for every push and pull request. It fails when a poster overflows its page, when it still fits at the largest allowed body size, or when a character is drawn with a system font.
+`make check` also runs on GitHub Actions for every push and pull request. It fails when a poster overflows its page, when it still fits at the largest allowed body size, when a character is drawn with a system font, when `min_print` does not match the body size, or when the catalog of this README is out of date.
 
 ## Add a paper
 
-Create `papers/<name>/` with:
+A paper is a folder `papers/<category>/<slug>/`. The slug names its PDFs and its `make` target, so it is unique across categories. The categories are the folders of `papers/`: `crypto`, `computing`, `internet`, `software`, `manifestos`, `physics`, `mathematics`, `life-sciences`, `data-viz`, `patents` and `history`; `engine/papers.py` gives their titles in the catalog.
 
 | File | Purpose |
 |---|---|
-| `meta.yaml` | title, header, abstract, footer, columns, license (see existing papers) |
+| `meta.yaml` | title, source, license, header, footer and layout (see existing papers) |
 | `text.md` | the text, in the small Markdown dialect documented in `engine/markdown.py` |
 | `figures.py` | optional: `FIGS = {"name": fn}`, each `fn()` returns an SVG string built with `engine/svg.py` |
 | images | optional: PNG, JPEG, GIF, WebP or SVG files for `::: image`, embedded in the PDF |
@@ -99,7 +97,16 @@ Create `papers/<name>/` with:
 
 Mistakes, such as an unclosed block or a footnote that is never defined, are reported with their line number.
 
-In `meta.yaml`, `title` and `license` are required and unknown keys are rejected. The optional keys:
+In `meta.yaml`, unknown keys are rejected, and these keys are required:
+
+| Key | Content |
+|---|---|
+| `title`, `authors`, `year` | title, list of authors, and year of the text: a number, negative before the common era, or a text such as `c. 400 BC` |
+| `min_print` | the smallest of A3, A2, A1 and A0 at which the body prints at 8 pt or more; the build computes it and fails when it differs |
+| `source` | `url`, `retrieved` (a date) and `edition` of the primary source or reference edition of the text, with every difference between that source and the poster |
+| `license` | `text`, short, for the catalog, then either `notice`, the license or permission word for word, or `basis`, why the text is in the public domain in France and in the United States; `holder` and `note` are optional |
+
+The optional keys:
 
 | Key | Default | Effect |
 |---|---|---|
@@ -114,13 +121,13 @@ In `meta.yaml`, `title` and `license` are required and unknown keys are rejected
 | `title_html`, `title_size`, `header_scale` | `title`, `76pt`, `1` | title with HTML markup, its size, and the scale of the other header lines |
 | `kicker`, `author`, `byline`, `emblem`, `abstract`, `abstract_label`, `footer` | | header and footer content (see existing papers) |
 
-Every character must come from the bundled fonts (EB Garamond, JetBrains Mono, KaTeX), since a system font would make the PDF depend on the machine. `make check` names the characters that fall back; `papers/bitcoin/style.css` shows the fix, taking ₿ from JetBrains Mono.
+Every text comes from a primary source or a reference edition, never from memory, and its words are counted against that source; an excerpt says so on the poster. A text is only added when it is in the public domain in France and in the United States, or when a license or permission allows its redistribution, in which case the poster keeps the notices that the license requires. The other texts wait in [PENDING.md](PENDING.md), which says what is missing for each, and are listed under *Coming soon*.
 
-Only add texts whose license allows redistribution, and record it in `meta.yaml`.
+Every character must come from the bundled fonts (EB Garamond, JetBrains Mono, KaTeX), since a system font would make the PDF depend on the machine. `make check` names the characters that fall back; `papers/crypto/bitcoin/style.css` shows the fix, taking ₿ from JetBrains Mono.
 
 ## How it works
 
-`engine/build.py` parses the Markdown, pre-renders math with KaTeX, injects SVG figures into an HTML template, then drives headless Chromium: for each format it waits for the fonts, binary-searches the largest body size that fits in whole hundredths of a point, checks it again on a freshly loaded page, prints a PDF at a fixed 594 mm design width, and scales it to the target format with pypdf, keeping the page vector and its content losslessly compressed. Images are embedded in the page as data URIs, so every PDF is self-contained. Themes are sets of CSS variables in `engine/themes.py`.
+`engine/build.py` finds the papers in `papers/<category>/<slug>/`, parses the Markdown, pre-renders math with KaTeX, injects SVG figures into an HTML template, then drives headless Chromium: for each format it waits for the fonts, binary-searches the largest body size that fits in whole hundredths of a point, checks it again on a freshly loaded page, prints a PDF at a fixed 594 mm design width, and scales it to the target format with pypdf, keeping the page vector and its content losslessly compressed. Images are embedded in the page as data URIs, so every PDF is self-contained. Themes are sets of CSS variables in `engine/themes.py`. `engine/readme.py` writes the catalog of this README from the `meta.yaml` files and PENDING.md.
 
 ## Origin
 
@@ -147,4 +154,4 @@ not every classic makes the cut.
 
 ## License
 
-Engine code: MIT. Each paper keeps its own license, see [`LICENSE`](LICENSE) and `papers/*/meta.yaml`.
+Engine code: MIT. Each paper keeps its own license, recorded in its `meta.yaml` and summed up in the catalog above; see [`LICENSE`](LICENSE).

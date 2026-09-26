@@ -1,15 +1,21 @@
-PAPERS := $(notdir $(wildcard papers/*))
+PAPERS := $(notdir $(wildcard papers/*/*))
+CATEGORIES := $(notdir $(wildcard papers/*))
 # Python of the virtualenv made by `make deps`, else the system one
 PY = $(if $(wildcard .venv/bin/python),.venv/bin/python,python3)
-.PHONY: all check deps clean $(PAPERS)
+.PHONY: all check readme deps clean $(PAPERS) $(CATEGORIES)
 
 all:
 	$(PY) engine/build.py
+	$(PY) engine/readme.py
 
 check:
 	$(PY) engine/build.py --check
+	$(PY) engine/readme.py --check
 
-$(PAPERS):
+readme:
+	$(PY) engine/readme.py
+
+$(PAPERS) $(CATEGORIES):
 	$(PY) engine/build.py $@
 
 # uv when available: the stock Python of Debian and Ubuntu has neither pip nor venv

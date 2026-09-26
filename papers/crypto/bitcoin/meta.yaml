@@ -21,8 +21,21 @@ footer:
 - Block 0 · 3 January 2009, 18:15:05 UTC
 - <i>“The Times 03/Jan/2009 Chancellor on brink of second bailout for banks”</i>
 - <span class="mono">000000000019d6689c085ae165831e934ff763ae46a2a6c172b3f1b60a8ce26f</span>
+year: 2008
+authors: [Satoshi Nakamoto]
+min_print: A2
+source:
+  url: https://bitcoin.org/bitcoin.pdf
+  retrieved: 2026-09-27
+  edition: >-
+    The paper of 31 October 2008 as published on bitcoin.org. The text comes from the LaTeX
+    transcription at github.com/karask/satoshi-paper and was checked word for word against
+    the PDF: the figures are redrawn, the equations set with KaTeX, and "..." and "*" are set
+    as an ellipsis and a multiplication sign.
 license:
   text: MIT
   holder: © 2008 Satoshi Nakamoto
-  source: https://bitcoin.org/bitcoin.pdf
-  note: Text adapted from github.com/karask/satoshi-paper
+  notice: "© Bitcoin Project 2009-2026 Released under the MIT license"
+  note: >-
+    Footer of bitcoin.org, which publishes the paper; the repository of the site,
+    github.com/bitcoin-dot-org/Bitcoin.org, carries the MIT license.
