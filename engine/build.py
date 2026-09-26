@@ -6,7 +6,7 @@
     python3 engine/build.py rfc-1925 --formats A --themes white genesis
     python3 engine/build.py --check         # fit every poster and report problems, no output
 """
-import argparse, importlib.util, io, json, math, pathlib, re, subprocess, sys
+import argparse, importlib.util, io, json, pathlib, re, subprocess, sys
 import yaml
 from PIL import Image
 from playwright.sync_api import sync_playwright
@@ -26,8 +26,9 @@ PX = 96 / 25.4  # CSS pixels per mm
 CHROMIUM_ARGS = ["--font-render-hinting=none"]
 BUNDLED_FONTS = ("EBGaramond", "JetBrainsMono", "KaTeX_")  # PostScript names of the node_modules fonts
 META_KEYS = {"title", "title_html", "title_size", "kicker", "author", "byline", "emblem", "abstract",
-             "abstract_label", "numbered", "columns", "header_scale", "font_range", "footer", "lang",
-             "license"}
+             "abstract_label", "numbered", "columns", "header_scale", "font_range", "max_font", "layout",
+             "footer", "lang", "license"}
+LAYOUTS = ("columns", "centered")  # centered: short texts, one column by default, vertically centered
 WARNINGS = []
 
 class BuildError(Exception):
@@ -51,6 +52,10 @@ def load_meta(paper_dir):
     if not (isinstance(fr, list) and len(fr) == 2 and all(isinstance(v, (int, float)) for v in fr)
             and 0 < fr[0] < fr[1]):
         errors.append("font_range must be [min, max] in pt")
+    elif not isinstance(m.get("max_font", fr[1]), (int, float)) or m.get("max_font", fr[1]) <= fr[0]:
+        errors.append("max_font must be a size in pt above the minimum of font_range")
+    if m.get("layout", "columns") not in LAYOUTS:
+        errors.append(f"layout must be one of {', '.join(LAYOUTS)}")
     if errors:
         raise BuildError(f"{rel(path)}: {'; '.join(errors)}")
     return m
@@ -108,8 +113,9 @@ def poster(paper_dir, m):
         body = body.replace(f"<!--MATH:{i}-->", h)
     css = paper_dir / "style.css"
     tpl = (ENGINE / "template.html").read_text()
-    values = {"HEADER": header_html(m), "FOOTER": footer_html(m), "BODY": body,
-              "COLS": m.get("columns", 4), "HS": m.get("header_scale", 1),
+    layout = m.get("layout", "columns")
+    values = {"HEADER": header_html(m), "FOOTER": footer_html(m), "BODY": body, "LAYOUT": layout,
+              "COLS": m.get("columns", 1 if layout == "centered" else 4), "HS": m.get("header_scale", 1),
               "TITLE_SIZE": m.get("title_size", "76pt"), "LANG": m.get("lang", "en"),
               "EXTRA_CSS": css.read_text() if css.exists() else "",
               "NM": (ROOT / "node_modules").as_uri()}
@@ -145,20 +151,23 @@ def fits(page, fs):
     """Whether the text fits on the loaded page at body size fs (pt)."""
     return page.evaluate(FITS_JS, fs)
 
-def best_font(page, lo, hi, what):
-    """Largest body size (pt, to 0.01) at which the text still fits on the loaded page."""
-    if not fits(page, lo):
-        raise BuildError(f"{what}: the text overflows even at {lo} pt, lower font_range in meta.yaml")
-    if fits(page, hi):
-        warn(f"{what}: the text still fits at {hi} pt and leaves space, raise font_range in meta.yaml")
-        return hi
-    while hi - lo > 0.01:
-        mid = (lo + hi) / 2
-        if fits(page, mid): lo = mid
+def best_font(page, lo, hi, what, capped):
+    """Largest body size at which the text still fits on the loaded page, in whole hundredths
+    of a point. When capped, hi is a deliberate ceiling and reaching it is not a problem.
+    Chromium lays a size out with the font of a previous size less than about 0.01 px away,
+    so candidates that are not on a 0.01 pt grid can be measured with the wrong glyph widths."""
+    lo, hi = round(lo * 100), round(hi * 100)
+    if not fits(page, lo / 100):
+        raise BuildError(f"{what}: the text overflows even at {lo / 100} pt, lower font_range in meta.yaml")
+    if fits(page, hi / 100):
+        if not capped:
+            warn(f"{what}: the text still fits at {hi / 100} pt and leaves space, raise font_range in meta.yaml")
+        return hi / 100
+    while hi - lo > 1:
+        mid = (lo + hi) // 2
+        if fits(page, mid / 100): lo = mid
         else: hi = mid
-    # lo was measured, its rounding was not: layout is not strictly monotonic in the size
-    fs = math.floor(lo * 100) / 100
-    return fs if fits(page, fs) else lo
+    return lo / 100
 
 def font_name(font):
     """PostScript name of a PDF font without its subset tag. Chromium embeds some glyphs
@@ -204,17 +213,29 @@ def build(paper, formats, themes, page, previews, check):
     paper_dir = ROOT / "papers" / paper
     m = load_meta(paper_dir)
     html = poster(paper_dir, m)
-    tmp, raw = ROOT / "build" / f"{paper}.html", ROOT / "build" / "raw.pdf"
+    tmp, raw = ROOT / "build" / f"{paper}.html", ROOT / "build" / f"{paper}.pdf"  # per paper, for make -j
     tmp.parent.mkdir(exist_ok=True)
     out = ROOT / "dist" / paper
     lo, hi = m.get("font_range", [8, 40])
+    hi = m.get("max_font", hi)
+    capped = "max_font" in m or m.get("layout") == "centered"
     for fmt in formats:
         W, H = FORMATS[fmt]
         height = DESIGN_W * H / W
         page.set_viewport_size({"width": round(DESIGN_W * PX), "height": round(height * PX)})
         load(page, tmp, html(themes[0], height, lo))
-        fs = best_font(page, lo, hi, f"{paper} {fmt}")
-        print(f"{paper} {fmt}: body {fs:.2f} pt at design size ({printed(fmt, fs)})")
+        fs = best_font(page, lo, hi, f"{paper} {fmt}", capped)
+        # the search page keeps the fonts of every size it tried: settle on a size that also
+        # fits a freshly loaded page, like the ones that get printed
+        for _ in range(100):
+            load(page, tmp, html(themes[0], height, fs))
+            if fits(page, fs):
+                break
+            fs = round(fs - 0.01, 2)
+        else:
+            raise BuildError(f"{paper} {fmt}: no body size fits a freshly loaded page")
+        cap = ", the cap" if capped and fs == hi else ""
+        print(f"{paper} {fmt}: body {fs:.2f} pt at design size{cap} ({printed(fmt, fs)})")
         for i, th in enumerate(themes):
             load(page, tmp, html(th, height, fs))
             if not fits(page, fs):

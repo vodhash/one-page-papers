@@ -7,7 +7,8 @@ Blocks (separated by blank lines):
   ```lang ... ```            code block, may contain blank lines
   1. item                    ordered list (after "## References": reference list)
   - item                     unordered list
-  (1) text / (2a) text       labelled items (sub-items when the label ends with a letter)
+  (1) text / (2a) text       labelled items; a label ending with a letter makes a sub-item,
+                             kept in the same column as the item before it
   <html ...>                 raw HTML, passed through
   anything else              paragraph
 Inline: **bold**, *italic*, `code`, [n] / [n-m] citations, smart quotes.
@@ -115,8 +116,15 @@ def render(text, figures=None, numbered=False):
             out.append('<ul>' + ''.join(f'<li>{inline(x[2:])}</li>' for x in items) + '</ul>')
         elif LABEL.match(b):
             for lab, body in re.findall(r'^\((\d+[a-z]?)\)\s+(.*?)(?=^\(\d+[a-z]?\)\s|\Z)', b, re.S | re.M):
-                sub = ' sub' if lab[-1].isalpha() else ''
-                out.append(f'<div class="item{sub}"><span class="lbl">{lab}</span><div>{inline(body)}</div></div>')
+                sub = lab[-1].isalpha()
+                item = f'<div class="item{" sub" if sub else ""}"><span class="lbl">{lab}</span><div>{inline(body)}</div></div>'
+                # a sub-item joins its item in a group that columns cannot split
+                if sub and out and out[-1].startswith('<div class="group">'):
+                    out[-1] = out[-1][:-len('</div>')] + item + '</div>'
+                elif sub and out and out[-1].startswith('<div class="item">'):
+                    out[-1] = f'<div class="group">{out[-1]}{item}</div>'
+                else:
+                    out.append(item)
         else:
             out.append(f'<p>{inline(b)}</p>')
     return '\n'.join(out), math

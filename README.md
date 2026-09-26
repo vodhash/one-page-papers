@@ -20,6 +20,13 @@ Ross Callon, 1 April 1996. Large type, readable from across the room.
 |---|---|---|---|
 | ![](docs/rfc-1925-ivory.png) | ![](docs/rfc-1925-white.png) | ![](docs/rfc-1925-genesis.png) | ![](docs/rfc-1925-blueprint.png) |
 
+### PEP 20: The Zen of Python
+Tim Peters, 2004. The nineteen aphorisms, set as a typographic poster; comfortable down to A3.
+
+| ivory | white | genesis | blueprint |
+|---|---|---|---|
+| ![](docs/zen-of-python-ivory.png) | ![](docs/zen-of-python-white.png) | ![](docs/zen-of-python-genesis.png) | ![](docs/zen-of-python-blueprint.png) |
+
 ## Download
 
 Vector PDFs are in [`dist/<paper>/`](dist), named `<paper>-<format>-<theme>.pdf`. Text, equations and figures are all vector, so they print sharp at any size.
@@ -61,9 +68,20 @@ Create `papers/<name>/` with:
 | `figures.py` | optional: `FIGS = {"name": fn}`, each `fn()` returns an SVG string built with `engine/svg.py` |
 | `style.css` | optional: paper-specific CSS; a rule on `:root[data-theme=genesis]` applies to one theme only |
 
-In `text.md`, `::: figure <name>` inserts a figure, `$$ … $$` is rendered with KaTeX, `(1)` / `(1a)` makes labelled items, and raw HTML passes through. Mistakes are reported with their line number.
+In `text.md`, `::: figure <name>` inserts a figure, `$$ … $$` is rendered with KaTeX, `(1)` / `(1a)` makes labelled items (a sub-item such as `(1a)` stays in the same column as its item), and raw HTML passes through. Mistakes are reported with their line number.
 
-In `meta.yaml`, `title` and `license` are required and unknown keys are rejected. `lang` (default `en`) sets the hyphenation language, and `font_range` (default `[8, 40]`, in pt) bounds the search for the body size.
+In `meta.yaml`, `title` and `license` are required and unknown keys are rejected. The optional keys:
+
+| Key | Default | Effect |
+|---|---|---|
+| `lang` | `en` | language of the text, for hyphenation (English, French, German and many more) |
+| `layout` | `columns` | `centered` suits short texts: one column unless `columns` says otherwise, vertically centered on the page |
+| `columns` | 4, or 1 when centered | number of text columns |
+| `font_range` | `[8, 40]` | bounds of the search for the body size, in pt; the build warns when the text still fits at the maximum |
+| `max_font` | none | hard cap on the body size, in pt, so that a short text does not end up in giant type; reaching it is expected |
+| `numbered` | `false` | number the `##` sections |
+| `title_html`, `title_size`, `header_scale` | `title`, `76pt`, `1` | title with HTML markup, its size, and the scale of the other header lines |
+| `kicker`, `author`, `byline`, `emblem`, `abstract`, `abstract_label`, `footer` | | header and footer content (see existing papers) |
 
 Every character must come from the bundled fonts (EB Garamond, JetBrains Mono, KaTeX), since a system font would make the PDF depend on the machine. `make check` names the characters that fall back; `papers/bitcoin/style.css` shows the fix, taking ₿ from JetBrains Mono.
 
@@ -71,7 +89,7 @@ Only add texts whose license allows redistribution, and record it in `meta.yaml`
 
 ## How it works
 
-`engine/build.py` parses the Markdown, pre-renders math with KaTeX, injects SVG figures into an HTML template, then drives headless Chromium: for each format it waits for the fonts, binary-searches the largest body size that fits (to 0.01 pt), prints a PDF at a fixed 594 mm design width, and scales it to the target format with pypdf, keeping the page vector and its content losslessly compressed. Themes are sets of CSS variables in `engine/themes.py`.
+`engine/build.py` parses the Markdown, pre-renders math with KaTeX, injects SVG figures into an HTML template, then drives headless Chromium: for each format it waits for the fonts, binary-searches the largest body size that fits in whole hundredths of a point, checks it again on a freshly loaded page, prints a PDF at a fixed 594 mm design width, and scales it to the target format with pypdf, keeping the page vector and its content losslessly compressed. Themes are sets of CSS variables in `engine/themes.py`.
 
 ## License
 

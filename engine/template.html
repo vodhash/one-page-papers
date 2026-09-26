@@ -1,4 +1,4 @@
-<!doctype html><html lang="{{LANG}}" data-theme="{{THEME_NAME}}"><head><meta charset="utf-8">
+<!doctype html><html lang="{{LANG}}" data-theme="{{THEME_NAME}}" data-layout="{{LAYOUT}}"><head><meta charset="utf-8">
 <link rel="stylesheet" href="{{NM}}/katex/dist/katex.min.css">
 <link rel="stylesheet" href="{{NM}}/@fontsource/eb-garamond/400.css">
 <link rel="stylesheet" href="{{NM}}/@fontsource/eb-garamond/400-italic.css">
@@ -28,10 +28,14 @@ h1 em{font-style:italic;font-weight:400}
 .abs{max-width:420mm;margin:0 auto 9mm;text-align:justify;font-size:calc(var(--fs)*1.28);line-height:1.38;hyphens:auto}
 .abs b{font-variant:small-caps;letter-spacing:.06em;font-weight:600;color:var(--acc)}
 main{column-count:var(--cols);column-gap:13mm;column-rule:.2mm solid var(--rule);column-fill:balance;text-align:justify;hyphens:auto;flex:1;min-height:0}
+.flow{display:contents}
+/* layout: centered, for short texts: the text keeps its natural height, in the middle of main */
+[data-layout=centered] main{column-count:auto;display:flex;flex-direction:column;justify-content:safe center}
+[data-layout=centered] .flow{display:block;column-count:var(--cols);column-gap:13mm;column-rule:.2mm solid var(--rule);column-fill:balance}
 p{margin:0 0 .55em;text-indent:0}
 h2{font-weight:600;font-size:calc(var(--fs)*1.2);margin:.9em 0 .35em;break-after:avoid;letter-spacing:.01em;hyphens:manual}
 h2 .n{color:var(--acc);margin-right:.2em}
-main>h2:first-child{margin-top:0}
+.flow>h2:first-child{margin-top:0}
 cite{font-style:normal;color:var(--mute)}
 figure{margin:.8em 0 1em;break-inside:avoid}
 svg.fig{width:100%;height:auto;display:block;overflow:visible}
@@ -68,6 +72,7 @@ footer .mono{font-family:'JetBrains Mono',monospace;font-size:.9em;color:var(--i
 footer>div:nth-child(2){text-align:center}
 svg .mk{fill:var(--ink)}svg .mko{fill:var(--acc)}.katex{color:var(--ink)}
 .item{display:grid;grid-template-columns:2.2em 1fr;gap:.2em;margin:0 0 .6em;break-inside:avoid;text-align:left;hyphens:manual}
+.group{break-inside:avoid}
 .item .lbl{color:var(--acc);font-weight:600}
 .item.sub{margin-left:2.2em;font-size:.92em}.item.sub .lbl{font-weight:400}
 code{font-family:'JetBrains Mono',monospace;font-size:.85em}
@@ -78,7 +83,9 @@ ul{margin:.2em 0 .7em;padding-left:1.2em}
 <div class="page">
 {{HEADER}}
 <main>
+<div class="flow">
 {{BODY}}
+</div>
 </main>
 {{FOOTER}}
 </div>

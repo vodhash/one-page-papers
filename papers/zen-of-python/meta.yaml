@@ -1,0 +1,22 @@
+title: "PEP 20: The Zen of Python"
+title_html: "The Zen<br><em>of Python</em>"
+title_size: 124pt
+kicker: "Python Enhancement Proposal 20 · Informational · 19 August 2004"
+author: "Tim Peters"
+emblem: "20"
+abstract: >-
+  Long time Pythoneer Tim Peters succinctly channels the BDFL's guiding
+  principles for Python's design into 20 aphorisms, only 19 of which
+  have been written down.
+header_scale: 2
+layout: centered
+max_font: 40
+footer:
+  - "Status: Active · Post-History: 22-Aug-2004"
+  - "<i>This document has been placed in the public domain.</i>"
+  - "<span class=\"mono\">peps.python.org/pep-0020</span>"
+license:
+  text: "Public domain"
+  holder: "Tim Peters, 2004"
+  source: "https://github.com/python/peps/blob/main/peps/pep-0020.rst"
+  note: "This document has been placed in the public domain."

@@ -29,5 +29,7 @@ papers/ keeps its own license, recorded in papers/<name>/meta.yaml:
   github.com/karask/satoshi-paper.
 - papers/rfc-1925: "The Twelve Networking Truths", R. Callon, 1996.
   "Distribution of this memo is unlimited."
+- papers/zen-of-python: "PEP 20: The Zen of Python", Tim Peters, 2004.
+  "This document has been placed in the public domain."
 
 Fonts: EB Garamond and JetBrains Mono, SIL Open Font License.

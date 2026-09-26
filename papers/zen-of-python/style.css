@@ -1,0 +1,9 @@
+/* One aphorism per line, centered like a poem */
+main{text-align:center}
+.kick{letter-spacing:.2em}
+.abs{font-size:calc(var(--fs)*.8)}
+.zen p{margin:0 0 .3em;hyphens:manual}
+/* Easter egg and reference: a quiet colophon under the aphorisms */
+.colophon{font-size:.5em;margin-top:2.2em;color:var(--mute)}
+.colophon h2{font-size:1.1em;margin:1.2em 0 .3em}
+.colophon pre.code{display:inline-block;text-align:left;font-size:1.1em;margin:0}
