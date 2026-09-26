@@ -8,7 +8,7 @@ Each paper is laid out in full on one page: every section, equation, code listin
 
 <!-- catalog:start -->
 
-7 posters in 4 categories. A click on a poster downloads its PDF from the latest release, in the A format; *Print from* is the smallest A size at which its body text is at least 8 pt.
+8 posters in 4 categories. A click on a poster downloads its PDF from the latest release, in the A format; *Print from* is the smallest A size at which its body text is at least 8 pt.
 
 ### Cryptocurrency
 
@@ -24,6 +24,7 @@ Each paper is laid out in full on one page: every section, equation, code listin
 | <a href="https://github.com/vodhash/one-page-papers/releases/latest/download/rfc-791-A-ivory.pdf"><img src="docs/internet/rfc-791.png" width="90" alt=""></a> | [RFC 791: Internet Protocol](https://github.com/vodhash/one-page-papers/releases/latest/download/rfc-791-A-ivory.pdf) | Jon Postel | 1981 | A1 | Free reproduction (RFC Editor) |
 | <a href="https://github.com/vodhash/one-page-papers/releases/latest/download/rfc-1149-A-ivory.pdf"><img src="docs/internet/rfc-1149.png" width="90" alt=""></a> | [RFC 1149: A Standard for the Transmission of IP Datagrams on Avian Carriers](https://github.com/vodhash/one-page-papers/releases/latest/download/rfc-1149-A-ivory.pdf) | David Waitzman | 1990 | A3 | Distribution unlimited |
 | <a href="https://github.com/vodhash/one-page-papers/releases/latest/download/rfc-1925-A-ivory.pdf"><img src="docs/internet/rfc-1925.png" width="90" alt=""></a> | [RFC 1925: The Twelve Networking Truths](https://github.com/vodhash/one-page-papers/releases/latest/download/rfc-1925-A-ivory.pdf) | Ross Callon | 1996 | A3 | Distribution unlimited |
+| <a href="https://github.com/vodhash/one-page-papers/releases/latest/download/rfc-2324-A-ivory.pdf"><img src="docs/internet/rfc-2324.png" width="90" alt=""></a> | [RFC 2324: Hyper Text Coffee Pot Control Protocol (HTCPCP/1.0)](https://github.com/vodhash/one-page-papers/releases/latest/download/rfc-2324-A-ivory.pdf) | Larry Masinter | 1998 | A2 | © The Internet Society 1998, copies allowed |
 
 ### Software practice
 

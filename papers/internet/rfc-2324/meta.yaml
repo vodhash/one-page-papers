@@ -1,0 +1,42 @@
+title: "RFC 2324: Hyper Text Coffee Pot Control Protocol (HTCPCP/1.0)"
+title_html: "Hyper Text Coffee Pot<br>Control Protocol <em>(HTCPCP/1.0)</em>"
+title_size: 92pt
+kicker: "Request for Comments 2324 · Informational · 1 April 1998"
+author: "L. Masinter"
+byline: "Network Working Group"
+emblem: "418"
+abstract: >-
+  This document describes HTCPCP, a protocol for controlling,
+  monitoring, and diagnosing coffee pots.
+header_scale: 1.6
+columns: 3
+footer:
+  - "<b>Status of this Memo.</b> This memo provides information for the Internet community. It does not specify an Internet standard of any kind. Distribution of this memo is unlimited."
+  - "<b>Copyright Notice.</b> Copyright (C) The Internet Society (1998).  All Rights Reserved."
+  - '<span class="mono">doi:10.17487/RFC2324</span>'
+year: 1998
+authors: [Larry Masinter]
+min_print: A2
+source:
+  url: https://www.rfc-editor.org/rfc/rfc2324.txt
+  retrieved: 2026-09-27
+  edition: >-
+    RFC Editor plain-text edition. The status of the memo and the copyright notice of the
+    first page are in the footer and the abstract in the header; page headers and footers
+    are left out.
+license:
+  text: "© The Internet Society 1998, copies allowed"
+  holder: "The Internet Society, 1998"
+  notice: >-
+    This document and translations of it may be copied and furnished to others, and derivative
+    works that comment on or otherwise explain it or assist in its implementation may be
+    prepared, copied, published and distributed, in whole or in part, without restriction of any
+    kind, provided that the above copyright notice and this paragraph are included on all such
+    copies and derivative works. However, this document itself may not be modified in any way,
+    such as by removing the copyright notice or references to the Internet Society or other
+    Internet organizations, except as needed for the purpose of developing Internet standards in
+    which case the procedures for copyrights defined in the Internet Standards process must be
+    followed, or as required to translate it into languages other than English.
+  note: >-
+    The copyright notice and this paragraph go with every copy: the poster keeps the full
+    copyright statement (section 11) and the copyright notice (footer).

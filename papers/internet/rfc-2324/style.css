@@ -1,0 +1,6 @@
+/* References are labelled [RFC2068] and the like, wider than numbers */
+ol.refs li{grid-template-columns:5.6em 1fr}
+/* The address as in the RFC, one line each */
+.addr{text-align:left;font-variant:small-caps;letter-spacing:.03em}
+.kick{letter-spacing:.22em}
+footer>div:first-child{max-width:40%;line-height:1.3}
