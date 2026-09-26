@@ -20,7 +20,7 @@ jobs:
       - run: npm ci
       - run: pip install -r requirements.txt
       - run: python -m playwright install --with-deps --only-shell chromium
-      - name: Every poster fits its page and uses bundled fonts only
+      - name: Every poster fits its page, uses bundled fonts only and matches its PDFs in dist/
         run: python engine/build.py --check
       - name: The catalog of the README is up to date
         run: python engine/readme.py --check
