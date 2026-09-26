@@ -1,2 +1,4 @@
 /* A short notice in large type reads better ragged than justified */
 main{text-align:left}
+/* The larger header scale makes the footer cells wrap: balance their lines */
+footer>div{text-wrap:balance}

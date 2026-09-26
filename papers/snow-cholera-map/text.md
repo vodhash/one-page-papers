@@ -1,8 +1,8 @@
-::: image snow-map.png caption="John Snow's map of the deaths from cholera around Broad Street, Soho, in 1854. Lithograph by C. F. Cheffins." on_light=multiply
+::: image snow-map.png caption="John Snow's map of the deaths from cholera around Broad Street, Soho, in 1854. Lithograph by C.&nbsp;F.&nbsp;Cheffins." on_light=multiply
 
 ## Notice
 
-*This notice was written for this poster in 2026. The map is John Snow's; the words below are not.*
+*A note written for this poster.*
 
 On 31 August 1854 cholera broke out around Broad Street, in the Soho parish of St James, London. Within three days 127 people living on or near the street had died, and by 10 September more than 300. Within a week, three quarters of the residents had fled.
 
