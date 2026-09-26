@@ -23,8 +23,8 @@ Blocks (separated by blank lines):
   [^label]: text             footnote, listed with the others at the end of the text
   <html ...>                 raw HTML, passed through
   anything else              paragraph
-Inline: **bold**, *italic*, `code`, [n] / [n-m] citations, [^label] footnote calls
-(numbered in order of first call), smart quotes.
+Inline: **bold**, *italic*, `code`, \\( inline math \\) (KaTeX), [n] / [n-m] citations,
+[^label] footnote calls (numbered in order of first call), smart quotes.
 Malformed input raises MarkdownError, which carries the line number.
 """
 import base64, html, re, shlex
@@ -114,13 +114,18 @@ class Renderer:
         self.notes = {}  # label: (line of the definition, text)
         self.calls = {}  # label: line of the first call, in the order of first calls
 
-    def inline(self, s, line):
-        """inline(), plus footnote calls outside code spans."""
+    def inline(self, s, line, calls=True):
+        """inline(), plus \\( inline math \\) and footnote calls, both outside code spans."""
         def call(m):
             self.calls.setdefault(m.group(1), line)
             return f'<sup class="fn">{list(self.calls).index(m.group(1)) + 1}</sup>'
-        parts = re.split(r'(`[^`]+`)', s)
-        parts[::2] = [NOTE_CALL.sub(call, p) for p in parts[::2]]
+        parts = re.split(r'(`[^`]+`|\\\(.+?\\\))', s, flags=re.S)
+        for i, p in enumerate(parts):
+            if i % 2 == 0:
+                parts[i] = NOTE_CALL.sub(call, p) if calls else p
+            elif p.startswith('\\('):
+                self.math.append({'tex': p[2:-2].strip(), 'display': False})
+                parts[i] = f'<!--MATH:{len(self.math) - 1}-->'
         return inline(''.join(parts))
 
     def render(self, text, first=1):
@@ -132,7 +137,7 @@ class Renderer:
                 out.append(f'<pre class="code">{html.escape(code)}</pre>')
             elif b.startswith('$$'):
                 tex = '\n'.join(l for l in b.split('\n') if l.strip())
-                self.math.append(tex.strip()[2:-2].strip())
+                self.math.append({'tex': tex.strip()[2:-2].strip(), 'display': True})
                 out.append(f'<div class="eq"><!--MATH:{len(self.math)-1}--></div>')
             elif m := re.match(r'(#{2,4}) ', b):
                 out.append(self.heading(len(m.group(1)), b[m.end():].strip(), line))
@@ -265,7 +270,7 @@ class Renderer:
                 raise MarkdownError(line, f'footnote [^{label}] calls another footnote')
         if not self.calls:
             return []
-        notes = ''.join(f'<li><span>{n}</span><div>{inline(self.notes[label][1])}</div></li>'
+        notes = ''.join(f'<li><span>{n}</span><div>{self.inline(*self.notes[label][::-1], calls=False)}</div></li>'
                         for n, label in enumerate(self.calls, 1))
         return [f'<div class="footnotes"><ol>{notes}</ol></div>']
 
@@ -285,7 +290,7 @@ def image_size(path, data):
         return im.size
 
 def render(text, figures=None, numbered=False, assets=None, hero=False):
-    """Returns (html, math, hero). math is a list of TeX strings, and html holds
+    """Returns (html, math, hero). math is a list of {tex, display} to render, and html holds
     placeholders <!--MATH:i--> to be replaced once KaTeX has run. With hero, the first
     image is kept out of the text and returned as a dict (src, w, h, dark, light, caption).
     assets is the folder that ::: image files are read from."""

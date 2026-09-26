@@ -94,6 +94,7 @@ A paper is a folder `papers/<category>/<slug>/`. The slug names its PDFs and its
 | `::: wide` … `:::` | a block across all the columns, holding any other syntax (code, math, figures, HTML) |
 | `::: wide cols=N` … `:::` | the `##` sections of the block side by side, one per left-aligned cell of an N-column grid (see `papers/rfc-1925`) |
 | `$$ … $$` | display math, rendered with KaTeX |
+| `\( … \)` | math within a line of text, rendered with KaTeX |
 | `(1)`, `(1a)` | labelled items; a sub-item such as `(1a)` stays in the same column as its item |
 | `[^label]`, `[^label]: text` | footnote call and definition; notes are numbered in order of first call and listed at the end of the text |
 | `<tag …>` | raw HTML, passed through |
