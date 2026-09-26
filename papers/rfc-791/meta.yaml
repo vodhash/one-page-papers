@@ -1,0 +1,27 @@
+title: "RFC 791: Internet Protocol"
+title_html: "Internet Protocol<br><em>DARPA Internet Program</em>"
+kicker: "Request for Comments 791 · Excerpt · September 1981"
+author: "Jon Postel, Editor"
+byline: "Information Sciences Institute · University of Southern California"
+emblem: "IP"
+abstract_label: "Preface."
+abstract: >-
+  This document specifies the DoD Standard Internet Protocol.  This
+  document is based on six earlier editions of the ARPA Internet Protocol
+  Specification, and the present text draws heavily from them.  There have
+  been many contributors to this work both in terms of concepts and in
+  terms of text.  This edition revises aspects of addressing, error
+  handling, option codes, and the security, precedence, compartments, and
+  handling restriction features of the internet protocol.
+footer:
+  - "Prepared for the Defense Advanced Research Projects Agency, Information Processing Techniques Office"
+  - "<i>Excerpt: section 3.1, Internet Header Format</i>"
+  - "<span class=\"mono\">doi:10.17487/RFC0791</span>"
+license:
+  text: "Redistribution permitted"
+  holder: "Jon Postel, Editor, Information Sciences Institute, 1981"
+  source: "https://www.rfc-editor.org/rfc/rfc791.txt"
+  note: >-
+    Excerpt: section 3.1, with the preface and the cited references. RFC 791
+    carries no copyright notice, and the RFC Editor states that all RFCs may be
+    freely reproduced and translated, unmodified (https://www.rfc-editor.org/faq/).

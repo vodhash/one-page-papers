@@ -31,5 +31,8 @@ papers/ keeps its own license, recorded in papers/<name>/meta.yaml:
   "Distribution of this memo is unlimited."
 - papers/zen-of-python: "PEP 20: The Zen of Python", Tim Peters, 2004.
   "This document has been placed in the public domain."
+- papers/rfc-791: "Internet Protocol", RFC 791, J. Postel, Editor, 1981,
+  excerpt (section 3.1). No copyright notice; "All RFCs may be freely
+  reproduced and translated (unmodified)" (www.rfc-editor.org/faq).
 
 Fonts: EB Garamond and JetBrains Mono, SIL Open Font License.

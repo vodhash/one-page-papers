@@ -74,6 +74,19 @@ footer>div:nth-child(2){text-align:center}
 svg .mk{fill:var(--ink)}svg .mko{fill:var(--acc)}.katex{color:var(--ink)}
 .item{display:grid;grid-template-columns:2.2em 1fr;gap:.2em;margin:0 0 .6em;break-inside:avoid;text-align:left;hyphens:manual}
 .group{break-inside:avoid}
+/* ::: wide, across all the columns; with cols=N, a grid with one "## " section per cell */
+.wide{column-span:all;margin:.4em 0 1.1em}
+.flow>.wide:first-child{margin-top:0}
+.wide.grid{display:grid;grid-template-columns:repeat(var(--wcols),minmax(0,1fr));column-gap:13mm}
+.wide.grid>.cell{position:relative}
+.wide.grid>.cell+.cell::before{content:"";position:absolute;left:-6.5mm;top:0;bottom:0;border-left:.2mm solid var(--rule)}
+.wide>h2:first-child,.cell>h2:first-child{margin-top:0}
+/* footnotes: superscript calls, the notes listed at the end of the text */
+sup.fn{font-size:.62em;line-height:0;color:var(--acc);margin-left:.08em}
+.footnotes{font-size:.82em;line-height:1.3;border-top:.2mm solid var(--rule);margin-top:.9em;padding-top:.5em;text-align:left;hyphens:none}
+.footnotes ol{list-style:none;padding:0;margin:0}
+.footnotes li{display:grid;grid-template-columns:1.6em 1fr;margin-bottom:.3em}
+.footnotes li>span{color:var(--acc)}
 .item .lbl{color:var(--acc);font-weight:600}
 .item.sub{margin-left:2.2em;font-size:.92em}.item.sub .lbl{font-weight:400}
 code{font-family:'JetBrains Mono',monospace;font-size:.85em}

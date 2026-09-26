@@ -136,7 +136,9 @@ FITS_JS = """async fs => {
     document.body.offsetHeight;
     await document.fonts.ready;
     const m = document.querySelector('main');
-    return m.scrollWidth <= m.clientWidth + 1 && m.scrollHeight <= m.clientHeight + 1;
+    // code blocks clip their overflow and grid cells spill into their neighbours: both must fit too
+    const spilt = [...document.querySelectorAll('pre, .cell')].some(e => e.scrollWidth > e.clientWidth + 1);
+    return !spilt && m.scrollWidth <= m.clientWidth + 1 && m.scrollHeight <= m.clientHeight + 1;
 }"""
 
 def load(page, path, html):

@@ -27,6 +27,13 @@ Tim Peters, 2004. The nineteen aphorisms, set as a typographic poster; comfortab
 |---|---|---|---|
 | ![](docs/zen-of-python-ivory.png) | ![](docs/zen-of-python-white.png) | ![](docs/zen-of-python-genesis.png) | ![](docs/zen-of-python-blueprint.png) |
 
+### RFC 791: Internet Protocol (excerpt)
+Jon Postel, Editor, September 1981. Section 3.1, the Internet Header Format, with Figure 4 across the page, drawn exactly as in the RFC.
+
+| ivory | white | genesis | blueprint |
+|---|---|---|---|
+| ![](docs/rfc-791-ivory.png) | ![](docs/rfc-791-white.png) | ![](docs/rfc-791-genesis.png) | ![](docs/rfc-791-blueprint.png) |
+
 ## Download
 
 Vector PDFs are in [`dist/<paper>/`](dist), named `<paper>-<format>-<theme>.pdf`. Text, equations and figures are all vector, so they print sharp at any size.
@@ -68,7 +75,20 @@ Create `papers/<name>/` with:
 | `figures.py` | optional: `FIGS = {"name": fn}`, each `fn()` returns an SVG string built with `engine/svg.py` |
 | `style.css` | optional: paper-specific CSS; a rule on `:root[data-theme=genesis]` applies to one theme only |
 
-In `text.md`, `::: figure <name>` inserts a figure, `$$ … $$` is rendered with KaTeX, `(1)` / `(1a)` makes labelled items (a sub-item such as `(1a)` stays in the same column as its item), and raw HTML passes through. Mistakes are reported with their line number.
+`text.md` is plain Markdown paragraphs and lists, plus these constructs (all listed in `engine/markdown.py`):
+
+| Syntax | Effect |
+|---|---|
+| `## Title` | section heading, numbered automatically with `numbered: true` |
+| `::: figure <name>` | an SVG figure from `figures.py` |
+| `::: wide` … `:::` | a block across all the columns, holding any other syntax (code, math, figures, HTML) |
+| `::: wide cols=N` … `:::` | the `##` sections of the block side by side, one per cell of an N-column grid (see `papers/rfc-1925`) |
+| `$$ … $$` | display math, rendered with KaTeX |
+| `(1)`, `(1a)` | labelled items; a sub-item such as `(1a)` stays in the same column as its item |
+| `[^label]`, `[^label]: text` | footnote call and definition; notes are numbered in order of first call and listed at the end of the text |
+| `<tag …>` | raw HTML, passed through |
+
+Mistakes, such as an unclosed block or a footnote that is never defined, are reported with their line number.
 
 In `meta.yaml`, `title` and `license` are required and unknown keys are rejected. The optional keys:
 

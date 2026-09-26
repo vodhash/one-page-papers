@@ -1,0 +1,12 @@
+/* The RFC nests its descriptions by indentation: fields, option names, sub-fields */
+h3,h4,h5{margin:.85em 0 .25em;break-after:avoid;text-align:left;hyphens:manual}
+h3{font-size:1.08em;font-weight:600}
+h3 span,h5 span{font-weight:400;color:var(--mute)}
+h4{font-size:1em;font-weight:600;font-style:italic}
+h4.defs{font-style:normal;font-variant:small-caps;letter-spacing:.05em;color:var(--acc);margin-top:1.1em}
+h5{font-size:.95em;font-weight:600}
+.quote{padding-left:.8em;border-left:.6mm solid var(--acc)}
+/* Figure 4, the header itself, is the centrepiece of the poster */
+.wide pre.code{font-size:calc(var(--fs)*1.45);width:fit-content;margin:.6em auto .3em;padding:.9em 1.4em}
+.caption{text-align:center;font-style:italic;color:var(--mute);margin:0 0 .8em}
+.wide>h2,.wide>p{text-align:center}

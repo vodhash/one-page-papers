@@ -1,3 +1,5 @@
+::: wide cols=2
+
 ## Acknowledgements
 
 The truths described in this memo result from extensive study over an extended period of time by many people, some of whom did not intend to contribute to this work. The editor merely has collected these truths, and would like to thank the networking community for originally illuminating these truths.
@@ -5,6 +7,8 @@ The truths described in this memo result from extensive study over an extended p
 ## 1. Introduction
 
 This Request for Comments (RFC) provides information about the fundamental truths underlying all networking. These truths apply to networking in general, and are not limited to TCP/IP, the Internet, or any other subset of the networking community.
+
+:::
 
 ## 2. The Fundamental Truths
 
@@ -42,6 +46,8 @@ This Request for Comments (RFC) provides information about the fundamental truth
 
 (12) In protocol design, perfection has been reached not when there is nothing left to add, but when there is nothing left to take away.
 
+::: wide cols=3
+
 ## Security Considerations
 
 This RFC raises no security issues. However, security protocols are subject to the fundamental networking truths.
@@ -53,3 +59,5 @@ The references have been deleted in order to protect the guilty and avoid enrich
 ## Author's Address
 
 <p class="addr">Ross Callon<br>Internet Order of Old Farts<br>c/o Bay Networks<br>3 Federal Street<br>Billerica, MA 01821</p>
+
+:::
