@@ -1,10 +1,12 @@
 {
   "name": "one-page-papers",
-  "version": "2.0.0",
+  "version": "2.1.0",
   "private": true,
   "description": "Foundational papers typeset as single printable posters",
   "license": "MIT",
-  "scripts": { "build": "make" },
+  "scripts": {
+    "build": "make"
+  },
   "dependencies": {
     "@fontsource/eb-garamond": "^5.3.0",
     "@fontsource/jetbrains-mono": "^5.3.0",
