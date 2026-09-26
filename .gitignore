@@ -1,5 +1,4 @@
 node_modules/
 .venv/
 build/
-dist/
 __pycache__/

@@ -8,41 +8,41 @@ Each paper is laid out in full on one page: every section, equation, code listin
 
 <!-- catalog:start -->
 
-8 posters in 4 categories. A click on a poster downloads its PDF from the latest release, in the A format; *Print from* is the smallest A size at which its body text is at least 8 pt.
+8 posters in 4 categories. A click on a poster opens its PDF in the A format; *Print from* is the smallest A size at which its body text is at least 8 pt.
 
 ### Cryptocurrency
 
 | &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; | Paper | Authors | Year | Print from | License |
 |---|---|---|---|---|---|
-| <a href="https://github.com/vodhash/one-page-papers/releases/latest/download/bitcoin-A-ivory.pdf"><img src="docs/crypto/bitcoin.png" width="90" alt=""></a> | [Bitcoin: A Peer-to-Peer Electronic Cash System](https://github.com/vodhash/one-page-papers/releases/latest/download/bitcoin-A-ivory.pdf)<br>Proposes a peer-to-peer electronic cash system that prevents double-spending with a proof-of-work chain of timestamped blocks. | Satoshi Nakamoto | 2008 | A2 | MIT |
+| <a href="dist/crypto/bitcoin-A-ivory.pdf"><img src="docs/crypto/bitcoin.png" width="90" alt=""></a> | [Bitcoin: A Peer-to-Peer Electronic Cash System](dist/crypto/bitcoin-A-ivory.pdf)<br>Proposes a peer-to-peer electronic cash system that prevents double-spending with a proof-of-work chain of timestamped blocks. | Satoshi Nakamoto | 2008 | A2 | MIT |
 
 ### Internet & networking
 
 | &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; | Paper | Authors | Year | Print from | License |
 |---|---|---|---|---|---|
-| <a href="https://github.com/vodhash/one-page-papers/releases/latest/download/rfc-1-A-ivory.pdf"><img src="docs/internet/rfc-1.png" width="90" alt=""></a> | [RFC 1: Host Software](https://github.com/vodhash/one-page-papers/releases/latest/download/rfc-1-A-ivory.pdf)<br>The first Request for Comments: the planned host software of the ARPA Network and its first experiments. | Steve Crocker | 1969 | A2 | Free reproduction (RFC Editor) |
-| <a href="https://github.com/vodhash/one-page-papers/releases/latest/download/rfc-791-A-ivory.pdf"><img src="docs/internet/rfc-791.png" width="90" alt=""></a> | [RFC 791: Internet Protocol](https://github.com/vodhash/one-page-papers/releases/latest/download/rfc-791-A-ivory.pdf)<br>Section 3.1 of the Internet Protocol specification, which defines each field of the IPv4 header and its options. | Jon Postel | 1981 | A1 | Free reproduction (RFC Editor) |
-| <a href="https://github.com/vodhash/one-page-papers/releases/latest/download/rfc-1149-A-ivory.pdf"><img src="docs/internet/rfc-1149.png" width="90" alt=""></a> | [RFC 1149: A Standard for the Transmission of IP Datagrams on Avian Carriers](https://github.com/vodhash/one-page-papers/releases/latest/download/rfc-1149-A-ivory.pdf)<br>An April Fools' RFC on sending IP datagrams printed on a paper scroll wrapped around the leg of a bird. | David Waitzman | 1990 | A3 | Distribution unlimited |
-| <a href="https://github.com/vodhash/one-page-papers/releases/latest/download/rfc-1925-A-ivory.pdf"><img src="docs/internet/rfc-1925.png" width="90" alt=""></a> | [RFC 1925: The Twelve Networking Truths](https://github.com/vodhash/one-page-papers/releases/latest/download/rfc-1925-A-ivory.pdf)<br>An April Fools' RFC stating twelve fundamental truths of networking, several with corollaries. | Ross Callon | 1996 | A3 | Distribution unlimited |
-| <a href="https://github.com/vodhash/one-page-papers/releases/latest/download/rfc-2324-A-ivory.pdf"><img src="docs/internet/rfc-2324.png" width="90" alt=""></a> | [RFC 2324: Hyper Text Coffee Pot Control Protocol (HTCPCP/1.0)](https://github.com/vodhash/one-page-papers/releases/latest/download/rfc-2324-A-ivory.pdf)<br>An April Fools' RFC extending HTTP to control coffee pots; it defined the 418 I'm a teapot status code. | Larry Masinter | 1998 | A2 | © The Internet Society 1998, copies allowed |
+| <a href="dist/internet/rfc-1-A-ivory.pdf"><img src="docs/internet/rfc-1.png" width="90" alt=""></a> | [RFC 1: Host Software](dist/internet/rfc-1-A-ivory.pdf)<br>The first Request for Comments: the planned host software of the ARPA Network and its first experiments. | Steve Crocker | 1969 | A2 | Free reproduction (RFC Editor) |
+| <a href="dist/internet/rfc-791-A-ivory.pdf"><img src="docs/internet/rfc-791.png" width="90" alt=""></a> | [RFC 791: Internet Protocol](dist/internet/rfc-791-A-ivory.pdf)<br>Section 3.1 of the Internet Protocol specification, which defines each field of the IPv4 header and its options. | Jon Postel | 1981 | A1 | Free reproduction (RFC Editor) |
+| <a href="dist/internet/rfc-1149-A-ivory.pdf"><img src="docs/internet/rfc-1149.png" width="90" alt=""></a> | [RFC 1149: A Standard for the Transmission of IP Datagrams on Avian Carriers](dist/internet/rfc-1149-A-ivory.pdf)<br>An April Fools' RFC on sending IP datagrams printed on a paper scroll wrapped around the leg of a bird. | David Waitzman | 1990 | A3 | Distribution unlimited |
+| <a href="dist/internet/rfc-1925-A-ivory.pdf"><img src="docs/internet/rfc-1925.png" width="90" alt=""></a> | [RFC 1925: The Twelve Networking Truths](dist/internet/rfc-1925-A-ivory.pdf)<br>An April Fools' RFC stating twelve fundamental truths of networking, several with corollaries. | Ross Callon | 1996 | A3 | Distribution unlimited |
+| <a href="dist/internet/rfc-2324-A-ivory.pdf"><img src="docs/internet/rfc-2324.png" width="90" alt=""></a> | [RFC 2324: Hyper Text Coffee Pot Control Protocol (HTCPCP/1.0)](dist/internet/rfc-2324-A-ivory.pdf)<br>An April Fools' RFC extending HTTP to control coffee pots; it defined the 418 I'm a teapot status code. | Larry Masinter | 1998 | A2 | © The Internet Society 1998, copies allowed |
 
 ### Software practice
 
 | &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; | Paper | Authors | Year | Print from | License |
 |---|---|---|---|---|---|
-| <a href="https://github.com/vodhash/one-page-papers/releases/latest/download/zen-of-python-A-ivory.pdf"><img src="docs/software/zen-of-python.png" width="90" alt=""></a> | [PEP 20: The Zen of Python](https://github.com/vodhash/one-page-papers/releases/latest/download/zen-of-python-A-ivory.pdf)<br>Nineteen aphorisms by Tim Peters on the principles behind the design of the Python language. | Tim Peters | 2004 | A3 | Public domain |
+| <a href="dist/software/zen-of-python-A-ivory.pdf"><img src="docs/software/zen-of-python.png" width="90" alt=""></a> | [PEP 20: The Zen of Python](dist/software/zen-of-python-A-ivory.pdf)<br>Nineteen aphorisms by Tim Peters on the principles behind the design of the Python language. | Tim Peters | 2004 | A3 | Public domain |
 
 ### Historical data visualization
 
 | &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; | Paper | Authors | Year | Print from | License |
 |---|---|---|---|---|---|
-| <a href="https://github.com/vodhash/one-page-papers/releases/latest/download/snow-cholera-map-A-ivory.pdf"><img src="docs/data-viz/snow-cholera-map.png" width="90" alt=""></a> | [John Snow: the Broad Street cholera map](https://github.com/vodhash/one-page-papers/releases/latest/download/snow-cholera-map-A-ivory.pdf)<br>John Snow's map of the 1854 cholera deaths around Broad Street, which pointed to a single public water pump. | John Snow | 1854 | A3 | Public domain (map); notice: MIT |
+| <a href="dist/data-viz/snow-cholera-map-A-ivory.pdf"><img src="docs/data-viz/snow-cholera-map.png" width="90" alt=""></a> | [John Snow: the Broad Street cholera map](dist/data-viz/snow-cholera-map-A-ivory.pdf)<br>John Snow's map of the 1854 cholera deaths around Broad Street, which pointed to a single public water pump. | John Snow | 1854 | A3 | Public domain (map); notice: MIT |
 
 <!-- catalog:end -->
 
 ## Download
 
-The PDFs are attached to the [latest release](https://github.com/vodhash/one-page-papers/releases/latest): one zip per category, or each PDF alone, named `<paper>-<format>-<theme>.pdf`. Text, equations and figures are all vector, so they print sharp at any size.
+Every PDF is in [`dist/<category>/`](dist), named `<paper>-<format>-<theme>.pdf`, and the [latest release](https://github.com/vodhash/one-page-papers/releases/latest) has them all, with one zip per category. Text, equations and figures are all vector, so they print sharp at any size.
 
 | Format | File size | Prints at |
 |---|---|---|
@@ -68,7 +68,7 @@ make check     # fit every poster and check the catalog, without touching dist/ 
 .venv/bin/python engine/build.py rfc-1925 --formats A --themes genesis
 ```
 
-Builds are deterministic: rebuilding unchanged sources rewrites byte-identical files, so a commit only carries the previews in `docs/` of the posters that changed. The PDFs in `dist/<category>/` are not versioned: pushing a `v*` tag makes GitHub Actions build them all and attach them to a release. Versions are pinned (`package-lock.json`, and `requirements.txt`, whose Playwright version fixes the Chromium build), and Chromium lays text out without the local font hinting settings, to keep the layout independent of the machine.
+Builds are deterministic: rebuilding unchanged sources rewrites byte-identical files, so a commit only carries the PDFs and previews of the posters that changed. Pushing a `v*` tag makes GitHub Actions build every poster again and attach the PDFs to a release, with one zip per category. Versions are pinned (`package-lock.json`, and `requirements.txt`, whose Playwright version fixes the Chromium build), and Chromium lays text out without the local font hinting settings, to keep the layout independent of the machine.
 
 `make check` also runs on GitHub Actions for every push and pull request. It fails when a poster overflows its page, when it still fits at the largest allowed body size, when a character is drawn with a system font, when `min_print` does not match the body size, or when the catalog of this README is out of date.
 

@@ -12,7 +12,6 @@ from papers import CATEGORIES, ROOT, discover
 from themes import THEMES
 
 START, END = "<!-- catalog:start -->", "<!-- catalog:end -->"
-RELEASE = "https://github.com/vodhash/one-page-papers/releases/latest/download"
 
 def year_key(year):
     """Sort key of a year given as 1858, -400 (400 BC) or a text such as "c. 400 BC"."""
@@ -37,8 +36,8 @@ def catalog():
     metas = {p: yaml.safe_load((p.dir / "meta.yaml").read_text()) for p in papers}
     out = [START, "",
            f"{len(papers)} posters in {len({p.category for p in papers})} categories. A click on a poster "
-           "downloads its PDF from the latest release, in the A format; *Print from* is the smallest A size "
-           "at which its body text is at least 8 pt."]
+           "opens its PDF in the A format; *Print from* is the smallest A size at which its body text is "
+           "at least 8 pt."]
     for cat, title in CATEGORIES.items():
         mine = sorted((p for p in papers if p.category == cat),
                       key=lambda p: (year_key(metas[p]["year"]), metas[p]["title"]))
@@ -51,7 +50,7 @@ def catalog():
         for p in mine:
             m = metas[p]
             theme = next(t for t in THEMES if t in m.get("themes", THEMES))  # the theme of the thumbnail
-            pdf = f"{RELEASE}/{p.slug}-A-{theme}.pdf"
+            pdf = f"dist/{cat}/{p.slug}-A-{theme}.pdf"
             thumb = f'<a href="{pdf}"><img src="docs/{cat}/{p.slug}.png" width="90" alt=""></a>'
             out.append(f"| {thumb} | [{cell(m['title'])}]({pdf})<br>{cell(m['summary'])} | {cell(', '.join(m['authors']))} | "
                        f"{year_text(m['year'])} | {m['min_print']} | {cell(m['license']['text'])} |")
