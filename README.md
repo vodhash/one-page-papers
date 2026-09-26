@@ -122,6 +122,29 @@ Only add texts whose license allows redistribution, and record it in `meta.yaml`
 
 `engine/build.py` parses the Markdown, pre-renders math with KaTeX, injects SVG figures into an HTML template, then drives headless Chromium: for each format it waits for the fonts, binary-searches the largest body size that fits in whole hundredths of a point, checks it again on a freshly loaded page, prints a PDF at a fixed 594 mm design width, and scales it to the target format with pypdf, keeping the page vector and its content losslessly compressed. Images are embedded in the page as data URIs, so every PDF is self-contained. Themes are sets of CSS variables in `engine/themes.py`.
 
+## Origin
+
+It started with a simple wish: to frame the Bitcoin whitepaper and hang
+it in my office. A few one-page versions already existed online, but none
+matched what I had in mind, so I typeset my own: the full text, the
+equations and the C code, with every figure redrawn as vector graphics
+and the genesis block hash in the footer.
+
+The first version was a single poster, briefly published as
+`one-page-satoshi`. Once it worked, the obvious question followed: which
+other texts deserve the same treatment? A list quickly grew, from early
+cryptocurrency papers to RFCs, manifestos and founding texts of science,
+and it became clear that the typesetting engine was the real project.
+The Bitcoin-specific code was split into a reusable engine and per-paper
+content, and the project became `one-page-papers`.
+
+Each new poster has pushed the engine a little further. RFC 1925 brought
+short texts in large type, the Zen of Python centred layouts, RFC 791
+full-width diagrams, and John Snow's cholera map images and hero layouts.
+Some texts taught the limits of the idea: Turing's *On Computable
+Numbers* runs to 36 pages and cannot fit legibly on a single sheet, so
+not every classic makes the cut.
+
 ## License
 
 Engine code: MIT. Each paper keeps its own license, see [`LICENSE`](LICENSE) and `papers/*/meta.yaml`.
