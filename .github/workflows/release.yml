@@ -1,0 +1,39 @@
+name: release
+
+on:
+  push:
+    tags: ["v*"]
+
+permissions:
+  contents: write
+
+jobs:
+  posters:
+    runs-on: ubuntu-24.04
+    steps:
+      - uses: actions/checkout@v5
+      - uses: actions/setup-node@v5
+        with:
+          node-version: 22
+          cache: npm
+      - uses: actions/setup-python@v6
+        with:
+          python-version: "3.12"
+          cache: pip
+      - run: npm ci
+      - run: pip install -r requirements.txt
+      - run: python -m playwright install --with-deps --only-shell chromium
+      - name: Build every poster in every format and theme
+        run: python engine/build.py --no-previews
+      - name: One zip per poster
+        run: |
+          mkdir release
+          cd dist
+          for paper in */; do zip -qr "../release/${paper%/}.zip" "$paper"; done
+      - name: Publish the release with the zips and every PDF
+        env:
+          GH_TOKEN: ${{ github.token }}
+        run: |
+          gh release create "$GITHUB_REF_NAME" release/*.zip dist/*/*.pdf \
+            --title "$GITHUB_REF_NAME" \
+            --notes "Every poster in every format and theme: one zip per poster, or each PDF alone, named <paper>-<format>-<theme>.pdf. Formats: A (A1, prints at any ISO A size), 50x70 and 60x80 cm."

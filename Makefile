@@ -23,4 +23,4 @@ deps:
 	.venv/bin/python -m playwright install --only-shell chromium
 
 clean:
-	rm -rf build
+	rm -rf build dist

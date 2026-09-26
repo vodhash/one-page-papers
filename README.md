@@ -43,7 +43,7 @@ John Snow, 1854. The map that traced the Soho outbreak to one water pump, with a
 
 ## Download
 
-Vector PDFs are in [`dist/<paper>/`](dist), named `<paper>-<format>-<theme>.pdf`. Text, equations and figures are all vector, so they print sharp at any size.
+The PDFs are attached to the [latest release](https://github.com/vodhash/one-page-papers/releases/latest): one zip per poster, or each PDF alone, named `<paper>-<format>-<theme>.pdf`. Text, equations and figures are all vector, so they print sharp at any size.
 
 | Format | File size | Prints at |
 |---|---|---|
@@ -67,7 +67,7 @@ make check     # fit every poster and report problems, without touching dist/ or
 .venv/bin/python engine/build.py rfc-1925 --formats A --themes genesis
 ```
 
-Builds are deterministic: rebuilding unchanged sources rewrites byte-identical files, so a commit only carries the posters that changed. Versions are pinned (`package-lock.json`, and `requirements.txt`, whose Playwright version fixes the Chromium build), and Chromium lays text out without the local font hinting settings, to keep the layout independent of the machine.
+Builds are deterministic: rebuilding unchanged sources rewrites byte-identical files, so a commit only carries the previews in `docs/` of the posters that changed. The PDFs in `dist/` are not versioned: pushing a `v*` tag makes GitHub Actions build them all and attach them to a release. Versions are pinned (`package-lock.json`, and `requirements.txt`, whose Playwright version fixes the Chromium build), and Chromium lays text out without the local font hinting settings, to keep the layout independent of the machine.
 
 `make check` also runs on GitHub Actions for every push and pull request. It fails when a poster overflows its page, when it still fits at the largest allowed body size, or when a character is drawn with a system font.
 
