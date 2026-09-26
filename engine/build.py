@@ -17,7 +17,7 @@ ROOT = pathlib.Path(__file__).resolve().parent.parent
 ENGINE = ROOT / "engine"
 sys.path.insert(0, str(ENGINE))
 import markdown
-from papers import discover
+from papers import SHOWCASE, discover
 from themes import THEMES, FORMATS, colour, dark
 
 DESIGN_W = 594  # every poster is laid out 594 mm wide, then scaled to the target format
@@ -302,16 +302,21 @@ def strays(papers):
             allowed = THEMES
         made |= {ROOT / "dist" / p.category / f"{p.slug}-{fmt}-{th}.pdf" for fmt in FORMATS for th in allowed}
         made.add(ROOT / "docs" / p.category / f"{p.slug}.png")
+        if p.slug == SHOWCASE:
+            made |= {ROOT / "docs" / "themes" / f"{th}.png" for th in THEMES}
     found = {f for d in ("dist", "docs") for f in (ROOT / d).rglob("*") if f.is_file() and not f.name.startswith(".")}
     return sorted(found - made)
 
 def build(paper, formats, themes, page, previews, check):
-    """Writes the PDFs and the preview of a paper. With check, writes nothing and fails when a
-    PDF of dist/ differs from the one it would write or when the preview is missing: previews
+    """Writes the PDFs and the previews of a paper. With check, writes nothing and fails when a
+    PDF of dist/ differs from the one it would write or when a preview is missing: previews
     are only checked for presence, since screenshots may differ from one machine to another."""
     paper_dir, slug = paper.dir, paper.slug
     m = load_meta(paper_dir)
     allowed = themes_of(m)
+    if slug == SHOWCASE and allowed != list(THEMES):
+        raise BuildError(f"{rel(paper_dir / 'meta.yaml')}: {slug} shows every theme in the README, "
+                         "so it cannot restrict its themes")
     themes = [t for t in themes if t in allowed]
     if not themes:
         print(f"{slug}: skipped, its themes are {', '.join(allowed)}")
@@ -363,12 +368,16 @@ def build(paper, formats, themes, page, previews, check):
                 out.mkdir(parents=True, exist_ok=True)
                 write_pdf(raw, dst, (W, H), m)
                 print("  ", rel(dst))
-            if previews and fmt == "A" and th == allowed[0]:  # the thumbnail of the README catalog
-                png = ROOT / "docs" / paper.category / f"{slug}.png"
-                if not check:
-                    save_preview(page, png)
-                elif not png.exists():
-                    raise BuildError(f"{rel(png)}: missing, run `make {slug}`")
+            if previews and fmt == "A":
+                # the thumbnail of the catalog, and the showcase of the themes above it
+                pngs = [ROOT / "docs" / paper.category / f"{slug}.png"] if th == allowed[0] else []
+                if slug == SHOWCASE:
+                    pngs.append(ROOT / "docs" / "themes" / f"{th}.png")
+                for png in pngs:
+                    if not check:
+                        save_preview(page, png)
+                    elif not png.exists():
+                        raise BuildError(f"{rel(png)}: missing, run `make {slug}`")
 
 def main():
     try:

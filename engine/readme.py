@@ -8,8 +8,8 @@ import argparse, pathlib, re, sys
 import yaml
 
 sys.path.insert(0, str(pathlib.Path(__file__).resolve().parent))
-from papers import CATEGORIES, ROOT, discover
-from themes import THEMES
+from papers import CATEGORIES, ROOT, SHOWCASE, discover
+from themes import FORMATS, THEMES
 
 START, END = "<!-- catalog:start -->", "<!-- catalog:end -->"
 
@@ -26,6 +26,9 @@ def year_text(year):
 def cell(text):
     return str(text).replace("|", "\\|")
 
+def pdf(paper, theme):
+    return f"dist/{paper.category}/{paper.slug}-A-{theme}.pdf"
+
 def pending():
     """Titles waiting in PENDING.md, one "## " heading each."""
     path = ROOT / "PENDING.md"
@@ -34,10 +37,19 @@ def pending():
 def catalog():
     papers = discover()
     metas = {p: yaml.safe_load((p.dir / "meta.yaml").read_text()) for p in papers}
+    show = next((p for p in papers if p.slug == SHOWCASE), None)
+    if not show:
+        raise ValueError(f"the paper {SHOWCASE}, shown in every theme above the catalog, does not exist")
     out = [START, "",
-           f"{len(papers)} posters in {len({p.category for p in papers})} categories. A click on a poster "
-           "opens its PDF in the A format; *Print from* is the smallest A size at which its body text is "
-           "at least 8 pt."]
+           f"{len(papers)} posters in {len({p.category for p in papers})} categories. Each one comes in "
+           f"{len(THEMES)} themes, shown here with *{metas[show]['title']}*, and in {len(FORMATS)} formats "
+           "(see [Download](#download)).", "",
+           "| " + " | ".join(THEMES) + " |", "|" + ":-:|" * len(THEMES),
+           "| " + " | ".join(f'<a href="{pdf(show, t)}"><img src="docs/themes/{t}.png" width="160" '
+                             f'alt="{t} theme"></a>' for t in THEMES) + " |", "",
+           "A click on a poster opens its PDF in the A format and in its first theme, and the links under "
+           "its summary open the other themes. *Print from* is the smallest A size at which its body text "
+           "is at least 8 pt."]
     for cat, title in CATEGORIES.items():
         mine = sorted((p for p in papers if p.category == cat),
                       key=lambda p: (year_key(metas[p]["year"]), metas[p]["title"]))
@@ -49,11 +61,12 @@ def catalog():
                 "|---|---|---|---|---|---|"]
         for p in mine:
             m = metas[p]
-            theme = next(t for t in THEMES if t in m.get("themes", THEMES))  # the theme of the thumbnail
-            pdf = f"dist/{cat}/{p.slug}-A-{theme}.pdf"
-            thumb = f'<a href="{pdf}"><img src="docs/{cat}/{p.slug}.png" width="90" alt=""></a>'
-            out.append(f"| {thumb} | [{cell(m['title'])}]({pdf})<br>{cell(m['summary'])} | {cell(', '.join(m['authors']))} | "
-                       f"{year_text(m['year'])} | {m['min_print']} | {cell(m['license']['text'])} |")
+            themes = [t for t in THEMES if t in m.get("themes", THEMES)]  # the first one makes the thumbnail
+            thumb = f'<a href="{pdf(p, themes[0])}"><img src="docs/{cat}/{p.slug}.png" width="90" alt=""></a>'
+            links = "&nbsp;·&nbsp;".join(f"[{t}]({pdf(p, t)})" for t in themes)  # on one line
+            out.append(f"| {thumb} | [{cell(m['title'])}]({pdf(p, themes[0])})<br>{cell(m['summary'])}<br>{links} | "
+                       f"{cell(', '.join(m['authors']))} | {year_text(m['year'])} | {m['min_print']} | "
+                       f"{cell(m['license']['text'])} |")
     if waiting := pending():
         out += ["", "## Coming soon", "",
                 "Texts that wait for a license allowing their redistribution; [PENDING.md](PENDING.md) says what is missing.", ""]

@@ -8,35 +8,41 @@ Each paper is laid out in full on one page: every section, equation, code listin
 
 <!-- catalog:start -->
 
-8 posters in 4 categories. A click on a poster opens its PDF in the A format; *Print from* is the smallest A size at which its body text is at least 8 pt.
+8 posters in 4 categories. Each one comes in 4 themes, shown here with *Bitcoin: A Peer-to-Peer Electronic Cash System*, and in 3 formats (see [Download](#download)).
+
+| ivory | white | genesis | blueprint |
+|:-:|:-:|:-:|:-:|
+| <a href="dist/crypto/bitcoin-A-ivory.pdf"><img src="docs/themes/ivory.png" width="160" alt="ivory theme"></a> | <a href="dist/crypto/bitcoin-A-white.pdf"><img src="docs/themes/white.png" width="160" alt="white theme"></a> | <a href="dist/crypto/bitcoin-A-genesis.pdf"><img src="docs/themes/genesis.png" width="160" alt="genesis theme"></a> | <a href="dist/crypto/bitcoin-A-blueprint.pdf"><img src="docs/themes/blueprint.png" width="160" alt="blueprint theme"></a> |
+
+A click on a poster opens its PDF in the A format and in its first theme, and the links under its summary open the other themes. *Print from* is the smallest A size at which its body text is at least 8 pt.
 
 ### Cryptocurrency
 
 | &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; | Paper | Authors | Year | Print from | License |
 |---|---|---|---|---|---|
-| <a href="dist/crypto/bitcoin-A-ivory.pdf"><img src="docs/crypto/bitcoin.png" width="90" alt=""></a> | [Bitcoin: A Peer-to-Peer Electronic Cash System](dist/crypto/bitcoin-A-ivory.pdf)<br>Proposes a peer-to-peer electronic cash system that prevents double-spending with a proof-of-work chain of timestamped blocks. | Satoshi Nakamoto | 2008 | A2 | MIT |
+| <a href="dist/crypto/bitcoin-A-ivory.pdf"><img src="docs/crypto/bitcoin.png" width="90" alt=""></a> | [Bitcoin: A Peer-to-Peer Electronic Cash System](dist/crypto/bitcoin-A-ivory.pdf)<br>Proposes a peer-to-peer electronic cash system that prevents double-spending with a proof-of-work chain of timestamped blocks.<br>[ivory](dist/crypto/bitcoin-A-ivory.pdf)&nbsp;·&nbsp;[white](dist/crypto/bitcoin-A-white.pdf)&nbsp;·&nbsp;[genesis](dist/crypto/bitcoin-A-genesis.pdf)&nbsp;·&nbsp;[blueprint](dist/crypto/bitcoin-A-blueprint.pdf) | Satoshi Nakamoto | 2008 | A2 | MIT |
 
 ### Internet & networking
 
 | &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; | Paper | Authors | Year | Print from | License |
 |---|---|---|---|---|---|
-| <a href="dist/internet/rfc-1-A-ivory.pdf"><img src="docs/internet/rfc-1.png" width="90" alt=""></a> | [RFC 1: Host Software](dist/internet/rfc-1-A-ivory.pdf)<br>The first Request for Comments: the planned host software of the ARPA Network and its first experiments. | Steve Crocker | 1969 | A2 | Free reproduction (RFC Editor) |
-| <a href="dist/internet/rfc-791-A-ivory.pdf"><img src="docs/internet/rfc-791.png" width="90" alt=""></a> | [RFC 791: Internet Protocol](dist/internet/rfc-791-A-ivory.pdf)<br>Section 3.1 of the Internet Protocol specification, which defines each field of the IPv4 header and its options. | Jon Postel | 1981 | A1 | Free reproduction (RFC Editor) |
-| <a href="dist/internet/rfc-1149-A-ivory.pdf"><img src="docs/internet/rfc-1149.png" width="90" alt=""></a> | [RFC 1149: A Standard for the Transmission of IP Datagrams on Avian Carriers](dist/internet/rfc-1149-A-ivory.pdf)<br>An April Fools' RFC on sending IP datagrams printed on a paper scroll wrapped around the leg of a bird. | David Waitzman | 1990 | A3 | Distribution unlimited |
-| <a href="dist/internet/rfc-1925-A-ivory.pdf"><img src="docs/internet/rfc-1925.png" width="90" alt=""></a> | [RFC 1925: The Twelve Networking Truths](dist/internet/rfc-1925-A-ivory.pdf)<br>An April Fools' RFC stating twelve fundamental truths of networking, several with corollaries. | Ross Callon | 1996 | A3 | Distribution unlimited |
-| <a href="dist/internet/rfc-2324-A-ivory.pdf"><img src="docs/internet/rfc-2324.png" width="90" alt=""></a> | [RFC 2324: Hyper Text Coffee Pot Control Protocol (HTCPCP/1.0)](dist/internet/rfc-2324-A-ivory.pdf)<br>An April Fools' RFC extending HTTP to control coffee pots; it defined the 418 I'm a teapot status code. | Larry Masinter | 1998 | A2 | © The Internet Society 1998, copies allowed |
+| <a href="dist/internet/rfc-1-A-ivory.pdf"><img src="docs/internet/rfc-1.png" width="90" alt=""></a> | [RFC 1: Host Software](dist/internet/rfc-1-A-ivory.pdf)<br>The first Request for Comments: the planned host software of the ARPA Network and its first experiments.<br>[ivory](dist/internet/rfc-1-A-ivory.pdf)&nbsp;·&nbsp;[white](dist/internet/rfc-1-A-white.pdf)&nbsp;·&nbsp;[genesis](dist/internet/rfc-1-A-genesis.pdf)&nbsp;·&nbsp;[blueprint](dist/internet/rfc-1-A-blueprint.pdf) | Steve Crocker | 1969 | A2 | Free reproduction (RFC Editor) |
+| <a href="dist/internet/rfc-791-A-ivory.pdf"><img src="docs/internet/rfc-791.png" width="90" alt=""></a> | [RFC 791: Internet Protocol](dist/internet/rfc-791-A-ivory.pdf)<br>Section 3.1 of the Internet Protocol specification, which defines each field of the IPv4 header and its options.<br>[ivory](dist/internet/rfc-791-A-ivory.pdf)&nbsp;·&nbsp;[white](dist/internet/rfc-791-A-white.pdf)&nbsp;·&nbsp;[genesis](dist/internet/rfc-791-A-genesis.pdf)&nbsp;·&nbsp;[blueprint](dist/internet/rfc-791-A-blueprint.pdf) | Jon Postel | 1981 | A1 | Free reproduction (RFC Editor) |
+| <a href="dist/internet/rfc-1149-A-ivory.pdf"><img src="docs/internet/rfc-1149.png" width="90" alt=""></a> | [RFC 1149: A Standard for the Transmission of IP Datagrams on Avian Carriers](dist/internet/rfc-1149-A-ivory.pdf)<br>An April Fools' RFC on sending IP datagrams printed on a paper scroll wrapped around the leg of a bird.<br>[ivory](dist/internet/rfc-1149-A-ivory.pdf)&nbsp;·&nbsp;[white](dist/internet/rfc-1149-A-white.pdf)&nbsp;·&nbsp;[genesis](dist/internet/rfc-1149-A-genesis.pdf)&nbsp;·&nbsp;[blueprint](dist/internet/rfc-1149-A-blueprint.pdf) | David Waitzman | 1990 | A3 | Distribution unlimited |
+| <a href="dist/internet/rfc-1925-A-ivory.pdf"><img src="docs/internet/rfc-1925.png" width="90" alt=""></a> | [RFC 1925: The Twelve Networking Truths](dist/internet/rfc-1925-A-ivory.pdf)<br>An April Fools' RFC stating twelve fundamental truths of networking, several with corollaries.<br>[ivory](dist/internet/rfc-1925-A-ivory.pdf)&nbsp;·&nbsp;[white](dist/internet/rfc-1925-A-white.pdf)&nbsp;·&nbsp;[genesis](dist/internet/rfc-1925-A-genesis.pdf)&nbsp;·&nbsp;[blueprint](dist/internet/rfc-1925-A-blueprint.pdf) | Ross Callon | 1996 | A3 | Distribution unlimited |
+| <a href="dist/internet/rfc-2324-A-ivory.pdf"><img src="docs/internet/rfc-2324.png" width="90" alt=""></a> | [RFC 2324: Hyper Text Coffee Pot Control Protocol (HTCPCP/1.0)](dist/internet/rfc-2324-A-ivory.pdf)<br>An April Fools' RFC extending HTTP to control coffee pots; it defined the 418 I'm a teapot status code.<br>[ivory](dist/internet/rfc-2324-A-ivory.pdf)&nbsp;·&nbsp;[white](dist/internet/rfc-2324-A-white.pdf)&nbsp;·&nbsp;[genesis](dist/internet/rfc-2324-A-genesis.pdf)&nbsp;·&nbsp;[blueprint](dist/internet/rfc-2324-A-blueprint.pdf) | Larry Masinter | 1998 | A2 | © The Internet Society 1998, copies allowed |
 
 ### Software practice
 
 | &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; | Paper | Authors | Year | Print from | License |
 |---|---|---|---|---|---|
-| <a href="dist/software/zen-of-python-A-ivory.pdf"><img src="docs/software/zen-of-python.png" width="90" alt=""></a> | [PEP 20: The Zen of Python](dist/software/zen-of-python-A-ivory.pdf)<br>Nineteen aphorisms by Tim Peters on the principles behind the design of the Python language. | Tim Peters | 2004 | A3 | Public domain |
+| <a href="dist/software/zen-of-python-A-ivory.pdf"><img src="docs/software/zen-of-python.png" width="90" alt=""></a> | [PEP 20: The Zen of Python](dist/software/zen-of-python-A-ivory.pdf)<br>Nineteen aphorisms by Tim Peters on the principles behind the design of the Python language.<br>[ivory](dist/software/zen-of-python-A-ivory.pdf)&nbsp;·&nbsp;[white](dist/software/zen-of-python-A-white.pdf)&nbsp;·&nbsp;[genesis](dist/software/zen-of-python-A-genesis.pdf)&nbsp;·&nbsp;[blueprint](dist/software/zen-of-python-A-blueprint.pdf) | Tim Peters | 2004 | A3 | Public domain |
 
 ### Historical data visualization
 
 | &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; | Paper | Authors | Year | Print from | License |
 |---|---|---|---|---|---|
-| <a href="dist/data-viz/snow-cholera-map-A-ivory.pdf"><img src="docs/data-viz/snow-cholera-map.png" width="90" alt=""></a> | [John Snow: the Broad Street cholera map](dist/data-viz/snow-cholera-map-A-ivory.pdf)<br>John Snow's map of the 1854 cholera deaths around Broad Street, which pointed to a single public water pump. | John Snow | 1854 | A3 | Public domain (map); notice: MIT |
+| <a href="dist/data-viz/snow-cholera-map-A-ivory.pdf"><img src="docs/data-viz/snow-cholera-map.png" width="90" alt=""></a> | [John Snow: the Broad Street cholera map](dist/data-viz/snow-cholera-map-A-ivory.pdf)<br>John Snow's map of the 1854 cholera deaths around Broad Street, which pointed to a single public water pump.<br>[ivory](dist/data-viz/snow-cholera-map-A-ivory.pdf)&nbsp;·&nbsp;[white](dist/data-viz/snow-cholera-map-A-white.pdf)&nbsp;·&nbsp;[genesis](dist/data-viz/snow-cholera-map-A-genesis.pdf)&nbsp;·&nbsp;[blueprint](dist/data-viz/snow-cholera-map-A-blueprint.pdf) | John Snow | 1854 | A3 | Public domain (map); notice: MIT |
 
 <!-- catalog:end -->
 
@@ -50,7 +56,7 @@ Every PDF is in [`dist/<category>/`](dist), named `<paper>-<format>-<theme>.pdf`
 | `50x70` | 50 × 70 cm | 50 × 70 cm |
 | `60x80` | 60 × 80 cm | 60 × 80 cm |
 
-Themes: `ivory` (warm paper), `white` (pure white), `genesis` (dark, bitcoin orange), `blueprint` (navy). The catalog shows each poster in the first of its themes.
+Themes: `ivory` (warm paper), `white` (pure white), `genesis` (dark, bitcoin orange), `blueprint` (navy). The catalog shows each poster in the first of its themes, and links its PDF in each of them.
 
 **Print tips.** Print a poster at its *Print from* size or larger: below it, its body text falls under 8 pt (`make check` prints the body size of every paper at every format). Use matte paper, 200 g/m² or heavier. Dark themes are best printed by a professional lab.
 

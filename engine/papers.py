@@ -17,6 +17,7 @@ CATEGORIES = {
     "patents": "Patents",
     "history": "History & philosophy",
 }
+SHOWCASE = "bitcoin"  # the paper that the catalog of the README shows in every theme
 
 class Paper(NamedTuple):
     category: str
