@@ -1,4 +1,5 @@
 title: 'Bitcoin: A Peer-to-Peer Electronic Cash System'
+summary: "Proposes a peer-to-peer electronic cash system that prevents double-spending with a proof-of-work chain of timestamped blocks."
 title_html: 'Bitcoin: <em>A Peer-to-Peer</em><br>Electronic Cash System'
 kicker: 31 October 2008
 author: Satoshi Nakamoto

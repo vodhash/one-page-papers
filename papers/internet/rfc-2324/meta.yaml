@@ -1,4 +1,5 @@
 title: "RFC 2324: Hyper Text Coffee Pot Control Protocol (HTCPCP/1.0)"
+summary: "An April Fools' RFC extending HTTP to control coffee pots; it defined the 418 I'm a teapot status code."
 title_html: "Hyper Text Coffee Pot<br>Control Protocol <em>(HTCPCP/1.0)</em>"
 title_size: 92pt
 kicker: "Request for Comments 2324 · Informational · 1 April 1998"

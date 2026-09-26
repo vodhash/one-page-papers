@@ -1,4 +1,5 @@
 title: "RFC 791: Internet Protocol"
+summary: "Section 3.1 of the Internet Protocol specification, which defines each field of the IPv4 header and its options."
 title_html: "Internet Protocol<br><em>DARPA Internet Program</em>"
 kicker: "Request for Comments 791 · Excerpt · September 1981"
 author: "Jon Postel, Editor"

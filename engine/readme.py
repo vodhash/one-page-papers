@@ -44,13 +44,16 @@ def catalog():
                       key=lambda p: (year_key(metas[p]["year"]), metas[p]["title"]))
         if not mine:
             continue
-        out += ["", f"### {title}", "", "| | Paper | Authors | Year | Print from | License |", "|---|---|---|---|---|---|"]
+        # the no-break spaces keep the column as wide as the thumbnails: GitHub shrinks images
+        # before text when a table is wider than the page, whatever their width attribute
+        out += ["", f"### {title}", "", f"| {'&nbsp;' * 24} | Paper | Authors | Year | Print from | License |",
+                "|---|---|---|---|---|---|"]
         for p in mine:
             m = metas[p]
             theme = next(t for t in THEMES if t in m.get("themes", THEMES))  # the theme of the thumbnail
             pdf = f"{RELEASE}/{p.slug}-A-{theme}.pdf"
             thumb = f'<a href="{pdf}"><img src="docs/{cat}/{p.slug}.png" width="90" alt=""></a>'
-            out.append(f"| {thumb} | [{cell(m['title'])}]({pdf}) | {cell(', '.join(m['authors']))} | "
+            out.append(f"| {thumb} | [{cell(m['title'])}]({pdf})<br>{cell(m['summary'])} | {cell(', '.join(m['authors']))} | "
                        f"{year_text(m['year'])} | {m['min_print']} | {cell(m['license']['text'])} |")
     if waiting := pending():
         out += ["", "## Coming soon", "",

@@ -12,31 +12,31 @@ Each paper is laid out in full on one page: every section, equation, code listin
 
 ### Cryptocurrency
 
-| | Paper | Authors | Year | Print from | License |
+| &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; | Paper | Authors | Year | Print from | License |
 |---|---|---|---|---|---|
-| <a href="https://github.com/vodhash/one-page-papers/releases/latest/download/bitcoin-A-ivory.pdf"><img src="docs/crypto/bitcoin.png" width="90" alt=""></a> | [Bitcoin: A Peer-to-Peer Electronic Cash System](https://github.com/vodhash/one-page-papers/releases/latest/download/bitcoin-A-ivory.pdf) | Satoshi Nakamoto | 2008 | A2 | MIT |
+| <a href="https://github.com/vodhash/one-page-papers/releases/latest/download/bitcoin-A-ivory.pdf"><img src="docs/crypto/bitcoin.png" width="90" alt=""></a> | [Bitcoin: A Peer-to-Peer Electronic Cash System](https://github.com/vodhash/one-page-papers/releases/latest/download/bitcoin-A-ivory.pdf)<br>Proposes a peer-to-peer electronic cash system that prevents double-spending with a proof-of-work chain of timestamped blocks. | Satoshi Nakamoto | 2008 | A2 | MIT |
 
 ### Internet & networking
 
-| | Paper | Authors | Year | Print from | License |
+| &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; | Paper | Authors | Year | Print from | License |
 |---|---|---|---|---|---|
-| <a href="https://github.com/vodhash/one-page-papers/releases/latest/download/rfc-1-A-ivory.pdf"><img src="docs/internet/rfc-1.png" width="90" alt=""></a> | [RFC 1: Host Software](https://github.com/vodhash/one-page-papers/releases/latest/download/rfc-1-A-ivory.pdf) | Steve Crocker | 1969 | A2 | Free reproduction (RFC Editor) |
-| <a href="https://github.com/vodhash/one-page-papers/releases/latest/download/rfc-791-A-ivory.pdf"><img src="docs/internet/rfc-791.png" width="90" alt=""></a> | [RFC 791: Internet Protocol](https://github.com/vodhash/one-page-papers/releases/latest/download/rfc-791-A-ivory.pdf) | Jon Postel | 1981 | A1 | Free reproduction (RFC Editor) |
-| <a href="https://github.com/vodhash/one-page-papers/releases/latest/download/rfc-1149-A-ivory.pdf"><img src="docs/internet/rfc-1149.png" width="90" alt=""></a> | [RFC 1149: A Standard for the Transmission of IP Datagrams on Avian Carriers](https://github.com/vodhash/one-page-papers/releases/latest/download/rfc-1149-A-ivory.pdf) | David Waitzman | 1990 | A3 | Distribution unlimited |
-| <a href="https://github.com/vodhash/one-page-papers/releases/latest/download/rfc-1925-A-ivory.pdf"><img src="docs/internet/rfc-1925.png" width="90" alt=""></a> | [RFC 1925: The Twelve Networking Truths](https://github.com/vodhash/one-page-papers/releases/latest/download/rfc-1925-A-ivory.pdf) | Ross Callon | 1996 | A3 | Distribution unlimited |
-| <a href="https://github.com/vodhash/one-page-papers/releases/latest/download/rfc-2324-A-ivory.pdf"><img src="docs/internet/rfc-2324.png" width="90" alt=""></a> | [RFC 2324: Hyper Text Coffee Pot Control Protocol (HTCPCP/1.0)](https://github.com/vodhash/one-page-papers/releases/latest/download/rfc-2324-A-ivory.pdf) | Larry Masinter | 1998 | A2 | © The Internet Society 1998, copies allowed |
+| <a href="https://github.com/vodhash/one-page-papers/releases/latest/download/rfc-1-A-ivory.pdf"><img src="docs/internet/rfc-1.png" width="90" alt=""></a> | [RFC 1: Host Software](https://github.com/vodhash/one-page-papers/releases/latest/download/rfc-1-A-ivory.pdf)<br>The first Request for Comments: the planned host software of the ARPA Network and its first experiments. | Steve Crocker | 1969 | A2 | Free reproduction (RFC Editor) |
+| <a href="https://github.com/vodhash/one-page-papers/releases/latest/download/rfc-791-A-ivory.pdf"><img src="docs/internet/rfc-791.png" width="90" alt=""></a> | [RFC 791: Internet Protocol](https://github.com/vodhash/one-page-papers/releases/latest/download/rfc-791-A-ivory.pdf)<br>Section 3.1 of the Internet Protocol specification, which defines each field of the IPv4 header and its options. | Jon Postel | 1981 | A1 | Free reproduction (RFC Editor) |
+| <a href="https://github.com/vodhash/one-page-papers/releases/latest/download/rfc-1149-A-ivory.pdf"><img src="docs/internet/rfc-1149.png" width="90" alt=""></a> | [RFC 1149: A Standard for the Transmission of IP Datagrams on Avian Carriers](https://github.com/vodhash/one-page-papers/releases/latest/download/rfc-1149-A-ivory.pdf)<br>An April Fools' RFC on sending IP datagrams printed on a paper scroll wrapped around the leg of a bird. | David Waitzman | 1990 | A3 | Distribution unlimited |
+| <a href="https://github.com/vodhash/one-page-papers/releases/latest/download/rfc-1925-A-ivory.pdf"><img src="docs/internet/rfc-1925.png" width="90" alt=""></a> | [RFC 1925: The Twelve Networking Truths](https://github.com/vodhash/one-page-papers/releases/latest/download/rfc-1925-A-ivory.pdf)<br>An April Fools' RFC stating twelve fundamental truths of networking, several with corollaries. | Ross Callon | 1996 | A3 | Distribution unlimited |
+| <a href="https://github.com/vodhash/one-page-papers/releases/latest/download/rfc-2324-A-ivory.pdf"><img src="docs/internet/rfc-2324.png" width="90" alt=""></a> | [RFC 2324: Hyper Text Coffee Pot Control Protocol (HTCPCP/1.0)](https://github.com/vodhash/one-page-papers/releases/latest/download/rfc-2324-A-ivory.pdf)<br>An April Fools' RFC extending HTTP to control coffee pots; it defined the 418 I'm a teapot status code. | Larry Masinter | 1998 | A2 | © The Internet Society 1998, copies allowed |
 
 ### Software practice
 
-| | Paper | Authors | Year | Print from | License |
+| &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; | Paper | Authors | Year | Print from | License |
 |---|---|---|---|---|---|
-| <a href="https://github.com/vodhash/one-page-papers/releases/latest/download/zen-of-python-A-ivory.pdf"><img src="docs/software/zen-of-python.png" width="90" alt=""></a> | [PEP 20: The Zen of Python](https://github.com/vodhash/one-page-papers/releases/latest/download/zen-of-python-A-ivory.pdf) | Tim Peters | 2004 | A3 | Public domain |
+| <a href="https://github.com/vodhash/one-page-papers/releases/latest/download/zen-of-python-A-ivory.pdf"><img src="docs/software/zen-of-python.png" width="90" alt=""></a> | [PEP 20: The Zen of Python](https://github.com/vodhash/one-page-papers/releases/latest/download/zen-of-python-A-ivory.pdf)<br>Nineteen aphorisms by Tim Peters on the principles behind the design of the Python language. | Tim Peters | 2004 | A3 | Public domain |
 
 ### Historical data visualization
 
-| | Paper | Authors | Year | Print from | License |
+| &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; | Paper | Authors | Year | Print from | License |
 |---|---|---|---|---|---|
-| <a href="https://github.com/vodhash/one-page-papers/releases/latest/download/snow-cholera-map-A-ivory.pdf"><img src="docs/data-viz/snow-cholera-map.png" width="90" alt=""></a> | [John Snow: the Broad Street cholera map](https://github.com/vodhash/one-page-papers/releases/latest/download/snow-cholera-map-A-ivory.pdf) | John Snow | 1854 | A3 | Public domain (map); notice: MIT |
+| <a href="https://github.com/vodhash/one-page-papers/releases/latest/download/snow-cholera-map-A-ivory.pdf"><img src="docs/data-viz/snow-cholera-map.png" width="90" alt=""></a> | [John Snow: the Broad Street cholera map](https://github.com/vodhash/one-page-papers/releases/latest/download/snow-cholera-map-A-ivory.pdf)<br>John Snow's map of the 1854 cholera deaths around Broad Street, which pointed to a single public water pump. | John Snow | 1854 | A3 | Public domain (map); notice: MIT |
 
 <!-- catalog:end -->
 
@@ -105,6 +105,7 @@ In `meta.yaml`, unknown keys are rejected, and these keys are required:
 | Key | Content |
 |---|---|
 | `title`, `authors`, `year` | title, list of authors, and year of the text: a number, negative before the common era, or a text such as `c. 400 BC` |
+| `summary` | one factual sentence of 20 words at most, shown under the title in the catalog |
 | `min_print` | the smallest of A3, A2, A1 and A0 at which the body prints at 8 pt or more; the build computes it and fails when it differs |
 | `source` | `url`, `retrieved` (a date) and `edition` of the primary source or reference edition of the text, with every difference between that source and the poster |
 | `license` | `text`, short, for the catalog, then either `notice`, the license or permission word for word, or `basis`, why the text is in the public domain in France and in the United States; `holder` and `note` are optional |

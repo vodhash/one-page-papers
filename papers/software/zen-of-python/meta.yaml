@@ -1,4 +1,5 @@
 title: "PEP 20: The Zen of Python"
+summary: "Nineteen aphorisms by Tim Peters on the principles behind the design of the Python language."
 title_html: "The Zen<br><em>of Python</em>"
 title_size: 124pt
 kicker: "Python Enhancement Proposal 20 · Informational · 19 August 2004"

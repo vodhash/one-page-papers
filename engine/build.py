@@ -29,7 +29,8 @@ CHROMIUM_ARGS = ["--font-render-hinting=none"]
 BUNDLED_FONTS = ("EBGaramond", "JetBrainsMono", "KaTeX_")  # PostScript names of the node_modules fonts
 META_KEYS = {"title", "title_html", "title_size", "kicker", "author", "byline", "emblem", "abstract",
              "abstract_label", "numbered", "columns", "header_scale", "font_range", "max_font", "layout",
-             "footer", "lang", "license", "themes", "hero_height", "year", "authors", "min_print", "source"}
+             "footer", "lang", "license", "themes", "hero_height", "year", "authors", "min_print", "source",
+             "summary"}
 LICENSE_KEYS = {"text", "holder", "notice", "basis", "note"}
 PRINT_SIZES = ("A3", "A2", "A1", "A0")  # the A file prints at each of them
 MIN_BODY = 8  # pt: min_print is the smallest size at which the body prints at least this large
@@ -52,8 +53,11 @@ def load_meta(paper_dir):
     path = paper_dir / "meta.yaml"
     m = yaml.safe_load(path.read_text()) or {}
     errors = [f"unknown key '{k}'" for k in sorted(set(m) - META_KEYS)]
-    errors += [f"missing '{k}'" for k in ("title", "license", "year", "authors", "min_print", "source")
+    errors += [f"missing '{k}'" for k in ("title", "summary", "license", "year", "authors", "min_print", "source")
                if not m.get(k)]
+    if m.get("summary") and not (isinstance(m["summary"], str) and len(m["summary"].split()) <= 20
+                                 and m["summary"].rstrip().endswith(".") and "\n" not in m["summary"].strip()):
+        errors.append("summary must be one sentence of 20 words at most")
     if m.get("authors") and not (isinstance(m["authors"], list) and all(isinstance(a, str) for a in m["authors"])):
         errors.append("authors must be a list of names")
     if m.get("year") and not isinstance(m["year"], (int, str)):
