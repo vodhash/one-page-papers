@@ -115,23 +115,33 @@ def hero_html(img, height, share):
     if not img["w"]:
         raise BuildError("the hero image must state its size (an SVG needs a viewBox)")
     cap = f'<figcaption>{img["caption"]}</figcaption>' if img["caption"] else ""
-    return (f'<div class="hero" style="height:{height * share / 100:.2f}mm"><figure class="image {img["mode"]}">'
+    return (f'<div class="hero" style="height:{height * share / 100:.2f}mm"><figure {markdown.figure_attrs(img)}>'
             f'<div class="imgbox"><img src="{img["src"]}" width="{img["w"]}" height="{img["h"]}" alt="" '
             f'style="--ar:{img["w"] / img["h"]:.5f}"></div>{cap}</figure></div>')
 
 def image_filters(theme):
-    """SVG filters for the on_dark modes of images. Chromium drops mix-blend-mode from PDFs, so
-    instead of blending with the page they compute the result over its flat paper colour:
-    invert turns white into the paper and black into the ink, multiply scales every channel
-    by the paper colour."""
-    paper, ink = colour(theme, "paper"), colour(theme, "ink")
-    invert = " ".join(f"{-(i - p) * .2126:.4f} {-(i - p) * .7152:.4f} {-(i - p) * .0722:.4f} 0 {i:.4f}"
-                      for p, i in zip(paper, ink))
-    multiply = " ".join(" ".join(f"{p:.4f}" if j == k else "0" for j in range(5)) for k, p in enumerate(paper))
-    matrix = lambda name, rows: (f'<filter id="on-dark-{name}" color-interpolation-filters="sRGB">'
-                                 f'<feColorMatrix type="matrix" values="{rows} 0 0 0 1 0"/></filter>')
-    return ('<svg width="0" height="0" style="position:absolute" aria-hidden="true">'
-            + matrix("invert", invert) + matrix("multiply", multiply) + "</svg>")
+    """SVG filters for the on_dark and on_light treatments of images, with the rules that use
+    them. Chromium drops mix-blend-mode from PDFs, so instead of blending with the page they
+    compute the result over its flat paper colour: on a dark paper, invert turns white into the
+    paper and black into the ink; on a light one, multiply scales every channel by the paper
+    colour, which leaves a white paper unchanged, so no filter at all is used there."""
+    paper = colour(theme, "paper")
+    if dark(theme):
+        name, rows = "on-dark-invert", " ".join(
+            f"{-(i - p) * .2126:.4f} {-(i - p) * .7152:.4f} {-(i - p) * .0722:.4f} 0 {i:.4f}"
+            for p, i in zip(paper, colour(theme, "ink")))
+        rule = f"figure[data-dark=invert] img{{filter:url(#{name})}}"
+    elif paper != (1, 1, 1):
+        name, rows = "on-light-multiply", " ".join(
+            " ".join(f"{p:.4f}" if j == k else "0" for j in range(5)) for k, p in enumerate(paper))
+        rule = f"figure[data-light=multiply] img{{filter:url(#{name})}}"
+    else:
+        return ""
+    return (f'<svg width="0" height="0" style="position:absolute" aria-hidden="true">'
+            # the filter region stops at the image: by default it adds a transparent black margin,
+            # which some PDF viewers blend into a dark hairline when they scale the image down
+            f'<filter id="{name}" x="0" y="0" width="1" height="1" color-interpolation-filters="sRGB">'
+            f'<feColorMatrix type="matrix" values="{rows} 0 0 0 1 0"/></filter></svg><style>{rule}</style>')
 
 def poster(paper_dir, m):
     """Returns html(theme, page height in mm, body size in pt), the page of the poster."""
@@ -155,7 +165,7 @@ def poster(paper_dir, m):
               "NM": (ROOT / "node_modules").as_uri()}
     def html(theme, height, fs):
         top = hero_html(hero, height, m.get("hero_height", 50)) if hero else ""
-        if hero or '<figure class="image ' in body:
+        if hero or '<figure class="image"' in body:
             top = image_filters(theme) + top
         return substitute(tpl, {**values, "THEME": THEMES[theme], "THEME_NAME": theme, "HERO": top,
                                 "TONE": "dark" if dark(theme) else "light", "PH": f"{height:.2f}", "FS": f"{fs}pt"})

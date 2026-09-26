@@ -1,4 +1,4 @@
-::: image snow-map.png caption="John Snow's map of the deaths from cholera around Broad Street, Soho, in 1854. Lithograph by C. F. Cheffins."
+::: image snow-map.png caption="John Snow's map of the deaths from cholera around Broad Street, Soho, in 1854. Lithograph by C. F. Cheffins." on_light=multiply
 
 ## Notice
 

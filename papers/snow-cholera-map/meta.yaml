@@ -7,8 +7,6 @@ emblem: "†"
 layout: hero
 hero_height: 58
 columns: 3
-# the scan has a pure white paper, which looks pasted on the cream of the ivory theme
-themes: [white, genesis, blueprint]
 footer:
   - "Map: John Snow, lithograph by C. F. Cheffins, 1854. Public domain."
   - "<i>The notice is not a period text: it was written for this poster in 2026.</i>"

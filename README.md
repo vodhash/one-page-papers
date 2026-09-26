@@ -35,11 +35,11 @@ Jon Postel, Editor, September 1981. Section 3.1, the Internet Header Format, wit
 | ![](docs/rfc-791-ivory.png) | ![](docs/rfc-791-white.png) | ![](docs/rfc-791-genesis.png) | ![](docs/rfc-791-blueprint.png) |
 
 ### John Snow: the Broad Street cholera map
-John Snow, 1854. The map that traced the Soho outbreak to one water pump, with a short notice written for this poster (not a period text). Printed on the white and dark themes only: the scan has a pure white paper.
+John Snow, 1854. The map that traced the Soho outbreak to one water pump, with a short notice written for this poster (not a period text).
 
-| white | genesis | blueprint |
-|---|---|---|
-| ![](docs/snow-cholera-map-white.png) | ![](docs/snow-cholera-map-genesis.png) | ![](docs/snow-cholera-map-blueprint.png) |
+| ivory | white | genesis | blueprint |
+|---|---|---|---|
+| ![](docs/snow-cholera-map-ivory.png) | ![](docs/snow-cholera-map-white.png) | ![](docs/snow-cholera-map-genesis.png) | ![](docs/snow-cholera-map-blueprint.png) |
 
 ## Download
 
@@ -89,7 +89,7 @@ Create `papers/<name>/` with:
 |---|---|
 | `## Title`, `### Title`, `#### Title` | headings; with `numbered: true` they are numbered 1., 1.1., 1.1.1., and a title that starts with a number such as `3.1.` gets the same styling |
 | `::: figure <name>` | an SVG figure from `figures.py` |
-| `::: image <file> [caption="…"] [width=N%] [on_dark=plate\|invert\|multiply]` | an image from the folder of the paper, embedded in the page, `width` of its column (default 100%). On the dark themes, `plate` (default) keeps it on a light card, `invert` turns its white into the paper and its black into the ink (for line drawings), `multiply` melts its white into the paper (dark lines then vanish) |
+| `::: image <file> [caption="…"] [width=N%] [on_dark=plate\|invert] [on_light=multiply]` | an image from the folder of the paper, embedded in the page, `width` of its column (default 100%). On the dark themes, `plate` (default) keeps it on a light card and `invert` turns its white into the paper and its black into the ink (for line drawings). On the light themes, `on_light=multiply` melts its white into the paper, for scans with a white background |
 | `::: wide` … `:::` | a block across all the columns, holding any other syntax (code, math, figures, HTML) |
 | `::: wide cols=N` … `:::` | the `##` sections of the block side by side, one per left-aligned cell of an N-column grid (see `papers/rfc-1925`) |
 | `$$ … $$` | display math, rendered with KaTeX |

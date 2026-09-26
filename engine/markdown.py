@@ -5,11 +5,12 @@ Blocks (separated by blank lines):
                              1.1.1. with meta.numbered, and a number that starts a title,
                              such as 3.1., is set the same way
   ::: figure <name>          SVG figure from the paper's figures.py
-  ::: image <file> [caption="..."] [width=N%] [on_dark=plate|invert|multiply]
-                             image from the paper's folder, embedded in the page; on dark
-                             themes plate keeps it on a light card, invert turns dark lines
-                             light, multiply blends it with the page; with meta.layout: hero,
-                             the first image goes to the top of the page
+  ::: image <file> [caption="..."] [width=N%] [on_dark=plate|invert] [on_light=multiply]
+                             image from the paper's folder, embedded in the page. On dark
+                             themes plate (default) keeps it on a light card and invert turns
+                             its white into the paper and its black into the ink; on light
+                             themes multiply melts its white into the paper. With
+                             meta.layout: hero, the first image goes to the top of the page
   ::: wide [cols=N]          block across all the columns, closed by a ":::" line, holding any
   ...                        of these blocks; with cols=N (default 1) its "## " sections sit side
   :::                        by side on a grid of N columns, one section per cell, in order
@@ -56,7 +57,7 @@ NOTE_DEF = re.compile(r'\[\^([^\]\s]+)\]:\s+')
 WIDE = re.compile(r':::\s+wide(?:\s+cols=([1-9]\d*))?\s*$')
 IMAGE_TYPES = {'.png': 'image/png', '.jpg': 'image/jpeg', '.jpeg': 'image/jpeg', '.gif': 'image/gif',
                '.webp': 'image/webp', '.svg': 'image/svg+xml'}
-ON_DARK = ('plate', 'invert', 'multiply')
+ON_DARK, ON_LIGHT = ('plate', 'invert'), ('multiply',)
 
 def is_wide(line):
     return line.startswith(':::') and line.split()[1:2] == ['wide']
@@ -203,7 +204,7 @@ class Renderer:
         return f'<figure>{self.figures[words[2]]()}</figure>'
 
     def image(self, line, head):
-        usage = '::: image <file> [caption="..."] [width=N%] [on_dark=plate|invert|multiply]'
+        usage = '::: image <file> [caption="..."] [width=N%] [on_dark=plate|invert] [on_light=multiply]'
         try:
             words = shlex.split(head)
         except ValueError as e:
@@ -213,14 +214,16 @@ class Renderer:
         opts = {}
         for w in words[3:]:
             key, eq, value = w.partition('=')
-            if not eq or key not in ('caption', 'width', 'on_dark') or key in opts:
+            if not eq or key not in ('caption', 'width', 'on_dark', 'on_light') or key in opts:
                 raise MarkdownError(line, f'unexpected "{w}", expected {usage}')
             opts[key] = value
-        width, mode = opts.get('width', '100%'), opts.get('on_dark', 'plate')
+        width, dark, light = opts.get('width', '100%'), opts.get('on_dark', 'plate'), opts.get('on_light', '')
         if not re.fullmatch(r'(100|[1-9]\d?)%', width):
             raise MarkdownError(line, f'width must be a percentage from 1% to 100%, got "{width}"')
-        if mode not in ON_DARK:
-            raise MarkdownError(line, f'on_dark must be one of {", ".join(ON_DARK)}, got "{mode}"')
+        if dark not in ON_DARK:
+            raise MarkdownError(line, f'on_dark must be one of {", ".join(ON_DARK)}, got "{dark}"')
+        if light and light not in ON_LIGHT:
+            raise MarkdownError(line, f'on_light must be one of {", ".join(ON_LIGHT)}, got "{light}"')
         path = self.assets / words[2] if self.assets else None
         if path is None or not path.is_file():
             raise MarkdownError(line, f'image "{words[2]}" not found in the folder of the paper')
@@ -229,13 +232,13 @@ class Renderer:
         data = path.read_bytes()
         w, h = image_size(path, data)
         img = {'src': f'data:{IMAGE_TYPES[path.suffix.lower()]};base64,{base64.b64encode(data).decode()}',
-               'w': w, 'h': h, 'mode': mode, 'caption': self.inline(opts.get('caption', ''), line)}
+               'w': w, 'h': h, 'dark': dark, 'light': light, 'caption': self.inline(opts.get('caption', ''), line)}
         if self.hero == {}:
             self.hero.update(img)
             return ''
         size = f' width="{w}" height="{h}"' if w else ''  # reserves the space before the image loads
         caption = f'<figcaption>{img["caption"]}</figcaption>' if img['caption'] else ''
-        return (f'<figure class="image {mode}" style="width:{width}"><img src="{img["src"]}"{size} alt="">'
+        return (f'<figure {figure_attrs(img)} style="width:{width}"><img src="{img["src"]}"{size} alt="">'
                 f'{caption}</figure>')
 
     def wide(self, cols, text, first):
@@ -265,6 +268,11 @@ class Renderer:
                         for n, label in enumerate(self.calls, 1))
         return [f'<div class="footnotes"><ol>{notes}</ol></div>']
 
+def figure_attrs(img):
+    """Class and data attributes of an image figure, which the page styles by theme."""
+    light = f' data-light="{img["light"]}"' if img['light'] else ''
+    return f'class="image" data-dark="{img["dark"]}"{light}'
+
 def image_size(path, data):
     """Pixel size of an image, or (None, None) for an SVG that does not state it."""
     if path.suffix.lower() == '.svg':
@@ -278,7 +286,7 @@ def image_size(path, data):
 def render(text, figures=None, numbered=False, assets=None, hero=False):
     """Returns (html, math, hero). math is a list of TeX strings, and html holds
     placeholders <!--MATH:i--> to be replaced once KaTeX has run. With hero, the first
-    image is kept out of the text and returned as a dict (src, w, h, mode, caption).
+    image is kept out of the text and returned as a dict (src, w, h, dark, light, caption).
     assets is the folder that ::: image files are read from."""
     r = Renderer(figures or {}, numbered, assets, hero)
     out = r.render(text) + r.footnotes()
