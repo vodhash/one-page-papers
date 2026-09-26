@@ -1,0 +1,27 @@
+title: "RFC 1: Host Software"
+kicker: "Network Working Group · Request for Comments 1 · 7 April 1969"
+author: "Steve Crocker"
+byline: "UCLA"
+emblem: "1"
+title_size: 110pt
+header_scale: 1.5
+columns: 3
+footer:
+  - "Title: Host Software · Author: Steve Crocker · Installation: UCLA · Date: 7 April 1969 · Network Working Group Request for Comment: 1"
+  - "<i>This RFC was put into machine readable form for entry into the online RFC archives by Celeste Anderson 3/97</i>"
+  - '<span class="mono">doi:10.17487/RFC0001</span>'
+year: 1969
+authors: [Steve Crocker]
+min_print: A2
+source:
+  url: https://www.rfc-editor.org/rfc/rfc1.txt
+  retrieved: 2026-09-27
+  edition: >-
+    RFC Editor plain-text edition, put into machine readable form by Celeste Anderson in
+    1997. The heading block and the note of that edition are in the footer; page headers
+    and footers are left out; the misspellings of the original are kept.
+license:
+  text: "Free reproduction (RFC Editor)"
+  holder: "Steve Crocker, 1969"
+  notice: "All RFCs may be freely reproduced and translated (unmodified)."
+  note: "RFC Editor, https://www.rfc-editor.org/faq/. RFC 1 itself carries no copyright notice."

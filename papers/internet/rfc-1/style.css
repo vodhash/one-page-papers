@@ -1,0 +1,7 @@
+/* The table of contents as in the RFC: parts, then their sections */
+.toc p{margin:0 0 .15em;text-align:left;hyphens:manual}
+.toc p.sub{margin-left:1.6em}
+/* The primitives keep their a) to f) markers */
+.alpha p{margin:0 0 .3em;padding-left:1.6em;text-indent:-1.6em;text-align:left}
+.kick{letter-spacing:.22em}
+footer>div:first-child{max-width:38%;line-height:1.3}
