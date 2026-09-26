@@ -85,7 +85,7 @@ A paper is a folder `papers/<category>/<slug>/`. The slug names its PDFs and its
 
 | Syntax | Effect |
 |---|---|
-| `## Title`, `### Title`, `#### Title` | headings; with `numbered: true` they are numbered 1., 1.1., 1.1.1., and a title that starts with a number such as `3.1.` gets the same styling |
+| `## Title`, `### Title`, `#### Title` | headings; with `numbered: true` they are numbered 1., 1.1., 1.1.1., and a title that starts with a section number such as `3.1.` or `2.1` gets the same styling |
 | `::: figure <name>` | an SVG figure from `figures.py` |
 | `::: image <file> [caption="…"] [width=N%] [on_dark=plate\|invert] [on_light=multiply]` | an image from the folder of the paper, embedded in the page, `width` of its column (default 100%). On the dark themes, `plate` (default) keeps it on a light card and `invert` turns its white into the paper and its black into the ink (for line drawings). On the light themes, `on_light=multiply` melts its white into the paper, for scans with a white background |
 | `::: wide` … `:::` | a block across all the columns, holding any other syntax (code, math, figures, HTML) |

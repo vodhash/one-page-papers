@@ -183,7 +183,8 @@ class Renderer:
             self.nums[level - 1:] = [0] * (4 - level)
             n = '.'.join(map(str, self.nums[:level - 1])) + '.'
             return f'<h{level}><span class="n">{n}</span> {title}</h{level}>'
-        title = re.sub(r'^((?:\d+\.)+)\s*', r'<span class="n">\1</span> ', title)
+        # 1., 3.1., 3.1.1. or, as in some RFCs, 2.1 and 2.2.1.1; a bare number such as 1149 is not one
+        title = re.sub(r'^(\d+(?:\.\d+)+\.?|\d+\.)\s+', r'<span class="n">\1</span> ', title)
         return f'<h{level}{" class=refs" if level == 2 and self.in_refs else ""}>{title}</h{level}>'
 
     def directive(self, line, b):
