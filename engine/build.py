@@ -5,7 +5,7 @@
     python3 engine/build.py bitcoin         # one paper, by slug
     python3 engine/build.py internet        # every paper of a category
     python3 engine/build.py rfc-1925 --formats A --themes white genesis
-    python3 engine/build.py --check         # fit every poster and report problems, no output
+    python3 engine/build.py --check         # fit every poster and compare it with dist/ and docs/, writing nothing
 """
 import argparse, importlib.util, io, json, pathlib, re, subprocess, sys
 import yaml
@@ -262,7 +262,8 @@ def system_fonts(pdf):
     return found
 
 def write_pdf(raw, dst, size, m):
-    """Scales the PDF printed by Chromium to the target format (width, height in mm)."""
+    """Scales the PDF printed by Chromium to the target format (width, height in mm), into dst,
+    a path or a binary stream."""
     w = PdfWriter()
     pg = w.add_page(PdfReader(raw).pages[0])
     pg.scale_to(size[0] * MM, size[1] * MM)
@@ -287,10 +288,30 @@ def printed(fmt, fs):
         return ", ".join(f"A{n} {fs * 2 ** ((1 - n) / 2):.1f}" for n in range(4)) + " pt printed"
     return f"{fs * FORMATS[fmt][0] / DESIGN_W:.1f} pt printed"
 
+def themes_of(m):
+    """The themes of a paper, in the order of THEMES: the first one makes its thumbnail."""
+    return [t for t in THEMES if t in m.get("themes", THEMES)]
+
+def strays(papers):
+    """Files of dist/ and docs/ that no paper makes, such as the PDFs of a renamed paper."""
+    made = set()
+    for p in papers:
+        try:
+            allowed = themes_of(load_meta(p.dir))
+        except BuildError:  # reported by build()
+            allowed = THEMES
+        made |= {ROOT / "dist" / p.category / f"{p.slug}-{fmt}-{th}.pdf" for fmt in FORMATS for th in allowed}
+        made.add(ROOT / "docs" / p.category / f"{p.slug}.png")
+    found = {f for d in ("dist", "docs") for f in (ROOT / d).rglob("*") if f.is_file() and not f.name.startswith(".")}
+    return sorted(found - made)
+
 def build(paper, formats, themes, page, previews, check):
+    """Writes the PDFs and the preview of a paper. With check, writes nothing and fails when a
+    PDF of dist/ differs from the one it would write or when the preview is missing: previews
+    are only checked for presence, since screenshots may differ from one machine to another."""
     paper_dir, slug = paper.dir, paper.slug
     m = load_meta(paper_dir)
-    allowed = [t for t in THEMES if t in m.get("themes", THEMES)]
+    allowed = themes_of(m)
     themes = [t for t in themes if t in allowed]
     if not themes:
         print(f"{slug}: skipped, its themes are {', '.join(allowed)}")
@@ -332,14 +353,22 @@ def build(paper, formats, themes, page, previews, check):
                 for font, chars in system_fonts(raw).items():
                     warn(f"{slug} {fmt}: {''.join(sorted(chars))} drawn with {font}, a system font, so the "
                          "PDF depends on the machine; give these characters a bundled font in style.css")
-            if check:
-                break
-            out.mkdir(parents=True, exist_ok=True)
             dst = out / f"{slug}-{fmt}-{th}.pdf"
-            write_pdf(raw, dst, (W, H), m)
-            print("  ", rel(dst))
+            if check:
+                pdf = io.BytesIO()
+                write_pdf(raw, pdf, (W, H), m)
+                if not dst.exists() or dst.read_bytes() != pdf.getvalue():
+                    raise BuildError(f"{rel(dst)}: {'out of date' if dst.exists() else 'missing'}, run `make {slug}`")
+            else:
+                out.mkdir(parents=True, exist_ok=True)
+                write_pdf(raw, dst, (W, H), m)
+                print("  ", rel(dst))
             if previews and fmt == "A" and th == allowed[0]:  # the thumbnail of the README catalog
-                save_preview(page, ROOT / "docs" / paper.category / f"{slug}.png")
+                png = ROOT / "docs" / paper.category / f"{slug}.png"
+                if not check:
+                    save_preview(page, png)
+                elif not png.exists():
+                    raise BuildError(f"{rel(png)}: missing, run `make {slug}`")
 
 def main():
     try:
@@ -354,7 +383,8 @@ def main():
     ap.add_argument("--themes", nargs="+", choices=list(THEMES), default=list(THEMES))
     ap.add_argument("--no-previews", action="store_true", help="leave docs/*.png untouched")
     ap.add_argument("--check", action="store_true",
-                    help="fit every poster and report problems without touching dist/ or docs/; "
+                    help="fit every poster and report problems without touching dist/ or docs/: a PDF that "
+                         "differs from a fresh build, a missing preview, a file that no paper makes; "
                          "warnings make it fail too")
     a = ap.parse_args()
     if unknown := sorted(set(a.names) - set(names)):
@@ -373,8 +403,11 @@ def main():
                 failed.append(paper.slug)
                 print(f"error: {e}", file=sys.stderr)
         browser.close()
-    if failed or (a.check and WARNINGS):
-        sys.exit(f"{len(failed)} paper(s) failed, {len(WARNINGS)} warning(s)")
+    stray = strays(papers) if a.check and not a.names else []
+    for f in stray:
+        print(f"error: {rel(f)}: made by no paper, remove it", file=sys.stderr)
+    if failed or stray or (a.check and WARNINGS):
+        sys.exit(f"{len(failed)} paper(s) failed, {len(stray)} stray file(s), {len(WARNINGS)} warning(s)")
 
 if __name__ == "__main__":
     main()

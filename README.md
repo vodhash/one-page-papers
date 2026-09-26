@@ -64,13 +64,13 @@ make           # every paper × format × theme into dist/ and docs/, then the c
 make bitcoin   # a single paper, by its slug
 make internet  # every paper of a category
 make readme    # the catalog of this README, from the meta.yaml files and PENDING.md
-make check     # fit every poster and check the catalog, without touching dist/ or docs/
+make check     # fit every poster, compare it with dist/ and docs/, check the catalog; writes nothing
 .venv/bin/python engine/build.py rfc-1925 --formats A --themes genesis
 ```
 
 Builds are deterministic: rebuilding unchanged sources rewrites byte-identical files, so a commit only carries the PDFs and previews of the posters that changed. Pushing a `v*` tag makes GitHub Actions build every poster again and attach the PDFs to a release, with one zip per category. Versions are pinned (`package-lock.json`, and `requirements.txt`, whose Playwright version fixes the Chromium build), and Chromium lays text out without the local font hinting settings, to keep the layout independent of the machine.
 
-`make check` also runs on GitHub Actions for every push and pull request. It fails when a poster overflows its page, when it still fits at the largest allowed body size, when a character is drawn with a system font, when `min_print` does not match the body size, or when the catalog of this README is out of date.
+`make check` also runs on GitHub Actions for every push and pull request. It fails when a poster overflows its page, when it still fits at the largest allowed body size, when a character is drawn with a system font, when `min_print` does not match the body size, when a PDF of `dist/` differs from a fresh build or a preview is missing from `docs/`, when either holds a file that no paper makes, or when the catalog of this README is out of date.
 
 ## Add a paper
 
