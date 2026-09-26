@@ -1,0 +1,23 @@
+title: "RFC 1925: The Twelve Networking Truths"
+title_html: "The Twelve<br><em>Networking Truths</em>"
+title_size: 104pt
+kicker: "Request for Comments 1925 · Informational · 1 April 1996"
+author: "R. Callon, Editor"
+byline: "Network Working Group · IOOF"
+emblem: "12"
+abstract: >-
+  This memo documents the fundamental truths of networking for the Internet community.
+  This memo does not specify a standard, except in the sense that all standards must
+  implicitly follow the fundamental truths.
+numbered: false
+header_scale: 2.1
+columns: 2
+font_range: [10, 60]
+footer:
+  - "Status of this Memo: this memo provides information for the Internet community. It does not specify an Internet standard of any kind."
+  - "<i>Distribution of this memo is unlimited.</i>"
+  - "<span class=\"mono\">doi:10.17487/RFC1925</span>"
+license:
+  text: "Distribution unlimited (as stated in the memo)"
+  holder: "Ross Callon, 1996"
+  source: "https://www.rfc-editor.org/rfc/rfc1925.txt"

@@ -1,0 +1,84 @@
+<!doctype html><html><head><meta charset="utf-8">
+<link rel="stylesheet" href="{{NM}}/katex/dist/katex.min.css">
+<link rel="stylesheet" href="{{NM}}/@fontsource/eb-garamond/400.css">
+<link rel="stylesheet" href="{{NM}}/@fontsource/eb-garamond/400-italic.css">
+<link rel="stylesheet" href="{{NM}}/@fontsource/eb-garamond/500.css">
+<link rel="stylesheet" href="{{NM}}/@fontsource/eb-garamond/600.css">
+<link rel="stylesheet" href="{{NM}}/@fontsource/jetbrains-mono/400.css">
+<style>
+:root{{{THEME}};--fs:{{FS}};--cols:{{COLS}};--hs:{{HS}}}
+@page{size:594mm {{PH}}mm;margin:0}
+*{box-sizing:border-box}
+html,body{margin:0;padding:0}body{position:relative}
+body{width:594mm;height:{{PH}}mm;background:var(--paper);color:var(--ink);font-family:'EB Garamond',serif;
+ font-size:var(--fs);line-height:1.34;-webkit-print-color-adjust:exact;print-color-adjust:exact;overflow:hidden}
+.page{position:absolute;inset:0;padding:30mm 34mm 21mm 34mm;display:flex;flex-direction:column}
+.frame{position:absolute;inset:14mm;border:0.5mm solid var(--ink);pointer-events:none}
+.frame::after{content:"";position:absolute;inset:2.2mm;border:0.2mm solid var(--ink)}
+header{text-align:center}
+.kick{font-size:calc(13pt*var(--hs));letter-spacing:.45em;text-transform:uppercase;color:var(--mute)}
+h1{font-weight:500;font-size:{{TITLE_SIZE}};line-height:1.02;margin:6mm 0 5mm;letter-spacing:-.005em}
+h1 em{font-style:italic;font-weight:400}
+.auth{font-size:calc(24pt*var(--hs));letter-spacing:.06em}
+.meta{font-size:calc(14pt*var(--hs));color:var(--mute);margin-top:1.5mm;letter-spacing:.08em}
+.rule{display:flex;align-items:center;gap:6mm;margin:8mm auto 7mm;width:60%}
+.rule i{flex:1;height:.35mm;background:var(--ink)}
+.rule b{width:calc(9mm*var(--hs));height:calc(9mm*var(--hs));border-radius:50%;background:var(--acc);color:var(--onacc);font:600 calc(17pt*var(--hs)) 'EB Garamond';display:grid;place-items:center;transform:rotate(14deg)}
+.abs{max-width:420mm;margin:0 auto 9mm;text-align:justify;font-size:calc(var(--fs)*1.28);line-height:1.38;hyphens:auto}
+.abs b{font-variant:small-caps;letter-spacing:.06em;font-weight:600;color:var(--acc)}
+main{column-count:var(--cols);column-gap:13mm;column-rule:.2mm solid var(--rule);column-fill:balance;text-align:justify;hyphens:auto;flex:1;min-height:0}
+p{margin:0 0 .55em;text-indent:0}
+h2{font-weight:600;font-size:calc(var(--fs)*1.2);margin:.9em 0 .35em;break-after:avoid;letter-spacing:.01em}
+h2 .n{color:var(--acc);margin-right:.2em}
+main>h2:first-child{margin-top:0}
+cite{font-style:normal;color:var(--mute)}
+figure{margin:.8em 0 1em;break-inside:avoid}
+svg.fig{width:100%;height:auto;display:block;overflow:visible}
+svg text{font-family:'EB Garamond',serif;fill:var(--ink)}
+svg text.t{font-variant:small-caps;letter-spacing:.05em;fill:var(--mute)}
+svg text.it{font-style:italic;fill:var(--mute)}
+svg .b,svg .bd,svg .bo,svg .ba{stroke:var(--ink);stroke-width:1.1}
+svg .b{fill:var(--box)}svg .bd{fill:none;stroke-dasharray:3 2.5;stroke:var(--mute)}
+svg .bo{fill:none;stroke-width:.8;stroke:var(--mute)}
+svg .ba{fill:var(--boxa);stroke:var(--acc);stroke-width:1.3}
+svg .a,svg .l{stroke:var(--ink);stroke-width:1.1}
+svg .la{stroke:var(--acc);stroke-width:1.8}
+svg .v{fill:none;stroke:var(--acc);stroke-width:1.2;stroke-dasharray:4 2.5}
+svg .sep{stroke:var(--mute);stroke-width:1;stroke-dasharray:3 3}
+svg .dash{fill:none;stroke:var(--acc);stroke-width:.9;stroke-dasharray:4 3}
+ol{margin:.2em 0 .7em;padding-left:1.4em}ol li{margin-bottom:.15em}
+ol li::marker{color:var(--acc);font-weight:600}
+.defs{font-size:.95em;padding-left:.8em;border-left:.6mm solid var(--acc);text-align:left}
+.eq{margin:.5em 0 .8em;break-inside:avoid;font-size:.92em}
+.katex-display{margin:0!important}.katex{font-size:1.05em}
+pre.code{font-family:'JetBrains Mono',monospace;font-size:calc(var(--fs)*.64);line-height:1.42;background:var(--code);padding:.8em 1em;
+ margin:.5em 0 .9em;border-radius:1mm;white-space:pre;break-inside:avoid;overflow:hidden}
+.pair{display:flex;gap:6mm;justify-content:center;break-inside:avoid;margin:.3em 0 .8em}
+table.res{font-family:'JetBrains Mono',monospace;font-size:calc(var(--fs)*.64);border-collapse:collapse;break-inside:avoid;margin:.3em auto .8em}
+.pair table.res{margin:0}
+table.res caption{font-weight:400;color:var(--acc);padding-bottom:.3em;text-align:left}
+table.res td{padding:0 .9em 0 0;line-height:1.35}
+h2.refs{margin-top:1.1em}
+ol.refs{list-style:none;padding:0;font-size:.82em;line-height:1.3;text-align:left;hyphens:none}
+ol.refs li{display:grid;grid-template-columns:2.2em 1fr;margin-bottom:.3em}
+ol.refs span{color:var(--acc)}
+footer{min-height:16mm;display:flex;align-items:center;justify-content:space-between;font-size:calc(10.5pt*var(--hs));gap:8mm;color:var(--mute);border-top:.2mm solid var(--rule);margin-top:6mm;letter-spacing:.04em}
+footer .mono{font-family:'JetBrains Mono',monospace;font-size:.9em;color:var(--ink)}
+footer>div:nth-child(2){text-align:center}
+svg .mk{fill:var(--ink)}svg .mko{fill:var(--acc)}.katex{color:var(--ink)}
+.item{display:grid;grid-template-columns:2.2em 1fr;gap:.2em;margin:0 0 .6em;break-inside:avoid;text-align:left}
+.item .lbl{color:var(--acc);font-weight:600}
+.item.sub{margin-left:2.2em;font-size:.92em}.item.sub .lbl{font-weight:400}
+code{font-family:'JetBrains Mono',monospace;font-size:.85em}
+ul{margin:.2em 0 .7em;padding-left:1.2em}
+{{EXTRA_CSS}}
+</style></head><body>
+<div class="frame"></div>
+<div class="page">
+{{HEADER}}
+<main>
+{{BODY}}
+</main>
+{{FOOTER}}
+</div>
+</body></html>

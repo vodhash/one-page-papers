@@ -1,0 +1,4 @@
+playwright>=1.40
+pypdf>=4.0
+pyyaml>=6.0
+pillow>=10.0
