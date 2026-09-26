@@ -1,4 +1,5 @@
-playwright>=1.40
-pypdf>=4.0
-pyyaml>=6.0
-pillow>=10.0
+# Exact versions: playwright decides the Chromium build, which decides the layout.
+playwright==1.63.0
+pypdf==6.19.0
+pyyaml==6.0.3
+pillow==12.3.0

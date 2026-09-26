@@ -9,20 +9,20 @@ Each paper is laid out in full on one page: every section, equation, code listin
 ### Bitcoin: A Peer-to-Peer Electronic Cash System
 Satoshi Nakamoto, 2008. Full text, 7 redrawn figures, genesis block in the footer.
 
-| ivoire | blanc | genesis | blueprint |
+| ivory | white | genesis | blueprint |
 |---|---|---|---|
-| ![](docs/bitcoin-ivoire.png) | ![](docs/bitcoin-blanc.png) | ![](docs/bitcoin-genesis.png) | ![](docs/bitcoin-blueprint.png) |
+| ![](docs/bitcoin-ivory.png) | ![](docs/bitcoin-white.png) | ![](docs/bitcoin-genesis.png) | ![](docs/bitcoin-blueprint.png) |
 
 ### RFC 1925: The Twelve Networking Truths
 Ross Callon, 1 April 1996. Large type, readable from across the room.
 
-| ivoire | blanc | genesis | blueprint |
+| ivory | white | genesis | blueprint |
 |---|---|---|---|
-| ![](docs/rfc-1925-ivoire.png) | ![](docs/rfc-1925-blanc.png) | ![](docs/rfc-1925-genesis.png) | ![](docs/rfc-1925-blueprint.png) |
+| ![](docs/rfc-1925-ivory.png) | ![](docs/rfc-1925-white.png) | ![](docs/rfc-1925-genesis.png) | ![](docs/rfc-1925-blueprint.png) |
 
 ## Download
 
-Vector PDFs are in [`dist/<paper>/`](dist), named `<paper>-<format>-<theme>.pdf`.
+Vector PDFs are in [`dist/<paper>/`](dist), named `<paper>-<format>-<theme>.pdf`. Text, equations and figures are all vector, so they print sharp at any size.
 
 | Format | File size | Prints at |
 |---|---|---|
@@ -30,20 +30,25 @@ Vector PDFs are in [`dist/<paper>/`](dist), named `<paper>-<format>-<theme>.pdf`
 | `50x70` | 50 × 70 cm | 50 × 70 cm |
 | `60x80` | 60 × 80 cm | 60 × 80 cm |
 
-Themes: `ivoire` (warm paper), `blanc` (pure white), `genesis` (dark, bitcoin orange), `blueprint` (navy).
+Themes: `ivory` (warm paper), `white` (pure white), `genesis` (dark, bitcoin orange), `blueprint` (navy).
 
-**Print tips.** For dense papers like Bitcoin, A2 is the smallest comfortable size. Use matte paper, 200 g/m² or heavier. Dark themes are best printed by a professional lab.
+**Print tips.** For dense papers like Bitcoin, A2 is the smallest comfortable size (8.7 pt body text; `make check` prints the size of every paper at every format). Use matte paper, 200 g/m² or heavier. Dark themes are best printed by a professional lab.
 
 ## Build
 
-Requires Node.js, Python 3 and Make.
+Requires Node.js, Python 3 and Make. `make deps` uses [uv](https://docs.astral.sh/uv/) when it is installed, and the standard `venv` module otherwise (on Debian and Ubuntu: `apt install python3-venv`).
 
 ```bash
-make deps      # npm + pip + Chromium for Playwright
-make           # every paper × format × theme
+make deps      # node_modules and .venv at the pinned versions, plus headless Chromium
+make           # every paper × format × theme, into dist/ and docs/
 make bitcoin   # a single paper
-python3 engine/build.py rfc-1925 --formats A --themes genesis
+make check     # fit every poster and report problems, without touching dist/ or docs/
+.venv/bin/python engine/build.py rfc-1925 --formats A --themes genesis
 ```
+
+Builds are deterministic: rebuilding unchanged sources rewrites byte-identical files, so a commit only carries the posters that changed. Versions are pinned (`package-lock.json`, and `requirements.txt`, whose Playwright version fixes the Chromium build), and Chromium lays text out without the local font hinting settings, to keep the layout independent of the machine.
+
+`make check` also runs on GitHub Actions for every push and pull request. It fails when a poster overflows its page, when it still fits at the largest allowed body size, or when a character is drawn with a system font.
 
 ## Add a paper
 
@@ -54,15 +59,19 @@ Create `papers/<name>/` with:
 | `meta.yaml` | title, header, abstract, footer, columns, license (see existing papers) |
 | `text.md` | the text, in the small Markdown dialect documented in `engine/markdown.py` |
 | `figures.py` | optional: `FIGS = {"name": fn}`, each `fn()` returns an SVG string built with `engine/svg.py` |
-| `style.css` | optional: paper-specific CSS |
+| `style.css` | optional: paper-specific CSS; a rule on `:root[data-theme=genesis]` applies to one theme only |
 
-In `text.md`, `::: figure <name>` inserts a figure, `$$ … $$` is rendered with KaTeX, `(1)` / `(1a)` makes labelled items, and raw HTML passes through.
+In `text.md`, `::: figure <name>` inserts a figure, `$$ … $$` is rendered with KaTeX, `(1)` / `(1a)` makes labelled items, and raw HTML passes through. Mistakes are reported with their line number.
+
+In `meta.yaml`, `title` and `license` are required and unknown keys are rejected. `lang` (default `en`) sets the hyphenation language, and `font_range` (default `[8, 40]`, in pt) bounds the search for the body size.
+
+Every character must come from the bundled fonts (EB Garamond, JetBrains Mono, KaTeX), since a system font would make the PDF depend on the machine. `make check` names the characters that fall back; `papers/bitcoin/style.css` shows the fix, taking ₿ from JetBrains Mono.
 
 Only add texts whose license allows redistribution, and record it in `meta.yaml`.
 
 ## How it works
 
-`engine/build.py` parses the Markdown, pre-renders math with KaTeX, injects SVG figures into an HTML template, then drives headless Chromium: for each format it binary-searches the largest body size that fits, prints a PDF at a fixed 594 mm design width, and scales it to the target format with pypdf. Themes are sets of CSS variables in `engine/themes.py`.
+`engine/build.py` parses the Markdown, pre-renders math with KaTeX, injects SVG figures into an HTML template, then drives headless Chromium: for each format it waits for the fonts, binary-searches the largest body size that fits (to 0.01 pt), prints a PDF at a fixed 594 mm design width, and scales it to the target format with pypdf, keeping the page vector and its content losslessly compressed. Themes are sets of CSS variables in `engine/themes.py`.
 
 ## License
 

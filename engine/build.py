@@ -3,10 +3,12 @@
 
     python3 engine/build.py                 # every paper, format and theme
     python3 engine/build.py bitcoin         # one paper
-    python3 engine/build.py rfc-1925 --formats A --themes blanc genesis
+    python3 engine/build.py rfc-1925 --formats A --themes white genesis
+    python3 engine/build.py --check         # fit every poster and report problems, no output
 """
-import argparse, importlib.util, json, pathlib, subprocess, sys
+import argparse, importlib.util, io, json, math, pathlib, re, subprocess, sys
 import yaml
+from PIL import Image
 from playwright.sync_api import sync_playwright
 from pypdf import PdfReader, PdfWriter
 
@@ -17,7 +19,41 @@ import markdown
 from themes import THEMES, FORMATS
 
 DESIGN_W = 594  # every poster is laid out 594 mm wide, then scaled to the target format
-MM = 72 / 25.4
+MM = 72 / 25.4  # PDF points per mm
+PX = 96 / 25.4  # CSS pixels per mm
+# Without this flag Chromium lays text out with the hinting of the local fontconfig setup,
+# so the fitted size and the line breaks would change from one machine to another.
+CHROMIUM_ARGS = ["--font-render-hinting=none"]
+BUNDLED_FONTS = ("EBGaramond", "JetBrainsMono", "KaTeX_")  # PostScript names of the node_modules fonts
+META_KEYS = {"title", "title_html", "title_size", "kicker", "author", "byline", "emblem", "abstract",
+             "abstract_label", "numbered", "columns", "header_scale", "font_range", "footer", "lang",
+             "license"}
+WARNINGS = []
+
+class BuildError(Exception):
+    pass
+
+def warn(msg):
+    WARNINGS.append(msg)
+    print(f"warning: {msg}", file=sys.stderr)
+
+def rel(path):
+    return path.relative_to(ROOT)
+
+def load_meta(paper_dir):
+    path = paper_dir / "meta.yaml"
+    m = yaml.safe_load(path.read_text()) or {}
+    errors = [f"unknown key '{k}'" for k in sorted(set(m) - META_KEYS)]
+    errors += [f"missing '{k}'" for k in ("title", "license") if not m.get(k)]
+    if len(m.get("footer") or []) > 3:
+        errors.append("footer takes at most 3 cells")
+    fr = m.get("font_range", [8, 40])
+    if not (isinstance(fr, list) and len(fr) == 2 and all(isinstance(v, (int, float)) for v in fr)
+            and 0 < fr[0] < fr[1]):
+        errors.append("font_range must be [min, max] in pt")
+    if errors:
+        raise BuildError(f"{rel(path)}: {'; '.join(errors)}")
+    return m
 
 def load_figures(paper_dir):
     f = paper_dir / "figures.py"
@@ -31,8 +67,13 @@ def load_figures(paper_dir):
 def katex(exprs):
     if not exprs:
         return []
-    r = subprocess.run(["node", str(ENGINE / "katex.js")], input=json.dumps(exprs),
-                       capture_output=True, text=True, cwd=ROOT, check=True)
+    try:
+        r = subprocess.run(["node", str(ENGINE / "katex.js")], input=json.dumps(exprs),
+                           capture_output=True, text=True, cwd=ROOT)
+    except FileNotFoundError:
+        raise BuildError("rendering math needs Node.js, which is not installed") from None
+    if r.returncode:
+        raise BuildError(f"KaTeX: {r.stderr.strip()}")
     return json.loads(r.stdout)
 
 def header_html(m):
@@ -41,7 +82,7 @@ def header_html(m):
     h.append(f'<h1>{m.get("title_html", m["title"])}</h1>')
     if m.get("author"): h.append(f'<div class="auth">{m["author"]}</div>')
     if m.get("byline"): h.append(f'<div class="meta">{m["byline"].replace(" · ", " &nbsp;·&nbsp; ")}</div>')
-    h.append(f'<div class="rule"><i></i><b>{m.get("emblem", "✦")}</b><i></i></div>')
+    h.append(f'<div class="rule"><i></i><b>{m.get("emblem", "¶")}</b><i></i></div>')
     h.append('</header>')
     if m.get("abstract"):
         label = m.get("abstract_label", "Abstract.")
@@ -52,85 +93,175 @@ def footer_html(m):
     cells = (m.get("footer") or []) + [""] * 3
     return "<footer>" + "".join(f"<div>{c}</div>" for c in cells[:3]) + "</footer>"
 
-def page_html(paper_dir):
-    m = yaml.safe_load((paper_dir / "meta.yaml").read_text())
-    body, math = markdown.render((paper_dir / "text.md").read_text(),
-                                 load_figures(paper_dir), m.get("numbered", False))
-    for i, h in enumerate(katex(math)):
+def substitute(tpl, values):
+    """Fills every {{KEY}} in one pass, so text inserted in the page is never read as a placeholder."""
+    return re.sub(r"\{\{(\w+)\}\}", lambda k: str(values[k.group(1)]), tpl)
+
+def poster(paper_dir, m):
+    """Returns html(theme, page height in mm, body size in pt), the page of the poster."""
+    text = paper_dir / "text.md"
+    try:
+        body, tex = markdown.render(text.read_text(), load_figures(paper_dir), m.get("numbered", False))
+    except markdown.MarkdownError as e:
+        raise BuildError(f"{rel(text)}:{e.line}: {e.msg}") from None
+    for i, h in enumerate(katex(tex)):
         body = body.replace(f"<!--MATH:{i}-->", h)
     css = paper_dir / "style.css"
     tpl = (ENGINE / "template.html").read_text()
-    tpl = (tpl.replace("{{HEADER}}", header_html(m)).replace("{{FOOTER}}", footer_html(m))
-              .replace("{{BODY}}", body).replace("{{COLS}}", str(m.get("columns", 4)))
-              .replace("{{HS}}", str(m.get("header_scale", 1)))
-              .replace("{{TITLE_SIZE}}", m.get("title_size", "76pt"))
-              .replace("{{EXTRA_CSS}}", css.read_text() if css.exists() else "")
-              .replace("{{NM}}", (ROOT / "node_modules").as_uri()))
-    return m, tpl
+    values = {"HEADER": header_html(m), "FOOTER": footer_html(m), "BODY": body,
+              "COLS": m.get("columns", 4), "HS": m.get("header_scale", 1),
+              "TITLE_SIZE": m.get("title_size", "76pt"), "LANG": m.get("lang", "en"),
+              "EXTRA_CSS": css.read_text() if css.exists() else "",
+              "NM": (ROOT / "node_modules").as_uri()}
+    def html(theme, height, fs):
+        return substitute(tpl, {**values, "THEME": THEMES[theme], "THEME_NAME": theme,
+                                "PH": f"{height:.2f}", "FS": f"{fs}pt"})
+    return html
 
-def fill(tpl, theme, height, fs):
-    return (tpl.replace("{{THEME}}", THEMES[theme]).replace("{{PH}}", f"{height:.2f}")
-               .replace("{{FS}}", f"{fs}pt"))
+LOAD_JS = """async () => {
+    document.body.offsetHeight;  // lay out first, so that every font in use starts loading
+    await document.fonts.ready;
+    const faces = [...document.fonts];
+    return {loaded: faces.filter(f => f.status === 'loaded').map(f => f.family),
+            failed: faces.filter(f => f.status === 'error').map(f => f.family)};
+}"""
+FITS_JS = """async fs => {
+    document.documentElement.style.setProperty('--fs', fs + 'pt');
+    document.body.offsetHeight;
+    await document.fonts.ready;
+    const m = document.querySelector('main');
+    return m.scrollWidth <= m.clientWidth + 1 && m.scrollHeight <= m.clientHeight + 1;
+}"""
 
-def fits(page, tmp, html):
-    tmp.write_text(html)
-    page.goto(tmp.as_uri()); page.wait_for_timeout(250)
-    w, cw, h, ch = page.evaluate("""() => {const m=document.querySelector('main');
-        return [m.scrollWidth,m.clientWidth,m.scrollHeight,m.clientHeight]}""")
-    return w <= cw + 1 and h <= ch + 1
+def load(page, path, html):
+    path.write_text(html)
+    page.goto(path.as_uri())
+    fonts = page.evaluate(LOAD_JS)
+    if fonts["failed"] or not any("EB Garamond" in f for f in fonts["loaded"]):
+        missing = ", ".join(sorted(set(fonts["failed"]))) or "EB Garamond"
+        raise BuildError(f"fonts did not load ({missing}), run `make deps`")
 
-def best_font(page, tmp, tpl, height, lo, hi):
-    """Largest body size (pt) at which the text still fits on the page."""
-    for _ in range(10):
+def fits(page, fs):
+    """Whether the text fits on the loaded page at body size fs (pt)."""
+    return page.evaluate(FITS_JS, fs)
+
+def best_font(page, lo, hi, what):
+    """Largest body size (pt, to 0.01) at which the text still fits on the loaded page."""
+    if not fits(page, lo):
+        raise BuildError(f"{what}: the text overflows even at {lo} pt, lower font_range in meta.yaml")
+    if fits(page, hi):
+        warn(f"{what}: the text still fits at {hi} pt and leaves space, raise font_range in meta.yaml")
+        return hi
+    while hi - lo > 0.01:
         mid = (lo + hi) / 2
-        if fits(page, tmp, fill(tpl, "ivoire", height, mid)): lo = mid
+        if fits(page, mid): lo = mid
         else: hi = mid
-    return round(lo - 0.02, 2)
+    # lo was measured, its rounding was not: layout is not strictly monotonic in the size
+    fs = math.floor(lo * 100) / 100
+    return fs if fits(page, fs) else lo
 
-def build(paper, formats, themes, page, previews):
+def font_name(font):
+    """PostScript name of a PDF font without its subset tag. Chromium embeds some glyphs
+    (synthetic bold, for instance) as Type 3 fonts, whose name is only in the descriptor."""
+    fd = font.get("/FontDescriptor")
+    name = font.get("/BaseFont") or (fd.get_object().get("/FontName") if fd is not None else None)
+    return str(name or "an unnamed font").lstrip("/").split("+")[-1]
+
+def system_fonts(pdf):
+    """Maps each font of the PDF that does not come from node_modules to the characters it draws."""
+    found = {}
+    def visit(text, cm, tm, font, size):
+        if font is not None and text.strip():
+            name = font_name(font)
+            if not name.startswith(BUNDLED_FONTS):
+                found.setdefault(name, set()).update(c for c in text if not c.isspace())
+    PdfReader(pdf).pages[0].extract_text(visitor_text=visit)
+    return found
+
+def write_pdf(raw, dst, size, m):
+    """Scales the PDF printed by Chromium to the target format (width, height in mm)."""
+    w = PdfWriter()
+    pg = w.add_page(PdfReader(raw).pages[0])
+    pg.scale_to(size[0] * MM, size[1] * MM)
+    pg.compress_content_streams()  # lossless; pypdf would store the rescaled stream uncompressed
+    w.add_metadata({"/Title": m["title"], "/Author": m.get("author", ""), "/Creator": "one-page-papers"})
+    w.write(dst)
+
+def save_preview(page, png):
+    png.parent.mkdir(exist_ok=True)
+    im = Image.open(io.BytesIO(page.screenshot())).convert("RGB")
+    im.thumbnail((600, 900))
+    # at this size a 256-colour palette looks the same and makes the file 2.5 times smaller
+    im.quantize(256, method=Image.Quantize.MEDIANCUT, dither=Image.Dither.NONE).save(png, optimize=True)
+
+def printed(fmt, fs):
+    """Body size once printed: the design is as wide as A1, every format is scaled from it."""
+    if fmt == "A":
+        return ", ".join(f"A{n} {fs * 2 ** ((1 - n) / 2):.1f}" for n in range(4)) + " pt printed"
+    return f"{fs * FORMATS[fmt][0] / DESIGN_W:.1f} pt printed"
+
+def build(paper, formats, themes, page, previews, check):
     paper_dir = ROOT / "papers" / paper
-    m, tpl = page_html(paper_dir)
-    out = ROOT / "dist" / paper; out.mkdir(parents=True, exist_ok=True)
-    tmp = ROOT / "build" / f"{paper}.html"; tmp.parent.mkdir(exist_ok=True)
+    m = load_meta(paper_dir)
+    html = poster(paper_dir, m)
+    tmp, raw = ROOT / "build" / f"{paper}.html", ROOT / "build" / "raw.pdf"
+    tmp.parent.mkdir(exist_ok=True)
+    out = ROOT / "dist" / paper
     lo, hi = m.get("font_range", [8, 40])
     for fmt in formats:
         W, H = FORMATS[fmt]
         height = DESIGN_W * H / W
-        page.set_viewport_size({"width": round(DESIGN_W / 25.4 * 96), "height": round(height / 25.4 * 96)})
-        fs = best_font(page, tmp, tpl, height, lo, hi)
-        print(f"{paper} {fmt}: body {fs} pt (design scale)")
-        for th in themes:
-            tmp.write_text(fill(tpl, th, height, fs))
-            page.goto(tmp.as_uri()); page.wait_for_timeout(400)
-            raw = ROOT / "build" / "raw.pdf"
+        page.set_viewport_size({"width": round(DESIGN_W * PX), "height": round(height * PX)})
+        load(page, tmp, html(themes[0], height, lo))
+        fs = best_font(page, lo, hi, f"{paper} {fmt}")
+        print(f"{paper} {fmt}: body {fs:.2f} pt at design size ({printed(fmt, fs)})")
+        for i, th in enumerate(themes):
+            load(page, tmp, html(th, height, fs))
+            if not fits(page, fs):
+                raise BuildError(f"{paper} {fmt} {th}: the text overflows at {fs} pt")
             page.pdf(path=str(raw), width=f"{DESIGN_W}mm", height=f"{height:.2f}mm",
                      print_background=True, page_ranges="1")
-            pg = PdfReader(raw).pages[0]; pg.scale_to(W * MM, H * MM)
-            w = PdfWriter(); w.add_page(pg)
-            w.add_metadata({"/Title": m["title"], "/Author": m.get("author", ""),
-                            "/Creator": "one-page-papers"})
-            dst = out / f"{paper}-{fmt}-{th}.pdf"; w.write(dst); print("  ", dst.relative_to(ROOT))
+            if i == 0:  # themes only change colours, every PDF uses the same fonts
+                for font, chars in system_fonts(raw).items():
+                    warn(f"{paper} {fmt}: {''.join(sorted(chars))} drawn with {font}, a system font, so the "
+                         "PDF depends on the machine; give these characters a bundled font in style.css")
+            if check:
+                break
+            out.mkdir(parents=True, exist_ok=True)
+            dst = out / f"{paper}-{fmt}-{th}.pdf"
+            write_pdf(raw, dst, (W, H), m)
+            print("  ", rel(dst))
             if previews and fmt == "A":
-                (ROOT / "docs").mkdir(exist_ok=True)
-                png = ROOT / "docs" / f"{paper}-{th}.png"
-                page.screenshot(path=str(png))
-                from PIL import Image
-                im = Image.open(png); im.thumbnail((600, 900)); im.save(png, optimize=True)
+                save_preview(page, ROOT / "docs" / f"{paper}-{th}.png")
 
 def main():
     papers = sorted(p.name for p in (ROOT / "papers").iterdir() if (p / "meta.yaml").exists())
-    ap = argparse.ArgumentParser()
-    ap.add_argument("papers", nargs="*", default=papers)
-    ap.add_argument("--formats", nargs="+", default=list(FORMATS))
-    ap.add_argument("--themes", nargs="+", default=list(THEMES))
-    ap.add_argument("--no-previews", action="store_true")
+    ap = argparse.ArgumentParser(description="Build one-page posters into dist/ and docs/.")
+    ap.add_argument("papers", nargs="*", metavar="paper", help=f"default: every paper ({', '.join(papers)})")
+    ap.add_argument("--formats", nargs="+", choices=list(FORMATS), default=list(FORMATS))
+    ap.add_argument("--themes", nargs="+", choices=list(THEMES), default=list(THEMES))
+    ap.add_argument("--no-previews", action="store_true", help="leave docs/*.png untouched")
+    ap.add_argument("--check", action="store_true",
+                    help="fit every poster and report problems without touching dist/ or docs/; "
+                         "warnings make it fail too")
     a = ap.parse_args()
+    if unknown := sorted(set(a.papers) - set(papers)):
+        ap.error(f"unknown paper {', '.join(unknown)} (choose from {', '.join(papers)})")
+    if not (ROOT / "node_modules").is_dir():
+        sys.exit("error: node_modules is missing, run `make deps`")
+    failed = []
     with sync_playwright() as pw:
-        b = pw.chromium.launch()
-        page = b.new_page(viewport={"width": 2245, "height": 3179})
-        for p in a.papers:
-            build(p, a.formats, a.themes, page, not a.no_previews)
-        b.close()
+        browser = pw.chromium.launch(args=CHROMIUM_ARGS)
+        page = browser.new_page()
+        for paper in a.papers or papers:
+            try:
+                build(paper, a.formats, a.themes, page, not a.no_previews, a.check)
+            except BuildError as e:
+                failed.append(paper)
+                print(f"error: {e}", file=sys.stderr)
+        browser.close()
+    if failed or (a.check and WARNINGS):
+        sys.exit(f"{len(failed)} paper(s) failed, {len(WARNINGS)} warning(s)")
 
 if __name__ == "__main__":
     main()

@@ -1,10 +1,11 @@
-<!doctype html><html><head><meta charset="utf-8">
+<!doctype html><html lang="{{LANG}}" data-theme="{{THEME_NAME}}"><head><meta charset="utf-8">
 <link rel="stylesheet" href="{{NM}}/katex/dist/katex.min.css">
 <link rel="stylesheet" href="{{NM}}/@fontsource/eb-garamond/400.css">
 <link rel="stylesheet" href="{{NM}}/@fontsource/eb-garamond/400-italic.css">
 <link rel="stylesheet" href="{{NM}}/@fontsource/eb-garamond/500.css">
 <link rel="stylesheet" href="{{NM}}/@fontsource/eb-garamond/600.css">
 <link rel="stylesheet" href="{{NM}}/@fontsource/jetbrains-mono/400.css">
+<link rel="stylesheet" href="{{NM}}/@fontsource/jetbrains-mono/700.css">
 <style>
 :root{{{THEME}};--fs:{{FS}};--cols:{{COLS}};--hs:{{HS}}}
 @page{size:594mm {{PH}}mm;margin:0}
@@ -28,7 +29,7 @@ h1 em{font-style:italic;font-weight:400}
 .abs b{font-variant:small-caps;letter-spacing:.06em;font-weight:600;color:var(--acc)}
 main{column-count:var(--cols);column-gap:13mm;column-rule:.2mm solid var(--rule);column-fill:balance;text-align:justify;hyphens:auto;flex:1;min-height:0}
 p{margin:0 0 .55em;text-indent:0}
-h2{font-weight:600;font-size:calc(var(--fs)*1.2);margin:.9em 0 .35em;break-after:avoid;letter-spacing:.01em}
+h2{font-weight:600;font-size:calc(var(--fs)*1.2);margin:.9em 0 .35em;break-after:avoid;letter-spacing:.01em;hyphens:manual}
 h2 .n{color:var(--acc);margin-right:.2em}
 main>h2:first-child{margin-top:0}
 cite{font-style:normal;color:var(--mute)}
@@ -66,7 +67,7 @@ footer{min-height:16mm;display:flex;align-items:center;justify-content:space-bet
 footer .mono{font-family:'JetBrains Mono',monospace;font-size:.9em;color:var(--ink)}
 footer>div:nth-child(2){text-align:center}
 svg .mk{fill:var(--ink)}svg .mko{fill:var(--acc)}.katex{color:var(--ink)}
-.item{display:grid;grid-template-columns:2.2em 1fr;gap:.2em;margin:0 0 .6em;break-inside:avoid;text-align:left}
+.item{display:grid;grid-template-columns:2.2em 1fr;gap:.2em;margin:0 0 .6em;break-inside:avoid;text-align:left;hyphens:manual}
 .item .lbl{color:var(--acc);font-weight:600}
 .item.sub{margin-left:2.2em;font-size:.92em}.item.sub .lbl{font-weight:400}
 code{font-family:'JetBrains Mono',monospace;font-size:.85em}
