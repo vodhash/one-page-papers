@@ -19,7 +19,6 @@ import markdown
 from themes import THEMES, FORMATS, colour, dark
 
 DESIGN_W = 594  # every poster is laid out 594 mm wide, then scaled to the target format
-SIDE = 34      # left and right margin of the page in the template, mm
 MM = 72 / 25.4  # PDF points per mm
 PX = 96 / 25.4  # CSS pixels per mm
 # Without this flag Chromium lays text out with the hinting of the local fontconfig setup,
@@ -110,19 +109,15 @@ def substitute(tpl, values):
     """Fills every {{KEY}} in one pass, so text inserted in the page is never read as a placeholder."""
     return re.sub(r"\{\{(\w+)\}\}", lambda k: str(values[k.group(1)]), tpl)
 
-def hero_html(img, height, share, hs):
-    """The hero image, scaled to fill its share of the page height without passing the margins.
-    Its size is fixed in mm, so that fitting the body size only moves the text."""
-    box = height * share / 100
-    pad = 4 * hs                          # room for the plate drawn around the image on dark themes
-    caption = 15 * hs if img["caption"] else 0  # up to two lines of caption
+def hero_html(img, height, share):
+    """The hero block: a fixed share of the page height, so that fitting the body size only moves
+    the text. Inside it, the image takes the room that its caption leaves (.hero in the template)."""
     if not img["w"]:
         raise BuildError("the hero image must state its size (an SVG needs a viewBox)")
-    k = min((DESIGN_W - 2 * SIDE - 2 * pad) / img["w"], (box - caption - 2 * pad) / img["h"])
     cap = f'<figcaption>{img["caption"]}</figcaption>' if img["caption"] else ""
-    return (f'<div class="hero" style="height:{box:.2f}mm"><figure class="image {img["mode"]}">'
-            f'<img src="{img["src"]}" alt="" style="width:{img["w"] * k:.2f}mm;height:{img["h"] * k:.2f}mm">'
-            f'{cap}</figure></div>')
+    return (f'<div class="hero" style="height:{height * share / 100:.2f}mm"><figure class="image {img["mode"]}">'
+            f'<div class="imgbox"><img src="{img["src"]}" width="{img["w"]}" height="{img["h"]}" alt="" '
+            f'style="--ar:{img["w"] / img["h"]:.5f}"></div>{cap}</figure></div>')
 
 def image_filters(theme):
     """SVG filters for the on_dark modes of images. Chromium drops mix-blend-mode from PDFs, so
@@ -159,7 +154,7 @@ def poster(paper_dir, m):
               "EXTRA_CSS": css.read_text() if css.exists() else "",
               "NM": (ROOT / "node_modules").as_uri()}
     def html(theme, height, fs):
-        top = hero_html(hero, height, m.get("hero_height", 50), m.get("header_scale", 1)) if hero else ""
+        top = hero_html(hero, height, m.get("hero_height", 50)) if hero else ""
         if hero or '<figure class="image ' in body:
             top = image_filters(theme) + top
         return substitute(tpl, {**values, "THEME": THEMES[theme], "THEME_NAME": theme, "HERO": top,

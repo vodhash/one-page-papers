@@ -97,10 +97,13 @@ figure.image figcaption{font-size:.85em;font-style:italic;color:var(--mute);marg
 [data-tone=dark] figure.plate img{box-shadow:0 0 0 .6em var(--ink);border-radius:.3em}
 [data-tone=dark] figure.invert img{filter:url(#on-dark-invert)}
 [data-tone=dark] figure.multiply img{filter:url(#on-dark-multiply)}
-/* layout: hero, the first image across the top of the page, at a size fixed in mm */
-.hero{flex:none;display:flex;align-items:center;justify-content:center;font-size:calc(11pt*var(--hs));margin-bottom:6mm}
-.hero figure.image{margin:0}
-.hero figure.image figcaption{font-size:1em;margin-top:4mm}
+/* layout: hero, the first image across the top of the page. The block has a fixed height and
+   the image takes the room its caption leaves; the padding makes room for the plate */
+.hero{flex:none;margin-bottom:6mm}
+.hero figure.image{margin:0;height:100%;display:flex;flex-direction:column}
+.hero .imgbox{flex:1;min-height:0;container-type:size;padding:.6em;display:flex;align-items:center;justify-content:center}
+.hero .imgbox img{width:min(100cqw,100cqh*var(--ar));height:auto}
+.hero figure.image figcaption{margin-top:.3em}
 .item .lbl{color:var(--acc);font-weight:600}
 .item.sub{margin-left:2.2em;font-size:.92em}.item.sub .lbl{font-weight:400}
 code{font-family:'JetBrains Mono',monospace;font-size:.85em}

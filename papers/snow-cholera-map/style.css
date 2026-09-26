@@ -1,4 +1,2 @@
 /* A short notice in large type reads better ragged than justified */
 main{text-align:left}
-/* The caption keeps a fixed size, like the whole hero, only larger than the default */
-.hero figure.image figcaption{font-size:1.45em}
