@@ -14,7 +14,7 @@ header_scale: 2.1
 columns: 2
 font_range: [10, 60]
 footer:
-  - "Status of this Memo: this memo provides information for the Internet community. It does not specify an Internet standard of any kind."
+  - "<b>Status of this Memo.</b> This memo provides information for the Internet community.  This memo does not specify an Internet standard of any kind."
   - "<i>Distribution of this memo is unlimited.</i>"
   - "<span class=\"mono\">doi:10.17487/RFC1925</span>"
 year: 1996
@@ -24,9 +24,8 @@ source:
   url: https://www.rfc-editor.org/rfc/rfc1925.txt
   retrieved: 2026-09-27
   edition: >-
-    RFC Editor plain-text edition. Left out of the poster: the page headers and footers, and
-    the phone number and e-mail address of the author. The status of the memo is in the
-    footer, reworded ("It does not specify" for "This memo does not specify").
+    RFC Editor plain-text edition. The status of the memo is in the footer and the abstract in
+    the header; page headers and footers are left out.
 license:
   text: "Distribution unlimited"
   holder: "Ross Callon, 1996"

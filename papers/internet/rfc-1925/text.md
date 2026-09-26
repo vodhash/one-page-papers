@@ -58,6 +58,6 @@ The references have been deleted in order to protect the guilty and avoid enrich
 
 ## Author's Address
 
-<p class="addr">Ross Callon<br>Internet Order of Old Farts<br>c/o Bay Networks<br>3 Federal Street<br>Billerica, MA 01821</p>
+<p class="addr">Ross Callon<br>Internet Order of Old Farts<br>c/o Bay Networks<br>3 Federal Street<br>Billerica, MA 01821<br>Phone: 508-436-3936<br>EMail: rcallon@baynetworks.com</p>
 
 :::
