@@ -28,15 +28,15 @@ Note that each tick mark represents one bit position.
 
 :::
 
-<h3>Version: <span>4 bits</span></h3>
+### Version: <span>4 bits</span>
 
 The Version field indicates the format of the internet header.  This document describes version 4.
 
-<h3>IHL: <span>4 bits</span></h3>
+### IHL: <span>4 bits</span>
 
 Internet Header Length is the length of the internet header in 32 bit words, and thus points to the beginning of the data.  Note that the minimum value for a correct header is 5.
 
-<h3>Type of Service: <span>8 bits</span></h3>
+### Type of Service: <span>8 bits</span>
 
 The Type of Service provides an indication of the abstract parameters of the quality of service desired.  These parameters are to be used to guide the selection of the actual service parameters when transmitting a datagram through a particular network.  Several networks offer service precedence, which somehow treats high precedence traffic as more important than other traffic (generally by accepting only traffic above a certain precedence at time of high load).  The major choice is a three way tradeoff between low-delay, high-reliability, and high-throughput.
 
@@ -72,17 +72,17 @@ The type of service is used to specify the treatment of the datagram during its 
 
 The Network Control precedence designation is intended to be used within a network only.  The actual use and control of that designation is up to each network. The Internetwork Control designation is intended for use by gateway control originators only. If the actual use of these precedence designations is of concern to a particular network, it is the responsibility of that network to control the access to, and use of, those precedence designations.
 
-<h3>Total Length: <span>16 bits</span></h3>
+### Total Length: <span>16 bits</span>
 
 Total Length is the length of the datagram, measured in octets, including internet header and data.  This field allows the length of a datagram to be up to 65,535 octets.  Such long datagrams are impractical for most hosts and networks.  All hosts must be prepared to accept datagrams of up to 576 octets (whether they arrive whole or in fragments).  It is recommended that hosts only send datagrams larger than 576 octets if they have assurance that the destination is prepared to accept the larger datagrams.
 
 The number 576 is selected to allow a reasonable sized data block to be transmitted in addition to the required header information.  For example, this size allows a data block of 512 octets plus 64 header octets to fit in a datagram.  The maximal internet header is 60 octets, and a typical internet header is 20 octets, allowing a margin for headers of higher level protocols.
 
-<h3>Identification: <span>16 bits</span></h3>
+### Identification: <span>16 bits</span>
 
 An identifying value assigned by the sender to aid in assembling the fragments of a datagram.
 
-<h3>Flags: <span>3 bits</span></h3>
+### Flags: <span>3 bits</span>
 
 Various Control Flags.
 
@@ -98,21 +98,21 @@ Bit 2: (MF) 0 = Last Fragment, 1 = More Fragments.
   +---+---+---+
 ```
 
-<h3>Fragment Offset: <span>13 bits</span></h3>
+### Fragment Offset: <span>13 bits</span>
 
 This field indicates where in the datagram this fragment belongs.
 
 The fragment offset is measured in units of 8 octets (64 bits).  The first fragment has offset zero.
 
-<h3>Time to Live: <span>8 bits</span></h3>
+### Time to Live: <span>8 bits</span>
 
 This field indicates the maximum time the datagram is allowed to remain in the internet system.  If this field contains the value zero, then the datagram must be destroyed.  This field is modified in internet header processing.  The time is measured in units of seconds, but since every module that processes a datagram must decrease the TTL by at least one even if it process the datagram in less than a second, the TTL must be thought of only as an upper bound on the time a datagram may exist.  The intention is to cause undeliverable datagrams to be discarded, and to bound the maximum datagram lifetime.
 
-<h3>Protocol: <span>8 bits</span></h3>
+### Protocol: <span>8 bits</span>
 
 This field indicates the next level protocol used in the data portion of the internet datagram.  The values for various protocols are specified in "Assigned Numbers" [9].
 
-<h3>Header Checksum: <span>16 bits</span></h3>
+### Header Checksum: <span>16 bits</span>
 
 A checksum on the header only.  Since some header fields change (e.g., time to live), this is recomputed and verified at each point that the internet header is processed.
 
@@ -126,15 +126,15 @@ The checksum field is the 16 bit one's complement of the one's complement sum of
 
 This is a simple to compute checksum and experimental evidence indicates it is adequate, but it is provisional and may be replaced by a CRC procedure, depending on further experience.
 
-<h3>Source Address: <span>32 bits</span></h3>
+### Source Address: <span>32 bits</span>
 
 The source address.  See section 3.2.
 
-<h3>Destination Address: <span>32 bits</span></h3>
+### Destination Address: <span>32 bits</span>
 
 The destination address.  See section 3.2.
 
-<h3>Options: <span>variable</span></h3>
+### Options: <span>variable</span>
 
 The options may appear or not in datagrams.  They must be implemented by all IP modules (host and gateways).  What is optional is their transmission in any particular datagram, not their implementation.
 
@@ -201,9 +201,9 @@ CLASS NUMBER LENGTH DESCRIPTION
   2     4     var.  Internet Timestamp.
 ```
 
-<h4 class="defs">Specific Option Definitions</h4>
+### Specific Option Definitions
 
-<h4>End of Option List</h4>
+#### End of Option List
 
 ```
 +--------+
@@ -216,7 +216,7 @@ This option indicates the end of the option list.  This might not coincide with 
 
 May be copied, introduced, or deleted on fragmentation, or for any other reason.
 
-<h4>No Operation</h4>
+#### No Operation
 
 ```
 +--------+
@@ -229,7 +229,7 @@ This option may be used between options, for example, to align the beginning of 
 
 May be copied, introduced, or deleted on fragmentation, or for any other reason.
 
-<h4>Security</h4>
+#### Security
 
 This option provides a way for hosts to send security, compartmentation, handling restrictions, and TCC (closed user group) parameters.  The format for this option is as follows:
 
@@ -240,7 +240,7 @@ This option provides a way for hosts to send security, compartmentation, handlin
  Type=130 Length=11
 ```
 
-<h5>Security (S field): <span>16 bits</span></h5>
+#### Security (S field): <span>16 bits</span>
 
 Specifies one of 16 levels of security (eight of which are reserved for future use).
 
@@ -263,21 +263,21 @@ Specifies one of 16 levels of security (eight of which are reserved for future u
 11100010 01101011 - (Reserved for future use)
 ```
 
-<h5>Compartments (C field): <span>16 bits</span></h5>
+#### Compartments (C field): <span>16 bits</span>
 
 An all zero value is used when the information transmitted is not compartmented.  Other values for the compartments field may be obtained from the Defense Intelligence Agency.
 
-<h5>Handling Restrictions (H field): <span>16 bits</span></h5>
+#### Handling Restrictions (H field): <span>16 bits</span>
 
 The values for the control and release markings are alphanumeric digraphs and are defined in the Defense Intelligence Agency Manual DIAM 65-19, "Standard Security Markings".
 
-<h5>Transmission Control Code (TCC field): <span>24 bits</span></h5>
+#### Transmission Control Code (TCC field): <span>24 bits</span>
 
 Provides a means to segregate traffic and define controlled communities of interest among subscribers. The TCC values are trigraphs, and are available from HQ DCA Code 530.
 
 Must be copied on fragmentation.  This option appears at most once in a datagram.
 
-<h4>Loose Source and Record Route</h4>
+#### Loose Source and Record Route
 
 ```
 +--------+--------+--------+---------//--------+
@@ -302,7 +302,7 @@ This option is a loose source route because the gateway or host IP is allowed to
 
 Must be copied on fragmentation.  Appears at most once in a datagram.
 
-<h4>Strict Source and Record Route</h4>
+#### Strict Source and Record Route
 
 ```
 +--------+--------+--------+---------//--------+
@@ -327,7 +327,7 @@ This option is a strict source route because the gateway or host IP must send th
 
 Must be copied on fragmentation.  Appears at most once in a datagram.
 
-<h4>Record Route</h4>
+#### Record Route
 
 ```
 +--------+--------+--------+---------//--------+
@@ -348,7 +348,7 @@ If the route data area is already full (the pointer exceeds the length) the data
 
 Not copied on fragmentation, goes in first fragment only. Appears at most once in a datagram.
 
-<h4>Stream Identifier</h4>
+#### Stream Identifier
 
 ```
 +--------+--------+--------+--------+
@@ -361,7 +361,7 @@ This option provides a way for the 16-bit SATNET stream identifier to be carried
 
 Must be copied on fragmentation.  Appears at most once in a datagram.
 
-<h4>Internet Timestamp</h4>
+#### Internet Timestamp
 
 ```
 +--------+--------+--------+--------+
@@ -406,7 +406,7 @@ If there is some room but not enough room for a full timestamp to be inserted, o
 
 The timestamp option is not copied upon fragmentation.  It is carried in the first fragment.  Appears at most once in a datagram.
 
-<h3>Padding: <span>variable</span></h3>
+### Padding: <span>variable</span>
 
 The internet header padding is used to ensure that the internet header ends on a 32 bit boundary.  The padding is zero.
 

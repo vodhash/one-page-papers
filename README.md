@@ -28,7 +28,7 @@ Tim Peters, 2004. The nineteen aphorisms, set as a typographic poster; comfortab
 | ![](docs/zen-of-python-ivory.png) | ![](docs/zen-of-python-white.png) | ![](docs/zen-of-python-genesis.png) | ![](docs/zen-of-python-blueprint.png) |
 
 ### RFC 791: Internet Protocol (excerpt)
-Jon Postel, Editor, September 1981. Section 3.1, the Internet Header Format, with Figure 4 across the page, drawn exactly as in the RFC.
+Jon Postel, Editor, September 1981. Section 3.1, the Internet Header Format, with Figure 4 across the page, drawn exactly as in the RFC. Dense text: print at A1 or larger.
 
 | ivory | white | genesis | blueprint |
 |---|---|---|---|
@@ -79,10 +79,10 @@ Create `papers/<name>/` with:
 
 | Syntax | Effect |
 |---|---|
-| `## Title` | section heading, numbered automatically with `numbered: true` |
+| `## Title`, `### Title`, `#### Title` | headings; with `numbered: true` they are numbered 1., 1.1., 1.1.1., and a title that starts with a number such as `3.1.` gets the same styling |
 | `::: figure <name>` | an SVG figure from `figures.py` |
 | `::: wide` … `:::` | a block across all the columns, holding any other syntax (code, math, figures, HTML) |
-| `::: wide cols=N` … `:::` | the `##` sections of the block side by side, one per cell of an N-column grid (see `papers/rfc-1925`) |
+| `::: wide cols=N` … `:::` | the `##` sections of the block side by side, one per left-aligned cell of an N-column grid (see `papers/rfc-1925`) |
 | `$$ … $$` | display math, rendered with KaTeX |
 | `(1)`, `(1a)` | labelled items; a sub-item such as `(1a)` stays in the same column as its item |
 | `[^label]`, `[^label]: text` | footnote call and definition; notes are numbered in order of first call and listed at the end of the text |

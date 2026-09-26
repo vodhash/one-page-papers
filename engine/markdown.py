@@ -1,7 +1,9 @@
 """Minimal Markdown dialect for posters.
 
 Blocks (separated by blank lines):
-  ## Heading                 section title (auto-numbered if meta.numbered)
+  ## Heading                 section title, ### and #### for sub-sections; numbered 1., 1.1.,
+                             1.1.1. with meta.numbered, and a number that starts a title,
+                             such as 3.1., is set the same way
   ::: figure <name>          SVG figure from the paper's figures.py
   ::: wide [cols=N]          block across all the columns, closed by a ":::" line, holding any
   ...                        of these blocks; with cols=N (default 1) its "## " sections sit side
@@ -98,7 +100,7 @@ class Renderer:
     """State shared by the whole text: math, section numbers, footnotes."""
     def __init__(self, figures, numbered):
         self.figures, self.numbered = figures, numbered
-        self.math, self.sec, self.in_refs = [], 0, False
+        self.math, self.nums, self.in_refs = [], [0, 0, 0], False  # nums: ##, ###, #### counters
         self.notes = {}  # label: (line of the definition, text)
         self.calls = {}  # label: line of the first call, in the order of first calls
 
@@ -122,17 +124,10 @@ class Renderer:
                 tex = '\n'.join(l for l in b.split('\n') if l.strip())
                 self.math.append(tex.strip()[2:-2].strip())
                 out.append(f'<div class="eq"><!--MATH:{len(self.math)-1}--></div>')
-            elif b.startswith('## '):
-                title = b[3:].strip()
-                self.in_refs = title.lower() == 'references'
-                if self.numbered and not self.in_refs:
-                    self.sec += 1
-                    out.append(f'<h2><span class="n">{self.sec}.</span> {self.inline(title, line)}</h2>')
-                else:
-                    title = re.sub(r'^((?:\d+\.)+)\s*', r'<span class="n">\1</span> ', self.inline(title, line))
-                    out.append(f'<h2{" class=refs" if self.in_refs else ""}>{title}</h2>')
+            elif m := re.match(r'(#{2,4}) ', b):
+                out.append(self.heading(len(m.group(1)), b[m.end():].strip(), line))
             elif re.match(r'#+\s', b):
-                raise MarkdownError(line, 'only level-2 headings ("## ") are supported')
+                raise MarkdownError(line, 'headings are "##", "###" or "####"')
             elif b.startswith(':::'):
                 out.append(self.directive(line, b))
             elif m := NOTE_DEF.match(b):
@@ -167,6 +162,18 @@ class Renderer:
             else:
                 out.append(f'<p>{self.inline(b, line)}</p>')
         return out
+
+    def heading(self, level, title, line):
+        if level == 2:
+            self.in_refs = title.lower() == 'references'
+        title = self.inline(title, line)
+        if self.numbered and not self.in_refs:
+            self.nums[level - 2] += 1
+            self.nums[level - 1:] = [0] * (4 - level)
+            n = '.'.join(map(str, self.nums[:level - 1])) + '.'
+            return f'<h{level}><span class="n">{n}</span> {title}</h{level}>'
+        title = re.sub(r'^((?:\d+\.)+)\s*', r'<span class="n">\1</span> ', title)
+        return f'<h{level}{" class=refs" if level == 2 and self.in_refs else ""}>{title}</h{level}>'
 
     def directive(self, line, b):
         head, *rest = b.split('\n')
