@@ -32,6 +32,7 @@ main{column-count:var(--cols);column-gap:13mm;column-rule:.2mm solid var(--rule)
 /* layout: centered, for short texts: the text keeps its natural height, in the middle of main */
 [data-layout=centered] main{column-count:auto;display:flex;flex-direction:column;justify-content:safe center}
 [data-layout=centered] .flow{display:block;column-count:var(--cols);column-gap:13mm;column-rule:.2mm solid var(--rule);column-fill:balance}
+[data-layout=centered] .abs{text-align:center;hyphens:manual}
 p{margin:0 0 .55em;text-indent:0}
 h2{font-weight:600;font-size:calc(var(--fs)*1.2);margin:.9em 0 .35em;break-after:avoid;letter-spacing:.01em;hyphens:manual}
 h2 .n{color:var(--acc);margin-right:.2em}
