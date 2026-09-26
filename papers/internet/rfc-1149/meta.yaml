@@ -1,0 +1,34 @@
+title: "RFC 1149: A Standard for the Transmission of IP Datagrams on Avian Carriers"
+title_html: "A Standard for the Transmission<br>of IP Datagrams <em>on Avian Carriers</em>"
+title_size: 88pt
+kicker: "Request for Comments 1149 · 1 April 1990"
+author: "D. Waitzman"
+byline: "Network Working Group · BBN STC"
+emblem: "IP"
+abstract_label: "Status of this Memo."
+abstract: >-
+  This memo describes an experimental method for the encapsulation of
+  IP datagrams in avian carriers.  This specification is primarily
+  useful in Metropolitan Area Networks.  This is an experimental, not
+  recommended standard.  Distribution of this memo is unlimited.
+header_scale: 2.1
+columns: 2
+font_range: [10, 80]
+footer:
+  - "Network Working Group · Request for Comments: 1149"
+  - "<i>Distribution of this memo is unlimited.</i>"
+  - "<span class=\"mono\">doi:10.17487/RFC1149</span>"
+year: 1990
+authors: [David Waitzman]
+min_print: A3
+source:
+  url: https://www.rfc-editor.org/rfc/rfc1149.txt
+  retrieved: 2026-09-27
+  edition: >-
+    RFC Editor plain-text edition. The heading block and the status of the memo are set as
+    the header of the poster; page headers and footers are left out.
+license:
+  text: "Distribution unlimited"
+  holder: "David Waitzman, 1990"
+  notice: "Distribution of this memo is unlimited."
+  note: 'The RFC Editor also states: "All RFCs may be freely reproduced and translated (unmodified)." (https://www.rfc-editor.org/faq/)'
