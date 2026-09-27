@@ -1,0 +1,4 @@
+/* Two columns of amendments, each under a centered small-caps heading */
+h2{text-align:center;font-weight:500;font-variant:small-caps;letter-spacing:.08em;font-size:1.08em;margin:.85em 0 .2em}
+.kick{letter-spacing:.3em}
+footer>div:first-child{max-width:40%;line-height:1.3}
