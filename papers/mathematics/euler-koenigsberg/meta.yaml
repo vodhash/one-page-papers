@@ -1,0 +1,57 @@
+title: "Solutio problematis ad geometriam situs pertinentis"
+summary: "Euler shows that no walk crosses each of the seven bridges of Königsberg exactly once, and gives the general rule."
+title_html: "Solutio problematis<br><em>ad geometriam situs pertinentis</em>"
+title_size: 84pt
+kicker: "Commentarii Academiae Scientiarum Imperialis Petropolitanae · Tomus VIII"
+author: "Leonhard Euler"
+byline: "Commentarii Academiae Scientiarum Imperialis Petropolitanae, Tomus VIII, ad annum 1736, Petropoli, 1741, pp. 128-140, Tab. VIII"
+emblem: "7"
+lang: la
+layout: hero
+hero_height: 34
+columns: 4
+footer:
+  - "Written in 1735 (Euler Archive, E53); printed in the volume of the Commentarii for 1736, published in 1741."
+  - "<i>Text and plate of the Commentarii, 1741. Public domain.</i>"
+  - '<span class="mono">la.wikisource.org · archive.org</span>'
+year: 1736
+authors: [Leonhard Euler]
+min_print: A2
+source:
+  url: https://la.wikisource.org/wiki/Solutio_problematis_ad_geometriam_situs_pertinentis
+  retrieved: 2026-09-27
+  edition: >-
+    The paper as printed in the Commentarii Academiae Scientiarum Imperialis Petropolitanae,
+    Tomus VIII, ad annum 1736 (Petropoli, typis Academiae, 1741), pp. 128-140, with its plate,
+    Tab. VIII. The text comes from the diplomatic transcription of Latin Wikisource (raw
+    wikitext of the page), read word by word against the scan of that volume in the Internet
+    Archive, item commentariiacade08impe (Biodiversity Heritage Library, copy of the American
+    Museum of Natural History Library), and compared with its OCR; the scan of the Euler
+    Archive (E053, docs/originals/E053.pdf) served as a second witness. The plate is page n185
+    of that Internet Archive item, cropped to its frame, turned to greyscale and its paper
+    whitened. Differences from Wikisource, all back to the print: "vtendum" (p. 128,
+    Wikisource "vrendum"); "queat, an secus" (p. 130); "Ita si quis" and "litteris AB" (p. 130,
+    Wikisource "Ita, si" and "litterus"); "perueniat" (p. 131); "quotcunque" and "vnicum" (p.
+    132); "coniicio, quae", "numerus pontium" (p. 135, Wikisource "coniicio;" and "numeros");
+    "habetur ergo 8" without a period (p. 136); "asterisco noto" and "collocaui" (p. 137,
+    Wikisource "asterico", "colocaui"); "litteris A, B, C adscriptos simul sumtos" (p. 137,
+    Wikisource "A, B, C etc." and "sumptos"); "Praeterea" and "tendit" (p. 139, Wikisource
+    "Praieterea", "Tendit"). Kept as printed: "ABDG" for ABDC in §. 5, "iuuestigandum" (p.
+    135) and "asteristico" (p. 135). Normalizations: the long s is set as a round s, and the
+    ligatures ct, st, si, ss, fi, fl and ffi as separate letters; u and v are kept as printed;
+    "der Kneiphof", printed in Fraktur, is set in the roman of the text; the drop cap of the
+    first word is set as a capital P followed by "raeter"; the heading "§. 1.", centred in the
+    print, opens its paragraph; the marginal notes "Tabula VIII." and "Figura 1." to "Figura
+    3." are left out (the Wikisource transcription sets the latter within the text); running
+    heads, page numbers and signature marks are dropped, and words hyphenated at line ends
+    are rejoined. The two tables of §. 14 and §. 15 are set as tables, their dashes as rules.
+license:
+  text: "Public domain"
+  holder: "Leonhard Euler, 1741"
+  basis: >-
+    Leonhard Euler died on 18 September 1783 (Wikidata Q7604) and the paper was published in
+    1741: it is in the public domain in France, where the author died before 1 January 1956,
+    and in the United States, where it was published before 1 January 1931. The Biodiversity
+    Heritage Library gives the scanned volume (item 38573) the "Copyright Status:
+    NOT_IN_COPYRIGHT" (page read from its capture of 16 August 2024 by the Internet Archive),
+    as does the Internet Archive item (possible-copyright-status NOT_IN_COPYRIGHT).

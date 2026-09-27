@@ -1,0 +1,13 @@
+/* The tables of §. 14 and §. 15, set as printed: a rule before the third column, the dashes as rules */
+.tab{margin:.4em auto;border-collapse:collapse;font-variant-numeric:lining-nums}
+.tab td{padding:0 .45em;text-align:left;line-height:1.25}
+.tab td:nth-child(3){border-left:1px solid currentColor}
+.tab tr:first-child td:nth-child(3){border-left:none}
+.t1 td.h{text-align:center}
+.t2 tr:last-child td:nth-child(3){border-left:none}
+.t2 td.sum{text-align:center;border-bottom:1px solid currentColor}
+.t2 td.sum.b{border-bottom:none;border-top:1px solid currentColor}
+.t2 td.r::before{content:"";display:inline-block;width:.5em;margin-right:.2em;border-top:1px solid currentColor;vertical-align:middle}
+.t2 td.r.l::before{width:1.1em}
+.t2 sub{font-size:1em;vertical-align:-.25em;line-height:0}
+p.c{text-align:center;text-indent:0}
