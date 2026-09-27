@@ -1,0 +1,13 @@
+/* Names set letter-spaced (Sperrsatz), as in the Annalen; the negative margin takes back the
+   spacing after the last letter, so that "schen" and punctuation follow without a gap */
+.sp{letter-spacing:.14em;margin-right:-.14em}
+/* The closing lines: the place and month, then the date of receipt, centered */
+.dateline{margin-top:.9em}
+.received{text-align:center;font-size:.88em;margin-top:.6em}
+/* Short paragraphs in large type: let Chromium balance their last lines, so that a long
+   final word does not leave a loose line before it */
+main p{text-wrap:pretty}
+/* A formula and the punctuation that touches it stay on one line; as an inline-block, since
+   the text that follows a formula inside a plain inline span is painted a fraction of a pixel
+   higher or lower from one run to the next, which makes the PDFs differ between builds */
+.nw{white-space:nowrap;display:inline-block}

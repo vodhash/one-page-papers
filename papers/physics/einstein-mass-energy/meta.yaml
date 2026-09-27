@@ -1,0 +1,44 @@
+title: "Ist die Trägheit eines Körpers von seinem Energieinhalt abhängig?"
+summary: "Shows that a body emitting energy L as radiation loses mass L/V², so its mass measures its energy content."
+title_html: "Ist die Trägheit eines Körpers<br>von seinem <em>Energieinhalt</em> abhängig?"
+kicker: "Annalen der Physik · 4th series · vol. 18 · 1905"
+author: "A. Einstein"
+byline: "Bern, September 1905 · received 27 September 1905"
+title_size: 104pt
+header_scale: 1.8
+emblem: "V²"
+lang: de
+columns: 2
+footer:
+  - "Annalen der Physik, 4th series, vol. 18, pp. 639-641. Leipzig: Johann Ambrosius Barth, 1905."
+  - "<i>Public domain in France and in the United States.</i>"
+  - '<span class="mono">doi:10.1002/andp.19053231314</span>'
+year: 1905
+authors: [Albert Einstein]
+min_print: A3
+source:
+  url: https://de.wikisource.org/wiki/Ist_die_Trägheit_eines_Körpers_von_seinem_Energieinhalt_abhängig%3F
+  retrieved: 2026-09-27
+  edition: >-
+    German Wikisource transcription (marked "korrigiert"), made from the scan of Annalen der
+    Physik, 4th series, vol. 18 (Leipzig: Johann Ambrosius Barth, 1905), pp. 639-641, on the
+    Internet Archive (annalenderphysi143unkngoog) and on Wikimedia Commons
+    (File:Einstein-Energieinhalt.djvu), checked word by word and formula by formula against
+    that scan. Corrected against the scan: "leeren Baum" to "leeren Raum" (p. 639); the signs of
+    (H0 - E0) - (H1 - E1), for which Wikisource has plus signs (p. 640); the full stop that ends
+    the equation for H0 (p. 640); "Betrag," to "Betrag." (p. 641). The title and "von A.
+    Einstein." are in the header, whose byline restates in English the closing lines "Bern,
+    September 1905. (Eingegangen 27. September 1905.)", which stay at the end of the text; the
+    article number "13.", running heads, page numbers and the sheet signature "42*" are left out,
+    and hyphens at line ends are rejoined. The two footnotes keep their numbers and follow the
+    text. Letter-spaced names stay letter-spaced. The equations are set with KaTeX: the equations
+    for E0 and H0, and those for H0 - E0 and H1 - E1, are each one aligned display as in the
+    scan, the parentheses around the coordinate triples (x, y, z) are set with the letters they
+    enclose, and the multiplication point of "9 . 10^20" keeps its spaces.
+license:
+  text: "Public domain"
+  holder: "Albert Einstein, 1905"
+  basis: >-
+    Albert Einstein died on 18 April 1955, so his works are in the public domain in France since
+    1 January 2026 (70 years counted from 1 January 1956). The paper was published in 1905,
+    before 1 January 1931, so it is in the public domain in the United States.
