@@ -394,6 +394,23 @@ def neighbours(p, posters, n=5):
 
 # ---------------------------------------------------------------- pages
 
+def last_changes():
+    """The day of the last commit of each paper, by slug, and of the repository: the lastmod of the
+    sitemap. Empty without git or its history (the pages workflow fetches the history, not its files)."""
+    try:
+        run = lambda *a: subprocess.run(["git", "-C", str(ROOT), *a], capture_output=True, text=True,
+                                        check=True).stdout
+        log, head = run("log", "--format=%x00%cs", "--name-only", "--", "papers"), run("log", "-1", "--format=%cs")
+    except (OSError, subprocess.CalledProcessError):
+        return {}, None
+    dates = {}
+    for block in log.split("\x00")[1:]:  # newest first
+        date, *files = block.strip().split("\n")
+        for f in files:
+            if f.count("/") >= 3:
+                dates.setdefault(f.split("/")[2], date)
+    return dates, head.strip() or None
+
 class Page(NamedTuple):
     path: str          # in the site, such as bitcoin/index.html
     title: str         # of the <title>, escaped
@@ -920,10 +937,15 @@ def write(out, posters):
     small.paste(mark, ((256 - mark.width) // 2, (256 - mark.height) // 2), mark)
     small.resize((32, 32), Image.LANCZOS).save(out / "favicon-32.png", optimize=True)
     (out / "logo.svg").write_text(mark_svg(ink, acc, light_bg).replace(' aria-hidden="true"', "") + "\n")
-    urls = [BASE_URL + pg.path.removesuffix("index.html") for pg in pages if pg.path != "404.html"]
+    dates, head = last_changes()
+    def entry(pg):  # a poster and its reading page date from their paper, the other pages from the repository
+        day = dates.get(pg.path.split("/")[0]) or (head if pg.path.split("/")[0] not in slugs else None)
+        mod = f"<lastmod>{day}</lastmod>" if day else ""
+        return f"<url><loc>{BASE_URL + pg.path.removesuffix('index.html')}</loc>{mod}</url>\n"
+    slugs = {p.slug for p in posters}
     (out / "sitemap.xml").write_text(
         '<?xml version="1.0" encoding="UTF-8"?>\n<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">\n'
-        + "".join(f"<url><loc>{u}</loc></url>\n" for u in urls) + "</urlset>\n")
+        + "".join(entry(pg) for pg in pages if pg.path != "404.html") + "</urlset>\n")
     (out / "robots.txt").write_text(f"User-agent: *\nAllow: /\n\nSitemap: {BASE_URL}sitemap.xml\n")
     return (f"{len(pages)} pages ({len(reads)} to read), {sum(len(v) for v in previews.values())} previews, "
             f"{len(images)} images, {len(files) + len(kfiles)} font files")

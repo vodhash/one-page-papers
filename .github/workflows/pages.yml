@@ -20,6 +20,10 @@ jobs:
     runs-on: ubuntu-24.04
     steps:
       - uses: actions/checkout@v5
+        with:
+          # the history, for the lastmod dates of the sitemap, without the files of past commits
+          fetch-depth: 0
+          filter: blob:none
       - uses: actions/setup-node@v5
         with:
           node-version: 22
