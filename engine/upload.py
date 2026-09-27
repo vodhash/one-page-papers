@@ -9,20 +9,22 @@ The bucket is Cloudflare R2, through its S3 API, with the credentials of the env
 R2_ACCESS_KEY_ID, R2_SECRET_ACCESS_KEY and R2_ENDPOINT (https://<account id>.r2.cloudflarestorage.com),
 and R2_BUCKET (default onepagepapers-pdf). With CLOUDFLARE_API_TOKEN (Zone, Cache Purge) and
 CLOUDFLARE_ZONE_ID as well, the files that changed are purged from the cache of Cloudflare, which
-otherwise serves the old file until its Cache-Control runs out. A file of the bucket that dist/ no
-longer has is reported, never deleted: a link to it may still be around.
+otherwise serves the old file until its cache runs out (a year, by the cache rule of the zone). A
+file of the bucket that dist/ no longer has is reported, never deleted: a link to it may still be
+around.
 
 Needs boto3 (requirements-deploy.txt), which only the deployment installs.
 """
-import argparse, hashlib, json, os, pathlib, sys, urllib.request
+import argparse, hashlib, json, os, pathlib, sys, urllib.error, urllib.request
 
 sys.path.insert(0, str(pathlib.Path(__file__).resolve().parent))
 from papers import FILES_URL, ROOT
 
 DIST = ROOT / "dist"
 BUCKET = "onepagepapers-pdf"
-# a week in browsers and in the cache of Cloudflare: a file keeps its name when its poster changes,
-# so its cache must run out (or be purged, see above)
+# a week: a file keeps its name when its poster changes, so its cache must run out. The cache rule
+# of files.onepagepapers.com keeps it a year in the cache of Cloudflare instead, which the purge
+# above empties; browsers keep the week, since a purge cannot reach them
 CACHE_CONTROL = "public, max-age=604800, stale-while-revalidate=86400"
 PURGE_BATCH = 30  # URLs per purge request, the most that every Cloudflare plan takes
 
@@ -54,19 +56,35 @@ def remote_files(s3, bucket):
             out[o["Key"]] = o["ETag"].strip('"')
     return out
 
+def cloudflare(path, body=None):
+    """A call to the API of Cloudflare with CLOUDFLARE_API_TOKEN; fails unless it succeeds."""
+    req = urllib.request.Request(f"https://api.cloudflare.com/client/v4/{path}", method="POST" if body else "GET",
+                                 data=json.dumps(body).encode() if body else None,
+                                 headers={"Authorization": f"Bearer {os.environ['CLOUDFLARE_API_TOKEN']}",
+                                          "Content-Type": "application/json"})
+    try:
+        with urllib.request.urlopen(req, timeout=60) as r:
+            ok = json.load(r).get("success")
+    except urllib.error.HTTPError as e:
+        ok = False
+        print(f"Cloudflare API {path}: HTTP {e.code}", file=sys.stderr)
+    if not ok:
+        sys.exit(f"error: the Cloudflare API call {path} failed, check CLOUDFLARE_API_TOKEN and CLOUDFLARE_ZONE_ID")
+
+def check_purge():
+    """Fails at once on a token or zone that cannot purge, rather than on the day a PDF changes:
+    purges the root of FILES_URL, which serves no file."""
+    if os.environ.get("CLOUDFLARE_API_TOKEN") and os.environ.get("CLOUDFLARE_ZONE_ID"):
+        cloudflare(f"zones/{os.environ['CLOUDFLARE_ZONE_ID']}/purge_cache", {"files": [FILES_URL]})
+
 def purge(urls):
     token, zone = os.environ.get("CLOUDFLARE_API_TOKEN"), os.environ.get("CLOUDFLARE_ZONE_ID")
     if not (token and zone):
         print(f"not purged from the Cloudflare cache (no CLOUDFLARE_API_TOKEN or CLOUDFLARE_ZONE_ID): "
-              f"the {len(urls)} changed file(s) show within a week")
+              f"Cloudflare serves the old version of the {len(urls)} changed file(s) until its cache runs out")
         return
     for i in range(0, len(urls), PURGE_BATCH):
-        req = urllib.request.Request(f"https://api.cloudflare.com/client/v4/zones/{zone}/purge_cache",
-                                     data=json.dumps({"files": urls[i:i + PURGE_BATCH]}).encode(), method="POST",
-                                     headers={"Authorization": f"Bearer {token}", "Content-Type": "application/json"})
-        with urllib.request.urlopen(req, timeout=60) as r:
-            if not json.load(r).get("success"):
-                sys.exit("error: the purge of the Cloudflare cache failed")
+        cloudflare(f"zones/{zone}/purge_cache", {"files": urls[i:i + PURGE_BATCH]})
     print(f"purged {len(urls)} URL(s) from the Cloudflare cache")
 
 def main():
@@ -83,6 +101,8 @@ def main():
     else:
         s3 = client()
         remote = remote_files(s3, bucket)
+        if not a.dry_run:
+            check_purge()
     changed = [k for k, f in files.items() if remote.get(k) != md5(f)]
     for k in changed:
         print(("would upload" if a.dry_run else "upload"), k, "(new)" if k not in remote else "(changed)")

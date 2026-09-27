@@ -94,8 +94,10 @@ needs these secrets of the repository (Settings, Secrets and variables, Actions)
 | `CLOUDFLARE_API_TOKEN` | optional: an API token with Zone, Cache Purge on onepagepapers.com |
 | `CLOUDFLARE_ZONE_ID` | optional: the zone ID of onepagepapers.com |
 
-Without the last two, a PDF that changes shows within a week, when its `Cache-Control` runs out;
-with them, the workflow purges it from the cache of Cloudflare at once.
+A cache rule of the zone keeps the files of `files.onepagepapers.com` a year in the cache of
+Cloudflare, so the workflow purges every PDF that changed, with the last two secrets, which each
+deployment checks. Browsers keep a PDF a week (its `Cache-Control`, which the rule should respect):
+a purge does not reach them.
 
 The wallpapers of the site fetch a PDF from the bucket, which is another origin than the site, so
 the bucket has this CORS policy (R2, the bucket, Settings, CORS policy):
