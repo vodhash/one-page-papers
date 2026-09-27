@@ -21,7 +21,7 @@ from typing import NamedTuple
 from urllib.parse import unquote, urljoin, urlsplit
 
 import yaml
-from PIL import Image, ImageDraw, ImageFilter
+from PIL import Image, ImageDraw, ImageFilter, ImageFont
 
 sys.path.insert(0, str(pathlib.Path(__file__).resolve().parent))
 import markdown
@@ -207,6 +207,26 @@ def rasterize(pdf):
         save_atomic(path, webp(im))
     return paths
 
+def mark_image(k, bold=False):
+    """The logo of mark_svg as an RGBA image, k px per unit of its 60 x 84 grid, drawn at 4x then
+    reduced. bold thickens it and keeps four lines of text, for the small icons."""
+    ink, acc, paper, mute = (TOKENS[t][0] for t in ("ink", "acc", "bg", "mute"))
+    K = 4 * k
+    im = Image.new("RGBA", (round(60 * K), round(84 * K)), (0, 0, 0, 0))
+    d = ImageDraw.Draw(im)
+    box = lambda x, y, w, h: (x * K, y * K, (x + w) * K, (y + h) * K)
+    d.rectangle(box(2.5, 2.5, 55, 79), fill=paper, outline=ink, width=round((4.5 if bold else 3) * K))
+    if not bold:
+        d.rectangle(box(7, 7, 46, 70), outline=ink, width=round(1.2 * K))
+    for x in (13, 37):
+        d.line((x * K, 21 * K, (x + 10) * K, 21 * K), fill=ink, width=round((3 if bold else 1.6) * K))
+    d.ellipse(box(24.5, 15.5, 11, 11) if bold else box(25.4, 16.4, 9.2, 9.2), fill=acc)
+    rows = [(36, 47), (46, 47), (56, 47), (66, 35)] if bold else \
+           [(y, 47 if i % 4 != 3 else 35) for i, y in enumerate(range(36, 74, 5))]
+    for y, end in rows:
+        d.line((13 * K, y * K, end * K, y * K), fill=mute, width=round((3.2 if bold else 1.6) * K))
+    return im.resize((round(60 * k), round(84 * k)), Image.LANCZOS)
+
 def matted(im, height, pad):
     """A preview reduced to a height, in its passe-partout (light frame colour)."""
     im = im.resize((round(height * im.width / im.height), height), Image.LANCZOS)
@@ -214,15 +234,16 @@ def matted(im, height, pad):
     mat.paste(im, (pad, pad))
     return mat
 
-def share_image(sources):
+def share_image(sources, brand=False):
     """The Open Graph image, 1200 x 630: the posters side by side on the wall, each in its
-    passe-partout with a soft shadow, as on the site. sources are 1200 px WebP previews."""
-    key = hashlib.sha256(b"".join(s.read_bytes() for s in sources) + f"v{PREVIEW_VERSION}".encode()).hexdigest()[:24]
+    passe-partout with a soft shadow, as on the site. sources are 1200 px WebP previews. With
+    brand, the logo and the name of the site sit under the posters."""
+    key = hashlib.sha256(b"".join(s.read_bytes() for s in sources) + f"v{PREVIEW_VERSION}{brand}".encode()).hexdigest()[:24]
     path = CACHE / f"share-{key}.jpg"
     if path.exists():
         return path
     W, H = 1200, 630
-    height = 500 if len(sources) == 1 else 430
+    height = 500 if len(sources) == 1 else 380 if brand else 430
     mats = [matted(Image.open(s).convert("RGB"), height, 14) for s in sources]
     gap = 56
     x = (W - sum(m.width for m in mats) - gap * (len(mats) - 1)) // 2
@@ -231,7 +252,7 @@ def share_image(sources):
     draw = ImageDraw.Draw(shadow)
     boxes = []
     for m in mats:
-        y = (H - m.height) // 2
+        y = (H - m.height) // 2 - (38 if brand else 0)
         boxes.append((x, y))
         draw.rectangle((x + 6, y + 16, x + m.width - 6, y + m.height + 10), fill=120)
         x += m.width + gap
@@ -239,6 +260,19 @@ def share_image(sources):
     canvas.paste(Image.new("RGB", (W, H), "#3a3226"), (0, 0), shadow)
     for m, (x, y) in zip(mats, boxes):
         canvas.paste(m, (x, y))
+    if brand:
+        fonts = ROOT / "node_modules/@fontsource/eb-garamond/files"
+        roman = ImageFont.truetype(str(fonts / "eb-garamond-latin-500-normal.woff2"), 40)
+        italic = ImageFont.truetype(str(fonts / "eb-garamond-latin-400-italic.woff2"), 40)
+        mark = mark_image(0.62)
+        d = ImageDraw.Draw(canvas)
+        w1, w2 = d.textlength("One Page ", font=roman), d.textlength("Papers", font=italic)
+        x = (W - mark.width - 18 - w1 - w2) / 2
+        y = H - 78
+        canvas.paste(mark, (round(x), y - mark.height // 2), mark)
+        x += mark.width + 18
+        d.text((x, y), "One Page ", font=roman, fill=TOKENS["ink"][0], anchor="lm")
+        d.text((x + w1, y), "Papers", font=italic, fill=TOKENS["ink"][0], anchor="lm")
     buf = io.BytesIO()
     canvas.save(buf, "JPEG", quality=86, optimize=True, progressive=True)
     save_atomic(path, buf.getvalue())
@@ -832,7 +866,7 @@ def write(out, posters):
         shares = list(ex.map(lambda p: share_image([cached[p.slug, p.light][1200]]), posters))
     for p, f in zip(posters, shares):
         shutil.copyfile(f, out / f"previews/{p.slug}-share.jpg")
-    shares.append(share_image([cached[q.slug, q.light][1200] for q in trio]))
+    shares.append(share_image([cached[q.slug, q.light][1200] for q in trio], brand=True))
     shutil.copyfile(shares[-1], out / "previews/share.jpg")
 
     pages = [home_page(posters, previews), about_page(posters, previews), not_found_page()]
@@ -876,19 +910,15 @@ def write(out, posters):
     light_bg, acc = TOKENS["bg"][0], TOKENS["acc"][0]
     ink = TOKENS["ink"][0]
     (out / "favicon.svg").write_text(mark_svg(ink, acc, light_bg).replace(' aria-hidden="true"', "") + "\n")
-    # the touch icon: the poster centred on the paper, drawn at 4x then reduced
+    # the touch icon, and a 32 px icon for the browsers that do not take an SVG favicon
     icon = Image.new("RGB", (720, 720), light_bg)
-    d, k, x0, y0 = ImageDraw.Draw(icon), 6.4, 168, 91  # 60 x 84 units at 6.4 px, centred
-    box = lambda x, y, w, h: (x0 + x * k, y0 + y * k, x0 + (x + w) * k, y0 + (y + h) * k)
-    d.rectangle(box(2.5, 2.5, 55, 79), outline=ink, width=round(3 * k))
-    d.rectangle(box(7, 7, 46, 70), outline=ink, width=round(1.2 * k))
-    for x in (13, 37):
-        d.line((x0 + x * k, y0 + 21 * k, x0 + (x + 10) * k, y0 + 21 * k), fill=ink, width=round(1.6 * k))
-    d.ellipse(box(25.4, 16.4, 9.2, 9.2), fill=acc)
-    mute = TOKENS["mute"][0]
-    for i, y in enumerate(range(36, 74, 5)):
-        d.line((x0 + 13 * k, y0 + y * k, x0 + (47 if i % 4 != 3 else 35) * k, y0 + y * k), fill=mute, width=round(1.6 * k))
+    mark = mark_image(6.4)
+    icon.paste(mark, ((720 - mark.width) // 2, (720 - mark.height) // 2), mark)
     icon.resize((180, 180), Image.LANCZOS).save(out / "apple-touch-icon.png", optimize=True)
+    small = Image.new("RGBA", (256, 256), (0, 0, 0, 0))
+    mark = mark_image(2.9, bold=True)
+    small.paste(mark, ((256 - mark.width) // 2, (256 - mark.height) // 2), mark)
+    small.resize((32, 32), Image.LANCZOS).save(out / "favicon-32.png", optimize=True)
     (out / "logo.svg").write_text(mark_svg(ink, acc, light_bg).replace(' aria-hidden="true"', "") + "\n")
     urls = [BASE_URL + pg.path.removesuffix("index.html") for pg in pages if pg.path != "404.html"]
     (out / "sitemap.xml").write_text(
