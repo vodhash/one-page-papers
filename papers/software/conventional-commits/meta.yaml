@@ -1,0 +1,39 @@
+title: "Conventional Commits 1.0.0"
+summary: "A specification for structuring commit messages so that tools can derive changelogs and semantic version bumps from them."
+title_html: "Conventional <em>Commits</em> 1.0.0"
+title_size: 104pt
+kicker: "Specification · Version 1.0.0 · 2019"
+abstract_label: ""
+abstract: "A specification for adding human and machine readable meaning to commit messages"
+emblem: "feat!"
+header_scale: 1.4
+columns: 4
+footer:
+  - "<i>Conventional Commits 1.0.0</i> · conventionalcommits.org"
+  - "Licensed under Creative Commons Attribution 3.0 Unported (CC BY 3.0) · creativecommons.org/licenses/by/3.0/"
+  - '<span class="mono">conventionalcommits.org/en/v1.0.0/</span>'
+year: 2019
+authors: [Conventional Commits contributors]
+min_print: A3
+source:
+  url: https://www.conventionalcommits.org/en/v1.0.0/
+  retrieved: 2026-09-27
+  edition: >-
+    The English page of version 1.0.0 as published on conventionalcommits.org, built from
+    content/v1.0.0/index.md of github.com/conventional-commits/conventionalcommits.org (last
+    changed on 11 March 2026; the page and the file have the same words). The title of the
+    page is the title of the poster and the tagline of the site's banner is set under it. Links
+    are set as plain text; the two horizontal rules around the message structure of the
+    Summary are left out. Nothing else is left out. The year of the kicker is that of the
+    commit "feat: release 1.0.0 of specification (#175)", 30 September 2019, in the history of
+    that file.
+license:
+  text: "CC BY 3.0"
+  holder: "Conventional Commits contributors"
+  notice: "License Creative Commons - CC BY 3.0"
+  note: >-
+    Footer of https://www.conventionalcommits.org/en/v1.0.0/, linked to
+    https://creativecommons.org/licenses/by/3.0/. The page names no author: the footer of the
+    poster credits the work by its title and site, and gives the license and its URI, as
+    section 4(b) of CC BY 3.0 asks. The repository of the site also has a LICENSE file with
+    the MIT License, "Copyright (c) 2018 Conventional Changelog".

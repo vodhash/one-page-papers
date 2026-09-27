@@ -10,7 +10,7 @@ Each paper is laid out in full on one page: every section, equation, code listin
 
 <!-- catalog:start -->
 
-41 posters in 11 categories. Each one comes in 4 themes, shown here with *Bitcoin: A Peer-to-Peer Electronic Cash System*, and in 3 formats (see [Download](#download)).
+42 posters in 11 categories. Each one comes in 4 themes, shown here with *Bitcoin: A Peer-to-Peer Electronic Cash System*, and in 3 formats (see [Download](#download)).
 
 | ivory | white | genesis | blueprint |
 |:-:|:-:|:-:|:-:|
@@ -55,6 +55,7 @@ A click on a poster opens its PDF in the A format and in its first theme, and th
 | <a href="dist/software/open-source-definition-A-ivory.pdf"><img src="docs/software/open-source-definition.png" width="90" alt=""></a> | [The Open Source Definition](dist/software/open-source-definition-A-ivory.pdf)<br>The ten criteria that the distribution terms of a software license must meet to be called open source.<br>[ivory](dist/software/open-source-definition-A-ivory.pdf)&nbsp;·&nbsp;[white](dist/software/open-source-definition-A-white.pdf)&nbsp;·&nbsp;[genesis](dist/software/open-source-definition-A-genesis.pdf)&nbsp;·&nbsp;[blueprint](dist/software/open-source-definition-A-blueprint.pdf) | Open Source Initiative | 2007 | A3 | CC BY 4.0 |
 | <a href="dist/software/twelve-factor-app-A-ivory.pdf"><img src="docs/software/twelve-factor-app.png" width="90" alt=""></a> | [The Twelve-Factor App](dist/software/twelve-factor-app-A-ivory.pdf)<br>A methodology of twelve factors for building software-as-a-service apps, drawn from experience with hundreds of apps on Heroku.<br>[ivory](dist/software/twelve-factor-app-A-ivory.pdf)&nbsp;·&nbsp;[white](dist/software/twelve-factor-app-A-white.pdf)&nbsp;·&nbsp;[genesis](dist/software/twelve-factor-app-A-genesis.pdf)&nbsp;·&nbsp;[blueprint](dist/software/twelve-factor-app-A-blueprint.pdf) | Adam Wiggins | 2011 | A1 | MIT |
 | <a href="dist/software/semver-A-ivory.pdf"><img src="docs/software/semver.png" width="90" alt=""></a> | [Semantic Versioning 2.0.0](dist/software/semver-A-ivory.pdf)<br>Rules and requirements that dictate how MAJOR.MINOR.PATCH version numbers are assigned and incremented, with a grammar and a FAQ.<br>[ivory](dist/software/semver-A-ivory.pdf)&nbsp;·&nbsp;[white](dist/software/semver-A-white.pdf)&nbsp;·&nbsp;[genesis](dist/software/semver-A-genesis.pdf)&nbsp;·&nbsp;[blueprint](dist/software/semver-A-blueprint.pdf) | Tom Preston-Werner | 2013 | A2 | CC BY 3.0 |
+| <a href="dist/software/conventional-commits-A-ivory.pdf"><img src="docs/software/conventional-commits.png" width="90" alt=""></a> | [Conventional Commits 1.0.0](dist/software/conventional-commits-A-ivory.pdf)<br>A specification for structuring commit messages so that tools can derive changelogs and semantic version bumps from them.<br>[ivory](dist/software/conventional-commits-A-ivory.pdf)&nbsp;·&nbsp;[white](dist/software/conventional-commits-A-white.pdf)&nbsp;·&nbsp;[genesis](dist/software/conventional-commits-A-genesis.pdf)&nbsp;·&nbsp;[blueprint](dist/software/conventional-commits-A-blueprint.pdf) | Conventional Commits contributors | 2019 | A3 | CC BY 3.0 |
 
 ### Manifestos & announcements
 

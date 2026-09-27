@@ -1,0 +1,11 @@
+/* Headings of the examples and of the FAQ are set ragged, not justified */
+h2,h3,h4{text-align:left}
+h3,h4{font-size:1em}
+/* the h4 of the FAQ stays upright, so that the word in italics of its heading shows */
+h4{font-style:normal;font-weight:600}
+h4 i,h4 em{font-style:italic}
+/* The emblem holds five characters */
+.rule b{font-size:calc(9pt*var(--hs));letter-spacing:0}
+footer>div:nth-child(2){max-width:50%;line-height:1.3}
+/* The long lines of the example messages wrap at the width of their column */
+pre.code{white-space:pre-wrap;overflow-wrap:anywhere;text-align:left;hyphens:none}
