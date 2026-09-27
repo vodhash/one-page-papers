@@ -35,12 +35,17 @@ class MarkdownError(ValueError):
         self.line, self.msg = line, msg
 
 def smart(s):
+    """Typographic quotes. A quote opens at the start of the text or after a space or an opening
+    bracket, and closes anywhere else: the text before a tag counts, so that the apostrophe of
+    <i>Wien</i>'s closes."""
     parts = re.split(r'(<[^>]+>)', s)
+    before = ' '  # the last character of text so far, whatever tags came since
     for i, p in enumerate(parts):
-        if i % 2: continue
-        p = re.sub(r'(^|[\s(\[])"', r'\1“', p).replace('"', '”')
-        p = re.sub(r"(^|[\s(\[])'", r'\1‘', p).replace("'", '’')
-        parts[i] = p
+        if i % 2 or not p:
+            continue
+        q = re.sub(r'([\s(\[])"', r'\1“', before + p).replace('"', '”')
+        q = re.sub(r"([\s(\[])'", r'\1‘', q).replace("'", '’')
+        parts[i], before = q[1:], p[-1]
     return ''.join(parts)
 
 def inline(s):
