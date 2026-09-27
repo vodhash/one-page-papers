@@ -432,7 +432,7 @@ button{font:inherit;color:inherit}
 [data-paper=apollo-11-landing] .loop p:has(.key){font-weight:600}
 
 /* series: the cards (home, index, other series), and the page of a series */
-.series-home{padding-top:96px}
+.series-home{padding-bottom:128px}
 .series-home .section-head p a{white-space:nowrap}
 .scards{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:48px 32px;margin:0;padding:0;list-style:none}
 .scards-index{grid-template-columns:repeat(3,minmax(0,1fr));gap:64px 40px;padding-bottom:128px}
@@ -819,7 +819,7 @@ mark.anno.hot{background:var(--boxa)}
  .text figure.fig{margin-left:-20px;margin-right:-20px;padding:0 20px}
  .text svg.fig{min-width:540px}
  .wallpaper .pill{padding:0 14px 0 11px}
- .series-home{padding-top:64px}
+ .series-home{padding-bottom:88px}
  .scards,.scards-index{grid-template-columns:repeat(2,minmax(0,1fr));gap:40px 20px}
  .scards-index{grid-template-columns:1fr;padding-bottom:88px}
  .strip{gap:5px;padding:0 12px}
