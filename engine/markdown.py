@@ -21,7 +21,8 @@ Blocks (separated by blank lines):
   (1) text / (2a) text       labelled items; a label ending with a letter makes a sub-item,
                              kept in the same column as the item before it
   [^label]: text             footnote, listed with the others at the end of the text
-  <html ...>                 raw HTML, passed through
+  <div ...>, <table ...>     raw HTML, passed through, when the block opens with a block tag
+                             (see BLOCK_TAGS); one that opens with <span> or <b> is a paragraph
   anything else              paragraph
 Inline: **bold**, *italic*, `code`, \\( inline math \\) (KaTeX), [n] / [n-m] citations,
 [^label] footnote calls (numbered in order of first call), smart quotes.
@@ -62,6 +63,11 @@ def inline(s):
     s = re.sub(r'((?:\[\d+(?:-\d+)?\])+)', r'<cite>\1</cite>', s)
     return re.sub('\x00(\\d+)\x00', lambda m: codes[int(m.group(1))], smart(s))
 
+# the tags that make a block raw HTML when it opens with one of them
+BLOCK_TAGS = ('address', 'article', 'aside', 'blockquote', 'details', 'div', 'dl', 'figure', 'footer',
+              'h1', 'h2', 'h3', 'h4', 'h5', 'h6', 'header', 'hr', 'main', 'nav', 'ol', 'p', 'pre',
+              'section', 'style', 'svg', 'table', 'ul')
+RAW = re.compile(r'<!--|</?(?:' + '|'.join(BLOCK_TAGS) + r')[\s/>]', re.I)
 LABEL = re.compile(r'^\((\d+[a-z]?)\)\s+', re.M)
 NOTE_CALL = re.compile(r'\[\^([^\]\s]+)\]')
 NOTE_DEF = re.compile(r'\[\^([^\]\s]+)\]:\s+')
@@ -161,7 +167,7 @@ class Renderer:
                 if m.group(1) in self.notes:
                     raise MarkdownError(line, f'footnote [^{m.group(1)}] is defined twice')
                 self.notes[m.group(1)] = (line, b[m.end():])
-            elif b.startswith('<'):
+            elif RAW.match(b):
                 out.append(b)
             elif re.match(r'^\d+\.\s', b):
                 items = re.split(r'\n(?=\d+\.\s)', b)
