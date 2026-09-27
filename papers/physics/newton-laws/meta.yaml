@@ -1,0 +1,60 @@
+title: "Axiomata, sive Leges Motus"
+summary: "Newton states the three laws of motion, derives six corollaries from them and reports pendulum collision experiments."
+title_html: "Axiomata<br><em>sive Leges Motus</em>"
+title_size: 110pt
+kicker: "Excerpt · Philosophiæ Naturalis Principia Mathematica · London, 1687"
+author: "Is. Newton"
+byline: "First edition, pages 12 to 25 · Londini, Jussu Societatis Regiæ ac Typis Josephi Streater, 1687"
+emblem: "III"
+header_scale: 1.5
+lang: la
+columns: 4
+footer:
+  - "Isaac Newton, <i>Philosophiæ Naturalis Principia Mathematica</i>, London: Joseph Streater for the Royal Society, 1687, pp. 12-25: the three laws, their six corollaries and the scholium, before Book I."
+  - "<i>Public domain in France and in the United States. The two corrections of the errata of the book are applied.</i>"
+  - '<span class="mono">archive.org/details/philosophiaenat00newt</span>'
+year: 1687
+authors: [Isaac Newton]
+min_print: A2
+source:
+  url: https://www.gutenberg.org/ebooks/28233
+  retrieved: 2026-09-27
+  edition: >-
+    Excerpt: the whole section "Axiomata, sive Leges Motus" of the first edition (London, 1687),
+    pp. 12-25, that is Lex I to III, Corollaries I to VI and the Scholium; the Definitiones
+    before it and the books after it are left out. The text is the transcription of the 1687
+    edition by Jonathan Ingram, Keith Edkins and the Online Distributed Proofreading Team
+    (Project Gutenberg ebook 28233, HTML version), checked word by word against the scan of
+    the Smithsonian Libraries copy of the 1687 edition (Internet Archive,
+    philosophiaenat00newt, leaves n25 to n38). Where the transcription departs from the
+    print, the print is restored: "quomodocunq:" (p. 13), "horizentem" (p. 15, a misprint),
+    "ad decem: ponantur" (p. 16), "ante reflexionem & partium octodecim" (p. 17), "movebunt
+    per Legem 2.)" without an opening parenthesis and "D. Wallisius, dein" (p. 20),
+    "occurrebant, quod", "eandam" (a misprint) and "loca s, k notare" (p. 22), and
+    "commissis" (p. 24); the sums "15+1 vel 16+0" and differences "17−1 & 18−2" are set
+    as printed, with a minus sign. As in the transcription, the two corrections of the
+    printed errata leaf of the book ("Errata sensum turbantia sic emenda") are applied: p. 14
+    "ut OK ad OD seu OL" for the printed "ut DO (seu OL) ad OK", and p. 18 "recta" for
+    "arecta"; "contrario-" at the foot of p. 16, completed only by the catchword, is set as
+    "contrariorum". Running heads, page numbers, signatures and catchwords are dropped, words
+    hyphenated at line ends are rejoined, the drop cap and the long s are set in modern
+    type, and the ligatures æ and œ and the abbreviation "q;" are kept. The section title is
+    the title of the poster. The three figures (Corollary I, Corollary II, Scholium) are
+    cropped from the same scan (pp. 13, 14 and 21), in grayscale with the paper tone and the
+    show-through removed; the Scholium figure, printed beside the text on p. 21 and again on
+    p. 22, is set once, at the head of the Scholium.
+license:
+  text: "Public domain"
+  holder: "Isaac Newton, 1687"
+  basis: >-
+    Isaac Newton died in March 1727 (Wikidata, https://www.wikidata.org/wiki/Q935): his works
+    are in the public domain in France, where protection ends 70 years after the author's
+    death. The book was published in London in 1687, before 1 January 1931, so it is in the
+    public domain in the United States. Newton was English and the country of origin is the
+    United Kingdom, no longer in the EU; the term there has long expired as well.
+  note: >-
+    Transcription: Project Gutenberg ebook 28233, a public domain work in the United States
+    (https://www.gutenberg.org/ebooks/28233); only the text, not the Project Gutenberg
+    trademark or license, is reproduced. Scan and figures: Internet Archive
+    https://archive.org/details/philosophiaenat00newt, Smithsonian Libraries copy of the
+    1687 edition, a public domain book.
