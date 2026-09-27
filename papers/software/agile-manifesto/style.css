@@ -1,0 +1,14 @@
+/* A typographic declaration: centered lines, as on agilemanifesto.org */
+main{text-align:center;hyphens:manual}
+.decl p{margin:0 0 1.3em;font-size:1.05em;line-height:1.4}
+.values{margin:0 0 1.3em}
+.values p{margin:0 0 .45em;font-size:1em}
+.values .l{font-size:1.32em;font-weight:500}
+/* The seventeen authors in three columns, as on the page */
+.authors{display:grid;grid-template-columns:repeat(3,auto);justify-content:center;column-gap:3.2em;
+ margin-top:1.8em;font-size:.72em;line-height:1.45;color:var(--ink)}
+.authors p{margin:0}
+.kick{letter-spacing:.3em}
+footer>div{flex:1}
+footer>div:nth-child(2){flex:1.4;line-height:1.35}
+footer>div:last-child{text-align:right}
