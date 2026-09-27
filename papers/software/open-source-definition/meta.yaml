@@ -1,0 +1,40 @@
+title: "The Open Source Definition"
+summary: "The ten criteria that the distribution terms of a software license must meet to be called open source."
+title_html: "The Open Source <em>Definition</em>"
+title_size: 110pt
+kicker: "Open Source Initiative · Version 1.9 · 22 March 2007"
+author: "Open Source Initiative"
+emblem: "OSD"
+header_scale: 1.6
+layout: centered
+columns: 2
+max_font: 40
+footer:
+  - "“The Open Source Definition” by the Open Source Initiative (opensource.org) · text unchanged, typeset as a poster"
+  - "Licensed under the Creative Commons Attribution 4.0 International License · creativecommons.org/licenses/by/4.0/"
+  - '<span class="mono">opensource.org/osd</span>'
+year: 2007
+authors: [Open Source Initiative]
+min_print: A3
+source:
+  url: https://opensource.org/osd
+  retrieved: 2026-09-27
+  edition: >-
+    The page of opensource.org, "Page created on July 7, 2006 | Last modified on February 16,
+    2024", which holds version 1.9 of the definition, "last modified, 2007-03-22". The title of
+    the page is the title of the poster and the version and its date, from the end of the page,
+    are also in the kicker; the dates of the page itself are left out. Links are set as plain
+    text, the rule of the page before its closing lines is kept, and the closing lines stay in
+    italics as on the page. Nothing else is left out.
+license:
+  text: "CC BY 4.0"
+  holder: "Open Source Initiative"
+  notice: >-
+    The content on this website, of which Opensource.org is the author, is licensed under a
+    Creative Commons Attribution 4.0 International License.
+  note: >-
+    Footer of every page of https://opensource.org, including https://opensource.org/osd,
+    linked to https://creativecommons.org/licenses/by/4.0/. Section 3(a) of CC BY 4.0 asks for
+    the name of the creator, a notice that refers to the license with its URI, the URI of the
+    material and an indication of any modification: the footer of the poster gives them. The
+    page carries no copyright notice of its own.

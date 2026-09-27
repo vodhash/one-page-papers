@@ -1,0 +1,7 @@
+/* The criteria are headed by their number, as on the page */
+h3{font-size:1.05em;text-align:left;margin-top:.9em}
+/* The rule of the page before its closing lines */
+hr.end{border:0;border-top:.3mm solid var(--rule);margin:1.2em 0 .8em}
+/* The emblem holds three letters */
+.rule b{font-size:calc(11pt*var(--hs));letter-spacing:.02em}
+footer>div:nth-child(2){max-width:50%;line-height:1.3}
