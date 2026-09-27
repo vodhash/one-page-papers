@@ -73,3 +73,10 @@ missing. The catalog of the README lists them under *Coming soon*.
 - Source: https://groups.google.com/g/comp.os.minix/c/dlNtH7RRrGA (the announcement of Linux on comp.os.minix, 25 August 1991)
 - Status: under copyright (published in 1991), no license found.
 - Missing: a license or a permission from Linus Torvalds that allows its redistribution.
+
+## RPOW: Reusable Proofs of Work (Hal Finney, 2004)
+
+- Category: crypto
+- Source: https://web.archive.org/web/2009/http://rpow.net/theory.html (rpow.net, as archived by the Internet Archive)
+- Status: under copyright (published in 2004), no license found. Only the RPOW code carries a license, and it does not cover the pages.
+- Missing: a license or a permission from the estate of Hal Finney that allows its redistribution.

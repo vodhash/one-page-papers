@@ -141,6 +141,7 @@ Texts that wait for a license allowing their redistribution; [PENDING.md](PENDIN
 - Computing Machinery and Intelligence (Alan Turing, 1950)
 - The Conscience of a Hacker (The Mentor, 1986)
 - What would you like to see most in minix? (Linus Torvalds, 1991)
+- RPOW: Reusable Proofs of Work (Hal Finney, 2004)
 
 <!-- catalog:end -->
 
