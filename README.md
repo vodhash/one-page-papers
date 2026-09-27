@@ -54,6 +54,7 @@ Texts that wait for a license allowing their redistribution; [PENDING.md](PENDIN
 - b-money (Wei Dai, 1998)
 - Bit Gold (Nick Szabo, 2005)
 - Bitcoin v0.1 released (Satoshi Nakamoto, 2009)
+- Mimblewimble (Tom Elvis Jedusor, 2016)
 
 <!-- catalog:end -->
 

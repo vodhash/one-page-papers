@@ -38,3 +38,10 @@ missing. The catalog of the README lists them under *Coming soon*.
 - Source: https://www.metzdowd.com/pipermail/cryptography/2009-January/014994.html (the announcement on the cryptography mailing list, dated 8 January 2009 in this archive and 9 January in others)
 - Status: under copyright (a pseudonymous work of 2009, protected in France until the end of 2079), no license found. Neither the message nor the list gives terms of reuse, and bitcoin.org, whose MIT license covers the whitepaper, does not publish it.
 - Missing: a license or a permission that allows its redistribution.
+
+## Mimblewimble (Tom Elvis Jedusor, 2016)
+
+- Category: crypto
+- Source: https://scalingbitcoin.org/papers/mimblewimble.txt (dated 19 July 2016, posted anonymously on 1 August 2016)
+- Status: under copyright (an anonymous work of 2016, protected in France until the end of 2086), no license found. The copy in the Apache-2.0 repository of Grin cites scalingbitcoin.org as its source: the license of the Grin developers does not cover a text that they did not write.
+- Missing: a license or a permission from its author that allows its redistribution.
