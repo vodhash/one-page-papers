@@ -1,0 +1,39 @@
+title: "RFC 761: The Robustness Principle"
+summary: "The philosophy chapter of the 1980 TCP specification, which ends with the principle: be conservative in what you do."
+title_html: "Transmission Control Protocol<br><em>Philosophy</em>"
+kicker: "Request for Comments 761 · Excerpt · January 1980"
+author: "Jon Postel, Editor"
+byline: "Information Sciences Institute · University of Southern California"
+emblem: "TCP"
+abstract_label: "Preface."
+abstract: >-
+  This document describes the DoD Standard Transmission Control Protocol (TCP). There have
+  been eight earlier editions of the ARPA TCP specification on which this standard is based,
+  and the present text draws heavily from them. There have been many contributors to this
+  work both in terms of concepts and in terms of text. This edition incorporates the
+  addition of security, compartmentation, and precedence concepts into the TCP
+  specification.
+footer:
+  - "Prepared for the Defense Advanced Research Projects Agency, Information Processing Techniques Office"
+  - "<i>Excerpt: chapter 2, Philosophy, sections 2.1 to 2.10</i>"
+  - "<span class=\"mono\">doi:10.17487/RFC0761</span>"
+year: 1980
+authors: [Jon Postel]
+min_print: A2
+source:
+  url: https://www.rfc-editor.org/rfc/rfc761.txt
+  retrieved: 2026-09-27
+  edition: >-
+    RFC Editor plain-text edition. Excerpt: chapter 2, Philosophy, in full, from section 2.1 to
+    section 2.10, Robustness Principle, which ends the chapter; with the preface of the
+    document under the header, and the two entries of its reference list that the chapter
+    cites ([3] and [4]). Page headers and footers are left out, the lines of each paragraph
+    are joined, and the one paragraph that a page break cuts (between pages 11 and 12) is
+    joined again; the double spaces after full stops collapse. Figure 2 is reproduced
+    unchanged. Straight quotes are set as typographic ones. The signature of the preface,
+    "Jon Postel, Editor", is the author line of the poster.
+license:
+  text: "Free reproduction (RFC Editor)"
+  holder: "Jon Postel, Editor, Information Sciences Institute, 1980"
+  notice: "All RFCs may be freely reproduced and translated (unmodified)."
+  note: "RFC Editor, https://www.rfc-editor.org/faq/. RFC 761 itself carries no copyright notice."
