@@ -1,0 +1,53 @@
+title: "Secure Hash Standard (SHS): SHA-256"
+summary: "Specifies SHA-256: its functions, constants, message padding and parsing, initial hash value and hash computation."
+title_html: "Secure Hash Standard<br><em>SHA-256</em>"
+kicker: "Excerpt · FIPS PUB 180-4 · August 2015"
+author: "National Institute of Standards and Technology"
+byline: "Information Technology Laboratory · Gaithersburg, MD 20899-8900"
+emblem: "256"
+abstract_label: Abstract
+abstract: "This standard specifies hash algorithms that can be used to generate digests of messages. The digests are used to detect whether messages have been changed since the digests were generated."
+columns: 3
+footer:
+  - "Federal Information Processing Standards Publication 180-4 · Category: Computer Security · Subcategory: Cryptography"
+  - "<i>Excerpt: Sections 2.2, 4.1.2, 4.2.2, 5.1.1, 5.2.1, 5.3.3 and 6.2 of the Standard.</i>"
+  - '<span class="mono">doi.org/10.6028/NIST.FIPS.180-4</span>'
+year: 2015
+authors: [National Institute of Standards and Technology]
+min_print: A3
+source:
+  url: https://nvlpubs.nist.gov/nistpubs/FIPS/NIST.FIPS.180-4.pdf
+  retrieved: 2026-09-27
+  edition: >-
+    FIPS PUB 180-4, Secure Hash Standard (SHS), August 2015 (https://doi.org/10.6028/NIST.FIPS.180-4),
+    the PDF published by NIST (36 pages, 833315 bytes, SHA-256
+    0455b406d89648d20cbde375561e19c245b9815e894164c2670772e3d54deb82). Excerpt: the abstract (its
+    two sentences, without the key words) in the header, then the sections that define SHA-256,
+    complete and in their order: 2.2.1 Parameters, 2.2.2 Symbols and Operations, 4.1.2 SHA-224 and
+    SHA-256 Functions, 4.2.2 SHA-224 and SHA-256 Constants, 5.1.1 (padding), 5.2.1 (parsing), 5.3.3
+    (initial hash value of SHA-256), 6.2 SHA-256 with 6.2.1 and 6.2.2; the other sections, and the
+    headings of sections 2.2, 5, 5.1, 5.2 and 5.3 with their introductions, are left out. The prose
+    comes from pdftotext and was checked word for word against the pages; four words split at a
+    line end are rejoined with the hyphen of the printed page (w-bit, 32-bit, right-most,
+    SHA-256). Formulas, the padding example and the hash computation, which pdftotext cannot read,
+    are set in KaTeX from the page scans, with the symbols of the Standard (the assignments of 6.2.2
+    are "=" as printed). The 64 constants of 4.2.2 are set eight to a row as printed;
+    they and the initial hash value were checked against the cube and square
+    roots of the first primes. Superscript ordinals (ith, jth, tth, (i-1)st) and the italics and
+    bold of the page are kept.
+license:
+  text: "Public domain (U.S. Government work)"
+  holder: "National Institute of Standards and Technology, 2015"
+  basis: >-
+    In the United States, a work of the federal government (17 U.S.C. 105): the Standard was
+    prepared and issued by the National Institute of Standards and Technology, an agency of the
+    U.S. Department of Commerce, and carries no copyright notice. In France, the rule of the
+    shorter term (article L. 123-12 of the Code de la propriété intellectuelle, after article
+    7(8) of the Berne Convention): for a work whose country of origin is outside the European
+    Union and whose author is not a national of a member state, the protection lasts as long as
+    in the country of origin, which grants none.
+  note: >-
+    NIST, Copyrights and Disclaimers (https://www.nist.gov/oism/copyrights, read on 27 September
+    2026): "With the exception of material marked as copyrighted, information presented on NIST
+    sites are considered public information and may be distributed or copied. Use of appropriate
+    byline/photo/image credits is requested." The PDF has no copyright mark.

@@ -1,0 +1,16 @@
+/* a definition: its symbol in a hanging indent, the text beside it */
+p:has(>.sym:first-child){padding-left:4.6em;text-indent:-4.6em;text-align:left;hyphens:manual}
+.sym{display:inline-block;min-width:4.6em;padding-right:.3em;box-sizing:border-box;text-indent:0;color:var(--acc)}
+.sym .katex{color:var(--acc)}
+/* the 64 constants of 4.2.2, eight to a row as in the Standard */
+.consts{display:grid;grid-template-columns:repeat(8,auto);justify-content:space-between;gap:.1em .4em;
+ font-family:'JetBrains Mono',monospace;font-size:calc(var(--fs)*.64);margin:.4em 0 .9em;break-inside:avoid}
+/* formulas and the steps of the hash computation read from the left, like the Standard */
+.eq{text-align:left;padding-left:.6em}
+.eq .katex-display>.katex{text-align:left}
+p:has(>.in0:first-child),p:has(>.in1:first-child){margin:.15em 0;text-align:left;hyphens:manual;break-after:avoid}
+p:has(>.in1:first-child){padding-left:1.2em;text-indent:-1.2em;margin-left:1.2em}
+.kick{letter-spacing:.3em}
+/* the formulas of a step sit under its text */
+p:has(>.in1:first-child)+.eq{padding-left:2.4em}
+.nw{white-space:nowrap}
