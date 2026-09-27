@@ -1,0 +1,40 @@
+title: "Semantic Versioning 2.0.0"
+summary: "Rules and requirements that dictate how MAJOR.MINOR.PATCH version numbers are assigned and incremented, with a grammar and a FAQ."
+title_html: "Semantic <em>Versioning</em> 2.0.0"
+title_size: 104pt
+kicker: "Semantic Versioning Specification · 18 June 2013"
+author: "Tom Preston-Werner"
+emblem: "X.Y.Z"
+header_scale: 1.4
+columns: 4
+footer:
+  - "<i>Semantic Versioning 2.0.0</i>, originally authored by Tom Preston-Werner · semver.org"
+  - "Licensed under Creative Commons Attribution 3.0 Unported (CC BY 3.0) · creativecommons.org/licenses/by/3.0/"
+  - '<span class="mono">semver.org/spec/v2.0.0.html</span>'
+year: 2013
+authors: [Tom Preston-Werner]
+min_print: A2
+source:
+  url: https://semver.org/spec/v2.0.0.html
+  retrieved: 2026-09-27
+  edition: >-
+    The specification as published on semver.org, built from spec/v2.0.0.md of
+    github.com/semver/semver.org (last changed on 7 May 2023); the home page semver.org shows
+    the same text. Since then the master branch of github.com/semver/semver has changed four
+    places ("(build metadata" and "major, minor" in rule 11, "release a new patch version" and
+    "probably an overkill" in the FAQ): the poster follows semver.org. The title of the page is
+    the title of the poster; links are set as plain text; the grammar runs across the page in
+    two columns and the two regular expressions wrap at the width of their column. No bundled
+    font has the horizontal bar (U+2015) of the License section: it stays in text.md and is
+    drawn as a rule one em long (style.css). The date of the kicker is date-released in
+    CITATION.cff of github.com/semver/semver.
+license:
+  text: "CC BY 3.0"
+  holder: "Tom Preston-Werner"
+  notice: "Creative Commons ― CC BY 3.0"
+  note: >-
+    License section of https://semver.org/spec/v2.0.0.html, linked to
+    https://creativecommons.org/licenses/by/3.0/; CITATION.cff of github.com/semver/semver also
+    states license: "CC-BY-3.0". Section 4 of CC BY 3.0 requires the URI of the license, the
+    notices that refer to it, and the name of the original author, the title of the work and
+    its URI: the License section is part of the poster and the footer gives the rest.

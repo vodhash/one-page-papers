@@ -1,0 +1,17 @@
+/* The numbered rules of the specification, with their nested lists, as on semver.org */
+ol.spec{padding-left:1.5em}
+ol.spec ol{padding-left:1.3em;margin:.3em 0 .4em}
+ol.spec li{margin-bottom:.35em}
+ol.spec li p{margin:0 0 .35em}
+/* The grammar runs across the page, in two columns */
+.wide pre.code{column-count:2;column-gap:13mm;column-rule:.2mm solid var(--rule);font-size:calc(var(--fs)*.7)}
+/* The two regular expressions wrap at the width of their column */
+.flow>pre.code{white-space:pre-wrap;word-break:break-all}
+/* The emblem holds five characters */
+.rule b{font-size:calc(9pt*var(--hs));letter-spacing:0}
+/* Headings of the FAQ are set ragged, not justified */
+h2,h3{text-align:left}
+/* No bundled font has U+2015 HORIZONTAL BAR: the character stays in the text, unpainted, and a
+   rule one em long is drawn in its place, at the height of a dash */
+.hbar{visibility:hidden;display:inline-block;position:relative;width:1em;height:.62em;overflow:hidden}
+.hbar::before{content:"";visibility:visible;position:absolute;left:0;right:0;top:.3em;border-top:.06em solid var(--ink)}
