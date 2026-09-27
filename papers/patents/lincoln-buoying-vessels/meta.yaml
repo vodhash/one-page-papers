@@ -1,0 +1,54 @@
+title: "Abraham Lincoln: Buoying Vessels over Shoals, US Patent 6,469"
+summary: "Lincoln's patent for expansible buoyant air chambers that lessen a vessel's draught to carry it over bars and shallows."
+title_html: "Buoying Vessels over Shoals"
+title_size: 104pt
+kicker: "United States Patent Office · Letters Patent No. 6,469"
+author: "Abraham Lincoln, of Springfield, Illinois"
+byline: "Specification forming part of Letters Patent No. 6,469, dated May 22, 1849; application filed March 10, 1849"
+emblem: "L"
+header_scale: 1.5
+layout: hero
+hero_height: 40
+columns: 3
+footer:
+  - "United States Patent 6,469, Abraham Lincoln, Buoying Vessels over Shoals: sheet of drawings and specification, from the scan of the patent."
+  - "<i>The spelling and punctuation are those of the printed specification. Text and drawing in the public domain.</i>"
+  - "<span class=\"mono\">patents.google.com/patent/US6469A</span>"
+year: 1849
+authors: [Abraham Lincoln]
+lang: en
+min_print: A3
+source:
+  url: https://patents.google.com/patent/US6469A/en
+  retrieved: 2026-09-27
+  edition: >-
+    Scan of the patent linked from Google Patents
+    (https://patentimages.storage.googleapis.com/92/64/49/fe49e21fbf8f09/US6469.pdf, 1-bit, 300 dpi,
+    three pages). Its first page is the sheet of drawings, under a typewritten heading ("ABRAHAM
+    LINCOLN" / "MANNER OF BOUYING VESSELS" / "No. 6,469" / "Patented May 22, 1849"); the image at the
+    top is that sheet without its heading, cropped to the drawing, turned a quarter turn clockwise so
+    that the figure labels read horizontally, and kept in black and white. Pages 2 and 3 hold a typeset
+    printing of the specification, which is transcribed in full, word for word: an OCR made for this
+    poster (RapidOCR) served as a base and every line was checked against the page images (the OCR of
+    Google Patents lacks the first part of the text). The printed heading ("UNITED STATES PATENT
+    OFFICE" / "ABRAHAM LINCOLN, OF SPRINGFIELD, ILLINOIS." / "BUOYING VESSELS OVER SHOALS." /
+    "Specification forming part of Letters Patent No. 6,469, dated May 22, 1849; application filed
+    March 10, 1849.") is set in the header of the poster. Normalizations: words divided at line ends
+    are rejoined without their hyphen; the page number and running head of page 3 are dropped; the
+    spacing of tightly set lines is normalized (a space after each comma, as in "(D, D,)" and "C,
+    which"); the italic reference letters (f, g, h, i, e, k, m) are set in italics; a broken letter
+    is read as "constructed". The spelling of the print is kept ("draught", "centre", "pullies",
+    "letters patent"). The witnesses are in small capitals, as printed. The caption of the drawing
+    is not a period text: it was written for this poster from the specification.
+license:
+  text: "Public domain"
+  holder: "Abraham Lincoln, 1849"
+  basis: >-
+    US Patent 6,469 was granted to Abraham Lincoln on 22 May 1849. In the United States, it was
+    published before 1931, and patents are publications of the federal government. In France, its
+    author died on 15 April 1865, before 1 January 1956 (Wikidata Q91), so the term of protection
+    has expired.
+  note: >-
+    The USPTO states: "Subject to limited exceptions reflected in 37 CFR 1.71(d) & (e) and 1.84(s),
+    the text and drawings of a patent are typically not subject to copyright restrictions."
+    (https://www.uspto.gov/terms-use-uspto-websites, section "Patent information", retrieved 2026-09-27.)

@@ -1,0 +1,5 @@
+/* Small capitals of the printed patent: the witnesses */
+.sc{font-variant:small-caps;letter-spacing:.04em}
+/* The signature and the witness, as set at the foot of the specification */
+p.sig{text-align:right;letter-spacing:.06em;margin-top:.8em}
+p.wit{text-align:left;hyphens:manual}
