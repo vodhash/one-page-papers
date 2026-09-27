@@ -10,7 +10,7 @@ Each paper is laid out in full on one page: every section, equation, code listin
 
 <!-- catalog:start -->
 
-42 posters in 11 categories. Each one comes in 4 themes, shown here with *Bitcoin: A Peer-to-Peer Electronic Cash System*, and in 3 formats (see [Download](#download)).
+43 posters in 11 categories. Each one comes in 4 themes, shown here with *Bitcoin: A Peer-to-Peer Electronic Cash System*, and in 3 formats (see [Download](#download)).
 
 | ivory | white | genesis | blueprint |
 |:-:|:-:|:-:|:-:|
@@ -56,6 +56,7 @@ A click on a poster opens its PDF in the A format and in its first theme, and th
 | <a href="dist/software/twelve-factor-app-A-ivory.pdf"><img src="docs/software/twelve-factor-app.png" width="90" alt=""></a> | [The Twelve-Factor App](dist/software/twelve-factor-app-A-ivory.pdf)<br>A methodology of twelve factors for building software-as-a-service apps, drawn from experience with hundreds of apps on Heroku.<br>[ivory](dist/software/twelve-factor-app-A-ivory.pdf)&nbsp;·&nbsp;[white](dist/software/twelve-factor-app-A-white.pdf)&nbsp;·&nbsp;[genesis](dist/software/twelve-factor-app-A-genesis.pdf)&nbsp;·&nbsp;[blueprint](dist/software/twelve-factor-app-A-blueprint.pdf) | Adam Wiggins | 2011 | A1 | MIT |
 | <a href="dist/software/semver-A-ivory.pdf"><img src="docs/software/semver.png" width="90" alt=""></a> | [Semantic Versioning 2.0.0](dist/software/semver-A-ivory.pdf)<br>Rules and requirements that dictate how MAJOR.MINOR.PATCH version numbers are assigned and incremented, with a grammar and a FAQ.<br>[ivory](dist/software/semver-A-ivory.pdf)&nbsp;·&nbsp;[white](dist/software/semver-A-white.pdf)&nbsp;·&nbsp;[genesis](dist/software/semver-A-genesis.pdf)&nbsp;·&nbsp;[blueprint](dist/software/semver-A-blueprint.pdf) | Tom Preston-Werner | 2013 | A2 | CC BY 3.0 |
 | <a href="dist/software/conventional-commits-A-ivory.pdf"><img src="docs/software/conventional-commits.png" width="90" alt=""></a> | [Conventional Commits 1.0.0](dist/software/conventional-commits-A-ivory.pdf)<br>A specification for structuring commit messages so that tools can derive changelogs and semantic version bumps from them.<br>[ivory](dist/software/conventional-commits-A-ivory.pdf)&nbsp;·&nbsp;[white](dist/software/conventional-commits-A-white.pdf)&nbsp;·&nbsp;[genesis](dist/software/conventional-commits-A-genesis.pdf)&nbsp;·&nbsp;[blueprint](dist/software/conventional-commits-A-blueprint.pdf) | Conventional Commits contributors | 2019 | A3 | CC BY 3.0 |
+| <a href="dist/software/keep-a-changelog-A-ivory.pdf"><img src="docs/software/keep-a-changelog.png" width="90" alt=""></a> | [Keep a Changelog 1.1.0](dist/software/keep-a-changelog-A-ivory.pdf)<br>Guiding principles for a changelog written for humans: one entry per version, grouped types of changes, latest first.<br>[ivory](dist/software/keep-a-changelog-A-ivory.pdf)&nbsp;·&nbsp;[white](dist/software/keep-a-changelog-A-white.pdf)&nbsp;·&nbsp;[genesis](dist/software/keep-a-changelog-A-genesis.pdf)&nbsp;·&nbsp;[blueprint](dist/software/keep-a-changelog-A-blueprint.pdf) | Olivier Lacan | 2019 | A2 | MIT |
 
 ### Manifestos & announcements
 

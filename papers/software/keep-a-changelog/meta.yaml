@@ -1,0 +1,47 @@
+title: "Keep a Changelog 1.1.0"
+summary: "Guiding principles for a changelog written for humans: one entry per version, grouped types of changes, latest first."
+title_html: "Keep a <em>Changelog</em>"
+title_size: 110pt
+kicker: "Version 1.1.0 · 15 February 2019"
+author: "Olivier Lacan"
+byline: "keepachangelog.com"
+abstract_label: ""
+abstract: "Don’t let your friends dump git logs into changelogs."
+emblem: "1.1.0"
+header_scale: 1.4
+columns: 4
+footer:
+  - "Keep a Changelog is MIT licensed, created and maintained by Olivier Lacan, and designed by Tyler Fortune."
+  - "Copyright (c) 2014 Olivier Lacan · The MIT License (MIT), notice in full at the end of the text"
+  - '<span class="mono">keepachangelog.com/en/1.1.0/</span>'
+year: 2019
+authors: [Olivier Lacan]
+min_print: A2
+source:
+  url: https://keepachangelog.com/en/1.1.0/
+  retrieved: 2026-09-27
+  edition: >-
+    The English page of version 1.1.0 on keepachangelog.com. The title of the page is the title
+    of the poster, its tagline is set under it and its version link is the kicker, with the date
+    of version 1.1.0 in the example changelog of the page. The example changelog is set in
+    monospace across the page, in columns, line for line. Links are set as plain text. The
+    credits line of the page footer is in the footer of the poster, and the MIT notice of the
+    repository is printed at the end of the text. Nothing else is left out.
+license:
+  text: "MIT"
+  holder: "Olivier Lacan, 2014"
+  notice: >-
+    The MIT License (MIT)
+
+    Copyright (c) 2014 Olivier Lacan
+
+    Permission is hereby granted, free of charge, to any person obtaining a copy of this software and associated documentation files (the "Software"), to deal in the Software without restriction, including without limitation the rights to use, copy, modify, merge, publish, distribute, sublicense, and/or sell copies of the Software, and to permit persons to whom the Software is furnished to do so, subject to the following conditions:
+
+    The above copyright notice and this permission notice shall be included in all copies or substantial portions of the Software.
+
+    THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY, FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM, OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
+  note: >-
+    LICENSE file of https://github.com/olivierlacan/keep-a-changelog, the repository that the
+    footer of keepachangelog.com links as "created and maintained", next to "Keep a Changelog
+    is MIT licensed"; GitHub reports its license as MIT. The copyright notice and the
+    permission notice are printed at the end of the text of the poster.
