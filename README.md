@@ -2,7 +2,7 @@
 
 **Foundational papers, typeset on a single poster. Print them, frame them, hang them.**
 
-Browse the collection at **[vodhash.github.io/one-page-papers](https://vodhash.github.io/one-page-papers/)**.
+Browse the collection at **[onepagepapers.com](https://onepagepapers.com/)**.
 
 Each paper is laid out in full on one page: every section, equation, code listing, table and reference, with figures redrawn as vector graphics. The body size is computed automatically so the text fills the page exactly.
 

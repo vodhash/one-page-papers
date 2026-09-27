@@ -9,7 +9,7 @@ meta.yaml of every paper, with previews rasterized from its A PDFs in dist/.
 
 The check fails on a dead internal link (page, image, font, stylesheet, script, anchor), on a
 resource loaded from another site but the analytics script (ANALYTICS), and on a PDF link whose file is not in dist/. Links inside
-the site are relative, so that it works under /one-page-papers/ on GitHub Pages as well as at
+the site are relative, so that it works at https://onepagepapers.com/ (GitHub Pages) as well as at
 the root of `make serve`. Previews need pdftoppm (poppler-utils); they are cached in
 build/site-previews/, keyed on the content of each PDF, so an unchanged collection builds fast.
 """
@@ -29,18 +29,18 @@ from readme import pending, year_key, year_text
 from themes import FORMATS, THEMES, colour
 
 REPO = "https://github.com/vodhash/one-page-papers"
-BASE_URL = "https://vodhash.github.io/one-page-papers/"  # only for canonical, Open Graph and sitemap URLs
+BASE_URL = "https://onepagepapers.com/"  # only for canonical, Open Graph and sitemap URLs
 # Where the PDF buttons point: the files of dist/ on master, so that a link works as soon as a
 # poster is pushed. For the assets of the latest release instead, which only has the posters
 # of the last tag: REPO + "/releases/latest/download/{file}"
 PDF_URL = REPO + "/raw/master/dist/{category}/{file}"
 ZIP_URL = REPO + "/releases/latest/download/{category}.zip"  # the zips only exist in releases
 RELEASE_URL = REPO + "/releases/latest"
-# Umami, the owner's own analytics: no cookie, no personal data. The only resource the site loads
+# Umami, the analytics of the site: no cookie, no personal data. The only resource the site loads
 # from another site; data-domains keeps make serve and other hosts out of the counts
-ANALYTICS_SRC = "https://umami.vodhash.com/script.js"
+ANALYTICS_SRC = "https://umami.onepagepapers.com/script.js"
 ANALYTICS = (f'<script defer src="{ANALYTICS_SRC}" data-website-id="3adaa9da-4979-4ea1-931d-e55966529929" '
-             'data-domains="vodhash.github.io"></script>')
+             'data-domains="onepagepapers.com"></script>')
 GENESIS_HASH = "000000000019d6689c085ae165831e934ff763ae46a2a6c172b3f1b60a8ce26f"  # of the Bitcoin block 0
 
 WEB = ROOT / "engine" / "web"
