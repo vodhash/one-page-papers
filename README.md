@@ -8,7 +8,7 @@ Each paper is laid out in full on one page: every section, equation, code listin
 
 <!-- catalog:start -->
 
-8 posters in 4 categories. Each one comes in 4 themes, shown here with *Bitcoin: A Peer-to-Peer Electronic Cash System*, and in 3 formats (see [Download](#download)).
+9 posters in 4 categories. Each one comes in 4 themes, shown here with *Bitcoin: A Peer-to-Peer Electronic Cash System*, and in 3 formats (see [Download](#download)).
 
 | ivory | white | genesis | blueprint |
 |:-:|:-:|:-:|:-:|
@@ -21,6 +21,7 @@ A click on a poster opens its PDF in the A format and in its first theme, and th
 | &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; | Paper | Authors | Year | Print from | License |
 |---|---|---|---|---|---|
 | <a href="dist/crypto/bitcoin-A-ivory.pdf"><img src="docs/crypto/bitcoin.png" width="90" alt=""></a> | [Bitcoin: A Peer-to-Peer Electronic Cash System](dist/crypto/bitcoin-A-ivory.pdf)<br>Proposes a peer-to-peer electronic cash system that prevents double-spending with a proof-of-work chain of timestamped blocks.<br>[ivory](dist/crypto/bitcoin-A-ivory.pdf)&nbsp;·&nbsp;[white](dist/crypto/bitcoin-A-white.pdf)&nbsp;·&nbsp;[genesis](dist/crypto/bitcoin-A-genesis.pdf)&nbsp;·&nbsp;[blueprint](dist/crypto/bitcoin-A-blueprint.pdf) | Satoshi Nakamoto | 2008 | A2 | MIT |
+| <a href="dist/crypto/peercoin-A-ivory.pdf"><img src="docs/crypto/peercoin.png" width="90" alt=""></a> | [PPCoin: Peer-to-Peer Crypto-Currency with Proof-of-Stake](dist/crypto/peercoin-A-ivory.pdf)<br>Proposes a crypto-currency derived from Bitcoin in which proof-of-stake, based on coin age, provides most of the network security.<br>[ivory](dist/crypto/peercoin-A-ivory.pdf)&nbsp;·&nbsp;[white](dist/crypto/peercoin-A-white.pdf)&nbsp;·&nbsp;[genesis](dist/crypto/peercoin-A-genesis.pdf)&nbsp;·&nbsp;[blueprint](dist/crypto/peercoin-A-blueprint.pdf) | Sunny King, Scott Nadal | 2012 | A3 | CC BY-ND 4.0 |
 
 ### Internet & networking
 

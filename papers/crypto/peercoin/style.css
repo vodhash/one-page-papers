@@ -1,0 +1,6 @@
+/* The references are author-year paragraphs: a hanging indent, and their URLs may break anywhere */
+h2.refs~p{padding-left:1.4em;text-indent:-1.4em;text-align:left;hyphens:manual;overflow-wrap:anywhere;font-size:.9em;margin-bottom:.4em}
+/* The three letters of the ticker in the emblem */
+.rule b{font-size:calc(12pt*var(--hs));letter-spacing:.02em}
+.kick{letter-spacing:.3em}
+footer>div:first-child{max-width:38%;line-height:1.3}
