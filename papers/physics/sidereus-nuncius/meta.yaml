@@ -1,0 +1,65 @@
+title: "Sidereus Nuncius: the Moon"
+summary: "Galileo's telescopic observations of the Moon's surface, mountains and earthshine, with his five etchings, from the 1610 edition."
+title_html: "Sidereus <em>Nuncius</em>"
+kicker: "Excerpt · The face of the Moon · Venice, 1610"
+author: "Galileo Galilei"
+byline: "Venetiis, Apud Thomam Baglionum, M DC X · fols. 7r-16r"
+emblem: "L"
+lang: la
+layout: hero
+hero_height: 15
+columns: 4
+footer:
+  - "Galileo Galilei, <i>Sidereus Nuncius</i>, Venice: Tommaso Baglioni, 1610, fols. 7r-16r. Text, etchings and diagrams from the copy of the Smithsonian Libraries (Dibner Library)."
+  - "<i>Public domain in France and in the United States. Transcribed from the 1610 print, with its spelling, accents and punctuation; long s set as s, abbreviations expanded, line-end hyphens rejoined, misprints kept.</i>"
+  - '<span class="mono">archive.org/details/Sidereusnuncius00Gali</span>'
+year: 1610
+authors: [Galileo Galilei]
+min_print: A2
+source:
+  url: https://archive.org/details/Sidereusnuncius00Gali
+  retrieved: 2026-09-27
+  edition: >-
+    Excerpt: the whole account of the Moon, from "De facie autem Lunae" (fol. 7r, last line)
+    to "confirmabimus." (fol. 16r), the sections before (dedication, the telescope) and after
+    (fixed stars, Milky Way, Medicean planets) are left out. Text transcribed from the scan of
+    the first edition (Venice, Tommaso Baglioni, 1610) in the Smithsonian Libraries (Dibner
+    Library, archive.org Sidereusnuncius00Gali, leaves 17 to 35). The transcription started
+    from the text of the Edizione Nazionale (Le Opere di Galileo Galilei, vol. III part 1, ed.
+    Antonio Favaro, Florence, Barbera, 1892, pp. 62-75, la.wikisource Pagina:Le opere di
+    Galileo Galilei III.djvu/63 to 76, proofread), which normalizes spelling and punctuation;
+    every word was then read against the page images and set back to the 1610 print: its
+    spelling (v and u, ij, æ, œ, e caudata, "Emisphærium", "coors", "Boemiæ", "Sistemate",
+    "Eclypsibus", "miliaria", "orror", "estuosi", "uicinas"), its accents (à, verò, quàm,
+    nempè...), its "&", its capitals, its punctuation and its word division ("hincindè",
+    "non ne", "se se", "indies", "immodum", "præseferunt", "proculdubio"). Where the print
+    and Favaro differ in wording, the print is followed: "hora" twice for "ora", "prominente"
+    for "prominent", "Ciati" for "Gyathi", "cauda" for "caudæ", "demonstrabimus" for
+    "demonstrationibus", "quadratum" for "quadraturam", "istæ" for "iste", "sphære" for
+    "sphæræ", "inibere" for "inhibere", "exurgere", "exibet", "quinimo"; "mihi" corrects
+    "mibi" of the Wikisource transcription. Misprints of the print are kept: "immimuuntur",
+    "nuncunpantur", "commostrant", "quæda" (a tilde is not visible in either copy
+    checked). "obtegere" is read in the copy of the Biblioteca Nazionale Centrale di Firenze
+    (archive.org ita-bnc-pos-0000056-001, same setting), where the Smithsonian copy shows
+    "obregere" from a weakly inked t. Normalizations: long s set as s; the ct, st, ss and
+    other ligatures set as separate letters; abbreviations expanded (quidẽ, nõ twice, mõtium,
+    cernũtur, superficiẽ, splendidiorẽ, vmbrarũ, etiã, cũ, verticẽ, elatũ, remotũ,
+    coniunctionẽ, cõtactu, aspectũ, nunquã, locũ, terrestrẽ, nullũ, quidpiã, ẽt as etiam,
+    vndosamq;, ijq;, cumq;); line-end hyphens rejoined; running heads, folio numbers,
+    signatures and catchwords left out. The five etchings of the Moon (fols. 8r, 9v, 10r,
+    10v twice) are set side by side above the text, cropped at their plate marks, converted
+    to grayscale and their paper tone leveled to white; the two diagrams (fols. 12v and 13v)
+    are cropped and leveled the same way and placed where the print has them, which splits
+    the paragraph at the same point as the print.
+license:
+  text: "Public domain"
+  holder: "Galileo Galilei, 1610"
+  basis: >-
+    Galileo Galilei died on 8 January 1642 and the book was published in 1610: the text and
+    its etchings are in the public domain in France and in the United States. The scan used
+    for the text and the images is marked "Not in copyright" (possible-copyright-status) on
+    its Internet Archive item, Sidereusnuncius00Gali, digitized by the Smithsonian Libraries.
+  note: >-
+    The copy of the Biblioteca Nazionale Centrale di Firenze (archive.org
+    ita-bnc-pos-0000056-001), whose images carry a ProQuest copyright notice, was only read for
+    checking; none of its images is reproduced.
