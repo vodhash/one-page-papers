@@ -1,0 +1,28 @@
+title: "RFC 793: Transmission Control Protocol"
+summary: "Section 3.1 of the Transmission Control Protocol specification, which defines each field of the TCP header and its options."
+title_html: "Transmission Control Protocol<br><em>DARPA Internet Program</em>"
+kicker: "Request for Comments 793 · Excerpt · September 1981"
+author: "Jon Postel, Editor"
+byline: "Information Sciences Institute · University of Southern California"
+emblem: "TCP"
+abstract_label: "Preface."
+abstract: "This document describes the DoD Standard Transmission Control Protocol (TCP).  There have been nine earlier editions of the ARPA TCP specification on which this standard is based, and the present text draws heavily from them.  There have been many contributors to this work both in terms of concepts and in terms of text.  This edition clarifies several details and removes the end-of-letter buffer-size adjustments, and redescribes the letter mechanism as a push function."
+footer:
+  - "Prepared for the Defense Advanced Research Projects Agency, Information Processing Techniques Office"
+  - "<i>Excerpt: section 3.1, Header Format</i>"
+  - "<span class=\"mono\">doi:10.17487/RFC0793</span>"
+year: 1981
+authors: [Jon Postel]
+min_print: A2
+source:
+  url: https://www.rfc-editor.org/rfc/rfc793.txt
+  retrieved: 2026-09-27
+  edition: >-
+    RFC Editor plain-text edition. Excerpt: section 3.1 in full, with the preface and the one
+    reference that the section cites; page headers and footers left out, the paragraph of the
+    checksum split by a page break joined again, drawings and tables reproduced unchanged.
+license:
+  text: "Free reproduction (RFC Editor)"
+  holder: "Jon Postel, Editor, Information Sciences Institute, 1981"
+  notice: "All RFCs may be freely reproduced and translated (unmodified)."
+  note: "RFC Editor, https://www.rfc-editor.org/faq/. RFC 793 itself carries no copyright notice."
