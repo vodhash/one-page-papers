@@ -1,0 +1,9 @@
+/* The code table of the standard is the centrepiece of the poster */
+.wide pre.code{font-size:calc(var(--fs)*1.0);width:fit-content;margin:.6em auto .3em;padding:.9em 1.4em}
+.wide>p{font-size:1.15em;max-width:70%;margin-left:auto;margin-right:auto}
+.wide>h2,.wide>h2.std{text-align:center}
+h2.std{font-variant:small-caps;letter-spacing:.06em;font-size:1.35em;margin:.8em 0 .4em}
+hr.fnrule{width:20%;margin:.2em 0 .4em;border:0;border-top:.3mm solid var(--rule)}
+.fn p{font-size:.88em;margin:0 0 .35em;text-align:left}
+.kick{letter-spacing:.22em}
+footer>div:first-child{max-width:38%;line-height:1.3}

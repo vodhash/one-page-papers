@@ -1,0 +1,33 @@
+title: "RFC 20: ASCII format for Network Interchange"
+summary: "Vint Cerf's 1969 proposal to use 7-bit ASCII on the ARPA network, with the code table of the USA standard."
+title_html: "ASCII format for<br><em>Network Interchange</em>"
+title_size: 100pt
+kicker: "Network Working Group · Request for Comments 20 · 16 October 1969"
+author: "Vint Cerf"
+byline: "UCLA"
+emblem: "A"
+header_scale: 1.5
+columns: 4
+footer:
+  - "Network Working Group · Request for Comments: 20 · Vint Cerf, UCLA · October 16, 1969"
+  - "<i>This RFC was put into machine readable form for entry into the online RFC archives by Robbie Bennet 9/99</i>"
+  - '<span class="mono">doi:10.17487/RFC0020</span>'
+year: 1969
+authors: [Vint Cerf]
+min_print: A2
+source:
+  url: https://www.rfc-editor.org/rfc/rfc20.txt
+  retrieved: 2026-09-27
+  edition: >-
+    RFC Editor plain-text edition, put into machine readable form by Robbie Bennet in 1999,
+    complete. The heading block and the note of that edition (whose square brackets are left
+    out) are in the header and the footer; page headers and footers are left out; the code
+    table and the tables of the legend are reproduced unchanged, without the blank lines
+    between the rows of the table of control characters; the footnotes of section 4.2 are set
+    as paragraphs; the misreadings of the original ("X'OD'", "(252)", "FS File Separator IS)")
+    are kept.
+license:
+  text: "Free reproduction (RFC Editor)"
+  holder: "Vint Cerf, 1969"
+  notice: "All RFCs may be freely reproduced and translated (unmodified)."
+  note: "RFC Editor, https://www.rfc-editor.org/faq/. RFC 20 itself carries no copyright notice. The code table reproduces USA Standard X3.4-1968, as the RFC says."
