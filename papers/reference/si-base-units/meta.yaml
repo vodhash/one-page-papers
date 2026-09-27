@@ -1,0 +1,61 @@
+title: "The SI Base Units"
+summary: "The seven defining constants of the SI and the definitions of its seven base units, from the SI Brochure."
+title_html: "The Seven<br><em>SI Base Units</em>"
+title_size: 100pt
+kicker: "Reference sheet · SI Brochure, 9th edition 2019 · Version 4.01, June 2026"
+author: "Bureau International des Poids et Mesures"
+byline: "The SI Brochure, Sections 2.2 and 2.3.1"
+emblem: "SI"
+header_scale: 1.4
+columns: 3
+footer:
+  - "Text: BIPM, <i>The International System of Units (SI)</i>, 9th edition 2019, V4.01 June 2026, Sections 2.2 and 2.3.1, CC&nbsp;BY&nbsp;4.0; excerpts, equations reset. Compilation: MIT."
+  - "<i>The numerical values of the seven defining constants have no uncertainty.</i>"
+  - '<span class="mono">doi.org/10.59161/AUEZ1291 · creativecommons.org/licenses/by/4.0</span>'
+lang: en
+year: 2019
+authors: [Bureau International des Poids et Mesures]
+min_print: A3
+source:
+  url: https://www.bipm.org/en/publications/si-brochure
+  retrieved: 2026-09-27
+  edition: >-
+    The SI Brochure, The International System of Units (SI), 9th edition 2019, English PDF
+    SI-Brochure-9-EN.pdf, V4.01 of June 2026 (https://doi.org/10.59161/AUEZ1291), pages 123 to 131.
+    Kept: from Section 2.2, the statement "The International System of Units, the SI, is the system
+    of units in which" with its seven items, the paragraph "where the hertz, joule, ..." and the
+    sentence on the uncertainty of the constants; from Section 2.3.1, its first sentence, Table 2,
+    the sentence that introduces the definitions, and for each of the seven base units its title,
+    its definition (for the mole, its two paragraphs), the paragraph "This definition implies the
+    exact relation...", its equations, "which is equal to" where the brochure has a second
+    equation, and the paragraph "The effect of this definition...". Left out: the other paragraphs
+    of those sections (previous definitions, realization, the Celsius temperature, the molar mass,
+    Table 1, which repeats the seven constants) and the margin notes. The text was taken from the
+    PDF with pdftotext and its superscripts and subscripts restored by script, checked against the
+    pages: powers of ten and unit exponents are superscript, 133 before Cs is superscript, and the
+    symbols are set in italic with their subscripts (the caesium frequency, N with subscript A,
+    K with subscript cd, c, h, e, k, n, kT and the frequency nu), as the brochure prints them; the
+    definitions are in bold, as printed. The brochure writes some minus signs of exponents with an
+    en dash character (s–1, s–2, s–3 in the paragraph "where the hertz...") and others with a
+    minus sign: each is kept as it is. The increment sign (U+2206) of the caesium
+    frequency, which no bundled font has, is set as the Greek capital delta (U+0394), which the
+    printed page shows. The equations are set with KaTeX from the printed pages; the
+    long ones, which the brochure sets on one line (on two for the candela), are broken before the
+    "approximately equal" sign to fit the columns. The spaces between groups of digits and around the multiplication sign are set as
+    no-break spaces. Table 2 is set as a table, its typical symbols
+    in italic as printed. The header and the footer are written for the poster.
+license:
+  text: "MIT (compilation); data: SI Brochure, BIPM (CC BY 4.0)"
+  holder: "Bureau International des Poids et Mesures (text); one-page-papers (compilation)"
+  notice: >-
+    The SI Brochure is distributed under the terms of the Creative Commons Attribution 4.0
+    International License (http://creativecommons.org/licenses/by/4.0/), which permits unrestricted
+    use, distribution, and reproduction in any medium, provided you give appropriate credit to the
+    original author(s) and the source, provide a link to the Creative Commons license, and indicate
+    if changes were made.
+  note: >-
+    Copyright statement of the SI Brochure, 9th edition, V4.01 (June 2026), on the page after its
+    title page, https://www.bipm.org/en/publications/si-brochure. The footer credits the BIPM, names the
+    brochure, its version and sections, links the license and says that the text is excerpted and
+    the equations reset. The selection and layout are an original compilation under the MIT license
+    of this repository.

@@ -1,0 +1,17 @@
+/* Section 2.2 on the left, Table 2 and the start of Section 2.3.1 on the right */
+.si-top{display:grid;grid-template-columns:1.25fr 1fr;column-gap:13mm;margin-bottom:1.2em;align-items:start}
+.si-top p{margin:0 0 .5em}
+.stmt ul{margin:.2em 0 .6em;padding-left:1.2em}
+.stmt li{margin-bottom:.15em}
+table.si{border-collapse:collapse;width:100%;margin:.4em 0 .8em;font-size:.92em}
+table.si caption{caption-side:top;text-align:left;font-weight:600;margin-bottom:.3em}
+table.si th{font-weight:400;text-align:left;border-bottom:.2mm solid var(--ink);padding:.15em .6em .15em 0}
+table.si tr:first-child th{border-top:.3mm solid var(--ink)}
+table.si td{padding:.08em .6em .08em 0}
+table.si tr:last-child td{border-bottom:.3mm solid var(--ink)}
+/* Each unit: its title in the accent colour, its definition in bold, as in the brochure */
+h2{color:var(--acc)}
+p.def{font-weight:600}
+p.noind{text-align:left;break-after:avoid}
+.katex-display{margin:.5em 0}
+footer>div:first-child{max-width:45%;line-height:1.3}
