@@ -338,13 +338,32 @@ def system_fonts(pdf):
     PdfReader(pdf).pages[0].extract_text(visitor_text=visit)
     return found
 
+def same_line(x, y):
+    """Whether two lines of the content stream of a page differ only in ways that do not show:
+    the last digits of a number, which vary with the processor (the matrix of a rotation, for
+    instance, as the CI and a laptop compute its sine), or the vertical offset of a text matrix
+    (Tm) by less than a pixel, which Chromium now and then rounds (see same_poster)."""
+    tx, ty = x.split(), y.split()
+    if len(tx) != len(ty) or tx[-1:] != ty[-1:]:
+        return False
+    for i, (u, v) in enumerate(zip(tx, ty)):
+        if u == v:
+            continue
+        try:
+            fu, fv = float(u), float(v)
+        except ValueError:
+            return False
+        if abs(fu - fv) > 1e-6 * max(1, abs(fu), abs(fv)) and not (tx[-1] == b"Tm" and i == 5 and abs(fu - fv) < 1):
+            return False
+    return True
+
 def same_poster(old, new):
-    """Whether two PDFs of a poster are the same, but for a jitter of Chromium: now and then, in
-    about one print in twenty of a page full of formulas, it sets one run of glyphs of a KaTeX
-    formula (in a fraction, or an equation number) on a baseline rounded to a whole pixel, less
-    than a pixel away from where the other prints put it. So the text matrices (Tm) of the page
-    may differ in their vertical offset by less than a pixel, and everything else must be the same
-    byte for byte."""
+    """Whether two PDFs of a poster are the same, but for differences that do not show: now and
+    then, in about one print in twenty of a page full of formulas, Chromium sets one run of
+    glyphs of a KaTeX formula (in a fraction, or an equation number) on a baseline rounded to a
+    whole pixel, and the last digits of some numbers depend on the processor. Line by line, the
+    content stream of the page may differ only in that way (same_line), and everything else
+    must be the same byte for byte."""
     if old == new:
         return True
     try:
@@ -353,14 +372,8 @@ def same_poster(old, new):
         cb = b.pages[0].get_contents().get_data().split(b"\n")
     except Exception:
         return False
-    if len(ca) != len(cb):
+    if len(ca) != len(cb) or not all(x == y or same_line(x, y) for x, y in zip(ca, cb)):
         return False
-    for x, y in zip(ca, cb):
-        if x != y:
-            tx, ty = x.split(), y.split()
-            if not (len(tx) == len(ty) == 7 and tx[6] == ty[6] == b"Tm" and tx[:5] == ty[:5]
-                    and abs(float(tx[5]) - float(ty[5])) < 1):
-                return False
     def objects(data, r):
         """Every object but the content stream of the page, as the file writes it."""
         skip = r.pages[0].raw_get("/Contents").idnum
