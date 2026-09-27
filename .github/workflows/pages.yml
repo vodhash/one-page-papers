@@ -27,8 +27,10 @@ jobs:
       - uses: ./.github/actions/setup
       # git does not keep the PDFs: they are built here, the unchanged posters taken from the cache
       # of the self-hosted runner, and uploaded before the site that links them is deployed
-      - name: Build the PDFs into dist/
-        run: python engine/build.py --jobs "$(nproc)" --cache "$HOME/.cache/one-page-papers/build"
+      - name: Build the PDFs into dist/, and those of the US formats into release/us/
+        run: |
+          python engine/build.py --jobs "$(nproc)" --cache "$HOME/.cache/one-page-papers/build"
+          python engine/build.py --us --jobs "$(nproc)" --cache "$HOME/.cache/one-page-papers/build"
       - name: Upload the PDFs that changed to the bucket of files.onepagepapers.com
         env:
           R2_ACCESS_KEY_ID: ${{ secrets.R2_ACCESS_KEY_ID }}

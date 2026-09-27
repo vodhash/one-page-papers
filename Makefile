@@ -27,8 +27,8 @@ changed:
 us:
 	$(PY) engine/build.py --us --jobs $(JOBS)
 
-# the showcase site into site/, from meta.yaml and the PDFs of dist/ (run make first); previews need
-# pdftoppm (poppler-utils)
+# the showcase site into site/, from meta.yaml and the PDFs of dist/ and release/us/ (run make and
+# make us first); previews need pdftoppm (poppler-utils)
 site:
 	$(PY) engine/site.py
 
@@ -36,7 +36,7 @@ site:
 serve: site
 	$(PY) -m http.server --directory site --bind 127.0.0.1 8000
 
-# the PDFs of dist/ that differ from the bucket of files.onepagepapers.com, as the pages workflow
+# the PDFs of dist/ and release/us/ that differ from the bucket of files.onepagepapers.com, as the pages workflow
 # does, with the R2_* variables of engine/upload.py and boto3 (requirements-deploy.txt)
 upload:
 	$(PY) engine/upload.py

@@ -1,6 +1,7 @@
 #!/usr/bin/env python3
-"""Uploads the PDFs of dist/ to the bucket served at FILES_URL, where the site and the README link
-them: only the files that differ from the bucket, as <category>/<file>.
+"""Uploads the PDFs of dist/, and those of the US formats in release/us/, to the bucket served at
+FILES_URL, where the site and the README link them: only the files that differ from the bucket, as
+<category>/<file>.
 
     python3 engine/upload.py              # upload what changed, then purge it from the Cloudflare cache
     python3 engine/upload.py --dry-run    # say what would be uploaded, without writing anything
@@ -21,6 +22,7 @@ sys.path.insert(0, str(pathlib.Path(__file__).resolve().parent))
 from papers import FILES_URL, ROOT
 
 DIST = ROOT / "dist"
+US = ROOT / "release" / "us"  # build.py --us
 BUCKET = "onepagepapers-pdf"
 # a week: a file keeps its name when its poster changes, so its cache must run out. The cache rule
 # of files.onepagepapers.com keeps it a year in the cache of Cloudflare instead, which the purge
@@ -29,8 +31,9 @@ CACHE_CONTROL = "public, max-age=604800, stale-while-revalidate=86400"
 PURGE_BATCH = 30  # URLs per purge request, the most that every Cloudflare plan takes
 
 def local_files():
-    """{key in the bucket: path} of every PDF of dist/."""
-    return {f.relative_to(DIST).as_posix(): f for f in sorted(DIST.glob("*/*.pdf"))}
+    """{key in the bucket: path} of every PDF of dist/ and release/us/: their names never collide,
+    since a file name holds its format."""
+    return {f.relative_to(d).as_posix(): f for d in (DIST, US) for f in sorted(d.glob("*/*.pdf"))}
 
 def md5(path):
     return hashlib.md5(path.read_bytes()).hexdigest()
@@ -92,8 +95,10 @@ def main():
     ap.add_argument("--dry-run", action="store_true", help="say what would be uploaded, write nothing")
     a = ap.parse_args()
     files = local_files()
-    if not files:
+    if not any(f.is_relative_to(DIST) for f in files.values()):
         sys.exit("error: dist/ holds no PDF, build them first (make)")
+    if not any(f.is_relative_to(US) for f in files.values()):
+        print("release/us/ holds no PDF (make us): the US formats of the bucket are left as they are")
     bucket = os.environ.get("R2_BUCKET") or BUCKET
     if a.dry_run and not os.environ.get("R2_ENDPOINT"):
         s3, remote = None, {}
@@ -110,7 +115,7 @@ def main():
             s3.put_object(Bucket=bucket, Key=k, Body=files[k].read_bytes(), ContentType="application/pdf",
                           CacheControl=CACHE_CONTROL)
     for k in sorted(set(remote) - set(files)):
-        print(f"kept {k}: in the bucket, not in dist/")
+        print(f"kept {k}: in the bucket, not in dist/ or release/us/")
     print(f"{len(changed)} of {len(files)} PDF(s) {'to upload' if a.dry_run else 'uploaded'}, "
           f"{len(files) - len(changed)} unchanged")
     if not a.dry_run and (updated := [FILES_URL + k for k in changed if k in remote]):

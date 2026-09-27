@@ -217,7 +217,7 @@ Every poster has its page on [onepagepapers.com](https://onepagepapers.com/), wi
 | `50x70` | 50 × 70 cm | 50 × 70 cm |
 | `60x80` | 60 × 80 cm | 60 × 80 cm |
 
-The US formats are only in the releases: the [latest release](https://github.com/vodhash/one-page-papers/releases/latest) has them in one more zip per category, `<category>-us.zip`, and `make us` builds them into `release/us/<category>/`. Each format is fitted on its own, so its body size differs from the A one; below 8 pt the body is hard to read on a wall: that is the case of about three posters in four at Letter, one in two at Tabloid, one in five at 18x24 and a few at 24x36, so the small sizes suit short texts or a copy to read up close.
+The US formats are on the page of each poster too, and in the releases: the [latest release](https://github.com/vodhash/one-page-papers/releases/latest) has them in one more zip per category, `<category>-us.zip`, and `make us` builds them into `release/us/<category>/`. Each format is fitted on its own, so its body size differs from the A one; below 8 pt the body is hard to read on a wall: that is the case of about three posters in four at Letter, one in two at Tabloid, one in five at 18x24 and a few at 24x36, so the small sizes suit short texts or a copy to read up close.
 
 | Format | File size |
 |---|---|
@@ -240,18 +240,18 @@ make           # every paper × format × theme into dist/, their previews into 
 make bitcoin   # a single paper, by its slug
 make internet  # every paper of a category
 make readme    # the catalog of this README, from the meta.yaml files and PENDING.md
-make site      # the showcase site into site/ (needs pdftoppm, from poppler-utils)
+make site      # the showcase site into site/, after make and make us (needs pdftoppm, from poppler-utils)
 make serve     # the site on http://localhost:8000/
 make check     # as the CI: file sizes, every poster fits (into dist/, leaving docs/ alone), the catalog
 make JOBS=2    # any target, with 2 papers built at a time instead of one per processor (up to 8)
 make changed   # the previews that differ from the last commit
-make upload    # the PDFs of dist/ that differ from files.onepagepapers.com (needs its R2 credentials)
+make upload    # the PDFs of dist/ and release/us/ that differ from files.onepagepapers.com (needs its R2 credentials)
 make clean     # remove build/, and with it the cache of the posters
 make us        # the US formats into release/us/, which git ignores (engine/build.py bitcoin --us for one paper)
 .venv/bin/python engine/build.py rfc-1925 --formats A --themes genesis
 ```
 
-Git does not keep the PDFs: `dist/` is ignored, and only the previews of `docs/`, which the catalog above shows, are versioned. GitHub Actions builds the PDFs for every push to `master`, uploads those that changed to the Cloudflare R2 bucket behind `files.onepagepapers.com` (`engine/upload.py`), then deploys the site, which links them there. Pushing a `v*` tag builds them too, in the formats of `dist/` and in the US formats, and attaches them to a release as two zips per category, `<category>.zip` and `<category>-us.zip`: a release takes at most 1,000 files, fewer than there are PDFs. Versions are pinned (`package-lock.json`, and `requirements.txt`, whose Playwright version fixes the Chromium build), and Chromium lays text out without the local font hinting settings, to keep the layout independent of the machine.
+Git does not keep the PDFs: `dist/` is ignored, and only the previews of `docs/`, which the catalog above shows, are versioned. GitHub Actions builds the PDFs for every push to `master`, in the formats of `dist/` and in the US formats, uploads those that changed to the Cloudflare R2 bucket behind `files.onepagepapers.com` (`engine/upload.py`), then deploys the site, which links them there. Pushing a `v*` tag builds them too, in the formats of `dist/` and in the US formats, and attaches them to a release as two zips per category, `<category>.zip` and `<category>-us.zip`: a release takes at most 1,000 files, fewer than there are PDFs. Versions are pinned (`package-lock.json`, and `requirements.txt`, whose Playwright version fixes the Chromium build), and Chromium lays text out without the local font hinting settings, to keep the layout independent of the machine.
 
 A build keeps what it makes in `build/cache/` (`--cache` names another folder), one entry per paper and format, keyed on the files of the paper and on those of the engine: a poster whose files have not changed is copied from there instead of being laid out again, and a change to the engine lays every poster out again. The CI keeps this cache on its self-hosted runner, so a push only rebuilds the posters it touches.
 

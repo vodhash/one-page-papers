@@ -19,7 +19,9 @@ jobs:
       # engine: only the posters that changed are laid out again
       - name: Every poster fits its page, uses bundled fonts only and has its preview in docs/
         run: python engine/build.py --check --jobs "$(nproc)" --cache "$HOME/.cache/one-page-papers/build"
+      - name: Every poster fits the US formats, whose PDFs the site links too
+        run: python engine/build.py --us --check --jobs "$(nproc)" --cache "$HOME/.cache/one-page-papers/build"
       - name: The catalog of the README is up to date, and no document links a file that git does not keep
         run: python engine/readme.py --check
-      - name: The site has no dead internal link, loads nothing from another site but its analytics, and every PDF it links is in dist/
+      - name: The site has no dead internal link, loads nothing from another site but its analytics, and every PDF it links is in dist/ or release/us/
         run: python engine/site.py --check

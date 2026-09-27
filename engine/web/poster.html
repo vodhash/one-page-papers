@@ -35,8 +35,13 @@
 <ul class="dl" role="list">
 {{ROWS}}
 </ul>
+<h3 class="dl-head">US formats</h3>
+<p class="dl-intro">Each one laid out on its own. At Letter and Tabloid the body of a long text prints under 8&nbsp;pt: they suit short texts, or a copy to read up close.</p>
+<ul class="dl dl-us" role="list">
+{{US_ROWS}}
+</ul>
 <p class="print-it"><a class="btn btn-solid" href="../print/?poster={{SLUG}}" data-print-it data-umami-event="print-it" data-umami-event-slug="{{SLUG}}">Print it</a> <span>Which size, paper or aluminium, which file to send</span></p>
-<p class="zip"><a href="{{ZIP}}">Every {{CATEGORY_TITLE}} poster</a>, in every format and theme, as one zip from the latest release.</p>
+<p class="zip"><a href="{{ZIP}}" data-umami-event="download-zip" data-umami-event-category="{{CATEGORY}}">Every {{CATEGORY_TITLE}} poster</a>, in every format and theme, as one zip from the latest release.</p>
 <p class="note">{{PRINT_NOTE}}</p>
 </section>
 <section class="wallpaper" aria-labelledby="wall-title" data-wallpaper data-slug="{{SLUG}}">

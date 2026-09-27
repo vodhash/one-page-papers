@@ -19,6 +19,12 @@
   function each(selector, f, scope) {
     Array.prototype.forEach.call((scope || document).querySelectorAll(selector), f);
   }
+  // An event for Umami, the analytics of the site, when its script has loaded: a blocker or
+  // make serve leaves window.umami undefined, and nothing is sent. Links and buttons that need no
+  // script say their event in data-umami-event attributes, which Umami reads on a click.
+  function track(name, data) {
+    try { if (window.umami && window.umami.track) window.umami.track(name, data); } catch (e) { /* not counted */ }
+  }
 
   // The theme of the site. The dark <source> of each preview follows it rather than the system.
   function apply(m) {
@@ -264,9 +270,14 @@
         var a = result.querySelector('a');
         a.href = blobUrl;
         a.download = name;
+        a.setAttribute('data-umami-event', 'wallpaper-download');
+        a.setAttribute('data-umami-event-slug', wall.getAttribute('data-slug'));
+        a.setAttribute('data-umami-event-screen', size.value);
+        a.setAttribute('data-umami-event-theme', theme.value);
         a.textContent = 'Download the PNG \u00b7 ' + (blob.size / 1e6).toFixed(1) + ' MB';
         result.hidden = false;
         say('Ready: ' + W + '\u00a0\u00d7\u00a0' + H + ' pixels.');
+        track('wallpaper', { slug: wall.getAttribute('data-slug'), screen: size.value, theme: theme.value });
       }).catch(function () {
         say('The wallpaper could not be made. Check the connection, or download the PDF above.');
       }).then(function () {
@@ -326,13 +337,21 @@
           var a = make('a', 'btn btn-line', f[1] + ' · ' + theme);
           a.href = printData.pdf.replace('{category}', category).replace('{file}', slug + '-' + f[0] + '-' + theme + '.pdf');
           a.type = 'application/pdf';
+          a.setAttribute('data-umami-event', 'download');
+          a.setAttribute('data-umami-event-slug', slug);
+          a.setAttribute('data-umami-event-format', f[0]);
+          a.setAttribute('data-umami-event-theme', theme);
+          a.target = '_blank';
+          a.rel = 'noopener';
           li.appendChild(a);
           li.appendChild(make('span', 'fp-what', f[0] === 'A' ? 'Any ISO A size; body at 8 pt or more at ' + sizes.join(', ') : 'Its own layout'));
           files.appendChild(li);
         });
         var li = make('li');
-        var a = make('a', 'btn btn-line', 'US formats');
+        var a = make('a', 'btn btn-line', 'US formats, zip');
         a.href = printData.us.replace('{category}', category);
+        a.setAttribute('data-umami-event', 'download-zip');
+        a.setAttribute('data-umami-event-category', category + '-us');
         li.appendChild(a);
         li.appendChild(make('span', 'fp-what', 'Every poster of its category, in the zip ' + category + '-us.zip'));
         files.appendChild(li);
@@ -399,9 +418,16 @@
       toggle.parentNode.hidden = false;
       toggle.addEventListener('click', function () {
         setOff(!off);
+        track('notes-toggle', { slug: textEl.getAttribute('data-paper'), shown: String(!off) });
         try { localStorage.setItem(NOTES, off ? 'off' : 'on'); } catch (e) { /* lasts for this page */ }
       });
     }
+    // a note opened by its number, on a small screen or without the margin
+    each('.sn-toggle', function (box) {
+      box.addEventListener('change', function () {
+        if (box.checked) track('margin-note', { slug: textEl.getAttribute('data-paper'), note: box.id.slice(4) });
+      });
+    }, annotated);
     // a note and its phrase light up together
     each('mark.anno[data-note], .sidenote', function (e) {
       var pair = function (on) {
@@ -436,6 +462,7 @@
         clear();
         var how = b.getAttribute('data-print');
         if (how !== 'all') root.classList.add('print-' + how);
+        track('teach-print', { slug: kit.getAttribute('data-slug'), mode: how });
         window.print();
       });
     }, kit);

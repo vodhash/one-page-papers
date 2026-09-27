@@ -143,8 +143,17 @@ class Poster(NamedTuple):
     def category(self):
         return self.paper.category
 
+# where build.py writes the PDFs: the formats of dist/, and the US formats in release/us/ (build.py --us)
+PDF_DIRS = (ROOT / "dist", ROOT / "release" / "us")
+
 def pdf_file(p, fmt, theme):
-    return ROOT / "dist" / p.category / f"{p.slug}-{fmt}-{theme}.pdf"
+    return PDF_DIRS[fmt in US_FORMATS] / p.category / f"{p.slug}-{fmt}-{theme}.pdf"
+
+def download_event(slug, fmt, theme):
+    """The attributes of a PDF link: it opens in a new tab, and Umami counts a click on it as the
+    event download, with its poster, format and theme."""
+    return (f'data-umami-event="download" data-umami-event-slug="{slug}" data-umami-event-format="{fmt}" '
+            f'data-umami-event-theme="{theme}" target="_blank" rel="noopener"')
 
 def pdf_url(p, fmt, theme):
     f = pdf_file(p, fmt, theme)
@@ -175,10 +184,14 @@ def collect(only_built):
             continue
         themes = themes_of(m)
         missing = [f.name for f in (pdf_file(p, fmt, t) for fmt in FORMATS for t in themes) if not f.exists()]
-        if missing:
+        missing_us = [f.name for f in (pdf_file(p, fmt, t) for fmt in US_FORMATS for t in themes) if not f.exists()]
+        if missing or missing_us:
+            files, where_to, run = ((missing, f"dist/{p.category}/", f"make {p.slug}") if missing else
+                                    (missing_us, f"release/us/{p.category}/", f"engine/build.py {p.slug} --us"))
+            total = len(FORMATS if missing else US_FORMATS) * len(themes)
             (skipped if only_built else errors).append(
-                f"{where}: {len(missing)} of its {len(FORMATS) * len(themes)} PDFs are not in dist/{p.category}/ "
-                f"({', '.join(missing[:2])}{', ...' if len(missing) > 2 else ''}), run `make {p.slug}`")
+                f"{where}: {len(files)} of its {total} PDFs are not in {where_to} "
+                f"({', '.join(files[:2])}{', ...' if len(files) > 2 else ''}), run `{run}`")
             continue
         dark = next((t for t in ("genesis", "ivory") if t in themes), themes[0])
         posters.append(Poster(p, m, themes, themes[0], dark))
@@ -655,7 +668,13 @@ def authors_short(m):
 def by_line(m):
     return f"{esc(authors_short(m))}, {esc(year_text(m['year']))}"
 
+# the US formats by name, and their size in inches
+US_NAMES = {"letter": ("Letter", "8.5 × 11 in"), "tabloid": ("Tabloid", "11 × 17 in"),
+            "18x24": ("18 × 24 in", ""), "24x36": ("24 × 36 in", "")}
+
 def format_name(fmt):
+    if fmt in US_NAMES:
+        return US_NAMES[fmt][0].replace(" ", "\u00a0")
     w, h = FORMATS[fmt]
     return "A series" if fmt == "A" else f"{w / 10:g}\u00a0×\u00a0{h / 10:g}\u00a0cm"  # on one line
 
@@ -953,18 +972,20 @@ def poster_page(p, posters, previews, series, extras=None):
     pills = [f'<button type="button" class="pill" data-pick="{t}" aria-pressed="false" '
              f'data-srcset="{srcset(previews, p, t, root)}"><span class="swatch" style="--sw:{hexcolour(t, "paper")};'
              f'--sa:{hexcolour(t, "acc")}" aria-hidden="true"></span>{t}</button>' for t in p.themes]
-    rows = []
-    for fmt in FORMATS:
-        note = (f'<span class="dl-note">Prints at {", ".join(reversed(PRINT_SIZES[1:]))} or {PRINT_SIZES[0]}</span>'
-                if fmt == "A" else "")
+    def row(fmt):
+        if fmt == "A":
+            note = f'<span class="dl-note">Prints at {", ".join(reversed(PRINT_SIZES[1:]))} or {PRINT_SIZES[0]}</span>'
+        else:
+            note = f'<span class="dl-note">{US_NAMES[fmt][1]}</span>' if fmt in US_NAMES and US_NAMES[fmt][1] else ""
         links = []
         for t in p.themes:
             cls = "".join((" d-light" if t == p.light else "", " d-dark" if t == p.dark else ""))
             links.append(f'<a class="btn btn-line{cls}" data-t="{t}" href="{pdf_url(p.paper, fmt, t)}" '
-                         f'type="application/pdf">PDF · {t} <span class="size">{size_text(pdf_file(p.paper, fmt, t))}'
-                         '</span></a>')
-        rows.append(f'<li><div class="dl-what"><span class="dl-name">{format_name(fmt)}</span>{note}</div>'
-                    f'<div class="dl-links">{"".join(links)}</div></li>')
+                         f'type="application/pdf" {download_event(p.slug, fmt, t)}>PDF · {t} '
+                         f'<span class="size">{size_text(pdf_file(p.paper, fmt, t))}</span></a>')
+        return (f'<li><div class="dl-what"><span class="dl-name">{format_name(fmt)}</span>{note}</div>'
+                f'<div class="dl-links">{"".join(links)}</div></li>')
+    rows, us_rows = [row(f) for f in FORMATS], [row(f) for f in US_FORMATS]
     rights = (f'<blockquote><p>{esc(lic["notice"])}</p></blockquote>' if lic.get("notice")
               else f'<p>{esc(lic["basis"])}</p>')
     if lic.get("note"):
@@ -990,7 +1011,7 @@ def poster_page(p, posters, previews, series, extras=None):
         "SUMMARY": esc(m["summary"]), "LIGHT": p.light, "DARK": p.dark, "SERIES": series_links(p, series, root),
         "PICTURE": picture(previews, p, root, "(min-width: 1200px) 480px, (min-width: 768px) 52vw, 86vw", eager=True),
         "SHOWN": shown, "FACTS": "\n".join(f"<div><dt>{k}</dt><dd>{v}</dd></div>" for k, v in facts),
-        "PILLS": "\n".join(pills), "ROWS": "\n".join(rows),
+        "PILLS": "\n".join(pills), "ROWS": "\n".join(rows), "US_ROWS": "\n".join(us_rows),
         "ZIP": ZIP_URL.format(category=p.category),
         "PRINT_NOTE": esc(f"Print from {m['min_print']}: the smallest A size at which the body text is at least "
                           f"{MIN_BODY} pt."),
@@ -1078,7 +1099,8 @@ def series_page(s, series, previews, thumbs):
             for t in p.themes:
                 cls = " d0" if t == p.light else ""
                 links.append(f'<a class="btn btn-line{cls}" data-f="{fmt}" data-t="{t}" href="{pdf_url(p.paper, fmt, t)}" '
-                             f'type="application/pdf">{format_name(fmt)} · {t} <span class="size">'
+                             f'type="application/pdf" {download_event(p.slug, fmt, t)}>{format_name(fmt)} · {t} '
+                             '<span class="size">'
                              f'{size_text(pdf_file(p.paper, fmt, t))}</span></a>')
         srcs = "".join(f' data-src-{t}="{root}{previews[p.slug, t][600]}"' for t in p.themes)
         us_zip = US_ZIP_URL.format(category=p.category)
@@ -1500,11 +1522,12 @@ def teach_page(p, previews, data):
             f"{m['min_print']}.")
     a_pdf = pdf_url(p.paper, "A", p.light)
     main = substitute((WEB / "teach.html").read_text(), {
-        "CATEGORY": p.category, "CATEGORY_TITLE": esc(CATEGORIES[p.category]), "TITLE": esc(m["title"]),
+        "SLUG": p.slug, "CATEGORY": p.category, "CATEGORY_TITLE": esc(CATEGORIES[p.category]), "TITLE": esc(m["title"]),
         "TITLE_H1": title(m["title"]), "LANG": m.get("lang", "en"), "YEAR": esc(year_text(m["year"])),
         "AUTHORS": esc(", ".join(m["authors"])), "SUBJECT": esc(data["subject"]),
         "FACTS": "\n".join(f"<div><dt>{k}</dt><dd>{v}</dd></div>" for k, v in facts), "PREREQ": prereq,
-        "WALL": (f'For the classroom wall, the <a href="{a_pdf}" type="application/pdf">A PDF of the poster</a> '
+        "WALL": (f'For the classroom wall, the <a href="{a_pdf}" type="application/pdf" '
+                 f'{download_event(p.slug, "A", p.light)}>A PDF of the poster</a> '
                  f'prints at A3 (29.7 × 42 cm). {wall} '
                  f'<a href="{root}print/?poster={p.slug}">How to have it printed</a>.'),
         "BY": f'Written for {NAME}{written_by(data)}; license: {license_html(data["license"])}. '
@@ -1585,6 +1608,7 @@ def print_page(posters, previews):
     poster page), site.js adds a box for that poster, from the data of #print-data: its Print from,
     its themes and the links to its PDFs."""
     fmts = [("A", format_name("A").replace(" ", " "))] + [(f, format_name(f)) for f in FORMATS if f != "A"]
+    fmts += [(f, format_name(f)) for f in US_FORMATS]  # in release/us/, served from FILES_URL too
     data = {
         "pdf": PDF_URL, "us": US_ZIP_URL, "sizes": list(PRINT_SIZES),
         "formats": [[f, n.replace(" ", " ")] for f, n in fmts],
@@ -1913,9 +1937,10 @@ def check(out):
         elif loaded and target != ANALYTICS_SRC:
             errors.append(f"{path}: {what} {url}: loaded from another site")
         elif k := pdf.match(target):
-            where = sorted((ROOT / "dist").glob(f"{k.groupdict().get('category', '*')}/{k['file']}"))
+            where = sorted(f for d in PDF_DIRS for f in d.glob(f"{k.groupdict().get('category', '*')}/{k['file']}"))
             if len(where) != 1:
-                errors.append(f"{path}: {what} {url}: {'no such file' if not where else 'several files'} in dist/")
+                errors.append(f"{path}: {what} {url}: "
+                              f"{'no such file' if not where else 'several files'} in dist/ or release/us/")
     errors += [f"contrast of {t} on {s} in the {m} mode: {r:.2f}, below {MIN_CONTRAST}"
                for m, t, s, r in contrasts() if r < MIN_CONTRAST]
     return errors, len(refs)
