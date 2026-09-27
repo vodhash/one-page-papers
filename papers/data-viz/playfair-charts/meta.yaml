@@ -1,0 +1,53 @@
+title: "William Playfair: The Commercial and Political Atlas"
+summary: "Two 1786 charts by William Playfair: trade with Denmark and Norway over time, and Scotland's trade as bars."
+title_html: "The Commercial <em>and</em> Political Atlas"
+title_size: 96pt
+kicker: "Excerpt · London · 1786 and 1787"
+author: "William Playfair"
+byline: "Plates 18 and 25 and a page of the observations, from the edition of 1787"
+emblem: "£"
+header_scale: 1.8
+layout: hero
+hero_height: 38
+columns: 2
+footer:
+  - "Charts and text: William Playfair, plates engraved by Neele, 1786; <i>The Commercial and Political Atlas</i>, new edition, London, John Stockdale, 1787. Public domain. Scan: copy stamped by the British Museum, Internet Archive; levels adjusted."
+  - "<i>Excerpt: two of the forty plates, and the first two paragraphs of the observations on the trade of Scotland.</i>"
+  - "<span class=\"mono\">archive.org/details/bim_eighteenth-century_the-commercial-and-polit_playfair-william_1787</span>"
+year: 1786
+authors: [William Playfair]
+min_print: A3
+source:
+  url: https://archive.org/details/bim_eighteenth-century_the-commercial-and-polit_playfair-william_1787
+  retrieved: 2026-09-27
+  edition: >-
+    William Playfair, The Commercial and Political Atlas, "a new edition, improved" (London, John
+    Stockdale, 1787), the second edition of the atlas first published in 1786, in the scan on the
+    Internet Archive of the copy stamped by the British Museum (black and white, 9036 px wide).
+    Images: plate 18, "Exports and Imports to and from Denmark & Norway from 1700 to 1780"
+    (imprint dated 1 May 1786, scan n111), and plate 25, "Exports and Imports of Scotland ...
+    Christmas 1780 to Christmas 1781" (imprint dated 7 June 1786, scan n153), cropped to the
+    plates, reduced to 4000 px and with their levels stretched (40 to 215) to whiten the paper.
+    The plates of this edition are engraved with hatching and stippling where the copies on
+    Wikimedia Commons show colour washes. Text: the title, the legend and the imprints engraved
+    on each plate, read on the scan (the words inside the charts, the scales and the names of
+    places are not transcribed; the plate numbers are in the captions), with "Wm",
+    "1st", "7th" and "sculpt" with their last letters in superscript as engraved; and
+    the first two paragraphs of the "Observations on the Trade of Scotland" (p. 101), from the
+    OCR of the scan corrected against the page image ("THE limits", the drop capital, set as
+    "The limits"; "much inferior in utility to those that do"; "same"; "itself at"; "consists:"
+    with the colon of the print; "shape given"). The long s is set as s and the space printed
+    before semicolons and colons is dropped. No transcription of the plates was found to
+    compare with: they were read on the scan word by word.
+license:
+  text: "Public domain"
+  holder: "William Playfair, 1786-1787"
+  basis: >-
+    William Playfair died in 1823 and the atlas was published in 1786 and 1787: it is in the
+    public domain in France and in the United States.
+  note: >-
+    The Internet Archive item carries no license statement; the scan is a faithful photographic
+    reproduction of a public domain book, which creates no new right (in the United States,
+    Bridgeman Art Library v. Corel Corp., 1999; in the European Union, article 14 of Directive
+    (EU) 2019/790). Wikimedia Commons marks its copies of the same plates PD-old-100-1923
+    (https://commons.wikimedia.org/wiki/Category:The_Commercial_and_Political_Atlas,_1786).

@@ -1,0 +1,6 @@
+/* The engraved titles and legends in italic, as the script of the plates */
+.legend p{font-style:italic;text-align:left;margin-bottom:.4em}
+.legend .sig{font-size:.8em}
+.legend sup{font-size:.62em;line-height:0}
+main{text-align:left}
+footer>div{text-wrap:balance}
