@@ -1,0 +1,6 @@
+/* The fragment alone, in one narrow column, ragged as a short text in large type */
+.fragment{max-width:82%;margin:0 auto;text-align:left;hyphens:manual}
+.fragment p{margin-bottom:.8em}
+.kick{letter-spacing:.3em}
+footer>div{text-wrap:balance}
+footer>div:first-child{max-width:42%;line-height:1.3}

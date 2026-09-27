@@ -1,0 +1,53 @@
+title: "Pensées: Grandeur de l'homme"
+summary: "Pascal's fragment on man as a thinking reed, whose whole dignity lies in thought."
+title_html: "Un roseau<br><em>pensant</em>"
+title_size: 120pt
+kicker: "Excerpt · Pensées, chapter XXIII · Paris, 1670"
+author: "Blaise Pascal"
+emblem: ""
+header_scale: 2
+layout: centered
+font_range: [8, 90]
+max_font: 72
+lang: fr
+footer:
+  - "From chapter XXIII, “Grandeur de l’homme”, of <i>Pensées de M. Pascal sur la religion et sur quelques autres sujets</i>, the Port-Royal edition published after his death (Paris, Guillaume Desprez, 1670), p. 181."
+  - "<i>The spelling of the 1670 print. Source gallica.bnf.fr / BnF.</i>"
+  - '<span class="mono">gallica.bnf.fr</span>'
+year: 1670
+authors: [Blaise Pascal]
+min_print: A3
+source:
+  url: https://gallica.bnf.fr/ark:/12148/btv1b8606969h/f267.item
+  retrieved: 2026-09-27
+  edition: >-
+    Excerpt: one fragment of chapter XXIII, "Grandeur de l'homme", of Pensées de M. Pascal sur
+    la religion et sur quelques autres sujets, qui ont esté trouvées après sa mort parmy ses
+    papiers, Paris, Guillaume Desprez, 1670, the first Port-Royal edition ([41] f., 365 p.),
+    page 181, in the copy of the BnF on Gallica (view 267), from "L'homme n'est qu'un roseau"
+    to "Voilà le principe de la morale.", its two paragraphs complete; the fragments before
+    and after it in the chapter are left out, with the fleuron that opens each fragment. The
+    words were taken from the proofread transcription of fr.wikisource of another 1670
+    edition by Desprez (Index "Pascal - Pensées, 2e édition G. Desprez, 1670.djvu", pages
+    258-259, from Gallica bpt6k577160), whose spelling is modernized, and were set back to
+    the spelling of the print word by word against the page image of the first edition
+    (foible, goute, tüer, écraseroit, seroit, tüe, sçait twice, luy, nostre, and "&" twice);
+    the two 1670 prints were compared on this passage and differ only in "goute" (first
+    edition) and "goutte", "de là" and "de la" (second). The long s is set as a round s, the
+    word divided at a line end ("pen-ser") is joined, the space that the print leaves before
+    some commas is dropped, and a no-break space is kept before the semicolons. The title of
+    the poster is set from the fragment; the chapter title is in the kicker and the footer.
+license:
+  text: "Public domain"
+  holder: "Blaise Pascal, 1670"
+  basis: >-
+    Blaise Pascal died on 19 August 1662, and the Pensées were published in 1670: in the
+    public domain in France (author died before 1 January 1956) and in the United States
+    (published before 1931).
+  note: >-
+    Gallica gives the scan the rights statement "domaine public". Its conditions of use
+    (https://gallica.bnf.fr/edit/und/conditions-dutilisation-des-contenus-de-gallica) make
+    non-commercial reuse free with the credit "Source gallica.bnf.fr / BnF", which the footer
+    gives, and commercial reuse subject to a license; the poster reuses the text, not the
+    images. The Wikisource transcription used as a working copy is not reproduced: every
+    word was read on the page image of the print.
