@@ -1,0 +1,57 @@
+title: "Ethereum: A Next-Generation Smart Contract and Decentralized Application Platform"
+summary: "Proposes Ethereum, a blockchain with a built-in Turing-complete language for contracts that encode arbitrary state transition functions."
+title_html: "Ethereum: <em>A Next-Generation Smart Contract</em><br>and Decentralized Application Platform"
+title_size: 64pt
+kicker: "Ethereum Whitepaper · 2014"
+author: Vitalik Buterin
+emblem: ETH
+columns: 6
+font_range: [5, 12]
+footer:
+  - "Vitalik Buterin, <i>Ethereum Whitepaper</i>, as published on ethereum.org. Text and figures: <b>CC BY 4.0</b>, <span class=\"mono\">creativecommons.org/licenses/by/4.0</span>; code: MIT License (see the end of the text)."
+  - "<i>The editorial notes of ethereum.org around the paper are left out; the paper itself is unchanged.</i>"
+  - '<span class="mono">ethereum.org/whitepaper</span>'
+year: 2014
+authors: [Vitalik Buterin]
+min_print: A0
+source:
+  url: https://ethereum.org/whitepaper/
+  retrieved: 2026-09-27
+  edition: >-
+    The whitepaper as published on ethereum.org, from the source of that page,
+    public/content/whitepaper/index.md in github.com/ethereum/ethereum-org-website (commit
+    14ee8a9 of 28 June 2026, identical on the dev and master branches), checked word for word
+    against the live page. Left out: the banner of the page ("Before you read") and the three
+    editorial notes of ethereum.org, one before the paper ("While several years old, we
+    maintain the original paper below...") and two after it (on the history of the whitepaper
+    and the latest developments of Ethereum). The first heading of the page, the title of the
+    paper, is in the header, prefixed with "Ethereum:" as in the PDF that the page offers
+    (Ethereum_Whitepaper_-_Buterin_2014.pdf); the kicker gives the year that the page states
+    ("This whitepaper was published in 2014"). Links show their text only; the note calls fn1
+    to fn3 and the link "How?" stay superscripts; the table of the issuance model and the
+    nested list of the GHOST section are set in HTML; straight quotes are set as typographic
+    quotes, except in code. The code blocks are as on the page, including the backslashes that
+    the page shows in the code of the Fees section. The six figures are the PNG files of the
+    page, unchanged, on a light plate in the dark themes. The MIT License of the repository
+    follows the paper in small print.
+license:
+  text: "CC BY 4.0 (text, figures); MIT (code)"
+  holder: Vitalik Buterin; ethereum.org
+  notice: >-
+    Unless otherwise marked, (a) all material, data, and information on the Websites, such as
+    data files, text, music, audio files or other sounds, photographs, videos, or other images,
+    but excluding any software or computer code (collectively, the “Non-Code Content”) are
+    licensed under the Creative Commons Attribution 4.0 International License; and (b) all
+    software or computer code (collectively, the “Code Content”) are licensed under the MIT
+    License.
+  note: >-
+    Terms of use of ethereum.org, section Intellectual Property Rights,
+    https://ethereum.org/terms-of-use/ (source: public/content/terms-of-use/index.md of the
+    same repository); the Websites include ethereum.org, and neither the whitepaper page nor
+    its figures are otherwise marked. This covers the text and the six figures, images of the
+    page (https://github.com/ethereum/ethereum-org-website/tree/dev/public/content/whitepaper:
+    ethereum-state-transition.png, ethereum-blocks.png, spv-bitcoin.png,
+    ether-state-transition.png, ethereum-apply-block-diagram.png, ethereum-inflation.png;
+    status: CC BY 4.0 under the same terms). The LICENSE file of the repository is the MIT License,
+    "Copyright (c) 2019-2026 ethereum.org contributors", for "this software and associated
+    documentation files"; its text follows the paper on the poster, for the code.

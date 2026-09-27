@@ -1,0 +1,19 @@
+/* A long paper in six columns: a narrower gap between them */
+main,[data-layout=centered] .flow{column-gap:9mm}
+figure.image{margin:.7em auto .8em}
+/* The issuance table */
+table.issuance{border-collapse:collapse;margin:.4em 0 .9em;font-size:.9em;break-inside:avoid;width:100%}
+table.issuance th{font-weight:600;text-align:left;border-bottom:.2mm solid var(--ink);padding:.1em .4em .15em 0}
+table.issuance td{padding:.1em .4em .1em 0;border-bottom:.1mm solid var(--rule)}
+table.issuance td+td,table.issuance th+th{text-align:right}
+/* Nested list of the GHOST section */
+ul ul{margin:.15em 0 .2em;padding-left:1.1em}
+li{hyphens:auto}
+/* The MIT License of the repository, in small print after the paper */
+p.mit{font-size:.7em;line-height:1.3;color:var(--mute);margin-top:1.2em;border-top:.2mm solid var(--rule);padding-top:.5em}
+p.mit b{font-weight:600;color:var(--ink)}
+.kick{letter-spacing:.3em}
+footer>div:first-child{max-width:44%;line-height:1.3}
+/* The longest code line (88 characters) must fit a sixth of the page: code a little smaller than
+   the default 0.64 of the body, so that the body size is set by the height of the page */
+pre.code{font-size:calc(var(--fs)*.6)}
