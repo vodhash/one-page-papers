@@ -17,3 +17,10 @@ missing. The catalog of the README lists them under *Coming soon*.
 - Source: http://www.hashcash.org/papers/hashcash.pdf
 - Status: permission requested (2026-09-27)
 - Missing: a license or a written permission from Adam Back that allows its redistribution.
+
+## b-money (Wei Dai, 1998)
+
+- Category: crypto
+- Source: http://www.weidai.com/bmoney.txt
+- Status: permission requested (2026-09-27)
+- Missing: a license or a written permission from Wei Dai that allows its redistribution.

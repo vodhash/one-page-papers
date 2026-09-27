@@ -50,6 +50,7 @@ Texts that wait for a license allowing their redistribution; [PENDING.md](PENDIN
 
 - A Cypherpunk's Manifesto (Eric Hughes, 1993)
 - Hashcash: A Denial of Service Counter-Measure (Adam Back, 2002)
+- b-money (Wei Dai, 1998)
 
 <!-- catalog:end -->
 
