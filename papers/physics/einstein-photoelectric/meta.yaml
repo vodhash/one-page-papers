@@ -1,0 +1,56 @@
+title: "Über einen die Erzeugung und Verwandlung des Lichtes betreffenden heuristischen Gesichtspunkt"
+summary: "Einstein proposes that light consists of energy quanta, and applies this to the Stokes rule, photoelectric effect and photoionization."
+title_html: "Über einen die Erzeugung und Verwandlung des Lichtes betreffenden <em>heuristischen Gesichtspunkt</em>"
+kicker: "Annalen der Physik · 4th series · vol. 17 · 1905"
+author: "A. Einstein"
+byline: "Bern, 17 March 1905 · received 18 March 1905"
+emblem: "βν"
+lang: de
+columns: 5
+font_range: [5, 20]
+footer:
+  - "Annalen der Physik, 4th series, vol. 17, pp. 132-148. Leipzig: Johann Ambrosius Barth, 1905."
+  - "<i>Public domain in France and in the United States.</i>"
+  - '<span class="mono">doi:10.1002/andp.19053220607</span>'
+year: 1905
+authors: [Albert Einstein]
+min_print: A1
+source:
+  url: https://archive.org/details/sim_annalen-der-physik_1905_17_1
+  retrieved: 2026-09-27
+  edition: >-
+    Scan of Annalen der Physik, 4th series, vol. 17 (Leipzig: Johann Ambrosius Barth, 1905),
+    no. 6, pp. 132-148, on the Internet Archive (sim_annalen-der-physik_1905_17_1, leaves 143 to
+    159). No proofread transcription was found (German Wikisource lists the paper with a scan
+    link only): the text was built from the OCR of that scan and checked word by word, and every
+    formula set from reading the page images, with a second scan of the same volume
+    (annalenderphysi108unkngoog, digitized by Google) and its OCR as a cross-check, notably where
+    the first scan cuts the outer edge of the pages or its OCR lost lines (pp. 137, 138, 141,
+    144, 148). The title and "von A. Einstein." are in the header; the byline restates in
+    English the closing lines "Bern, den 17. März 1905." and "(Eingegangen 18. März 1905.)",
+    which are also kept at the end of the text. The article number "6." before the title, the
+    running heads, page numbers and the signature line "Annalen der Physik. IV. Folge. 17." of
+    p. 145 are left out, and hyphens at line ends are rejoined. The footnotes, numbered 1) on
+    each page of the print, are numbered 1 to 13 and follow the text; the formulas of footnote
+    2 of p. 135 and footnote 1 of p. 142 are set on their own lines within the notes. Names set
+    letter-spaced in the print are letter-spaced; the two numbered cases of p. 145 are set as
+    paragraphs. Spelling, punctuation and wording of the print are kept, for instance
+    "eingeschlossenen Raumes" (p. 133), the sentence "daß durch adiabatische Kompression ...
+    nicht geändert wird" (p. 138), "Größen A bez. x" in footnote 2 of p. 135, "nachdem"
+    (p. 142), "Bezeichnung" (p. 144), and "Pi . 10^7 = 4,3 Volt" after "Pi . 10^-8" (p. 146).
+    The superscript of nu^3
+    in the formulas of pp. 136 and 139 is read as 3: its glyph matches the 3 of L^3 on the same
+    pages in both scans. In the print the Latin v of the volume and the Greek nu of the
+    frequency look almost alike; they are set as v and nu where the text defines them. The
+    equations are set with KaTeX.
+license:
+  text: "Public domain"
+  holder: "Albert Einstein, 1905"
+  basis: >-
+    Albert Einstein died on 18 April 1955: his works are in the public domain in France since
+    1 January 2026 (70 years counted from 1 January 1956). The paper was published in 1905,
+    before 1 January 1931, so it is in the public domain in the United States.
+  note: >-
+    The Internet Archive scans used (sim_annalen-der-physik_1905_17_1, and
+    annalenderphysi108unkngoog, marked "NOT_IN_COPYRIGHT") are of the 1905 print; no image of
+    them is reproduced.
