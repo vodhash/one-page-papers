@@ -1,0 +1,58 @@
+title: "The Genesis Block"
+summary: "The 285 bytes of the first Bitcoin block, in hexadecimal, with every field of its header and coinbase transaction labelled."
+title_html: "The Genesis Block<br><em>Bitcoin block 0, byte by byte</em>"
+title_size: 96pt
+kicker: "Block 0 · 3 January 2009, 18:15:05 UTC · 285 bytes · one transaction"
+author: "From the code of Satoshi Nakamoto and the Bitcoin Core developers"
+byline: "An annotated layout of the raw block, rebuilt from the source code of Bitcoin Core"
+emblem: "0"
+header_scale: 1.3
+columns: 3
+footer:
+  - "Bytes from <span class=\"mono\">src/kernel/chainparams.cpp</span> of Bitcoin Core: Copyright (c) 2010 Satoshi Nakamoto, Copyright (c) 2009-present The Bitcoin Core developers, distributed under the MIT software license. Layout: MIT."
+  - "<i>“The Times 03/Jan/2009 Chancellor on brink of second bailout for banks”</i>"
+  - '<span class="mono">000000000019d6689c085ae165831e934ff763ae46a2a6c172b3f1b60a8ce26f</span>'
+year: 2009
+authors: [Satoshi Nakamoto]
+min_print: A2
+source:
+  url: https://github.com/bitcoin/bitcoin/blob/ed7dd7cf4e1561a97edf72eba29a67b14e28c717/src/kernel/chainparams.cpp
+  retrieved: 2026-09-27
+  edition: >-
+    An original layout for this project. The bytes come from CreateGenesisBlock in
+    src/kernel/chainparams.cpp of Bitcoin Core at commit ed7dd7c of 25 September 2026 (SHA-256 of
+    the file cfadf1478377c32625280520655b598674e6d487f08d7f7a80ac69252104b5e1): the arguments of
+    the main network (time 1231006505, nonce 2083236893, bits 0x1d00ffff, version 1, reward
+    50 * COIN), the timestamp text pszTimestamp, the output public key, and the construction of
+    the coinbase script (486604799, then CScriptNum(4), then the text); COIN is 100,000,000
+    (src/consensus/amount.h at the same commit). A script serialized the block from these values
+    (285 bytes); its merkle root and block hash equal the two values that chainparams.cpp asserts,
+    and its coinbase script equals the one in the comment above the function. The 285 bytes are
+    identical to the raw block served on 27 September 2026 by
+    https://blockstream.info/api/block/000000000019d6689c085ae165831e934ff763ae46a2a6c172b3f1b60a8ce26f/raw
+    and by https://mempool.space/api/block/000000000019d6689c085ae165831e934ff763ae46a2a6c172b3f1b60a8ce26f/raw
+    (SHA-256 of the bytes 5299fac924b5a2fc19a88876a0042c19ac4d11fe69c3f66e47516e26185f9e99), and
+    the first 80 to the header served by blockstream.info. Every decoded value on the poster (date
+    in UTC, target, hashes, amounts) is computed from the bytes by the same script; the
+    difficulty follows GetDifficulty in src/rpc/blockchain.cpp at the same commit. The quotations
+    of the source (the timestamp text and the remark that the output "cannot be spent since it
+    did not originally exist in the database") are copied from the file. The explanations are
+    written for the poster.
+license:
+  text: "MIT (compilation); data: Bitcoin Core (MIT)"
+  holder: "one-page-papers (layout); Satoshi Nakamoto and The Bitcoin Core developers (chainparams.cpp)"
+  notice: >-
+    chainparams.cpp: "Copyright (c) 2010 Satoshi Nakamoto / Copyright (c) 2009-present The Bitcoin
+    Core developers / Distributed under the MIT software license, see the accompanying file COPYING
+    or http://www.opensource.org/licenses/mit-license.php." COPYING: "Permission is hereby granted,
+    free of charge, to any person obtaining a copy of this software and associated documentation
+    files (the "Software"), to deal in the Software without restriction [...] subject to the
+    following conditions: The above copyright notice and this permission notice shall be included
+    in all copies or substantial portions of the Software."
+  note: >-
+    The layout, the labels and the explanations are an original work under the MIT license of this
+    repository. The bytes are the values of CreateGenesisBlock in Bitcoin Core
+    (https://github.com/bitcoin/bitcoin/blob/master/src/kernel/chainparams.cpp, MIT, COPYING at
+    https://github.com/bitcoin/bitcoin/blob/master/COPYING), whose copyright lines the footer
+    carries; the same bytes are public data of the Bitcoin block chain, served by any node and
+    block explorer. The newspaper headline in the coinbase is quoted as it appears in the block.
