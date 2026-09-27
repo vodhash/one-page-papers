@@ -1,0 +1,6 @@
+/* Claim numbers, set as in the patent at the head of each claim */
+.claim{font-weight:500}
+/* The elements of a claim, indented under it as in the patent */
+p.el{margin-left:1.2em;text-indent:-.6em}
+/* "I claim:" opens the claims */
+p.claims-intro{margin-top:.6em}
