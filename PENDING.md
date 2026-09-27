@@ -24,3 +24,10 @@ missing. The catalog of the README lists them under *Coming soon*.
 - Source: http://www.weidai.com/bmoney.txt
 - Status: permission requested (2026-09-27)
 - Missing: a license or a written permission from Wei Dai that allows its redistribution.
+
+## Bit Gold (Nick Szabo, 2005)
+
+- Category: crypto
+- Source: https://unenumerated.blogspot.com/2005/12/bit-gold.html (its address dates it December 2005, the page itself 27 December 2008)
+- Status: permission requested (2026-09-27)
+- Missing: a license or a written permission from Nick Szabo that allows its redistribution.
