@@ -1,0 +1,74 @@
+title: "Исследование мировых пространств реактивными приборами"
+summary: "Tsiolkovsky derives the speed of a rocket in empty space from the mass of its propellant: the rocket equation."
+title_html: 'Исследование мировых пространств<span class="tsub">реактивными приборами</span>'
+title_size: 92pt
+kicker: "Excerpt · 1926 edition of the 1903 paper"
+author: "Konstantin Tsiolkovsky"
+byline: "Kaluga, 1926, pages 36 to 43: the motion of the rocket in empty space, free from gravity"
+emblem: "Ц"
+header_scale: 1.6
+columns: 3
+lang: ru
+footer:
+  - "Text: К. Циолковский, <i>Исследование мировых пространств реактивными приборами (переиздание работ 1903 и 1911 г. с некоторыми изменениями и дополнениями)</i>, Калуга, 1-я Гостипография ГСНХ, 1926, pp. 36-43. Scan: Belinsky Library, Yekaterinburg."
+  - "<i>First printed in Научное обозрение, 1903, No. 5; the text here is the author's revised text of 1926, in its spelling.</i>"
+  - '<span class="mono">elib.uraic.ru/handle/123456789/66176</span>'
+year: 1926
+authors: [Konstantin Tsiolkovsky]
+min_print: A3
+source:
+  url: https://elib.uraic.ru/handle/123456789/66176
+  retrieved: 2026-09-27
+  edition: >-
+    The 1903 printing of the paper (Научное обозрение, St. Petersburg, 1903, No. 5, pp. 45-75)
+    could not be found as a scan: it is not on Wikimedia Commons, Russian Wikisource, the
+    Internet Archive or Google Books, the Presidential Library and the Belinsky Library offer
+    only the 1926 edition online, and the National Electronic Library and the Russian State
+    Library could not be reached on 27 September 2026. This poster therefore gives Tsiolkovsky's own revised text of 1926,
+    in the orthography of 1926: К. Циолковский, Исследование мировых пространств реактивными
+    приборами (переиздание работ 1903 и 1911 г. с некоторыми изменениями и дополнениями),
+    Kaluga, 1-я Гостипография ГСНХ, 1926, 127 pages, no title page, from the scan of the copy of
+    the Belinsky Library, Yekaterinburg (file 0058711.pdf of the record
+    https://elib.uraic.ru/handle/123456789/66176, 134 pages, with an ABBYY FineReader text
+    layer, 2023; the record states "Свободный доступ"). Another copy of the same edition is
+    on the Internet Archive (https://archive.org/details/issledovaniemirovyhprostranstvreaktivnym67,
+    from the Omsk regional library); it was not used. Excerpt: the whole section "Движение
+    ракеты от взрывания в пустоте и в среде свободной от тяжести", printed pages 36 (last
+    paragraph) to 43 (PDF pages 38 to 45), up to the next section, "Движение ракеты в среде
+    тяжести, в пустоте", with formulas 32 to 46 and Table 6. The prose was taken from the text
+    layer, which had already rejoined the words hyphenated at line ends, and checked word by
+    word against the page images; the text layer was corrected where it misread the variables
+    and the words next to formulas ("(Ие)" for "(Le)", "О" for "0", "(39і)", "Мр=Мр^Мо",
+    "(аМо : dBp)", "наименьМо, тему" for "наименьшему", and similar), and the formulas were
+    set in KaTeX from the page images, with their numbers and the words printed on their lines
+    ("Отсюда", "Следовательно:", "В таком случае", "Из 34 найдем:", "Из (39₁) найдем:", "В
+    первом случае", "а во втором", "или, точнее:", "(x) близко к 4"). The formulas keep the
+    printed notation: Cyrillic names of the quantities (Ско, Скр, Мо, Мр, Вр, То, Ро, Рр, Ур,
+    Пост), Le for the natural logarithm, a point for multiplication, the numbering 38.. and
+    39₇.. with two points, and the printed signs, including "Ско+То" in the denominators of
+    39₆ to 39₈, "Мо₁ . Мр₁" in 45 and "Ско₁" in 42, which may be misprints. The subscript 1 of
+    the quantities is set as a subscript in the prose too. The line "или, на основании 38₉ :",
+    set on the line of formula 43, is set as a paragraph before it; "где (То) есть постоянная
+    относительная тяжесть. Отсюда:", printed on the line of formula 39₁, after it. Table 6,
+    printed on page 42 within the paragraph that ends on page 43, follows that paragraph; its
+    headings, 27 rows and the note of its fifth column ("На деле поднятие выше, ибо тяжесть
+    ослабляется.", printed vertically) were transcribed from the page image and checked
+    against the text layer. The run-in section title and the word "постоянной" are bold, as
+    printed. The "x" of the last formula and of "(x)" in the prose is set as a Latin x, as in
+    formula 44. Page numbers and running heads are dropped.
+license:
+  text: "Public domain"
+  holder: "Konstantin Tsiolkovsky, 1926"
+  basis: >-
+    Konstantin Tsiolkovsky died on 19 September 1935, before 1956: his works are in the public
+    domain in France since 1 January 2006 (70 years after his death, article L. 123-1 of the Code
+    de la propriété intellectuelle); the wartime extensions of articles L. 123-8 and L. 123-9,
+    added to the former term of 50 years, end before that date and do not extend it. The 1926
+    edition was published in the USSR in 1926: works published in 1926 entered the public domain
+    in the United States on 1 January 2022, at the end of their 95-year term. The edition has
+    no title page and no editorial matter by anyone else in the pages reproduced.
+  note: >-
+    The Belinsky Library marks the record "Свободный доступ" (open access); its site carries the
+    general line "Все ресурсы в архиве электронных ресурсов защищены авторским правом, все права
+    сохранены", which cannot cover the text of a work in the public domain. The poster reproduces
+    the text, not the page images.

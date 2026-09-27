@@ -10,7 +10,7 @@ Each paper is laid out in full on one page: every section, equation, code listin
 
 <!-- catalog:start -->
 
-62 posters in 12 categories. Each one comes in 4 themes, shown here with *Bitcoin: A Peer-to-Peer Electronic Cash System*, and in 3 formats (see [Download](#download)).
+63 posters in 12 categories. Each one comes in 4 themes, shown here with *Bitcoin: A Peer-to-Peer Electronic Cash System*, and in 3 formats (see [Download](#download)).
 
 | ivory | white | genesis | blueprint |
 |:-:|:-:|:-:|:-:|
@@ -85,6 +85,7 @@ A click on a poster opens its PDF in the A format and in its first theme, and th
 
 | &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; | Paper | Authors | Year | Print from | License |
 |---|---|---|---|---|---|
+| <a href="dist/space/tsiolkovsky-rocket-equation-A-ivory.pdf"><img src="docs/space/tsiolkovsky-rocket-equation.png" width="90" alt=""></a> | [Исследование мировых пространств реактивными приборами](dist/space/tsiolkovsky-rocket-equation-A-ivory.pdf)<br>Tsiolkovsky derives the speed of a rocket in empty space from the mass of its propellant: the rocket equation.<br>[ivory](dist/space/tsiolkovsky-rocket-equation-A-ivory.pdf)&nbsp;·&nbsp;[white](dist/space/tsiolkovsky-rocket-equation-A-white.pdf)&nbsp;·&nbsp;[genesis](dist/space/tsiolkovsky-rocket-equation-A-genesis.pdf)&nbsp;·&nbsp;[blueprint](dist/space/tsiolkovsky-rocket-equation-A-blueprint.pdf) | Konstantin Tsiolkovsky | 1926 | A3 | Public domain |
 | <a href="dist/space/apollo-11-landing-A-ivory.pdf"><img src="docs/space/apollo-11-landing.png" width="90" alt=""></a> | [Apollo 11 Technical Air-to-Ground Voice Transcription: the landing](dist/space/apollo-11-landing-A-ivory.pdf)<br>NASA's transcript of the radio exchanges between Houston and Eagle from powered descent to the landing on the Moon.<br>[ivory](dist/space/apollo-11-landing-A-ivory.pdf)&nbsp;·&nbsp;[white](dist/space/apollo-11-landing-A-white.pdf)&nbsp;·&nbsp;[genesis](dist/space/apollo-11-landing-A-genesis.pdf)&nbsp;·&nbsp;[blueprint](dist/space/apollo-11-landing-A-blueprint.pdf) | NASA Manned Spacecraft Center | 1969 | A3 | Public domain (U.S. Government work) |
 | <a href="dist/space/voyager-golden-record-A-ivory.pdf"><img src="docs/space/voyager-golden-record.png" width="90" alt=""></a> | [The Voyager Golden Record: the cover](dist/space/voyager-golden-record-A-ivory.pdf)<br>The engraved cover of the record carried by Voyager 1 and 2, with a notice on each of its diagrams.<br>[ivory](dist/space/voyager-golden-record-A-ivory.pdf)&nbsp;·&nbsp;[white](dist/space/voyager-golden-record-A-white.pdf)&nbsp;·&nbsp;[genesis](dist/space/voyager-golden-record-A-genesis.pdf)&nbsp;·&nbsp;[blueprint](dist/space/voyager-golden-record-A-blueprint.pdf) | NASA, Jet Propulsion Laboratory | 1977 | A3 | Public domain (U.S. Government work); notice: MIT |
 

@@ -1,0 +1,15 @@
+/* The second line of the title, in italic, smaller, as in the Mendeleev poster */
+h1 .tsub{display:block;font-size:.5em;font-style:italic;font-weight:400;margin-top:.25em}
+/* Cyrillic names of quantities inside formulas are set in the body font, which has Cyrillic */
+.katex .text{font-family:'EB Garamond',serif}
+/* Table 6, as printed: five columns, the note of the fifth set vertically */
+.t6{margin:.6em 0 .9em;break-inside:avoid}
+.t6 .cap{text-align:right;margin:0 0 .2em}
+.t6 table{width:100%;border-collapse:collapse;font-size:.74em;line-height:1.2;font-variant-numeric:tabular-nums}
+.t6 thead th{font-weight:400;text-align:center;font-size:.82em;padding:.2em .25em .35em;border-top:.14em solid var(--ink);
+ border-bottom:.08em double var(--ink);border-bottom:.25em double var(--ink);vertical-align:bottom;hyphens:manual}
+.t6 td{text-align:center;padding:.05em .25em;border-bottom:.04em solid var(--rule)}
+.t6 th+th,.t6 td+td{border-left:.04em solid var(--rule)}
+.t6 td.note{vertical-align:middle;padding:.3em 0;border-bottom:none}
+.t6 td.note span{writing-mode:vertical-rl;transform:rotate(180deg);display:inline-block;font-size:.95em}
+.t6 .inf{font-family:KaTeX_Main,serif}
