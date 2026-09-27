@@ -1,0 +1,64 @@
+title: "Herman Hollerith: Art of Compiling Statistics, US Patent 395,782"
+summary: "Hollerith's patent for recording census data as holes in paper and counting them by electric circuits."
+title_html: "Art of Compiling Statistics"
+title_size: 104pt
+kicker: "United States Patent Office · Letters Patent No. 395,782"
+author: "Herman Hollerith, of New York, N. Y."
+byline: "Specification forming part of Letters Patent No. 395,782, dated January 8, 1889 · Original application filed September 23, 1884"
+emblem: "H"
+header_scale: 1.5
+layout: hero
+hero_height: 36
+columns: 3
+footer:
+  - "United States Patent 395,782, Herman Hollerith, Art of Compiling Statistics: three sheets of drawings and specification, from the scan of the printed patent."
+  - "<i>The spelling and punctuation are those of the printed patent. Text and drawings in the public domain.</i>"
+  - "<span class=\"mono\">patents.google.com/patent/US395782A</span>"
+year: 1889
+authors: [Herman Hollerith]
+lang: en
+min_print: A1
+source:
+  url: https://patents.google.com/patent/US395782A/en
+  retrieved: 2026-09-27
+  edition: >-
+    Scan of the printed patent linked from Google Patents
+    (https://patentimages.storage.googleapis.com/92/a9/6b/f6aa3e4e27a35b/US395782.pdf, 1-bit, 300 dpi,
+    seven pages). Its first three pages, the sheets of drawings, are set side by side in the image at
+    the top, each cropped to the drawing, its heading and its signatures (the scanner's borders and the
+    lithographer's imprint at the foot are left out) and kept in black and white. The specification
+    (pages 1 to 4) is transcribed in full, word for word from the scan: an OCR made for this poster
+    (RapidOCR) served as a base, every line was read against the page images, and the text was then
+    compared by script with the OCR of Google Patents, each disagreement being settled on the scan (that
+    OCR lacks several passages, which were read on the scan alone). The printed heading ("UNITED STATES
+    PATENT OFFICE." / "HERMAN HOLLERITH, OF NEW YORK, N. Y." / "ART OF COMPILING STATISTICS." /
+    "SPECIFICATION forming part of Letters Patent No. 395,782, dated January 8, 1889." / "Original
+    application filed September 23, 1884, Serial No. 143,805. Divided and this application filed
+    October 27, 1885. Renewed January 4, 1887. Again renewed September 8, 1888. Serial No. 284,938.
+    (No model.)") is set in the header of the poster, the byline keeping its first two dates. Normalizations:
+    words divided at line ends are rejoined without their hyphen, except in compounds divided at their
+    own hyphen (circuit-connections, guide-plate, twenty-five, well-known, electro-magnet,
+    electro-magnets, counting-machine, non-conducting, record-strip, index-points); the running heads,
+    page numbers and the line numbers of the margins are dropped; the spacing of tightly set lines is
+    normalized (as in "(0-3) years", "C F 3, thereby") and "cuit - controlling", set with spaces around
+    its hyphen at a line end, is "circuit-controlling"; the reference letters set in italics in the
+    print are in italics, and their primes are prime signs; the superior figure of M² is a superscript.
+    Broken letters are read as "desire" and "No." (in "Serial No. 284,939"), and a period followed by a
+    speck as "Fig. 10." The spelling and wording of the print are kept, including "templet", "&c.", the
+    sentence that begins "The count items recorded by combinations" (where "To" seems meant), "both
+    holes being the same set", "wire marked 10", "Serial No. 284,939" (the heading has 284,938) and the
+    colon after "sponding pointers". Small capitals are kept for the inventor's name in the preamble and
+    for the witnesses. The caption of the drawings is not a period text: it was written for this poster
+    from the specification.
+license:
+  text: "Public domain"
+  holder: "Herman Hollerith, 1889"
+  basis: >-
+    US Patent 395,782 was granted to Herman Hollerith on 8 January 1889 and printed by the United
+    States Patent Office. In the United States, it was published before 1931, and patents are
+    publications of the federal government. In France, its author died on 17 November 1929, before
+    1 January 1956 (Wikidata Q192145), so the term of protection has expired.
+  note: >-
+    The USPTO states: "Subject to limited exceptions reflected in 37 CFR 1.71(d) & (e) and 1.84(s),
+    the text and drawings of a patent are typically not subject to copyright restrictions."
+    (https://www.uspto.gov/terms-use-uspto-websites, section "Patent information", retrieved 2026-09-27.)
