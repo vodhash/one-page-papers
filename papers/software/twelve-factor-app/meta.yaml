@@ -1,0 +1,59 @@
+title: "The Twelve-Factor App"
+summary: "A methodology of twelve factors for building software-as-a-service apps, drawn from experience with hundreds of apps on Heroku."
+title_html: "The Twelve-Factor <em>App</em>"
+title_size: 104pt
+kicker: "Heroku · 2011"
+author: "Adam Wiggins"
+byline: "Last updated 2017 · 12factor.net"
+emblem: "12"
+header_scale: 1.4
+columns: 4
+footer:
+  - "Copyright (c) 2012 Adam Wiggins · Released under the MIT License"
+  - "Written by Adam Wiggins • Last updated 2017"
+  - '<span class="mono">12factor.net</span>'
+year: 2011
+authors: [Adam Wiggins]
+min_print: A1
+source:
+  url: https://12factor.net/
+  retrieved: 2026-09-27
+  edition: >-
+    The English pages of 12factor.net, whose footer reads "Written by Adam Wiggins • Last
+    updated 2017", rendered from content/en of github.com/heroku/12factor (commit 1385d2c): the
+    home page (Introduction, Background, Who should read this document? and the heading The
+    Twelve Factors), then the twelve factor pages in order. The list of the twelve factors on the
+    home page repeats the titles and summaries that head the factor pages, so they are set once,
+    as the headings of the factors. Links are set as plain text. The four diagrams of the pages
+    (public/images of the repository) are redrawn as vector graphics with their labels; their
+    alternative texts, which the pages do not display, are left out. The MIT notice of the
+    repository is printed at the end of the text.
+license:
+  text: "MIT"
+  holder: "Adam Wiggins, 2012"
+  notice: >-
+    Copyright (c) 2012 Adam Wiggins
+
+    Permission is hereby granted, free of charge, to any person obtaining a copy of this software
+    and associated documentation files (the "Software"), to deal in the Software without
+    restriction, including without limitation the rights to use, copy, modify, merge, publish,
+    distribute, sublicense, and/or sell copies of the Software, and to permit persons to whom the
+    Software is furnished to do so, subject to the following conditions:
+
+    The above copyright notice and this permission notice shall be included in all copies or
+    substantial portions of the Software.
+
+    THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR IMPLIED, INCLUDING
+    BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY, FITNESS FOR A PARTICULAR PURPOSE AND
+    NONINFRINGEMENT. IN NO EVENT SHALL THE AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM,
+    DAMAGES OR OTHER LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
+    OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
+  note: >-
+    LICENSE file of https://github.com/heroku/12factor, the repository that 12factor.net links as
+    its source code, whose Readme says "Released under the MIT License"; the copyright notice and
+    the permission notice are printed at the end of the text of the poster. The same text and
+    diagrams are also published under CC BY 4.0 in the main branch of
+    https://github.com/twelve-factor/twelve-factor, the open-source successor announced on
+    12factor.net. The four diagrams are codebase-deploys.png, attached-resources.png,
+    release.png and process-types.png in https://github.com/heroku/12factor/tree/main/public/images,
+    under the same MIT license (and the same CC BY 4.0 in the successor): the poster redraws them.

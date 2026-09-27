@@ -1,0 +1,16 @@
+/* Each factor: its number and title, then its summary in italics (the regular italic, which is bundled) */
+h2,h3,h4{text-align:left}
+h3{font-size:1.3em;margin:1.2em 0 .15em}
+h4{font-weight:400;font-size:1.05em;margin:0 0 .45em}
+/* The two tables of X. Dev/prod parity */
+table.tf{border-collapse:collapse;width:100%;font-size:.84em;line-height:1.25;margin:.3em 0 .9em;
+ break-inside:avoid;text-align:left;hyphens:manual}
+table.tf th,table.tf td{border-bottom:.2mm solid var(--rule);padding:.25em .35em .25em 0;vertical-align:top}
+table.tf th{font-weight:600}
+/* The MIT notice of the repository, at the end of the text */
+.license{font-size:.7em;line-height:1.3;border-top:.2mm solid var(--rule);margin-top:1.4em;padding-top:.6em;
+ color:var(--mute);text-align:left;hyphens:auto}
+.license p{margin:0 0 .45em}
+/* Figure labels: titles in semibold, the URLs of attached-resources.png in the monospaced font */
+svg text.h{font-weight:600}
+svg text.m{font-family:'JetBrains Mono',monospace}

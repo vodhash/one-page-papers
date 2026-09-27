@@ -8,7 +8,7 @@ Each paper is laid out in full on one page: every section, equation, code listin
 
 <!-- catalog:start -->
 
-20 posters in 6 categories. Each one comes in 4 themes, shown here with *Bitcoin: A Peer-to-Peer Electronic Cash System*, and in 3 formats (see [Download](#download)).
+21 posters in 6 categories. Each one comes in 4 themes, shown here with *Bitcoin: A Peer-to-Peer Electronic Cash System*, and in 3 formats (see [Download](#download)).
 
 | ivory | white | genesis | blueprint |
 |:-:|:-:|:-:|:-:|
@@ -48,6 +48,7 @@ A click on a poster opens its PDF in the A format and in its first theme, and th
 | <a href="dist/software/gnu-manifesto-A-ivory.pdf"><img src="docs/software/gnu-manifesto.png" width="90" alt=""></a> | [The GNU Manifesto](dist/software/gnu-manifesto-A-ivory.pdf)<br>Richard Stallman's 1985 call for support to write GNU, a complete Unix-compatible system that everyone may share and change.<br>[ivory](dist/software/gnu-manifesto-A-ivory.pdf)&nbsp;·&nbsp;[white](dist/software/gnu-manifesto-A-white.pdf)&nbsp;·&nbsp;[genesis](dist/software/gnu-manifesto-A-genesis.pdf)&nbsp;·&nbsp;[blueprint](dist/software/gnu-manifesto-A-blueprint.pdf) | Richard Stallman | 1985 | A2 | © FSF, verbatim copies allowed |
 | <a href="dist/software/agile-manifesto-A-ivory.pdf"><img src="docs/software/agile-manifesto.png" width="90" alt=""></a> | [Manifesto for Agile Software Development](dist/software/agile-manifesto-A-ivory.pdf)<br>Four values for developing software, stated in 2001 by seventeen people who met at Snowbird, Utah.<br>[ivory](dist/software/agile-manifesto-A-ivory.pdf)&nbsp;·&nbsp;[white](dist/software/agile-manifesto-A-white.pdf)&nbsp;·&nbsp;[genesis](dist/software/agile-manifesto-A-genesis.pdf)&nbsp;·&nbsp;[blueprint](dist/software/agile-manifesto-A-blueprint.pdf) | Kent Beck, Mike Beedle, Arie van Bennekum, Alistair Cockburn, Ward Cunningham, Martin Fowler, James Grenning, Jim Highsmith, Andrew Hunt, Ron Jeffries, Jon Kern, Brian Marick, Robert C. Martin, Steve Mellor, Ken Schwaber, Jeff Sutherland, Dave Thomas | 2001 | A3 | © 2001 the authors, copies in entirety |
 | <a href="dist/software/zen-of-python-A-ivory.pdf"><img src="docs/software/zen-of-python.png" width="90" alt=""></a> | [PEP 20: The Zen of Python](dist/software/zen-of-python-A-ivory.pdf)<br>Nineteen aphorisms by Tim Peters on the principles behind the design of the Python language.<br>[ivory](dist/software/zen-of-python-A-ivory.pdf)&nbsp;·&nbsp;[white](dist/software/zen-of-python-A-white.pdf)&nbsp;·&nbsp;[genesis](dist/software/zen-of-python-A-genesis.pdf)&nbsp;·&nbsp;[blueprint](dist/software/zen-of-python-A-blueprint.pdf) | Tim Peters | 2004 | A3 | Public domain |
+| <a href="dist/software/twelve-factor-app-A-ivory.pdf"><img src="docs/software/twelve-factor-app.png" width="90" alt=""></a> | [The Twelve-Factor App](dist/software/twelve-factor-app-A-ivory.pdf)<br>A methodology of twelve factors for building software-as-a-service apps, drawn from experience with hundreds of apps on Heroku.<br>[ivory](dist/software/twelve-factor-app-A-ivory.pdf)&nbsp;·&nbsp;[white](dist/software/twelve-factor-app-A-white.pdf)&nbsp;·&nbsp;[genesis](dist/software/twelve-factor-app-A-genesis.pdf)&nbsp;·&nbsp;[blueprint](dist/software/twelve-factor-app-A-blueprint.pdf) | Adam Wiggins | 2011 | A1 | MIT |
 
 ### Historical data visualization
 
