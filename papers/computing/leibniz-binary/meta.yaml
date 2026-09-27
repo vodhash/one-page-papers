@@ -1,0 +1,56 @@
+title: "Leibniz: Explication de l'arithmétique binaire"
+summary: "Leibniz's 1703 memoir presenting base-two arithmetic with 0 and 1, its tables, and the Fohy trigrams."
+title_html: "Explication<br>de l’Arithmétique <em>Binaire</em>"
+title_size: 96pt
+kicker: "Mémoires de l’Académie Royale des Sciences · Year 1703 · Pages 85 to 89"
+author: "Par M. Leibnitz"
+byline: "Gottfried Wilhelm Leibniz · Read on 5 May 1703, as the margin of page 85 notes"
+emblem: "10"
+abstract_label: ""
+abstract: "<i>Qui se sert des seuls caracteres 0 & 1 ; avec des Remarques sur son utilité, & sur ce qu’elle donne le sens des anciennes figures Chinoises de Fohy.</i>"
+lang: fr
+header_scale: 1.5
+columns: 3
+footer:
+  - "Histoire de l’Académie Royale des Sciences, année M. DCC. III, avec les Mémoires de Mathématique &amp; de Physique, Paris: Mémoires, pages 85 to 89"
+  - "<i>Transcribed from the copy of the Natural History Museum Library, London (Internet Archive)</i>"
+  - '<span class="mono">archive.org/details/histoiredelacad03laca</span>'
+year: 1703
+authors: [Gottfried Wilhelm Leibniz]
+min_print: A3
+source:
+  url: https://archive.org/details/histoiredelacad03laca
+  retrieved: 2026-09-27
+  edition: >-
+    "Explication de l'Arithmétique Binaire", Mémoires de l'Académie Royale des Sciences, year
+    1703, pages 85 to 89, complete, from the scan of the Natural History Museum Library copy
+    (Internet Archive, 300 ppi). Text built from the OCR of that scan, the long s read as s by
+    comparison with the proofread Wikisource transcription of Gerhardt's reprint (Leibnizens
+    mathematische Schriften, vol. 7, 1863, pp. 223-227), then corrected word by word against
+    the page images (116 corrections, recorded in the working scripts). The 1703 spelling,
+    accents and ampersands are kept, including "zero", "caracteres", "piéces", "vuide",
+    "tems", "sçavoir", "importans" and the misprint "seize par 100000" (for 10000); the long s
+    is set as s, the ct ligature as two letters; words broken at the end of a line are
+    rejoined, the running heads, signature mark ("L iij") and catchword ("ne,") are left out,
+    the spacing of punctuation is modern French, and straight apostrophes are typographic.
+    Italics follow the print. The Table des Nombres, printed down the margin of page 86, is set
+    as a table after the paragraph that announces it, with its little zeros and its rules; the
+    two small sums of page 86 follow the paragraph they illustrate; the examples of operations
+    of page 86 are set as tables, the crossed-out digits of the division as struck 1s, and the
+    signs that label the addition and the multiplication (a crescent and a circled dot) are
+    drawn; the figure of the eight Cova of page 88 is redrawn in vector form with its digits,
+    binary numbers and decimal numbers; the solid and broken lines of page 88 are drawn. The
+    marginal note "1703. 5. Mai." is given in the byline.
+license:
+  text: "Public domain"
+  basis: >-
+    Gottfried Wilhelm Leibniz died in 1716 and the memoir was printed in the Mémoires of the
+    Académie Royale des Sciences for the year 1703, in the early eighteenth century: public
+    domain in France (author died more than 70 years ago) and in the United States (published
+    before 1931). The poster is a new transcription and redraws the tables and the figure; it
+    reproduces no image of the scan.
+  note: >-
+    The scan used for the transcription is archive.org/details/histoiredelacad03laca
+    (Biodiversity Heritage Library, NHM London); its metadata gives
+    http://creativecommons.org/licenses/by-nc/3.0/ for the digitization, which the poster does
+    not reproduce.

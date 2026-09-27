@@ -10,7 +10,7 @@ Each paper is laid out in full on one page: every section, equation, code listin
 
 <!-- catalog:start -->
 
-67 posters in 13 categories. Each one comes in 4 themes, shown here with *Bitcoin: A Peer-to-Peer Electronic Cash System*, and in 3 formats (see [Download](#download)).
+68 posters in 13 categories. Each one comes in 4 themes, shown here with *Bitcoin: A Peer-to-Peer Electronic Cash System*, and in 3 formats (see [Download](#download)).
 
 | ivory | white | genesis | blueprint |
 |:-:|:-:|:-:|:-:|
@@ -37,6 +37,7 @@ A click on a poster opens its PDF in the A format and in its first theme, and th
 
 | &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; | Paper | Authors | Year | Print from | License |
 |---|---|---|---|---|---|
+| <a href="dist/computing/leibniz-binary-A-ivory.pdf"><img src="docs/computing/leibniz-binary.png" width="90" alt=""></a> | [Leibniz: Explication de l'arithmétique binaire](dist/computing/leibniz-binary-A-ivory.pdf)<br>Leibniz's 1703 memoir presenting base-two arithmetic with 0 and 1, its tables, and the Fohy trigrams.<br>[ivory](dist/computing/leibniz-binary-A-ivory.pdf)&nbsp;·&nbsp;[white](dist/computing/leibniz-binary-A-white.pdf)&nbsp;·&nbsp;[genesis](dist/computing/leibniz-binary-A-genesis.pdf)&nbsp;·&nbsp;[blueprint](dist/computing/leibniz-binary-A-blueprint.pdf) | Gottfried Wilhelm Leibniz | 1703 | A3 | Public domain |
 | <a href="dist/computing/lovelace-note-g-A-ivory.pdf"><img src="docs/computing/lovelace-note-g.png" width="90" alt=""></a> | [Sketch of the Analytical Engine: Note G](dist/computing/lovelace-note-g-A-ivory.pdf)<br>Lovelace's last note on the Analytical Engine: its limits, and how it would compute the Bernoulli numbers.<br>[ivory](dist/computing/lovelace-note-g-A-ivory.pdf)&nbsp;·&nbsp;[white](dist/computing/lovelace-note-g-A-white.pdf)&nbsp;·&nbsp;[genesis](dist/computing/lovelace-note-g-A-genesis.pdf)&nbsp;·&nbsp;[blueprint](dist/computing/lovelace-note-g-A-blueprint.pdf) | Ada Lovelace | 1843 | A1 | Public domain |
 
 ### Internet & networking

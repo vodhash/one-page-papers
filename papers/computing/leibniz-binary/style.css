@@ -1,0 +1,40 @@
+/* The Table des Nombres: the little zeros that fill the columns are smaller and lighter, and a
+   rule closes each period, as in the margin of page 86 */
+.tdn{break-inside:avoid;margin:.2em auto 1em;width:fit-content}
+.tdn .cap{text-align:center;font-variant:small-caps;letter-spacing:.06em;margin:0 0 .3em}
+table.nombres{border-collapse:collapse;margin:0 auto;font-variant-numeric:lining-nums tabular-nums}
+table.nombres td{padding:0 .5em;line-height:1.18}
+table.nombres td.b{text-align:right;border-right:.3mm solid var(--rule);letter-spacing:.08em}
+table.nombres td+td{text-align:left;border-right:.3mm solid var(--rule)}
+table.nombres td.b i{font-style:normal;font-size:.62em;color:var(--mute);letter-spacing:.2em}
+table.nombres tr.end td{border-bottom:.3mm solid var(--ink)}
+/* the two small sums of page 86 */
+.sums{display:flex;gap:2.4em;justify-content:center;margin:.1em 0 1em;break-inside:avoid}
+table.sum{border-collapse:collapse;font-variant-numeric:lining-nums}
+table.sum td{padding:0 .35em;text-align:right;line-height:1.2}
+table.sum td:first-child{border-right:.3mm solid var(--ink)}
+table.sum tr.tot td{border-top:.3mm solid var(--ink)}
+/* the examples of operations */
+.opsbox{break-inside:avoid;margin:.4em 0 1em}
+table.ops{border-collapse:collapse;width:100%;font-variant-numeric:lining-nums}
+table.ops th{font-weight:400;text-align:left;vertical-align:middle;width:26%;padding:.4em .3em .4em 0;line-height:1.2;hyphens:manual}
+table.ops td{vertical-align:middle;padding:.35em .2em}
+table.ops td.sg{width:1.2em;text-align:center}
+table.op{border-collapse:collapse;margin-left:auto}
+table.op td{text-align:right;padding:0 .3em;line-height:1.15}
+table.op td:first-child{border-right:.45mm double var(--ink)}
+table.op tr.tot td{border-top:.3mm solid var(--ink)}
+table.op tr.carry td{font-size:.9em;line-height:.8;letter-spacing:.15em}
+table.op tr.sh td:first-child{padding-right:.95em}
+table.div{border-collapse:collapse}
+table.div td{padding:0 .25em;line-height:1.15;text-align:right}
+table.div td:nth-child(2){border-left:.45mm double var(--ink);text-align:left;letter-spacing:.12em}
+table.div td.brace{font-family:'KaTeX_Main';font-size:2.2em;vertical-align:middle;padding:0 .2em}
+table.div tr:first-child td:nth-child(4){border-right:.45mm double var(--ink)}
+table.div s{text-decoration-thickness:.12em}
+svg.sign{width:.9em;height:.9em;vertical-align:-.1em;fill:var(--ink);stroke:var(--ink)}
+/* the solid and the broken line of page 88 */
+.ln{display:inline-block;width:2.6em;height:0;border-top:.14em solid var(--ink);vertical-align:.3em;margin:0 .15em}
+.ln.br{border-top-style:dashed;width:2.6em}
+svg .tri{fill:var(--ink)}
+.abs b:empty{display:none}
