@@ -1,0 +1,14 @@
+/* The introduction of the page, under the header: one block per paragraph */
+.abs .p{display:block}
+.abs .p+.p{margin-top:.45em}
+/* The answers to the objections are indented under their questions, as in the list of the page */
+.dd{margin-left:1.1em}
+h3{font-size:1em}
+/* The editorial note of 'How You Can Contribute' */
+.comment{font-style:italic;color:var(--mute)}
+/* The notes follow their own heading */
+.footnotes{border-top:0;margin-top:0;padding-top:0;font-size:.9em}
+/* The emblem holds three letters */
+.rule b{font-size:calc(11pt*var(--hs));letter-spacing:.02em}
+footer>div:first-child{max-width:24%}
+footer>div:nth-child(2){max-width:52%;line-height:1.3}

@@ -1,0 +1,53 @@
+title: "The GNU Manifesto"
+summary: "Richard Stallman's 1985 call for support to write GNU, a complete Unix-compatible system that everyone may share and change."
+title_html: "The GNU <em>Manifesto</em>"
+title_size: 110pt
+kicker: "GNU Project · 1985"
+author: "Richard Stallman"
+emblem: "GNU"
+abstract: >-
+  <span class="p">The GNU Manifesto (which appears below) was written by Richard Stallman in 1985
+  to ask for support in developing the GNU operating system. Part of the text was taken from the
+  original announcement of 1983. Through 1987, it was updated in minor ways to account for
+  developments; since then, it seems best to leave it unchanged.</span><span class="p">Since that
+  time, we have learned about certain common misunderstandings that different wording could help
+  avoid. Footnotes added since 1993 help clarify these points.</span><span class="p">If you want
+  to install the GNU/Linux system, we recommend you use one of the 100% free software GNU/Linux
+  distributions. For how to contribute, see gnu.org/help.</span><span class="p">The GNU Project is
+  part of the Free Software Movement, a campaign for freedom for users of software. It is a
+  mistake to associate GNU with the term “open source”—that term was coined in 1998 by people who
+  disagree with the Free Software Movement's ethical values. They use it to promote an amoral
+  approach to the same field.</span>
+abstract_label: ""
+header_scale: 1.4
+columns: 4
+footer:
+  - "Copyright © 1985, 1993, 2004, 2005, 2007, 2009, 2010, 2015, 2021 Free Software Foundation, Inc."
+  - "Permission is granted to anyone to make or distribute verbatim copies of this document, in any medium, provided that the copyright notice and permission notice are preserved, and that the distributor grants the recipient permission for further redistribution as permitted by this notice.<br>Modified versions may not be made."
+  - '<span class="mono">gnu.org/gnu/manifesto.html</span>'
+year: 1985
+authors: [Richard Stallman]
+min_print: A2
+source:
+  url: https://www.gnu.org/gnu/manifesto.html
+  retrieved: 2026-09-27
+  edition: >-
+    The English page of gnu.org, last updated on 2 November 2021: the manifesto of 1985 with
+    the footnotes added since 1993. The introduction of the page is set under the header and
+    its title as the title of the poster; links are set as plain text; the footnote calls [1]
+    to [9] are set as superscript numbers; straight apostrophes are set as typographic ones;
+    the copyright and permission notices at the foot of the page are in the footer, word for
+    word. Nothing is left out.
+license:
+  text: "© FSF, verbatim copies allowed"
+  holder: "Free Software Foundation, Inc."
+  notice: >-
+    Permission is granted to anyone to make or distribute verbatim copies of this document, in
+    any medium, provided that the copyright notice and permission notice are preserved, and that
+    the distributor grants the recipient permission for further redistribution as permitted by
+    this notice. Modified versions may not be made.
+  note: >-
+    Stated with the copyright notice "Copyright © 1985, 1993, 2004, 2005, 2007, 2009, 2010,
+    2015, 2021 Free Software Foundation, Inc." at the foot of
+    https://www.gnu.org/gnu/manifesto.html. The poster reproduces the whole page text without
+    changes, and both notices are in its footer.

@@ -8,7 +8,7 @@ Each paper is laid out in full on one page: every section, equation, code listin
 
 <!-- catalog:start -->
 
-18 posters in 6 categories. Each one comes in 4 themes, shown here with *Bitcoin: A Peer-to-Peer Electronic Cash System*, and in 3 formats (see [Download](#download)).
+19 posters in 6 categories. Each one comes in 4 themes, shown here with *Bitcoin: A Peer-to-Peer Electronic Cash System*, and in 3 formats (see [Download](#download)).
 
 | ivory | white | genesis | blueprint |
 |:-:|:-:|:-:|:-:|
@@ -45,6 +45,7 @@ A click on a poster opens its PDF in the A format and in its first theme, and th
 
 | &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; | Paper | Authors | Year | Print from | License |
 |---|---|---|---|---|---|
+| <a href="dist/software/gnu-manifesto-A-ivory.pdf"><img src="docs/software/gnu-manifesto.png" width="90" alt=""></a> | [The GNU Manifesto](dist/software/gnu-manifesto-A-ivory.pdf)<br>Richard Stallman's 1985 call for support to write GNU, a complete Unix-compatible system that everyone may share and change.<br>[ivory](dist/software/gnu-manifesto-A-ivory.pdf)&nbsp;·&nbsp;[white](dist/software/gnu-manifesto-A-white.pdf)&nbsp;·&nbsp;[genesis](dist/software/gnu-manifesto-A-genesis.pdf)&nbsp;·&nbsp;[blueprint](dist/software/gnu-manifesto-A-blueprint.pdf) | Richard Stallman | 1985 | A2 | © FSF, verbatim copies allowed |
 | <a href="dist/software/zen-of-python-A-ivory.pdf"><img src="docs/software/zen-of-python.png" width="90" alt=""></a> | [PEP 20: The Zen of Python](dist/software/zen-of-python-A-ivory.pdf)<br>Nineteen aphorisms by Tim Peters on the principles behind the design of the Python language.<br>[ivory](dist/software/zen-of-python-A-ivory.pdf)&nbsp;·&nbsp;[white](dist/software/zen-of-python-A-white.pdf)&nbsp;·&nbsp;[genesis](dist/software/zen-of-python-A-genesis.pdf)&nbsp;·&nbsp;[blueprint](dist/software/zen-of-python-A-blueprint.pdf) | Tim Peters | 2004 | A3 | Public domain |
 
 ### Historical data visualization
