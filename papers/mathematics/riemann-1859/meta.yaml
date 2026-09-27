@@ -1,0 +1,55 @@
+title: "Ueber die Anzahl der Primzahlen unter einer gegebenen Grösse"
+summary: "Extends the zeta function to complex values, relates its zeros to the count of primes and states the Riemann hypothesis."
+title_html: "Ueber die Anzahl der Primzahlen<br><em>unter einer gegebenen Grösse</em>"
+title_size: 84pt
+kicker: "Royal Prussian Academy of Sciences, Berlin · November 1859"
+author: "Bernhard Riemann"
+byline: "Monatsberichte der Königlichen Preuss. Akademie der Wissenschaften zu Berlin, 1859, pp. 671-680"
+emblem: "ζ"
+abstract_label: "3. Nov. Gesammtsitzung der Akademie."
+abstract: >-
+  Hierauf trug Hr. <span class="sp">Kummer</span> folgende von Hrn. <span class="sp">Riemann</span>,
+  Correspondenten der Akademie, mittelst eines an den Sekretar Hrn. <span class="sp">Encke</span>
+  gerichteten Schreibens vom 19. October d. J. eingesandte Mittheilung
+  <span class="sp">„über die Anzahl der Primzahlen unter einer gegebenen Grösse”</span> vor:
+lang: de
+header_scale: 1.3
+columns: 3
+footer:
+  - "Read to the Academy by Kummer at its session of 3 November 1859, from Riemann’s letter of 19 October 1859 to the secretary Encke."
+  - "<i>Printed in the Monatsberichte for 1859, Berlin, 1860. Public domain.</i>"
+  - '<span class="mono">de.wikisource.org</span>'
+year: 1859
+authors: [Bernhard Riemann]
+min_print: A2
+source:
+  url: https://de.wikisource.org/wiki/Über_die_Anzahl_der_Primzahlen_unter_einer_gegebenen_Größe
+  retrieved: 2026-09-27
+  edition: >-
+    The paper as printed in the Monatsberichte der Königlichen Preuss. Akademie der
+    Wissenschaften zu Berlin, aus dem Jahre 1859 (Berlin, 1860), pp. 671-680. The text comes
+    from the proofread transcription of German Wikisource (raw wikitext of the pages
+    Seite:RiemannPrim1859.djvu/1 to /10), checked line by line and formula by formula against
+    two scans of that printing: Commons, File:RiemannPrim1859.djvu (from Google Books
+    j-IaAAAAYAAJ), and the Internet Archive item monatsberichted02unkngoog. The Monatsberichte
+    print no title: the title is the one of Riemann's Gesammelte mathematische Werke (1876,
+    p. 136), and the sentence of the monthly report that introduces the paper is in the header,
+    with the heading of its session; the heading of the report and the item before it (Steiner)
+    are left out. Differences from Wikisource, all back to the print: the long s of the ligature
+    "ſs" is normalized to a round s, giving "ss" where Wikisource writes "ß" (Grösse, dass,
+    lässt, Gauss); "ausdrücken" (p. 673, Wikisource "audrücken"); no colon after "in die
+    beiden folgenden" (p. 676); the two misprints of the Monatsberichte that Wikisource
+    corrects are kept as printed, "(x)ψ" for ψ(x) in the first integral of p. 673 and the
+    missing sum sign before the second-last logarithm on p. 676; the notes of Wikisource are
+    left out. Letterspaced names are letterspaced. The formulas are set with KaTeX, Gauss's
+    function Π as a letter as printed, and the line "p^-s durch ..., p^-2s durch ..." of
+    p. 675, a display line in the print that Wikisource sets as text, is set as a display. The
+    closing quotation mark of the title in the report is "”" as printed.
+license:
+  text: "Public domain"
+  holder: "Bernhard Riemann, 1859"
+  basis: >-
+    Bernhard Riemann died on 20 July 1866 (Wikidata Q42299) and the paper was published in
+    1860, in the Monatsberichte for 1859: it is in the public domain in France, where the
+    author died before 1 January 1956, and in the United States, where it was published before
+    1 January 1931. Wikimedia Commons marks the scan as public domain (PD-old-100-expired).

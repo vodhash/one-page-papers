@@ -1,0 +1,2 @@
+/* Names and the title in the report are letterspaced in the print, as was the custom */
+.sp{letter-spacing:.12em;hyphens:manual}
