@@ -1,0 +1,10 @@
+/* The decree as printed in the Bulletin des lois: the preamble, "Décrète :" centered, the
+   article numbers in bold, the date and the signatures after the articles */
+p.gov{font-variant:small-caps;letter-spacing:.06em;margin-bottom:.4em}
+p.decrete{text-align:center;font-variant:small-caps;letter-spacing:.1em;margin:.7em 0}
+p.fait{text-indent:1.2em;margin-top:.8em}
+p.qual{text-align:right;font-style:italic;margin:.5em 0 .1em;hyphens:manual}
+p.signed{text-align:right;font-variant:small-caps;letter-spacing:.03em;hyphens:manual}
+.kick{letter-spacing:.3em}
+footer>div:first-child{max-width:40%;line-height:1.3}
+p.signed .s{font-variant:normal;letter-spacing:0}

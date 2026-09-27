@@ -1,0 +1,52 @@
+title: "Décret relatif à l'abolition de l'esclavage dans les colonies et possessions françaises"
+summary: "The French Provisional Government abolishes slavery in all French colonies and possessions and forbids French citizens to own slaves."
+title_html: "Décret relatif à l’abolition de l’esclavage<br><em>dans les colonies et possessions françaises</em>"
+title_size: 64pt
+kicker: "27 April 1848"
+author: "Gouvernement provisoire de la République"
+emblem: ""
+header_scale: 1.5
+lang: fr
+columns: 2
+footer:
+  - "Decree n° 296 of the Provisional Government of the French Republic, made in council of Government in Paris on 27 April 1848."
+  - "<i>Bulletin des lois de la République française, 10th series, vol. 1, bulletin n° 32, pp. 321-323 (1848), Gallica (BnF).</i>"
+  - '<span class="mono">gallica.bnf.fr</span>'
+year: 1848
+authors: [Gouvernement provisoire de la République française]
+min_print: A3
+source:
+  url: https://gallica.bnf.fr/ark:/12148/bpt6k486121r/f339.item
+  retrieved: 2026-09-27
+  edition: >-
+    The official text as printed in the Bulletin des lois de la République française, 10th
+    series, vol. 1 (February to June 1848), bulletin n° 32, decree n° 296, pages 321 to 323
+    (views 339 to 341 of the Gallica copy, BnF). The text comes from the OCR of these pages
+    (ALTO files of Gallica), read word by word against the page images, which corrected its
+    errors (misread letters, such as "d7appliquer" and "k." for "4.", and missing commas). Kept: everything from "Le Gouvernement provisoire," to "Signé Pagnerre.",
+    with the spelling, capitals and italics of the print ("très-près", "A l'avenir",
+    "Liberté, Égalité, Fraternité;" in italics). Left out: the running heads and page numbers,
+    and the heading of the decree, "N° 296. Décret relatif à l'abolition de l'Esclavage dans
+    les Colonies et Possessions françaises. Du 27 Avril 1848.", which is printed with the
+    misprint "Escldvage": the title of the poster is the title of the decree on Légifrance
+    (JORFTEXT000000295898), and the date is in the kicker. Words divided at line ends are
+    joined; the space before the comma after "républicain" is dropped; the names that the
+    print sets in small capitals are set in small capitals, and apostrophes are typographic.
+license:
+  text: "Public domain"
+  holder: "Gouvernement provisoire de la République française, 1848"
+  basis: >-
+    A decree of the Provisional Government of the French Republic, published in the Bulletin
+    des lois in 1848: an official act of a public authority, which French copyright does not
+    protect, and a text published before 1931, hence in the public domain in the United
+    States. Its signatories all died before 1 January 1956 (the last, Louis Blanc, in 1882).
+  note: >-
+    Gallica gives the volume the rights statement "domaine public" (dc:rights of the OAI
+    record of ark:/12148/bpt6k486121r). Its conditions of use
+    (https://gallica.bnf.fr/edit/und/conditions-dutilisation-des-contenus-de-gallica): "La
+    réutilisation non commerciale de ces contenus est libre et gratuite dans le respect de la
+    législation en vigueur et notamment du maintien de la mention de source des contenus",
+    in the form "Source gallica.bnf.fr / BnF", and "La réutilisation commerciale de ces
+    contenus est payante et fait l'objet d'une licence." The poster reuses the text of the
+    decree, which is not protected, not the images of Gallica; its footer cites Gallica (BnF)
+    as the source.
