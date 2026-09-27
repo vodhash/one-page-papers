@@ -10,7 +10,7 @@ Each paper is laid out in full on one page: every section, equation, code listin
 
 <!-- catalog:start -->
 
-65 posters in 13 categories. Each one comes in 4 themes, shown here with *Bitcoin: A Peer-to-Peer Electronic Cash System*, and in 3 formats (see [Download](#download)).
+66 posters in 13 categories. Each one comes in 4 themes, shown here with *Bitcoin: A Peer-to-Peer Electronic Cash System*, and in 3 formats (see [Download](#download)).
 
 | ivory | white | genesis | blueprint |
 |:-:|:-:|:-:|:-:|
@@ -146,6 +146,7 @@ A click on a poster opens its PDF in the A format and in its first theme, and th
 | &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; | Paper | Authors | Year | Print from | License |
 |---|---|---|---|---|---|
 | <a href="dist/reference/ascii-table-A-ivory.pdf"><img src="docs/reference/ascii-table.png" width="90" alt=""></a> | [ASCII: USA Standard Code for Information Interchange](dist/reference/ascii-table-A-ivory.pdf)<br>The 128 codes of 7-bit ASCII with their decimal and hexadecimal values and names, as RFC 20 gives them.<br>[ivory](dist/reference/ascii-table-A-ivory.pdf)&nbsp;·&nbsp;[white](dist/reference/ascii-table-A-white.pdf)&nbsp;·&nbsp;[genesis](dist/reference/ascii-table-A-genesis.pdf)&nbsp;·&nbsp;[blueprint](dist/reference/ascii-table-A-blueprint.pdf) | Vint Cerf | 1969 | A3 | MIT (compilation); data: RFC 20 (USAS X3.4-1968) |
+| <a href="dist/reference/http-status-codes-A-ivory.pdf"><img src="docs/reference/http-status-codes.png" width="90" alt=""></a> | [HTTP Status Codes](dist/reference/http-status-codes-A-ivory.pdf)<br>Every status code of the IANA HTTP registry with its reason phrase, and the definitions of RFC 9110.<br>[ivory](dist/reference/http-status-codes-A-ivory.pdf)&nbsp;·&nbsp;[white](dist/reference/http-status-codes-A-white.pdf)&nbsp;·&nbsp;[genesis](dist/reference/http-status-codes-A-genesis.pdf)&nbsp;·&nbsp;[blueprint](dist/reference/http-status-codes-A-blueprint.pdf) | Roy T. Fielding, Mark Nottingham, Julian Reschke, IANA | 2022 | A2 | MIT (compilation); data: RFC 9110 (IETF Trust), IANA registry (CC0 1.0) |
 | <a href="dist/reference/morse-phonetic-alphabet-A-ivory.pdf"><img src="docs/reference/morse-phonetic-alphabet.png" width="90" alt=""></a> | [Phonetic Alphabet and Morse Code](dist/reference/morse-phonetic-alphabet-A-ivory.pdf)<br>The ICAO phonetic alphabet with the Morse code of each letter and figure, from the FAA's Aeronautical Information Manual.<br>[ivory](dist/reference/morse-phonetic-alphabet-A-ivory.pdf)&nbsp;·&nbsp;[white](dist/reference/morse-phonetic-alphabet-A-white.pdf)&nbsp;·&nbsp;[genesis](dist/reference/morse-phonetic-alphabet-A-genesis.pdf)&nbsp;·&nbsp;[blueprint](dist/reference/morse-phonetic-alphabet-A-blueprint.pdf) | Federal Aviation Administration | 2026 | A3 | MIT (compilation); data: FAA AIM (public domain) |
 
 ## Coming soon

@@ -1,0 +1,62 @@
+title: "HTTP Status Codes"
+summary: "Every status code of the IANA HTTP registry with its reason phrase, and the definitions of RFC 9110."
+title_html: "HTTP<br><em>Status Codes</em>"
+title_size: 110pt
+kicker: "Reference sheet · RFC 9110, Section 15 · IANA registry of 15 September 2025"
+author: "After RFC 9110, <i>HTTP Semantics</i> (IETF, June 2022)"
+byline: "R. Fielding, M. Nottingham, J. Reschke, Editors · and the IANA Hypertext Transfer Protocol (HTTP) Status Code Registry"
+emblem: "15"
+header_scale: 1.4
+columns: 4
+footer:
+  - "Codes and reason phrases: IANA HTTP Status Code Registry, updated 2025-09-15, CC0 1.0. Definitions: first sentences quoted unmodified from RFC 9110, Section 15, by the IETF; section numbers refer to RFC 9110. Copyright (c) 2022 IETF Trust and the persons identified as the document authors. Compilation: MIT."
+  - "<i>Codes without a definition are registered by the document named after their reason phrase.</i>"
+  - '<span class="mono">rfc-editor.org/rfc/rfc9110 · iana.org/assignments/http-status-codes</span>'
+lang: en
+year: 2022
+authors: [Roy T. Fielding, Mark Nottingham, Julian Reschke, IANA]
+min_print: A2
+source:
+  url: https://www.rfc-editor.org/rfc/rfc9110.txt
+  retrieved: 2026-09-27
+  edition: >-
+    Two sources, both retrieved on 27 September 2026. (1) The IANA Hypertext Transfer Protocol
+    (HTTP) Status Code Registry, https://www.iana.org/assignments/http-status-codes/http-status-codes-1.csv,
+    last updated 2025-09-15: all 75 rows are set in order, 64 assigned codes and 11 unassigned
+    values or ranges, with the value, the description (the reason phrase) and the reference as the
+    registry gives them; a parenthesis that closes a description ("TEMPORARY - registered
+    2024-11-13, extension registered 2025-09-15, expires 2026-11-13" for 104, "OBSOLETED" for 510)
+    is set on its own line under the phrase, the brackets around references are dropped, "RFC9110"
+    style references are set "RFC 9110", two references of one code are parted by a middle dot, and
+    for codes defined by RFC 9110 the reference is shortened to its section number. (2) RFC 9110,
+    HTTP Semantics (STD 97, June 2022), the RFC Editor plain-text edition, which is not paginated:
+    from Section 15 the first paragraph, the second with its list of the five classes, the
+    third (extensibility) and the first paragraph of Section 15.1; for each class the title of its
+    section (15.2 to 15.6) and the first sentence of its first paragraph; for each of the 46 codes
+    that RFC 9110 defines, the first sentence of the first paragraph of its section, unmodified
+    (internal references such as "(Section 7.7)" are kept). Line breaks of the plain text are
+    reflowed. Nothing else is taken from RFC 9110. The header and the footer are written for the poster.
+license:
+  text: "MIT (compilation); data: RFC 9110 (IETF Trust), IANA registry (CC0 1.0)"
+  holder: "one-page-papers (compilation); IETF Trust and the authors of RFC 9110 (quoted text)"
+  notice: >-
+    Registry: "both IANA and IETF affirm that any applicable rights that they may have in the
+    Protocol Registries are subject to the Creative Commons CC0 1.0 dedication". RFC 9110, IETF
+    Trust Legal Provisions 5.0, Section 3.c.iii: a license "to copy, publish, display and distribute
+    unmodified portions of IETF Contributions and IETF Documents and translations thereof, provided
+    that: (x) each such portion is clearly attributed to IETF and identifies the RFC or other IETF
+    Document or IETF Contribution from which it is taken".
+  note: >-
+    The layout and the selection are an original compilation under the MIT license of this
+    repository. Data: IANA Hypertext Transfer Protocol (HTTP) Status Code Registry,
+    https://www.iana.org/assignments/http-status-codes/, under the Joint Statement of IANA and IETF
+    Concerning Copyright Rights in the Protocol Registries of 10 November 2021
+    (https://www.iana.org/help/licensing-terms), CC0 1.0. Quoted text: RFC 9110,
+    https://www.rfc-editor.org/rfc/rfc9110, "Copyright (c) 2022 IETF Trust and the persons
+    identified as the document authors. All rights reserved.", subject to BCP 78 and the Trust
+    Legal Provisions (https://trustee.ietf.org/documents/trust-legal-provisions/, TLP 5.0). The
+    poster quotes about 1,700 of the roughly 69,000 words of RFC 9110, less than one fifth, so
+    condition (y) of Section 3.c.iii (the legends) does not apply; the footer still attributes the
+    text to the IETF, names RFC 9110 and gives its copyright line. RFC 9110 carries the pre-5378
+    legend, which forbids modifying the document outside the IETF Standards Process: every quoted
+    portion is unmodified.

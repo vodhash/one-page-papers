@@ -1,0 +1,22 @@
+/* The introduction of Section 15 across the page: the classes on the left, extensibility on the right */
+.intro{display:grid;grid-template-columns:1fr 1fr;column-gap:13mm;margin-bottom:1.2em}
+.intro p{margin:0 0 .5em}
+.intro p.lead{font-size:1.12em}
+ul.classes{list-style:none;padding:0;margin:.2em 0 .6em;break-inside:avoid}
+ul.classes li{margin:0 0 .15em;padding-left:1.2em;text-indent:-1.2em}
+ul.classes b{font-family:'JetBrains Mono',monospace;font-weight:700;color:var(--acc)}
+/* A class opens with its section title and the first sentence of its section */
+h2{color:var(--acc)}
+p.clead{font-style:italic;color:var(--mute);margin:0 0 .6em}
+/* One status code: the code in the accent colour, the reason phrase, the section or document
+   that defines it, then the first sentence of its definition */
+.sc{break-inside:avoid;margin:0 0 .55em;text-align:left;hyphens:auto}
+.sc>b{font-family:'JetBrains Mono',monospace;font-weight:700;color:var(--acc);margin-right:.25em}
+.sc .rp{font-weight:600}
+.sc .ref{font-family:'JetBrains Mono',monospace;font-size:.62em;color:var(--mute);margin-left:.35em;white-space:nowrap}
+.sc .def{display:block;margin-top:.1em;text-align:justify}
+.sc.x .def{font-family:'JetBrains Mono',monospace;font-size:.62em;color:var(--mute);text-align:left}
+/* Unassigned values in the muted tone */
+.sc.un,.sc.un>b{color:var(--mute);font-weight:400}
+.sc.un .rp{font-weight:400;font-style:italic}
+footer>div:first-child{max-width:50%;line-height:1.3}
