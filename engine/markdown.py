@@ -45,11 +45,16 @@ def smart(s):
 
 def inline(s):
     s = ' '.join(s.split())
-    s = re.sub(r'`([^`]+)`', lambda m: f'<code>{html.escape(m.group(1))}</code>', s)
+    # code spans stand aside while the rest is marked up: `S[0]` is no citation, `a*b*c` no italics
+    codes = []
+    def code(m):
+        codes.append(f'<code>{html.escape(m.group(1))}</code>')
+        return f'\x00{len(codes) - 1}\x00'
+    s = re.sub(r'`([^`]+)`', code, s)
     s = re.sub(r'\*\*(.+?)\*\*', r'<b>\1</b>', s)
     s = re.sub(r'(?<![\w*])\*(\S.*?)\*(?![\w*])', r'<i>\1</i>', s)
     s = re.sub(r'((?:\[\d+(?:-\d+)?\])+)', r'<cite>\1</cite>', s)
-    return smart(s)
+    return re.sub('\x00(\\d+)\x00', lambda m: codes[int(m.group(1))], smart(s))
 
 LABEL = re.compile(r'^\((\d+[a-z]?)\)\s+', re.M)
 NOTE_CALL = re.compile(r'\[\^([^\]\s]+)\]')
