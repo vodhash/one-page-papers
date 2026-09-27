@@ -87,3 +87,10 @@ missing. The catalog of the README lists them under *Coming soon*.
 - Source: https://www.un.org/en/about-us/universal-declaration-of-human-rights
 - Status: no license allowing redistribution found. The terms of the UN sites allow personal, non-commercial use only; the permission printed in the illustrated edition of 2015 covers free distribution of that edition only.
 - Missing: an explicit license or permission of the United Nations for its redistribution.
+
+## The Pioneer plaque (Carl Sagan, Frank Drake, Linda Salzman Sagan, 1972)
+
+- Category: space
+- Source: https://science.nasa.gov/resource/pioneer-plaque/ and Science 175 (1972), p. 881
+- Status: no public domain or license established. Its designers were not federal employees, no transfer to NASA is documented, and Linda Salzman Sagan, who drew it, is living.
+- Missing: a license or a permission from its designers, or evidence that the rights passed to the United States government.
