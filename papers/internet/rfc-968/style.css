@@ -1,0 +1,6 @@
+/* The poem keeps the line breaks and the indented even lines of the RFC; each stanza is a
+   pre block so that the build checks that no line is wider than its column */
+pre.verse{font-family:inherit;font-size:1em;line-height:1.45;white-space:pre;margin:0 0 1em;break-inside:avoid;overflow:hidden}
+pre.verse span.in{padding-left:1.6em}
+.sig{text-align:left;font-style:italic;margin-top:1.4em}
+.kick{letter-spacing:.22em}

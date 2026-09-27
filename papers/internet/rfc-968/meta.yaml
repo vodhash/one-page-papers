@@ -1,0 +1,37 @@
+title: "RFC 968: 'Twas the Night Before Start-up"
+summary: "Vint Cerf's poem on debugging a new network the night before it is brought into operation."
+title_html: "‘Twas the Night<br>Before <em>Start-up</em>’"
+title_size: 104pt
+kicker: "Request for Comments 968 · December 1985"
+author: "V. Cerf"
+byline: "Network Working Group · MCI"
+emblem: "968"
+abstract_label: "Status of this Memo."
+abstract: >-
+  This memo discusses problems that arise and debugging techniques used
+  in bringing a new network into operation.  Distribution of this memo
+  is unlimited.
+layout: centered
+columns: 2
+font_range: [10, 80]
+header_scale: 1.8
+footer:
+  - "Network Working Group · Request for Comments: 968 · V. Cerf, MCI · December 1985"
+  - "<i>Distribution of this memo is unlimited.</i>"
+  - '<span class="mono">doi:10.17487/RFC0968</span>'
+year: 1985
+authors: [Vint Cerf]
+min_print: A3
+source:
+  url: https://www.rfc-editor.org/rfc/rfc968.txt
+  retrieved: 2026-09-27
+  edition: >-
+    RFC Editor plain-text edition, complete. The heading block and the status of the memo are
+    set as the header of the poster, the title with the quotation marks of its line in the
+    RFC; page headers and footers are left out, including the running title of page 2; the
+    lines of the poem keep their breaks and their indentation.
+license:
+  text: "Distribution unlimited"
+  holder: "Vint Cerf, 1985"
+  notice: "Distribution of this memo is unlimited."
+  note: 'RFC 968 itself carries no copyright notice. The RFC Editor also states: "All RFCs may be freely reproduced and translated (unmodified)." (https://www.rfc-editor.org/faq/)'
