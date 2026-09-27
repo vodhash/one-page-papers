@@ -41,6 +41,19 @@ RELEASE_URL = REPO + "/releases/latest"
 ANALYTICS_SRC = "https://umami.onepagepapers.com/script.js"
 ANALYTICS = (f'<script defer src="{ANALYTICS_SRC}" data-website-id="3adaa9da-4979-4ea1-931d-e55966529929" '
              'data-domains="onepagepapers.com"></script>')
+NAME = "One Page Papers"
+def mark_svg(ink="currentColor", acc="var(--acc)", paper="none", size=""):
+    """The logo: a poster, as the A format frames it (594 by 841), with its double rule, the emblem
+    of its header between two rules, and lines of text."""
+    dim = f' width="{size * 60 // 84}" height="{size}"' if size else ""
+    text = "".join(f'<path d="M13 {y}h{34 if i % 4 != 3 else 22}"/>' for i, y in enumerate(range(36, 74, 5)))
+    return (f'<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 60 84"{dim} aria-hidden="true" fill="none" '
+            f'stroke="{ink}" stroke-linecap="round">'
+            f'<rect x="2.5" y="2.5" width="55" height="79" rx="1.5" fill="{paper}" stroke-width="3"/>'
+            f'<rect x="7" y="7" width="46" height="70" stroke-width="1.2"/>'
+            f'<path d="M13 21h10M37 21h10" stroke-width="1.6"/><circle cx="30" cy="21" r="4.6" fill="{acc}" stroke="none"/>'
+            f'<g stroke-width="1.6" opacity=".55">{text}</g></svg>')
+
 GENESIS_HASH = "000000000019d6689c085ae165831e934ff763ae46a2a6c172b3f1b60a8ce26f"  # of the Bitcoin block 0
 
 WEB = ROOT / "engine" / "web"
@@ -364,7 +377,7 @@ def render(pg, css_v, js_v):
     if not not_found:
         social.append(f'<link rel="canonical" href="{url}">')
         social += [f'<meta property="og:{k}" content="{v}">' for k, v in
-                   (("type", "website"), ("site_name", "one-page-papers"), ("title", pg.title),
+                   (("type", "website"), ("site_name", NAME), ("title", pg.title),
                     ("description", pg.description), ("url", url))]
         if pg.image:
             social += [f'<meta property="og:image" content="{BASE_URL}{pg.image}">',
@@ -376,7 +389,7 @@ def render(pg, css_v, js_v):
         social.append('<meta name="robots" content="noindex">')
     cur = {k: ' aria-current="page"' if pg.current == k else "" for k in ("collection", "about")}
     return substitute(tpl, {
-        "BASE": NOT_FOUND_BASE if not_found else "", "TITLE": pg.title, "DESCRIPTION": pg.description,
+        "BASE": NOT_FOUND_BASE if not_found else "", "MARK": mark_svg(), "TITLE": pg.title, "DESCRIPTION": pg.description,
         "BG_LIGHT": TOKENS["bg"][0], "BG_DARK": TOKENS["bg"][1], "ROOT": root, "HOME": home,
         "PRELOAD": "\n".join(f'<link rel="preload" href="{root}assets/fonts/{f}" as="font" type="font/woff2" '
                              'crossorigin>' for f in PRELOAD),
@@ -406,7 +419,7 @@ def home_page(posters, previews):
         "INTRO": esc(f"{len(posters)} posters in {len(cats)} categories, from {year_text(years[0])} to "
                      f"{year_text(years[-1])}, each a free PDF to print and frame."),
         "FILTERS": "\n".join(filters), "CARDS": "\n".join(card(previews, p, "") for p in posters)})
-    return Page("index.html", "one-page-papers: foundational papers, one page each",
+    return Page("index.html", f"{NAME} · Foundational papers, one page each",
                 esc("Foundational papers of science, computing and history, each typeset on a single poster. "
                     f"Free vector PDFs to print from {PRINT_SIZES[0]} to {PRINT_SIZES[-1]}, or at "
                     + " or ".join(format_name(f).replace("\u00a0", " ") for f in FORMATS if f != "A") + "."),
@@ -458,7 +471,7 @@ def poster_page(p, posters, previews):
                           f"{MIN_BODY} pt."),
         "EDITION": esc(src["edition"]), "RIGHTS": rights,
         "MORE": "\n".join(card(previews, q, root, mini=True) for q in neighbours(p, posters))})
-    return Page(f"{p.slug}/index.html", f"{esc(m['title'])} · one-page-papers",
+    return Page(f"{p.slug}/index.html", f"{esc(m['title'])} · {NAME}",
                 f"{esc(m['summary'])} A one-page poster, free to download as a vector PDF.", main,
                 f"previews/{p.slug}-share.jpg", "", esc(alt(p)))
 
@@ -491,13 +504,13 @@ def about_page(posters, previews):
               f'<span class="meta">The poster that started the collection</span></figcaption>')
     main = substitute((WEB / "about.html").read_text(), {
         "ORIGIN": origin(), "REPO": REPO, "PENDING": pend, "FIGURE": figure})
-    return Page("about/index.html", "About · one-page-papers",
+    return Page("about/index.html", f"About · {NAME}",
                 esc("Where one-page-papers comes from: the wish to frame the Bitcoin whitepaper, which became an "
                     "engine that typesets foundational texts on one page."),
                 main, "previews/share.jpg", "about", "Three posters of the collection side by side on a wall")
 
 def not_found_page():
-    return Page("404.html", "Page not found · one-page-papers", "This page does not exist.",
+    return Page("404.html", f"Page not found · {NAME}", "This page does not exist.",
                 (WEB / "404.html").read_text())
 
 # ---------------------------------------------------------------- fonts and styles
@@ -614,12 +627,22 @@ def write(out, posters):
         dst.write_text(h.replace("?v={css}", f"?v={css_v}").replace("?v={js}", f"?v={js_v}"))
 
     light_bg, acc = TOKENS["bg"][0], TOKENS["acc"][0]
-    (out / "favicon.svg").write_text(
-        f'<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 64 64"><rect width="64" height="64" rx="14" '
-        f'fill="{light_bg}"/><circle cx="32" cy="32" r="13" fill="{acc}"/></svg>\n')
+    ink = TOKENS["ink"][0]
+    (out / "favicon.svg").write_text(mark_svg(ink, acc, light_bg).replace(' aria-hidden="true"', "") + "\n")
+    # the touch icon: the poster centred on the paper, drawn at 4x then reduced
     icon = Image.new("RGB", (720, 720), light_bg)
-    ImageDraw.Draw(icon).ellipse((360 - 150, 360 - 150, 360 + 150, 360 + 150), fill=acc)
+    d, k, x0, y0 = ImageDraw.Draw(icon), 6.4, 168, 91  # 60 x 84 units at 6.4 px, centred
+    box = lambda x, y, w, h: (x0 + x * k, y0 + y * k, x0 + (x + w) * k, y0 + (y + h) * k)
+    d.rectangle(box(2.5, 2.5, 55, 79), outline=ink, width=round(3 * k))
+    d.rectangle(box(7, 7, 46, 70), outline=ink, width=round(1.2 * k))
+    for x in (13, 37):
+        d.line((x0 + x * k, y0 + 21 * k, x0 + (x + 10) * k, y0 + 21 * k), fill=ink, width=round(1.6 * k))
+    d.ellipse(box(25.4, 16.4, 9.2, 9.2), fill=acc)
+    mute = TOKENS["mute"][0]
+    for i, y in enumerate(range(36, 74, 5)):
+        d.line((x0 + 13 * k, y0 + y * k, x0 + (47 if i % 4 != 3 else 35) * k, y0 + y * k), fill=mute, width=round(1.6 * k))
     icon.resize((180, 180), Image.LANCZOS).save(out / "apple-touch-icon.png", optimize=True)
+    (out / "logo.svg").write_text(mark_svg(ink, acc, light_bg).replace(' aria-hidden="true"', "") + "\n")
     urls = [BASE_URL + pg.path.removesuffix("index.html") for pg in pages if pg.path != "404.html"]
     (out / "sitemap.xml").write_text(
         '<?xml version="1.0" encoding="UTF-8"?>\n<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">\n'

@@ -29,7 +29,9 @@ button{font:inherit;color:inherit}
 .brand{display:inline-flex;align-items:center;gap:12px;min-height:44px;margin:0 auto 0 0;font-size:24px;font-weight:500;
  color:var(--ink);text-decoration:none}
 .brand:hover{color:var(--ink)}
-.dot{width:12px;height:12px;border-radius:50%;background:var(--acc);flex:none}
+.brand svg{height:40px;width:auto;flex:none;color:var(--ink)}
+.brand em{font-style:italic;font-weight:400}
+.foot-brand svg{height:32px}
 .nav ul{display:flex;align-items:center;gap:6px;margin:0;padding:0;list-style:none}
 .nav a{display:inline-flex;align-items:center;min-height:44px;padding:0 14px;font-size:19px;color:var(--ink2);text-decoration:none}
 .nav a:hover{color:var(--ink)}
@@ -226,6 +228,7 @@ button{font:inherit;color:inherit}
  .wrap{padding:0 20px}
  .bar{height:64px;gap:12px}
  .brand{font-size:21px;gap:10px}
+ .brand svg{height:34px}
  .js .burger{display:grid}
  .js .nav{display:none;position:absolute;top:calc(100% + 1px);left:0;right:0;z-index:10;padding:8px 20px 20px;background:var(--bg);
   border-bottom:1px solid var(--rule);box-shadow:0 18px 24px -18px rgba(0,0,0,.25)}
