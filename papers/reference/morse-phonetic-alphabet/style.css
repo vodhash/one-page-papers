@@ -1,0 +1,25 @@
+/* Morse code drawn as dots and bars: a dot of one unit (.34em), a dash of three, one unit apart */
+.m{display:inline-flex;align-items:center;gap:.34em;height:1em;vertical-align:middle}
+.m i,.m b{display:block;height:.34em;border-radius:.17em;background:var(--ink)}
+.m i{width:.34em}
+.m b{width:1.02em}
+/* letter and figure cards: the character, its Morse code, its telephony word and its pronunciation */
+.cap{font-family:'JetBrains Mono',monospace;font-size:.58em;letter-spacing:.04em;color:var(--mute);
+ text-align:left;margin:0 0 .7em;hyphens:none}
+.cap b{color:var(--acc);font-weight:700;text-transform:uppercase;letter-spacing:.12em}
+.cards{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));column-gap:13mm;margin-bottom:1.3em;
+ border-top:.35mm solid var(--ink)}
+.cards.figures{grid-template-columns:repeat(5,minmax(0,1fr));column-gap:11mm}
+.card{display:grid;grid-template-columns:1.95em 1fr;grid-template-rows:auto auto auto;column-gap:.5em;
+ align-items:center;padding:.4em 0 .45em;border-bottom:.2mm solid var(--rule);text-align:left;hyphens:none}
+.card .L{grid-row:1/4;font-size:2.3em;font-weight:500;line-height:1;color:var(--acc);text-align:center}
+.card .m{font-size:1.25em;height:1.05em}
+.card .w{font-weight:600;font-size:1.12em;line-height:1.15}
+.card .p{font-family:'JetBrains Mono',monospace;font-size:.62em;letter-spacing:.04em;color:var(--mute);line-height:1.3}
+.figures .card{grid-template-columns:1.4em 1fr}
+main{text-align:left}
+main h2{text-align:left}
+.kick{letter-spacing:.24em}
+footer>div:first-child{max-width:40%;line-height:1.3}
+footer>div:nth-child(2){max-width:32%;line-height:1.3}
+.card .p span{white-space:nowrap}

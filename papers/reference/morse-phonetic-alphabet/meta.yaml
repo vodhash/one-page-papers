@@ -1,0 +1,60 @@
+title: "Phonetic Alphabet and Morse Code"
+summary: "The ICAO phonetic alphabet with the Morse code of each letter and figure, from the FAA's Aeronautical Information Manual."
+title_html: "Phonetic Alphabet<br><em>and Morse Code</em>"
+title_size: 96pt
+kicker: "Reference sheet · Aeronautical Information Manual · TBL 4-2-7 · ICAO phonetic alphabet"
+author: "Federal Aviation Administration"
+byline: "<i>Aeronautical Information Manual</i>, Change 3, effective 9 July 2026 · paragraph 4-2-7, <i>Phonetic Alphabet</i>"
+emblem: "A"
+header_scale: 1.4
+columns: 4
+footer:
+  - "Data: Federal Aviation Administration, Aeronautical Information Manual, TBL 4-2-7, Phonetic Alphabet/Morse Code. U.S. Government work, public domain. Compilation: MIT."
+  - "<i>Values as in the table of the FAA; the text was written for this sheet in 2026.</i>"
+  - '<span class="mono">faa.gov/air_traffic/publications/atpubs/aim_html</span>'
+year: 2026
+authors: [Federal Aviation Administration]
+min_print: A3
+source:
+  url: https://www.faa.gov/air_traffic/publications/atpubs/aim_html/chap4_section_2.html
+  retrieved: 2026-09-27
+  edition: >-
+    Federal Aviation Administration, Aeronautical Information Manual, HTML edition on faa.gov,
+    Change 3, effective 7/9/2026 (as its index page states), chapter 4, section 2, paragraph
+    4-2-7, Phonetic Alphabet, and its table TBL 4-2-7, Phonetic Alphabet/Morse Code (columns
+    Character, Morse Code, Telephony, Phonic (Pronunciation); 26 letters, then the figures 1 to
+    9 and 0). The paragraph refers to the table as "TBL 4-2-2", but links to TBL 4-2-7. The 36
+    rows were extracted by script from the table cells. The Morse code, which the table writes
+    with black circles (U+25CF) and em dashes (U+2014) parted by spaces, is drawn as dots and
+    bars; the parentheses around each pronunciation are dropped, and "or" between the two
+    pronunciations of Charlie and Uniform is kept. Everything else is as in the table, including
+    "Xray" and the hyphens of the pronunciations. The texts of the sheet were written for it
+    from paragraph 4-2-7. Cross-check, not reproduced: the Morse code of all 36 characters agrees
+    with Recommendation ITU-R M.1677-1 (10/2009), Annex 1, 1.1.1 and 1.1.2; the 26 telephony
+    words agree with the code words of the ITU Radio Regulations, edition of 2024, Appendix 14
+    (Rev.WRC-23), table 1, except "Xray", which Appendix 14 writes "X-ray"; the pronunciations
+    agree syllable for syllable, Appendix 14 parting the syllables by spaces rather than hyphens,
+    except "HOH-TEL" (Appendix 14: "HOH TELL"). The figure words of the FAA table (One, Two...)
+    are not those of the figure code of Appendix 14 (Nadazero, Unaone...). Left out, as the FAA
+    table does not have them: the accented e and the 20 punctuation marks and miscellaneous
+    signs of M.1677-1 (1.1.1 and 1.1.3), its rules on spacing and on signs without a signal, the
+    figure code and the decimal point and full stop of Appendix 14, and the stressed syllables
+    that Appendix 14 underlines.
+license:
+  text: "MIT (compilation); data: FAA AIM (public domain)"
+  holder: "vodhash, 2026 (compilation); data: Federal Aviation Administration"
+  basis: >-
+    The values are facts taken from the Aeronautical Information Manual of the Federal Aviation
+    Administration, a work of the United States government, not subject to copyright in the
+    United States (17 U.S.C. 105). In France, the rule of the shorter term (article L. 123-12 of
+    the Code de la propriété intellectuelle, after article 7(8) of the Berne Convention): for a
+    work whose country of origin is outside the European Union and whose author is not a
+    national of a member state, the protection lasts as long as in the country of origin, which
+    grants none. The layout and the text written for this sheet are under the MIT license of
+    this repository.
+  note: >-
+    Documents consulted for the cross-check only, not reproduced: Recommendation ITU-R
+    M.1677-1, International Morse code (10/2009),
+    https://www.itu.int/dms_pubrec/itu-r/rec/m/R-REC-M.1677-1-200910-I!!PDF-E.pdf, and ITU,
+    Radio Regulations, edition of 2024, Volume 2, Appendix 14 (Rev.WRC-23),
+    https://search.itu.int/history/HistoryDigitalCollectionDocLibrary/1.49.48.en.102.pdf.
