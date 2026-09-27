@@ -1,0 +1,9 @@
+/* The joke requirement levels, laid out as the RFC lists them */
+.kw p{margin:0 0 .2em;text-align:left}
+.kw b{display:inline-block;min-width:5.4em;font-family:'JetBrains Mono',monospace;font-size:.85em}
+.addr{text-align:left;font-variant:small-caps;letter-spacing:.03em}
+.kick{letter-spacing:.22em}
+footer>div:first-child{max-width:40%;line-height:1.3}
+.kw{break-inside:avoid;margin-bottom:.8em}
+/* The MIB is the widest block: its code is set a little smaller than usual so that the text can grow */
+pre.code{font-size:calc(var(--fs)*.56)}

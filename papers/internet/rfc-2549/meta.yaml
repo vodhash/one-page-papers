@@ -1,0 +1,36 @@
+title: "RFC 2549: IP over Avian Carriers with Quality of Service"
+summary: "An April Fools' RFC amending RFC 1149 with quality of service levels for IP datagrams carried by birds."
+title_html: "IP over Avian Carriers<br><em>with Quality of Service</em>"
+title_size: 92pt
+kicker: "Request for Comments 2549 · Experimental · Updates 1149 · 1 April 1999"
+author: "D. Waitzman"
+byline: "Network Working Group · IronBridge Networks"
+emblem: "QoS"
+abstract_label: "Abstract."
+abstract: "This memo amends RFC 1149, \"A Standard for the Transmission of IP Datagrams on Avian Carriers\", with Quality of Service information. This is an experimental, not recommended standard."
+header_scale: 1.6
+columns: 3
+footer:
+  - "<b>Status of this Memo.</b> This memo defines an Experimental Protocol for the Internet community.  It does not specify an Internet standard of any kind. Discussion and suggestions for improvement are requested. Distribution of this memo is unlimited."
+  - "<b>Copyright Notice.</b> Copyright (C) The Internet Society (1999).  All Rights Reserved."
+  - '<span class="mono">doi:10.17487/RFC2549</span>'
+year: 1999
+authors: [David Waitzman]
+min_print: A3
+source:
+  url: https://www.rfc-editor.org/rfc/rfc2549.txt
+  retrieved: 2026-09-27
+  edition: >-
+    RFC Editor plain-text edition, complete. The status of the memo and the copyright notice
+    of the first page are in the footer and the abstract in the header; page headers and
+    footers are left out; the drawings and the MIB are reproduced unchanged, the MIB object
+    split by the page break joined again; the misspellings of the original ("Rational",
+    "lexigraphic", "coop-erative") are kept.
+license:
+  text: "© The Internet Society 1999, copies allowed"
+  holder: "The Internet Society, 1999"
+  notice: >-
+    Copyright (C) The Internet Society (1999).  All Rights Reserved.
+  note: >-
+    The copyright notice and this paragraph go with every copy: the poster keeps the full
+    copyright statement (last section) and the copyright notice (footer).
