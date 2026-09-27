@@ -1,0 +1,50 @@
+title: "On the Antibacterial Action of Cultures of a Penicillium, with Special Reference to their Use in the Isolation of B. influenzæ"
+summary: "Alexander Fleming's 1929 paper on penicillin, the antibacterial substance made by a mould in broth cultures."
+title_html: 'On the Antibacterial Action of Cultures of a Penicillium,<span class="tsub">with Special Reference to their Use in the Isolation of <i>B. influenzæ</i></span>'
+title_size: 66pt
+kicker: "British Journal of Experimental Pathology · June 1929"
+author: "Alexander Fleming, F.R.C.S."
+byline: "From the Laboratories of the Inoculation Department, St Mary's Hospital, London"
+emblem: "P"
+header_scale: 1.4
+columns: 5
+footer:
+  - "British Journal of Experimental Pathology, vol. X, no. 3, pp. 226-236, and two plates"
+  - "<i>Public domain. Transcribed from the scan of the journal in PubMed Central and checked against its page images.</i>"
+  - '<span class="mono">PMC2048009</span>'
+year: 1929
+authors: [Alexander Fleming]
+min_print: A1
+source:
+  url: https://pmc.ncbi.nlm.nih.gov/articles/PMC2048009/
+  retrieved: 2026-09-27
+  edition: >-
+    The paper as printed in the British Journal of Experimental Pathology, vol. X, no. 3 (June
+    1929), pp. 226-236, with the two plates of Figs. 1 to 4, from the scan in PubMed Central
+    (PMC2048009, file brjexppathol00255-0037.pdf, 13 pages at 600 ppi). Its text layer was
+    corrected word by word against the page images, with the help of a second, independent OCR
+    (the Internet Archive microfilm scan sim_international-journal-of-experimental-pathology_1929-06_10_3).
+    The title, author and affiliation are set in the header of the poster; running heads, page
+    numbers and the signature mark are left out; words hyphenated at line ends are joined
+    (post-nasal keeps its hyphen, as in the title of Table IV); the spaces before ; and : are not
+    kept. Spellings of the print are kept, among them influenzæ beside influenzae, diphtheriæ
+    beside diphtheriae, "Pfeiffers bacillus", "It doses not", "Des moissures du group", and
+    "(Fildes, 1921)" in the text for the reference dated 1920. The tables are set as tables:
+    the dashes that mark no growth in Tables I and IV are set as minus signs; the ditto marks
+    are set as ",,"; the sign that marks uncountable colonies in the table of the rate of killing
+    is set as ∝, the glyph of the print; the two halves of Table IV, printed side by side (cases
+    1 to 13 and 14 to 25), are set as one table; Table III, printed sideways on p. 230, is set
+    upright. Tables II and III follow the paragraph that introduces them. The four photographs
+    are the plates of the scan, cropped to each figure with its engraved labels, in grayscale;
+    their captions are set as printed ("Fig. 4—" without a full stop). The short rule before the
+    acknowledgement is kept.
+license:
+  text: "Public domain"
+  holder: "Alexander Fleming, 1929"
+  basis: >-
+    Published in 1929, before 1931: public domain in the United States. Alexander Fleming, its
+    only author, died on 11 March 1955, before 1956: public domain in France since 1 January 2026.
+  note: >-
+    The PubMed Central record of the article (OAI-PMH front matter of PMC2048009) names Alexander
+    Fleming as its only author and carries no copyright statement or license. A scan of a
+    public domain page adds no protected work.

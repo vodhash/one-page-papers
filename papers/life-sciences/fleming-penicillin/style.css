@@ -1,0 +1,32 @@
+/* The long title: its first clause as the title, the rest below it, smaller and italic */
+h1 .tsub{display:block;font-size:.55em;font-style:italic;font-weight:400;margin-top:.3em}
+h1 .tsub i{font-style:normal}
+.sc{font-variant:small-caps;letter-spacing:.03em}
+/* Section headings in spaced capitals, as in the journal */
+h2{font-size:.86em;letter-spacing:.08em;font-weight:500;text-align:center}
+h2 i{letter-spacing:.04em}
+h3{font-style:italic;font-weight:400;text-align:center}
+p.recv{text-align:center;font-size:.9em}
+p.ref{text-align:left;padding-left:1.2em;text-indent:-1.2em;margin:.1em 0}
+hr.short{width:40%;margin:.8em auto;border:0;border-top:1px solid currentColor;opacity:.6}
+/* Tables: compact, centred cells, the labels on the left */
+table.t,table.days{border-collapse:collapse;margin:.6em auto;font-size:.78em;line-height:1.2}
+table.t caption{caption-side:top;font-size:1.15em;margin-bottom:.3em;text-align:center}
+table.t td,table.t th{padding:.05em .3em;text-align:center;font-weight:400;white-space:nowrap}
+table.t th:first-child{text-align:left}
+table.t th.grp{border-bottom:1px solid currentColor;font-size:.9em;white-space:normal}
+table.t th.exp{text-align:left;padding-top:.4em}
+table.t th.ind{padding-left:1em}
+table.t th.lab{vertical-align:bottom}
+table.t th.hd{white-space:normal;font-size:.85em;vertical-align:bottom}
+table.t td.key{text-align:center;font-size:.9em;padding-top:.3em;white-space:normal}
+table.days td{padding:0 .3em;text-align:center}
+footer>div{text-wrap:balance}
+/* EB Garamond has no proportional sign, the glyph the table prints for uncountable colonies:
+   take it from KaTeX Main */
+.inf{font-family:KaTeX_Main}
+/* The table of days stays in one column; the two wide tables, across the page, in larger type */
+table.days{break-inside:avoid}
+.wide table.t{font-size:1em}
+.wide table.t td,.wide table.t th{padding:.05em .55em}
+table.t.keep{break-inside:avoid}
