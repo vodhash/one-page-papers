@@ -8,7 +8,7 @@ Each paper is laid out in full on one page: every section, equation, code listin
 
 <!-- catalog:start -->
 
-15 posters in 5 categories. Each one comes in 4 themes, shown here with *Bitcoin: A Peer-to-Peer Electronic Cash System*, and in 3 formats (see [Download](#download)).
+16 posters in 5 categories. Each one comes in 4 themes, shown here with *Bitcoin: A Peer-to-Peer Electronic Cash System*, and in 3 formats (see [Download](#download)).
 
 | ivory | white | genesis | blueprint |
 |:-:|:-:|:-:|:-:|
@@ -55,6 +55,7 @@ A click on a poster opens its PDF in the A format and in its first theme, and th
 | <a href="dist/history/us-declaration-of-independence-A-ivory.pdf"><img src="docs/history/us-declaration-of-independence.png" width="90" alt=""></a> | [The Declaration of Independence](dist/history/us-declaration-of-independence-A-ivory.pdf)<br>The Continental Congress declares the thirteen colonies independent of Great Britain and lists their grievances against the King.<br>[ivory](dist/history/us-declaration-of-independence-A-ivory.pdf)&nbsp;·&nbsp;[white](dist/history/us-declaration-of-independence-A-white.pdf)&nbsp;·&nbsp;[genesis](dist/history/us-declaration-of-independence-A-genesis.pdf)&nbsp;·&nbsp;[blueprint](dist/history/us-declaration-of-independence-A-blueprint.pdf) | Thomas Jefferson, Second Continental Congress | 1776 | A3 | Public domain |
 | <a href="dist/history/kant-aufklaerung-A-ivory.pdf"><img src="docs/history/kant-aufklaerung.png" width="90" alt=""></a> | [Beantwortung der Frage: Was ist Aufklärung?](dist/history/kant-aufklaerung-A-ivory.pdf)<br>Kant's essay defining enlightenment as man's emergence from self-incurred immaturity and defending the free public use of reason.<br>[ivory](dist/history/kant-aufklaerung-A-ivory.pdf)&nbsp;·&nbsp;[white](dist/history/kant-aufklaerung-A-white.pdf)&nbsp;·&nbsp;[genesis](dist/history/kant-aufklaerung-A-genesis.pdf)&nbsp;·&nbsp;[blueprint](dist/history/kant-aufklaerung-A-blueprint.pdf) | Immanuel Kant | 1784 | A3 | Public domain |
 | <a href="dist/history/declaration-droits-homme-A-ivory.pdf"><img src="docs/history/declaration-droits-homme.png" width="90" alt=""></a> | [Déclaration des Droits de l'Homme et du Citoyen de 1789](dist/history/declaration-droits-homme-A-ivory.pdf)<br>The preamble and seventeen articles of rights adopted by the French National Assembly in August 1789.<br>[ivory](dist/history/declaration-droits-homme-A-ivory.pdf)&nbsp;·&nbsp;[white](dist/history/declaration-droits-homme-A-white.pdf)&nbsp;·&nbsp;[genesis](dist/history/declaration-droits-homme-A-genesis.pdf)&nbsp;·&nbsp;[blueprint](dist/history/declaration-droits-homme-A-blueprint.pdf) | Assemblée nationale | 1789 | A3 | Public domain |
+| <a href="dist/history/gettysburg-address-A-ivory.pdf"><img src="docs/history/gettysburg-address.png" width="90" alt=""></a> | [The Gettysburg Address](dist/history/gettysburg-address-A-ivory.pdf)<br>Lincoln's address at the dedication of the Cemetery at Gettysburg, in the final text he wrote out in 1864.<br>[ivory](dist/history/gettysburg-address-A-ivory.pdf)&nbsp;·&nbsp;[white](dist/history/gettysburg-address-A-white.pdf)&nbsp;·&nbsp;[genesis](dist/history/gettysburg-address-A-genesis.pdf)&nbsp;·&nbsp;[blueprint](dist/history/gettysburg-address-A-blueprint.pdf) | Abraham Lincoln | 1863 | A3 | Public domain |
 
 ## Coming soon
 

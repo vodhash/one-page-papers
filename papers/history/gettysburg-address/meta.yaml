@@ -1,0 +1,48 @@
+title: "The Gettysburg Address"
+summary: "Lincoln's address at the dedication of the Cemetery at Gettysburg, in the final text he wrote out in 1864."
+title_html: "The Gettysburg<br><em>Address</em>"
+title_size: 120pt
+kicker: "Gettysburg, November 19, 1863 · The Bliss copy"
+author: "Abraham Lincoln"
+emblem: "87"
+header_scale: 2
+layout: centered
+max_font: 40
+footer:
+  - "Lincoln’s final text, written out in 1864 to be reproduced in facsimile in <i>Autograph Leaves of Our Country’s Authors</i>, a volume for the Baltimore Sanitary Fair; long kept by the family of Alexander Bliss."
+  - "<i>Text of The Collected Works of Abraham Lincoln, volume 7 (1953), checked against the manuscript.</i>"
+  - '<span class="mono">quod.lib.umich.edu/l/lincoln</span>'
+lang: en
+year: 1863
+authors: [Abraham Lincoln]
+min_print: A3
+source:
+  url: https://quod.lib.umich.edu/l/lincoln/lincoln7/1:40?rgn=div1;view=fulltext
+  retrieved: 2026-09-27
+  edition: >-
+    The final text, known as the Bliss copy, as printed in The Collected Works of Abraham
+    Lincoln, edited by Roy P. Basler for the Abraham Lincoln Association (Rutgers University
+    Press, 1953), volume 7, pages 22 and 23, in the digital edition of the University of
+    Michigan Library (read from its capture of 3 November 2024 by the Internet Archive, the
+    site being behind a browser check on 27 September 2026). Checked word for word against the
+    scans of the three pages of the manuscript on Wikimedia Commons
+    (commons.wikimedia.org/wiki/File:Blisscopy-1.jpg, Blisscopy-2.jpg, Blisscopy-3.jpg,
+    marked public domain). The digital edition types each of the seven dashes as three
+    hyphens (---), the TeX convention for an em dash: they are set as em dashes, and the
+    manuscript has a dash at each of these places. The edition's note calls (33, 34) are left
+    out. The date and the signature, "November 19. 1863. ABRAHAM LINCOLN.", are set on one
+    line, the signature in small capitals; the manuscript has "Abraham Lincoln." above the
+    date.
+license:
+  text: "Public domain"
+  holder: "Abraham Lincoln, 1864"
+  basis: >-
+    Abraham Lincoln (1809-1865) wrote this copy out in 1864, and it was published in
+    facsimile the same year in Autograph Leaves of Our Country's Authors. In France, its
+    author died on 15 April 1865, before 1 January 1956; in the United States, it was
+    published before 1931. A faithful transcription of it adds no protected work.
+  note: >-
+    The manuscript "is kept on view in the Lincoln Bedroom on the second floor of the White
+    House" (commons.wikimedia.org/wiki/File:Gettysburg_Address_Bliss_copy.jpg). The Collected
+    Works are online "with permission from their copyright holder" (University of Michigan
+    Library): the poster takes from them only Lincoln's words, not the editorial notes.

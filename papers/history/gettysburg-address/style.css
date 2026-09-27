@@ -1,0 +1,12 @@
+/* Lincoln's manuscript in one column: his title line, the three paragraphs, then the date and
+   his signature, both on one line as in the edition. A short text in large type reads better
+   ragged than justified, as in the manuscript */
+.address{max-width:70%;margin:0 auto;text-align:left;hyphens:manual}
+.address p{margin-bottom:.75em}
+.address .heading{font-style:italic;text-align:center;margin-bottom:1.2em}
+.address .signed{display:flex;justify-content:space-between;align-items:baseline;margin:1.3em 0 0}
+.address .name{font-variant-caps:all-small-caps;letter-spacing:.08em}
+.kick{letter-spacing:.3em}
+footer>div{text-wrap:balance}
+footer>div:first-child{max-width:42%;line-height:1.3}
+footer>div:nth-child(2){max-width:30%;line-height:1.3}
