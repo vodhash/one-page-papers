@@ -1,0 +1,22 @@
+/* Words in small capitals, as in the journal */
+.sc{font-variant:small-caps;letter-spacing:.03em}
+/* The list of definitions of p. 336, one per line, with a hanging indent */
+span.vars{display:block;text-align:left;padding-left:1.4em;text-indent:-1.4em;hyphens:manual}
+/* Exponents and indices must not open up the lines that carry them */
+sub,sup{line-height:0}
+/* The two tables of p. 340, across the page as in the journal: tabular figures, one
+   column per mark of the trough */
+div.obs{margin:.4em 0 1em;break-inside:avoid}
+div.obs .ttl{text-align:center;font-variant:small-caps;letter-spacing:.06em;margin:.5em 0 .3em}
+table.obs{border-collapse:collapse;width:100%;table-layout:fixed;font-size:.86em;font-variant-numeric:tabular-nums;
+  border-top:.25mm solid var(--ink);border-bottom:.25mm solid var(--ink)}
+table.obs th,table.obs td{padding:.08em .9em;text-align:right;white-space:nowrap;font-weight:400}
+table.obs td{border-left:.12mm solid var(--ink)}
+table.obs th:first-child{text-align:left;font-weight:600;width:9%;padding-left:0}
+table.obs tr.nos th{border-left:.12mm solid var(--ink)}
+table.obs tr.nos th:first-child{border-left:0}
+table.obs tr.nos th{border-bottom:.12mm solid var(--ink);text-align:center}
+/* Figure 3 is numbered in its caption, as it is above the drawing in the journal */
+figure.image figcaption{text-align:center;font-style:normal}
+/* The formulas run in the lines of the text, as in the journal: KaTeX at the size of the text */
+.katex{font-size:1.06em}

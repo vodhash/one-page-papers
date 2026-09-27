@@ -1,0 +1,71 @@
+title: "On the Relative Motion of the Earth and the Luminiferous Ether"
+summary: "An interferometer turning on a stone floating on mercury detects no appreciable motion of the earth relative to the ether."
+title_html: "On the Relative Motion of the Earth<br>and the <em>Luminiferous Ether</em>"
+title_size: 72pt
+kicker: "The American Journal of Science · Third Series, Vol. XXXIV, No. 203 · November 1887"
+author: "Albert A. Michelson and Edward W. Morley"
+byline: "Art. XXXVI · This research was carried out with the aid of the Bache Fund."
+emblem: "λ"
+lang: en
+columns: 4
+footer:
+  - "The American Journal of Science, third series, vol. 34, no. 203, pp. 333-345. New Haven: J.&nbsp;D. &amp; E.&nbsp;S. Dana, November 1887."
+  - "<i>Public domain in France and in the United States. Misprints of the journal are kept.</i>"
+  - '<span class="mono">en.wikisource.org · archive.org</span>'
+year: 1887
+authors: [Albert A. Michelson, Edward W. Morley]
+min_print: A1
+source:
+  url: https://archive.org/details/sim_american-journal-of-science_1887-11_34_203
+  retrieved: 2026-09-27
+  edition: >-
+    Text: the validated transcription of English Wikisource ("On the Relative Motion of the
+    Earth and the Luminiferous Ether", Index:On the Relative Motion of the Earth and the
+    Luminiferous Ether.djvu, all 13 pages at proofread level 4), checked word by word against
+    the scan of the issue in the Internet Archive (sim_american-journal-of-science_1887-11_34_203,
+    400 ppi, pp. 333-345) with the OCR layer of that scan as a second reading: every difference
+    between the two was settled on the scan. Where Wikisource differs from the print, the
+    poster follows the print: "velociy" (p. 334), "discusssion" (p. 335) and "qui'l" (p. 334)
+    are misprints of the journal, kept, as are "imcompressible" and "a highly probably
+    determination"; "l'éther" (not "l'ether"); "fig. 5" and "fig. 4" (not "fig. 6" and "fig.
+    1") on p. 337; "1·5 centimeter" (not "1.6"); "wave-lengths" (p. 339); "the light" (not
+    "the-light", p. 342); "out to" (not "out-to"); the aberration and the angle of the moving
+    mirror are alpha, as printed, not the letter a; the subscript stroke of "d," (p. 337) and
+    of the second "T," of p. 336 and the semicolon after "e," (p. 339) are restored; in the notes,
+    "iii, 457" and "III, xxii", and the title of the note on Michelson's paper of 1881 in lower
+    case as printed. In the second note of p. 333 the f of "of" is broken and reads as "ot" in
+    this copy; Wikisource's "of" is kept. The title, the authors and the article number are in
+    the header, the note on the Bache Fund, which is called from the authors' names, is the
+    byline; the signature line at the foot of p. 333 gives the kicker, the cover of the issue the
+    publisher of the footer; running heads and page numbers are dropped. Words hyphenated
+    at line ends are rejoined ("intermolecular", p. 334); "four-thirds", divided at a line end
+    as "four-" and "thirds", keeps its hyphen like "three-fourths" above it. The footnotes,
+    marked with symbols on each page (*, †, ‡, §, ‖, ¶), are numbered 1 to 8 and follow the
+    text. Decimals keep the raised point of the journal. The mathematics is set with KaTeX from
+    the scan (the comma that the print sets inside the denominator of the first fraction of p.
+    336 follows the fraction), the prime
+    subscript of b, a, T and θ as a subscript stroke. The two tables of p. 340 are set in type
+    across the page, their numbers checked one by one against the scan; the "16·" that heads
+    the last column is set "16.". Figures 1 to 6 and the four figures of the Supplement (all on
+    p. 343) are the files of Wikimedia Commons listed in the license note, made from the
+    scan of the American Institute of Physics, stored as 8-bit grayscale (their palettes are
+    gray), every pixel value unchanged; figures that interrupt a paragraph in the journal (1 and 2, 4, 5, 6 and the page
+    of the Supplement) come after that paragraph. The Supplement figures keep their own
+    numbers 1 to 4, as printed.
+license:
+  text: "Public domain"
+  holder: "Albert A. Michelson and Edward W. Morley, 1887"
+  basis: >-
+    Published in the United States in November 1887, before 1 January 1931: public domain in
+    the United States. Albert A. Michelson died on 9 May 1931 (Wikidata Q127234) and Edward W.
+    Morley on 24 February 1923 (Wikidata Q320889): their works are in the public domain in
+    France since 1 January 2002 (70 years counted from 1 January 1932).
+  note: >-
+    Figures from Wikimedia Commons, each marked {{PD-scan|PD-1923}} on its file page, source
+    aip.org: "On the Relative Motion of the Earth and the Luminiferous Ether - Fig 1 and 2.png",
+    "- Fig 3.png", "- Fig 4.png", "- Fig 5.png", "- Fig 6.png" and "- Fig 1, 2, 3, 4
+    (suplement).png" (https://commons.wikimedia.org/wiki/Category:Michelson-Morley_experiment).
+    The Wikisource transcription is marked {{PD/US|1931}}, and its scan on Commons
+    (File:On_the_Relative_Motion_of_the_Earth_and_the_Luminiferous_Ether.djvu)
+    {{PD-scan|PD-1923}}. The Internet Archive scan, which the text was checked against, states
+    no license; no image is taken from it.
