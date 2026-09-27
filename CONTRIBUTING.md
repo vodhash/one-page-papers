@@ -1,6 +1,6 @@
 # Contributing
 
-There are two ways to add a text to the collection.
+To suggest a text and vote for the next ones, post in [Discussions: Ideas](https://github.com/vodhash/one-page-papers/discussions/categories/ideas); a 👍 counts as a vote. There are two ways to add a text to the collection.
 
 - **Request a poster**: open an issue with the
   [Request a poster](https://github.com/vodhash/one-page-papers/issues/new?template=request-a-poster.yml)
@@ -9,6 +9,8 @@ There are two ways to add a text to the collection.
 - **Make the poster yourself**: open a pull request that adds `papers/<category>/<slug>/`, as
   [Add a paper](README.md#add-a-paper) in the README describes. The checklists below are what
   the review goes through.
+
+Whoever proposes a text or makes its poster is credited on its page of the site, through `contributors` in its `meta.yaml`.
 
 Texts that cannot be added yet wait in [PENDING.md](PENDING.md), with what is missing for each.
 If you hold a permission or find a license for one of them, open an issue.

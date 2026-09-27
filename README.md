@@ -4,7 +4,7 @@
 
 Browse the collection at **[onepagepapers.com](https://onepagepapers.com/)**, where each poster also has its full text as a web page to read on screen, and a wallpaper for a phone, a desktop or a 4K screen, drawn in the browser from its PDF.
 
-A text is missing? [Request a poster](https://github.com/vodhash/one-page-papers/issues/new?template=request-a-poster.yml), or make it yourself: [CONTRIBUTING.md](CONTRIBUTING.md) has the checklists.
+A text is missing? Suggest it and vote for the next ones in [Discussions](https://github.com/vodhash/one-page-papers/discussions/categories/ideas), [request a poster](https://github.com/vodhash/one-page-papers/issues/new?template=request-a-poster.yml) with its source and license, or make it yourself: [CONTRIBUTING.md](CONTRIBUTING.md) has the checklists.
 
 Each paper is laid out in full on one page: every section, equation, code listing, table and reference, with figures redrawn as vector graphics. The body size is computed automatically so the text fills the page exactly.
 
@@ -296,6 +296,7 @@ The optional keys:
 |---|---|---|
 | `lang` | `en` | language of the text, for hyphenation (English, French, German and many more) |
 | `layout` | `columns` | `centered` suits short texts: one column unless `columns` says otherwise, vertically centered on the page. `hero` puts the first `::: image` of the text across the top of the page, and the text in columns below |
+| `contributors` | none | GitHub user names of the people who proposed or made the poster, credited on its page of the site |
 | `hero_height` | 50 | share of the page height given to the hero image, in % |
 | `themes` | all | the themes this paper is printed in, for instance `[white, genesis]` |
 | `columns` | 4, or 1 when centered | number of text columns |

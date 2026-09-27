@@ -32,7 +32,7 @@ BUNDLED_FONTS = ("EBGaramond", "JetBrainsMono", "KaTeX_")  # PostScript names of
 META_KEYS = {"title", "title_html", "title_size", "kicker", "author", "byline", "emblem", "abstract",
              "abstract_label", "numbered", "columns", "header_scale", "font_range", "max_font", "layout",
              "footer", "lang", "license", "themes", "hero_height", "year", "authors", "min_print", "source",
-             "summary"}
+             "summary", "contributors"}
 LICENSE_KEYS = {"text", "holder", "notice", "basis", "note"}
 PRINT_SIZES = ("A3", "A2", "A1", "A0")  # the A file prints at each of them
 MIN_BODY = 8  # pt: min_print is the smallest size at which the body prints at least this large
@@ -71,6 +71,10 @@ def load_meta(paper_dir):
         errors.append("summary must be one sentence of 20 words at most")
     if m.get("authors") and not (isinstance(m["authors"], list) and all(isinstance(a, str) for a in m["authors"])):
         errors.append("authors must be a list of names")
+    handles = m.get("contributors", [])
+    if not (isinstance(handles, list) and all(isinstance(h, str) and re.fullmatch(r"[A-Za-z0-9](?:-?[A-Za-z0-9]){0,38}", h)
+                                             for h in handles)):
+        errors.append("contributors must be a list of GitHub user names, without @")
     if m.get("year") and not isinstance(m["year"], (int, str)):
         errors.append("year must be a number, or a text such as \"c. 400 BC\"")
     if m.get("min_print") and m["min_print"] not in PRINT_SIZES:

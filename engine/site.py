@@ -503,6 +503,8 @@ def poster_page(p, posters, previews):
              ("Language", LANGUAGES.get(m.get("lang", "en"), m.get("lang", "en")))]
     if lic.get("holder"):
         facts.append(("Rights holder", esc(lic["holder"])))
+    if m.get("contributors"):
+        facts.append(("Proposed by", ", ".join(f'<a href="https://github.com/{h}">@{h}</a>' for h in m["contributors"])))
     both = p.light != p.dark
     shown = (f'<span class="shown if-light">{p.light}</span><span class="shown if-dark">{p.dark}</span>' if both
              else f'<span class="shown">{p.light}</span>')
@@ -694,6 +696,8 @@ def read_page(p, body, files, katex_head):
              ("Retrieved", date_text(src["retrieved"])), ("License", esc(lic["text"]))]
     if lic.get("holder"):
         facts.append(("Rights holder", esc(lic["holder"])))
+    if m.get("contributors"):
+        facts.append(("Proposed by", ", ".join(f'<a href="https://github.com/{h}">@{h}</a>' for h in m["contributors"])))
     facts.append(("Language", LANGUAGES.get(lang, lang)))
     # what the license asks to carry with the text, in sight: its notice, and the footer of the
     # poster (attribution, license URI); why a text is free, and the notes, are in the details
