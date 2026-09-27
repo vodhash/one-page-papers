@@ -1,0 +1,53 @@
+title: "Zur Elektrodynamik bewegter Körper"
+summary: "Derives special relativity from the relativity principle and the constant speed of light, and applies it to electrodynamics and optics."
+title_html: "Zur Elektrodynamik <em>bewegter Körper</em>"
+kicker: "Annalen der Physik · 4th series · vol. 17 · 1905"
+author: "A. Einstein"
+byline: "Bern, June 1905 · received 30 June 1905"
+emblem: "V"
+lang: de
+columns: 6
+font_range: [5, 20]
+footer:
+  - "Annalen der Physik, 4th series, vol. 17, pp. 891-921. Leipzig: Johann Ambrosius Barth, 1905."
+  - "<i>Public domain in France and in the United States.</i>"
+  - '<span class="mono">doi:10.1002/andp.19053221004</span>'
+year: 1905
+authors: [Albert Einstein]
+min_print: A0
+source:
+  url: https://de.wikisource.org/wiki/Zur_Elektrodynamik_bewegter_K%C3%B6rper
+  retrieved: 2026-09-27
+  edition: >-
+    Wikisource transcription (status "fertig") of the paper in Annalen der Physik, 4th series,
+    vol. 17 (1905), pp. 891-921, from the raw wikitext of its 31 pages
+    (Seite:Einstein-Elektrodynamik.djvu/1 to 31), checked word by word and formula by formula
+    against the page scans of Commons File:Einstein-Elektrodynamik.djvu (Internet Archive
+    sim_annalen-der-physik_1905_17_5). Corrections made to the transcription after the scan:
+    "Wertsystem" for "Wert System" and "linear" in italics (p. 898); the arctg of w_y over w_x
+    (p. 905, Wikisource: w_eta over w_xi); cos instead of sin in the denominator of U, 1 + w/V
+    instead of 1 + w/v, and w set as a symbol (p. 906); "(X', Y' Z')" without the second comma
+    and Z instead of z in the relation for M' (p. 908); "Lichtquelle-Beobachter" joined by an
+    en dash as printed (pp. 911, 912); no square root in the denominator of A'^2 (p. 912); tau
+    added to the list of symbols (p. 918); a baseline dot between N and the root (p. 921); and
+    the punctuation of formulas as printed (pp. 894, 902, 912, 917, 919); four spaces of the
+    wikitext are fixed (pp. 898, 901, 918, 920), and some formulas are set closer to the print
+    without changing them (v over V stacked on p. 914, cos upright on p. 915, the brace of system
+    (A) on p. 918, alignment of the equals and minus signs on pp. 905, 907, 918). The misprints of the
+    print are kept: the heading "II. Eektrodynamischer Teil." (Wikisource: "Elektrodynamischer")
+    and "Doppelerschen", as is the missing mu in the integral of W (p. 920). The title and the
+    author line are in the header; names set letter-spaced in the print are letter-spaced; the
+    four footnotes, numbered 1) on each page of the print, are numbered 1 to 4 at the end of the
+    text; formulas are set with KaTeX, with the one epsilon of the print throughout (the
+    wikitext mixes two forms); line-end hyphens are rejoined, running heads and page numbers
+    are dropped.
+license:
+  text: "Public domain"
+  holder: "Albert Einstein, 1905"
+  basis: >-
+    Albert Einstein died on 18 April 1955: his works are in the public domain in France since
+    1 January 2026 (70 years counted from 1 January 1956). The paper was published in 1905,
+    before 1 January 1931, so it is in the public domain in the United States.
+  note: >-
+    The Commons scan used for checking (File:Einstein-Elektrodynamik.djvu) is marked public
+    domain there (PD-old-auto-1923, author died 1955); no image of it is reproduced.

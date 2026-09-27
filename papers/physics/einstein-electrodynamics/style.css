@@ -1,0 +1,12 @@
+/* Sperrsatz: the print sets personal names letter-spaced; the negative margin takes back the
+   spacing after the last letter, so that "schen" and punctuation follow without a gap */
+.sp{letter-spacing:.14em;margin-right:-.14em}
+/* the two parts centered as in the print, the section titles ragged */
+h2{text-align:center}
+h3{text-align:left}
+/* the lines that the print centers: the equation in words, the date of receipt */
+p.c{text-align:center;hyphens:manual}
+/* a formula and the punctuation or letters that touch it stay on one line; as an inline-block,
+   since the text that follows a formula inside a plain inline span is painted a quarter of a
+   pixel higher or lower from one run to the next, which makes the PDFs differ between builds */
+.nw{white-space:nowrap;display:inline-block}

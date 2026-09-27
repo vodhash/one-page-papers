@@ -1,0 +1,828 @@
+Daß die Elektrodynamik <span class="sp">Maxwell</span>s — wie dieselbe gegenwärtig aufgefaßt zu werden pflegt — in ihrer Anwendung auf bewegte Körper zu Asymmetrien führt, welche den Phänomenen nicht anzuhaften scheinen, ist bekannt. Man denke z. B. an die elektrodynamische Wechselwirkung zwischen einem Magneten und einem Leiter. Das beobachtbare Phänomen hängt hier nur ab von der Relativbewegung von Leiter und Magnet, während nach der üblichen Auffassung die beiden Fälle, daß der eine oder der andere dieser Körper der bewegte sei, streng voneinander zu trennen sind. Bewegt sich nämlich der Magnet und ruht der Leiter, so entsteht in der Umgebung des Magneten ein elektrisches Feld von gewissem Energiewerte, welches an den Orten, wo sich Teile des Leiters befinden, einen Strom erzeugt. Ruht aber der Magnet und bewegt sich der Leiter, so entsteht in der Umgebung des Magneten kein elektrisches Feld, dagegen im Leiter eine elektromotorische Kraft, welcher an sich keine Energie entspricht, die aber — Gleichheit der Relativbewegung bei den beiden ins Auge gefaßten Fällen vorausgesetzt — zu elektrischen Strömen von derselben Größe und demselben Verlaufe Veranlassung gibt, wie im ersten Falle die elektrischen Kräfte.
+
+Beispiele ähnlicher Art, sowie die mißlungenen Versuche, eine Bewegung der Erde relativ zum „Lichtmedium“ zu konstatieren, führen zu der Vermutung, daß dem Begriffe der absoluten Ruhe nicht nur in der Mechanik, sondern auch in der Elektrodynamik keine Eigenschaften der Erscheinungen entsprechen, sondern daß vielmehr für alle Koordinatensysteme, für welche die mechanischen Gleichungen gelten, auch die gleichen elektrodynamischen und optischen Gesetze gelten, wie dies für die Größen erster Ordnung bereits erwiesen ist. Wir wollen diese Vermutung (deren Inhalt im folgenden „Prinzip der Relativität“ genannt werden wird) zur Voraussetzung erheben und außerdem die mit ihm nur scheinbar unverträgliche Voraussetzung einführen, daß sich das Licht im leeren Raume stets mit einer bestimmten, vom Bewegungszustande des emittierenden Körpers unabhängigen Geschwindigkeit \(V\) fortpflanze. Diese beiden Voraussetzungen genügen, um zu einer einfachen und widerspruchsfreien Elektrodynamik bewegter Körper zu gelangen unter Zugrundelegung der <span class="sp">Maxwell</span>schen Theorie für ruhende Körper. Die Einführung eines „Lichtäthers“ wird sich insofern als überflüssig erweisen, als nach der zu entwickelnden Auffassung weder ein mit besonderen Eigenschaften ausgestatteter „absolut ruhender Raum“ eingeführt, noch einem Punkte des leeren Raumes, in welchem elektromagnetische Prozesse stattfinden, ein Geschwindigkeitsvektor zugeordnet wird.
+
+Die zu entwickelnde Theorie stützt sich — wie jede andere Elektrodynamik — auf die Kinematik des starren Körpers, da die Aussagen einer jeden Theorie Beziehungen zwischen starren Körpern (Koordinatensystemen), Uhren und elektromagnetischen Prozessen betreffen. Die nicht genügende Berücksichtigung dieses Umstandes ist die Wurzel der Schwierigkeiten, mit denen die Elektrodynamik bewegter Körper gegenwärtig zu kämpfen hat.
+
+## I. Kinematischer Teil.
+
+### § 1. Definition der Gleichzeitigkeit.
+
+Es liege ein Koordinatensystem vor, in welchem die <span class="sp">Newton</span>schen mechanischen Gleichungen gelten. Wir nennen dies Koordinatensystem zur sprachlichen Unterscheidung von später einzuführenden Koordinatensystemen und zur Präzisierung der Vorstellung das „ruhende System“.
+
+Ruht ein materieller Punkt relativ zu diesem Koordinatensystem, so kann seine Lage relativ zu letzterem durch starre Maßstäbe unter Benutzung der Methoden der euklidischen Geometrie bestimmt und in kartesischen Koordinaten ausgedrückt werden.
+
+Wollen wir die *Bewegung* eines materiellen Punktes beschreiben, so geben wir die Werte seiner Koordinaten in Funktion der Zeit. Es ist nun wohl im Auge zu behalten, daß eine derartige mathematische Beschreibung erst dann einen physikalischen Sinn hat, wenn man sich vorher darüber klar geworden ist, was hier unter „Zeit“ verstanden wird. Wir haben zu berücksichtigen, daß alle unsere Urteile, in welchen die Zeit eine Rolle spielt, immer Urteile über *gleichzeitige Ereignisse* sind. Wenn ich z. B. sage: „Jener Zug kommt hier um 7 Uhr an,“ so heißt dies etwa: „Das Zeigen des kleinen Zeigers meiner Uhr auf 7 und das Ankommen des Zuges sind gleichzeitige Ereignisse.“[^1]
+
+[^1]: Die Ungenauigkeit, welche in dem Begriffe der Gleichzeitigkeit zweier Ereignisse an (annähernd) demselben Orte steckt und gleichfalls durch eine Abstraktion überbrückt werden muß, soll hier nicht erörtert werden.
+
+Es könnte scheinen, daß alle die Definition der „Zeit“ betreffenden Schwierigkeiten dadurch überwunden werden könnten, daß ich an Stelle der „Zeit“ die „Stellung des kleinen Zeigers meiner Uhr“ setze. Eine solche Definition genügt in der Tat, wenn es sich darum handelt, eine Zeit zu definieren ausschließlich für den Ort, an welchem sich die Uhr eben befindet; die Definition genügt aber nicht mehr, sobald es sich darum handelt, an verschiedenen Orten stattfindende Ereignisreihen miteinander zeitlich zu verknüpfen, oder — was auf dasselbe hinausläuft — Ereignisse zeitlich zu werten, welche in von der Uhr entfernten Orten stattfinden.
+
+Wir könnten uns allerdings damit begnügen, die Ereignisse dadurch zeitlich zu werten, daß ein samt der Uhr im Koordinatenursprung befindlicher Beobachter jedem von einem zu wertenden Ereignis Zeugnis gebenden, durch den leeren Raum zu ihm gelangenden Lichtzeichen die entsprechende Uhrzeigerstellung zuordnet. Eine solche Zuordnung bringt aber den Übelstand mit sich, daß sie vom Standpunkte des mit der Uhr versehenen Beobachters nicht unabhängig ist, wie wir durch die Erfahrung wissen. Zu einer weit praktischeren Festsetzung gelangen wir durch folgende Betrachtung.
+
+Befindet sich im Punkte \(A\) des Raumes eine Uhr, so kann ein in \(A\) befindlicher Beobachter die Ereignisse in der unmittelbaren Umgebung von \(A\) zeitlich werten durch Aufsuchen der mit diesen Ereignissen gleichzeitigen Uhrzeigerstellungen. Befindet sich auch im Punkte \(B\) des Raumes eine Uhr — wir wollen hinzufügen, „eine Uhr von genau derselben Beschaffenheit wie die in \(A\) befindliche“ — so ist auch eine zeitliche Wertung der Ereignisse in der unmittelbaren Umgebung von \(B\) durch einen in \(B\) befindlichen Beobachter möglich. Es ist aber ohne weitere Festsetzung nicht möglich, ein Ereignis in \(A\) mit einem Ereignis in \(B\) zeitlich zu vergleichen; wir haben bisher nur eine <span class="nw">„\(A\)-Zeit“</span> und eine <span class="nw">„\(B\)-Zeit“,</span> aber keine für \(A\) und \(B\) gemeinsame „Zeit“ definiert. Die letztere Zeit kann nun definiert werden, indem man *durch Definition* festsetzt, daß die „Zeit“, welche das Licht braucht, um von \(A\) nach \(B\) zu gelangen, gleich ist der „Zeit“, welche es braucht, um von \(B\) nach \(A\) zu gelangen. Es gehe nämlich ein Lichtstrahl zur <span class="nw">„\(A\)-Zeit“</span> \(t_{A}\) von \(A\) nach \(B\) ab, werde zur <span class="nw">„\(B\)-Zeit“</span> \(t_{B}\) in \(B\) gegen \(A\) zu reflektiert und gelange zur <span class="nw">„\(A\)-Zeit“</span> \(t'_{A}\) nach \(A\) zurück. Die beiden Uhren laufen definitionsgemäß synchron, wenn
+
+$$
+t_{B}-t_{A}=t'_{A}-t_{B}.
+$$
+
+Wir nehmen an, daß diese Definition des Synchronismus in widerspruchsfreier Weise möglich sei, und zwar für beliebig viele Punkte, daß also allgemein die Beziehungen gelten:
+
+&#49;. Wenn die Uhr in \(B\) synchron mit der Uhr in \(A\) läuft, so läuft die Uhr in \(A\) synchron mit der Uhr in <span class="nw">\(B\).</span>
+
+&#50;. Wenn die Uhr in \(A\) sowohl mit der Uhr in \(B\) als auch mit der Uhr in \(C\) synchron läuft, so laufen auch die Uhren in \(B\) und \(C\) synchron relativ zueinander.
+
+Wir haben so unter Zuhilfenahme gewisser (gedachter) physikalischer Erfahrungen festgelegt, was unter synchron laufenden, an verschiedenen Orten befindlichen, ruhenden Uhren zu verstehen ist und damit offenbar eine Definition von „gleichzeitig“ und „Zeit“ gewonnen. Die „Zeit“ eines Ereignisses ist die mit dem Ereignis gleichzeitige Angabe einer am Orte des Ereignisses befindlichen, ruhenden Uhr, welche mit einer bestimmten, ruhenden Uhr, und zwar für alle Zeitbestimmungen mit der nämlichen Uhr, synchron läuft.
+
+Wir setzen noch der Erfahrung gemäß fest, daß die Größe
+
+$$
+\frac{2\overline{AB}}{t'_{A}-t_{A}}=V
+$$
+
+eine universelle Konstante (die Lichtgeschwindigkeit im leeren Raume) sei.
+
+Wesentlich ist, daß wir die Zeit mittels im ruhenden System ruhender Uhren definiert haben; wir nennen die eben definierte Zeit wegen dieser Zugehörigkeit zum ruhenden System „die Zeit des ruhenden Systems“.
+
+### § 2. Über die Relativität von Längen und Zeiten.
+
+Die folgenden Überlegungen stützen sich auf das Relativitätsprinzip und auf das Prinzip der Konstanz der Lichtgeschwindigkeit, welche beiden Prinzipien wir folgendermaßen definieren.
+
+&#49;. Die Gesetze, nach denen sich die Zustände der physikalischen Systeme ändern, sind unabhängig davon, auf welches von zwei relativ zueinander in gleichförmiger Translationsbewegung befindlichen Koordinatensystemen diese Zustandsänderungen bezogen werden.
+
+&#50;. Jeder Lichtstrahl bewegt sich im „ruhenden“ Koordinatensystem mit der bestimmten Geschwindigkeit <span class="nw">\(V\),</span> unabhängig davon, ob dieser Lichtstrahl von einem ruhenden oder bewegten Körper emittiert ist. Hierbei ist
+
+$$
+\text{Geschwindigkeit}\; {=\rm \frac{Lichtweg}{Zeitdauer}} ,
+$$
+
+wobei „Zeitdauer“ im Sinne der Definition des § 1 aufzufassen ist.
+
+Es sei ein ruhender starrer Stab gegeben; derselbe besitze, mit einem ebenfalls ruhenden Maßstabe gemessen, die Länge <span class="nw">\(l\).</span> Wir denken uns nun die Stabachse in die <span class="nw">\(X\)-Achse</span> des ruhenden Koordinatensystems gelegt und dem Stabe hierauf eine gleichförmige Paralleltranslationsbewegung (Geschwindigkeit <span class="nw">\(v\))</span> längs der <span class="nw">\(X\)-Achse</span> im Sinne der wachsenden \(x\) erteilt. Wir fragen nun nach der Länge des *bewegten* Stabes, welche wir uns durch folgende zwei Operationen ermittelt denken:
+
+a) Der Beobachter bewegt sich samt dem vorher genannten Maßstabe mit dem auszumessenden Stabe und mißt direkt durch Anlegen des Maßstabes die Länge des Stabes, ebenso, wie wenn sich auszumessender Stab, Beobachter und Maßstab in Ruhe befänden.
+
+b) Der Beobachter ermittelt mittels im ruhenden Systeme aufgestellter, gemäß § 1 synchroner, ruhender Uhren, in welchen Punkten des ruhenden Systems sich Anfang und Ende des auszumessenden Stabes zu einer bestimmten Zeit \(t\) befinden. Die Entfernung dieser beiden Punkte, gemessen mit dem schon benutzten, in diesem Falle ruhenden Maßstabe ist ebenfalls eine Länge, welche man als „Länge des Stabes“ bezeichnen kann.
+
+Nach dem Relativitätsprinzip muß die bei der Operation a) zu findende Länge, welche wir „die Länge des Stabes im bewegten System“ nennen wollen, gleich der Länge \(l\) des ruhenden Stabes sein.
+
+Die bei der Operation b) zu findende Länge, welche wir „die Länge des (bewegten) Stabes im ruhenden System“ nennen wollen, werden wir unter Zugrundelegung unserer beiden Prinzipien bestimmen und finden, daß sie von \(l\) verschieden ist.
+
+Die allgemein gebrauchte Kinematik nimmt stillschweigend an, daß die durch die beiden erwähnten Operationen bestimmten Längen einander genau gleich seien, oder mit anderen Worten, daß ein bewegter starrer Körper in der Zeitepoche \(t\) in geometrischer Beziehung vollständig durch *denselben* Körper, wenn er in bestimmter Lage *ruht*, ersetzbar sei.
+
+Wir denken uns ferner an den beiden Stabenden <span class="nw">(\(A\)</span> und \(B\) ) Uhren angebracht, welche mit den Uhren des ruhenden Systems synchron sind, d. h. deren Angaben jeweilen der „Zeit des ruhenden Systems“ an den Orten, an welchen sie sich gerade befinden, entsprechen; diese Uhren sind also „synchron im ruhenden System“.
+
+Wir denken uns ferner, daß sich bei jeder Uhr ein mit ihr bewegter Beobachter befinde, und daß diese Beobachter auf die beiden Uhren das im § 1 aufgestellte Kriterium für den synchronen Gang zweier Uhren anwenden. Zur Zeit[^2] \(t_{A}\) gehe ein Lichtstrahl von \(A\) aus, werde zur Zeit \(t_{B}\) in \(B\) reflektiert und gelange zur Zeit \(t'_{A}\) nach \(A\) zurück. Unter Berücksichtigung des Prinzipes von der Konstanz der Lichtgeschwindigkeit finden wir:
+
+[^2]: „Zeit“ bedeutet hier „Zeit des ruhenden Systems“ und zugleich „Zeigerstellung der bewegten Uhr, welche sich an dem Orte, von dem die Rede ist, befindet“.
+
+$$
+t_{B}-t_{A}=\frac{r_{AB}}{V-v}
+$$
+
+und
+
+$$
+t'_{A}-t_{B}=\frac{r_{AB}}{V+v},
+$$
+
+wobei \(r_{AB}\) die Länge des bewegten Stabes — im ruhenden System gemessen — bedeutet. Mit dem bewegten Stabe bewegte Beobachter würden also die beiden Uhren nicht synchron gehend finden, während im ruhenden System befindliche Beobachter die Uhren als synchron laufend erklären würden.
+
+Wir sehen also, daß wir dem Begriffe der Gleichzeitigkeit keine *absolute* Bedeutung beimessen dürfen, sondern daß zwei Ereignisse, welche, von einem Koordinatensystem aus betrachtet, gleichzeitig sind, von einem relativ zu diesem System bewegten System aus betrachtet, nicht mehr als gleichzeitige Ereignisse aufzufassen sind.
+
+### § 3. Theorie der Koordinaten- und Zeittransformation von dem ruhenden auf ein relativ zu diesem in gleichförmiger Translationsbewegung befindliches System.
+
+Seien im „ruhenden“ Raume zwei Koordinatensysteme, d. h. zwei Systeme von je drei von einem Punkte ausgehenden, aufeinander senkrechten starren materiellen Linien, gegeben. Die <span class="nw">\(X\)-Achsen</span> beider Systeme mögen zusammenfallen, ihre <span class="nw">\(Y\)-</span> und <span class="nw">\(Z\)-Achsen</span> bezüglich parallel sein. Jedem Systeme sei ein starrer Maßstab und eine Anzahl Uhren beigegeben, und es seien beide Maßstäbe sowie alle Uhren beider Systeme einander genau gleich.
+
+Es werde nun dem Anfangspunkte des einen der beiden Systeme <span class="nw">(\(k\))</span> eine (konstante) Geschwindigkeit \(v\) in Richtung der wachsenden \(x\) des anderen, ruhenden Systems <span class="nw">(\(K\))</span> erteilt, welche sich auch den Koordinatenachsen, dem betreffenden Maßstabe sowie den Uhren mitteilen möge. Jeder Zeit \(t\) des ruhenden Systems \(K\) entspricht dann eine bestimmte Lage der Achsen des bewegten Systems und wir sind aus Symmetriegründen befugt anzunehmen, daß die Bewegung von \(k\) so beschaffen sein kann, daß die Achsen des bewegten Systems zur Zeit \(t\) (es ist mit <span class="nw">„\(t\)“</span> immer eine Zeit des ruhenden Systems bezeichnet) den Achsen des ruhenden Systems parallel seien.
+
+Wir denken uns nun den Raum sowohl vom ruhenden System \(K\) aus mittels des ruhenden Maßstabes als auch vom bewegten System \(k\) mittels des mit ihm bewegten Maßstabes ausgemessen und so die Koordinaten \(x,y,z\) bez. \(\xi,\eta,\zeta\) ermittelt. Es werde ferner mittels der im ruhenden System befindlichen ruhenden Uhren durch Lichtsignale in der in § 1 angegebenen Weise die Zeit \(t\) des ruhenden Systems für alle Punkte des letzteren bestimmt, in denen sich Uhren befinden; ebenso werde die Zeit \(\tau\) des bewegten Systems für alle Punkte des bewegten Systems, in welchen sich relativ zu letzterem ruhende Uhren befinden, bestimmt durch Anwendung der in § 1 genannten Methode der Lichtsignale zwischen den Punkten, in denen sich die letzteren Uhren befinden.
+
+Zu jedem Wertsystem <span class="nw">\(x,y,z,t\),</span> welches Ort und Zeit eines Ereignisses im ruhenden System vollkommen bestimmt, gehört ein jenes Ereignis relativ zum System \(k\) festlegendes Wertsystem <span class="nw">\(\xi,\eta,\zeta,\tau\),</span> und es ist nun die Aufgabe zu lösen, das diese Größen verknüpfende Gleichungssystem zu finden.
+
+Zunächst ist klar, daß die Gleichungen *linear* sein müssen wegen der Homogenitätseigenschaften, welche wir Raum und Zeit beilegen.
+
+Setzen wir <span class="nw">\(x'=x-vt\),</span> so ist klar, daß einem im System \(k\) ruhenden Punkte ein bestimmtes, von der Zeit unabhängiges Wertsystem \(x',y,z\) zukommt. Wir bestimmen zuerst \(\tau\) als Funktion von \(x',y,z\) und <span class="nw">\(t\).</span> Zu diesem Zwecke haben wir in Gleichungen auszudrücken, daß \(\tau\) nichts anderes ist als der Inbegriff der Angaben von im System \(k\) ruhenden Uhren, welche nach der im § 1 gegebenen Regel synchron gemacht worden sind.
+
+Vom Anfangspunkt des Systems \(k\) aus werde ein Lichtstrahl zur Zeit \(\tau_{0}\) längs der <span class="nw">\(X\)-Achse</span> nach \(x'\) gesandt und von dort zur Zeit \(\tau_{1}\) nach dem Koordinatenursprung reflektiert, wo er zur Zeit \(\tau_{2}\) anlange; so muß dann sein:
+
+$$
+\frac{1}{2}(\tau_{0}+\tau_{2})=\tau_{1}
+$$
+
+oder, indem man die Argumente der Funktion \(\tau\) beifügt und das Prinzip der Konstanz der Lichtgeschwindigkeit im ruhenden Systeme anwendet:
+
+$$
+\frac{1}{2}\left[\tau(0,0,0,t)+\tau\left(0,0,0,\left\{ t+\frac{x'}{V-v}+\frac{x'}{V+v}\right\} \right)\right]
+$$
+
+$$
+=\tau\left(x',0,0,t+\frac{x'}{V-v}\right).
+$$
+
+Hieraus folgt, wenn man \(x'\) unendlich klein wählt:
+
+$$
+\frac{1}{2}\left(\frac{1}{V-v}+\frac{1}{V+v}\right)\frac{\partial\tau}{\partial t}=\frac{\partial\tau}{\partial x'}+\frac{1}{V-v}\frac{\partial\tau}{\partial t},
+$$
+
+oder
+
+$$
+\frac{\partial\tau}{\partial x'}+\frac{v}{V^{2}-v^{2}}\frac{\partial\tau}{\partial t}=0.
+$$
+
+Es ist zu bemerken, daß wir statt des Koordinatenursprunges jeden anderen Punkt als Ausgangspunkt des Lichtstrahles hätten wählen können und es gilt deshalb die eben erhaltene Gleichung für alle Werte von <span class="nw">\(x',y,z\).</span>
+
+Eine analoge Überlegung — auf die <span class="nw">\(H\)-</span> und <span class="nw">\(Z\)-Achse</span> angewandt — liefert, wenn man beachtet, daß sich das Licht längs dieser Achsen vom ruhenden System aus betrachtet stets mit der Geschwindigkeit \(\sqrt{V^{2}-v^{2}}\) fortpflanzt:
+
+$$
+\frac{\partial\tau}{\partial y}=0
+$$
+
+$$
+\frac{\partial\tau}{\partial z}=0.
+$$
+
+Aus diesen Gleichungen folgt, da \(\tau\) eine *lineare* Funktion ist:
+
+$$
+\tau=a\left(t-\frac{v}{V^{2}-v^{2}}x'\right) ,
+$$
+
+wobei \(a\) eine vorläufig unbekannte Funktion \(\varphi(v)\) ist und der Kürze halber angenommen ist, daß im Anfangspunkte von \(k\) für \(\tau=0\) \(t=0\) sei.
+
+Mit Hilfe dieses Resultates ist es leicht, die Größen \(\xi,\eta,\zeta\) zu ermitteln, indem man durch Gleichungen ausdrückt, daß sich das Licht (wie das Prinzip der Konstanz der Lichtgeschwindigkeit in Verbindung mit dem Relativitätsprinzip verlangt) auch im bewegten System gemessen mit der Geschwindigkeit \(V\) fortpflanzt. Für einen zur Zeit \(\tau=0\) in Richtung der wachsenden \(\xi\) ausgesandten Lichtstrahl gilt:
+
+$$
+\xi=V\tau ,
+$$
+
+oder
+
+$$
+\xi=aV\left(t-\frac{v}{V^{2}-v^{2}}x'\right) .
+$$
+
+Nun bewegt sich aber der Lichtstrahl relativ zum Anfangspunkt von \(k\) im ruhenden System gemessen mit der Geschwindigkeit <span class="nw">\(V-v\),</span> so daß gilt:
+
+$$
+\frac{x'}{V-v}=t.
+$$
+
+Setzen wir diesen Wert von \(t\) in die Gleichung für \(\xi\) ein, so erhalten wir:
+
+$$
+\xi=a\frac{V^{2}}{V^{2}-v^{2}}x'.
+$$
+
+Auf analoge Weise finden wir durch Betrachtung von längs den beiden anderen Achsen bewegte Lichtstrahlen:
+
+$$
+\eta=V\tau=aV\left(t-\frac{v}{V^{2}-v^{2}}x'\right),
+$$
+
+wobei
+
+$$
+\frac{y}{\sqrt{V^{2}-v^{2}}}=t;\ x'=0;
+$$
+
+also
+
+$$
+\eta=a\frac{V}{\sqrt{V^{2}-v^{2}}}y
+$$
+
+und
+
+$$
+\zeta=a\frac{V}{\sqrt{V^{2}-v^{2}}}z.
+$$
+
+Setzen wir für \(x'\) seinen Wert ein, so erhalten wir:
+
+$$
+\begin{aligned}\tau & =\varphi(v)\beta(t-\frac{v}{V^{2}}x),\\
+\xi & =\varphi(v)\beta(x-vt),\\
+\eta & =\varphi(v)y,\\
+\zeta & =\varphi(v)z,
+\end{aligned}
+$$
+
+wobei
+
+$$
+\beta=\frac{1}{\sqrt{1-\left(\frac{v}{V}\right)^{2}}}
+$$
+
+und \(\varphi\) eine vorläufig unbekannte Funktion von \(v\) ist. Macht man über die Anfangslage des bewegten Systems und über den Nullpunkt von \(\tau\) keinerlei Voraussetzung, so ist auf den rechten Seiten dieser Gleichungen je eine additive Konstante zuzufügen.
+
+Wir haben nun zu beweisen, daß jeder Lichtstrahl sich, im bewegten System gemessen, mit der Geschwindigkeit \(V\) fortpflanzt, falls dies, wie wir angenommen haben, im ruhenden System der Fall ist; denn wir haben den Beweis dafür noch nicht geliefert, daß das Prinzip der Konstanz der Lichtgeschwindigkeit mit dem Relativitätsprinzip vereinbar sei.
+
+Zur Zeit \(t=\tau=0\) werde von dem zu dieser Zeit gemeinsamen Koordinatenursprung beider Systeme aus eine Kugelwelle ausgesandt, welche sich im System \(K\) mit der Geschwindigkeit \(V\) ausbreitet. Ist <span class="nw">(\(x,y,z\))</span> ein eben von dieser Welle ergriffener Punkt, so ist also
+
+$$
+x^{2}+y^{2}+z^{2}=V^{2}t^{2} .
+$$
+
+Diese Gleichung transformieren wir mit Hilfe unserer Transformationsgleichungen und erhalten nach einfacher Rechnung:
+
+$$
+\xi^{2}+\eta^{2}+\zeta^{2}=V^{2}\tau^{2} .
+$$
+
+Die betrachtete Welle ist also auch im bewegten System betrachtet eine Kugelwelle von der Ausbreitungsgeschwindigkeit <span class="nw">\(V\).</span> Hiermit ist gezeigt, daß unsere beiden Grundprinzipien miteinander vereinbar sind.
+
+In den entwickelten Transformationsgleichungen tritt noch eine unbekannte Funktion \(\varphi\) von \(v\) auf, welche wir nun bestimmen wollen.
+
+Wir führen zu diesem Zwecke noch ein drittes Koordinatensystem \(K'\) ein, welches relativ zum System \(k\) derart in Paralleltranslationsbewegung parallel zur <span class="nw">\(\Xi\)-Achse</span> begriffen sei, daß sich dessen Koordinatenursprung mit der Geschwindigkeit \(-v\) auf der <span class="nw">\(\Xi\)-Achse</span> bewege. Zur Zeit \(t=0\) mögen alle drei Koordinatenanfangspunkte zusammenfallen und es sei für \(t=x=y=z=0\) die Zeit \(t'\) des Systems \(K'\) gleich Null. Wir nennen \(x',y',z'\) die Koordinaten, im System \(K'\) gemessen, und erhalten durch zweimalige Anwendung unserer Transformationsgleichungen:
+
+$$
+\begin{alignedat}{3}t' & =\varphi(-v)\beta(-v)\left\{ \tau+\frac{v}{V^{2}}\xi\right\}  &  & =\varphi(v)\varphi(-v)t,\\x' & =\varphi(-v)\beta(-v)\left\{ \xi+v\tau\right\}  &  & =\varphi(v)\varphi(-v)x,\\y' & =\varphi(-v)\eta &  & =\varphi(v)\varphi(-v)y,\\z' & =\varphi(-v)\zeta &  & =\varphi(v)\varphi(-v)z.\end{alignedat}
+$$
+
+Da die Beziehungen zwischen \(x',y',z'\) und \(x,y,z\) die Zeit \(t\) nicht enthalten, so ruhen die Systeme \(K\) und \(K'\) gegeneinander, und es ist klar, daß die Transformation von \(K\) auf \(K'\) die identische Transformation sein muß. Es ist also:
+
+$$
+\varphi(v)\varphi(-v)=1 .
+$$
+
+Wir fragen nun nach der Bedeutung von <span class="nw">\(\varphi(v)\).</span> Wir fassen das Stück der <span class="nw">\(H\)-Achse</span> des Systems \(k\) ins Auge, das zwischen \(\xi=0,\eta=0,\zeta=0\) und \(\xi=0,\eta=l,\zeta=0\) gelegen ist. Dieses Stück der <span class="nw">\(H\)-Achse</span> ist ein relativ zum System \(K\) mit der Geschwindigkeit \(v\) senkrecht zu seiner Achse bewegter Stab, dessen Enden in \(K\) die Koordinaten besitzen:
+
+$$
+x_{1}=vt,\ y_{1}=\frac{l}{\varphi(v)},\ z_{1}=0
+$$
+
+und
+
+$$
+x_{2}=vt,\ y_{2}=0,\ z_{2}=0.
+$$
+
+Die Länge des Stabes, in \(K\) gemessen, ist also <span class="nw">\(l/\varphi(v)\);</span> damit ist die Bedeutung der Funktion \(\varphi\) gegeben. Aus Symmetriegründen ist nun einleuchtend, daß die im ruhenden System gemessene Länge eines bestimmten Stabes, welcher senkrecht zu seiner Achse bewegt ist, nur von der Geschwindigkeit, nicht aber von der Richtung und dem Sinne der Bewegung abhängig sein kann. Es ändert sich also die im ruhenden System gemessene Länge des bewegten Stabes nicht, wenn \(v\) mit \(-v\) vertauscht wird. Hieraus folgt:
+
+$$
+\frac{l}{\varphi(v)}=\frac{l}{\varphi(-v)},
+$$
+
+oder
+
+$$
+\varphi(v)=\varphi(-v) .
+$$
+
+Aus dieser und der vorhin gefundenen Relation folgt, daß \(\varphi(v)=1\) sein muß, so daß die gefundenen Transformationsgleichungen übergehen in:
+
+$$
+\begin{aligned}\tau & =\beta(t-\frac{v}{V^{2}}x),\\
+\xi & =\beta(x-vt),\\
+\eta & =y,\\
+\zeta & =z,
+\end{aligned}
+$$
+
+wobei
+
+$$
+\beta=\frac{1}{\sqrt{1-\left(\frac{v}{V}\right)^{2}}},
+$$
+
+### § 4. Physikalische Bedeutung der erhaltenen Gleichungen, bewegte starre Körper und bewegte Uhren betreffend.
+
+Wir betrachten eine starre Kugel[^3] vom Radius <span class="nw">\(R\),</span> welche relativ zum bewegten System \(k\) ruht, und deren Mittelpunkt im Koordinatenursprung von \(k\) liegt. Die Gleichung der Oberfläche dieser relativ zum System \(K\) mit der Geschwindigkeit \(v\) bewegten Kugel ist:
+
+[^3]: Das heißt einen Körper, welcher ruhend untersucht Kugelgestalt besitzt.
+
+$$
+\xi^{2}+\eta^{2}+\zeta^{2}=R^{2} .
+$$
+
+Die Gleichung dieser Oberfläche ist in \(x,y,z\) ausgedrückt zur Zeit <span class="nw">\(t=0\):</span>
+
+$$
+\frac{x^{2}}{\left(\sqrt{1-\left(\frac{v}{V}\right)^{2}}\right)^{2}}+y^{2}+z^{2}=R^{2}.
+$$
+
+Ein starrer Körper, welcher in ruhendem Zustande ausgemessen die Gestalt einer Kugel hat, hat also in bewegtem Zustande — vom ruhenden System aus betrachtet — die Gestalt eines Rotationsellipsoides mit den Achsen
+
+$$
+R\sqrt{1-\left(\frac{v}{V}\right)^{2}},\ R,\ R.
+$$
+
+Während also die <span class="nw">\(Y\)-</span> und <span class="nw">\(Z\)-Dimension</span> der Kugel (also auch jedes starren Körpers von beliebiger Gestalt) durch die Bewegung nicht modifiziert erscheinen, erscheint die <span class="nw">\(X\)-Dimension</span> im Verhältnis \(1:\sqrt{1-(v/V)^{2}}\) verkürzt, also um so stärker, je größer \(v\) ist. Für \(v=V\) schrumpfen alle bewegten Objekte — vom „ruhenden“ System aus betrachtet — in flächenhafte Gebilde zusammen. Für Überlichtgeschwindigkeiten werden unsere Überlegungen sinnlos; wir werden übrigens in den folgenden Betrachtungen finden, daß die Lichtgeschwindigkeit in unserer Theorie physikalisch die Rolle der unendlich großen Geschwindigkeiten spielt.
+
+Es ist klar, daß die gleichen Resultate von im „ruhenden“ System ruhenden Körpern gelten, welche von einem gleichförmig bewegten System aus betrachtet werden. —
+
+Wir denken uns ferner eine der Uhren, welche relativ zum ruhenden System ruhend die Zeit <span class="nw">\(t\),</span> relativ zum bewegten System ruhend die Zeit \(\tau\) anzugeben befähigt sind, im Koordinatenursprung von \(k\) gelegen und so gerichtet, daß sie die Zeit \(\tau\) angibt. Wie schnell geht diese Uhr, vom ruhenden System aus betrachtet?
+
+Zwischen die Größen <span class="nw">\(x\),</span> \(t\) und <span class="nw">\(\tau\),</span> welche sich auf den Ort dieser Uhr beziehen, gelten offenbar die Gleichungen:
+
+$$
+\tau=\frac{1}{\sqrt{1-\left(\frac{v}{V}\right)^{2}}}(t-\frac{v}{V^{2}}x)
+$$
+
+und
+
+$$
+x=vt .
+$$
+
+Es ist also
+
+$$
+\tau=t\sqrt{1-\left(\frac{v}{V}\right)^{2}}=t-\left(1-\sqrt{1-\left(\frac{v}{V}\right)^{2}}\right)t,
+$$
+
+woraus folgt, daß die Angabe der Uhr (im ruhenden System betrachtet) pro Sekunde um \(\left(1-\sqrt{1-(v/V)^{2}}\right)\) Sek. oder — bis auf Größen vierter und höherer Ordnung um \(\frac{1}{2}(v/V)^{2}\) Sek. zurückbleibt.
+
+Hieraus ergibt sich folgende eigentümliche Konsequenz. Sind in den Punkten \(A\) und \(B\) von \(K\) ruhende, im ruhenden System betrachtet, synchron gehende Uhren vorhanden, und bewegt man die Uhr in \(A\) mit der Geschwindigkeit \(v\) auf der Verbindungslinie nach <span class="nw">\(B\),</span> so gehen nach Ankunft dieser Uhr in \(B\) die beiden Uhren nicht mehr synchron, sondern die von \(A\) nach \(B\) bewegte Uhr geht gegenüber der von Anfang an in \(B\) befindlichen um \(\frac{1}{2}tv^{2}/V^{2}\) Sek. (bis auf Größen vierter und höherer Ordnung) nach, wenn \(t\) die Zeit ist, welche die Uhr von \(A\) nach \(B\) braucht.
+
+Man sieht sofort, daß dies Resultat auch dann noch gilt, wenn die Uhr in einer beliebigen polygonalen Linie sich von \(A\) nach \(B\) bewegt, und zwar auch dann, wenn die Punkte \(A\) und \(B\) zusammenfallen.
+
+Nimmt man an, daß das für eine polygonale Linie bewiesene Resultat auch für eine stetig gekrümmte Kurve gelte, so erhält man den Satz: Befinden sich in \(A\) zwei synchron gehende Uhren und bewegt man die eine derselben auf einer geschlossenen Kurve mit konstanter Geschwindigkeit, bis sie wieder nach \(A\) zurückkommt, was \(t\) Sek. dauern möge, so geht die letztere Uhr bei ihrer Ankunft in \(A\) gegenüber der unbewegt gebliebenen um \(\frac{1}{2}t(v/V)^{2}\) Sek. nach. Man schließt daraus, daß eine am Erdäquator befindliche Unruhuhr um einen sehr kleinen Betrag langsamer laufen muß als eine genau gleich beschaffene, sonst gleichen Bedingungen unterworfene, an einem Erdpole befindliche Uhr.
+
+### § 5. Additionstheorem der Geschwindigkeiten.
+
+In dem längs der <span class="nw">\(X\)-Achse</span> des Systems \(K\) mit der Geschwindigkeit \(v\) bewegten System \(k\) bewege sich ein Punkt gemäß den Gleichungen:
+
+$$
+\begin{aligned}\xi & =w_{\xi}\tau,\\
+\eta & =w_{\eta}\tau,\\
+\zeta & =0,
+\end{aligned}
+$$
+
+wobei \(w_{\xi}\) und \(w_{\eta}\) Konstanten bedeuten.
+
+Gesucht ist die Bewegung des Punktes relativ zum System <span class="nw">\(K\).</span> Führt man in die Bewegungsgleichungen des Punktes mit Hilfe der in § 3 entwickelten Transformationsgleichungen die Größen \(x,y,z,t\) ein, so erhält man:
+
+$$
+\begin{aligned}x & =\frac{w_{\xi}+v}{1+\frac{vw_{\xi}}{V^{2}}}t,\\
+y & =\frac{\sqrt{1-\left(\frac{v}{V}\right)^{2}}}{1+\frac{vw_{\xi}}{V^{2}}}w_{\eta}t,\\
+z & =0.
+\end{aligned}
+$$
+
+Das Gesetz vom Parallelogramm der Geschwindigkeiten gilt also nach unserer Theorie nur in erster Annäherung. Wir setzen:
+
+$$
+\begin{aligned}U^{2} & =\left(\frac{dx}{dt}\right)^{2}+\left(\frac{dy}{dt}\right)^{2},\\
+w^{2} & =w_{\xi}^{2}+w_{\eta}^{2}
+\end{aligned}
+$$
+
+und
+
+$$
+\alpha={\rm arctg}\frac{w_{y}}{w_{x}};
+$$
+
+\(\alpha\) ist dann als der Winkel zwischen den Geschwindigkeiten \(v\) und \(w\) anzusehen. Nach einfacher Rechnung ergibt sich:
+
+$$
+U=\frac{\sqrt{(v^{2}+w^{2}+2v\ w\ \cos\alpha)-\left(\frac{v\ w\ \sin\alpha}{V}\right){}^{2}}}{1+\frac{v\ w\ \cos\alpha}{V^{2}}}.
+$$
+
+Es ist bemerkenswert, daß \(v\) und \(w\) in symmetrischer Weise in den Ausdruck für die resultierende Geschwindigkeit eingehen. Hat auch \(w\) die Richtung der <span class="nw">\(X\)-Achse</span> <span class="nw">(\(\Xi\)-Achse),</span> so erhalten wir:
+
+$$
+U=\frac{v+w}{1+\frac{vw}{V^{2}}}.
+$$
+
+Aus dieser Gleichung folgt, daß aus der Zusammensetzung zweier Geschwindigkeiten, welche kleiner sind als <span class="nw">\(V\),</span> stets eine Geschwindigkeit kleiner als \(V\) resultiert. Setzt man nämlich <span class="nw">\(v=V-\varkappa\),</span> <span class="nw">\(w=V-\lambda\),</span> wobei \(\varkappa\) und \(\lambda\) positiv und kleiner als \(V\) seien, so ist:
+
+$$
+U=V\frac{2V-\varkappa-\lambda}{2V-\varkappa-\lambda+\frac{\varkappa\lambda}{V}}\lt V.
+$$
+
+Es folgt ferner, daß die Lichtgeschwindigkeit \(V\) durch Zusammensetzung mit einer „Unterlichtgeschwindigkeit“ nicht geändert werden kann. Man erhält für diesen Fall:
+
+$$
+U=\frac{V+w}{1+\frac{w}{V}}=V.
+$$
+
+Wir hätten die Formel für \(U\) für den Fall, daß \(v\) und \(w\) gleiche Richtung besitzen, auch durch Zusammensetzen zweier Transformationen gemäß § 3 erhalten können. Führen wir neben den in § 3 figurierenden Systemen \(K\) und \(k\) noch ein drittes, zu \(k\) in Parallelbewegung begriffenes Koordinatensystem \(k'\) ein, dessen Anfangspunkt sich auf der <span class="nw">\(\Xi\)-Achse</span> mit der Geschwindigkeit \(w\) bewegt, so erhalten wir zwischen den Größen \(x,y,z,t\) und den entsprechenden Größen von \(k'\) Gleichungen, welche sich von den in § 3 gefundenen nur dadurch unterscheiden, daß an Stelle von <span class="nw">„\(v\)“</span> die Größe
+
+$$
+\frac{v+w}{1+\frac{vw}{V^{2}}}
+$$
+
+tritt; man sieht daraus, daß solche Paralleltransformationen — wie dies sein muß — eine Gruppe bilden.
+
+Wir haben nun die für uns notwendigen Sätze der unseren zwei Prinzipien entsprechenden Kinematik hergeleitet und gehen dazu über, deren Anwendung in der Elektrodynamik zu zeigen.
+
+## II. Eektrodynamischer Teil.
+
+### § 6. Transformation der <span class="sp">Maxwell-Hertz</span>schen Gleichungen für den leeren Raum. Über die Natur der bei Bewegung in einem Magnetfeld auftretenden elektromotorischen Kräfte.
+
+Die <span class="sp">Maxwell-Hertz</span>schen Gleichungen für den leeren Raum mögen gültig sein für das ruhende System <span class="nw">\(K\),</span> so daß gelten möge:
+
+$$
+\begin{aligned}\frac{1}{V}\frac{\partial X}{\partial t} & =\frac{\partial N}{\partial y}-\frac{\partial M}{\partial z}, & \ \frac{1}{V}\frac{\partial L}{\partial t} & =\frac{\partial Y}{\partial z}-\frac{\partial Z}{\partial y},\\
+\frac{1}{V}\frac{\partial Y}{\partial t} & =\frac{\partial L}{\partial z}-\frac{\partial N}{\partial x}, & \ \frac{1}{V}\frac{\partial M}{\partial t} & =\frac{\partial Z}{\partial x}-\frac{\partial X}{\partial z},\\
+\frac{1}{V}\frac{\partial Z}{\partial t} & =\frac{\partial M}{\partial x}-\frac{\partial L}{\partial y}, & \ \frac{1}{V}\frac{\partial N}{\partial t} & =\frac{\partial X}{\partial y}-\frac{\partial Y}{\partial x},
+\end{aligned}
+$$
+
+wobei <span class="nw">(\(X,Y,Z\))</span> den Vektor der elektrischen, <span class="nw">(\(L,M,N\))</span> den der magnetischen Kraft bedeutet.
+
+Wenden wir auf diese Gleichungen die in § 3 entwickelte Transformation an, indem wir die elektromagnetischen Vorgänge auf das dort eingeführte, mit der Geschwindigkeit \(v\) bewegte Koordinatensystem beziehen, so erhalten wir die Gleichungen:
+
+$$
+\begin{alignedat}{3}
+ & \frac{1}{V}\frac{\partial X}{\partial\tau} &  & =\frac{\partial\beta\left(N-\frac{v}{V}Y\right)}{\partial\eta} &  & -\frac{\partial\beta\left(M+\frac{v}{V}Z\right)}{\partial\zeta},\\
+ & \frac{1}{V}\frac{\partial\beta\left(Y-\frac{v}{V}N\right)}{\partial\tau} &  & =\frac{\partial L}{\partial\zeta} &  & -\frac{\partial\beta\left(N-\frac{v}{V}Y\right)}{\partial\xi},\\
+ & \frac{1}{V}\frac{\partial\beta\left(Z+\frac{v}{V}M\right)}{\partial\tau} &  & =\frac{\partial\beta\left(M+\frac{v}{V}Z\right)}{\partial\xi} &  & -\frac{\partial L}{\partial\eta},\\
+ & \frac{1}{V}\frac{\partial L}{\partial\tau} &  & =\frac{\partial\beta\left(Y-\frac{v}{V}N\right)}{\partial\zeta} &  & -\frac{\partial\beta\left(Z+\frac{v}{V}M\right)}{\partial\eta},
+\end{alignedat}
+$$
+
+$$
+\begin{alignedat}{3}
+ & \frac{1}{V}\frac{\partial\beta\left(M+\frac{v}{V}Z\right)}{\partial\tau} &  & =\frac{\partial\beta\left(Z+\frac{v}{V}M\right)}{\partial\xi} &  & -\frac{\partial X}{\partial\zeta},\\
+ & \frac{1}{V}\frac{\partial\beta\left(N-\frac{v}{V}Y\right)}{\partial\tau} &  & =\frac{\partial X}{\partial\eta} &  & -\frac{\partial\beta\left(Y-\frac{v}{V}N\right)}{\partial\xi},
+\end{alignedat}
+$$
+
+wobei
+
+$$
+\beta=\frac{1}{\sqrt{1-\left(\frac{v}{V}\right)^{2}}}.
+$$
+
+Das Relativitätsprinzip fordert nun, daß die <span class="sp">Maxwell-Hertz</span>schen Gleichungen für den leeren Raum auch im System \(k\) gelten, wenn sie im System \(K\) gelten, d. h. daß für die im bewegten System \(k\) durch ihre ponderomotorischen Wirkungen auf elektrische bez. magnetische Massen definierten Vektoren der elektrischen und magnetischen Kraft <span class="nw">(\((X',Y'\ Z')\)</span> und <span class="nw">\((L',M',N')\))</span> des bewegten Systems \(k\) die Gleichungen gelten:
+
+$$
+\begin{aligned}\frac{1}{V}\frac{\partial X'}{\partial\tau} & =\frac{\partial N'}{\partial\eta}-\frac{\partial M'}{\partial\zeta}, & \frac{1}{V}\frac{\partial L'}{\partial\tau} & =\frac{\partial Y'}{\partial\zeta}-\frac{\partial Z'}{\partial\eta},\\
+\frac{1}{V}\frac{\partial Y'}{\partial\tau} & =\frac{\partial L'}{\partial\zeta}-\frac{\partial N'}{\partial\xi}, & \frac{1}{V}\frac{\partial M'}{\partial\tau} & =\frac{\partial Z'}{\partial\xi}-\frac{\partial X'}{\partial\zeta},\\
+\frac{1}{V}\frac{\partial Z'}{\partial\tau} & =\frac{\partial M'}{\partial\xi}-\frac{\partial L'}{\partial\eta}, & \frac{1}{V}\frac{\partial N'}{\partial\tau} & =\frac{\partial X'}{\partial\eta}-\frac{\partial Y'}{\partial\xi}.
+\end{aligned}
+$$
+
+Offenbar müssen nun die beiden für das System \(k\) gefundenen Gleichungssysteme genau dasselbe ausdrücken, da beide Gleichungssysteme den <span class="sp">Maxwell-Hertz</span>schen Gleichungen für das System \(K\) äquivalent sind. Da die Gleichungen beider Systeme ferner bis auf die die Vektoren darstellenden Symbole übereinstimmen, so folgt, daß die in den Gleichungssystemen an entsprechenden Stellen auftretenden Funktionen bis auf einen für alle Funktionen des einen Gleichungssystems gemeinsamen, von \(\xi,\eta,\zeta\) und \(\tau\) unabhängigen, eventuell von \(v\) abhängigen Faktor \(\psi(v)\) übereinstimmen müssen. Es gelten also die Beziehungen:
+
+$$
+\begin{aligned}X' & =\psi(v)X, & L' & =\psi(v)L,\\
+Y' & =\psi(v)\beta\left(Y-\frac{v}{V}N\right), & M' & =\psi(v)\beta\left(M+\frac{v}{V}Z\right),\\
+Z' & =\psi(v)\beta\left(Z+\frac{v}{V}M\right), & N' & =\psi(v)\beta\left(N-\frac{v}{V}Y\right).
+\end{aligned}
+$$
+
+Bildet man nun die Umkehrung dieses Gleichungssystems, erstens durch Auflösen der soeben erhaltenen Gleichungen, zweitens durch Anwendung der Gleichungen auf die inverse Transformation (von \(k\) auf <span class="nw">\(K\)),</span> welche durch die Geschwindigkeit \(-v\) charakterisiert ist, so folgt, indem man berücksichtigt, daß die beiden so erhaltenen Gleichungssysteme identisch sein müssen:
+
+$$
+\varphi(v).\varphi(-v)=1 .
+$$
+
+Ferner folgt aus Symmetriegründen[^4]
+
+[^4]: Ist z. B. \(X=Y=Z=L=M=0\) und <span class="nw">\(N\neq0\),</span> so ist aus Symmetriegründen klar, daß bei Zeichenwechsel von \(v\) ohne Änderung des numerischen Wertes auch \(Y'\) sein Vorzeichen ändern muß, ohne seinen numerischen Wert zu ändern.
+
+$$
+\varphi(v)=\varphi(-v) ;
+$$
+
+es ist also
+
+$$
+\varphi(v)=1 ,
+$$
+
+und unsere Gleichungen nehmen die Form an:
+
+$$
+\begin{aligned}X' & =X, & L' & =L,\\
+Y' & =\beta\left(Y-\frac{v}{V}N\right), & M' & =\beta\left(M+\frac{v}{V}Z\right),\\
+Z' & =\beta\left(Z+\frac{v}{V}M\right), & N' & =\beta\left(N-\frac{v}{V}Y\right).
+\end{aligned}
+$$
+
+Zur Interpretation dieser Gleichungen bemerken wir folgendes. Es liegt eine punktförmige Elektrizitätsmenge vor, welche im ruhenden System \(K\) gemessen von der Größe „eins“ sei, d. h. im ruhenden System ruhend auf eine gleiche Elektrizitätsmenge im Abstand 1 cm die Kraft 1 Dyn ausübe. Nach dem Relativitätsprinzip ist diese elektrische Masse auch im bewegten System gemessen von der Größe „eins“. Ruht diese Elektrizitätsmenge relativ zum ruhenden System, so ist definitionsgemäß der Vektor <span class="nw">(\(X,Y,Z\))</span> gleich der auf sie wirkenden Kraft. Ruht die Elektrizitätsmenge gegenüber dem bewegten System (wenigstens in dem betreffenden Augenblick), so ist die auf sie wirkende, in dem bewegten System gemessene Kraft gleich dem Vektor <span class="nw">(\(X',Y',Z'\)).</span> Die ersten drei der obigen Gleichungen lassen sich mithin auf folgende zwei Weisen in Worte kleiden:
+
+&#49;. Ist ein punktförmiger elektrischer Einheitspol in einem elektromagnetischen Felde bewegt, so wirkt auf ihn außer der elektrischen Kraft eine „elektromotorische Kraft“, welche unter Vernachlässigung von mit der zweiten und höheren Potenzen von \(v/V\) multiplizierten Gliedern gleich ist dem mit der Lichtgeschwindigkeit dividierten Vektorprodukt der Bewegungsgeschwindigkeit des Einheitspoles und der magnetischen Kraft. (Alte Ausdrucksweise.)
+
+&#50;. Ist ein punktförmiger elektrischer Einheitspol in einem elektromagnetischen Felde bewegt, so ist die auf ihn wirkende Kraft gleich der an dem Orte des Einheitspoles vorhandenen elektrischen Kraft, welche man durch Transformation des Feldes auf ein relativ zum elektrischen Einheitspol ruhendes Koordinatensystem erhält. (Neue Ausdrucksweise.)
+
+Analoges gilt über die „magnetomotorischen Kräfte“. Man sieht, daß in der entwickelten Theorie die elektromotorische Kraft nur die Rolle eines Hilfsbegriffes spielt, welcher seine Einführung dem Umstande verdankt, daß die elektrischen und magnetischen Kräfte keine von dem Bewegungszustande des Koordinatensystems unabhängige Existenz besitzen.
+
+Es ist ferner klar, daß die in der Einleitung angeführte Asymmetrie bei der Betrachtung der durch Relativbewegung eines Magneten und eines Leiters erzeugten Ströme verschwindet. Auch werden die Fragen nach dem „Sitz“ der elektrodynamischen elektromotorischen Kräfte (Unipolarmaschinen) gegenstandslos.
+
+### § 7. Theorie des <span class="sp">Doppeler</span>schen Prinzips und der Aberration.
+
+Im Systeme \(K\) befinde sich sehr ferne vom Koordinatenursprung eine Quelle elektrodynamischer Wellen, welche in einem den Koordinatenursprung enthaltenden Raumteil mit genügender Annäherung durch die Gleichungen dargestellt sei:
+
+$$
+\begin{aligned}X & =X_{0}\sin\Phi, & L & =L_{0}\sin\Phi,\\
+Y & =Y_{0}\sin\Phi, & M & =M_{0}\sin\Phi,\quad\Phi=\omega\left(t-\frac{ax+by+cz}{V}\right).\\
+Z & =Z_{0}\sin\Phi, & N & =N_{0}\sin\Phi,
+\end{aligned}
+$$
+
+Hierbei sind <span class="nw">(\(X_{0},Y_{0},Z_{0}\))</span> und <span class="nw">(\(L_{0},M_{0},N_{0}\))</span> die Vektoren, welche die Amplitude des Wellenzuges bestimmen, \(a,b,c\) die Richtungskosinus der Wellennormalen.
+
+Wir fragen nach der Beschaffenheit dieser Wellen, wenn dieselben von einem in dem bewegten System \(k\) ruhenden Beobachter untersucht werden. — Durch Anwendung der in § 6 gefundenen Transformationsgleichungen für die elektrischen und magnetischen Kräfte und der in § 3 gefundenen Transformationsgleichungen für die Koordinaten und die Zeit erhalten wir unmittelbar:
+
+$$
+\begin{aligned}X' & =X_{0}\sin\Phi', & L' & =L_{0}\sin\Phi',\\
+Y' & =\beta(Y_{0}-\frac{v}{V}N_{0})\sin\Phi', & M' & =\beta(M_{0}+\frac{v}{V}Z_{0})\sin\Phi',\\
+Z' & =\beta(Z_{0}+\frac{v}{V}M_{0})\sin\Phi', & N' & =\beta(N_{0}-\frac{v}{V}Y_{0})\sin\Phi',
+\end{aligned}
+$$
+
+$$
+\Phi'=\omega'\left(\tau-\frac{a'\xi+b'\eta+c'\zeta}{V}\right) ,
+$$
+
+wobei
+
+$$
+\begin{aligned}\omega' & =\omega\beta\left(1-a\frac{v}{V}\right),\\
+a' & =\frac{a-\frac{v}{V}}{1-a\frac{v}{V}},\\
+b' & =\frac{b}{\beta\left(1-a\frac{v}{V}\right)},\\
+c' & =\frac{c}{\beta\left(1-a\frac{v}{V}\right)}
+\end{aligned}
+$$
+
+gesetzt ist.
+
+Aus der Gleichung für \(\omega'\) folgt: Ist ein Beobachter relativ zu einer unendlich fernen Lichtquelle von der Frequenz \(\nu\) mit der Geschwindigkeit \(v\) derart bewegt, daß die Verbindungslinie „Lichtquelle–Beobachter“ mit der auf ein relativ zur Lichtquelle ruhendes Koordinatensystem bezogenen Geschwindigkeit des Beobachters den Winkel \(\varphi\) bildet, so ist die von dem Beobachter wahrgenommene Frequenz \(\nu'\) des Lichtes durch die Gleichung gegeben:
+
+$$
+\nu'=\nu\frac{1-\cos\varphi\frac{v}{V}}{\sqrt{1-\left(\frac{v}{V}\right)^{2}}}.
+$$
+
+Dies ist das <span class="sp">Doppeler</span>sche Prinzip für beliebige Geschwindigkeiten. Für \(\varphi=0\) nimmt die Gleichung die übersichtliche Form an:
+
+$$
+\nu'=\nu\sqrt{\frac{1-\frac{v}{V}}{1+\frac{v}{V}}}.
+$$
+
+Man sieht, daß — im Gegensatz zu der üblichen Auffassung — für <span class="nw">\(v=-\infty\),</span> \(\nu=\infty\) ist.
+
+Nennt man \(\varphi'\) den Winkel zwischen Wellennormale (Strahlrichtung) im bewegten System und der Verbindungslinie „Lichtquelle–Beobachter“, so nimmt die Gleichung für \(a'\) die Form an:
+
+$$
+\cos\varphi'=\frac{\cos\varphi-\frac{v}{V}}{1-\frac{v}{V}\cos\varphi}.
+$$
+
+Diese Gleichung drückt das Aberrationsgesetz in seiner allgemeinsten Form aus. Ist <span class="nw">\(\varphi=\pi/2\),</span> so nimmt die Gleichung die einfache Gestalt an:
+
+$$
+\cos\varphi'=-\frac{v}{V}.
+$$
+
+Wir haben nun noch die Amplitude der Wellen, wie dieselbe im bewegten System erscheint, zu suchen. Nennt man \(A\) bez. \(A'\) die Amplitude der elektrischen oder magnetischen Kraft im ruhenden bez. im bewegten System gemessen, so erhält man:
+
+$$
+A'{}^{2}=A^{2}\frac{\left(1-\frac{v}{V}\cos\varphi\right)^{2}}{1-\left(\frac{v}{V}\right)^{2}},
+$$
+
+welche Gleichung für \(\varphi=0\) in die einfachere übergeht:
+
+$$
+A'{}^{2}=A^{2}\frac{1-\frac{v}{V}}{1+\frac{v}{V}}.
+$$
+
+Es folgt aus den entwickelten Gleichungen, daß für einen Beobachter, der sich mit der Geschwindigkeit \(V\) einer Lichtquelle näherte, diese Lichtquelle unendlich intensiv erscheinen müßte.
+
+### § 8. Transformation der Energie der Lichtstrahlen. Theorie des auf vollkommene Spiegel ausgeübten Strahlungsdruckes.
+
+Da \(A^{2}/8\pi\) gleich der Lichtenergie pro Volumeneinheit ist, so haben wir nach dem Relativitätsprinzip \(A'{}^{2}/8\pi\) als die Lichtenergie im bewegten System zu betrachten. Es wäre daher \(A'{}^{2}/A^{2}\) das Verhältnis der „bewegt gemessenen“ und „ruhend gemessenen“ Energie eines bestimmten Lichtkomplexes, wenn das Volumen eines Lichtkomplexes in \(K\) gemessen und in \(k\) gemessen das gleiche wäre. Dies ist jedoch nicht der Fall. Sind \(a,b,c\) die Richtungskosinus der Wellennormalen des Lichtes im ruhenden System, so wandert durch die Oberflächenelemente der mit Lichtgeschwindigkeit bewegten Kugelfläche
+
+$$
+(x-Vat)^{2}+(y-Vbt)^{2}+(z-Vct)^{2}=R^{2}
+$$
+
+keine Energie hindurch; wir können daher sagen, daß diese Fläche dauernd denselben Lichtkomplex umschließt. Wir fragen nach der Energiemenge, welche diese Fläche im System \(k\) betrachtet umschließt, d. h. nach der Energie des Lichtkomplexes relativ zum System <span class="nw">\(k\).</span>
+
+Die Kugelfläche ist — im bewegten System betrachtet — eine Ellipsoidfläche, welche zur Zeit \(\tau=0\) die Gleichung besitzt:
+
+$$
+\left(\beta\xi-a\beta\frac{v}{V}\xi\right)^{2}+\left(\eta-b\beta\frac{v}{V}\xi\right)^{2}+\left(\zeta-c\beta\frac{v}{V}\xi\right)^{2}=R^{2}.
+$$
+
+Nennt man \(S\) das Volumen der Kugel, \(S'\) dasjenige dieses Ellipsoides, so ist, wie eine einfache Rechnung zeigt:
+
+$$
+\frac{S'}{S}=\frac{\sqrt{1-\left(\frac{v}{V}\right)^{2}}}{1-\frac{v}{V}\cos\varphi}.
+$$
+
+Nennt man also \(E\) die im ruhenden System gemessene, \(E'\) die im bewegten System gemessene Lichtenergie, welche von der betrachteten Fläche umschlossen wird, so erhält man:
+
+$$
+\frac{E'}{E}=\frac{\frac{A'{}^{2}}{8\pi}S'}{\frac{A^{2}}{8\pi}S}=\frac{1-\frac{v}{V}\cos\varphi}{\sqrt{1-\left(\frac{v}{V}\right)^{2}}},
+$$
+
+welche Formel für \(\varphi=0\) in die einfachere übergeht:
+
+$$
+\frac{E'}{E}=\sqrt{\frac{1-\frac{v}{V}}{1+\frac{v}{V}}}.
+$$
+
+Es ist bemerkenswert, daß die Energie und die Frequenz eines Lichtkomplexes sich nach demselben Gesetze mit dem Bewegungszustande des Beobachters ändern.
+
+Es sei nun die Koordinatenebene \(\xi=0\) eine vollkommen spiegelnde Fläche, an welcher die im letzten Paragraph betrachteten ebenen Wellen reflektiert werden. Wir fragen nach dem auf die spiegelnde Fläche ausgeübten Lichtdruck und nach der Richtung, Frequenz und Intensität des Lichtes nach der Reflexion.
+
+Das einfallende Licht sei durch die Größen \(A,\cos\varphi,\nu\) (auf das System \(K\) bezogen) definiert. Von \(k\) aus betrachtet sind die entsprechenden Größen:
+
+$$
+\begin{aligned}A' & =A\frac{1-\frac{v}{V}\cos\varphi}{\sqrt{1-\left(\frac{v}{V}\right)^{2}}},\\
+\cos\varphi' & =\frac{\cos\varphi-\frac{v}{V}}{1-\frac{v}{V}\cos\varphi},\\
+\nu' & =\nu\frac{1-\frac{v}{V}\cos\varphi}{\sqrt{1-\left(\frac{v}{V}\right)^{2}}}.
+\end{aligned}
+$$
+
+Für das reflektierte Licht erhalten wir, wenn wir den Vorgang auf das System \(k\) beziehen:
+
+$$
+\begin{aligned}A'' & =A',\\
+\cos\varphi'' & =-\cos\varphi',\\
+\nu'' & =\nu'.
+\end{aligned}
+$$
+
+Endlich erhält man durch Rücktransformieren aufs ruhende System \(K\) für das reflektierte Licht:
+
+$$
+\begin{aligned}A''' & =A''\frac{1+\frac{v}{V}\cos\varphi''}{\sqrt{1-\left(\frac{v}{V}\right)^{2}}}=A\frac{1-2\frac{v}{V}\cos\varphi+\left(\frac{v}{V}\right)^{2}}{1-\left(\frac{v}{V}\right)^{2}},\\
+\cos\varphi''' & =\frac{\cos\varphi''+\frac{v}{V}}{1+\frac{v}{V}\cos\varphi''}=-\frac{\left(1+\left(\frac{v}{V}\right)^{2}\right)\cos\varphi-2\frac{v}{V}}{1-2\frac{v}{V}\cos\varphi+\left(\frac{v}{V}\right)^{2}},\\
+\nu''' & =\nu''\frac{1+\frac{v}{V}\cos\varphi''}{\sqrt{1-\left(\frac{v}{V}\right)^{2}}}=\nu\frac{1-2\frac{v}{V}\cos\varphi+\left(\frac{v}{V}\right)^{2}}{\left(1-\frac{v}{V}\right)^{2}}.
+\end{aligned}
+$$
+
+Die auf die Flächeneinheit des Spiegels pro Zeiteinheit auftreffende (im ruhenden System gemessene) Energie ist offenbar <span class="nw">\(A^{2}/8\pi(V\cos\varphi-v)\).</span> Die von der Flächeneinheit des Spiegels in der Zeiteinheit sich entfernende Energie ist <span class="nw">\(A'''{}^{2}/8\pi(-V\cos\varphi'''+v)\).</span> Die Differenz dieser beiden Ausdrücke ist nach dem Energieprinzip die vom Lichtdrucke in der Zeiteinheit geleistete Arbeit. Setzt man die letztere gleich dem Produkt <span class="nw">\(P.v\),</span> wobei \(P\) der Lichtdruck ist, so erhält man:
+
+$$
+P=2\frac{A^{2}}{8\pi}\frac{\left(\cos\varphi-\frac{v}{V}\right)^{2}}{1-\left(\frac{v}{V}\right)^{2}}.
+$$
+
+In erster Annäherung erhält man in Übereinstimmung mit der Erfahrung und mit anderen Theorien
+
+$$
+P=2\frac{A^{2}}{8\pi}\cos^{2}\varphi.
+$$
+
+Nach der hier benutzten Methode können alle Probleme der Optik bewegter Körper gelöst werden. Das Wesentliche ist, daß die elektrische und magnetische Kraft des Lichtes, welches durch einen bewegten Körper beeinflußt wird, auf ein relativ zu dem Körper ruhendes Koordinatensystem transformiert werden. Dadurch wird jedes Problem der Optik bewegter Körper auf eine Reihe von Problemen der Optik ruhender Körper zurückgeführt.
+
+### § 9. Transformation der <span class="sp">Maxwell-Hertz</span>schen Gleichungen mit Berücksichtigung der Konvektionsströme.
+
+Wir gehen aus von den Gleichungen:
+
+$$
+\begin{aligned}\frac{1}{V}\left\{ u_{x}\varrho+\frac{\partial X}{\partial t}\right\}  & =\frac{\partial N}{\partial y}-\frac{\partial M}{\partial z}, & \frac{1}{V}\frac{\partial L}{\partial t} & =\frac{\partial Y}{\partial z}-\frac{\partial Z}{\partial y},\\
+\frac{1}{V}\left\{ u_{y}\varrho+\frac{\partial Y}{\partial t}\right\}  & =\frac{\partial L}{\partial z}-\frac{\partial N}{\partial x}, & \frac{1}{V}\frac{\partial M}{\partial t} & =\frac{\partial Z}{\partial x}-\frac{\partial X}{\partial z},\\
+\frac{1}{V}\left\{ u_{z}\varrho+\frac{\partial Z}{\partial t}\right\}  & =\frac{\partial M}{\partial x}-\frac{\partial L}{\partial y}, & \frac{1}{V}\frac{\partial N}{\partial t} & =\frac{\partial X}{\partial y}-\frac{\partial Y}{\partial x},
+\end{aligned}
+$$
+
+wobei
+
+$$
+\varrho=\frac{\partial X}{\partial x}+\frac{\partial Y}{\partial y}+\frac{\partial Z}{\partial z}
+$$
+
+die <span class="nw">\(4\pi\)-fache</span> Dichte der Elektrizität und <span class="nw">(\(u_{x},u_{y},u_{z}\))</span> den Geschwindigkeitsvektor der Elektrizität bedeutet. Denkt man sich die elektrischen Massen unveränderlich an kleine, starre Körper (Ionen, Elektronen) gebunden, so sind diese Gleichungen die elektromagnetische Grundlage der <span class="sp">Lorentz</span>schen Elektrodynamik und Optik bewegter Körper.
+
+Transformiert man diese Gleichungen, welche im System \(K\) gelten mögen, mit Hilfe der Transformationsgleichungen von § 3 und § 6 auf das System <span class="nw">\(k\),</span> so erhält man die Gleichungen:
+
+$$
+\begin{aligned}\frac{1}{V}\left\{ u_{\xi}\varrho'+\frac{\partial X'}{\partial\tau}\right\}  & =\frac{\partial N'}{\partial\eta}-\frac{\partial M'}{\partial\zeta}, & \frac{\partial L'}{\partial\tau} & =\frac{\partial Y'}{\partial\zeta}-\frac{\partial Z'}{\partial\eta},\\
+\frac{1}{V}\left\{ u_{\eta}\varrho'+\frac{\partial Y'}{\partial\tau}\right\}  & =\frac{\partial L'}{\partial\zeta}-\frac{\partial N'}{\partial\xi}, & \frac{\partial M'}{\partial\tau} & =\frac{\partial Z'}{\partial\xi}-\frac{\partial X'}{\partial\zeta},\\
+\frac{1}{V}\left\{ u_{\zeta}\varrho'+\frac{\partial Z'}{\partial\tau}\right\}  & =\frac{\partial M'}{\partial\xi}-\frac{\partial L'}{\partial\eta}, & \frac{\partial N'}{\partial\tau} & =\frac{\partial X'}{\partial\eta}-\frac{\partial Y'}{\partial\xi},
+\end{aligned}
+$$
+
+wobei
+
+$$
+\begin{aligned}\frac{u_{x}-v}{1-\frac{u_{x}v}{V^{2}}} & =u_{\xi},\\
+\frac{u_{y}}{\beta\left(1-\frac{u_{x}v}{V^{2}}\right)} & =u_{\eta}, & \varrho'=\frac{\partial X'}{\partial\xi}+\frac{\partial Y'}{\partial\eta}+\frac{\partial Z'}{\partial\zeta}=\beta\left(1-\frac{v\ u_{x}}{V^2}\right)\varrho.\\
+\frac{u_{z}}{\beta\left(1-\frac{u_{x}v}{V^{2}}\right)} & =u_{\zeta}.
+\end{aligned}
+$$
+
+Da — wie aus dem Additionstheorem der Geschwindigkeiten (§ 5) folgt — der Vektor <span class="nw">(\(u_{\xi},u_{\eta},u_{\zeta}\))</span> nichts anderes ist als die Geschwindigkeit der elektrischen Massen im System \(k\) gemessen, so ist damit gezeigt, daß unter Zugrundelegung unserer kinematischen Prinzipien die elektrodynamische Grundlage der <span class="sp">Lorentz</span>schen Theorie der Elektrodynamik bewegter Körper dem Relativitätsprinzip entspricht.
+
+Es möge noch kurz bemerkt werden, daß aus den entwickelten Gleichungen leicht der folgende wichtige Satz gefolgert werden kann: Bewegt sich ein elektrisch geladener Körper beliebig im Raume und ändert sich hierbei seine Ladung nicht, von einem mit dem Körper bewegten Koordinatensystem aus betrachtet, so bleibt seine Ladung auch — von dem „ruhenden“ System \(K\) aus betrachtet — konstant.
+
+### § 10. Dynamik des (langsam beschleunigten) Elektrons.
+
+In einem elektromagnetischen Felde bewege sich ein punktförmiges, mit einer elektrischen Ladung \(\varepsilon\) versehenes Teilchen (im folgenden „Elektron“ genannt), über dessen Bewegungsgesetz wir nur folgendes annehmen:
+
+Ruht das Elektron in einer bestimmten Epoche, so erfolgt in dem nächsten Zeitteilchen die Bewegung des Elektrons nach den Gleichungen
+
+$$
+\begin{aligned}\mu\frac{d^{2}x}{dt^{2}} & =\varepsilon X\\
+\mu\frac{d^{2}y}{dt^{2}} & =\varepsilon Y\\
+\mu\frac{d^{2}z}{dt^{2}} & =\varepsilon Z,
+\end{aligned}
+$$
+
+wobei \(x,y,z\) die Koordinaten des Elektrons, \(\mu\) die Masse des Elektrons bedeutet, sofern dasselbe langsam bewegt ist.
+
+Es besitze nun zweitens das Elektron in einer gewissen Zeitepoche die Geschwindigkeit <span class="nw">\(v\).</span> Wir suchen das Gesetz, nach welchem sich das Elektron im unmittelbar darauf folgenden Zeitteilchen bewegt.
+
+Ohne die Allgemeinheit der Betrachtung zu beeinflussen, können und wollen wir annehmen, daß das Elektron in dem Momente, wo wir es ins Auge fassen, sich im Koordinatensprung befinde und sich längs der <span class="nw">\(X\)-Achse</span> des Systems \(K\) mit der Geschwindigkeit \(v\) bewege. Es ist dann einleuchtend, daß das Elektron im genannten Momente <span class="nw">(\(t=0\))</span> relativ zu einem längs der <span class="nw">\(X\)-Achse</span> mit der konstanten Geschwindigkeit \(v\) parallelbewegten Koordinatensystem \(k\) ruht.
+
+Aus der oben gemachten Voraussetzung in Verbindung mit dem Relativitätsprinzip ist klar, daß sich das Elektron in der unmittelbar folgenden Zeit (für kleine Werte von <span class="nw">\(t\))</span> vom System \(k\) aus betrachtet nach den Gleichungen bewegt:
+
+$$
+\begin{aligned}\mu\frac{d^{2}\xi}{d\tau^{2}} & =\varepsilon X',\\
+\mu\frac{d^{2}\eta}{d\tau^{2}} & =\varepsilon Y',\\
+\mu\frac{d^{2}\zeta}{d\tau^{2}} & =\varepsilon Z',
+\end{aligned}
+$$
+
+wobei die Zeichen \(\xi,\eta,\zeta,\tau,X',Y',Z'\) sich auf das System \(k\) beziehen. Setzen wir noch fest, daß für \(t=x=y=z=0\) \(\tau=\xi=\eta=\zeta=0\) sein soll, so gelten die Transformationsgleichungen der §§ 3 und 6, so daß gilt:
+
+$$
+\begin{aligned}\tau & =\beta\left(t-\frac{v}{V^{2}}x\right),\\
+\xi & =\beta(x-vt), & X' & =X,\\
+\eta & =y, & Y' & =\beta(Y-\frac{v}{V}N),\\
+\zeta & =z, & Z' & =\beta(Z+\frac{v}{V}M).
+\end{aligned}
+$$
+
+Mit Hilfe dieser Gleichungen transformieren wir die obigen Bewegungsgleichungen vom System \(k\) auf das System \(K\) und erhalten:
+
+$$
+\text{(A)}\qquad\left\{\begin{aligned}
+\frac{d^{2}x}{dt^{2}} & =\frac{\varepsilon}{\mu}\frac{1}{\beta^{3}}X,\\
+\frac{d^{2}y}{dt^{2}} & =\frac{\varepsilon}{\mu}\frac{1}{\beta}\left(Y-\frac{v}{V}N\right),\\
+\frac{d^{2}z}{dt^{2}} & =\frac{\varepsilon}{\mu}\frac{1}{\beta}\left(Z+\frac{v}{V}M\right).
+\end{aligned}\right.
+$$
+
+Wir fragen nun in Anlehnung an die übliche Betrachtungsweise nach der „longitudinalen“ und „transversalen“ Masse des bewegten Elektrons. Wir schreiben die Gleichungen (A) in der Form
+
+$$
+\begin{aligned}\mu\beta^{3}\frac{d^{2}x}{dt^{2}} & =\varepsilon X =\varepsilon X',\\
+\mu\beta^{2}\frac{d^{2}y}{dt^{2}} & =\varepsilon\beta\left(Y-\frac{v}{V}N\right) =\varepsilon Y',\\
+\mu\beta^{2}\frac{d^{2}z}{dt^{2}} & =\varepsilon\beta\left(Z+\frac{v}{V}M\right) =\varepsilon Z'
+\end{aligned}
+$$
+
+und bemerken zunächst, daß \(\varepsilon X',\varepsilon Y',\varepsilon Z'\) die Komponenten der auf das Elektron wirkenden ponderomotorischen Kraft sind, und zwar in einem in diesem Moment mit dem Elektron mit gleicher Geschwindigkeit wie dieses bewegten System betrachtet. (Diese Kraft könnte beispielsweise mit einer im letzten System ruhenden Federwage gemessen werden.) Wenn wir nun diese Kraft schlechtweg „die auf das Elektron wirkende Kraft“ nennen und die Gleichung
+
+<p class="c">Massenzahl × Beschleunigungszahl = Kraftzahl</p>
+
+aufrechterhalten, und wenn wir ferner festsetzen, daß die Beschleunigungen im ruhenden System \(K\) gemessen werden sollen, so erhalten wir aus obigen Gleichungen:
+
+$$
+\text{Longitudinale Masse}\; =\frac{\mu}{\left(\sqrt{1-\left(\frac{v}{V}\right)^{2}}\right)^{3}},
+$$
+
+$$
+\text{Transversale Masse}\; =\frac{\mu}{1-\left(\frac{v}{V}\right)^{2}}.
+$$
+
+Natürlich würde man bei anderer Definition der Kraft und der Beschleunigung andere Zahlen für die Massen erhalten; man ersieht daraus, daß man bei der Vergleichung verschiedener Theorien der Bewegung des Elektrons sehr vorsichtig verfahren muß.
+
+Wir bemerken, daß diese Resultate über die Masse auch für die ponderabeln materiellen Punkte gilt; denn ein ponderabler materieller Punkt kann durch Zufügen einer *beliebig kleinen* elektrischen Ladung zu einem Elektron (in unserem Sinne) gemacht werden.
+
+Wir bestimmen die kinetische Energie des Elektrons. Bewegt sich ein Elektron vom Koordinatenursprung des Systems \(K\) aus mit der Anfangsgeschwindigkeit 0 beständig auf der <span class="nw">\(X\)-Achse</span> unter der Wirkung einer elektrostatischen Kraft <span class="nw">\(X\),</span> so ist klar, daß die dem elektrostatischen Felde entzogene Energie den Wert \(\int\varepsilon Xdx\) hat. Da das Elektron langsam beschleunigt sein soll und infolgedessen keine Energie in Form von Strahlung abgeben möge, so muß die dem elektrostatischen Felde entzogene Energie gleich der Bewegungsenergie \(W\) des Elektrons gesetzt werden. Man erhält daher, indem man beachtet, daß während des ganzen betrachteten Bewegungsvorganges die erste der Gleichungen (A) gilt:
+
+$$
+W=\int\varepsilon X\,dx=\int\limits_{0}^{v}\beta^{3}v\,dv=\mu V^{2}\left\{ \frac{1}{\sqrt{1-\left(\frac{v}{V}\right)^{2}}}-1\right\} .
+$$
+
+\(W\) wird also für \(v=V\) unendlich groß. Überlichtgeschwindigkeiten haben — wie bei unseren früheren Resultaten — keine Existenzmöglichkeit.
+
+Auch dieser Ausdruck für die kinetische Energie muß dem oben angeführten Argument zufolge ebenso für ponderable Massen gelten.
+
+Wir wollen nun die aus dem Gleichungssystem (A) resultierenden, dem Experimente zugänglichen Eigenschaften der Bewegung des Elektrons aufzählen.
+
+&#49;. Aus der zweiten Gleichung des Systems (A) folgt, daß eine elektrische Kraft \(Y\) und eine magnetische Kraft \(N\) dann gleich stark ablenkend wirken auf ein mit der Geschwindigkeit \(v\) bewegtes Elektron, wenn <span class="nw">\(Y=N.v/V\).</span> Man ersieht also, daß die Ermittelung der Geschwindigkeit des Elektrons aus dem Verhältnis der magnetischen Ablenkbarkeit \(A_{m}\) und der elektrischen Ablenkbarkeit \(A_{e}\) nach unserer Theorie für beliebige Geschwindigkeiten möglich ist durch Anwendung des Gesetzes:
+
+$$
+\frac{A_{m}}{A_{e}}=\frac{v}{V}.
+$$
+
+Diese Beziehung ist der Prüfung durch das Experiment zugänglich, da die Geschwindigkeit des Elektrons auch direkt, z. B. mittels rasch oszillierender elektrischer und magnetischer Felder, gemessen werden kann.
+
+&#50;. Aus der Ableitung für die kinetische Energie des Elektrons folgt, daß zwischen der durchlaufenen Potentialdifferenz und der erlangten Geschwindigkeit \(v\) des Elektrons die Beziehung gelten muß:
+
+$$
+P=\int X\ dx=\frac{\mu}{\varepsilon}V^{2}\left\{ \frac{1}{\sqrt{1-\left(\frac{v}{V}\right)^{2}}}-1\right\} .
+$$
+
+&#51;. Wir berechnen den Krümmungsradius \(R\) der Bahn, wenn eine senkrecht zur Geschwindigkeit des Elektrons wirkende magnetische Kraft \(N\) (als einzige ablenkende Kraft) vorhanden ist. Aus der zweiten der Gleichungen (A) erhalten wir:
+
+$$
+-\frac{d^{2}y}{dt^{2}}=\frac{v^{2}}{R}=\frac{\varepsilon}{\mu}\frac{v}{V}N.\sqrt{1-\left(\frac{v}{V}\right)^{2}}
+$$
+
+oder
+
+$$
+R=V^{2}\frac{\mu}{\varepsilon}\cdot\frac{\frac{v}{V}}{\sqrt{1-\left(\frac{v}{V}\right)^{2}}}\cdot\frac{1}{N}.
+$$
+
+Diese drei Beziehungen sind ein vollständiger Ausdruck für die Gesetze, nach denen sich gemäß vorliegender Theorie das Elektron bewegen muß.
+
+Zum Schlusse bemerke ich, daß mir beim Arbeiten an dem hier behandelten Probleme mein Freund und Kollege M. <span class="sp">Besso</span> treu zur Seite stand und daß ich demselben manche wertvolle Anregung verdanke.
+
+<p><span class="sp">Bern</span>, Juni 1905.</p>
+
+<p class="c">(Eingegangen 30. Juni 1905.)</p>

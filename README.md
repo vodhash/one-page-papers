@@ -8,7 +8,7 @@ Each paper is laid out in full on one page: every section, equation, code listin
 
 <!-- catalog:start -->
 
-26 posters in 8 categories. Each one comes in 4 themes, shown here with *Bitcoin: A Peer-to-Peer Electronic Cash System*, and in 3 formats (see [Download](#download)).
+27 posters in 8 categories. Each one comes in 4 themes, shown here with *Bitcoin: A Peer-to-Peer Electronic Cash System*, and in 3 formats (see [Download](#download)).
 
 | ivory | white | genesis | blueprint |
 |:-:|:-:|:-:|:-:|
@@ -64,6 +64,7 @@ A click on a poster opens its PDF in the A format and in its first theme, and th
 |---|---|---|---|---|---|
 | <a href="dist/physics/planck-1900-A-ivory.pdf"><img src="docs/physics/planck-1900.png" width="90" alt=""></a> | [Zur Theorie des Gesetzes der Energieverteilung im Normalspectrum](dist/physics/planck-1900-A-ivory.pdf)<br>Planck derives the spectral energy distribution by dividing resonator energy into finite elements hν and counting complexions.<br>[ivory](dist/physics/planck-1900-A-ivory.pdf)&nbsp;·&nbsp;[white](dist/physics/planck-1900-A-white.pdf)&nbsp;·&nbsp;[genesis](dist/physics/planck-1900-A-genesis.pdf)&nbsp;·&nbsp;[blueprint](dist/physics/planck-1900-A-blueprint.pdf) | Max Planck | 1900 | A2 | Public domain |
 | <a href="dist/physics/einstein-mass-energy-A-ivory.pdf"><img src="docs/physics/einstein-mass-energy.png" width="90" alt=""></a> | [Ist die Trägheit eines Körpers von seinem Energieinhalt abhängig?](dist/physics/einstein-mass-energy-A-ivory.pdf)<br>Shows that a body emitting energy L as radiation loses mass L/V², so its mass measures its energy content.<br>[ivory](dist/physics/einstein-mass-energy-A-ivory.pdf)&nbsp;·&nbsp;[white](dist/physics/einstein-mass-energy-A-white.pdf)&nbsp;·&nbsp;[genesis](dist/physics/einstein-mass-energy-A-genesis.pdf)&nbsp;·&nbsp;[blueprint](dist/physics/einstein-mass-energy-A-blueprint.pdf) | Albert Einstein | 1905 | A3 | Public domain |
+| <a href="dist/physics/einstein-electrodynamics-A-ivory.pdf"><img src="docs/physics/einstein-electrodynamics.png" width="90" alt=""></a> | [Zur Elektrodynamik bewegter Körper](dist/physics/einstein-electrodynamics-A-ivory.pdf)<br>Derives special relativity from the relativity principle and the constant speed of light, and applies it to electrodynamics and optics.<br>[ivory](dist/physics/einstein-electrodynamics-A-ivory.pdf)&nbsp;·&nbsp;[white](dist/physics/einstein-electrodynamics-A-white.pdf)&nbsp;·&nbsp;[genesis](dist/physics/einstein-electrodynamics-A-genesis.pdf)&nbsp;·&nbsp;[blueprint](dist/physics/einstein-electrodynamics-A-blueprint.pdf) | Albert Einstein | 1905 | A0 | Public domain |
 
 ### Historical data visualization
 
