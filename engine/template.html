@@ -24,9 +24,11 @@ h1{font-weight:500;font-size:{{TITLE_SIZE}};line-height:1.02;margin:6mm 0 5mm;le
 h1 em{font-style:italic;font-weight:400}
 .auth{font-size:calc(24pt*var(--hs));letter-spacing:.06em}
 .meta{font-size:calc(14pt*var(--hs));color:var(--mute);margin-top:1.5mm;letter-spacing:.08em}
-.rule{display:flex;align-items:center;gap:6mm;margin:8mm auto 7mm;width:60%}
-.rule i{flex:1;height:.35mm;background:var(--ink)}
-.rule b{width:calc(9mm*var(--hs));height:calc(9mm*var(--hs));border-radius:50%;background:var(--acc);color:var(--onacc);font:600 calc(17pt*var(--hs)) 'EB Garamond';display:grid;place-items:center;transform:rotate(14deg)}
+/* the emblem between two rules; :where() scopes it to the header without weighing on the
+   specificity, so that a paper can restyle .rule b, and KaTeX keeps its own .rule */
+:where(header) .rule{display:flex;align-items:center;gap:6mm;margin:8mm auto 7mm;width:60%}
+:where(header) .rule i{flex:1;height:.35mm;background:var(--ink)}
+:where(header) .rule b{width:calc(9mm*var(--hs));height:calc(9mm*var(--hs));border-radius:50%;background:var(--acc);color:var(--onacc);font:600 calc(17pt*var(--hs)) 'EB Garamond';display:grid;place-items:center;transform:rotate(14deg)}
 .abs{max-width:420mm;margin:0 auto 9mm;text-align:justify;font-size:calc(var(--fs)*1.28);line-height:1.38;hyphens:auto}
 .abs b{font-variant:small-caps;letter-spacing:.06em;font-weight:600;color:var(--acc)}
 main{column-count:var(--cols);column-gap:13mm;column-rule:.2mm solid var(--rule);column-fill:balance;text-align:justify;hyphens:auto;flex:1;min-height:0}
