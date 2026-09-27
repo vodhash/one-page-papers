@@ -1,0 +1,7 @@
+/* Small capitals of the printed patent: the inventor's name in the preamble, the witnesses */
+.sc{font-variant:small-caps;letter-spacing:.04em}
+/* Claim numbers, set as in the patent at the head of each claim */
+.claim{font-weight:500}
+/* The signature and the witnesses, as set at the foot of the specification */
+p.sig{text-align:right;letter-spacing:.06em;margin-top:.8em}
+p.wit{text-align:left;hyphens:manual}

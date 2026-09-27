@@ -1,0 +1,56 @@
+title: "Thomas A. Edison: Electric-Lamp, US Patent 223,898"
+summary: "Edison's patent for an incandescent lamp with a high-resistance carbon filament in a sealed, evacuated glass bulb."
+title_html: "Electric Lamp"
+title_size: 120pt
+kicker: "United States Patent Office · Letters Patent No. 223,898"
+author: "Thomas A. Edison, of Menlo Park, New Jersey"
+byline: "Specification forming part of Letters Patent No. 223,898, dated January 27, 1880 · Application filed November 4, 1879"
+emblem: "E"
+header_scale: 1.5
+layout: hero
+hero_height: 45
+columns: 3
+footer:
+  - "United States Patent 223,898, Thomas A. Edison, Electric-Lamp: sheet of drawings and specification, from the scan of the printed patent."
+  - "<i>The spelling and punctuation are those of the printed patent. Text and drawing in the public domain.</i>"
+  - "<span class=\"mono\">patents.google.com/patent/US223898A</span>"
+year: 1880
+authors: [Thomas A. Edison]
+lang: en
+min_print: A2
+source:
+  url: https://patents.google.com/patent/US223898A/en
+  retrieved: 2026-09-27
+  edition: >-
+    Scan of the printed patent linked from Google Patents
+    (https://patentimages.storage.googleapis.com/d4/9b/62/aac68f7e65536c/US223898.pdf, 1-bit, 300 dpi; the
+    PDF served by the USPTO, image-ppubs.uspto.gov, holds the same page images). Its first page, the
+    sheet of drawings, is the image at the top, cropped to the drawing and its signatures and kept in
+    black and white. The specification (pages 1 and 2) is transcribed in full, word for word from the
+    scan: the Google Patents OCR and a second OCR made for this poster served as a base, and every line
+    was checked against the page images. The printed heading ("UNITED STATES PATENT OFFICE." / "THOMAS
+    A. EDISON, OF MENLO PARK, NEW JERSEY" / "ELECTRIC LAMP." / "SPECIFICATION forming part of Letters
+    Patent No. 223,898, dated January 27, 1880." / "Application filed November 4, 1879.") is set in the
+    header of the poster; the last line is almost illegible on the scan, and its date is the filing date
+    given by Google Patents. Normalizations: words divided at line ends are rejoined without their
+    hyphen, except in "nearly-perfect" and "air-washing", divided at what reads as their own hyphen; page 2 repeats at its head the last two lines of page 1 ("material
+    be molded around it in the act of carbonization there is an intimate union by com-"), given once
+    here; the running heads and the line numbers of the margins are dropped; the prime of c′ and d′ is a
+    prime sign. Small capitals are kept for the inventor's name in the preamble and for the witnesses.
+    The spelling of the print is kept ("platina", "platinum", "a inch", "leading wires" without a hyphen
+    in two places, "Signed by me this 1st day of November, A. D. 1879."). The third page of the scan,
+    a later certificate of the Commissioner of Patents limiting the term of the patent to that of its
+    foreign counterparts and the order of 15 March 1893 cancelling it, is not reproduced. The caption
+    of the drawing is not a period text: it was written for this poster from the specification.
+license:
+  text: "Public domain"
+  holder: "Thomas A. Edison, 1880"
+  basis: >-
+    US Patent 223,898 was granted to Thomas A. Edison on 27 January 1880 and printed by the
+    United States Patent Office. In the United States, it was published before 1931, and patents are
+    publications of the federal government. In France, its author died on 18 October 1931, before
+    1 January 1956 (Wikidata Q8743), so the term of protection has expired.
+  note: >-
+    The USPTO states: "Subject to limited exceptions reflected in 37 CFR 1.71(d) & (e) and 1.84(s),
+    the text and drawings of a patent are typically not subject to copyright restrictions."
+    (https://www.uspto.gov/terms-use-uspto-websites, section "Patent information", retrieved 2026-09-27.)
