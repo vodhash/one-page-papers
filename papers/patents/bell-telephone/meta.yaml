@@ -1,0 +1,63 @@
+title: "Alexander Graham Bell: Improvement in Telegraphy, US Patent 174,465"
+summary: "Bell's patent for transmitting vocal or other sounds telegraphically by undulatory electric currents."
+title_html: "Improvement in Telegraphy"
+title_size: 104pt
+kicker: "United States Patent Office · Letters Patent No. 174,465"
+author: "Alexander Graham Bell, of Salem, Massachusetts"
+byline: "Specification forming part of Letters Patent No. 174,465, dated March 7, 1876; application filed February 14, 1876"
+emblem: "B"
+header_scale: 1.5
+layout: hero
+hero_height: 40
+columns: 3
+footer:
+  - "United States Patent 174,465, Alexander Graham Bell, Improvement in Telegraphy: two sheets of drawings and specification, from the scan of the printed patent."
+  - "<i>The spelling and punctuation are those of the printed patent. Text and drawings in the public domain.</i>"
+  - "<span class=\"mono\">patents.google.com/patent/US174465A</span>"
+year: 1876
+authors: [Alexander Graham Bell]
+lang: en
+min_print: A1
+source:
+  url: https://patents.google.com/patent/US174465A/en
+  retrieved: 2026-09-27
+  edition: >-
+    Scan of the printed patent, US174465.pdf of Google Patents
+    (patentimages.storage.googleapis.com/10/ab/a3/b4f5c6e5826640/US174465.pdf, six 1-bit pages at
+    300 dpi: two sheets of drawings and four pages of specification), the same page images as the
+    USPTO copy (image-ppubs.uspto.gov/dirsearch-public/print/downloadPdf/0174465). The text was
+    read line by line from the scan: an OCR of each column served as a base, every line was
+    corrected against the page images, and the result was compared word by word with the Google
+    Patents OCR text, whose differences were checked again on the scan (that OCR omits the passage
+    from "number of transmitting-instruments, having" to "result from", checked twice against the
+    scan). The printed heading lines are in the header of the poster: "UNITED STATES PATENT
+    OFFICE." in the kicker, "ALEXANDER GRAHAM BELL, OF SALEM, MASSACHUSETTS." as the author line,
+    "IMPROVEMENT IN TELEGRAPHY." as the title, in upper and lower case and without its period, and
+    the line "Specification forming part of Letters Patent No. 174,465, dated March 7, 1876;
+    application filed February 14, 1876." (legible on the scan) as the byline, without its period.
+    Page numbers and running heads (2, 3, 4, 174,465) are dropped. Words divided at a line end are
+    joined without the hyphen, except receiving-instruments, line-wire, electro-magnet (hyphenated
+    within lines elsewhere in the text) and zero-line (its only occurrence, kept as a compound like
+    line-wire); "unnec essary", divided at a line end without a hyphen, is joined as
+    "unnecessary". Reference letters are in italic and the superscript figures of A¹, A², B¹, B²,
+    C¹, C² are kept, as printed. Broken types are read as the intended letter: "inductive" (printed
+    like "inductivo"), and the italic c of "When the armature c, Fig. 5", whose tail is damaged. The
+    word "Sound" in "Sound-vibrations" is set in a different type on the scan, apparently a repair,
+    and is kept with its capital; the stop after "by wind" is damaged and read as a period. The
+    names in capitals and small capitals (the inventor in the preamble, the witnesses) are set in
+    small capitals; the signature "ALEX. GRAHAM BELL," keeps its comma. The two sheets of drawings
+    are cropped to their drawn area, set side by side with a gap as one image, kept in black and
+    white, and cleared of a few specks in the right margin of the second sheet.
+license:
+  text: "Public domain"
+  holder: "Alexander Graham Bell, 1876"
+  basis: >-
+    A United States patent published on 7 March 1876: in the United States, it was published
+    before 1931, and the USPTO states that the text and drawings of a patent are typically not
+    subject to copyright. In France, its author, Alexander Graham Bell, died on 2 August 1922
+    (Wikidata Q34286), before 1 January 1956.
+  note: >-
+    The USPTO states: "Subject to limited exceptions reflected in 37 CFR 1.71(d) & (e) and
+    1.84(s), the text and drawings of a patent are typically not subject to copyright
+    restrictions." (https://www.uspto.gov/terms-use-uspto-websites, section Patent information,
+    retrieved 2026-09-27)

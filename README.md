@@ -8,7 +8,7 @@ Each paper is laid out in full on one page: every section, equation, code listin
 
 <!-- catalog:start -->
 
-36 posters in 11 categories. Each one comes in 4 themes, shown here with *Bitcoin: A Peer-to-Peer Electronic Cash System*, and in 3 formats (see [Download](#download)).
+37 posters in 11 categories. Each one comes in 4 themes, shown here with *Bitcoin: A Peer-to-Peer Electronic Cash System*, and in 3 formats (see [Download](#download)).
 
 | ivory | white | genesis | blueprint |
 |:-:|:-:|:-:|:-:|
@@ -94,6 +94,7 @@ A click on a poster opens its PDF in the A format and in its first theme, and th
 
 | &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; | Paper | Authors | Year | Print from | License |
 |---|---|---|---|---|---|
+| <a href="dist/patents/bell-telephone-A-ivory.pdf"><img src="docs/patents/bell-telephone.png" width="90" alt=""></a> | [Alexander Graham Bell: Improvement in Telegraphy, US Patent 174,465](dist/patents/bell-telephone-A-ivory.pdf)<br>Bell's patent for transmitting vocal or other sounds telegraphically by undulatory electric currents.<br>[ivory](dist/patents/bell-telephone-A-ivory.pdf)&nbsp;·&nbsp;[white](dist/patents/bell-telephone-A-white.pdf)&nbsp;·&nbsp;[genesis](dist/patents/bell-telephone-A-genesis.pdf)&nbsp;·&nbsp;[blueprint](dist/patents/bell-telephone-A-blueprint.pdf) | Alexander Graham Bell | 1876 | A1 | Public domain |
 | <a href="dist/patents/wright-flying-machine-A-ivory.pdf"><img src="docs/patents/wright-flying-machine.png" width="90" alt=""></a> | [Orville and Wilbur Wright: Flying-Machine, US Patent 821,393](dist/patents/wright-flying-machine-A-ivory.pdf)<br>The Wrights' patent for a biplane balanced by warping its wings, with front horizontal and rear vertical rudders.<br>[ivory](dist/patents/wright-flying-machine-A-ivory.pdf)&nbsp;·&nbsp;[white](dist/patents/wright-flying-machine-A-white.pdf)&nbsp;·&nbsp;[genesis](dist/patents/wright-flying-machine-A-genesis.pdf)&nbsp;·&nbsp;[blueprint](dist/patents/wright-flying-machine-A-blueprint.pdf) | Orville Wright, Wilbur Wright | 1906 | A1 | Public domain |
 
 ### History & philosophy
