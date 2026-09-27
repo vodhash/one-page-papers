@@ -45,3 +45,10 @@ missing. The catalog of the README lists them under *Coming soon*.
 - Source: https://scalingbitcoin.org/papers/mimblewimble.txt (dated 19 July 2016, posted anonymously on 1 August 2016)
 - Status: under copyright (an anonymous work of 2016, protected in France until the end of 2086), no license found. The copy in the Apache-2.0 repository of Grin cites scalingbitcoin.org as its source: the license of the Grin developers does not cover a text that they did not write.
 - Missing: a license or a permission from its author that allows its redistribution.
+
+## Apollo 11: the master ignition routine of Luminary 099 (MIT Instrumentation Laboratory, 1969)
+
+- Category: computing
+- Source: https://github.com/chrislgarry/Apollo-11/blob/master/Luminary099/BURN_BABY_BURN--MASTER_IGNITION_ROUTINE.agc
+- Status: no public domain or license established. The program was "prepared by the Instrumentation Laboratory, Massachusetts Institute of Technology" under NASA contract NAS 9-4065, by MIT staff rather than federal employees, so it is not a work of the United States government. The Public Domain Mark of the repository was applied by its maintainer, not by a rights holder, and the Virtual AGC project calls the code public domain only "to the best of my non-lawyer understanding". In France, its authors did not die before 1956.
+- Missing: a license or a permission from the rights holder (the Draper Laboratory, formerly the MIT Instrumentation Laboratory, or NASA if the rights passed to it), or the rights-in-data clause of contract NAS 9-4065 showing that the code is in the public domain.

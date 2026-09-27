@@ -74,6 +74,7 @@ Texts that wait for a license allowing their redistribution; [PENDING.md](PENDIN
 - Bit Gold (Nick Szabo, 2005)
 - Bitcoin v0.1 released (Satoshi Nakamoto, 2009)
 - Mimblewimble (Tom Elvis Jedusor, 2016)
+- Apollo 11: the master ignition routine of Luminary 099 (MIT Instrumentation Laboratory, 1969)
 
 <!-- catalog:end -->
 
