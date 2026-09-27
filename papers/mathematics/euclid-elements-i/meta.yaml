@@ -1,0 +1,52 @@
+title: "Euclid's Elements, Book I: definitions, postulates and common notions"
+summary: "The 23 definitions, five postulates and common notions that open Euclid's Elements, in Heiberg's Greek text."
+title_html: "Εὐκλείδου Στοιχεῖα<br><em>Ὅροι · Αἰτήματα · Κοιναὶ ἔννοιαι</em>"
+title_size: 84pt
+kicker: "Excerpt · Elements, Book I · Alexandria, c. 300 BC"
+author: "Euclid"
+byline: "Euclidis Elementa, edidit et Latine interpretatus est I. L. Heiberg, vol. I, Lipsiae, Teubner, 1883, pp. 2-10"
+emblem: "α΄"
+lang: el
+header_scale: 1.3
+columns: 3
+footer:
+  - "The opening of Book I of the Elements: the definitions (ὅροι), the postulates (αἰτήματα) and the common notions (κοιναὶ ἔννοιαι)."
+  - "<i>Excerpt: Heiberg’s Greek text, without his Latin translation, apparatus or the propositions. Public domain.</i>"
+  - '<span class="mono">el.wikisource.org · archive.org</span>'
+year: "c. 300 BC"
+authors: [Euclid]
+min_print: A3
+source:
+  url: https://el.wikisource.org/wiki/Στοιχεία/α
+  retrieved: 2026-09-27
+  edition: >-
+    Excerpt of the Greek text of Elements I as edited by J. L. Heiberg, Euclidis Elementa, vol.
+    I (Euclidis Opera omnia, vol. I, Leipzig, Teubner, 1883), pp. 2-10. Kept: the heading and
+    the 23 definitions (Ὅροι), the five postulates (Αἰτήματα) and the nine common notions
+    (Κοιναὶ ἔννοιαι), complete, with Heiberg's square brackets; left out: the Latin translation
+    on the facing pages, the critical apparatus and testimonia under the text, the line
+    numbers, and the 48 propositions that follow. The text comes from Greek Wikisource (raw
+    wikitext of Στοιχεία/α, which names its source as the site Στοιχεῖα Εὐκλείδου of
+    physics.ntua.gr), compared word by word with the Greek OCR of the Internet Archive item
+    euclidisoperaomn01eucluoft (Gerstein Library, University of Toronto), every difference
+    and every word read, accent by accent, on the scan of that item, and the line ends cut
+    off in it on the scan of a second copy, euclidisoperaomn01eucl (Boston College).
+    Differences from Wikisource, all back to the print: the headings "Ὅροι.", "Αἰτήματα." and
+    "Κοιναὶ ἔννοιαι." (Wikisource adds the counts κγ΄, ε΄ and θ΄ and writes "Κοιναί Ἒνοιαι");
+    the raised dot in definition κβ΄ (Wikisource a colon); the bracket of common notion δ΄
+    before its numeral; "μεῖζόν" in η΄; common notion θ΄ in square brackets, as Heiberg prints
+    it. The elision mark is set as an apostrophe; the sixth numeral is set with a stigma (ϛ),
+    as Wikisource does, where the print's glyph looks like a final sigma.
+license:
+  text: "Public domain"
+  holder: "Euclid; edition by J. L. Heiberg, 1883"
+  basis: >-
+    Euclid's text is ancient; the editor, Johan Ludvig Heiberg, died on 4 January 1928
+    (Wikidata Q936503), and the edition was published in 1883: it is in the public domain in
+    France, where its author and editor died before 1 January 1956, and in the United States,
+    where it was published before 1 January 1931. The Internet Archive gives the Toronto scan
+    the possible-copyright-status NOT_IN_COPYRIGHT.
+  note: >-
+    Greek Wikisource serves as the transcription only: its text is Heiberg's public domain
+    text, every word of which was checked on the 1883 scan, and no editorial matter of
+    Wikisource is kept. The Perseus Digital Library text of Heiberg (CC BY-SA) was not used.
