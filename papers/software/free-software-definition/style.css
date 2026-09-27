@@ -1,0 +1,10 @@
+h2,h3{text-align:left}
+h3{font-size:1em}
+/* The note of the page on licensing questions, smaller as on the page */
+.edu{font-size:.8em;color:var(--mute);font-style:italic}
+/* The notes follow their own heading */
+.footnotes{border-top:0;margin-top:0;padding-top:0;font-size:.9em}
+/* The emblem holds three letters */
+.rule b{font-size:calc(11pt*var(--hs));letter-spacing:.02em}
+footer>div:first-child{max-width:28%;line-height:1.3}
+footer>div:nth-child(2){max-width:44%;line-height:1.3}

@@ -1,0 +1,43 @@
+title: "What is Free Software? The Free Software Definition"
+summary: "The GNU Project's criteria for free software: the four freedoms to run, study and change, redistribute, and share changes."
+title_html: "What is <em>Free Software?</em>"
+title_size: 110pt
+kicker: "GNU Project · The Free Software Definition"
+author: "Free Software Foundation"
+byline: "Updated 9 June 2026 · gnu.org/philosophy/free-sw.html"
+emblem: "GNU"
+header_scale: 1.4
+columns: 4
+footer:
+  - "Copyright © 1996-2002, 2004-2019, 2021, 2022, 2023, 2024, 2026 Free Software Foundation, Inc."
+  - "This page is licensed under a Creative Commons Attribution-NoDerivatives 4.0 International License.<br>creativecommons.org/licenses/by-nd/4.0/"
+  - '<span class="mono">gnu.org/philosophy/free-sw.html</span>'
+year: 1996
+authors: [Free Software Foundation]
+min_print: A2
+source:
+  url: https://www.gnu.org/philosophy/free-sw.en.html
+  retrieved: 2026-09-27
+  edition: >-
+    The English page of gnu.org, "Updated: $Date: 2026/06/09 17:46:09 $". The title of the page
+    is the title of the poster; its table of contents, which repeats the headings, is left out;
+    its note on licensing questions is set smaller, as on the page. Links are set as plain text;
+    the footnote call [1] is set as a superscript number and the footnote closes the text;
+    straight apostrophes are set as typographic ones. In the History section each version
+    number is set in bold at the head of its entry. The copyright and license notices at the
+    foot of the page are in the footer, word for word. Nothing else is left out. The year is
+    the first year of the copyright notice.
+license:
+  text: "CC BY-ND 4.0"
+  holder: "Free Software Foundation, Inc."
+  notice: >-
+    This page is licensed under a Creative Commons Attribution-NoDerivatives 4.0 International
+    License.
+  note: >-
+    Stated with the copyright notice "Copyright © 1996-2002, 2004-2019, 2021, 2022, 2023, 2024,
+    2026 Free Software Foundation, Inc." at the foot of
+    https://www.gnu.org/philosophy/free-sw.en.html, linked to
+    http://creativecommons.org/licenses/by-nd/4.0/. CC BY-ND 4.0 allows sharing the material
+    unadapted, with the name of the creator, the copyright notice, the license notice and its
+    URI, and the URI of the material: the poster reproduces the whole page text without
+    changing its words, and the footer gives the notices.
