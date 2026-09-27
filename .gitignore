@@ -2,3 +2,4 @@ node_modules/
 .venv/
 build/
 __pycache__/
+site/

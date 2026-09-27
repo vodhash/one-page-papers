@@ -1,0 +1,53 @@
+<div class="wrap">
+<nav class="crumbs" aria-label="Breadcrumb">
+<ol>
+<li><a href="../#collection">Collection</a><span class="slash" aria-hidden="true">/</span></li>
+<li><a href="../?category={{CATEGORY}}#collection">{{CATEGORY_TITLE}}</a><span class="slash" aria-hidden="true">/</span></li>
+<li><span aria-current="page">{{TITLE}}</span></li>
+</ol>
+</nav>
+<article class="poster" data-poster data-light="{{LIGHT}}" data-dark="{{DARK}}">
+<header class="intro">
+<p class="eyebrow">{{CATEGORY_TITLE}} · {{YEAR}}</p>
+<h1>{{TITLE_H1}}</h1>
+<p class="authors">{{AUTHORS}}</p>
+{{SUBTITLE}}
+<p class="summary">{{SUMMARY}}</p>
+</header>
+<figure class="wall">
+<div class="mat">{{PICTURE}}</div>
+<figcaption>Shown in the {{SHOWN}} theme</figcaption>
+</figure>
+<div class="details">
+<dl class="facts">
+{{FACTS}}
+</dl>
+<section class="pick" aria-labelledby="pick-title">
+<h2 id="pick-title" class="eyebrow">Theme</h2>
+<div class="pills" role="group" aria-labelledby="pick-title">
+{{PILLS}}
+</div>
+</section>
+<section class="downloads" aria-labelledby="download-title">
+<h2 id="download-title" class="eyebrow">Download</h2>
+<ul class="dl" role="list">
+{{ROWS}}
+</ul>
+<p class="zip"><a href="{{ZIP}}">Every {{CATEGORY_TITLE}} poster</a>, in every format and theme, as one zip from the latest release.</p>
+<p class="note">{{PRINT_NOTE}}</p>
+</section>
+<section class="provenance" aria-labelledby="edition-title">
+<h2 id="edition-title" class="eyebrow">Edition</h2>
+<p>{{EDITION}}</p>
+<h2 class="eyebrow">Rights</h2>
+{{RIGHTS}}
+</section>
+</div>
+</article>
+<section class="more" aria-labelledby="more-title">
+<h2 id="more-title">Also in the collection</h2>
+<ul class="cards mini" role="list">
+{{MORE}}
+</ul>
+</section>
+</div>

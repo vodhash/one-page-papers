@@ -2,6 +2,8 @@
 
 **Foundational papers, typeset on a single poster. Print them, frame them, hang them.**
 
+Browse the collection at **[vodhash.github.io/one-page-papers](https://vodhash.github.io/one-page-papers/)**.
+
 Each paper is laid out in full on one page: every section, equation, code listing, table and reference, with figures redrawn as vector graphics. The body size is computed automatically so the text fills the page exactly.
 
 ## Papers
@@ -150,6 +152,8 @@ make           # every paper × format × theme into dist/ and docs/, then the c
 make bitcoin   # a single paper, by its slug
 make internet  # every paper of a category
 make readme    # the catalog of this README, from the meta.yaml files and PENDING.md
+make site      # the showcase site into site/ (needs pdftoppm, from poppler-utils)
+make serve     # the site on http://localhost:8000/
 make check     # fit every poster, compare it with dist/ and docs/, check the catalog; writes nothing
 .venv/bin/python engine/build.py rfc-1925 --formats A --themes genesis
 ```
