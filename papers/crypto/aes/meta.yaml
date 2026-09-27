@@ -57,3 +57,6 @@ license:
     byline/photo/image credits is requested." The PDF has no copyright mark. The algorithm is
     Rijndael, designed by Joan Daemen and Vincent Rijmen, Belgian nationals; the text of the
     Standard is NIST's.
+commercial: true
+commercial_basis: >-
+  The text and every image are in the public domain in France and in the United States (see license.basis): anyone may sell prints.

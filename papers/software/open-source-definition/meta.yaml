@@ -38,3 +38,6 @@ license:
     the name of the creator, a notice that refers to the license with its URI, the URI of the
     material and an indication of any modification: the footer of the poster gives them. The
     page carries no copyright notice of its own.
+commercial: true
+commercial_basis: >-
+  CC BY 4.0 allows commercial use with the attribution the poster gives.

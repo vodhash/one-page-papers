@@ -45,3 +45,6 @@ license:
     footer of keepachangelog.com links as "created and maintained", next to "Keep a Changelog
     is MIT licensed"; GitHub reports its license as MIT. The copyright notice and the
     permission notice are printed at the end of the text of the poster.
+commercial: true
+commercial_basis: >-
+  The MIT License allows selling copies, with its notice.

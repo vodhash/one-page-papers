@@ -40,3 +40,6 @@ license:
   note: >-
     Footer of bitcoin.org, which publishes the paper; the repository of the site,
     github.com/bitcoin-dot-org/Bitcoin.org, carries the MIT license.
+commercial: true
+commercial_basis: >-
+  The MIT License allows selling copies, with its notice.

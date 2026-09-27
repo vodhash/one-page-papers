@@ -50,3 +50,6 @@ license:
     contenus est payante et fait l'objet d'une licence." The poster reuses the text of the
     decree, which is not protected, not the images of Gallica; its footer cites Gallica (BnF)
     as the source.
+commercial: true
+commercial_basis: >-
+  The text and every image are in the public domain in France and in the United States (see license.basis): anyone may sell prints.

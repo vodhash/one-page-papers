@@ -48,3 +48,6 @@ license:
     source https://www.pnas.org/doi/epdf/10.1073/pnas.15.3.168. The PubMed Central scans, which
     the text was checked against, carry no license: PMC asks users to assume standard copyright
     unless stated otherwise, so no image is taken from them.
+commercial: true
+commercial_basis: >-
+  The text and every image are in the public domain in France and in the United States (see license.basis): anyone may sell prints.

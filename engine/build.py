@@ -32,7 +32,8 @@ BUNDLED_FONTS = ("EBGaramond", "JetBrainsMono", "KaTeX_")  # PostScript names of
 META_KEYS = {"title", "title_html", "title_size", "kicker", "author", "byline", "emblem", "abstract",
              "abstract_label", "numbered", "columns", "header_scale", "font_range", "max_font", "layout",
              "footer", "lang", "license", "themes", "hero_height", "year", "authors", "min_print", "source",
-             "summary", "contributors"}
+             "summary", "contributors",
+             "commercial", "commercial_basis"}
 LICENSE_KEYS = {"text", "holder", "notice", "basis", "note"}
 PRINT_SIZES = ("A3", "A2", "A1", "A0")  # the A file prints at each of them
 MIN_BODY = 8  # pt: min_print is the smallest size at which the body prints at least this large
@@ -66,6 +67,10 @@ def load_meta(paper_dir):
     errors = [f"unknown key '{k}'" for k in sorted(set(m) - META_KEYS)]
     errors += [f"missing '{k}'" for k in ("title", "summary", "license", "year", "authors", "min_print", "source")
                if not m.get(k)]
+    if not isinstance(m.get("commercial"), bool) or not isinstance(m.get("commercial_basis"), str) \
+            or not m["commercial_basis"].strip():
+        errors.append("commercial must be true or false, whether the licenses of the text and of every image "
+                      "allow selling prints, with the reason in commercial_basis")
     if m.get("summary") and not (isinstance(m["summary"], str) and len(m["summary"].split()) <= 20
                                  and m["summary"].rstrip().endswith(".") and "\n" not in m["summary"].strip()):
         errors.append("summary must be one sentence of 20 words at most")

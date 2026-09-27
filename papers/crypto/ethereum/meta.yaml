@@ -55,3 +55,6 @@ license:
     status: CC BY 4.0 under the same terms). The LICENSE file of the repository is the MIT License,
     "Copyright (c) 2019-2026 ethereum.org contributors", for "this software and associated
     documentation files"; its text follows the paper on the poster, for the code.
+commercial: true
+commercial_basis: >-
+  CC BY 4.0 and the MIT License both allow commercial use, with the attribution and notice the poster gives.

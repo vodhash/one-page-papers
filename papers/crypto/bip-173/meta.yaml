@@ -46,3 +46,6 @@ license:
     version in the repository, merged on 7 May 2017 (commit b93d9ea). The BSD 2-Clause License
     asks redistributions to reproduce "this list of conditions and the following disclaimer":
     the poster carries its full text.
+commercial: true
+commercial_basis: >-
+  The BSD 2-Clause License allows selling copies, with its notice.

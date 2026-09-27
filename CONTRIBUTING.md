@@ -44,6 +44,8 @@ image, and the transcription it is taken from.
    license), including the photograph of a public domain object.
 5. **Record it** in `meta.yaml` under `license`: `basis` gives the reasoning with the dates, or
    `notice` quotes the license word for word, with its URL in `note`.
+6. **Say whether prints may be sold**: `commercial: true` only when the licenses of the text and of
+   every image allow it, with the reason in `commercial_basis`; when in doubt, `false`.
 
 When any point is unclear, the text goes to PENDING.md rather than into the collection.
 

@@ -51,3 +51,6 @@ license:
     2026): "With the exception of material marked as copyrighted, information presented on NIST
     sites are considered public information and may be distributed or copied. Use of appropriate
     byline/photo/image credits is requested." The PDF has no copyright mark.
+commercial: true
+commercial_basis: >-
+  The text and every image are in the public domain in France and in the United States (see license.basis): anyone may sell prints.

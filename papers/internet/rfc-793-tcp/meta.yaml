@@ -26,3 +26,6 @@ license:
   holder: "Jon Postel, Editor, Information Sciences Institute, 1981"
   notice: "All RFCs may be freely reproduced and translated (unmodified)."
   note: "RFC Editor, https://www.rfc-editor.org/faq/. RFC 793 itself carries no copyright notice."
+commercial: true
+commercial_basis: >-
+  The RFC Editor states that all RFCs may be freely reproduced (unmodified); nothing restricts commercial use.

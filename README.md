@@ -291,6 +291,7 @@ In `meta.yaml`, unknown keys are rejected, and these keys are required:
 | `min_print` | the smallest of A3, A2, A1 and A0 at which the body prints at 8 pt or more; the build computes it and fails when it differs |
 | `source` | `url`, `retrieved` (a date) and `edition` of the primary source or reference edition of the text, with every difference between that source and the poster |
 | `license` | `text`, short, for the catalog, then either `notice`, the license or permission word for word, or `basis`, why the text is in the public domain in France and in the United States; `holder` and `note` are optional |
+| `commercial`, `commercial_basis` | whether the licenses of the text and of every image allow selling prints (`true` or `false`), and why; when in doubt, `false` |
 
 The optional keys:
 

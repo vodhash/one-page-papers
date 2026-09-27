@@ -52,3 +52,6 @@ license:
     footer gives the notice in the form the license prescribes, with the URLs of both documents;
     they have no STATUS. The license grants no right to modify them, and they are reproduced
     unchanged.
+commercial: true
+commercial_basis: >-
+  The W3C document license allows copying and distributing the document in any medium for any purpose, with the notices the poster gives.

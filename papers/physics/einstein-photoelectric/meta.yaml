@@ -54,3 +54,6 @@ license:
     The Internet Archive scans used (sim_annalen-der-physik_1905_17_1, and
     annalenderphysi108unkngoog, marked "NOT_IN_COPYRIGHT") are of the 1905 print; no image of
     them is reproduced.
+commercial: true
+commercial_basis: >-
+  The text and every image are in the public domain in France and in the United States (see license.basis): anyone may sell prints.

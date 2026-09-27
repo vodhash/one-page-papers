@@ -51,3 +51,6 @@ license:
     2015, 2021 Free Software Foundation, Inc." at the foot of
     https://www.gnu.org/gnu/manifesto.html. The poster reproduces the whole page text without
     changes, and both notices are in its footer.
+commercial: true
+commercial_basis: >-
+  The FSF permits verbatim copies in any medium with the notices, which the poster keeps; the permission does not exclude selling them.

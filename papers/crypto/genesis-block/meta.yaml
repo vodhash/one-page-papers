@@ -56,3 +56,6 @@ license:
     https://github.com/bitcoin/bitcoin/blob/master/COPYING), whose copyright lines the footer
     carries; the same bytes are public data of the Bitcoin block chain, served by any node and
     block explorer. The newspaper headline in the coinbase is quoted as it appears in the block.
+commercial: true
+commercial_basis: >-
+  A compilation under the MIT License, of data whose terms (see license) allow commercial use.

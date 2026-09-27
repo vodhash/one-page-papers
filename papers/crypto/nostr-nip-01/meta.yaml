@@ -46,3 +46,6 @@ license:
     Issue 1732 (https://github.com/nostr-protocol/nips/issues/1732, open since 31 January 2025)
     proposes to replace the statement by CC0 because "public domain" is not standardized across
     jurisdictions; it has no answer. The poster carries the statement in its footer.
+commercial: true
+commercial_basis: >-
+  The NIPs are dedicated to the public domain by the README of their repository; such a dedication is uncertain in French law, but it restricts no use.

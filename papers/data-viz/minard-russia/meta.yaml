@@ -47,3 +47,6 @@ license:
     domain in France and in the United States. The Gallica record states "domaine public";
     Wikimedia Commons marks the file as public domain.
   note: "The notice written for the poster is covered by the MIT license of this repository."
+commercial: false
+commercial_basis: >-
+  The text is in the public domain, but the map is reproduced from the Gallica scan of the Bibliothèque nationale de France, whose conditions of use make commercial reuse subject to a license.

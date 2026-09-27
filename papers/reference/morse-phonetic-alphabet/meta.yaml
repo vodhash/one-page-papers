@@ -58,3 +58,6 @@ license:
     https://www.itu.int/dms_pubrec/itu-r/rec/m/R-REC-M.1677-1-200910-I!!PDF-E.pdf, and ITU,
     Radio Regulations, edition of 2024, Volume 2, Appendix 14 (Rev.WRC-23),
     https://search.itu.int/history/HistoryDigitalCollectionDocLibrary/1.49.48.en.102.pdf.
+commercial: true
+commercial_basis: >-
+  A compilation under the MIT License, of data whose terms (see license) allow commercial use.

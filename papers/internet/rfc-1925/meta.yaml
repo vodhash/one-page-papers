@@ -32,3 +32,6 @@ license:
   holder: "Ross Callon, 1996"
   notice: "Distribution of this memo is unlimited."
   note: 'The RFC Editor also states: "All RFCs may be freely reproduced and translated (unmodified)." (https://www.rfc-editor.org/faq/)'
+commercial: true
+commercial_basis: >-
+  The memo states that its distribution is unlimited, and the RFC Editor that all RFCs may be freely reproduced; nothing restricts commercial use.

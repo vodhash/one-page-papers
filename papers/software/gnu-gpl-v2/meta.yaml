@@ -45,3 +45,6 @@ license:
     at the head of https://www.gnu.org/licenses/old-licenses/gpl-2.0.txt. The poster copies
     the whole license without changing its words; both notices are under the header and in
     the footer.
+commercial: true
+commercial_basis: >-
+  The FSF permits verbatim copies in any medium with the notices, which the poster keeps; the permission does not exclude selling them.

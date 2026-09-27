@@ -37,3 +37,6 @@ license:
     poster credits the work by its title and site, and gives the license and its URI, as
     section 4(b) of CC BY 3.0 asks. The repository of the site also has a LICENSE file with
     the MIT License, "Copyright (c) 2018 Conventional Changelog".
+commercial: true
+commercial_basis: >-
+  CC BY 3.0 allows commercial use with the attribution the poster gives.

@@ -38,3 +38,6 @@ license:
     states license: "CC-BY-3.0". Section 4 of CC BY 3.0 requires the URI of the license, the
     notices that refer to it, and the name of the original author, the title of the work and
     its URI: the License section is part of the poster and the footer gives the rest.
+commercial: true
+commercial_basis: >-
+  CC BY 3.0 allows commercial use with the attribution the poster gives.

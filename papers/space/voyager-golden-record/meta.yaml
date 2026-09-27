@@ -61,3 +61,6 @@ license:
     the design team was not only federal employees; NASA and JPL publish the image without any
     third-party notice. The notice written for the poster is covered by the MIT license of this
     repository.
+commercial: true
+commercial_basis: >-
+  A NASA image, a work of the US government, which JPL lets anyone use with the credit the poster gives; the notice is under MIT.

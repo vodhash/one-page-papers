@@ -55,3 +55,6 @@ license:
     No image of the scans is reproduced. The BSB digitization is marked with the rights
     statement NoC-NC 1.0 (no copyright, non-commercial use) in its IIIF manifest; the Gallica
     scan is a public-domain document of the Bibliothèque nationale de France.
+commercial: true
+commercial_basis: >-
+  The text and every image are in the public domain in France and in the United States (see license.basis): anyone may sell prints.

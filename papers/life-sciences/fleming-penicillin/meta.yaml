@@ -48,3 +48,6 @@ license:
     The PubMed Central record of the article (OAI-PMH front matter of PMC2048009) names Alexander
     Fleming as its only author and carries no copyright statement or license. A scan of a
     public domain page adds no protected work.
+commercial: true
+commercial_basis: >-
+  The text and every image are in the public domain in France and in the United States (see license.basis): anyone may sell prints.

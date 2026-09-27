@@ -59,3 +59,6 @@ license:
     brochure, its version and sections, links the license and says that the text is excerpted and
     the equations reset. The selection and layout are an original compilation under the MIT license
     of this repository.
+commercial: true
+commercial_basis: >-
+  A compilation under the MIT License, of data whose terms (see license) allow commercial use.

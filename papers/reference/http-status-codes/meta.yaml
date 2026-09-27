@@ -60,3 +60,6 @@ license:
     text to the IETF, names RFC 9110 and gives its copyright line. RFC 9110 carries the pre-5378
     legend, which forbids modifying the document outside the IETF Standards Process: every quoted
     portion is unmodified.
+commercial: true
+commercial_basis: >-
+  A compilation under the MIT License, of data whose terms (see license) allow commercial use.

@@ -48,3 +48,6 @@ license:
     "the IETF Trust will tolerate fair use of other extracts, but you must indicate the source
     of the extract": the footer names RFC 20 and its URL. The names of the legend are the only
     words taken from the RFC.
+commercial: true
+commercial_basis: >-
+  A compilation under the MIT License, of data whose terms (see license) allow commercial use.

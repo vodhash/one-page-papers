@@ -57,3 +57,6 @@ license:
     12factor.net. The four diagrams are codebase-deploys.png, attached-resources.png,
     release.png and process-types.png in https://github.com/heroku/12factor/tree/main/public/images,
     under the same MIT license (and the same CC BY 4.0 in the successor): the poster redraws them.
+commercial: true
+commercial_basis: >-
+  The MIT License allows selling copies, with its notice.

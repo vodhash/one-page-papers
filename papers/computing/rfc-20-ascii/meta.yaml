@@ -31,3 +31,6 @@ license:
   holder: "Vint Cerf, 1969"
   notice: "All RFCs may be freely reproduced and translated (unmodified)."
   note: "RFC Editor, https://www.rfc-editor.org/faq/. RFC 20 itself carries no copyright notice. The code table reproduces USA Standard X3.4-1968, as the RFC says."
+commercial: true
+commercial_basis: >-
+  The RFC Editor states that all RFCs may be freely reproduced (unmodified); nothing restricts commercial use.

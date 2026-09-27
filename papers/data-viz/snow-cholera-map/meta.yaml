@@ -31,3 +31,6 @@ license:
     John Snow died in 1858 and the map was published in 1855: it is in the public domain in
     France and in the United States. Wikimedia Commons marks the file as public domain.
   note: "The notice written for the poster is covered by the MIT license of this repository."
+commercial: true
+commercial_basis: >-
+  The text and every image are in the public domain in France and in the United States (see license.basis): anyone may sell prints.

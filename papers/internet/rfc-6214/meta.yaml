@@ -43,3 +43,6 @@ license:
     legends and notices", so the poster keeps the copyright notice of the RFC in full (at the
     head of the text, and its first line in the footer). The code component (BSD) terms of
     section 4 do not apply to this stream (section 8.f) and the RFC contains no code.
+commercial: true
+commercial_basis: >-
+  The IETF Trust Legal Provisions grant the right to copy, publish and distribute the document in any medium, with its notices, and do not exclude commercial use.
