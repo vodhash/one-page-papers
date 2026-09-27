@@ -243,6 +243,31 @@ def best_font(page, lo, hi, what, capped):
         else: hi = mid
     return lo / 100
 
+def settle(browser, viewport, tmp, html, fs, hi, what):
+    """The largest size on the 0.01 pt grid, from fs up or down, at which the text fits a page
+    that has laid out nothing else, and that page, in a browser context of its own: a new
+    renderer process. On the search page a size can fit or not depending on the fonts that the
+    sizes tried before it left in the cache, since Chromium reuses the font of a size less than
+    0.01 px away, and the em-based sizes of KaTeX (subscripts at 0.7 em, for instance) come that
+    close from one candidate to the next. Settled and printed on fresh pages, a poster no longer
+    depends on the history of the renderer."""
+    def trial(size):
+        page = browser.new_context(viewport=viewport).new_page()
+        load(page, tmp, html(size))
+        if fits(page, size):
+            return page
+        page.context.close()
+    if page := trial(fs):
+        while fs < hi and (bigger := trial(round(fs + 0.01, 2))):
+            page.context.close()
+            page, fs = bigger, round(fs + 0.01, 2)
+        return fs, page
+    for _ in range(100):
+        fs = round(fs - 0.01, 2)
+        if page := trial(fs):
+            return fs, page
+    raise BuildError(f"{what}: no body size fits a freshly loaded page")
+
 def font_name(font):
     """PostScript name of a PDF font without its subset tag. Chromium embeds some glyphs
     (synthetic bold, for instance) as Type 3 fonts, whose name is only in the descriptor."""
@@ -260,6 +285,37 @@ def system_fonts(pdf):
                 found.setdefault(name, set()).update(c for c in text if not c.isspace())
     PdfReader(pdf).pages[0].extract_text(visitor_text=visit)
     return found
+
+def same_poster(old, new):
+    """Whether two PDFs of a poster are the same, but for a jitter of Chromium: now and then, in
+    about one print in twenty of a page full of formulas, it sets one run of glyphs of a KaTeX
+    formula (in a fraction, or an equation number) on a baseline rounded to a whole pixel, less
+    than a pixel away from where the other prints put it. So the text matrices (Tm) of the page
+    may differ in their vertical offset by less than a pixel, and everything else must be the same
+    byte for byte."""
+    if old == new:
+        return True
+    try:
+        a, b = PdfReader(io.BytesIO(old)), PdfReader(io.BytesIO(new))
+        ca = a.pages[0].get_contents().get_data().split(b"\n")
+        cb = b.pages[0].get_contents().get_data().split(b"\n")
+    except Exception:
+        return False
+    if len(ca) != len(cb):
+        return False
+    for x, y in zip(ca, cb):
+        if x != y:
+            tx, ty = x.split(), y.split()
+            if not (len(tx) == len(ty) == 7 and tx[6] == ty[6] == b"Tm" and tx[:5] == ty[:5]
+                    and abs(float(tx[5]) - float(ty[5])) < 1):
+                return False
+    def objects(data, r):
+        """Every object but the content stream of the page, as the file writes it."""
+        skip = r.pages[0].raw_get("/Contents").idnum
+        starts = sorted((offset, num) for num, offset in r.xref[0].items())
+        ends = [offset for offset, _ in starts[1:]] + [data.rindex(b"\nxref\n")]
+        return {num: data[start:end] for (start, num), end in zip(starts, ends) if num != skip}
+    return objects(old, a) == objects(new, b)
 
 def write_pdf(raw, dst, size, m):
     """Scales the PDF printed by Chromium to the target format (width, height in mm), into dst,
@@ -331,53 +387,59 @@ def build(paper, formats, themes, page, previews, check):
     for fmt in formats:
         W, H = FORMATS[fmt]
         height = DESIGN_W * H / W
-        page.set_viewport_size({"width": round(DESIGN_W * PX), "height": round(height * PX)})
+        viewport = {"width": round(DESIGN_W * PX), "height": round(height * PX)}
+        page.set_viewport_size(viewport)
         load(page, tmp, html(themes[0], height, lo))
         fs = best_font(page, lo, hi, f"{slug} {fmt}", capped)
-        # the search page keeps the fonts of every size it tried: settle on a size that also
-        # fits a freshly loaded page, like the ones that get printed
-        for _ in range(100):
-            load(page, tmp, html(themes[0], height, fs))
-            if fits(page, fs):
-                break
-            fs = round(fs - 0.01, 2)
-        else:
-            raise BuildError(f"{slug} {fmt}: no body size fits a freshly loaded page")
-        cap = ", the cap" if capped and fs == hi else ""
-        print(f"{slug} {fmt}: body {fs:.2f} pt at design size{cap} ({printed(fmt, fs)})")
-        if fmt == "A" and min_print(fs) != m["min_print"]:
-            raise BuildError(f"{rel(paper_dir / 'meta.yaml')}: min_print must be {min_print(fs) or 'larger than A0'}, "
-                             f"the smallest size at which the body of {fs:.2f} pt prints at {MIN_BODY} pt or more")
-        for i, th in enumerate(themes):
-            load(page, tmp, html(th, height, fs))
-            if not fits(page, fs):
-                raise BuildError(f"{slug} {fmt} {th}: the text overflows at {fs} pt")
-            page.pdf(path=str(raw), width=f"{DESIGN_W}mm", height=f"{height:.2f}mm",
-                     print_background=True, page_ranges="1")
-            if i == 0:  # themes only change colours, every PDF uses the same fonts
-                for font, chars in system_fonts(raw).items():
-                    warn(f"{slug} {fmt}: {''.join(sorted(chars))} drawn with {font}, a system font, so the "
-                         "PDF depends on the machine; give these characters a bundled font in style.css")
-            dst = out / f"{slug}-{fmt}-{th}.pdf"
-            if check:
-                pdf = io.BytesIO()
-                write_pdf(raw, pdf, (W, H), m)
-                if not dst.exists() or dst.read_bytes() != pdf.getvalue():
-                    raise BuildError(f"{rel(dst)}: {'out of date' if dst.exists() else 'missing'}, run `make {slug}`")
-            else:
+        fs, fresh = settle(page.context.browser, viewport, tmp, lambda size: html(themes[0], height, size),
+                           fs, hi, f"{slug} {fmt}")
+        try:
+            print_format(paper, m, fmt, fs, themes, allowed, fresh, html, tmp, raw, out, capped and fs == hi,
+                         previews, check)
+        finally:
+            fresh.context.close()
+
+def print_format(paper, m, fmt, fs, themes, allowed, page, html, tmp, raw, out, at_cap, previews, check):
+    """Prints the PDFs of one format, and the previews, on the fresh page that settled its size."""
+    slug, paper_dir = paper.slug, paper.dir
+    W, H = FORMATS[fmt]
+    height = DESIGN_W * H / W
+    cap = ", the cap" if at_cap else ""
+    print(f"{slug} {fmt}: body {fs:.2f} pt at design size{cap} ({printed(fmt, fs)})")
+    if fmt == "A" and min_print(fs) != m["min_print"]:
+        raise BuildError(f"{rel(paper_dir / 'meta.yaml')}: min_print must be {min_print(fs) or 'larger than A0'}, "
+                         f"the smallest size at which the body of {fs:.2f} pt prints at {MIN_BODY} pt or more")
+    for i, th in enumerate(themes):
+        load(page, tmp, html(th, height, fs))
+        if not fits(page, fs):
+            raise BuildError(f"{slug} {fmt} {th}: the text overflows at {fs} pt")
+        page.pdf(path=str(raw), width=f"{DESIGN_W}mm", height=f"{height:.2f}mm",
+                 print_background=True, page_ranges="1")
+        if i == 0:  # themes only change colours, every PDF uses the same fonts
+            for font, chars in system_fonts(raw).items():
+                warn(f"{slug} {fmt}: {''.join(sorted(chars))} drawn with {font}, a system font, so the "
+                     "PDF depends on the machine; give these characters a bundled font in style.css")
+        dst = out / f"{slug}-{fmt}-{th}.pdf"
+        pdf = io.BytesIO()
+        write_pdf(raw, pdf, (W, H), m)
+        same = dst.exists() and same_poster(dst.read_bytes(), pdf.getvalue())
+        if check and not same:
+            raise BuildError(f"{rel(dst)}: {'out of date' if dst.exists() else 'missing'}, run `make {slug}`")
+        if not check:
+            if not same:  # an unchanged poster keeps its file, so that git sees no change
                 out.mkdir(parents=True, exist_ok=True)
-                write_pdf(raw, dst, (W, H), m)
-                print("  ", rel(dst))
-            if previews and fmt == "A":
-                # the thumbnail of the catalog, and the showcase of the themes above it
-                pngs = [ROOT / "docs" / paper.category / f"{slug}.png"] if th == allowed[0] else []
-                if slug == SHOWCASE:
-                    pngs.append(ROOT / "docs" / "themes" / f"{th}.png")
-                for png in pngs:
-                    if not check:
-                        save_preview(page, png)
-                    elif not png.exists():
-                        raise BuildError(f"{rel(png)}: missing, run `make {slug}`")
+                dst.write_bytes(pdf.getvalue())
+            print("  ", rel(dst), "(unchanged)" if same else "")
+        if previews and fmt == "A":
+            # the thumbnail of the catalog, and the showcase of the themes above it
+            pngs = [ROOT / "docs" / paper.category / f"{slug}.png"] if th == allowed[0] else []
+            if slug == SHOWCASE:
+                pngs.append(ROOT / "docs" / "themes" / f"{th}.png")
+            for png in pngs:
+                if not check:
+                    save_preview(page, png)
+                elif not png.exists():
+                    raise BuildError(f"{rel(png)}: missing, run `make {slug}`")
 
 def main():
     try:

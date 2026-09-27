@@ -111,9 +111,9 @@ make check     # fit every poster, compare it with dist/ and docs/, check the ca
 .venv/bin/python engine/build.py rfc-1925 --formats A --themes genesis
 ```
 
-Builds are deterministic: rebuilding unchanged sources rewrites byte-identical files, so a commit only carries the PDFs and previews of the posters that changed. Pushing a `v*` tag makes GitHub Actions build every poster again and attach the PDFs to a release, with one zip per category. Versions are pinned (`package-lock.json`, and `requirements.txt`, whose Playwright version fixes the Chromium build), and Chromium lays text out without the local font hinting settings, to keep the layout independent of the machine.
+Builds are deterministic, with one exception: in about one print in twenty of a page full of formulas, Chromium sets one run of glyphs on a baseline rounded to a whole pixel. So a PDF is only rewritten when it differs from the one in `dist/` by more than that, and a commit only carries the PDFs and previews of the posters that changed. Pushing a `v*` tag makes GitHub Actions build every poster again and attach the PDFs to a release, with one zip per category. Versions are pinned (`package-lock.json`, and `requirements.txt`, whose Playwright version fixes the Chromium build), and Chromium lays text out without the local font hinting settings, to keep the layout independent of the machine.
 
-`make check` also runs on GitHub Actions for every push and pull request. It fails when a poster overflows its page, when it still fits at the largest allowed body size, when a character is drawn with a system font, when `min_print` does not match the body size, when a PDF of `dist/` differs from a fresh build or a preview is missing from `docs/`, when either holds a file that no paper makes, or when the catalog of this README is out of date.
+`make check` also runs on GitHub Actions for every push and pull request. It fails when a poster overflows its page, when it still fits at the largest allowed body size, when a character is drawn with a system font, when `min_print` does not match the body size, when a PDF of `dist/` differs from a fresh build (beyond that pixel) or a preview is missing from `docs/`, when either holds a file that no paper makes, or when the catalog of this README is out of date.
 
 ## Add a paper
 
@@ -175,7 +175,7 @@ Every character must come from the bundled fonts (EB Garamond, JetBrains Mono, K
 
 ## How it works
 
-`engine/build.py` finds the papers in `papers/<category>/<slug>/`, parses the Markdown, pre-renders math with KaTeX, injects SVG figures into an HTML template, then drives headless Chromium: for each format it waits for the fonts, binary-searches the largest body size that fits in whole hundredths of a point, checks it again on a freshly loaded page, prints a PDF at a fixed 594 mm design width, and scales it to the target format with pypdf, keeping the page vector and its content losslessly compressed. Images are embedded in the page as data URIs, so every PDF is self-contained. Themes are sets of CSS variables in `engine/themes.py`. `engine/readme.py` writes the catalog of this README from the `meta.yaml` files and PENDING.md.
+`engine/build.py` finds the papers in `papers/<category>/<slug>/`, parses the Markdown, pre-renders math with KaTeX, injects SVG figures into an HTML template, then drives headless Chromium: for each format it waits for the fonts, binary-searches the largest body size that fits in whole hundredths of a point, settles it on pages that have laid out nothing else, so that it does not depend on what Chromium laid out before, prints a PDF at a fixed 594 mm design width, and scales it to the target format with pypdf, keeping the page vector and its content losslessly compressed. Images are embedded in the page as data URIs, so every PDF is self-contained. Themes are sets of CSS variables in `engine/themes.py`. `engine/readme.py` writes the catalog of this README from the `meta.yaml` files and PENDING.md.
 
 ## Origin
 
