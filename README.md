@@ -8,7 +8,7 @@ Each paper is laid out in full on one page: every section, equation, code listin
 
 <!-- catalog:start -->
 
-23 posters in 7 categories. Each one comes in 4 themes, shown here with *Bitcoin: A Peer-to-Peer Electronic Cash System*, and in 3 formats (see [Download](#download)).
+24 posters in 7 categories. Each one comes in 4 themes, shown here with *Bitcoin: A Peer-to-Peer Electronic Cash System*, and in 3 formats (see [Download](#download)).
 
 | ivory | white | genesis | blueprint |
 |:-:|:-:|:-:|:-:|
@@ -56,6 +56,7 @@ A click on a poster opens its PDF in the A format and in its first theme, and th
 | &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; | Paper | Authors | Year | Print from | License |
 |---|---|---|---|---|---|
 | <a href="dist/manifestos/www-announcement-A-ivory.pdf"><img src="docs/manifestos/www-announcement.png" width="90" alt=""></a> | [WorldWideWeb: the announcement on alt.hypertext](dist/manifestos/www-announcement-A-ivory.pdf)<br>Tim Berners-Lee's two Usenet posts of 6 August 1991 that described the WorldWideWeb project and offered its software.<br>[ivory](dist/manifestos/www-announcement-A-ivory.pdf)&nbsp;·&nbsp;[white](dist/manifestos/www-announcement-A-white.pdf)&nbsp;·&nbsp;[genesis](dist/manifestos/www-announcement-A-genesis.pdf)&nbsp;·&nbsp;[blueprint](dist/manifestos/www-announcement-A-blueprint.pdf) | Tim Berners-Lee | 1991 | A2 | W3C Document License |
+| <a href="dist/manifestos/cyberspace-independence-A-ivory.pdf"><img src="docs/manifestos/cyberspace-independence.png" width="90" alt=""></a> | [A Declaration of the Independence of Cyberspace](dist/manifestos/cyberspace-independence-A-ivory.pdf)<br>John Perry Barlow's 1996 declaration, written at Davos, that governments have no sovereignty over cyberspace.<br>[ivory](dist/manifestos/cyberspace-independence-A-ivory.pdf)&nbsp;·&nbsp;[white](dist/manifestos/cyberspace-independence-A-white.pdf)&nbsp;·&nbsp;[genesis](dist/manifestos/cyberspace-independence-A-genesis.pdf)&nbsp;·&nbsp;[blueprint](dist/manifestos/cyberspace-independence-A-blueprint.pdf) | John Perry Barlow | 1996 | A3 | Redistribution invited by the author |
 
 ### Historical data visualization
 

@@ -1,0 +1,5 @@
+/* A declaration read aloud: generous paragraphs, the place and date set apart at the end */
+p{margin:0 0 .8em}
+.dateline{text-align:right;font-style:italic;margin-top:1.4em}
+.kick{letter-spacing:.3em}
+footer>div:first-child{max-width:60%;line-height:1.35}

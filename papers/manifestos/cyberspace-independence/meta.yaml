@@ -1,0 +1,40 @@
+title: "A Declaration of the Independence of Cyberspace"
+summary: "John Perry Barlow's 1996 declaration, written at Davos, that governments have no sovereignty over cyberspace."
+title_html: "A Declaration of the<br><em>Independence of Cyberspace</em>"
+title_size: 104pt
+kicker: "Davos, Switzerland · 8 February 1996"
+author: "John Perry Barlow"
+header_scale: 1.6
+columns: 2
+footer:
+  - "“If you find it useful, I hope you will pass it on as widely as possible.” John Perry Barlow, 9 February 1996"
+  - ""
+  - '<span class="mono">eff.org/cyberspace-independence</span>'
+year: 1996
+authors: [John Perry Barlow]
+min_print: A3
+source:
+  url: https://www.eff.org/cyberspace-independence
+  retrieved: 2026-09-27
+  edition: >-
+    The text published by EFF, where Barlow's page ~barlow/Declaration-Final.html now leads. The
+    e-mail that sent it on 9 February 1996 (w2.eff.org, see license.note) differs in one
+    sentence, "They are based on matter, There is no matter here.", and has a space before two
+    full stops. The byline "by John Perry Barlow" is the author line of the header and the title
+    of the page is the title of the poster; the place and date end the text, as on the page, and
+    give the kicker.
+license:
+  text: "Redistribution invited by the author"
+  holder: "John Perry Barlow, 1996"
+  notice: >-
+    If you find it useful, I hope you will pass it on as widely as possible. You can leave my
+    name off it if you like, because I don't care about the credit. I really don't.
+  note: >-
+    From the e-mail in which Barlow sent the Declaration on 9 February 1996 (Subject: A
+    Cyberspace Independence Declaration), archived by EFF at
+    https://w2.eff.org/Censorship/Internet_censorship_bills/barlow_0296.declaration; it goes on:
+    "But I do hope this cry will echo across Cyberspace, changing and growing and
+    self-replicating". The site policy of EFF, https://www.eff.org/copyright, puts "original
+    material on the EFF website" under CC BY 4.0 but adds that "All material that is not
+    original to EFF may require permission from the copyright holder to redistribute": the
+    poster relies on Barlow's own permission.
