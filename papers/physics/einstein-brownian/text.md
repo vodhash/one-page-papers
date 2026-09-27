@@ -1,0 +1,239 @@
+In dieser Arbeit soll gezeigt werden, daß nach der molekularkinetischen Theorie der Wärme in Flüssigkeiten suspendierte Körper von mikroskopisch sichtbarer Größe infolge der Molekularbewegung der Wärme Bewegungen von solcher Größe ausführen müssen, daß diese Bewegungen leicht mit dem Mikroskop nachgewiesen werden können. Es ist möglich, daß die hier zu behandelnden Bewegungen mit der sogenannten „<span class="sp">Brown</span>schen Molekularbewegung“ identisch sind; die mir erreichbaren Angaben über letztere sind jedoch so ungenau, daß ich mir hierüber kein Urteil bilden konnte.
+
+Wenn sich die hier zu behandelnde Bewegung samt den für sie zu erwartenden Gesetzmäßigkeiten wirklich beobachten läßt, so ist die klassische Thermodynamik schon für mikroskopisch unterscheidbare Räume nicht mehr als genau gültig anzusehen und es ist dann eine exakte Bestimmung der wahren Atomgröße möglich. Erwiese sich umgekehrt die Voraussage dieser Bewegung als unzutreffend, so wäre damit ein schwerwiegendes Argument gegen die molekularkinetische Auffassung der Wärme gegeben.
+
+## § 1. Über den suspendierten Teilchen zuzuschreibenden osmotischen Druck.
+
+Im Teilvolumen \(V^*\) einer Flüssigkeit vom Gesamtvolumen \(V\) seien \(z\)-Gramm-Moleküle eines Nichtelektrolyten gelöst. Ist das Volumen \(V^*\) durch eine für das Lösungsmittel, nicht aber für die gelöste Substanz durchlässige Wand vom reinen Lösungsmittel getrennt, so wirkt auf diese Wand der sogenannte osmotische Druck, welcher bei genügend großen Werten von \(V^*/z\) der Gleichung genügt:
+
+$$ p\,V^* = R\,T\,z\,. $$
+
+Sind hingegen statt der gelösten Substanz in dem Teilvolumen \(V^*\) der Flüssigkeit kleine suspendierte Körper vorhanden, welche ebenfalls nicht durch die für das Lösungsmittel durchlässige Wand hindurchtreten können, so hat man nach der klassischen Theorie der Thermodynamik — wenigstens bei Vernachlässigung der uns hier nicht interessierenden Schwerkraft — nicht zu erwarten, daß auf die Wand eine Kraft wirke; denn die „freie Energie“ des Systems scheint nach der üblichen Auffassung nicht von der Lage der Wand und der suspendierten Körper abzuhängen, sondern nur von den Gesamtmassen und Qualitäten der suspendierten Substanz, der Flüssigkeit und der Wand, sowie von Druck und Temperatur. Es kämen allerdings für die Berechnung der freien Energie noch Energie und Entropie der Grenzflächen in Betracht (Kapillarkräfte); hiervon können wir jedoch absehen, indem bei den ins Auge zu fassenden Lagenänderungen der Wand und der suspendierten Körper Änderungen der Größe und Beschaffenheit der Berührungsflächen nicht eintreten mögen.
+
+Vom Standpunkte der molekularkinetischen Wärmetheorie aus kommt man aber zu einer anderen Auffassung. Nach dieser Theorie unterscheidet sich eingelöstes Molekül von einem suspendierten Körper *lediglich* durch die Größe, und man sieht nicht ein, warum einer Anzahl suspendierter Körper nicht derselbe osmotische Druck entsprechen sollte, wie der nämlichen Anzahl gelöster Moleküle. Man wird anzunehmen haben, daß die suspendierten Körper infolge der Molekularbewegung der Flüssigkeit eine wenn auch sehr langsame ungeordnete Bewegung in der Flüssigkeit ausführen; werden sie durch die Wand verhindert, das Volumen \(V^*\) zu verlassen, so werden sie auf die Wand Kräfte ausüben, ebenso wie gelöste Moleküle. Sind also \(n\) suspendierte Körper im Volumen \(V^*\), also \(n/V^* = \nu\) in der Volumeneinheit vorhanden, und sind benachbarte unter ihnen genügend weit voneinander entfernt, so wird ihnen ein osmotischer Druck \(p\) entsprechen von der Größe:
+
+$$ p = \frac{R\,T}{V^*}\,\frac{n}{N} = \frac{R\,T}{N}\,.\,\nu\,, $$
+
+wobei \(N\) die Anzahl der in einem Gramm-Molekül enthaltenen wirklichen Moleküle bedeutet. Im nächsten Paragraph soll gezeigt werden, daß die molekularkinetische Theorie der Wärme wirklich zu dieser erweiterten Auffassung des osmotischen Druckes führt.
+
+## § 2. Der osmotische Druck vom Standpunkte der molekularkinetischen Theorie der Wärme.[^551-1]
+
+Sind \(p_1\,p_2\ldots p_l\) Zustandsvariable eines physikalischen Systems, welche den momentanen Zustand desselben vollkommen bestimmen (z. B. die Koordinaten und Geschwindigkeitskomponenten aller Atome des Systems) und ist das vollständige System der Veränderungsgleichungen dieser Zustandsvariabeln von der Form
+
+$$ \frac{\partial p_\nu}{\partial t} = \varphi_\nu(p_1\ldots p_l)\quad(\nu = 1, 2\ldots l) $$
+
+gegeben, wobei \(\sum\frac{\partial\varphi_\nu}{\partial p_\nu} = 0\), so ist die Entropie des Systems durch den Ausdruck gegeben:
+
+$$ S = \frac{\bar{E}}{T} + 2\varkappa\lg\int e^{-\frac{E}{2\varkappa T}}\,dp_1\ldots dp_l\,. $$
+
+Hierbei bedeutet \(T\) die absolute Temperatur, \(\bar{E}\) die Energie des Systems, \(E\) die Energie als Funktion der \(p_\nu\). Das Integral ist über alle mit den Bedingungen des Problems vereinbaren Wertekombinationen der \(p_\nu\) zu erstrecken. \(\varkappa\) ist mit der oben erwähnten Konstanten \(N\) durch die Relation \(2\varkappa N = R\) verbunden. Für die freie Energie \(F\) erhalten wir daher:
+
+$$ F = -\frac{R}{N}\,T\lg\int e^{-\frac{E N}{R T}}\,dp_1\ldots dp_l = -\frac{R\,T}{N}\lg B\,. $$
+
+Wir denken uns nun eine in dem Volumen \(V\) eingeschlossene Flüssigkeit; in dem Teilvolumen \(V^*\) von \(V\) mögen sich \(n\) gelöste Moleküle bez. suspendierte Körper befinden, welche im Volumen \(V^*\) durch eine semipermeabele Wand festgehalten seien; es werden hierdurch die Integrationsgrenzen des in den Ausdrücken für \(S\) und \(F\) auftretenden Integrales \(B\) beeinflußt. Das Gesamtvolumen der gelösten Moleküle bez. suspendierten Körper sei klein gegen \(V^*\). Dies System werde im Sinne der erwähnten Theorie durch die Zustandsvariabeln \(p_1\ldots p_l\) vollständig dargestellt.
+
+Wäre nun auch das molekulare Bild bis in alle Einzelheiten festgelegt, so böte doch die Ausrechnung des Integrales \(B\) solche Schwierigkeiten, daß an eine exakte Berechnung von \(F\) kaum gedacht werden könnte. Wir brauchen jedoch hier nur zu wissen, wie \(F\) von der Größe des Volumens \(V^*\) abhängt, in welchem alle gelösten Moleküle bez. suspendierten Körper (im folgenden kurz „Teilchen“ genannt) enthalten sind.
+
+Wir nennen \(x_1, y_1, z_1\) die rechtwinkligen Koordinaten des Schwerpunktes des ersten Teilchens, \(x_2, y_2, z_2\) die des zweiten etc., \(x_n, y_n, z_n\) die des letzten Teilchens und geben für die Schwerpunkte der Teilchen die unendlich kleinen parallelepipedförmigen Gebiete \(dx_1\) \(dy_1\) \(dz_1\), \(dx_2\) \(dy_2\) \(dz_2\ldots dx_n\,dy_n\,dz_n\), welche alle in \(V^*\) gelegen seien. Gesucht sei der Wert des im Ausdruck für \(F\) auftretenden Integrales mit der Beschränkung, daß die Teilchenschwerpunkte in den ihnen soeben zugewiesenen Gebieten liegen. Dies Integral läßt sich jedenfalls auf die Form
+
+$$ dB = dx_1\,dy_1\ldots dz_n\,.\,J $$
+
+bringen, wobei \(J\) von \(dx_1\,dy_1\) etc., sowie von \(V^*\), d. h. von der Lage der semipermeabeln Wand, unabhängig ist. \(J\) ist aber auch unabhängig von der speziellen Wahl *der Lagen* der Schwerpunktsgebiete und von dem Werte von \(V^*\), wie sogleich gezeigt werden soll. Sei nämlich ein zweites System von unendlich kleinen Gebieten für die Teilchenschwerpunkte gegeben und bezeichnet durch \(dx'_1\) \(dy'_1\) \(dz'_2\), \(dx'_2\) \(dy'_2\) \(dz'_2\ldots dx'_n\,dy'_n\,dz'_n\), welche Gebiete sich von den ursprünglich gegebenen nur durch ihre Lage, nicht aber durch ihre Größe unterscheiden mögen und ebenfalls alle in \(V^*\) enthalten seien, so gilt analog:
+
+$$ dB' = dx'_1\,dy'_1\ldots dz'_n\,.\,J', $$
+
+wobei
+
+$$ dx_1\,dy_1\ldots dz_n = dx'_1\,dy'_1\ldots dz'_n\,. $$
+
+Es ist also:
+
+$$ \frac{dB}{dB'} = \frac{J}{J'}\,. $$
+
+Aus der in den zitierten Arbeiten gegebenen molekularen Theorie der Wärme läßt sich aber leicht folgern[^553-1], daß \(dB/B\) bez. \(dB'/B\) gleich ist der Wahrscheinlichkeit dafür, daß sich in einem beliebig herausgegriffenen Zeitpunkte die Teilchenschwerpunkte in den Gebieten <span class="nw">(\(dx_1\ldots dz_n\))</span> bez. in den Gebieten <span class='nw'>(\(dx'_1\ldots dz'_n\))</span> befinden. Sind nun die Bewegungen der einzelnen Teilchen (mit genügender Annäherung) voneinander unabhängig, ist die Flüssigkeit homogen und wirken auf die Teilchen keine Kräfte, so müssen bei gleicher Größe der Gebiete die den beiden Gebietssystemen zukommenden Wahrscheinlichkeiten einander gleich sein, so daß gilt:
+
+$$ \frac{dB}{B} = \frac{dB'}{B}\,. $$
+
+Aus dieser und aus der zuletzt gefundenen Gleichung folgt aber
+
+$$ J = J'. $$
+
+Es ist somit erwiesen, daß \(J\) weder von \(V^*\) noch von \(x_1, y_1\ldots z_n\) abhängig ist. Durch Integration erhält man
+
+$$ B = \int J\,dx_1\ldots dz_n = J\,V^{*n} $$
+
+und daraus
+
+$$ F = -\frac{R\,T}{N}\{\lg J + n\lg V^*\} $$
+
+und
+
+$$ p = -\frac{\partial F}{\partial V^*} = \frac{R\,T}{V^*}\,\frac{n}{N} = \frac{R\,T}{N}\,\nu\,. $$
+
+Durch diese Betrachtung ist gezeigt, daß die Existenz des osmotischen Druckes eine Konsequenz der molekularkinetischen Theorie der Wärme ist, und daß nach dieser Theorie gelöste Moleküle und suspendierte Körper von gleicher Anzahl sich in bezug auf osmotischen Druck bei großer Verdünnung vollkommen gleich verhalten.
+
+## § 3. Theorie der Diffusion kleiner suspendierter Kugeln.
+
+In einer Flüssigkeit seien suspendierte Teilchen regellos verteilt. Wir wollen den dynamischen Gleichgewichtszustand derselben untersuchen unter der Voraussetzung, daß auf die einzelnen Teilchen eine Kraft \(K\) wirkt, welche vom Orte, nicht aber von der Zeit abhängt. Der Einfachheit halber werde angenommen, daß die Kraft überall die Richtung der \(X\)-Achse habe.
+
+Es sei \(\nu\) die Anzahl der suspendierten Teilchen pro Volumeneinheit, so ist im Falle des thermodynamischen Gleichgewichtes \(\nu\) eine solche Funktion von \(x\), daß für eine beliebige virtuelle Verrückung \(\delta x\) der suspendierten Substanz die Variation der freien Energie verschwindet. Man hat also:
+
+$$ \delta F = \delta E - T\,\delta S = 0\,. $$
+
+Es werde angenommen, daß die Flüssigkeit senkrecht zur \(X\)-Achse den Querschnitt 1 habe und durch die Ebenen \(x = 0\) und \(x = l\) begrenzt sei. Man hat dann:
+
+$$ \delta E = -\int\limits_0^l K\nu\,\delta x\,dx $$
+
+und
+
+$$ \delta S = \int\limits_0^l R\,\frac{\nu}{N}\,\frac{\partial\,\delta x}{\partial x}\,dx = -\frac{R}{N}\int\limits_0^l \frac{\partial\nu}{\partial x}\,\delta x\,dx\,. $$
+
+Die gesuchte Gleichgewichtsbedingung ist also:
+
+$$ \text{(1)}\qquad -K\nu + \frac{R\,T}{N}\,\frac{\partial\nu}{\partial x} = 0 $$
+
+oder
+
+$$ K\nu - \frac{\partial p}{\partial x} = 0\,. $$
+
+Die letzte Gleichung sagt aus, daß der Kraft \(K\) durch osmotische Druckkräfte das Gleichgewicht geleistet wird.
+
+Die Gleichung (1) benutzen wir, um den Diffusionskoeffizienten der suspendierten Substanz zu ermitteln. Wir können den eben betrachteten dynamischen Gleichgewichtszustand als die Superposition zweier in umgekehrtem Sinne verlaufender Prozesse auffassen, nämlich
+
+1.&nbsp;einer Bewegung der suspendierten Substanz unter der Wirkung der auf jedes einzelne suspendierte Teilchen wirkenden Kraft \(K\),
+
+2.&nbsp;eines Diffusionsvorganges, welcher als Folge der ungeordneten Bewegungen der Teilchen infolge der Molekularbewegung der Wärme aufzufassen ist.
+
+Haben die suspendierten Teilchen Kugelform (Kugelradius \(P\)) und besitzt die Flüssigkeit den Reibungskoeffizienten \(k\), so erteilt die Kraft \(K\) dem einzelnen Teilchen die Geschwindigkeit[^555-1]
+
+$$ \frac{K}{6\pi k P}\,, $$
+
+und es treten durch die Querschnittseinheit pro Zeiteinheit
+
+$$ \frac{\nu K}{6\pi k P} $$
+
+Teilchen hindurch.
+
+Bezeichnet ferner \(D\) den Diffusionskoeffizienten der suspendierten Substanz und \(\mu\) die Masse eines Teilchens, so treten pro Zeiteinheit infolge der Diffusion
+
+$$ -D\,\frac{\partial(\mu\nu)}{\partial x}\ \text{Gramm} $$
+
+oder
+
+$$ -D\,\frac{\partial\nu}{\partial x} $$
+
+Teilchen durch die Querschnittseinheit. Da dynamisches Gleichgewicht herrschen soll, so muß sein:
+
+$$ \text{(2)}\qquad \frac{\nu K}{6\pi k P} - D\,\frac{\partial\nu}{\partial x} = 0. $$
+
+Aus den beiden für das dynamische Gleichgewicht gefundenen Bedingungen (1) und (2) kann man den Diffusionskoeffizienten berechnen. Man erhält:
+
+$$ D = \frac{R\,T}{N}\,\frac{1}{6\pi k P}\,. $$
+
+Der Diffusionskoeffizient der suspendierten Substanz hängt also außer von universellen Konstanten und der absoluten Temperatur nur vom Reibungskoeffizienten der Flüssigkeit und von der Größe der suspendierten Teilchen ab.
+
+## § 4. Über die ungeordnete Bewegung von in einer Flüssigkeit suspendierten Teilchen und deren Beziehung zur Diffusion.
+
+Wir gehen nun dazu über, die ungeordneten Bewegungen genauer zu untersuchen, welche, von der Molekularbewegung der Wärme hervorgerufen, Anlaß zu der im letzten Paragraphen untersuchten Diffusion geben.
+
+Es muß offenbar angenommen werden, daß jedes einzelne Teilchen eine Bewegung ausführe, welche unabhängig ist von der Bewegung aller anderen Teilchen; es werden auch die Bewegungen eines und desselben Teilchens in verschiedenen Zeitintervallen als voneinander unabhängige Vorgänge aufzufassen sein, solange wir diese Zeitintervalle nicht zu klein gewählt denken.
+
+Wir führen ein Zeitintervall \(\tau\) in die Betrachtung ein, welches sehr klein sei gegen die beobachtbaren Zeitintervalle, aber doch so groß, daß die in zwei aufeinanderfolgenden Zeitintervallen \(\tau\) von einem Teilchen ausgeführten Bewegungen als voneinander unabhängige Ereignisse aufzufassen sind.
+
+Seien nun in einer Flüssigkeit im ganzen \(n\) suspendierte Teilchen vorhanden. In einem Zeitintervall \(\tau\) werden sich die \(X\)-Koordinaten der einzelnen Teilchen um \(\varDelta\) vergrößern, wobei \(\varDelta\) für jedes Teilchen einen anderen (positiven oder negativen) Wert hat. Es wird für \(\varDelta\) ein gewisses Häufigkeitsgesetz gelten; die Anzahl \(dn\) der Teilchen, welche in dem Zeitintervall \(\tau\) eine Verschiebung erfahren, welche zwischen \(\varDelta\) und \(\varDelta + d\varDelta\) liegt, wird durch eine Gleichung von der Form
+
+$$ dn = n\,\varphi(\varDelta)\,d\varDelta $$
+
+ausdrückbar sein, wobei
+
+$$ \int\limits_{-\infty}^{+\infty} \varphi(\varDelta)\,d\varDelta = 1 $$
+
+und \(\varphi\) nur für sehr kleine Werte von \(\varDelta\) von Null verschieden ist und die Bedingung
+
+$$ \varphi(\varDelta) = \varphi(-\varDelta) $$
+
+erfüllt.
+
+Wir untersuchen nun, wie der Diffusionskoeffizient von \(\varphi\) abhängt, wobei wir uns wieder auf den Fall beschränken, daß die Anzahl \(\nu\) der Teilchen pro Volumeneinheit nur von \(x\) und \(t\) abhängt.
+
+Es sei \(\nu = f(x, t)\) die Anzahl der Teilchen pro Volumeneinheit, wir berechnen die Verteilung der Teilchen zur Zeit \(t + \tau\) aus deren Verteilung zur Zeit \(t\). Aus der Definition der Funktion \(\varphi(\varDelta)\) ergibt sich leicht die Anzahl der Teilchen, welche sich zur Zeit \(t + \tau\) zwischen zwei zur \(X\)-Achse senkrechten Ebenen mit den Abszissen \(x\) und \(x + dx\) befinden. Man erhält:
+
+$$ f(x, t + \tau)\,dx = dx\,.\int\limits_{\varDelta = -\infty}^{\varDelta = +\infty} f(x + \varDelta)\,\varphi(\varDelta)\,d\varDelta\,. $$
+
+Nun können wir aber, da \(\tau\) sehr klein ist, setzen:
+
+$$ f(x, t + \tau) = f(x, t) + \tau\,\frac{\partial f}{\partial t}\,. $$
+
+Ferner entwickeln wir \(f(x + \varDelta, t)\) nach Potenzen von \(\varDelta\):
+
+$$ f(x + \varDelta, t) = f(x, t) + \varDelta\,\frac{\partial f(x, t)}{\partial x} + \frac{\varDelta^2}{2!}\,\frac{\partial^2 f(x, t)}{\partial x^2}\ldots \text{ in inf.} $$
+
+Diese Entwicklung können wir unter dem Integral vornehmen, da zu letzterem nur sehr kleine Werte von \(\varDelta\) etwas beitragen. Wir erhalten:
+
+$$ \begin{aligned} f + \frac{\partial f}{\partial t}\cdot\tau &= f\cdot\int\limits_{-\infty}^{+\infty} \varphi(\varDelta)\,d\varDelta + \frac{\partial f}{\partial x}\int\limits_{-\infty}^{+\infty} \varDelta\,\varphi(\varDelta)\,d\varDelta\\ &\quad + \frac{\partial^2 f}{\partial x^2}\int\limits_{-\infty}^{+\infty} \frac{\varDelta^2}{2}\,\varphi(\varDelta)\,d\varDelta\ \ldots \end{aligned} $$
+
+Auf der rechten Seite verschwindet wegen \(\varphi(x) = \varphi(-x)\) das zweite, vierte etc. Glied, während von dem ersten, dritten, fünften etc. Gliede jedes folgende gegen das vorhergehende sehr klein ist. Wir erhalten aus dieser Gleichung, indem wir berücksichtigen, daß
+
+$$ \int\limits_{-\infty}^{+\infty} \varphi(\varDelta)\,d\varDelta = 1, $$
+
+und indem wir
+
+$$ \frac{1}{\tau}\int\limits_{-\infty}^{+\infty} \frac{\varDelta^2}{2}\,\varphi(\varDelta)\,d\varDelta = D $$
+
+setzen und nur das erste und dritte Glied der rechten Seite berücksichtigen:
+
+$$ \text{(1)}\qquad \frac{\partial f}{\partial t} = D\,\frac{\partial^2 f}{\partial x^2}\,. $$
+
+Dies ist die bekannte Differentialgleichung der Diffusion, und man erkennt, daß \(D\) der Diffusionskoeffizient ist.
+
+An diese Entwicklung läßt sich noch eine wichtige Überlegung anknüpfen. Wir haben angenommen, daß die einzelnen Teilchen alle auf dasselbe Koordinatensystem bezogen seien. Dies ist jedoch nicht nötig, da die Bewegungen der einzelnen Teilchen voneinander unabhängig sind. Wir wollen nun die Bewegung jedes Teilchens auf ein Koordinatensystem beziehen, dessen Ursprung mit der Lage des Schwerpunktes des betreffenden Teilchens zur Zeit \(t = 0\) zusammenfällt, mit dem Unterschiede, daß jetzt \(f(x, t)\,dx\) die Anzahl der Teilchen bedeutet, deren \(X\)-Koordinaten von der Zeit \(t = 0\) bis zur Zeit \(t = t\) um eine Größe *gewachsen* ist, welche zwischen \(x\) und \(x + dx\) liegt. Auch in diesem Falle ändert sich also die Funktion \(f\) gemäß Gleichung (1). Ferner muß offenbar für \(x \gtrless 0\) und \(t = 0\)
+
+$$ f(x, t) = 0 \quad\text{und}\quad \int\limits_{-\infty}^{+\infty} f(x, t)\,dx = n $$
+
+sein. Das Problem, welches mit dem Problem der Diffusion von einem Punkte aus (unter Vernachlässigung der Wechselwirkung der diffundierenden Teilchen) übereinstimmt, ist nun mathematisch vollkommen bestimmt; seine Lösung ist:
+
+$$ f(x, t) = \frac{n}{\sqrt{4\pi D}}\,\frac{e^{-\frac{x^2}{4 D t}}}{\sqrt{t}}\,. $$
+
+Die Häufigkeitsverteilung der in einer beliebigen Zeit \(t\) erfolgten Lagenänderungen ist also dieselbe wie die der zufälligen Fehler, was zu vermuten war. Von Bedeutung aber ist, wie die Konstante im Exponenten mit dem Diffusionskoeffizienten zusammenhängt. Wir berechnen nun mit Hilfe dieser Gleichung die Verrückung \(\lambda_x\) in Richtung der \(X\)-Achse, welche ein Teilchen im Mittel erfährt, oder — genauer ausgedrückt — die Wurzel aus dem arithmetischen Mittel der Quadrate der Verrückungen in Richtung der \(X\)-Achse; es ist:
+
+$$ \lambda_x = \sqrt{\overline{x^2}} = \sqrt{2 D t}\,. $$
+
+Die mittlere Verschiebung ist also proportional der Quadratwurzel aus der Zeit. Man kann leicht zeigen, daß die Wurzel aus dem Mittelwert der Quadrate der *Gesamtverschiebungen* der Teilchen den Wert \(\lambda_x\sqrt{3}\) besitzt.
+
+## § 5. Formel für die mittlere Verschiebung suspendierter Teilchen. Eine neue Methode zur Bestimmung der wahren Größe der Atome.
+
+In § 3 haben wir für den Diffusionskoeffizienten \(D\) eines in einer Flüssigkeit in Form von kleinen Kugeln vom Radius \(P\) suspendierten Stoffes den Wert gefunden:
+
+$$ D = \frac{R\,T}{N}\,\frac{1}{6\pi k P}\,. $$
+
+Ferner fanden wir in § 4 für den Mittelwert der Verschiebungen der Teilchen in Richtung der \(X\)-Achse in der Zeit \(t\):
+
+$$ \lambda_x = \sqrt{2 D t}\,. $$
+
+Durch Eliminieren von \(D\) erhalten wir:
+
+$$ \lambda_x = \sqrt{t}\,.\,\sqrt{\frac{R\,T}{N}\,\frac{1}{3\pi k P}}\,. $$
+
+Diese Gleichung läßt erkennen, wie \(\lambda_x\) von \(T\), \(k\) und \(P\) abhängen muß.
+
+Wir wollen berechnen, wie groß \(\lambda_x\) für eine Sekunde ist, wenn \(N\) gemäß den Resultaten der kinetischen Gastheorie \(6\,.\,10^{23}\) gesetzt wird; es sei als Flüssigkeit Wasser von 17° C. gewählt (\(k = 1{,}35\,.\,10^{-2}\)) und der Teilchendurchmesser sei 0,001 mm. Man erhält:
+
+$$ \lambda_x = 8\,.\,10^{-5}\,\text{cm} = 0{,}8\ \text{Mikron.} $$
+
+Die mittlere Verschiebung in 1 Min. wäre also ca. 6 Mikron.
+
+Umgekehrt läßt sich die gefundene Beziehung zur Bestimmung von \(N\) benutzen. Man erhält:
+
+$$ N = \frac{t}{\lambda_x^2}\,.\,\frac{R\,T}{3\pi k P}\,. $$
+
+Möge es bald einem Forscher gelingen, die hier aufgeworfene, für die Theorie der Wärme wichtige Frage zu entscheiden!
+
+<p><span class="sp">Bern</span>, Mai 1905.</p>
+
+<p class="c">(Eingegangen 11. Mai 1905.)</p>
+
+[^551-1]: In diesem Paragraph sind die Arbeiten des Verfassers über die Grundlagen der Thermodynamik als bekannt vorausgesetzt (vgl. Ann. d. Phys. **9.** p. 417. 1902; **11.** p. 170. 1903). Für das Verständnis der Resultate der vorliegenden Arbeit ist die Kenntnis jener Arbeiten sowie dieses Paragraphen der vorliegenden Arbeit entbehrlich.
+
+[^553-1]: A. Einstein, Ann. d. Phys. **11.** p. 170. 1903.
+
+[^555-1]: Vgl. z. B. G. <span class="sp">Kirchhoff</span>, Vorlesungen über Mechanik, 26. Vorlesung § 4.

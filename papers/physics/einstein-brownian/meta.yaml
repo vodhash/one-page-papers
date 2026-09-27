@@ -1,0 +1,53 @@
+title: "Über die von der molekularkinetischen Theorie der Wärme geforderte Bewegung von in ruhenden Flüssigkeiten suspendierten Teilchen"
+summary: "Einstein derives the random motion of particles suspended in a liquid and relates their mean displacement to diffusion."
+title_html: "Über die von der molekularkinetischen Theorie der Wärme geforderte Bewegung von in ruhenden Flüssigkeiten <em>suspendierten Teilchen</em>"
+kicker: "Annalen der Physik · 4th series · vol. 17 · 1905"
+author: "A. Einstein"
+byline: "Bern, May 1905 · received 11 May 1905"
+emblem: "λ"
+lang: de
+columns: 4
+font_range: [5, 20]
+footer:
+  - "Annalen der Physik, 4th series, vol. 17, pp. 549-560. Leipzig: Johann Ambrosius Barth, 1905."
+  - "<i>Public domain in France and in the United States.</i>"
+  - '<span class="mono">doi:10.1002/andp.19053220806</span>'
+year: 1905
+authors: [Albert Einstein]
+min_print: A2
+source:
+  url: https://archive.org/details/sim_annalen-der-physik_1905_17_3
+  retrieved: 2026-09-27
+  edition: >-
+    Scan of Annalen der Physik, 4th series, vol. 17 (Leipzig: Johann Ambrosius Barth, 1905),
+    no. 8, pp. 549-560, on the Internet Archive (sim_annalen-der-physik_1905_17_3, leaves 172 to
+    183). No proofread transcription was found (German Wikisource lists the paper with a scan
+    link only): the text was built from the OCR of that scan and checked word by word against
+    the page images, and every formula set from reading them, with a second scan of the same
+    volume (annalenderphysi108unkngoog, digitized by Google) and its OCR as a cross-check; p. 554,
+    where the OCR of the first scan lost most lines, was built from the OCR of the second. The
+    title and "von A. Einstein." are in the header; the byline restates in English the closing
+    lines "Bern, Mai 1905." and "(Eingegangen 11. Mai 1905.)", which are also kept at the end of
+    the text. The article number "5." before the title, the running heads, page numbers and the
+    signature lines of pp. 557 and 559 are left out, and hyphens at line ends are rejoined. The
+    footnotes, numbered 1) on each page of the print, are numbered 1 to 3 and follow the text.
+    Names set letter-spaced in the print are letter-spaced, words in italics are in italics,
+    and the volume numbers of the references are in bold as printed; the two numbered processes
+    of § 3 are set as paragraphs. Spelling, punctuation and misprints are kept, among them
+    "eingelöstes Molekül" (p. 550), dz'_2 for dz'_1 in the first triple of primed differentials
+    (p. 552, checked on both scans), the second equation numbered (1) (p. 558), f(x + Delta)
+    without t in the integral of p. 557, phi(x) = phi(-x) (p. 557) and 3 pi k P under the root
+    in the formula for lambda_x (p. 559). The number of particles per unit volume, printed as
+    an italic Greek nu that looks like a Latin v, is set as nu; the sign between x and 0 on
+    p. 558 is set as a greater-than over a less-than sign. The equations are set with KaTeX.
+license:
+  text: "Public domain"
+  holder: "Albert Einstein, 1905"
+  basis: >-
+    Albert Einstein died on 18 April 1955: his works are in the public domain in France since
+    1 January 2026 (70 years counted from 1 January 1956). The paper was published in 1905,
+    before 1 January 1931, so it is in the public domain in the United States.
+  note: >-
+    The Internet Archive scans used (sim_annalen-der-physik_1905_17_3, and
+    annalenderphysi108unkngoog, marked "NOT_IN_COPYRIGHT") are of the 1905 print; no image of
+    them is reproduced.
