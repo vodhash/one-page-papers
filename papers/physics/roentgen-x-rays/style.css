@@ -1,0 +1,15 @@
+/* Section numbers as printed at the head of their paragraph, not as a Markdown list */
+.pn{font-variant-numeric:lining-nums}
+/* The table of section 5: thicknesses, relative thicknesses and densities, figures aligned */
+table.rt{border-collapse:collapse;margin:.5em auto .9em;font-variant-numeric:tabular-nums lining-nums;break-inside:avoid}
+table.rt th{font-weight:400;padding:0 .5em .2em;text-align:center}
+table.rt td{padding:0 .35em;text-align:right;white-space:nowrap}
+table.rt td:first-child,table.rt td:nth-child(3){text-align:left}
+/* The items a) to d) of section 17, indented with a hanging letter, as in the offprint */
+div.abc{margin:0 0 .6em}
+p.abc{margin:0;padding-left:1.6em;text-indent:-1.6em}
+p.abc .al{display:inline-block;width:1.6em;text-indent:0}
+/* The date line closes the text */
+p.dateline{margin-top:.8em}
+/* The caption of the radiograph */
+figure.image figcaption{text-wrap:balance}
