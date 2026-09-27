@@ -12,24 +12,25 @@ hero_height: 37
 columns: 3
 lang: fr
 footer:
-  - "Map: Charles Joseph Minard, 1869, lithograph by Regnier and Dourdet, Paris. Public domain. Scan: Bibliothèque nationale de France, Cartes et plans, GE DON-4182; paper tone whitened."
+  - "Map: Charles Joseph Minard, 1869, lithograph by Regnier and Dourdet, Paris. Public domain. Scan: École nationale des ponts et chaussées, Fol. 10975; paper tone whitened."
   - "<i>The notice is not a period text: it was written for this poster in 2026.</i>"
-  - "<span class=\"mono\">gallica.bnf.fr/ark:/12148/btv1b52504201x</span>"
+  - "<span class=\"mono\">heritage.ecoledesponts.fr/ark:/12148/btv1b10484829h</span>"
 year: 1869
 authors: [Charles Joseph Minard]
 min_print: A3
 source:
-  url: https://gallica.bnf.fr/ark:/12148/btv1b52504201x
+  url: https://heritage.ecoledesponts.fr/ark:/12148/btv1b10484829h/f52.item
   retrieved: 2026-09-27
   edition: >-
-    Scan btv1b52504201x of the Bibliothèque nationale de France (département Cartes et plans,
-    GE DON-4182: two maps on one sheet, 44.5 x 52 cm), as uploaded to Wikimedia Commons
-    (File:Carte figurative des pertes successives en hommes de l'armée française dans la Campagne
-    de Russie 1812-13 (comparées à celle d'Hannibal durant la 2èmee Guerre Punique) - Minard.
-    Régnier & Dourdet - btv1b52504201x.jpg, 8809 x 7612 px). The poster shows the lower map
-    only, cropped to its frame (the map of Hannibal's march above it, the handwritten dedication
-    and the library marks around the frame are left out), reduced to 4234 px and with its paper
-    tone scaled to white (one gain per channel). The text is transcribed from the scan: the
+    Minard's own copy at the École nationale des ponts et chaussées (Fol. 10975, recueil
+    "Tableaux graphiques et cartes figuratives", view 52: two maps on one sheet, Regnier &
+    Dourdet), scanned by the Bibliothèque nationale de France for Héritage des ponts et
+    chaussées (ark:/12148/btv1b10484829h, 7888 x 5952 px). The poster shows the lower map
+    only, cropped to its frame (the map of Hannibal's march above it is left out), straightened
+    by 0.26 degree, reduced to 4234 px and with its paper tone scaled to white (one gain per
+    channel). Until September 2026 the poster used the copy of the Bibliothèque nationale de
+    France (Cartes et plans, GE DON-4182, Gallica btv1b52504201x), against which the text was
+    first read; the two are the same printing. The text is transcribed from the BnF scan: the
     legend under the title, set in two paragraphs as on the map, the heading of the temperature
     chart and the note at its left. The title, author line and date of the map are in the
     header. The rule that separates two sentences of the legend is set as a dash; "M.M." and
@@ -44,9 +45,12 @@ license:
   holder: "Charles Joseph Minard, 1869"
   basis: >-
     Charles Joseph Minard died in 1870 and the map was published in 1869: it is in the public
-    domain in France and in the United States. The Gallica record states "domaine public";
-    Wikimedia Commons marks the file as public domain.
+    domain in France and in the United States. The scan is marked "Source : Ecole nationale des
+    ponts et chaussées", whose reuse page
+    (https://heritage.ecoledesponts.fr/enpc/content/reutiliser-nos-collections) puts such
+    content under the Licence Ouverte Etalab, commercial reuse included, with the credit
+    "École nationale des ponts et chaussées".
   note: "The notice written for the poster is covered by the MIT license of this repository."
-commercial: false
+commercial: true
 commercial_basis: >-
-  The text is in the public domain, but the map is reproduced from the Gallica scan of the Bibliothèque nationale de France, whose conditions of use make commercial reuse subject to a license.
+  The map is in the public domain and the scan of the École nationale des ponts et chaussées is under the Licence Ouverte Etalab, which allows commercial reuse with credit to the school.

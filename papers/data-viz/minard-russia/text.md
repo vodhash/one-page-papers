@@ -1,4 +1,4 @@
-::: image minard-russia.jpg caption="The map in the copy of the Bibliothèque nationale de France (Gallica, btv1b52504201x), below it the chart of the temperature on the retreat." on_light=multiply
+::: image minard-russia.jpg caption="The map in the copy of the École nationale des ponts et chaussées (Fol. 10975), below it the chart of the temperature on the retreat." on_light=multiply
 
 ## Legend
 
@@ -28,6 +28,6 @@ Les Cosaques passent au galop le Niémen gelé.
 
 *A note written for this poster.*
 
-Charles Joseph Minard (1781-1870), a retired inspector general of the Ponts et Chaussées, drew this map in Paris and dated it 20 November 1869. It was printed by Regnier and Dourdet on one sheet with a companion map of the losses of Hannibal's army on its march from Spain into Italy, dated the same day. The copy shown here, now in the Bibliothèque nationale de France, carries the handwritten dedication "pour la Bibliothèque impériale".
+Charles Joseph Minard (1781-1870), a retired inspector general of the Ponts et Chaussées, drew this map in Paris and dated it 20 November 1869. It was printed by Regnier and Dourdet on one sheet with a companion map of the losses of Hannibal's army on its march from Spain into Italy, dated the same day. The copy shown here is kept at the École nationale des ponts et chaussées, in a volume of Minard's graphic tables and figurative maps.
 
 The pink band leaves the Niemen, at Kowno, with 422,000 men and reaches Moscow with 100,000. The black band of the retreat leaves Moscow with 100,000 and comes back to the Niemen with 10,000. The chart below follows the retreat in degrees Réaumur below zero, down to 30 degrees on 6 December.

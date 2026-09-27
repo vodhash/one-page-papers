@@ -1,4 +1,4 @@
-::: image triangle-arithmetique.png caption="The folding plate of the 1665 edition: the arithmetical triangle, its cells lettered, the parallel ranks (<i>Rangs paralleles</i>) numbered down the side and the perpendicular ranks (<i>Rangs perpendiculaires</i>) along the top. Source gallica.bnf.fr / BnF." on_light=multiply on_dark=invert
+::: image triangle-arithmetique.png caption="The folding plate of the 1665 edition: the arithmetical triangle, its cells lettered, the parallel ranks (<i>Rangs paralleles</i>) numbered down the side and the perpendicular ranks (<i>Rangs perpendiculaires</i>) along the top. Cliché Bibliothèque de la Sorbonne." on_light=multiply on_dark=invert
 
 ## Definitions.
 
