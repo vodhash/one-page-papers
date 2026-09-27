@@ -8,7 +8,7 @@ Each paper is laid out in full on one page: every section, equation, code listin
 
 <!-- catalog:start -->
 
-35 posters in 10 categories. Each one comes in 4 themes, shown here with *Bitcoin: A Peer-to-Peer Electronic Cash System*, and in 3 formats (see [Download](#download)).
+36 posters in 11 categories. Each one comes in 4 themes, shown here with *Bitcoin: A Peer-to-Peer Electronic Cash System*, and in 3 formats (see [Download](#download)).
 
 | ivory | white | genesis | blueprint |
 |:-:|:-:|:-:|:-:|
@@ -89,6 +89,12 @@ A click on a poster opens its PDF in the A format and in its first theme, and th
 | <a href="dist/data-viz/snow-cholera-map-A-ivory.pdf"><img src="docs/data-viz/snow-cholera-map.png" width="90" alt=""></a> | [John Snow: the Broad Street cholera map](dist/data-viz/snow-cholera-map-A-ivory.pdf)<br>John Snow's map of the 1854 cholera deaths around Broad Street, which pointed to a single public water pump.<br>[ivory](dist/data-viz/snow-cholera-map-A-ivory.pdf)&nbsp;·&nbsp;[white](dist/data-viz/snow-cholera-map-A-white.pdf)&nbsp;·&nbsp;[genesis](dist/data-viz/snow-cholera-map-A-genesis.pdf)&nbsp;·&nbsp;[blueprint](dist/data-viz/snow-cholera-map-A-blueprint.pdf) | John Snow | 1854 | A3 | Public domain (map); notice: MIT |
 | <a href="dist/data-viz/nightingale-rose-A-ivory.pdf"><img src="docs/data-viz/nightingale-rose.png" width="90" alt=""></a> | [Florence Nightingale: Diagram of the Causes of Mortality in the Army in the East](dist/data-viz/nightingale-rose-A-ivory.pdf)<br>Florence Nightingale's 1858 diagram of the British army's monthly deaths in the East, from disease, wounds and other causes.<br>[ivory](dist/data-viz/nightingale-rose-A-ivory.pdf)&nbsp;·&nbsp;[white](dist/data-viz/nightingale-rose-A-white.pdf)&nbsp;·&nbsp;[genesis](dist/data-viz/nightingale-rose-A-genesis.pdf)&nbsp;·&nbsp;[blueprint](dist/data-viz/nightingale-rose-A-blueprint.pdf) | Florence Nightingale | 1858 | A3 | Public domain (diagram); photograph: CC BY 4.0; notice: MIT |
 | <a href="dist/data-viz/mendeleev-1869-A-ivory.pdf"><img src="docs/data-viz/mendeleev-1869.png" width="90" alt=""></a> | [Опыт системы элементов, основанной на их атомном весе и химическом сходстве](dist/data-viz/mendeleev-1869-A-ivory.pdf)<br>Mendeleev's system of the elements by atomic weight, sent to chemists in February 1869, with the conclusions of his paper.<br>[ivory](dist/data-viz/mendeleev-1869-A-ivory.pdf)&nbsp;·&nbsp;[white](dist/data-viz/mendeleev-1869-A-white.pdf)&nbsp;·&nbsp;[genesis](dist/data-viz/mendeleev-1869-A-genesis.pdf)&nbsp;·&nbsp;[blueprint](dist/data-viz/mendeleev-1869-A-blueprint.pdf) | Dmitri Mendeleev | 1869 | A3 | Public domain |
+
+### Patents
+
+| &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; | Paper | Authors | Year | Print from | License |
+|---|---|---|---|---|---|
+| <a href="dist/patents/wright-flying-machine-A-ivory.pdf"><img src="docs/patents/wright-flying-machine.png" width="90" alt=""></a> | [Orville and Wilbur Wright: Flying-Machine, US Patent 821,393](dist/patents/wright-flying-machine-A-ivory.pdf)<br>The Wrights' patent for a biplane balanced by warping its wings, with front horizontal and rear vertical rudders.<br>[ivory](dist/patents/wright-flying-machine-A-ivory.pdf)&nbsp;·&nbsp;[white](dist/patents/wright-flying-machine-A-white.pdf)&nbsp;·&nbsp;[genesis](dist/patents/wright-flying-machine-A-genesis.pdf)&nbsp;·&nbsp;[blueprint](dist/patents/wright-flying-machine-A-blueprint.pdf) | Orville Wright, Wilbur Wright | 1906 | A1 | Public domain |
 
 ### History & philosophy
 

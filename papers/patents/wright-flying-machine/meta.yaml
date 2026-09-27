@@ -1,0 +1,66 @@
+title: "Orville and Wilbur Wright: Flying-Machine, US Patent 821,393"
+summary: "The Wrights' patent for a biplane balanced by warping its wings, with front horizontal and rear vertical rudders."
+title_html: "Flying-Machine"
+title_size: 120pt
+kicker: "United States Patent Office · Letters Patent No. 821,393"
+author: "Orville Wright and Wilbur Wright, of Dayton, Ohio"
+byline: "Specification of Letters Patent · Patented May 22, 1906 · Application filed March 23, 1903 · Serial No. 149,220"
+emblem: "W"
+header_scale: 1.5
+layout: hero
+hero_height: 30
+columns: 4
+footer:
+  - "United States Patent 821,393, Orville Wright and Wilbur Wright, Flying-Machine: three sheets of drawings and specification, from the scan of the printed patent."
+  - "<i>The spelling and punctuation are those of the printed patent. Text and drawings in the public domain.</i>"
+  - "<span class=\"mono\">patents.google.com/patent/US821393A</span>"
+year: 1906
+authors: [Orville Wright, Wilbur Wright]
+lang: en
+min_print: A1
+source:
+  url: https://patents.google.com/patent/US821393A/en
+  retrieved: 2026-09-27
+  edition: >-
+    Scan of the printed patent linked from Google Patents
+    (https://patentimages.storage.googleapis.com/1c/17/b5/e1f4968143a568/US821393.pdf, 1-bit, 300 dpi; the
+    PDF served by the USPTO, image-ppubs.uspto.gov, holds the same page images). Its first three pages,
+    the three sheets of drawings, are set side by side in the image at the top, each cropped to the
+    drawing, its heading and its signatures and kept in black and white, so that all the figures stay
+    together above the text. The specification (pages 1 to 7) is transcribed in full, word for word
+    from the scan: the Wikisource transcription of the patent (Page:Wright-Patent-US-821393.pdf/4 to
+    /10, mostly not proofread) served as a base, and every line was checked against the page images,
+    with the Google Patents OCR and a second OCR made for this poster as cross-checks; 113 corrections
+    were made to the base, among them missing words ("by means of which", "of the structure", "this
+    cradle", "rope 15", "grasped", "with means for", "each aeroplane, said", "relatively to the normal
+    plane of the body of", "respective aeroplanes, the margins on the"), misread words ("spars" for
+    "spans", "provision" for "revision", "premised" for "promised", "present" for "resent", "below"
+    for "blow", "superposed" for "superimposed", "used" for "usual") and stray punctuation. The printed
+    heading ("UNITED STATES PATENT OFFICE." / "ORVILLE WRIGHT AND WILBUR WRIGHT, OF DAYTON, OHIO." /
+    "FLYING-MACHINE." / "No. 821,393. Specification of Letters Patent. Patented May 22, 1906." /
+    "Application filed March 23, 1903. Serial No. 149,220.") is set in the header of the poster; the
+    comma of the number reads like a period on the scan. Normalizations: words divided at line ends and
+    across pages are rejoined without their hyphen, except "bracket-plate", "supporting-surfaces",
+    "tiller-rope" and "cross-pieces", compounds divided at their own hyphen, as they are printed whole
+    elsewhere in the text or in the same kind of compound; the running heads, page numbers and the line
+    numbers of the margins are dropped; one letter missing from a worn sort in claim 2 ("a roplanes")
+    is restored as "aeroplanes". Small capitals are kept for the inventors' names in the preamble and
+    for the witnesses, italics for the reference letters of the corners and margins. The spelling and
+    punctuation of the print are kept, including "the corner c" in the description of the lateral
+    movement and "springs 36; which". Where
+    specks of the scan made a comma look like a semicolon, the reading of the other occurrences of the
+    same phrase decided. The caption of the drawings is not a period text: it was written for this
+    poster from the specification.
+license:
+  text: "Public domain"
+  holder: "Orville Wright and Wilbur Wright, 1906"
+  basis: >-
+    US Patent 821,393 was granted to Orville Wright and Wilbur Wright on 22 May 1906 and printed
+    by the United States Patent Office. In the United States, it was published before 1931, and patents
+    are publications of the federal government. In France, its authors died before 1 January 1956:
+    Wilbur Wright on 30 May 1912 (Wikidata Q1396131) and Orville Wright on 30 January 1948 (Wikidata
+    Q494455), so the term of protection has expired.
+  note: >-
+    The USPTO states: "Subject to limited exceptions reflected in 37 CFR 1.71(d) & (e) and 1.84(s),
+    the text and drawings of a patent are typically not subject to copyright restrictions."
+    (https://www.uspto.gov/terms-use-uspto-websites, section "Patent information", retrieved 2026-09-27.)
