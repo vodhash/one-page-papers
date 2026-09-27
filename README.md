@@ -10,7 +10,7 @@ Each paper is laid out in full on one page: every section, equation, code listin
 
 <!-- catalog:start -->
 
-97 posters in 13 categories. Each one comes in 4 themes, shown here with *Bitcoin: A Peer-to-Peer Electronic Cash System*, and in 3 formats (see [Download](#download)).
+98 posters in 13 categories. Each one comes in 4 themes, shown here with *Bitcoin: A Peer-to-Peer Electronic Cash System*, and in 3 formats (see [Download](#download)).
 
 | ivory | white | genesis | blueprint |
 |:-:|:-:|:-:|:-:|
@@ -153,6 +153,7 @@ A click on a poster opens its PDF in the A format and in its first theme, and th
 | <a href="dist/patents/tesla-ac-motor-A-ivory.pdf"><img src="docs/patents/tesla-ac-motor.png" width="90" alt=""></a> | [Nikola Tesla: Electro-Magnetic Motor, US Patent 381,968](dist/patents/tesla-ac-motor-A-ivory.pdf)<br>Tesla's patent for a motor turned by poles shifted around its field by alternating currents in independent circuits.<br>[ivory](dist/patents/tesla-ac-motor-A-ivory.pdf)&nbsp;·&nbsp;[white](dist/patents/tesla-ac-motor-A-white.pdf)&nbsp;·&nbsp;[genesis](dist/patents/tesla-ac-motor-A-genesis.pdf)&nbsp;·&nbsp;[blueprint](dist/patents/tesla-ac-motor-A-blueprint.pdf) | Nikola Tesla | 1888 | A1 | Public domain |
 | <a href="dist/patents/hollerith-tabulating-A-ivory.pdf"><img src="docs/patents/hollerith-tabulating.png" width="90" alt=""></a> | [Herman Hollerith: Art of Compiling Statistics, US Patent 395,782](dist/patents/hollerith-tabulating-A-ivory.pdf)<br>Hollerith's patent for recording census data as holes in paper and counting them by electric circuits.<br>[ivory](dist/patents/hollerith-tabulating-A-ivory.pdf)&nbsp;·&nbsp;[white](dist/patents/hollerith-tabulating-A-white.pdf)&nbsp;·&nbsp;[genesis](dist/patents/hollerith-tabulating-A-genesis.pdf)&nbsp;·&nbsp;[blueprint](dist/patents/hollerith-tabulating-A-blueprint.pdf) | Herman Hollerith | 1889 | A1 | Public domain |
 | <a href="dist/patents/wright-flying-machine-A-ivory.pdf"><img src="docs/patents/wright-flying-machine.png" width="90" alt=""></a> | [Orville and Wilbur Wright: Flying-Machine, US Patent 821,393](dist/patents/wright-flying-machine-A-ivory.pdf)<br>The Wrights' patent for a biplane balanced by warping its wings, with front horizontal and rear vertical rudders.<br>[ivory](dist/patents/wright-flying-machine-A-ivory.pdf)&nbsp;·&nbsp;[white](dist/patents/wright-flying-machine-A-white.pdf)&nbsp;·&nbsp;[genesis](dist/patents/wright-flying-machine-A-genesis.pdf)&nbsp;·&nbsp;[blueprint](dist/patents/wright-flying-machine-A-blueprint.pdf) | Orville Wright, Wilbur Wright | 1906 | A1 | Public domain |
+| <a href="dist/patents/transistor-A-ivory.pdf"><img src="docs/patents/transistor.png" width="90" alt=""></a> | [John Bardeen and Walter H. Brattain: Three-Electrode Circuit Element Utilizing Semiconductive Materials, US Patent 2,524,035](dist/patents/transistor-A-ivory.pdf)<br>Bardeen and Brattain's patent for the point-contact transistor, a germanium block amplifying through emitter and collector contacts.<br>[ivory](dist/patents/transistor-A-ivory.pdf)&nbsp;·&nbsp;[white](dist/patents/transistor-A-white.pdf)&nbsp;·&nbsp;[genesis](dist/patents/transistor-A-genesis.pdf)&nbsp;·&nbsp;[blueprint](dist/patents/transistor-A-blueprint.pdf) | John Bardeen, Walter H. Brattain | 1950 | A0 | Public domain (US patent) |
 
 ### History & philosophy
 

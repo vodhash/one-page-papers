@@ -1,0 +1,12 @@
+/* Claim numbers, set as in the patent at the head of each claim */
+.claim{font-weight:500}
+/* "What is claimed is:" opens the claims */
+p.claims-intro{margin-top:.6em}
+/* The signatures, as set at the foot of the specification and of the certificate */
+p.sig{text-align:right;letter-spacing:.06em;margin:0}
+/* The lines of the certificate of correction set apart from its text */
+p.plain{margin:0}
+/* The table of operating data */
+table.data{border-collapse:collapse;font-size:.9em;margin:.4em 0}
+table.data th,table.data td{padding:0 .4em;text-align:right;border-bottom:.5px solid currentColor}
+table.data th:first-child,table.data td:first-child{text-align:left}

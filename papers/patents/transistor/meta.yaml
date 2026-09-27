@@ -1,0 +1,73 @@
+title: "John Bardeen and Walter H. Brattain: Three-Electrode Circuit Element Utilizing Semiconductive Materials, US Patent 2,524,035"
+summary: "Bardeen and Brattain's patent for the point-contact transistor, a germanium block amplifying through emitter and collector contacts."
+title_html: "Three-Electrode Circuit Element Utilizing Semiconductive Materials"
+title_size: 64pt
+kicker: "United States Patent Office · Patent 2,524,035"
+author: "John Bardeen, Summit, and Walter H. Brattain, Morristown, N. J."
+byline: "Assignors to Bell Telephone Laboratories, Incorporated · Patented Oct. 3, 1950 · Application June 17, 1948, Serial No. 33,466 · 40 Claims"
+emblem: "B"
+header_scale: 1.2
+layout: hero
+hero_height: 20
+columns: 4
+font_range: [4, 40]
+footer:
+  - "United States Patent 2,524,035, John Bardeen and Walter H. Brattain, Three-Electrode Circuit Element Utilizing Semiconductive Materials: three sheets of drawings, specification and certificate of correction, from the scan of the printed patent."
+  - "<i>The spelling and punctuation are those of the printed patent. Text and drawings of a US patent, typically not subject to copyright (USPTO).</i>"
+  - "<span class=\"mono\">patents.google.com/patent/US2524035A</span>"
+year: 1950
+authors: [John Bardeen, Walter H. Brattain]
+lang: en
+min_print: A0
+source:
+  url: https://patents.google.com/patent/US2524035A/en
+  retrieved: 2026-09-27
+  edition: >-
+    Scan of the printed patent linked from Google Patents
+    (https://patentimages.storage.googleapis.com/d3/0e/ad/211a5c2ba03418/US2524035.pdf, 1-bit, 300 dpi,
+    fourteen pages). Its first three pages, the sheets of drawings, are set side by side in the image
+    at the top, each cropped to the drawing, its heading and its signatures and kept in black and
+    white. The specification and the forty claims (pages 1 to 11, columns 1 to 21) are transcribed in
+    full, word for word from the scan, followed by the certificate of correction printed on the last
+    page: the text of Google Patents served as a base, an OCR made for this poster (RapidOCR) was
+    compared with it by script, every disagreement was settled on the scan, and every line was then
+    read against the page images; five passages missing or misplaced in the Google text (among them
+    the where-list of equation 1 and the start of the description of the drawings) were taken from
+    the RapidOCR text and read on the scan. The equations (1) to (6), their where-lists and the
+    fraction 80/62 are set in TeX or with sub- and superscripts from the scan (the print writes the
+    base of the exponentials in (4a), (4b) and (5) as an epsilon, kept here); the table of operating
+    data is set as a table. The printed heading ("Patented Oct. 3, 1950" / "2,524,035" / "UNITED
+    STATES PATENT OFFICE" / "2,524,035" / "THREE-ELECTRODE CIRCUIT ELEMENT UTILIZING SEMICONDUCTIVE
+    MATERIALS" / "John Bardeen, Summit, and Walter H. Brattain, Morristown, N. J., assignors to Bell
+    Telephone Laboratories, Incorporated, New York, N. Y., a corporation of New York" / "Application
+    June 17, 1948, Serial No. 33,466" / "40 Claims.", and a classification number) is set in the header of the
+    poster, without the classification and the place of the assignee. The list of references cited
+    after the claims is left out. Normalizations: words divided at line ends are rejoined without
+    their hyphen (compounds such as "first-named" keep their own); the running heads, column numbers
+    and line numbers of the margins are dropped; the bold type of the reference numerals is not
+    kept; primes and seconds are prime signs, minus signs are minus signs, and the fractions 1/8,
+    1/4, 1/32 and 1/2 are set with a superscript and a subscript. The spelling of the print is kept,
+    including "there ar no actual acceptor impurities", "pointed at the contact and electrolytically",
+    "fixed charges of one side", "these carriers increases", "the analogies among the circuits is",
+    "restivity", "emmitter" and "boriborate"; the three
+    corrections of the certificate (column 6, line 54; column 8, line 73; column 17, line 51) are not
+    applied to the text, since the certificate itself is reproduced at the end. In claim 28 a mark
+    after "variations" reads as a period on the scan and is kept as such. The caption of the drawings
+    is not a period text: it was written for this poster from the specification.
+license:
+  text: "Public domain (US patent)"
+  holder: "John Bardeen and Walter H. Brattain, assignors to Bell Telephone Laboratories, 1950"
+  basis: >-
+    US Patent 2,524,035 was granted on 3 October 1950 and printed by the United States Patent Office.
+    In the United States, the USPTO states that the text and drawings of a patent are typically not
+    subject to copyright restrictions, the exceptions (37 CFR 1.71(d) and (e), 1.84(s)) applying only
+    to a copyright or mask work notice printed in the patent, and this one carries none. In France,
+    the rule of the shorter term (article L. 123-12 of the Code de la propriété intellectuelle, after
+    article 7(8) of the Berne Convention): for a work whose country of origin is outside the European
+    Union and whose authors are not nationals of a member state (Bardeen and Brattain were US
+    nationals, Wikidata Q949 and Q184577), the protection lasts no longer than in the country of
+    origin, which grants none.
+  note: >-
+    The USPTO states: "Subject to limited exceptions reflected in 37 CFR 1.71(d) & (e) and 1.84(s),
+    the text and drawings of a patent are typically not subject to copyright restrictions."
+    (https://www.uspto.gov/terms-use-uspto-websites, section "Patent information", retrieved 2026-09-27.)
