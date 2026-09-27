@@ -9,6 +9,9 @@ THEMES = {
 }
 # "A" prints at any ISO A size (A0 to A3); the file itself is A1.
 FORMATS = {"A": (594, 841), "50x70": (500, 700), "60x80": (600, 800)}
+# US print sizes, built on demand (build.py --us) into release/us/, which git ignores: only the
+# formats above are versioned in dist/. Letter, Tabloid, 18 x 24 in and 24 x 36 in.
+US_FORMATS = {"letter": (215.9, 279.4), "tabloid": (279.4, 431.8), "18x24": (457.2, 609.6), "24x36": (609.6, 914.4)}
 
 def colour(theme, name):
     """A colour of a theme as (r, g, b), each from 0 to 1."""

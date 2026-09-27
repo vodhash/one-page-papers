@@ -25,15 +25,18 @@ jobs:
       - run: python -m playwright install --with-deps --only-shell chromium
       - name: Build every poster in every format and theme
         run: python engine/build.py --no-previews
-      - name: One zip per category
+      - name: Build every poster in the US formats, into release/us/
+        run: python engine/build.py --us
+      # a release takes fewer assets than there are PDFs (1200 for 100 papers), so it only holds zips
+      - name: Two zips per category, one of the formats of dist/ and one of the US formats
         run: |
-          mkdir release
-          cd dist
-          for category in */; do zip -qr "../release/${category%/}.zip" "$category"; done
-      - name: Publish the release with the zips and every PDF
+          mkdir assets
+          (cd dist && for category in */; do zip -qr "../assets/${category%/}.zip" "$category"; done)
+          (cd release/us && for category in */; do zip -qr "../../assets/${category%/}-us.zip" "$category"; done)
+      - name: Publish the release with the zips
         env:
           GH_TOKEN: ${{ github.token }}
         run: |
-          gh release create "$GITHUB_REF_NAME" release/*.zip dist/*/*.pdf \
+          gh release create "$GITHUB_REF_NAME" assets/*.zip \
             --title "$GITHUB_REF_NAME" \
-            --notes "Every poster in every format and theme: one zip per category, or each PDF alone, named <paper>-<format>-<theme>.pdf. Formats: A (A1, prints at any ISO A size), 50x70 and 60x80 cm."
+            --notes "Every poster in every format and theme, two zips per category, with PDFs named <paper>-<format>-<theme>.pdf. <category>.zip holds the formats A (A1, prints at any ISO A size), 50x70 and 60x80 cm, which are also in dist/ in the repository. <category>-us.zip holds the US formats: letter (8.5 x 11 in), tabloid (11 x 17 in), 18x24 and 24x36 in. The body prints under 8 pt for about three posters in four at Letter and one in two at Tabloid."

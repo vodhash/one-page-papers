@@ -209,13 +209,22 @@ Texts that wait for a license allowing their redistribution; [PENDING.md](PENDIN
 
 ## Download
 
-Every PDF is in [`dist/<category>/`](dist), named `<paper>-<format>-<theme>.pdf`, and the [latest release](https://github.com/vodhash/one-page-papers/releases/latest) has them all, with one zip per category. Text, equations and figures are all vector, so they print sharp at any size.
+Every PDF is in [`dist/<category>/`](dist), named `<paper>-<format>-<theme>.pdf`, and the [latest release](https://github.com/vodhash/one-page-papers/releases/latest) has them in one zip per category, `<category>.zip`. Text, equations and figures are all vector, so they print sharp at any size.
 
 | Format | File size | Prints at |
 |---|---|---|
 | `A` | 59.4 × 84.1 cm (A1) | A0, A1, A2, A3 (same ratio, just scale) |
 | `50x70` | 50 × 70 cm | 50 × 70 cm |
 | `60x80` | 60 × 80 cm | 60 × 80 cm |
+
+The US formats are not in `dist/`, to keep the repository small: the [latest release](https://github.com/vodhash/one-page-papers/releases/latest) has them in one more zip per category, `<category>-us.zip`, and `make us` builds them into `release/us/<category>/`. Each format is fitted on its own, so its body size differs from the A one; below 8 pt the body is hard to read on a wall: that is the case of about three posters in four at Letter, one in two at Tabloid, one in five at 18x24 and a few at 24x36, so the small sizes suit short texts or a copy to read up close.
+
+| Format | File size |
+|---|---|
+| `letter` | 8.5 × 11 in (21.59 × 27.94 cm) |
+| `tabloid` | 11 × 17 in (27.94 × 43.18 cm) |
+| `18x24` | 18 × 24 in (45.72 × 60.96 cm) |
+| `24x36` | 24 × 36 in (60.96 × 91.44 cm) |
 
 Themes: `ivory` (warm paper), `white` (pure white), `genesis` (dark, bitcoin orange), `blueprint` (navy). The catalog shows each poster in the first of its themes, and links its PDF in each of them.
 
@@ -234,10 +243,11 @@ make readme    # the catalog of this README, from the meta.yaml files and PENDIN
 make site      # the showcase site into site/ (needs pdftoppm, from poppler-utils)
 make serve     # the site on http://localhost:8000/
 make check     # fit every poster, compare it with dist/ and docs/, check the catalog; writes nothing
+make us        # the US formats into release/us/, which git ignores (engine/build.py bitcoin --us for one paper)
 .venv/bin/python engine/build.py rfc-1925 --formats A --themes genesis
 ```
 
-Builds are deterministic, but for two differences that do not show: in about one print in twenty of a page full of formulas, Chromium sets one run of glyphs on a baseline rounded to a whole pixel, and the last digits of some numbers, such as the matrix of a rotation, depend on the processor. So a PDF is only rewritten when it differs from the one in `dist/` by more than that, and a commit only carries the PDFs and previews of the posters that changed. Pushing a `v*` tag makes GitHub Actions build every poster again and attach the PDFs to a release, with one zip per category. Versions are pinned (`package-lock.json`, and `requirements.txt`, whose Playwright version fixes the Chromium build), and Chromium lays text out without the local font hinting settings, to keep the layout independent of the machine.
+Builds are deterministic, but for two differences that do not show: in about one print in twenty of a page full of formulas, Chromium sets one run of glyphs on a baseline rounded to a whole pixel, and the last digits of some numbers, such as the matrix of a rotation, depend on the processor. So a PDF is only rewritten when it differs from the one in `dist/` by more than that, and a commit only carries the PDFs and previews of the posters that changed. Pushing a `v*` tag makes GitHub Actions build every poster again, in the formats of `dist/` and in the US formats, and attach them to a release as two zips per category, `<category>.zip` and `<category>-us.zip`: a release takes fewer files than there are PDFs. Versions are pinned (`package-lock.json`, and `requirements.txt`, whose Playwright version fixes the Chromium build), and Chromium lays text out without the local font hinting settings, to keep the layout independent of the machine.
 
 `make check` also runs on GitHub Actions for every push and pull request. It fails when a poster overflows its page, when it still fits at the largest allowed body size, when a character is drawn with a system font, when `min_print` does not match the body size, when a PDF of `dist/` differs from a fresh build (beyond those differences) or a preview is missing from `docs/`, when either holds a file that no paper makes, or when the catalog of this README is out of date.
 

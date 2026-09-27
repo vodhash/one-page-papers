@@ -6,6 +6,7 @@
     python3 engine/build.py internet        # every paper of a category
     python3 engine/build.py rfc-1925 --formats A --themes white genesis
     python3 engine/build.py --check         # fit every poster and compare it with dist/ and docs/, writing nothing
+    python3 engine/build.py --us            # the US formats into release/us/, which git ignores
 """
 import argparse, base64, functools, importlib.util, io, json, pathlib, re, subprocess, sys
 import yaml
@@ -19,7 +20,7 @@ ENGINE = ROOT / "engine"
 sys.path.insert(0, str(ENGINE))
 import markdown
 from papers import SHOWCASE, discover
-from themes import THEMES, FORMATS, colour, dark
+from themes import THEMES, FORMATS, US_FORMATS, colour, dark
 
 DESIGN_W = 594  # every poster is laid out 594 mm wide, then scaled to the target format
 MM = 72 / 25.4  # PDF points per mm
@@ -35,10 +36,19 @@ META_KEYS = {"title", "title_html", "title_size", "kicker", "author", "byline", 
 LICENSE_KEYS = {"text", "holder", "notice", "basis", "note"}
 PRINT_SIZES = ("A3", "A2", "A1", "A0")  # the A file prints at each of them
 MIN_BODY = 8  # pt: min_print is the smallest size at which the body prints at least this large
+# font_range is tuned on the formats of dist/: a US format, whose ratio differs, may fit the text
+# only below its minimum (Letter is squatter than A), or leave space above its maximum (Tabloid is
+# taller); there the minimum falls to this size and the maximum is a ceiling, not a warning
+US_MIN_FONT = 4
 # centered: short texts, one column by default, vertically centered;
 # hero: the first image of the text across the top of the page, the text in columns below
 LAYOUTS = ("columns", "centered", "hero")
 WARNINGS = []
+SIZES = {**FORMATS, **US_FORMATS}  # every format the engine prints, (width, height) in mm
+
+def out_dir(paper, fmt):
+    """Where the PDFs of a format go: dist/ for the versioned formats, release/us/ for the others."""
+    return ROOT / ("dist" if fmt in FORMATS else "release/us") / paper.category
 
 class BuildError(Exception):
     pass
@@ -407,7 +417,7 @@ def printed(fmt, fs):
     """Body size once printed: the design is as wide as A1, every format is scaled from it."""
     if fmt == "A":
         return ", ".join(f"A{n} {fs * 2 ** ((1 - n) / 2):.1f}" for n in range(4)) + " pt printed"
-    return f"{fs * FORMATS[fmt][0] / DESIGN_W:.1f} pt printed"
+    return f"{fs * SIZES[fmt][0] / DESIGN_W:.1f} pt printed"
 
 def themes_of(m):
     """The themes of a paper, in the order of THEMES: the first one makes its thumbnail."""
@@ -445,21 +455,23 @@ def build(paper, formats, themes, page, previews, check):
     html = poster(paper_dir, m)
     tmp, raw = ROOT / "build" / f"{slug}.html", ROOT / "build" / f"{slug}.pdf"  # per paper, for make -j
     tmp.parent.mkdir(exist_ok=True)
-    out = ROOT / "dist" / paper.category
     lo, hi = m.get("font_range", [8, 40])
     hi = m.get("max_font", hi)
     capped = "max_font" in m or m.get("layout") == "centered"
     for fmt in formats:
-        W, H = FORMATS[fmt]
+        W, H = SIZES[fmt]
         height = DESIGN_W * H / W
         viewport = {"width": round(DESIGN_W * PX), "height": round(height * PX)}
         page.set_viewport_size(viewport)
-        load(page, tmp, html(themes[0], height, lo))
-        fs = best_font(page, lo, hi, f"{slug} {fmt}", capped)
+        us = fmt in US_FORMATS
+        low = min(lo, US_MIN_FONT) if us else lo
+        load(page, tmp, html(themes[0], height, low))
+        fs = best_font(page, low, hi, f"{slug} {fmt}", capped or us)
         fs, fresh = settle(page.context.browser, viewport, tmp, lambda size: html(themes[0], height, size),
                            fs, hi, f"{slug} {fmt}")
         try:
-            print_format(paper, m, fmt, fs, themes, allowed, fresh, html, tmp, raw, out, capped and fs == hi,
+            print_format(paper, m, fmt, fs, themes, allowed, fresh, html, tmp, raw, out_dir(paper, fmt),
+                         (capped or us) and fs == hi,
                          previews, check)
         finally:
             fresh.context.close()
@@ -467,7 +479,7 @@ def build(paper, formats, themes, page, previews, check):
 def print_format(paper, m, fmt, fs, themes, allowed, page, html, tmp, raw, out, at_cap, previews, check):
     """Prints the PDFs of one format, and the previews, on the fresh page that settled its size."""
     slug, paper_dir = paper.slug, paper.dir
-    W, H = FORMATS[fmt]
+    W, H = SIZES[fmt]
     height = DESIGN_W * H / W
     cap = ", the cap" if at_cap else ""
     print(f"{slug} {fmt}: body {fs:.2f} pt at design size{cap} ({printed(fmt, fs)})")
@@ -520,7 +532,11 @@ def main():
     ap = argparse.ArgumentParser(description="Build one-page posters into dist/ and docs/.")
     ap.add_argument("names", nargs="*", metavar="paper|category",
                     help=f"slugs or categories, default: every paper ({', '.join(names)})")
-    ap.add_argument("--formats", nargs="+", choices=list(FORMATS), default=list(FORMATS))
+    ap.add_argument("--formats", nargs="+", choices=list(SIZES),
+                    help=f"default: {' '.join(FORMATS)}, or {' '.join(US_FORMATS)} with --us")
+    ap.add_argument("--us", action="store_true",
+                    help=f"the US formats ({', '.join(US_FORMATS)}) instead, into release/us/<category>/, "
+                         "which git ignores; no previews")
     ap.add_argument("--themes", nargs="+", choices=list(THEMES), default=list(THEMES))
     ap.add_argument("--no-previews", action="store_true", help="leave docs/*.png untouched")
     ap.add_argument("--check", action="store_true",
@@ -528,6 +544,12 @@ def main():
                          "differs from a fresh build, a missing preview, a file that no paper makes; "
                          "warnings make it fail too")
     a = ap.parse_args()
+    us = [f for f in a.formats or [] if f in US_FORMATS]
+    if a.us and a.formats and len(us) < len(a.formats):
+        ap.error(f"--us builds only the US formats ({', '.join(US_FORMATS)})")
+    if a.check and (a.us or us):
+        ap.error("--check compares the PDFs of dist/, which holds no US format")
+    a.formats = a.formats or list(US_FORMATS if a.us else FORMATS)
     if unknown := sorted(set(a.names) - set(names)):
         ap.error(f"unknown paper or category {', '.join(unknown)} (choose from {', '.join(names)})")
     targets = [p for p in papers if not a.names or p.slug in a.names or p.category in a.names]

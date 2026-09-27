@@ -2,7 +2,7 @@ PAPERS := $(notdir $(wildcard papers/*/*))
 CATEGORIES := $(notdir $(wildcard papers/*))
 # Python of the virtualenv made by `make deps`, else the system one
 PY = $(if $(wildcard .venv/bin/python),.venv/bin/python,python3)
-.PHONY: all check readme deps clean site serve $(PAPERS) $(CATEGORIES)
+.PHONY: all check readme us deps clean site serve $(PAPERS) $(CATEGORIES)
 
 all:
 	$(PY) engine/build.py
@@ -14,6 +14,10 @@ check:
 
 readme:
 	$(PY) engine/readme.py
+
+# the US formats (letter, tabloid, 18x24, 24x36) into release/us/, which git ignores
+us:
+	$(PY) engine/build.py --us
 
 # the showcase site into site/, from meta.yaml and the PDFs of dist/; previews need pdftoppm (poppler-utils)
 site:
