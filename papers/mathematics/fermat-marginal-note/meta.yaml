@@ -1,0 +1,51 @@
+title: "Observatio Domini Petri de Fermat"
+summary: "Fermat's note that no cube or higher power splits into two like powers, with the question of Diophantus it annotates."
+title_html: "Observatio<br><em>Domini Petri de Fermat</em>"
+title_size: 96pt
+kicker: "Excerpt · Diophantus, Arithmetica, Book II, Question VIII · Toulouse, 1670"
+author: "Pierre de Fermat"
+byline: "Diophanti Alexandrini Arithmeticorum libri sex, cum commentariis C. G. Bacheti et observationibus D. P. de Fermat, Tolosae, 1670, p. 61"
+emblem: "n"
+lang: la
+layout: hero
+hero_height: 62
+columns: 2
+max_font: 30
+footer:
+  - "Fermat wrote his observations in the margin of his Diophantus; his son Samuel printed them in 1670 (preface: “margini variis in locis apposuit”)."
+  - "<i>Excerpt: the Latin of Question VIII (Bachet’s translation) and Fermat’s observation. Public domain.</i>"
+  - '<span class="mono">archive.org</span>'
+year: 1670
+authors: [Pierre de Fermat]
+min_print: A3
+source:
+  url: https://archive.org/details/bub_gb_yx9VIgeaCEYC
+  retrieved: 2026-09-27
+  edition: >-
+    Excerpt of page 61 of Diophanti Alexandrini Arithmeticorum libri sex, et De numeris
+    multangulis liber vnus, cum commentariis C. G. Bacheti V. C. et obseruationibus D. P. de
+    Fermat senatoris Tolosani (Tolosae, Bernard Bosc, 1670), edited by Samuel de Fermat. Kept:
+    the Latin of Quæstio VIII of Book II (Bachet's translation) and the Observatio Domini Petri
+    de Fermat printed under it, both complete; left out: the Greek text of the question, which
+    faces the Latin, and the rest of the page. The text comes from the OCR of the Internet
+    Archive item bub_gb_yx9VIgeaCEYC (copy of the Biblioteca Nazionale Centrale di Roma,
+    digitized by Google), in which nearly every line is garbled: each line was corrected on
+    the scan of that page and of a second copy (bub_gb__iGRuJyOtNUC, Biblioteca Nazionale
+    Centrale di Firenze), whose OCR of the observation agrees. The four fractions, printed in
+    small type, were read on both scans and are consistent (16/5 and its square 256/25; 144/25;
+    400/25). Normalizations: the long s is set as a round s and the ct ligature as two letters;
+    u and v, æ and the accents (à, verò) are kept as printed; the drop caps are set as capitals
+    ("Propositvm", its rest in small capitals as printed, and "Cvbum", printed with a capital
+    V after the drop cap); the minus sign, printed as a dash, is set as a minus sign; words
+    hyphenated at line ends are rejoined. The page image is the Florence copy, cropped, turned
+    to greyscale and its paper whitened.
+license:
+  text: "Public domain"
+  holder: "Pierre de Fermat; Claude-Gaspard Bachet de Méziriac; Samuel de Fermat, 1670"
+  basis: >-
+    Pierre de Fermat died on 12 January 1665 (Wikidata Q75655), Claude-Gaspard Bachet de
+    Méziriac, the translator of the Latin, on 26 February 1638 (Wikidata Q371882), and Samuel
+    de Fermat, the editor, in 1690 (Wikidata Q61475764); the book was published in 1670. It is in the public domain
+    in France, where the authors died before 1 January 1956, and in the United States, where
+    it was published before 1 January 1931. The Internet Archive marks both scans with the
+    Public Domain Mark 1.0 (http://creativecommons.org/publicdomain/mark/1.0/).

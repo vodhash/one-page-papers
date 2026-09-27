@@ -1,0 +1,4 @@
+/* The observation is printed in italics; the first word of the question in small capitals */
+p.obs{font-style:italic;text-indent:0}
+.sc{font-variant:small-caps}
+main{text-align:left}
