@@ -1,0 +1,5 @@
+/* The five unethical activities, indented as in the RFC, with "and/or" between the last two */
+.alpha{margin:0 0 .8em 1.4em}
+.alpha p{margin:0 0 .25em;padding-left:1.8em;text-indent:-1.8em;text-align:left}
+.alpha p.andor{padding-left:0;text-indent:0;margin-left:-1.4em;font-style:italic}
+.kick{letter-spacing:.22em}
