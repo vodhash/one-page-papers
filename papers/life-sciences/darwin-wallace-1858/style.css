@@ -1,0 +1,15 @@
+/* The long title of 1858: its first clause as the title, the rest below it, smaller and italic */
+h1 .tsub{display:block;font-size:.52em;font-style:italic;font-weight:400;margin-top:.3em}
+/* Names in small capitals, as in the print */
+.sc{font-variant:small-caps;letter-spacing:.03em}
+/* Dateline, closing, signatures and address of the covering letter, placed as in the print */
+p.read{text-align:center}
+p.dateline,p.sig{text-align:right}
+p.sig{margin:0}
+p.sig:has(+ p.sig){margin-bottom:.1em}
+p.close{text-indent:2.5em;margin-bottom:.2em}
+p.addr{text-align:left;margin-top:.5em}
+p.place{text-indent:1.2em;margin-top:.6em}
+/* The three parts: italic headings, their numeral hanging in the margin */
+h2{font-weight:400;font-size:1.06em;line-height:1.28;text-align:left;padding-left:1.9em;text-indent:-1.9em;margin-top:1.3em}
+h2 .n{display:inline-block;width:1.9em;text-indent:0;margin-right:0;font-weight:600;font-style:normal}

@@ -8,7 +8,7 @@ Each paper is laid out in full on one page: every section, equation, code listin
 
 <!-- catalog:start -->
 
-28 posters in 8 categories. Each one comes in 4 themes, shown here with *Bitcoin: A Peer-to-Peer Electronic Cash System*, and in 3 formats (see [Download](#download)).
+29 posters in 9 categories. Each one comes in 4 themes, shown here with *Bitcoin: A Peer-to-Peer Electronic Cash System*, and in 3 formats (see [Download](#download)).
 
 | ivory | white | genesis | blueprint |
 |:-:|:-:|:-:|:-:|
@@ -66,6 +66,12 @@ A click on a poster opens its PDF in the A format and in its first theme, and th
 | <a href="dist/physics/einstein-mass-energy-A-ivory.pdf"><img src="docs/physics/einstein-mass-energy.png" width="90" alt=""></a> | [Ist die Trägheit eines Körpers von seinem Energieinhalt abhängig?](dist/physics/einstein-mass-energy-A-ivory.pdf)<br>Shows that a body emitting energy L as radiation loses mass L/V², so its mass measures its energy content.<br>[ivory](dist/physics/einstein-mass-energy-A-ivory.pdf)&nbsp;·&nbsp;[white](dist/physics/einstein-mass-energy-A-white.pdf)&nbsp;·&nbsp;[genesis](dist/physics/einstein-mass-energy-A-genesis.pdf)&nbsp;·&nbsp;[blueprint](dist/physics/einstein-mass-energy-A-blueprint.pdf) | Albert Einstein | 1905 | A3 | Public domain |
 | <a href="dist/physics/einstein-electrodynamics-A-ivory.pdf"><img src="docs/physics/einstein-electrodynamics.png" width="90" alt=""></a> | [Zur Elektrodynamik bewegter Körper](dist/physics/einstein-electrodynamics-A-ivory.pdf)<br>Derives special relativity from the relativity principle and the constant speed of light, and applies it to electrodynamics and optics.<br>[ivory](dist/physics/einstein-electrodynamics-A-ivory.pdf)&nbsp;·&nbsp;[white](dist/physics/einstein-electrodynamics-A-white.pdf)&nbsp;·&nbsp;[genesis](dist/physics/einstein-electrodynamics-A-genesis.pdf)&nbsp;·&nbsp;[blueprint](dist/physics/einstein-electrodynamics-A-blueprint.pdf) | Albert Einstein | 1905 | A0 | Public domain |
 | <a href="dist/physics/hubble-1929-A-ivory.pdf"><img src="docs/physics/hubble-1929.png" width="90" alt=""></a> | [A Relation between Distance and Radial Velocity among Extra-Galactic Nebulae](dist/physics/hubble-1929-A-ivory.pdf)<br>Finds a roughly linear relation between the distances of extra-galactic nebulae and their radial velocities.<br>[ivory](dist/physics/hubble-1929-A-ivory.pdf)&nbsp;·&nbsp;[white](dist/physics/hubble-1929-A-white.pdf)&nbsp;·&nbsp;[genesis](dist/physics/hubble-1929-A-genesis.pdf)&nbsp;·&nbsp;[blueprint](dist/physics/hubble-1929-A-blueprint.pdf) | Edwin Hubble | 1929 | A3 | Public domain |
+
+### Biology & medicine
+
+| &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; | Paper | Authors | Year | Print from | License |
+|---|---|---|---|---|---|
+| <a href="dist/life-sciences/darwin-wallace-1858-A-ivory.pdf"><img src="docs/life-sciences/darwin-wallace-1858.png" width="90" alt=""></a> | [On the Tendency of Species to form Varieties; and on the Perpetuation of Varieties and Species by Natural Means of Selection](dist/life-sciences/darwin-wallace-1858-A-ivory.pdf)<br>Darwin's and Wallace's papers on natural selection, read together at the Linnean Society on 1 July 1858.<br>[ivory](dist/life-sciences/darwin-wallace-1858-A-ivory.pdf)&nbsp;·&nbsp;[white](dist/life-sciences/darwin-wallace-1858-A-white.pdf)&nbsp;·&nbsp;[genesis](dist/life-sciences/darwin-wallace-1858-A-genesis.pdf)&nbsp;·&nbsp;[blueprint](dist/life-sciences/darwin-wallace-1858-A-blueprint.pdf) | Charles Darwin, Alfred Russel Wallace | 1858 | A1 | Public domain |
 
 ### Historical data visualization
 
