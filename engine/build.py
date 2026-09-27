@@ -8,7 +8,7 @@
     python3 engine/build.py --check         # fit every poster and compare it with dist/ and docs/, writing nothing
     python3 engine/build.py --us            # the US formats into release/us/, which git ignores
 """
-import argparse, base64, functools, importlib.util, io, json, pathlib, re, subprocess, sys
+import argparse, base64, concurrent.futures, functools, importlib.util, io, json, os, pathlib, re, subprocess, sys
 import yaml
 from html import unescape
 from PIL import Image
@@ -457,28 +457,38 @@ def build(paper, formats, themes, page, previews, check):
         print(f"{slug}: skipped, its themes are {', '.join(allowed)}")
         return
     html = poster(paper_dir, m)
-    tmp, raw = ROOT / "build" / f"{slug}.html", ROOT / "build" / f"{slug}.pdf"  # per paper, for make -j
+    # per paper and per process, so that two builds of the same paper at once cannot mix their files
+    tmp, raw = (ROOT / "build" / f"{slug}-{os.getpid()}{ext}" for ext in (".html", ".pdf"))
     tmp.parent.mkdir(exist_ok=True)
     lo, hi = m.get("font_range", [8, 40])
     hi = m.get("max_font", hi)
     capped = "max_font" in m or m.get("layout") == "centered"
-    for fmt in formats:
-        W, H = SIZES[fmt]
-        height = DESIGN_W * H / W
-        viewport = {"width": round(DESIGN_W * PX), "height": round(height * PX)}
-        page.set_viewport_size(viewport)
-        us = fmt in US_FORMATS
-        low = min(lo, US_MIN_FONT) if us else lo
-        load(page, tmp, html(themes[0], height, low))
-        fs = best_font(page, low, hi, f"{slug} {fmt}", capped or us)
-        fs, fresh = settle(page.context.browser, viewport, tmp, lambda size: html(themes[0], height, size),
-                           fs, hi, f"{slug} {fmt}")
-        try:
-            print_format(paper, m, fmt, fs, themes, allowed, fresh, html, tmp, raw, out_dir(paper, fmt),
-                         (capped or us) and fs == hi,
-                         previews, check)
-        finally:
-            fresh.context.close()
+    try:
+        for fmt in formats:
+            build_format(paper, m, fmt, themes, allowed, page, html, tmp, raw, lo, hi, capped, previews, check)
+    finally:
+        tmp.unlink(missing_ok=True)
+        raw.unlink(missing_ok=True)
+
+def build_format(paper, m, fmt, themes, allowed, page, html, tmp, raw, lo, hi, capped, previews, check):
+    """Settles the body size of one format, then prints its PDFs (print_format)."""
+    slug = paper.slug
+    W, H = SIZES[fmt]
+    height = DESIGN_W * H / W
+    viewport = {"width": round(DESIGN_W * PX), "height": round(height * PX)}
+    page.set_viewport_size(viewport)
+    us = fmt in US_FORMATS
+    low = min(lo, US_MIN_FONT) if us else lo
+    load(page, tmp, html(themes[0], height, low))
+    fs = best_font(page, low, hi, f"{slug} {fmt}", capped or us)
+    fs, fresh = settle(page.context.browser, viewport, tmp, lambda size: html(themes[0], height, size),
+                       fs, hi, f"{slug} {fmt}")
+    try:
+        print_format(paper, m, fmt, fs, themes, allowed, fresh, html, tmp, raw, out_dir(paper, fmt),
+                     (capped or us) and fs == hi,
+                     previews, check)
+    finally:
+        fresh.context.close()
 
 def print_format(paper, m, fmt, fs, themes, allowed, page, html, tmp, raw, out, at_cap, previews, check):
     """Prints the PDFs of one format, and the previews, on the fresh page that settled its size."""
@@ -527,6 +537,21 @@ def print_format(paper, m, fmt, fs, themes, allowed, page, html, tmp, raw, out, 
                 elif not png.exists():
                     raise BuildError(f"{rel(png)}: missing, run `make {slug}`")
 
+def build_all(targets, a):
+    """Builds the papers of targets in one browser. Returns the slugs that failed and the warnings."""
+    failed = []
+    with sync_playwright() as pw:
+        browser = pw.chromium.launch(args=CHROMIUM_ARGS)
+        page = browser.new_page()
+        for paper in targets:
+            try:
+                build(paper, a.formats, a.themes, page, not a.no_previews, a.check)
+            except BuildError as e:
+                failed.append(paper.slug)
+                print(f"error: {e}", file=sys.stderr, flush=True)
+        browser.close()
+    return failed, list(WARNINGS)
+
 def main():
     try:
         papers = discover()
@@ -543,6 +568,8 @@ def main():
                          "which git ignores; no previews")
     ap.add_argument("--themes", nargs="+", choices=list(THEMES), default=list(THEMES))
     ap.add_argument("--no-previews", action="store_true", help="leave docs/*.png untouched")
+    ap.add_argument("--jobs", "-j", type=int, default=1, metavar="N",
+                    help="build N papers at a time, each in a browser of its own (default 1)")
     ap.add_argument("--check", action="store_true",
                     help="fit every poster and report problems without touching dist/ or docs/: a PDF that "
                          "differs from a fresh build, a missing preview, a file that no paper makes; "
@@ -559,17 +586,14 @@ def main():
     targets = [p for p in papers if not a.names or p.slug in a.names or p.category in a.names]
     if not (ROOT / "node_modules").is_dir():
         sys.exit("error: node_modules is missing, run `make deps`")
-    failed = []
-    with sync_playwright() as pw:
-        browser = pw.chromium.launch(args=CHROMIUM_ARGS)
-        page = browser.new_page()
-        for paper in targets:
-            try:
-                build(paper, a.formats, a.themes, page, not a.no_previews, a.check)
-            except BuildError as e:
-                failed.append(paper.slug)
-                print(f"error: {e}", file=sys.stderr)
-        browser.close()
+    jobs = max(1, min(a.jobs, len(targets)))
+    if jobs == 1:
+        failed, warnings = build_all(targets, a)
+    else:  # every worker has a browser of its own and takes one paper in jobs, which keeps them all busy
+        with concurrent.futures.ProcessPoolExecutor(jobs) as ex:
+            done = list(ex.map(build_all, [targets[i::jobs] for i in range(jobs)], [a] * jobs))
+        failed, warnings = [f for d in done for f in d[0]], [w for d in done for w in d[1]]
+    WARNINGS[:] = warnings
     stray = strays(papers) if a.check and not a.names else []
     for f in stray:
         print(f"error: {rel(f)}: made by no paper, remove it", file=sys.stderr)

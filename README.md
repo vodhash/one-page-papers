@@ -243,6 +243,7 @@ make readme    # the catalog of this README, from the meta.yaml files and PENDIN
 make site      # the showcase site into site/ (needs pdftoppm, from poppler-utils)
 make serve     # the site on http://localhost:8000/
 make check     # fit every poster, compare it with dist/ and docs/, check the catalog; writes nothing
+make JOBS=2    # any target, with 2 papers built at a time instead of one per processor (up to 8)
 make us        # the US formats into release/us/, which git ignores (engine/build.py bitcoin --us for one paper)
 .venv/bin/python engine/build.py rfc-1925 --formats A --themes genesis
 ```
