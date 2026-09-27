@@ -105,8 +105,12 @@
     var current = function () {
       return poster.getAttribute('data-picked') || poster.getAttribute(mode() === 'dark' ? 'data-dark' : 'data-light');
     };
+    var printIt = poster.querySelector('[data-print-it]');
+    var printBase = printIt ? printIt.getAttribute('href') : '';
     var render = function () {
       var t = current();
+      // the print guide opens on the theme shown
+      if (printIt) printIt.setAttribute('href', printBase + '&theme=' + encodeURIComponent(t));
       each('[data-pick]', function (p) { p.setAttribute('aria-pressed', String(p.getAttribute('data-pick') === t)); }, poster);
       each('.dl a[data-t]', function (a) { a.classList.toggle('on', a.getAttribute('data-t') === t); }, poster);
       each('.shown', function (s) { s.textContent = t; }, poster);
@@ -217,6 +221,172 @@
         button.disabled = false;
       });
     });
+  }
+
+  // The print guide, opened from the Print it button of a poster (?poster=<slug>&theme=<theme>):
+  // a box with the Print from of that poster, a theme to choose and the links to its PDFs.
+  var box = document.getElementById('for-poster');
+  var dataEl = document.getElementById('print-data');
+  if (box && dataEl) {
+    var params = new URLSearchParams(location.search);
+    var printData = null;
+    try { printData = JSON.parse(dataEl.textContent); } catch (e) { /* the guide shows on its own */ }
+    var slug = params.get('poster');
+    var info = printData && Object.prototype.hasOwnProperty.call(printData.posters, slug) ? printData.posters[slug] : null;
+    if (info) {
+      var name = info[0], category = info[1], min = info[2], themes = info[3];
+      var theme = themes.indexOf(params.get('theme')) >= 0 ? params.get('theme') : themes[0];
+      var make = function (tag, cls, content) {
+        var e = document.createElement(tag);
+        if (cls) e.className = cls;
+        if (content) e.textContent = content;
+        return e;
+      };
+      var posterLink = box.querySelector('.fp-link');
+      posterLink.href = '../' + slug + '/';
+      posterLink.textContent = name;
+      // Print from: the body is 8 to 11 pt at that size, and grows by about 1.4 at each size up
+      var sizes = printData.sizes.slice(printData.sizes.indexOf(min));
+      var floors = [11, 16, 22];
+      var printFrom = 'Print from ' + min + ': its body text is 8 to 11 pt at ' + min;
+      var up = sizes.slice(1).map(function (s, i) { return 'at least ' + floors[i] + ' pt at ' + s; });
+      if (up.length) printFrom += ', ' + up.join(', ');
+      box.querySelector('.fp-print').textContent = printFrom + '.';
+      var boxImg = document.createElement('img');
+      boxImg.width = 600;
+      boxImg.height = 849;
+      boxImg.decoding = 'async';
+      box.querySelector('.fp-mat').appendChild(boxImg);
+      var pills = box.querySelector('.fp-themes');
+      var files = box.querySelector('.fp-files');
+      var advice = box.querySelector('.fp-advice');
+      var showBox = function () {
+        boxImg.src = '../previews/' + slug + '-' + theme + '-600.webp';
+        boxImg.alt = 'Preview of the poster in the ' + theme + ' theme';
+        each('button', function (b) { b.setAttribute('aria-pressed', String(b.value === theme)); }, pills);
+        advice.textContent = printData.themes[theme][2]
+          ? 'A dark theme: best printed by a lab that prints deep blacks. On white aluminium, prefer a light theme.'
+          : 'A light theme: it suits paper, and it is the one to choose on white aluminium.';
+        files.textContent = '';
+        printData.formats.forEach(function (f) {
+          var li = make('li');
+          var a = make('a', 'btn btn-line', f[1] + ' · ' + theme);
+          a.href = printData.pdf.replace('{category}', category).replace('{file}', slug + '-' + f[0] + '-' + theme + '.pdf');
+          a.type = 'application/pdf';
+          li.appendChild(a);
+          li.appendChild(make('span', 'fp-what', f[0] === 'A' ? 'Any ISO A size; body at 8 pt or more at ' + sizes.join(', ') : 'Its own layout'));
+          files.appendChild(li);
+        });
+        var li = make('li');
+        var a = make('a', 'btn btn-line', 'US formats');
+        a.href = printData.us.replace('{category}', category);
+        li.appendChild(a);
+        li.appendChild(make('span', 'fp-what', 'Every poster of its category, in the zip ' + category + '-us.zip'));
+        files.appendChild(li);
+      };
+      themes.forEach(function (t) {
+        var b = make('button', 'pill');
+        b.type = 'button';
+        b.value = t;
+        var sw = make('span', 'swatch');
+        sw.setAttribute('aria-hidden', 'true');
+        sw.style.setProperty('--sw', printData.themes[t][0]);
+        sw.style.setProperty('--sa', printData.themes[t][1]);
+        b.appendChild(sw);
+        b.appendChild(document.createTextNode(t));
+        b.addEventListener('click', function () {
+          theme = t;
+          showBox();
+          try { history.replaceState(null, '', '?poster=' + slug + '&theme=' + t); } catch (e) { /* file: */ }
+        });
+        pills.appendChild(b);
+      });
+      showBox();
+      box.hidden = false;
+    }
+  }
+
+  // An annotated reading page: the notes in the margin of a wide screen, pushed down so that none
+  // covers the one above it, and a button to hide them, remembered. Without this script, or on a
+  // small screen, the number after each marked phrase opens its note in the text.
+  var annotated = document.querySelector('.annotated');
+  if (annotated) {
+    var NOTES = 'one-page-papers:notes';
+    var textEl = annotated.querySelector('.text');
+    var notes = Array.prototype.slice.call(annotated.querySelectorAll('.sidenote'));
+    var wide = window.matchMedia('(min-width: 1180px)');
+    var toggle = annotated.querySelector('[data-notes-toggle]');
+    var off = false;
+    try { off = localStorage.getItem(NOTES) === 'off'; } catch (e) { /* no storage: the notes show */ }
+    var place = function () {
+      notes.forEach(function (n) { n.style.top = ''; });
+      textEl.style.minHeight = '';
+      if (!wide.matches || off) return;
+      // each note starts level with the line where its phrase begins
+      var origin = textEl.getBoundingClientRect().top;
+      var tops = notes.map(function (n) {
+        var mark = annotated.querySelector('#an-' + n.getAttribute('data-note'));
+        return mark ? mark.getBoundingClientRect().top - origin : n.offsetTop;
+      });
+      var last = -Infinity;
+      notes.forEach(function (n, i) {
+        var top = Math.max(tops[i], last + 18);
+        n.style.top = top + 'px';
+        last = top + n.offsetHeight;
+      });
+      if (last > textEl.offsetHeight) textEl.style.minHeight = last + 'px';
+    };
+    var setOff = function (v) {
+      off = v;
+      annotated.classList.toggle('notes-off', off);
+      if (toggle) toggle.setAttribute('aria-pressed', String(!off));
+      place();
+    };
+    if (toggle) {
+      toggle.parentNode.hidden = false;
+      toggle.addEventListener('click', function () {
+        setOff(!off);
+        try { localStorage.setItem(NOTES, off ? 'off' : 'on'); } catch (e) { /* lasts for this page */ }
+      });
+    }
+    // a note and its phrase light up together
+    each('mark.anno[data-note], .sidenote', function (e) {
+      var pair = function (on) {
+        each('[data-note="' + e.getAttribute('data-note') + '"]', function (x) {
+          if (x.matches('mark, .sidenote')) x.classList.toggle('hot', on);
+        }, annotated);
+      };
+      e.addEventListener('mouseenter', function () { pair(true); });
+      e.addEventListener('mouseleave', function () { pair(false); });
+    }, annotated);
+    setOff(off);
+    wide.addEventListener('change', place);
+    window.addEventListener('load', place);
+    if (document.fonts && document.fonts.ready) document.fonts.ready.then(place);
+    if (window.ResizeObserver) {
+      var width = textEl.offsetWidth;
+      new ResizeObserver(function () {
+        if (textEl.offsetWidth !== width) { width = textEl.offsetWidth; place(); }
+      }).observe(textEl);
+    }
+  }
+
+  // A teaching kit: print it without the answers, with them, or the answers alone. Without this
+  // script, printing the page prints it all, the answers on a page of their own.
+  var kit = document.querySelector('[data-teach]');
+  if (kit && window.print) {
+    var PRINT_MODES = ['print-no-answers', 'print-answers-only'];
+    var clear = function () { PRINT_MODES.forEach(function (c) { root.classList.remove(c); }); };
+    window.addEventListener('afterprint', clear);
+    each('[data-print]', function (b) {
+      b.addEventListener('click', function () {
+        clear();
+        var how = b.getAttribute('data-print');
+        if (how !== 'all') root.classList.add('print-' + how);
+        window.print();
+      });
+    }, kit);
+    kit.querySelector('.teach-print').hidden = false;
   }
 
   apply(mode());

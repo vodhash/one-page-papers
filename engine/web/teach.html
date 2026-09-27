@@ -1,0 +1,64 @@
+<div class="wrap">
+<nav class="crumbs" aria-label="Breadcrumb">
+<ol>
+<li><a href="../../#collection">Collection</a><span class="slash" aria-hidden="true">/</span></li>
+<li><a href="../../?category={{CATEGORY}}#collection">{{CATEGORY_TITLE}}</a><span class="slash" aria-hidden="true">/</span></li>
+<li><a href="../">{{TITLE}}</a><span class="slash" aria-hidden="true">/</span></li>
+<li><span aria-current="page">Teaching kit</span></li>
+</ol>
+</nav>
+<article class="teach" data-teach>
+<header class="teach-head">
+<p class="eyebrow">Teaching kit · {{SUBJECT}}</p>
+<h1 lang="{{LANG}}">{{TITLE_H1}}</h1>
+<p class="authors">{{AUTHORS}}, {{YEAR}}</p>
+<dl class="facts">
+{{FACTS}}
+</dl>
+{{PREREQ}}<p class="teach-by">{{BY}}</p>
+<div class="teach-print" hidden>
+<p class="eyebrow">Print on A4</p>
+<p class="actions"><button type="button" class="btn btn-solid" data-print="no-answers">Print without answers</button> <button type="button" class="btn btn-line" data-print="all">Print with answers</button> <button type="button" class="btn btn-line" data-print="answers-only">Print the answers only</button></p>
+<p class="teach-note">The answers, under “For the teacher”, start on a page of their own.</p>
+</div>
+<p class="actions teach-links"><a class="btn btn-line" href="../">The poster <span class="size">PDF, wallpaper</span></a> <a class="btn btn-line" href="../read/">Read the text</a></p>
+<p class="teach-wall">{{WALL}}</p>
+</header>
+<figure class="teach-figure">
+<div class="mat">{{PICTURE}}</div>
+</figure>
+<div class="teach-body">
+<section class="teach-sec" aria-labelledby="t-context">
+<h2 id="t-context">Context</h2>
+<ol class="teach-context">
+{{CONTEXT}}
+</ol>
+</section>
+<section class="teach-sec" aria-labelledby="t-glossary">
+<h2 id="t-glossary">Glossary</h2>
+<dl class="glossary">
+{{GLOSSARY}}
+</dl>
+</section>
+<section class="teach-sec teach-q" aria-labelledby="t-questions">
+<h2 id="t-questions">Questions</h2>
+<ol class="questions">
+{{QUESTIONS}}
+</ol>
+</section>
+{{ACTIVITY}}<section class="teach-sec teach-answers" aria-labelledby="t-answers">
+<p class="eyebrow">{{COUNT}}, answered</p>
+<h2 id="t-answers">For the teacher</h2>
+<ol class="questions answers">
+{{ANSWERS}}
+</ol>
+</section>
+<section class="teach-sec teach-refs" aria-labelledby="t-refs">
+<h2 id="t-refs">References</h2>
+<ol class="refs-list">
+{{REFS}}
+</ol>
+</section>
+</div>
+</article>
+</div>

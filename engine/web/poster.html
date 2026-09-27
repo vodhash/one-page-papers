@@ -13,7 +13,8 @@
 <p class="authors">{{AUTHORS}}</p>
 {{SUBTITLE}}
 <p class="summary">{{SUMMARY}}</p>
-<p class="read-link"><a class="btn btn-line" href="read/">Read the text</a> <span>The whole poster as a web page</span></p>
+<p class="read-link"><a class="btn btn-line" href="read/">Read the text</a> <span>{{READ_NOTE}}</span></p>
+{{TEACH}}
 {{SERIES}}</header>
 <figure class="wall">
 <div class="mat">{{PICTURE}}</div>
@@ -34,6 +35,7 @@
 <ul class="dl" role="list">
 {{ROWS}}
 </ul>
+<p class="print-it"><a class="btn btn-solid" href="../print/?poster={{SLUG}}" data-print-it data-umami-event="print-it" data-umami-event-slug="{{SLUG}}">Print it</a> <span>Which size, paper or aluminium, which file to send</span></p>
 <p class="zip"><a href="{{ZIP}}">Every {{CATEGORY_TITLE}} poster</a>, in every format and theme, as one zip from the latest release.</p>
 <p class="note">{{PRINT_NOTE}}</p>
 </section>

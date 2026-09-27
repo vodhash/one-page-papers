@@ -7,12 +7,12 @@
 <li><span aria-current="page">The text</span></li>
 </ol>
 </nav>
-<article class="reading">
+<article class="reading{{READ_CLASS}}">
 <header class="read-head">
 <p class="eyebrow">{{CATEGORY_TITLE}} · {{YEAR}}</p>
 <h1 lang="{{LANG}}">{{TITLE_H1}}</h1>
 <p class="authors">{{AUTHORS}}</p>
-{{KICKER}}{{BYLINE}}<p class="actions"><a class="btn btn-line" href="../">The poster <span class="size">PDF, wallpaper</span></a></p>
+{{KICKER}}{{BYLINE}}<p class="actions"><a class="btn btn-line" href="../">The poster <span class="size">PDF, wallpaper</span></a>{{TEACH}}</p>
 <dl class="facts">
 {{FACTS}}
 </dl>
@@ -24,7 +24,7 @@
 {{RIGHTS}}
 </details>
 </header>
-<div class="text" lang="{{LANG}}" data-paper="{{SLUG}}">
+{{NOTES_INTRO}}<div class="text" lang="{{LANG}}" data-paper="{{SLUG}}">
 {{ABSTRACT}}{{TEXT}}
 </div>
 <footer class="read-foot">

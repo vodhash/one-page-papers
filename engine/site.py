@@ -2,11 +2,18 @@
 """The showcase site of the collection, for GitHub Pages: static pages written from the
 meta.yaml of every paper, with previews rasterized from its A PDFs in dist/, and a reading page
 for each paper (<slug>/read/), its text rendered by markdown.py and KaTeX as for its poster, and a
-page for each series of series.yaml (series/<slug>/), with a wall planner (planner.js).
+page for each series of series.yaml (series/<slug>/), with a wall planner (planner.js), and a guide
+to having a poster printed (print/).
+
+A paper may also have an annotations.yaml, margin notes shown on its reading page, and a
+teaching.yaml, a teaching kit printable on A4 (<slug>/teach/). Both are checked (each anchor occurs
+exactly once in text.md, each source is a key of references), but they go on the site only when
+they say `published: true`, or with --drafts, for review.
 
     python3 engine/site.py                # write site/, after checking it
     python3 engine/site.py --check        # write it into a temporary directory and check it, as CI does
     python3 engine/site.py --only-built   # leave out the papers whose PDFs are not all in dist/ yet
+    python3 engine/site.py --drafts       # also show the notes and teaching kits not yet published
     python3 engine/site.py --contrast     # print the contrast of every text colour of the site
 
 The check fails on a dead internal link (page, image, font, stylesheet, script, anchor), on a
@@ -16,7 +23,7 @@ the site are relative, so that it works at https://onepagepapers.com/ (GitHub Pa
 the root of `make serve`. Previews need pdftoppm (poppler-utils); they are cached in
 build/site-previews/, keyed on the content of each PDF, so an unchanged collection builds fast.
 """
-import argparse, concurrent.futures, datetime, hashlib, html, io, os, pathlib, re, shutil, subprocess, sys, tempfile, time
+import argparse, concurrent.futures, datetime, hashlib, html, io, json, os, pathlib, re, shutil, subprocess, sys, tempfile, time
 from html.parser import HTMLParser
 from typing import NamedTuple
 from urllib.parse import unquote, urljoin, urlsplit
@@ -29,7 +36,7 @@ import markdown
 from build import MIN_BODY, PRINT_SIZES, BuildError, katex, load_figures, load_meta, substitute, themes_of
 from papers import CATEGORIES, ROOT, SHOWCASE, Paper, discover
 from readme import pending, year_key, year_text
-from themes import FORMATS, THEMES, US_FORMATS, colour
+from themes import FORMATS, THEMES, US_FORMATS, colour, dark as theme_is_dark
 
 REPO = "https://github.com/vodhash/one-page-papers"
 BASE_URL = "https://onepagepapers.com/"  # only for canonical, Open Graph and sitemap URLs
@@ -205,8 +212,9 @@ def load_series(posters, only_built):
         known = {p.slug: p for p in discover()}
     except ValueError as e:
         raise SiteError(e) from None
-    if "series" in known:
-        raise SiteError(f"papers/{known['series'].category}/series: the slug series is the folder of the series pages")
+    for folder in ("series", "print", "about"):
+        if folder in known:
+            raise SiteError(f"papers/{known[folder].category}/{folder}: the slug {folder} is a folder of the site")
     by_slug = {p.slug: p for p in posters}
     errors, series, skipped, seen = [], [], [], set()
     for i, s in enumerate(data, 1):
@@ -261,6 +269,206 @@ def load_series(posters, only_built):
     if errors:
         raise SiteError("\nerror: ".join(errors))
     return series, skipped
+
+# ---------------------------------------------------------------- notes and teaching kits
+
+ANNOTATIONS, TEACHING = "annotations.yaml", "teaching.yaml"
+REF_KEYS = {"title", "publisher", "author", "url", "original_url", "note", "retrieved"}
+# required keys, optional keys; published: true puts the file on the site, else only --drafts does
+ANNOTATION_KEYS = ({"license", "paper", "notes", "references"}, {"authors", "lang", "published"})
+TEACHING_KEYS = ({"license", "paper", "level", "subject", "duration", "context", "glossary", "questions", "references"},
+                 {"authors", "lang", "prerequisites", "activity", "published"})
+QUESTION_KINDS = ("locate", "understand", "analyse", "calculate", "reflect")
+LICENSE_URLS = {"CC BY 4.0": "https://creativecommons.org/licenses/by/4.0/"}
+
+class Extras(NamedTuple):
+    """The content written for One Page Papers around a text: margin notes and a teaching kit."""
+    annotations: dict | None
+    teaching: dict | None
+
+def is_text(v):
+    return isinstance(v, str) and bool(v.strip())
+
+def check_keys(where, data, keys, errors):
+    required, optional = keys
+    missing, extra = sorted(required - set(data)), sorted(set(data) - required - optional)
+    if missing:
+        errors.append(f"{where}: missing {', '.join(missing)}")
+    if extra:
+        errors.append(f"{where}: unknown key{'s' * (len(extra) > 1)} {', '.join(map(str, extra))} "
+                      f"(expected {', '.join(sorted(required | optional))})")
+    return not missing
+
+def check_references(where, refs, errors):
+    """The references map of a content file: {key: {title, publisher, url, ...}}."""
+    if not isinstance(refs, dict) or not refs:
+        errors.append(f"{where}: references must be a mapping of keys to sources, each with a title")
+        return {}
+    for k, r in refs.items():
+        at = f"{where}: reference {k!r}"
+        if not isinstance(r, dict):
+            errors.append(f"{at}: expected a mapping with title, and publisher, url, retrieved...")
+            continue
+        extra = sorted(set(r) - REF_KEYS)
+        if extra:
+            errors.append(f"{at}: unknown key{'s' * (len(extra) > 1)} {', '.join(map(str, extra))} "
+                          f"(expected {', '.join(sorted(REF_KEYS))})")
+        if not is_text(r.get("title")):
+            errors.append(f"{at}: title must be a text")
+        for u in ("url", "original_url"):
+            if u in r and not (isinstance(r[u], str) and re.match(r"https?://\S+$", r[u])):
+                errors.append(f"{at}: {u} must be an http(s) URL")
+        for t in ("publisher", "author", "note"):
+            if t in r and not is_text(r[t]):
+                errors.append(f"{at}: {t} must be a text")
+    return refs
+
+def check_sources(at, item, refs, errors, required=True):
+    """The sources of a note, a point, a question: a list of keys of references."""
+    src = item.get("sources")
+    if src is None and not required:
+        return
+    if not isinstance(src, list) or not src or not all(isinstance(s, str) for s in src):
+        errors.append(f"{at}: sources must be a list of keys of references")
+        return
+    unknown = [s for s in src if s not in refs]
+    if unknown:
+        errors.append(f"{at}: unknown source{'s' * (len(unknown) > 1)} {', '.join(unknown)} "
+                      "(not a key of references)")
+
+def short(s, n=48):
+    s = " ".join(str(s).split())
+    return s if len(s) <= n else s[:n - 3].rstrip() + "..."
+
+def load_file(p, name, keys, errors):
+    """A content file of a paper, read and checked for its common keys, or None."""
+    path = p.paper.dir / name
+    if not path.exists():
+        return None
+    where = f"papers/{p.category}/{p.slug}/{name}"
+    try:
+        data = yaml.safe_load(path.read_text())
+    except yaml.YAMLError as e:
+        errors.append(f"{where}: {' '.join(str(e).split())}")
+        return None
+    if not isinstance(data, dict):
+        errors.append(f"{where}: expected a mapping")
+        return None
+    if not check_keys(where, data, keys, errors):
+        return None
+    if data["paper"] != p.slug:
+        errors.append(f"{where}: paper is {data['paper']!r}, but the file is in the folder of {p.slug}")
+    if not is_text(data["license"]):
+        errors.append(f"{where}: license must be a text")
+    if "authors" in data and not (isinstance(data["authors"], list) and all(is_text(a) for a in data["authors"])):
+        errors.append(f"{where}: authors must be a list of names")
+    if "published" in data and not isinstance(data["published"], bool):
+        errors.append(f"{where}: published must be true or false")
+    if "lang" in data and data["lang"] not in LANGUAGES:
+        errors.append(f"{where}: lang must be one of {', '.join(LANGUAGES)}")
+    data["_where"] = where
+    data["references"] = check_references(where, data["references"], errors)
+    return data
+
+def load_annotations(p, errors):
+    """annotations.yaml: margin notes, each anchored on a phrase that occurs exactly once in text.md."""
+    data = load_file(p, ANNOTATIONS, ANNOTATION_KEYS, errors)
+    if data is None:
+        return None
+    where, refs = data["_where"], data["references"]
+    notes = data["notes"]
+    if not isinstance(notes, list) or not notes:
+        errors.append(f"{where}: notes must be a list of notes, each with anchor, note and sources")
+        return None
+    text = " ".join((p.paper.dir / "text.md").read_text().split())
+    for i, n in enumerate(notes, 1):
+        at = f"{where}: note {i}"
+        if not isinstance(n, dict):
+            errors.append(f"{at}: expected a mapping of anchor, note and sources")
+            continue
+        extra = sorted(set(n) - {"anchor", "note", "sources"})
+        if extra:
+            errors.append(f"{at}: unknown key{'s' * (len(extra) > 1)} {', '.join(map(str, extra))} "
+                          "(expected anchor, note, sources)")
+        if not is_text(n.get("anchor")) or not is_text(n.get("note")):
+            errors.append(f"{at}: anchor and note must be texts")
+            continue
+        at = f"{where}: note {i} (anchor “{short(n['anchor'])}”)"
+        count = text.count(" ".join(n["anchor"].split()))
+        if count != 1:
+            errors.append(f"{at}: the anchor occurs {count} times in text.md, it must occur exactly once"
+                          + (" (copy it from text.md, spaces and apostrophes included)" if not count
+                             else " (make it longer, so that it is unique)"))
+        check_sources(at, n, refs, errors)
+    return data
+
+def load_teaching(p, errors):
+    """teaching.yaml: a teaching kit, with context, glossary, questions and answers, activity."""
+    data = load_file(p, TEACHING, TEACHING_KEYS, errors)
+    if data is None:
+        return None
+    where, refs = data["_where"], data["references"]
+    for k in ("level", "subject"):
+        if not is_text(data[k]):
+            errors.append(f"{where}: {k} must be a text")
+    if not isinstance(data["duration"], int) or data["duration"] <= 0:
+        errors.append(f"{where}: duration must be a number of minutes")
+    if "prerequisites" in data and not is_text(data["prerequisites"]):
+        errors.append(f"{where}: prerequisites must be a text")
+    def items(key, fields, name, optional=()):
+        lst = data[key]
+        if not isinstance(lst, list) or not lst:
+            errors.append(f"{where}: {key} must be a list, each item with {', '.join(fields)}")
+            return
+        for i, it in enumerate(lst, 1):
+            at = f"{where}: {name} {i}"
+            if not isinstance(it, dict):
+                errors.append(f"{at}: expected a mapping with {', '.join(fields)}")
+                continue
+            extra = sorted(set(it) - set(fields) - set(optional) - {"sources"})
+            if extra:
+                errors.append(f"{at}: unknown key{'s' * (len(extra) > 1)} {', '.join(map(str, extra))}")
+            bad = [f for f in fields if not is_text(it.get(f))]
+            if bad:
+                errors.append(f"{at}: {', '.join(bad)} must be text{'s' * (len(bad) > 1)}")
+            if "kind" in it and it["kind"] not in QUESTION_KINDS:
+                errors.append(f"{at}: kind must be one of {', '.join(QUESTION_KINDS)}")
+            if name != "term":
+                check_sources(at, it, refs, errors, required=name != "question")
+    items("context", ("point",), "context point")
+    items("glossary", ("term", "definition"), "term")
+    items("questions", ("question", "answer"), "question", ("kind",))
+    act = data.get("activity")
+    if act is not None:
+        at = f"{where}: activity"
+        if not isinstance(act, dict) or not all(is_text(act.get(k)) for k in ("title", "instructions")):
+            errors.append(f"{at}: expected a mapping with title, instructions, and duration and sources")
+        else:
+            extra = sorted(set(act) - {"title", "instructions", "duration", "sources"})
+            if extra:
+                errors.append(f"{at}: unknown key{'s' * (len(extra) > 1)} {', '.join(map(str, extra))}")
+            if "duration" in act and (not isinstance(act["duration"], int) or act["duration"] <= 0):
+                errors.append(f"{at}: duration must be a number of minutes")
+            check_sources(at, act, refs, errors, required=False)
+    return data
+
+def load_extras(posters, drafts=False):
+    """{slug: Extras} for the posters that have an annotations.yaml or a teaching.yaml. Every file is
+    checked, but only those that say published: true go on the site, or all of them with drafts:
+    without it, the site is the same as if the others did not exist."""
+    errors, out, held = [], {}, []
+    for p in posters:
+        a, t = load_annotations(p, errors), load_teaching(p, errors)
+        for d in (a, t):
+            if d is not None and d.get("published") is not True:
+                held.append(d["_where"])
+        if not drafts:
+            a, t = (d if d is not None and d.get("published") is True else None for d in (a, t))
+        if a or t:
+            out[p.slug] = Extras(a, t)
+    if errors:
+        raise SiteError("\nerror: ".join(errors))
+    return out, held
 
 # ---------------------------------------------------------------- previews
 
@@ -644,7 +852,7 @@ def home_page(posters, previews, series, thumbs):
                     + " or ".join(format_name(f).replace("\u00a0", " ") for f in FORMATS if f != "A") + "."),
                 main, "previews/share.jpg", "collection", "Three posters of the collection side by side on a wall")
 
-def poster_page(p, posters, previews, series):
+def poster_page(p, posters, previews, series, extras=None):
     m, root = p.meta, "../"
     lic, src = m["license"], m["source"]
     host = urlsplit(src["url"]).netloc.removeprefix("www.")
@@ -691,6 +899,11 @@ def poster_page(p, posters, previews, series):
         "TITLE_H1": title(m["title"]),
         "YEAR": esc(year_text(m["year"])), "AUTHORS": esc(", ".join(m["authors"])),
         "SUBTITLE": f'<p class="subtitle">{m["kicker"]}</p>' if m.get("kicker") else "",
+        "READ_NOTE": "The whole poster as a web page" + (", with notes in the margin"
+                                                          if extras and extras.annotations else ""),
+        "TEACH": ('<p class="read-link"><a class="btn btn-line" href="teach/">Teaching kit</a> '
+                  '<span>Context, glossary, questions and answers, on A4</span></p>\n'
+                  if extras and extras.teaching else ""),
         "SUMMARY": esc(m["summary"]), "LIGHT": p.light, "DARK": p.dark, "SERIES": series_links(p, series, root),
         "PICTURE": picture(previews, p, root, "(min-width: 1200px) 480px, (min-width: 768px) 52vw, 86vw", eager=True),
         "SHOWN": shown, "FACTS": "\n".join(f"<div><dt>{k}</dt><dd>{v}</dd></div>" for k, v in facts),
@@ -953,13 +1166,142 @@ def reading_body(p, body, files):
         body = f'{head}<div class="footnotes">{notes}'
     return body
 
-def read_page(p, body, files, katex_head):
-    """The reading edition of a poster: its whole text as a web page, under /<slug>/read/."""
+# the margin notes of a reading page: where their anchors are in the rendered text
+NOTE_SKIP = {"svg", "math", "script", "style"}  # and the spans of KaTeX: their text is not the text's
+NOTE_BLOCKS = {"p", "div", "li", "ol", "ul", "h2", "h3", "h4", "blockquote", "figure", "figcaption", "table", "tr",
+               "td", "th", "dl", "dt", "dd", "pre", "br", "hr", "section", "caption"}
+VOID = {"br", "hr", "img", "input", "wbr", "source", "meta", "link", "col", "area"}
+QUOTES = str.maketrans({"’": "'", "‘": "'", "“": '"', "”": '"', " ": " ", " ": " ", " ": " "})
+TOKEN = re.compile(r"<(/?)([a-zA-Z][\w-]*)([^>]*?)(/?)>|&(#?\w+);|[^<&]", re.S)
+
+def text_positions(body):
+    """The text of an HTML fragment as it reads, with straight quotes and single spaces, and for
+    each of its characters the span of the source it comes from. Math and figures count as one
+    character that no phrase matches, and a block boundary as another."""
+    chars, spans, stack, skip = [], [], [], None
+    def put(c, a, b):
+        c = c.translate(QUOTES)
+        if c.isspace():
+            if chars and chars[-1] == " ":
+                return
+            c = " "
+        chars.append(c)
+        spans.append((a, b))
+    for k in TOKEN.finditer(body):
+        a, b = k.span()
+        close, tag, attrs, selfclose, entity = k.groups()
+        if tag:
+            tag = tag.lower()
+            if skip is not None:
+                if close and len(stack) == skip and stack[-1] == tag:
+                    stack.pop()
+                    skip = None
+                    put("\x00", a, a)
+                elif close:
+                    stack.pop() if stack else None
+                elif not selfclose and tag not in VOID:
+                    stack.append(tag)
+                continue
+            if tag in NOTE_BLOCKS:
+                put("\x01", a, a)
+            if close:
+                if stack:
+                    stack.pop()
+            elif not selfclose and tag not in VOID:
+                stack.append(tag)
+                if tag in NOTE_SKIP or (tag == "span" and re.search(r'class="katex(?:-display)?"', attrs)):
+                    skip = len(stack)
+            continue
+        if skip is not None:
+            continue
+        put(html.unescape(k.group()) if entity else k.group(), a, b)
+    return "".join(chars), spans
+
+def note_sources(keys, refs):
+    parts = []
+    for k in keys:
+        r = refs[k]
+        name = esc(r["title"])
+        if r.get("url"):
+            archived = " (archived copy)" if "web.archive.org/" in r["url"] else ""
+            name = f'<a href="{html.escape(r["url"])}">{name}</a>{archived}'
+        parts.append(name + (f', {esc(r["publisher"])}' if r.get("publisher") else ""))
+    return f'<span class="sn-src"><span class="sn-label">Source{"s" * (len(keys) > 1)}:</span> {"; ".join(parts)}.</span>'
+
+def annotate(p, text, data):
+    """The text of a reading page with its margin notes: each anchor phrase in a <mark>, followed
+    by the number of its note, a checkbox that opens the note in the text on small screens and
+    without JavaScript, and the note itself, which site.js sets in the margin of a wide screen."""
+    plain_text, spans = text_positions(text)
+    refs, lang = data["references"], data.get("lang", "en")
+    inserts = []  # (position in the source, order at that position: close, note, open, html)
+    found = []
+    for k, n in enumerate(data["notes"], 1):
+        want = " ".join(n["anchor"].translate(QUOTES).split())
+        count = plain_text.count(want)
+        if count != 1:
+            raise SiteError(f"{data['_where']}: note {k} (anchor “{short(n['anchor'])}”): found {count} times in the text "
+                            "as the reading page renders it, where it must occur exactly once")
+        found.append((plain_text.find(want), want, n))
+    # the notes are numbered in the order of their phrases in the text, whatever their order in the file
+    for i, (at, want, n) in enumerate(sorted(found, key=lambda f: f[0]), 1):
+        pos = spans[at:at + len(want)]
+        runs = [[pos[0][0], pos[0][1]]]
+        for a, b in pos[1:]:
+            if a == runs[-1][1]:
+                runs[-1][1] = b
+            else:
+                runs.append([a, b])
+        for j, (a, b) in enumerate(runs):
+            ident = f' id="an-{i}"' if j == 0 else ""
+            inserts.append((a, 2, f'<mark class="anno" data-note="{i}"{ident}>'))
+            inserts.append((b, 0, "</mark>"))
+        body = esc(" ".join(n["note"].split()))
+        inserts.append((runs[-1][1], 1,
+            f'<input type="checkbox" class="sn-toggle" id="sn-t{i}" aria-controls="sn-{i}">'
+            f'<label class="sn-num" for="sn-t{i}"><span class="sr-only">Note </span>{i}</label>'
+            f'<span class="sidenote" id="sn-{i}" lang="{lang}" data-note="{i}">'
+            f'<span class="sn-n" aria-hidden="true">{i}</span>'
+            f'<span class="sr-only">Note {i}, written for One Page Papers: </span>{body} '
+            f'{note_sources(n["sources"], refs)}</span>'))
+    for pos, _, frag in sorted(inserts, key=lambda x: (x[0], x[1]), reverse=True):
+        text = text[:pos] + frag + text[pos:]
+    return text
+
+def written_by(data):
+    """Who wrote a content file, for its credit line: nothing when it is the site itself."""
+    who = [a for a in data.get("authors") or [] if a != NAME]
+    return f" by {esc(', '.join(who))}" if who else ""
+
+def license_html(lic):
+    lic = lic.removesuffix(f", written for {NAME}")  # the credit line says it already
+    for name, url in LICENSE_URLS.items():
+        if lic.startswith(name):
+            return f'<a href="{url}">{esc(name)}</a>{esc(lic[len(name):])}'
+    return esc(lic)
+
+def read_page(p, body, files, katex_head, extras=None):
+    """The reading edition of a poster: its whole text as a web page, under /<slug>/read/, with its
+    margin notes when the paper has an annotations.yaml."""
     m, root = p.meta, "../../"
     lic, src = m["license"], m["source"]
     lang = m.get("lang", "en")
     host = urlsplit(src["url"]).netloc.removeprefix("www.")
     text = reading_body(p, body, files)
+    notes = extras.annotations if extras else None
+    intro = ""
+    if notes:
+        text = annotate(p, text, notes)
+        k = len(notes["notes"])
+        intro = (f'<aside class="anno-intro" aria-label="About the margin notes" lang="en">\n'
+                 f'<p class="eyebrow">Annotated edition</p>\n'
+                 f'<p><b>{k} notes written for {NAME}</b> explain the phrases <mark class="anno">marked like this</mark>: '
+                 'the number after a phrase opens its note, which a wide screen shows in the margin. They are not part '
+                 f'of the original text. Written for {NAME}{written_by(notes)}; license: {license_html(notes["license"])}. '
+                 'Each note gives its sources.</p>\n'
+                 '<p class="anno-switch" hidden><button type="button" class="pill" aria-pressed="true" '
+                 'data-notes-toggle>Show the notes</button></p>\n</aside>\n')
+    teach = extras.teaching if extras else None
     facts = [("Source", f'<a href="{html.escape(src["url"])}">{esc(host)}</a>'),
              ("Retrieved", date_text(src["retrieved"])), ("License", esc(lic["text"]))]
     if lic.get("holder"):
@@ -994,11 +1336,99 @@ def read_page(p, body, files, katex_head):
         "FACTS": "\n".join(f"<div><dt>{k}</dt><dd>{v}</dd></div>" for k, v in facts),
         "EDITION": esc(src["edition"]), "RIGHTS": "\n".join(rights),
         "NOTICES": "".join(x + "\n" for x in notices),
-        "ABSTRACT": abstract, "TEXT": text, "ROOT": root, "SLUG": p.slug})
+        "ABSTRACT": abstract, "TEXT": text, "ROOT": root, "SLUG": p.slug, "NOTES_INTRO": intro,
+        "READ_CLASS": " annotated" if notes else "",
+        "TEACH": ' <a class="btn btn-line" href="../teach/">Teaching kit <span class="size">questions, glossary</span></a>'
+                 if teach else ""})
     return Page(f"{p.slug}/read/index.html", f"{esc(m['title'])}, the text · {NAME}",
                 esc(f"The full text of “{m['title']}” ({authors_short(m)}, {year_text(m['year'])}), "
                     "as set on its poster, to read on screen."),
                 main, f"previews/{p.slug}-share.jpg", "", esc(alt(p)), katex_head if "katex" in text else "")
+
+# ---------------------------------------------------------------- teaching kit
+
+KIND_NAMES = {"locate": "Find", "understand": "Understand", "analyse": "Analyse", "calculate": "Calculate",
+              "reflect": "Discuss"}
+
+def minutes(n):
+    return f"{n} minutes"
+
+def cites(keys, numbers):
+    """The sources of an item as the numbers of the references, linked to them."""
+    if not keys:
+        return ""
+    links = ", ".join(f'<a href="#ref-{numbers[k]}">{numbers[k]}</a>' for k in keys)
+    return f' <span class="cite"><span class="sr-only">Sources: </span>[{links}]</span>'
+
+def reference_item(n, r):
+    title_ = esc(r["title"])
+    if r.get("url"):
+        title_ = f'<a href="{html.escape(r["url"])}">{title_}</a>'
+    parts = [title_] + [esc(r[k]) for k in ("author", "publisher") if r.get(k)]
+    line = ", ".join(parts) + "."
+    if r.get("url") and "web.archive.org/" in r["url"]:
+        orig = r.get("original_url")
+        line += " Archived copy" + (f' of <span class="url">{esc(urlsplit(orig).netloc + urlsplit(orig).path)}</span>'
+                                    if orig else "") + "."
+    if r.get("retrieved"):
+        line += f" Retrieved {date_text(r['retrieved'])}."
+    if r.get("note"):
+        line += f' <span class="ref-note">{esc(" ".join(r["note"].split()))}</span>'
+    return f'<li id="ref-{n}"><span class="ref-n">{n}</span><p>{line}</p></li>'
+
+def teach_page(p, previews, data):
+    """The teaching kit of a poster, under /<slug>/teach/: laid out for the screen, and printable
+    on A4 with or without the answers, which start on a page of their own."""
+    m, root = p.meta, "../../"
+    refs = data["references"]
+    numbers = {k: i for i, k in enumerate(refs, 1)}
+    facts = [("Level", esc(data["level"])), ("Subject", esc(data["subject"])),
+             ("Duration", minutes(data["duration"])), ("Print from", m["min_print"])]
+    prereq = (f'<p class="teach-pre"><b>Prerequisites.</b> {esc(" ".join(data["prerequisites"].split()))}</p>\n'
+              if data.get("prerequisites") else "")
+    context = "\n".join(f'<li><p>{esc(" ".join(c["point"].split()))}{cites(c.get("sources"), numbers)}</p></li>'
+                        for c in data["context"])
+    glossary = "\n".join(f'<div><dt>{esc(g["term"])}</dt><dd>{esc(" ".join(g["definition"].split()))}</dd></div>'
+                         for g in data["glossary"])
+    def kind(q):
+        return f'<span class="q-kind">{KIND_NAMES[q["kind"]]}</span> ' if q.get("kind") else ""
+    questions = "\n".join(f'<li id="q-{i}"><span class="q-n">{i}</span><p>{kind(q)}{esc(" ".join(q["question"].split()))}</p></li>'
+                          for i, q in enumerate(data["questions"], 1))
+    answers = "\n".join(
+        f'<li id="a-{i}"><span class="q-n">{i}</span><div><p class="a-q">{esc(" ".join(q["question"].split()))}</p>'
+        f'<p>{esc(" ".join(q["answer"].split()))}{cites(q.get("sources"), numbers)}</p></div></li>'
+        for i, q in enumerate(data["questions"], 1))
+    act = data.get("activity")
+    activity = ""
+    if act:
+        dur = f' <span class="act-dur">{minutes(act["duration"])}</span>' if act.get("duration") else ""
+        activity = (f'<section class="teach-sec teach-act" aria-labelledby="t-activity">\n'
+                    f'<h2 id="t-activity">Activity</h2>\n<h3>{esc(act["title"])}{dur}</h3>\n'
+                    f'<p>{esc(" ".join(act["instructions"].split()))}{cites(act.get("sources"), numbers)}</p>\n</section>\n')
+    wall = ("Since it prints from A3, its body text is at least 8 pt there, readable from up close."
+            if m["min_print"] == "A3" else
+            f"At A3 its body text is under 8 pt, to be read from very close; it prints for reading from "
+            f"{m['min_print']}.")
+    a_pdf = pdf_url(p.paper, "A", p.light)
+    main = substitute((WEB / "teach.html").read_text(), {
+        "CATEGORY": p.category, "CATEGORY_TITLE": esc(CATEGORIES[p.category]), "TITLE": esc(m["title"]),
+        "TITLE_H1": title(m["title"]), "LANG": m.get("lang", "en"), "YEAR": esc(year_text(m["year"])),
+        "AUTHORS": esc(", ".join(m["authors"])), "SUBJECT": esc(data["subject"]),
+        "FACTS": "\n".join(f"<div><dt>{k}</dt><dd>{v}</dd></div>" for k, v in facts), "PREREQ": prereq,
+        "WALL": (f'For the classroom wall, the <a href="{a_pdf}" type="application/pdf">A PDF of the poster</a> '
+                 f'prints at A3 (29.7 × 42 cm). {wall} '
+                 f'<a href="{root}print/?poster={p.slug}">How to have it printed</a>.'),
+        "BY": f'Written for {NAME}{written_by(data)}; license: {license_html(data["license"])}. '
+              'Numbers in brackets refer to the references at the end.',
+        "CONTEXT": context, "GLOSSARY": glossary, "QUESTIONS": questions, "ACTIVITY": activity,
+        "ANSWERS": answers, "REFS": "\n".join(reference_item(numbers[k], r) for k, r in refs.items()),
+        "PICTURE": picture(previews, p, root, "(min-width: 1200px) 300px, (min-width: 900px) 26vw, 60vw"),
+        "COUNT": f"{len(data['questions'])} questions"})
+    return Page(f"{p.slug}/teach/index.html", f"{esc(m['title'])}, teaching kit · {NAME}",
+                esc(f"A teaching kit for “{m['title']}” ({authors_short(m)}, {year_text(m['year'])}): context, "
+                    f"glossary, {len(data['questions'])} questions with answers for the teacher, and an activity, "
+                    "printable on A4."),
+                main, f"previews/{p.slug}-share.jpg", "", esc(alt(p)))
 
 def katex_css(pages_html):
     """The stylesheet of KaTeX for the site, and the font files it needs: the families that the
@@ -1060,6 +1490,32 @@ def about_page(posters, previews):
                 esc("Where one-page-papers comes from: the wish to frame the Bitcoin whitepaper, which became an "
                     "engine that typesets foundational texts on one page."),
                 main, "previews/share.jpg", "about", "Three posters of the collection side by side on a wall")
+
+def print_page(posters, previews):
+    """The guide to having a poster printed, /print/. With ?poster=<slug> (the Print it button of a
+    poster page), site.js adds a box for that poster, from the data of #print-data: its Print from,
+    its themes and the links to its PDFs."""
+    fmts = [("A", format_name("A").replace(" ", " "))] + [(f, format_name(f)) for f in FORMATS if f != "A"]
+    data = {
+        "pdf": PDF_URL, "us": US_ZIP_URL, "sizes": list(PRINT_SIZES),
+        "formats": [[f, n.replace(" ", " ")] for f, n in fmts],
+        "themes": {t: [hexcolour(t, "paper"), hexcolour(t, "acc"), int(theme_is_dark(t))] for t in THEMES},
+        # the previews of the box are previews/<slug>-<theme>-600.webp, which make_previews writes
+        "posters": {p.slug: [markdown.smart(p.meta["title"]), p.category, p.meta["min_print"], p.themes]
+                    for p in posters if all((p.slug, t) in previews for t in p.themes)}}
+    js = json.dumps(data, ensure_ascii=False, separators=(",", ":")).replace("</", "<\\/")
+    rows = [f'<tr><td>{k}</td><td>{cm_text(w)} × {cm_text(h)}</td><td>The A PDF</td></tr>'
+            for k, (w, h) in A_SIZES.items()]
+    rows += [f'<tr><td>{format_name(f)}</td><td>{cm_text(w)} × {cm_text(h)}</td><td>Its own PDF</td></tr>'
+             for f, (w, h) in FORMATS.items() if f != "A"]
+    rows += [f'<tr><td>{US_NAMES[f]}</td><td>{w / 10:.1f} × {h / 10:.1f}</td><td>In the US zip of the release</td></tr>'
+             for f, (w, h) in US_FORMATS.items()]
+    main = substitute((WEB / "print.html").read_text(), {
+        "NAME": NAME, "DATA": js, "SIZES": "\n".join(rows), "RELEASE": RELEASE_URL})
+    return Page("print/index.html", f"Print a poster · {NAME}",
+                esc("How to have a poster printed: the size to choose from its Print from and the reading distance, "
+                    "paper or white aluminium, which PDF and theme to send, and where to order."),
+                main, "previews/share.jpg", "", "Three posters of the collection side by side on a wall")
 
 def not_found_page():
     return Page("404.html", f"Page not found · {NAME}", "This page does not exist.",
@@ -1143,8 +1599,10 @@ def contrasts():
 
 # ---------------------------------------------------------------- the site
 
-def write(out, posters, series):
-    """Writes the whole site into the empty folder out. Returns a summary."""
+def write(out, posters, series, extras=None):
+    """Writes the whole site into the empty folder out, with the margin notes and teaching kits of
+    extras ({slug: Extras}). Returns a summary."""
+    extras = extras or {}
     previews, cached = make_previews(out, posters)
     thumbs, thumb_files = make_thumbs(out, series, cached)
     show = next(p for p in posters if p.slug == SHOWCASE)
@@ -1162,13 +1620,17 @@ def write(out, posters, series):
         shares.append(share_image([cached[q.slug, q.light][1200] for q in s.posters[:3]]))
         shutil.copyfile(shares[-1], out / f"previews/series-{s.slug}-share.jpg")
 
-    pages = [home_page(posters, previews, series, thumbs), about_page(posters, previews), not_found_page()]
-    pages += [poster_page(p, posters, previews, series) for p in posters]
+    pages = [home_page(posters, previews, series, thumbs), about_page(posters, previews), not_found_page(),
+             print_page(posters, previews)]
+    pages += [poster_page(p, posters, previews, series, extras.get(p.slug)) for p in posters]
+    teach = [teach_page(p, previews, extras[p.slug].teaching) for p in posters
+             if p.slug in extras and extras[p.slug].teaching]
+    pages += teach
     pages += [series_index_page(series, thumbs)] + [series_page(s, series, previews, thumbs) for s in series]
     # the reading pages, with their images and the stylesheet of KaTeX for those that have math
     bodies, images = texts(posters), {}
     katex_head = '<link rel="stylesheet" href="{{ROOT}}assets/katex.css?v={katex}">\n'
-    reads = [read_page(p, bodies[p.slug], images, katex_head) for p in posters]
+    reads = [read_page(p, bodies[p.slug], images, katex_head, extras.get(p.slug)) for p in posters]
     pages += reads
     for dst, src in images.items():
         (out / dst).parent.mkdir(parents=True, exist_ok=True)
@@ -1225,7 +1687,9 @@ def write(out, posters, series):
         '<?xml version="1.0" encoding="UTF-8"?>\n<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">\n'
         + "".join(entry(pg) for pg in pages if pg.path != "404.html") + "</urlset>\n")
     (out / "robots.txt").write_text(f"User-agent: *\nAllow: /\n\nSitemap: {BASE_URL}sitemap.xml\n")
-    return (f"{len(pages)} pages ({len(reads)} to read, {len(series)} series), "
+    notes = sum(len(x.annotations["notes"]) for x in extras.values() if x.annotations)
+    return (f"{len(pages)} pages ({len(reads)} to read, {len(series)} series, {len(teach)} teaching kits, "
+            f"{notes} margin notes), "
             f"{sum(len(v) for v in previews.values())} previews, "
             f"{len(images)} images, {len(files) + len(kfiles)} font files")
 
@@ -1338,6 +1802,9 @@ def main():
                     help="write the site into a temporary directory and check it, leaving site/ untouched")
     ap.add_argument("--only-built", action="store_true",
                     help="leave out the papers whose PDFs are not all in dist/, instead of failing")
+    ap.add_argument("--drafts", action="store_true",
+                    help="also put on the site the margin notes and teaching kits whose file does not say "
+                         "published: true, for review")
     ap.add_argument("--contrast", action="store_true",
                     help="print the contrast ratio of every text colour on every surface, then exit")
     a = ap.parse_args()
@@ -1349,12 +1816,16 @@ def main():
         posters, skipped = collect(a.only_built)
         series, left = load_series(posters, a.only_built)
         skipped += left
+        extras, held = load_extras(posters, a.drafts)
         for msg in skipped:
             print(f"left out: {msg}", file=sys.stderr)
+        for w in held:  # a content file without published: true
+            print(f"draft, on the site with --drafts only: {w}" if not a.drafts else f"draft, shown: {w}",
+                  file=sys.stderr)
         (ROOT / "build").mkdir(exist_ok=True)
         tmp = pathlib.Path(tempfile.mkdtemp(prefix="site-", dir=ROOT / "build"))
         try:
-            summary = write(tmp, posters, series)
+            summary = write(tmp, posters, series, extras)
             errors, n = check(tmp)
             for e in errors:
                 print(f"error: {e}", file=sys.stderr)
