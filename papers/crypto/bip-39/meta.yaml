@@ -49,6 +49,6 @@ license:
     BIP 3, the BIP process in force, states that the License header gives the terms under which
     "the BIP and its auxiliary files are available" (https://github.com/bitcoin/bips/blob/master/bip-0003.md),
     which covers bip-0039/english.txt. The poster carries the MIT License text.
-commercial: true
+commercial: false
 commercial_basis: >-
-  The MIT License allows selling copies, with its notice.
+  The MIT License was added to the BIP with the approval of three of its four authors, not all of them, so selling prints is not allowed by every author. Free download is not affected.
