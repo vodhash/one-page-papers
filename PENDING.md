@@ -59,3 +59,10 @@ missing. The catalog of the README lists them under *Coming soon*.
 - Source: https://doi.org/10.1093/mind/LIX.236.433 (Mind, vol. LIX, no. 236, pp. 433-460, October 1950)
 - Status: in the public domain in France since 1 January 2025, Turing having died in 1954, but under copyright in the United States until the end of 2045, 95 years after its publication: the URAA restored in 1996 the copyright of foreign works still protected in their country, as this one was in the United Kingdom.
 - Missing: time, until 1 January 2046, or a license from its rights holders that allows its redistribution.
+
+## The Conscience of a Hacker (The Mentor, 1986)
+
+- Category: manifestos
+- Source: https://phrack.org/issues/7/hackers-manifesto.html (Phrack, vol. 1, issue 7, 25 September 1986; the text is dated 8 January 1986)
+- Status: under copyright (published in 1986), no license found. The "Copyleft" line in the footer of phrack.org gives no terms, and the issue leaves each article to the responsibility of its author.
+- Missing: a license or a permission from its author, Loyd Blankenship, that allows its redistribution.

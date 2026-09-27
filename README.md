@@ -80,6 +80,7 @@ Texts that wait for a license allowing their redistribution; [PENDING.md](PENDIN
 - Mimblewimble (Tom Elvis Jedusor, 2016)
 - Apollo 11: the master ignition routine of Luminary 099 (MIT Instrumentation Laboratory, 1969)
 - Computing Machinery and Intelligence (Alan Turing, 1950)
+- The Conscience of a Hacker (The Mentor, 1986)
 
 <!-- catalog:end -->
 
