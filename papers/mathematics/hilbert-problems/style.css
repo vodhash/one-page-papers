@@ -1,0 +1,6 @@
+/* Letterspacing, as the print sets names and emphasis */
+.sp{letter-spacing:.1em;hyphens:manual}
+/* The marks of the cuts of the excerpt, centred on a line of their own */
+p.cut{text-align:center;color:var(--mute);margin:.2em 0 .5em}
+/* The numbered headings of the problems are centred in the print */
+h2{text-align:center;font-size:1.08em}

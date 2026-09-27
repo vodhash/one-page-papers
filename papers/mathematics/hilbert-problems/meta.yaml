@@ -1,0 +1,73 @@
+title: "Mathematische Probleme"
+summary: "Excerpt of the printed text of Hilbert's 1900 Paris lecture, which sets out 23 problems for the new century."
+title_html: "Mathematische Probleme"
+title_size: 100pt
+kicker: "Excerpt · International Congress of Mathematicians, Paris, 1900"
+author: "D. Hilbert"
+byline: "Vortrag, gehalten auf dem internationalen Mathematiker-Kongreß zu Paris 1900."
+emblem: "23"
+lang: de
+header_scale: 1.3
+columns: 4
+footer:
+  - "Nachrichten von der Königl. Gesellschaft der Wissenschaften zu Göttingen, Mathematisch-physikalische Klasse, 1900, Heft 3, pp. 253-297."
+  - "<i>Excerpt: the opening, the 23 problems as stated, and the close. Every cut is marked […]. Public domain.</i>"
+  - '<span class="mono">de.wikisource.org</span>'
+year: 1900
+authors: [David Hilbert]
+min_print: A1
+source:
+  url: https://de.wikisource.org/wiki/Mathematische_Probleme
+  retrieved: 2026-09-27
+  edition: >-
+    Excerpt of the lecture as printed in the Nachrichten von der Königl. Gesellschaft der
+    Wissenschaften zu Göttingen, Mathematisch-physikalische Klasse, 1900, Heft 3, pp. 253-297.
+    The text comes from the proofread transcription of German Wikisource (raw wikitext of the
+    pages Seite:Hilbert_-_Mathematische_Probleme.pdf/2 to /46), compared word by word with the
+    OCR of the Göttinger Digitalisierungszentrum (PPN252457811_1900), every difference and every
+    formula being settled on the scan of that printing (Wikimedia Commons, File:Hilbert -
+    Mathematische Probleme.pdf, from the GDZ). Kept, verbatim: the title block (in the header);
+    the first six paragraphs of the lecture (pp. 253-254, "Wer von uns" to "gelungene Lösung");
+    the three paragraphs "Diese merkwürdige Thatsache" to "kein Ignorabimus!" (pp. 261-262); the
+    two that open the problems, "Unermeßlich ist" and "Ueberblicken wir" (p. 262); the numbered
+    heading of each of the 23 problems, with these paragraphs: 1, all five; 2, "Wenn es sich
+    darum handelt" and "Vor Allem aber"; 3, its paragraph; 4, "Eine andere Problemstellung" and
+    "In der Minkowskischen Geometrie"; 5, "Lie hat bekanntlich" and "Auch für unendliche
+    Gruppen"; 6, "Durch die Untersuchungen"; 7, its paragraph; 8, "In der Theorie der
+    Verteilung", "Nach einer erschöpfenden Diskussion" and "Aber von nicht geringerem
+    Interesse"; 9 and 10, their paragraph; 11, "Unsere jetzige Kenntnis"; 12, "Von Kronecker
+    rührt", "erstens", "zweitens", "Von der höchsten Bedeutung" and "Wie wir sehen"; 13,
+    "Wahrscheinlich ist nun" to the end; 14, "Es seien eine Anzahl" to "zahlentheoretisch zu
+    verfeinern"; 15, its paragraph; 16, both paragraphs; 17, "Definit heißt"; 18, "Genau die
+    entsprechenden Thatsachen" and "Ein Fundamentalbereich"; 19, "Eine der begrifflich
+    merkwürdigsten Thatsachen"; 20 and 21, their paragraph; 22, "Wie Poincaré zuerst"; 23,
+    "Bisher habe ich" and "Die Variationsrechnung im weitesten Sinne"; and the last three
+    paragraphs of the lecture (pp. 296-297). Every cut is marked […]; the rules between groups
+    of problems fall within the cuts. Hilbert's footnotes of the kept text are numbered 1 to 26
+    and listed at the end (the print numbers them page by page); the notes of Wikisource are
+    left out. Differences from Wikisource, all back to the print: the long dashes of the print
+    (em dashes, U+2014), which Wikisource sets as en dashes (U+2013); no comma in "Durch die
+    Lösung von" (p. 254), "ursprünglich verlangten" (p. 262), "ein frühestes Element hat" (p.
+    264), "nicht mit Hülfe" (p. 281); "Nicht-Euklidischen" (p. 262); "v." of v. Mangoldt not
+    letterspaced (p. 274) and "Schwarz" letterspaced (p. 289); problem 14 as printed, "X1, X2,
+    ..., Xm der n Variabeln x1, x2, ..., xn vorgelegt:", then "X1, ..., Xm" and "x1, ..., xn",
+    "x1, ... xn wird", the system (S) with its row of dots and final period; the series of ζ(s)
+    ending in centred dots; in the notes, "Bd. 32" (p. 284, Wikisource "82"), "Berichte" (p.
+    276), "Napoli 1880." (p. 285), "Vgl." and a final period in note 1 of p. 286, whose range "2
+    to 3" is set with an em dash. Normalizations: the umlauts that the print drops are restored,
+    as Wikisource does, in headings 3 ("Grundflache und Hohe"), 9 ("Reciprocitatsgesetzes"), 15
+    ("Abzählungskalkul") and 23 ("Weiterfuhrung") and in the notes ("Naturkrafte", "Funfter",
+    "fur", "uber"), and the turned letter of "zu Gruude" (p. 278) is set "Grunde"; the
+    misspellings "Richtigtigkeit" (p. 275), "Kronekerschen" (heading 12), "Tetraeter" (p. 286)
+    and "Differenziirbarkeit" (p. 289) are kept; words hyphenated at line ends are rejoined;
+    running heads, page numbers and sheet signatures are dropped. Letterspaced words are
+    letterspaced. The formulas are set with KaTeX.
+license:
+  text: "Public domain"
+  holder: "David Hilbert, 1900"
+  basis: >-
+    David Hilbert died on 14 February 1943 (Wikidata Q41585) and the lecture was published in
+    1900: it is in the public domain in France, where the author died before 1 January 1956,
+    and in the United States, where it was published before 1 January 1931. Wikimedia Commons
+    marks the scan as public domain (PD-old).
+  note: "The Wikisource transcription reproduces the public domain text; its own notes are left out."
