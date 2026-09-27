@@ -1,0 +1,15 @@
+/* The commands of sections 6 to 8, each followed by its description, indented as in the RFC */
+p:has(>code:only-child){margin:.6em 0 .15em;text-align:left}
+p:has(>code:only-child) code{font-size:.82em;font-weight:700;color:var(--acc)}
+.desc{padding-left:1.2em}
+.desc p{margin-top:0}
+/* The code tables of sections 5.1, 5.2 and 8.3 */
+table.codes{border-collapse:collapse;width:100%;font-size:.86em;line-height:1.25;margin:.4em 0 .9em;break-inside:avoid}
+table.codes th{font-family:'JetBrains Mono',monospace;font-size:.8em;font-weight:700;text-align:left;border-bottom:.5mm solid var(--rule);padding:.15em .4em}
+table.codes td{border-bottom:.2mm solid var(--rule);padding:.18em .4em;vertical-align:top;text-align:left}
+table.codes td:first-child,table.codes td:nth-child(2):not(:last-child){font-family:'JetBrains Mono',monospace;font-size:.8em;white-space:nowrap}
+.addr{text-align:left;font-variant:small-caps;letter-spacing:.03em}
+.kick{letter-spacing:.22em}
+footer>div:first-child{max-width:40%;line-height:1.3}
+/* EB Garamond has no infinity sign: the emblem takes it from the KaTeX font */
+.rule b{font-family:'KaTeX_Main';font-weight:400}

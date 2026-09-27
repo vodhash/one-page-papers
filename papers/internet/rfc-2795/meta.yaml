@@ -1,0 +1,37 @@
+title: "RFC 2795: The Infinite Monkey Protocol Suite (IMPS)"
+summary: "An April Fools' RFC specifying protocols for infinite monkeys at typewriters, their zoos, bards and critics."
+title_html: "The Infinite Monkey<br><em>Protocol Suite (IMPS)</em>"
+title_size: 88pt
+kicker: "Request for Comments 2795 · Informational · 1 April 2000"
+author: "S. Christey"
+byline: "Network Working Group · MonkeySeeDoo, Inc."
+emblem: "∞"
+abstract_label: "Abstract."
+abstract: "This memo describes a protocol suite which supports an infinite number of monkeys that sit at an infinite number of typewriters in order to determine when they have either produced the entire works of William Shakespeare or a good television show.  The suite includes communications and control protocols for monkeys and the organizations that interact with them."
+header_scale: 1.2
+columns: 4
+footer:
+  - "<b>Status of this Memo.</b> This memo provides information for the Internet community.  It does not specify an Internet standard of any kind.  Distribution of this memo is unlimited."
+  - "<b>Copyright Notice.</b> Copyright (C) The Internet Society (2000).  All Rights Reserved."
+  - '<span class="mono">doi:10.17487/RFC2795</span>'
+year: 2000
+authors: [S. Christey]
+min_print: A1
+source:
+  url: https://www.rfc-editor.org/rfc/rfc2795.txt
+  retrieved: 2026-09-27
+  edition: >-
+    RFC Editor plain-text edition, complete except for the table of contents, whose page
+    numbers have no meaning on a single page. The status of the memo and the copyright notice
+    of the first page are in the footer and the abstract in the header; page headers and
+    footers are left out; the three code tables of sections 5.1, 5.2 and 8.3 are set as tables,
+    the lines of each cell joined; the other drawings and the sample sessions are reproduced
+    unchanged; the command names of sections 6 to 8 are set in monospace.
+license:
+  text: "© The Internet Society 2000, copies allowed"
+  holder: "The Internet Society, 2000"
+  notice: >-
+    This document and translations of it may be copied and furnished to others, and derivative works that comment on or otherwise explain it or assist in its implementation may be prepared, copied, published and distributed, in whole or in part, without restriction of any kind, provided that the above copyright notice and this paragraph are included on all such copies and derivative works.  However, this document itself may not be modified in any way, such as by removing the copyright notice or references to the Internet Society or other Internet organizations, except as needed for the purpose of developing Internet standards in which case the procedures for copyrights defined in the Internet Standards process must be followed, or as required to translate it into languages other than English.
+  note: >-
+    The copyright notice and this paragraph go with every copy: the poster keeps the full
+    copyright statement (section 13) and the copyright notice (footer).
