@@ -1,0 +1,64 @@
+title: "Traitté du Triangle Arithmetique"
+summary: "Excerpt of Pascal's treatise on the arithmetical triangle: its construction, the rule of its numbers and the first consequence."
+title_html: "Traitté du Triangle<br><em>Arithmetique</em>"
+title_size: 96pt
+kicker: "Excerpt · Paris, Guillaume Desprez, 1665"
+author: "Blaise Pascal"
+byline: "Traité du triangle arithmétique, avec quelques autres petits traitez sur la mesme matiere, par Monsieur Pascal, Paris, 1665, pp. 1-3 and plate"
+emblem: "Δ"
+lang: fr
+layout: hero
+hero_height: 50
+columns: 3
+footer:
+  - "Found already printed among Pascal’s papers after his death in 1662 (Avertissement of the 1665 edition), and published by Guillaume Desprez in 1665."
+  - "<i>Excerpt: the definitions and the first consequence, pp. 1-3, and the folding plate. Public domain. Source gallica.bnf.fr / BnF.</i>"
+  - '<span class="mono">gallica.bnf.fr/ark:/12148/btv1b86262012</span>'
+year: 1665
+authors: [Blaise Pascal]
+min_print: A3
+source:
+  url: https://gallica.bnf.fr/ark:/12148/btv1b86262012
+  retrieved: 2026-09-27
+  edition: >-
+    Excerpt of the Traitté du Triangle Arithmetique, the first piece of Traité du triangle
+    arithmétique, avec quelques autres petits traitez sur la mesme matiere, par Monsieur
+    Pascal (Paris, Guillaume Desprez, 1665). Kept, complete: the heading "Definitions" and
+    all its paragraphs (pp. 1-2, "I'Appelle Triangle Arithmetique" to "conuiendra à tous les
+    autres"), and the Consequence premiere with its proof and its four lines of examples (pp.
+    2-3); left out: the Consequences seconde to dixneufiesme, the Definition of the cells of the
+    dividend, the Problesme and the other treatises of the volume. The hero image is the
+    folding plate "Triangle Arithmetique" of the BnF copy (Réserve des livres rares,
+    RES-V-860, Gallica view 6), cropped to the triangle and its legends, turned to greyscale
+    and its paper whitened; the library stamp in its lowest cell is kept. The text was read
+    line by line on the BnF scan (views 7 to 9) and on the Internet Archive scan of the
+    Lausanne copy (bub_gb_UqgUAAAAQAAJ), whose OCR served as the working base: that OCR
+    garbles nearly all the italic, so most lines were set from the page images. The
+    definitions are set in italics with the defined terms in roman, as printed; the
+    statement of the consequence is set as printed, in larger type with a hanging indent.
+    Spelling, accents and punctuation are those of the print, including "tinües", "cettte
+    methode", "ou E, est" and "ou ie considere"; the dagger that the print uses as a plus sign
+    ("3 † 4", "G † zero") is kept. The letter printed like a cross between cells φ and θ is
+    set as ψ, the letter it has on the plate; the second axis of the definitions is set "Gζ".
+    Normalizations: the long s is set as a round s and the ct and st ligatures as two
+    letters; u and v, i and j are kept as printed; the drop cap I of "I'Appelle" is set as a
+    capital; the apostrophes are set as typographic apostrophes; running heads, page numbers
+    and signature marks are dropped, and words hyphenated at line ends are rejoined.
+license:
+  text: "Public domain"
+  holder: "Blaise Pascal, 1665"
+  basis: >-
+    Blaise Pascal died on 19 August 1662 (Wikidata Q1290) and the treatise was published in
+    1665: it is in the public domain in France, where the author died before 1 January 1956,
+    and in the United States, where it was published before 1 January 1931. Gallica gives the
+    scan the rights statement "domaine public" (OAI record of ark:/12148/btv1b86262012); the
+    Internet Archive marks the Lausanne scan with the Public Domain Mark 1.0.
+  note: >-
+    The plate is reproduced from the Gallica scan. The conditions of use of Gallica
+    (https://gallica.bnf.fr/html/und/conditions-dutilisation-des-contenus-de-gallica, the
+    license link of the IIIF manifest) make non-commercial reuse free with the credit "Source
+    gallica.bnf.fr / BnF", which the footer gives, and commercial reuse subject to a license.
+    The Lausanne copy scanned by the Internet Archive does not show the face of the plate,
+    which is folded in it. A faithful reproduction of a public domain work of visual art is not
+    protected in the European Union (article 14 of Directive (EU) 2019/790), and Gallica itself gives the scan the rights
+    statement "domaine public".

@@ -1,0 +1,6 @@
+/* The definitions are printed in italics, the terms they define in roman */
+p.it{font-style:italic}
+p.it .r{font-style:normal}
+/* The statement of the consequence: larger type, hanging indent, as printed */
+p.st{font-size:1.08em;text-indent:-1.2em;padding-left:1.2em}
+h3{text-align:center;font-weight:normal}
