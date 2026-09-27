@@ -1,0 +1,49 @@
+title: "Charles Joseph Minard: Carte figurative des pertes successives en hommes de l'Armée Française dans la campagne de Russie 1812-1813"
+summary: "Minard's 1869 map of the French army in Russia in 1812-1813, its width drawn to scale of the men left."
+title_html: 'Carte Figurative<span class="tsub">des pertes successives en hommes de l’Armée Française dans la campagne de <em>Russie</em> 1812-1813</span>'
+title_size: 100pt
+kicker: "Paris · 20 November 1869"
+author: "Charles Joseph Minard"
+byline: "Inspecteur Général des Ponts et Chaussées en retraite"
+emblem: "†"
+header_scale: 1.8
+layout: hero
+hero_height: 37
+columns: 3
+lang: fr
+footer:
+  - "Map: Charles Joseph Minard, 1869, lithograph by Regnier and Dourdet, Paris. Public domain. Scan: Bibliothèque nationale de France, Cartes et plans, GE DON-4182; paper tone whitened."
+  - "<i>The notice is not a period text: it was written for this poster in 2026.</i>"
+  - "<span class=\"mono\">gallica.bnf.fr/ark:/12148/btv1b52504201x</span>"
+year: 1869
+authors: [Charles Joseph Minard]
+min_print: A3
+source:
+  url: https://gallica.bnf.fr/ark:/12148/btv1b52504201x
+  retrieved: 2026-09-27
+  edition: >-
+    Scan btv1b52504201x of the Bibliothèque nationale de France (département Cartes et plans,
+    GE DON-4182: two maps on one sheet, 44.5 x 52 cm), as uploaded to Wikimedia Commons
+    (File:Carte figurative des pertes successives en hommes de l'armée française dans la Campagne
+    de Russie 1812-13 (comparées à celle d'Hannibal durant la 2èmee Guerre Punique) - Minard.
+    Régnier & Dourdet - btv1b52504201x.jpg, 8809 x 7612 px). The poster shows the lower map
+    only, cropped to its frame (the map of Hannibal's march above it, the handwritten dedication
+    and the library marks around the frame are left out), reduced to 4234 px and with its paper
+    tone scaled to white (one gain per channel). The text is transcribed from the scan: the
+    legend under the title, set in two paragraphs as on the map, the heading of the temperature
+    chart and the note at its left. The title, author line and date of the map are in the
+    header. The rule that separates two sentences of the legend is set as a dash; "M.M." and
+    "zônes" are kept as written; "l'œil" is read with the ligature, which cannot be told from
+    joined script; the title's "1812~1813" is set with a hyphen. The labels on the map (places,
+    numbers of men, temperatures and dates) are not transcribed. No transcription of the legend
+    was found to compare with: it was read on the scan word by word. The notice below the
+    legend is not a period text: it was written for this poster from the map itself and the
+    Gallica record (Minard's dates, the printer, the two maps on one sheet).
+license:
+  text: "Public domain (map); notice: MIT"
+  holder: "Charles Joseph Minard, 1869"
+  basis: >-
+    Charles Joseph Minard died in 1870 and the map was published in 1869: it is in the public
+    domain in France and in the United States. The Gallica record states "domaine public";
+    Wikimedia Commons marks the file as public domain.
+  note: "The notice written for the poster is covered by the MIT license of this repository."

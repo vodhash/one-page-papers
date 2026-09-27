@@ -1,0 +1,7 @@
+/* The legend in italic, as the script of the map */
+.legend p{font-style:italic;text-align:left;margin-bottom:.4em}
+/* A short text in large type reads better ragged than justified */
+main{text-align:left}
+footer>div{text-wrap:balance}
+/* The second line of the title, smaller, as on the map */
+h1 .tsub{display:block;font-size:.42em;font-weight:400;margin-top:.25em}
