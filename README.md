@@ -8,7 +8,7 @@ Each paper is laid out in full on one page: every section, equation, code listin
 
 <!-- catalog:start -->
 
-31 posters in 9 categories. Each one comes in 4 themes, shown here with *Bitcoin: A Peer-to-Peer Electronic Cash System*, and in 3 formats (see [Download](#download)).
+32 posters in 9 categories. Each one comes in 4 themes, shown here with *Bitcoin: A Peer-to-Peer Electronic Cash System*, and in 3 formats (see [Download](#download)).
 
 | ivory | white | genesis | blueprint |
 |:-:|:-:|:-:|:-:|
@@ -80,6 +80,7 @@ A click on a poster opens its PDF in the A format and in its first theme, and th
 |---|---|---|---|---|---|
 | <a href="dist/data-viz/snow-cholera-map-A-ivory.pdf"><img src="docs/data-viz/snow-cholera-map.png" width="90" alt=""></a> | [John Snow: the Broad Street cholera map](dist/data-viz/snow-cholera-map-A-ivory.pdf)<br>John Snow's map of the 1854 cholera deaths around Broad Street, which pointed to a single public water pump.<br>[ivory](dist/data-viz/snow-cholera-map-A-ivory.pdf)&nbsp;·&nbsp;[white](dist/data-viz/snow-cholera-map-A-white.pdf)&nbsp;·&nbsp;[genesis](dist/data-viz/snow-cholera-map-A-genesis.pdf)&nbsp;·&nbsp;[blueprint](dist/data-viz/snow-cholera-map-A-blueprint.pdf) | John Snow | 1854 | A3 | Public domain (map); notice: MIT |
 | <a href="dist/data-viz/nightingale-rose-A-ivory.pdf"><img src="docs/data-viz/nightingale-rose.png" width="90" alt=""></a> | [Florence Nightingale: Diagram of the Causes of Mortality in the Army in the East](dist/data-viz/nightingale-rose-A-ivory.pdf)<br>Florence Nightingale's 1858 diagram of the British army's monthly deaths in the East, from disease, wounds and other causes.<br>[ivory](dist/data-viz/nightingale-rose-A-ivory.pdf)&nbsp;·&nbsp;[white](dist/data-viz/nightingale-rose-A-white.pdf)&nbsp;·&nbsp;[genesis](dist/data-viz/nightingale-rose-A-genesis.pdf)&nbsp;·&nbsp;[blueprint](dist/data-viz/nightingale-rose-A-blueprint.pdf) | Florence Nightingale | 1858 | A3 | Public domain (diagram); photograph: CC BY 4.0; notice: MIT |
+| <a href="dist/data-viz/mendeleev-1869-A-ivory.pdf"><img src="docs/data-viz/mendeleev-1869.png" width="90" alt=""></a> | [Опыт системы элементов, основанной на их атомном весе и химическом сходстве](dist/data-viz/mendeleev-1869-A-ivory.pdf)<br>Mendeleev's system of the elements by atomic weight, sent to chemists in February 1869, with the conclusions of his paper.<br>[ivory](dist/data-viz/mendeleev-1869-A-ivory.pdf)&nbsp;·&nbsp;[white](dist/data-viz/mendeleev-1869-A-white.pdf)&nbsp;·&nbsp;[genesis](dist/data-viz/mendeleev-1869-A-genesis.pdf)&nbsp;·&nbsp;[blueprint](dist/data-viz/mendeleev-1869-A-blueprint.pdf) | Dmitri Mendeleev | 1869 | A3 | Public domain |
 
 ### History & philosophy
 

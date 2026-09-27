@@ -1,0 +1,10 @@
+/* Letter-spaced words: the emphasis of the Russian print (разрядка) */
+.sp{letter-spacing:.18em;margin-right:-.18em}
+/* The title of the paper in capitals, as in the 1926 edition, without the weight of a heading */
+h2{font-weight:500;font-size:1.05em;letter-spacing:.06em;text-align:left}
+/* The eight conclusions keep their numbers */
+ol{padding-left:1.5em}
+ol li{margin-bottom:.35em}
+footer>div{text-wrap:balance}
+/* The second line of the title, in italic as in the 1926 edition, smaller */
+h1 .tsub{display:block;font-size:.5em;font-style:italic;font-weight:400;margin-top:.25em}
