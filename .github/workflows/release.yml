@@ -13,11 +13,12 @@ jobs:
     steps:
       - uses: actions/checkout@v5
       - uses: ./.github/actions/setup
+      # the unchanged posters come from the cache of the self-hosted runner, as in the pages workflow
       - name: Build every poster in every format and theme
-        run: python engine/build.py --no-previews --jobs "$(nproc)"
+        run: python engine/build.py --jobs "$(nproc)" --cache "$HOME/.cache/one-page-papers/build"
       - name: Build every poster in the US formats, into release/us/
-        run: python engine/build.py --us --jobs "$(nproc)"
-      # a release takes fewer assets than there are PDFs (1200 for 100 papers), so it only holds zips
+        run: python engine/build.py --us --jobs "$(nproc)" --cache "$HOME/.cache/one-page-papers/build"
+      # a release takes at most 1000 assets, fewer than there are PDFs (1200 for 100 papers): it holds zips
       - name: Two zips per category, one of the formats of dist/ and one of the US formats
         run: |
           mkdir assets
@@ -27,6 +28,8 @@ jobs:
         env:
           GH_TOKEN: ${{ github.token }}
         run: |
-          gh release create "$GITHUB_REF_NAME" assets/*.zip \
+          # a tag such as v2.4.0-rc1 makes a pre-release, which releases/latest never points to
+          case "$GITHUB_REF_NAME" in *-*) pre=--prerelease ;; *) pre= ;; esac
+          gh release create "$GITHUB_REF_NAME" assets/*.zip $pre \
             --title "$GITHUB_REF_NAME" \
-            --notes "Every poster in every format and theme, two zips per category, with PDFs named <paper>-<format>-<theme>.pdf. <category>.zip holds the formats A (A1, prints at any ISO A size), 50x70 and 60x80 cm, which are also in dist/ in the repository. <category>-us.zip holds the US formats: letter (8.5 x 11 in), tabloid (11 x 17 in), 18x24 and 24x36 in. The body prints under 8 pt for about three posters in four at Letter and one in two at Tabloid."
+            --notes "Every poster in every format and theme, two zips per category, with PDFs named <paper>-<format>-<theme>.pdf. <category>.zip holds the formats A (A1, prints at any ISO A size), 50x70 and 60x80 cm, which are also one by one on https://onepagepapers.com, on the page of each poster. <category>-us.zip holds the US formats: letter (8.5 x 11 in), tabloid (11 x 17 in), 18x24 and 24x36 in. The body prints under 8 pt for about three posters in four at Letter and one in two at Tabloid."

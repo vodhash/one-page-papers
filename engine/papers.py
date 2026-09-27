@@ -1,5 +1,5 @@
 """Where the papers live: papers/<category>/<slug>/, the category coming from the folder."""
-import pathlib
+import pathlib, re
 from typing import NamedTuple
 
 ROOT = pathlib.Path(__file__).resolve().parent.parent
@@ -20,6 +20,15 @@ CATEGORIES = {
     "reference": "Reference sheets",
 }
 SHOWCASE = "bitcoin"  # the paper that the catalog of the README shows in every theme
+SITE_URL = "https://onepagepapers.com/"  # the site, on GitHub Pages
+# the PDFs of dist/, which git does not keep: the CI builds them and uploads them to the bucket
+# served here (engine/upload.py), as <category>/<paper>-<format>-<theme>.pdf
+FILES_URL = "https://files.onepagepapers.com/"
+# a link to a file that git does not keep (dist/, release/, site/, build/), through the repository:
+# dead once pushed. The checks of site.py and readme.py fail on one.
+GENERATED_IN_REPO = re.compile(r"^(?:https://(?:github\.com/vodhash/one-page-papers/(?:raw|blob)/[^/]+|"
+                               r"raw\.githubusercontent\.com/vodhash/one-page-papers/[^/]+)/|\.?/?)"
+                               r"(?:dist|release|site|build)(?:/|$)")
 
 class Paper(NamedTuple):
     category: str

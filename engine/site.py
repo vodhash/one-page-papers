@@ -1,6 +1,7 @@
 #!/usr/bin/env python3
 """The showcase site of the collection, for GitHub Pages: static pages written from the
-meta.yaml of every paper, with previews rasterized from its A PDFs in dist/, and a reading page
+meta.yaml of every paper, with previews rasterized from its A PDFs in dist/ (built by build.py, not
+kept in git: the PDFs are served from FILES_URL, where the CI uploads them), and a reading page
 for each paper (<slug>/read/), its text rendered by markdown.py and KaTeX as for its poster, and a
 page for each series of series.yaml (series/<slug>/), with a wall planner (planner.js), and a guide
 to having a poster printed (print/).
@@ -18,7 +19,8 @@ they say `published: true`, or with --drafts, for review.
 
 The check fails on a dead internal link (page, image, font, stylesheet, script, anchor), on a
 resource loaded from another site but the analytics script (ANALYTICS) and the PDFs that site.js
-fetches to draw a wallpaper (WALL_PDF_URL), and on a PDF link whose file is not in dist/. Links inside
+fetches to draw a wallpaper (WALL_PDF_URL), on a PDF link whose file is not in dist/, and on a link
+to a generated file through the repository (GENERATED_IN_REPO), which git does not keep. Links inside
 the site are relative, so that it works at https://onepagepapers.com/ (GitHub Pages) as well as at
 the root of `make serve`. Previews need pdftoppm (poppler-utils); they are cached in
 build/site-previews/, keyed on the content of each PDF, so an unchanged collection builds fast.
@@ -34,19 +36,19 @@ from PIL import Image, ImageDraw, ImageFilter, ImageFont
 sys.path.insert(0, str(pathlib.Path(__file__).resolve().parent))
 import markdown
 from build import MIN_BODY, PRINT_SIZES, BuildError, katex, load_figures, load_meta, substitute, themes_of
-from papers import CATEGORIES, ROOT, SHOWCASE, Paper, discover
+from papers import CATEGORIES, FILES_URL, GENERATED_IN_REPO, ROOT, SHOWCASE, SITE_URL, Paper, discover
 from readme import pending, year_key, year_text
 from themes import FORMATS, THEMES, US_FORMATS, colour, dark as theme_is_dark
 
 REPO = "https://github.com/vodhash/one-page-papers"
-BASE_URL = "https://onepagepapers.com/"  # only for canonical, Open Graph and sitemap URLs
-# Where the PDF buttons point: the files of dist/ on master, so that a link works as soon as a
-# poster is pushed. For the assets of the latest release instead, which only has the posters
-# of the last tag: REPO + "/releases/latest/download/{file}"
-PDF_URL = REPO + "/raw/master/dist/{category}/{file}"
-# The same files for the wallpapers, which the browser fetches: github.com/.../raw/ redirects here
-# without the Access-Control-Allow-Origin header that raw.githubusercontent.com sends
-WALL_PDF_URL = "https://raw.githubusercontent.com/vodhash/one-page-papers/master/dist/{category}/{file}"
+BASE_URL = SITE_URL  # only for canonical, Open Graph and sitemap URLs
+# Where the PDF buttons point: the bucket where the CI uploads the PDFs of dist/ before it deploys
+# the site, so that a link works as soon as its page is online
+PDF_URL = FILES_URL + "{category}/{file}"
+# The same files for the wallpapers, which the browser fetches: the bucket answers with the
+# Access-Control-Allow-Origin header of the site (its CORS rule, see CONTRIBUTING.md)
+WALL_PDF_URL = PDF_URL
+
 # The wallpapers that a poster page draws in the browser: name, width and height in pixels
 WALLPAPERS = (("Phone", 1170, 2532), ("Desktop", 2560, 1440), ("4K", 3840, 2160))
 ZIP_URL = REPO + "/releases/latest/download/{category}.zip"  # the zips only exist in releases
@@ -1884,6 +1886,9 @@ def check(out):
         errors += [f"{path}: <img src={src}> has no alt" for src in s.no_alt]
     for path, base, what, url, loaded in refs:
         if url.startswith("data:"):
+            continue
+        if GENERATED_IN_REPO.match(url):
+            errors.append(f"{path}: {what} {url}: a generated file through the repository, which does not keep it")
             continue
         if url.startswith(BASE_URL):
             url = site + url[len(BASE_URL):]

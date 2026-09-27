@@ -25,6 +25,20 @@ jobs:
           fetch-depth: 0
           filter: blob:none
       - uses: ./.github/actions/setup
+      # git does not keep the PDFs: they are built here, the unchanged posters taken from the cache
+      # of the self-hosted runner, and uploaded before the site that links them is deployed
+      - name: Build the PDFs into dist/
+        run: python engine/build.py --jobs "$(nproc)" --cache "$HOME/.cache/one-page-papers/build"
+      - name: Upload the PDFs that changed to the bucket of files.onepagepapers.com
+        env:
+          R2_ACCESS_KEY_ID: ${{ secrets.R2_ACCESS_KEY_ID }}
+          R2_SECRET_ACCESS_KEY: ${{ secrets.R2_SECRET_ACCESS_KEY }}
+          R2_ENDPOINT: ${{ secrets.R2_ENDPOINT }}
+          CLOUDFLARE_API_TOKEN: ${{ secrets.CLOUDFLARE_API_TOKEN }}
+          CLOUDFLARE_ZONE_ID: ${{ secrets.CLOUDFLARE_ZONE_ID }}
+        run: |
+          pip install -q -r requirements-deploy.txt
+          python engine/upload.py
       - name: Write the site into site/, which fails on a dead link or on a PDF missing from dist/
         run: python engine/site.py
       - uses: actions/configure-pages@v5

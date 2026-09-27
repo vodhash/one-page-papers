@@ -5,10 +5,16 @@
     python3 engine/build.py bitcoin         # one paper, by slug
     python3 engine/build.py internet        # every paper of a category
     python3 engine/build.py rfc-1925 --formats A --themes white genesis
-    python3 engine/build.py --check         # fit every poster and compare it with dist/ and docs/, writing nothing
+    python3 engine/build.py --check         # build as CI does: fail on a warning or a missing preview, leave docs/ alone
     python3 engine/build.py --us            # the US formats into release/us/, which git ignores
+
+dist/ and release/ are not in git: the CI builds them, uploads the PDFs of dist/ to the bucket
+behind FILES_URL (engine/upload.py) and attaches both to each release. A build keeps what it makes
+in a cache, build/cache/ by default (--cache), one entry per paper and format, keyed on the files of
+the paper and on those of the engine (ENGINE_FILES): an unchanged poster is copied from there instead
+of being laid out again.
 """
-import argparse, base64, concurrent.futures, functools, importlib.util, io, json, os, pathlib, re, subprocess, sys
+import argparse, base64, concurrent.futures, functools, hashlib, importlib.util, io, json, os, pathlib, re, shutil, subprocess, sys
 import yaml
 from html import unescape
 from PIL import Image
@@ -19,7 +25,7 @@ sys.path.insert(0, str(ENGINE))
 import markdown
 from papers import SHOWCASE, discover
 from themes import THEMES, FORMATS, US_FORMATS, colour, dark
-from onepage_engine import FontLoadError, PX, chromium, design_height, print_pdf, same_pdf, system_fonts, to_format
+from onepage_engine import FontLoadError, PX, chromium, design_height, print_pdf, system_fonts, to_format
 from onepage_engine import load as load_url
 
 DESIGN_W = 594  # every poster is laid out 594 mm wide, then scaled to the target format
@@ -41,6 +47,12 @@ US_MIN_FONT = 4
 LAYOUTS = ("columns", "centered", "hero")
 WARNINGS = []
 SIZES = {**FORMATS, **US_FORMATS}  # every format the engine prints, (width, height) in mm
+
+# the files of the engine that a poster depends on: a change to one of them builds every poster again
+ENGINE_FILES = ("engine/build.py", "engine/markdown.py", "engine/svg.py", "engine/themes.py", "engine/papers.py",
+                "engine/katex.js", "engine/template.html", "engine/pyproject.toml", "engine/onepage_engine/*.py",
+                "package-lock.json", "requirements.txt")
+CACHE_VERSION = "1"  # part of every cache key: raise it when what a cache entry holds changes
 
 def out_dir(paper, fmt):
     """Where the PDFs of a format go: dist/ for the versioned formats, release/us/ for the others."""
@@ -327,15 +339,19 @@ def settle(browser, viewport, tmp, html, fs, hi, what):
             return fs, page
     raise BuildError(f"{what}: no body size fits a freshly loaded page")
 
-def save_preview(page, png):
-    png.parent.mkdir(parents=True, exist_ok=True)
+def preview(page):
+    """The PNG of a preview of the loaded page."""
     im = Image.open(io.BytesIO(page.screenshot())).convert("RGB")
     im.thumbnail((600, 900))
     # at this size a 256-colour palette looks the same and makes the file 2.5 times smaller
     buf = io.BytesIO()
     im.quantize(256, method=Image.Quantize.MEDIANCUT, dither=Image.Dither.NONE).save(buf, "PNG", optimize=True)
-    if not png.exists() or png.read_bytes() != buf.getvalue():  # an unchanged preview keeps its file
-        png.write_bytes(buf.getvalue())
+    return buf.getvalue()
+
+def save_preview(png, data):
+    if not png.exists() or png.read_bytes() != data:  # an unchanged preview keeps its file
+        png.parent.mkdir(parents=True, exist_ok=True)
+        png.write_bytes(data)
 
 def min_print(fs):
     """Smallest ISO A size at which a body of fs pt at design size (A1) prints at MIN_BODY pt or more."""
@@ -352,21 +368,57 @@ def themes_of(m):
     return [t for t in THEMES if t in m.get("themes", THEMES)]
 
 def strays(papers):
-    """Files of dist/ and docs/ that no paper makes, such as the PDFs of a renamed paper."""
+    """Previews of docs/ that no paper makes, such as the one of a renamed paper."""
     made = set()
     for p in papers:
-        try:
-            allowed = themes_of(load_meta(p.dir))
-        except BuildError:  # reported by build()
-            allowed = THEMES
-        made |= {ROOT / "dist" / p.category / f"{p.slug}-{fmt}-{th}.pdf" for fmt in FORMATS for th in allowed}
         made.add(ROOT / "docs" / p.category / f"{p.slug}.png")
         if p.slug == SHOWCASE:
             made |= {ROOT / "docs" / "themes" / f"{th}.png" for th in THEMES}
-    found = {f for d in ("dist", "docs") for f in (ROOT / d).rglob("*") if f.is_file() and not f.name.startswith(".")}
+    found = {f for f in (ROOT / "docs").rglob("*") if f.is_file() and not f.name.startswith(".")}
     return sorted(found - made)
 
-def build(paper, formats, themes, page, previews, check):
+@functools.cache
+def engine_key():
+    h = hashlib.sha256(CACHE_VERSION.encode())
+    for pattern in ENGINE_FILES:
+        for f in sorted(ROOT.glob(pattern)):
+            h.update(f"{rel(f)}\0".encode() + f.read_bytes() + b"\0")
+    return h.hexdigest()
+
+def paper_key(paper_dir):
+    """The key of the cache entries of a paper: its files and those of the engine."""
+    h = hashlib.sha256(engine_key().encode())
+    for f in sorted(f for f in paper_dir.rglob("*") if f.is_file() and "__pycache__" not in f.parts):
+        h.update(f"{f.relative_to(paper_dir)}\0".encode() + f.read_bytes() + b"\0")
+    return h.hexdigest()[:32]
+
+class Cache:
+    """What a build made for one paper and one format: its PDFs, its previews and the lines it
+    printed, in <dir>/<slug>/<format>/<key>/. Storing an entry removes the older keys of that
+    paper and format; files are written under a temporary name, then renamed."""
+    def __init__(self, root, slug, fmt, key):
+        self.dir = root / slug / fmt / key if root else None
+
+    def get(self, names):
+        """The path of each of names, or None when one of them is missing."""
+        if not self.dir or not all((self.dir / n).is_file() for n in names):
+            return None
+        return {n: self.dir / n for n in names}
+
+    def put(self, files):
+        """Stores files, {name: bytes}."""
+        if not self.dir:
+            return
+        self.dir.mkdir(parents=True, exist_ok=True)
+        for name, data in files.items():
+            tmp = self.dir / f".{name}.{os.getpid()}"
+            tmp.write_bytes(data)
+            tmp.replace(self.dir / name)
+        for old in self.dir.parent.iterdir():
+            if old != self.dir:
+                shutil.rmtree(old, ignore_errors=True)
+
+def build(paper, formats, themes, page, previews, check, cache_root=None):
     """Writes the PDFs and the previews of a paper. With check, writes nothing and fails when a
     PDF of dist/ differs from the one it would write or when a preview is missing: previews
     are only checked for presence, since screenshots may differ from one machine to another."""
@@ -381,6 +433,7 @@ def build(paper, formats, themes, page, previews, check):
         print(f"{slug}: skipped, its themes are {', '.join(allowed)}")
         return
     html = poster(paper_dir, m)
+    key = paper_key(paper_dir) if cache_root else None
     # per paper and per process, so that two builds of the same paper at once cannot mix their files
     tmp, raw = (ROOT / "build" / f"{slug}-{os.getpid()}{ext}" for ext in (".html", ".pdf"))
     tmp.parent.mkdir(exist_ok=True)
@@ -389,13 +442,52 @@ def build(paper, formats, themes, page, previews, check):
     capped = "max_font" in m or m.get("layout") == "centered"
     try:
         for fmt in formats:
-            build_format(paper, m, fmt, themes, allowed, page, html, tmp, raw, lo, hi, capped, previews, check)
+            cache = Cache(cache_root, slug, fmt, key)
+            if not from_cache(paper, fmt, themes, allowed, previews, check, cache):
+                build_format(paper, m, fmt, themes, allowed, page, html, tmp, raw, lo, hi, capped, previews, check,
+                             cache)
     finally:
         tmp.unlink(missing_ok=True)
         raw.unlink(missing_ok=True)
 
-def build_format(paper, m, fmt, themes, allowed, page, html, tmp, raw, lo, hi, capped, previews, check):
-    """Settles the body size of one format, then prints its PDFs (print_format)."""
+def preview_names(paper, fmt, th, allowed, previews):
+    """The previews that the PDF of a theme makes, as {name in the cache: path in docs/}: the
+    thumbnail of the catalog, and the showcase of the themes above it."""
+    if not previews or fmt != "A":
+        return {}
+    out = {"preview.png": ROOT / "docs" / paper.category / f"{paper.slug}.png"} if th == allowed[0] else {}
+    if paper.slug == SHOWCASE:
+        out[f"theme-{th}.png"] = ROOT / "docs" / "themes" / f"{th}.png"
+    return out
+
+def from_cache(paper, fmt, themes, allowed, previews, check, cache):
+    """Copies the PDFs of a format from the cache, when it holds all of them. A preview is only
+    written when docs/ lacks it, so that one made on another machine keeps its file."""
+    slug = paper.slug
+    pdfs = {f"{slug}-{fmt}-{th}.pdf": th for th in themes}
+    pngs = {n: png for th in themes for n, png in preview_names(paper, fmt, th, allowed, previews).items()}
+    hit = cache.get([*pdfs, *pngs, "log.json"])
+    if not hit:
+        return False
+    log = json.loads(hit["log.json"].read_text())
+    print(f"{log['line']} (cached)")
+    for w in log["warnings"]:
+        warn(w)
+    out = out_dir(paper, fmt)
+    out.mkdir(parents=True, exist_ok=True)
+    for name in pdfs:
+        shutil.copyfile(hit[name], out / name)
+    for name, png in pngs.items():
+        if check and not png.exists():
+            raise BuildError(f"{rel(png)}: missing, run `make {slug}`")
+        if not png.exists():
+            png.parent.mkdir(parents=True, exist_ok=True)
+            shutil.copyfile(hit[name], png)
+    return True
+
+def build_format(paper, m, fmt, themes, allowed, page, html, tmp, raw, lo, hi, capped, previews, check, cache):
+    """Settles the body size of one format, then prints its PDFs (print_format) and keeps them in
+    the cache."""
     slug = paper.slug
     W, H = SIZES[fmt]
     height = design_height(DESIGN_W, (W, H))
@@ -407,20 +499,25 @@ def build_format(paper, m, fmt, themes, allowed, page, html, tmp, raw, lo, hi, c
     fs = best_font(page, low, hi, f"{slug} {fmt}", capped or us)
     fs, fresh = settle(page.context.browser, viewport, tmp, lambda size: html(themes[0], height, size),
                        fs, hi, f"{slug} {fmt}")
+    warned = len(WARNINGS)
     try:
-        print_format(paper, m, fmt, fs, themes, allowed, fresh, html, tmp, raw, out_dir(paper, fmt),
-                     (capped or us) and fs == hi,
-                     previews, check)
+        line, made = print_format(paper, m, fmt, fs, themes, allowed, fresh, html, tmp, raw, out_dir(paper, fmt),
+                                  (capped or us) and fs == hi, previews, check)
     finally:
         fresh.context.close()
+    cache.put({**made, "log.json": json.dumps({"line": line, "warnings": WARNINGS[warned:]}).encode()})
 
 def print_format(paper, m, fmt, fs, themes, allowed, page, html, tmp, raw, out, at_cap, previews, check):
-    """Prints the PDFs of one format, and the previews, on the fresh page that settled its size."""
+    """Prints the PDFs of one format, and the previews, on the fresh page that settled its size.
+    With check, a missing preview is an error and docs/ is left alone. Returns the line printed
+    about the format and what was made, {name in the cache: bytes}."""
     slug, paper_dir = paper.slug, paper.dir
     W, H = SIZES[fmt]
     height = design_height(DESIGN_W, (W, H))
     cap = ", the cap" if at_cap else ""
-    print(f"{slug} {fmt}: body {fs:.2f} pt at design size{cap} ({printed(fmt, fs)})")
+    line = f"{slug} {fmt}: body {fs:.2f} pt at design size{cap} ({printed(fmt, fs)})"
+    print(line)
+    made = {}
     if fmt == "A" and min_print(fs) != m["min_print"]:
         raise BuildError(f"{rel(paper_dir / 'meta.yaml')}: min_print must be {min_print(fs) or 'larger than A0'}, "
                          f"the smallest size at which the body of {fs:.2f} pt prints at {MIN_BODY} pt or more")
@@ -435,29 +532,17 @@ def print_format(paper, m, fmt, fs, themes, allowed, page, html, tmp, raw, out, 
                      "PDF depends on the machine; give these characters a bundled font in style.css")
         dst = out / f"{slug}-{fmt}-{th}.pdf"
         pdf = to_format(raw, (W, H), title=m["title"], author=m.get("author", ""), creator="one-page-papers")
-        same = dst.exists() and same_pdf(dst.read_bytes(), pdf)
-        if check and not same:
-            if dst.exists():  # kept for a look at the difference; the CI uploads build/check/
-                kept = ROOT / "build" / "check" / paper.category / dst.name
-                kept.parent.mkdir(parents=True, exist_ok=True)
-                kept.write_bytes(pdf)
-                raise BuildError(f"{rel(dst)}: out of date, run `make {slug}` (the new PDF is {rel(kept)})")
-            raise BuildError(f"{rel(dst)}: missing, run `make {slug}`")
-        if not check:
-            if not same:  # an unchanged poster keeps its file, so that git sees no change
-                out.mkdir(parents=True, exist_ok=True)
-                dst.write_bytes(pdf)
-            print("  ", rel(dst), "(unchanged)" if same else "")
-        if previews and fmt == "A":
-            # the thumbnail of the catalog, and the showcase of the themes above it
-            pngs = [ROOT / "docs" / paper.category / f"{slug}.png"] if th == allowed[0] else []
-            if slug == SHOWCASE:
-                pngs.append(ROOT / "docs" / "themes" / f"{th}.png")
-            for png in pngs:
-                if not check:
-                    save_preview(page, png)
-                elif not png.exists():
-                    raise BuildError(f"{rel(png)}: missing, run `make {slug}`")
+        out.mkdir(parents=True, exist_ok=True)
+        dst.write_bytes(pdf)
+        made[dst.name] = pdf
+        print("  ", rel(dst))
+        for name, png in preview_names(paper, fmt, th, allowed, previews).items():
+            if check and not png.exists():
+                raise BuildError(f"{rel(png)}: missing, run `make {slug}`")
+            made[name] = preview(page)
+            if not check:
+                save_preview(png, made[name])
+    return line, made
 
 def build_all(targets, a):
     """Builds the papers of targets in one browser. Returns the slugs that failed and the warnings."""
@@ -466,7 +551,7 @@ def build_all(targets, a):
         page = browser.new_page()
         for paper in targets:
             try:
-                build(paper, a.formats, a.themes, page, not a.no_previews, a.check)
+                build(paper, a.formats, a.themes, page, not a.no_previews, a.check, a.cache)
             except BuildError as e:
                 failed.append(paper.slug)
                 print(f"error: {e}", file=sys.stderr, flush=True)
@@ -478,7 +563,7 @@ def main():
     except ValueError as e:
         sys.exit(f"error: {e}")
     names = sorted({p.slug for p in papers} | {p.category for p in papers})
-    ap = argparse.ArgumentParser(description="Build one-page posters into dist/ and docs/.")
+    ap = argparse.ArgumentParser(description="Build one-page posters into dist/, and their previews into docs/.")
     ap.add_argument("names", nargs="*", metavar="paper|category",
                     help=f"slugs or categories, default: every paper ({', '.join(names)})")
     ap.add_argument("--formats", nargs="+", choices=list(SIZES),
@@ -491,15 +576,17 @@ def main():
     ap.add_argument("--jobs", "-j", type=int, default=1, metavar="N",
                     help="build N papers at a time, each in a browser of its own (default 1)")
     ap.add_argument("--check", action="store_true",
-                    help="fit every poster and report problems without touching dist/ or docs/: a PDF that "
-                         "differs from a fresh build, a missing preview, a file that no paper makes; "
-                         "warnings make it fail too")
+                    help="build as the CI does, leaving docs/ untouched: fail on a missing preview, on a preview "
+                         "that no paper makes and on any warning")
+    ap.add_argument("--cache", type=pathlib.Path, default=ROOT / "build" / "cache", metavar="DIR",
+                    help="where to keep what each build makes, and to take the unchanged posters from "
+                         "(default build/cache/)")
+    ap.add_argument("--no-cache", action="store_true", help="lay out every poster, and keep nothing")
     a = ap.parse_args()
+    a.cache = None if a.no_cache else a.cache.resolve()
     us = [f for f in a.formats or [] if f in US_FORMATS]
     if a.us and a.formats and len(us) < len(a.formats):
         ap.error(f"--us builds only the US formats ({', '.join(US_FORMATS)})")
-    if a.check and (a.us or us):
-        ap.error("--check compares the PDFs of dist/, which holds no US format")
     a.formats = a.formats or list(US_FORMATS if a.us else FORMATS)
     if unknown := sorted(set(a.names) - set(names)):
         ap.error(f"unknown paper or category {', '.join(unknown)} (choose from {', '.join(names)})")
@@ -514,7 +601,7 @@ def main():
             done = list(ex.map(build_all, [targets[i::jobs] for i in range(jobs)], [a] * jobs))
         failed, warnings = [f for d in done for f in d[0]], [w for d in done for w in d[1]]
     WARNINGS[:] = warnings
-    stray = strays(papers) if a.check and not a.names else []
+    stray = strays(papers) if a.check and not a.names and not a.us else []
     for f in stray:
         print(f"error: {rel(f)}: made by no paper, remove it", file=sys.stderr)
     if failed or stray or (a.check and WARNINGS):

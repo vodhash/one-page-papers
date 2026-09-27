@@ -66,12 +66,49 @@ When any point is unclear, the text goes to PENDING.md rather than into the coll
 ```bash
 make deps         # once
 make <slug>       # the PDFs and the preview of your paper
-make check        # every poster fits, uses bundled fonts, and matches dist/
+make check        # file sizes, every poster fits and uses bundled fonts, the catalog
 make readme       # the catalog of the README
 ```
 
 - Look at the A format in a light and a dark theme: nothing overflows, the footer sits inside
   the frame, images are readable.
 - `min_print` is the value the build asks for.
-- Commit the paper folder, its PDFs in `dist/`, its preview in `docs/` and the README, in one
-  commit titled `feat(papers): add <category>/<slug>`.
+- Commit the paper folder, its preview in `docs/` and the README, in one commit titled
+  `feat(papers): add <category>/<slug>`. Not its PDFs: git does not keep `dist/`, the CI builds
+  them and publishes them on the site and in the releases.
+- An image of a paper stays under 5 MiB, and any other binary file under 1 MiB: the pre-commit
+  hook and the CI refuse larger ones (`engine/sizes.py`). Reduce a scan to what the poster prints.
+
+## Where the PDFs are published
+
+This part is for the maintainers. Every push to `master` runs the pages workflow: it builds the
+PDFs, uploads those that changed to the Cloudflare R2 bucket `onepagepapers-pdf`, served at
+`https://files.onepagepapers.com/` (its custom domain), then deploys the site on GitHub Pages. It
+needs these secrets of the repository (Settings, Secrets and variables, Actions):
+
+| Secret | Value |
+|---|---|
+| `R2_ACCESS_KEY_ID` | Access Key ID of an R2 API token with Object Read & Write on the bucket |
+| `R2_SECRET_ACCESS_KEY` | its Secret Access Key |
+| `R2_ENDPOINT` | `https://<account id>.r2.cloudflarestorage.com` |
+| `CLOUDFLARE_API_TOKEN` | optional: an API token with Zone, Cache Purge on onepagepapers.com |
+| `CLOUDFLARE_ZONE_ID` | optional: the zone ID of onepagepapers.com |
+
+Without the last two, a PDF that changes shows within a week, when its `Cache-Control` runs out;
+with them, the workflow purges it from the cache of Cloudflare at once.
+
+The wallpapers of the site fetch a PDF from the bucket, which is another origin than the site, so
+the bucket has this CORS policy (R2, the bucket, Settings, CORS policy):
+
+```json
+[
+  {
+    "AllowedOrigins": ["https://onepagepapers.com"],
+    "AllowedMethods": ["GET", "HEAD"],
+    "AllowedHeaders": ["*"],
+    "MaxAgeSeconds": 86400
+  }
+]
+```
+
+A wallpaper therefore does not draw on `make serve`, whose origin is `http://localhost:8000`.

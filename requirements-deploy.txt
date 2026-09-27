@@ -1,0 +1,3 @@
+# What the deployment adds to requirements.txt: boto3, with which engine/upload.py puts the PDFs of
+# dist/ into the R2 bucket of files.onepagepapers.com, through its S3 API.
+boto3==1.43.103

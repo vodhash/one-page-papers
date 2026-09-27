@@ -12,7 +12,7 @@ THEMES = {
 # "A" prints at any ISO A size (A0 to A3); the file itself is A1.
 FORMATS = {"A": SIZES["A1"], "50x70": SIZES["50x70"], "60x80": SIZES["60x80"]}
 # US print sizes, built on demand (build.py --us) into release/us/, which git ignores: only the
-# formats above are versioned in dist/. Letter, Tabloid, 18 x 24 in and 24 x 36 in.
+# formats above are built into dist/. Letter, Tabloid, 18 x 24 in and 24 x 36 in.
 US_FORMATS = {name: SIZES[name] for name in ("letter", "tabloid", "18x24", "24x36")}
 
 def colour(theme, name):

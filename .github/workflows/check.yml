@@ -11,18 +11,15 @@ jobs:
     steps:
       - uses: actions/checkout@v5
       - uses: ./.github/actions/setup
+      - name: No binary file over 1 MiB (5 MiB for an image of a paper), and nothing of dist/, in git
+        run: python engine/sizes.py
       - name: The engine package passes its tests
         run: python -m pytest -q engine/tests
-      - name: Every poster fits its page, uses bundled fonts only and matches its PDFs in dist/
-        run: python engine/build.py --check --jobs "$(nproc)"
-      - name: The catalog of the README is up to date
+      # the cache of the self-hosted runner keeps each poster, keyed on its files and those of the
+      # engine: only the posters that changed are laid out again
+      - name: Every poster fits its page, uses bundled fonts only and has its preview in docs/
+        run: python engine/build.py --check --jobs "$(nproc)" --cache "$HOME/.cache/one-page-papers/build"
+      - name: The catalog of the README is up to date, and no document links a file that git does not keep
         run: python engine/readme.py --check
-      - name: Keep the PDFs that differ from dist/
-        if: failure()
-        uses: actions/upload-artifact@v4
-        with:
-          name: check
-          path: build/check/
-          if-no-files-found: ignore
       - name: The site has no dead internal link, loads nothing from another site but its analytics, and every PDF it links is in dist/
         run: python engine/site.py --check
