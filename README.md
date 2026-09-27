@@ -8,7 +8,7 @@ Each paper is laid out in full on one page: every section, equation, code listin
 
 <!-- catalog:start -->
 
-13 posters in 5 categories. Each one comes in 4 themes, shown here with *Bitcoin: A Peer-to-Peer Electronic Cash System*, and in 3 formats (see [Download](#download)).
+14 posters in 5 categories. Each one comes in 4 themes, shown here with *Bitcoin: A Peer-to-Peer Electronic Cash System*, and in 3 formats (see [Download](#download)).
 
 | ivory | white | genesis | blueprint |
 |:-:|:-:|:-:|:-:|
@@ -53,6 +53,7 @@ A click on a poster opens its PDF in the A format and in its first theme, and th
 |---|---|---|---|---|---|
 | <a href="dist/history/luther-95-theses-A-ivory.pdf"><img src="docs/history/luther-95-theses.png" width="90" alt=""></a> | [Disputatio pro declaratione virtutis indulgentiarum](dist/history/luther-95-theses-A-ivory.pdf)<br>Luther's ninety-five Latin theses against the preaching of indulgences, proposed for a disputation at Wittenberg in 1517.<br>[ivory](dist/history/luther-95-theses-A-ivory.pdf)&nbsp;·&nbsp;[white](dist/history/luther-95-theses-A-white.pdf)&nbsp;·&nbsp;[genesis](dist/history/luther-95-theses-A-genesis.pdf)&nbsp;·&nbsp;[blueprint](dist/history/luther-95-theses-A-blueprint.pdf) | Martin Luther | 1517 | A3 | Public domain |
 | <a href="dist/history/kant-aufklaerung-A-ivory.pdf"><img src="docs/history/kant-aufklaerung.png" width="90" alt=""></a> | [Beantwortung der Frage: Was ist Aufklärung?](dist/history/kant-aufklaerung-A-ivory.pdf)<br>Kant's essay defining enlightenment as man's emergence from self-incurred immaturity and defending the free public use of reason.<br>[ivory](dist/history/kant-aufklaerung-A-ivory.pdf)&nbsp;·&nbsp;[white](dist/history/kant-aufklaerung-A-white.pdf)&nbsp;·&nbsp;[genesis](dist/history/kant-aufklaerung-A-genesis.pdf)&nbsp;·&nbsp;[blueprint](dist/history/kant-aufklaerung-A-blueprint.pdf) | Immanuel Kant | 1784 | A3 | Public domain |
+| <a href="dist/history/declaration-droits-homme-A-ivory.pdf"><img src="docs/history/declaration-droits-homme.png" width="90" alt=""></a> | [Déclaration des Droits de l'Homme et du Citoyen de 1789](dist/history/declaration-droits-homme-A-ivory.pdf)<br>The preamble and seventeen articles of rights adopted by the French National Assembly in August 1789.<br>[ivory](dist/history/declaration-droits-homme-A-ivory.pdf)&nbsp;·&nbsp;[white](dist/history/declaration-droits-homme-A-white.pdf)&nbsp;·&nbsp;[genesis](dist/history/declaration-droits-homme-A-genesis.pdf)&nbsp;·&nbsp;[blueprint](dist/history/declaration-droits-homme-A-blueprint.pdf) | Assemblée nationale | 1789 | A3 | Public domain |
 
 ## Coming soon
 
