@@ -52,6 +52,7 @@ Texts that wait for a license allowing their redistribution; [PENDING.md](PENDIN
 - Hashcash: A Denial of Service Counter-Measure (Adam Back, 2002)
 - b-money (Wei Dai, 1998)
 - Bit Gold (Nick Szabo, 2005)
+- Bitcoin v0.1 released (Satoshi Nakamoto, 2009)
 
 <!-- catalog:end -->
 
