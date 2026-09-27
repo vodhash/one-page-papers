@@ -7,8 +7,9 @@
     python3 engine/build.py rfc-1925 --formats A --themes white genesis
     python3 engine/build.py --check         # fit every poster and compare it with dist/ and docs/, writing nothing
 """
-import argparse, importlib.util, io, json, pathlib, re, subprocess, sys
+import argparse, base64, functools, importlib.util, io, json, pathlib, re, subprocess, sys
 import yaml
+from html import unescape
 from PIL import Image
 from playwright.sync_api import sync_playwright
 from pypdf import PdfReader, PdfWriter
@@ -143,22 +144,72 @@ def hero_html(img, height, share):
             f'<div class="imgbox"><img src="{img["src"]}" width="{img["w"]}" height="{img["h"]}" alt="" '
             f'style="--ar:{img["w"] / img["h"]:.5f}"></div>{cap}</figure></div>')
 
+@functools.lru_cache(maxsize=None)
+def treated(path, mode, theme):
+    """The image at path, as a data URI, with the treatment that the page gives it on a theme.
+    Chromium drops mix-blend-mode from PDFs, so the result is computed over the flat paper colour:
+    on a dark paper, invert takes the luminance of the image from the ink (black) to the paper
+    (white); on a light one, multiply scales every channel by the paper colour. Doing it here
+    rather than with an SVG filter keeps the image as it is in the PDF: Chromium rasterizes a
+    filtered image losslessly at print resolution, 7 MB for the photograph of a plate. A JPEG
+    stays a JPEG, other images become PNG, with a palette when they have 256 colours or fewer."""
+    im = Image.open(path)
+    alpha = None
+    if im.mode in ("RGBA", "LA", "PA") or "transparency" in im.info:
+        im = im.convert("RGBA")
+        alpha = im.getchannel("A")
+    rgb = im.convert("RGB")
+    paper = colour(theme, "paper")
+    if mode == "invert":
+        lum = rgb.convert("L", (.2126, .7152, .0722, 0))
+        bands = [lum.point([round(255 * i + (p - i) * v) for v in range(256)])
+                 for p, i in zip(paper, colour(theme, "ink"))]
+    else:
+        bands = [band.point([round(v * p) for v in range(256)]) for band, p in zip(rgb.split(), paper)]
+    out = Image.merge("RGB", bands)
+    buf = io.BytesIO()
+    if path.suffix.lower() in (".jpg", ".jpeg") and alpha is None:
+        out.save(buf, "JPEG", quality=92)
+        return "data:image/jpeg;base64," + base64.b64encode(buf.getvalue()).decode()
+    if alpha is not None:
+        out.putalpha(alpha)
+    elif colours := out.getcolors(256):  # an exact palette: every colour of the image is in it
+        pal = Image.new("P", (1, 1))
+        pal.putpalette([c for _, rgb3 in colours for c in rgb3])
+        out = out.quantize(palette=pal, dither=Image.Dither.NONE)
+    out.save(buf, "PNG", optimize=True)
+    return "data:image/png;base64," + base64.b64encode(buf.getvalue()).decode()
+
+TREATABLE = re.compile(r'(<figure class="image" data-dark="(\w+)"(?: data-light="(\w+)")? data-file="([^"]+)"'
+                       r'[^>]*>(?:<div class="imgbox">)?<img src=")[^"]+"')
+
+def treat_images(page_html, paper_dir, theme):
+    """page_html with the on_dark=invert and on_light=multiply images of the theme treated. SVG
+    images keep the filters of image_filters, since they are not rasterized here."""
+    def sub(mt):
+        mode = ("invert" if mt.group(2) == "invert" else None) if dark(theme) else \
+               ("multiply" if mt.group(3) == "multiply" and colour(theme, "paper") != (1, 1, 1) else None)
+        path = paper_dir / unescape(mt.group(4))
+        if mode is None or path.suffix.lower() == ".svg":
+            return mt.group(0)
+        return mt.group(1) + treated(path, mode, theme) + '"'
+    return TREATABLE.sub(sub, page_html)
+
 def image_filters(theme):
-    """SVG filters for the on_dark and on_light treatments of images, with the rules that use
-    them. Chromium drops mix-blend-mode from PDFs, so instead of blending with the page they
-    compute the result over its flat paper colour: on a dark paper, invert turns white into the
-    paper and black into the ink; on a light one, multiply scales every channel by the paper
+    """SVG filters for the on_dark and on_light treatments of SVG images, with the rules that use
+    them; raster images are treated by treated() instead. On a dark paper, invert turns white into
+    the paper and black into the ink; on a light one, multiply scales every channel by the paper
     colour, which leaves a white paper unchanged, so no filter at all is used there."""
     paper = colour(theme, "paper")
     if dark(theme):
         name, rows = "on-dark-invert", " ".join(
             f"{-(i - p) * .2126:.4f} {-(i - p) * .7152:.4f} {-(i - p) * .0722:.4f} 0 {i:.4f}"
             for p, i in zip(paper, colour(theme, "ink")))
-        rule = f"figure[data-dark=invert] img{{filter:url(#{name})}}"
+        rule = f'figure[data-dark=invert] img[src^="data:image/svg"]{{filter:url(#{name})}}'
     elif paper != (1, 1, 1):
         name, rows = "on-light-multiply", " ".join(
             " ".join(f"{p:.4f}" if j == k else "0" for j in range(5)) for k, p in enumerate(paper))
-        rule = f"figure[data-light=multiply] img{{filter:url(#{name})}}"
+        rule = f'figure[data-light=multiply] img[src^="data:image/svg"]{{filter:url(#{name})}}'
     else:
         return ""
     return (f'<svg width="0" height="0" style="position:absolute" aria-hidden="true">'
@@ -182,16 +233,17 @@ def poster(paper_dir, m):
         body = body.replace(f"<!--MATH:{i}-->", h)
     css = paper_dir / "style.css"
     tpl = (ENGINE / "template.html").read_text()
-    values = {"HEADER": header_html(m), "FOOTER": footer_html(m), "BODY": body, "LAYOUT": layout,
+    values = {"HEADER": header_html(m), "FOOTER": footer_html(m), "LAYOUT": layout,
               "COLS": m.get("columns", 1 if layout == "centered" else 4), "HS": m.get("header_scale", 1),
               "TITLE_SIZE": m.get("title_size", "76pt"), "LANG": m.get("lang", "en"),
               "EXTRA_CSS": css.read_text() if css.exists() else "",
               "NM": (ROOT / "node_modules").as_uri()}
     def html(theme, height, fs):
-        top = hero_html(hero, height, m.get("hero_height", 50)) if hero else ""
+        top = treat_images(hero_html(hero, height, m.get("hero_height", 50)), paper_dir, theme) if hero else ""
         if hero or '<figure class="image"' in body:
             top = image_filters(theme) + top
-        return substitute(tpl, {**values, "THEME": THEMES[theme], "THEME_NAME": theme, "HERO": top,
+        return substitute(tpl, {**values, "BODY": treat_images(body, paper_dir, theme), "THEME": THEMES[theme],
+                                "THEME_NAME": theme, "HERO": top,
                                 "TONE": "dark" if dark(theme) else "light", "PH": f"{height:.2f}", "FS": f"{fs}pt"})
     return html
 

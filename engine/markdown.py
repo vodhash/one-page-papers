@@ -243,7 +243,8 @@ class Renderer:
         data = path.read_bytes()
         w, h = image_size(path, data)
         img = {'src': f'data:{IMAGE_TYPES[path.suffix.lower()]};base64,{base64.b64encode(data).decode()}',
-               'w': w, 'h': h, 'dark': dark, 'light': light, 'caption': self.inline(opts.get('caption', ''), line)}
+               'w': w, 'h': h, 'dark': dark, 'light': light, 'file': words[2],
+               'caption': self.inline(opts.get('caption', ''), line)}
         if self.hero == {}:
             self.hero.update(img)
             return ''
@@ -280,9 +281,10 @@ class Renderer:
         return [f'<div class="footnotes"><ol>{notes}</ol></div>']
 
 def figure_attrs(img):
-    """Class and data attributes of an image figure, which the page styles by theme."""
+    """Class and data attributes of an image figure, which the page styles by theme; data-file names
+    the image for build.py, which gives it its on_dark or on_light treatment for each theme."""
     light = f' data-light="{img["light"]}"' if img['light'] else ''
-    return f'class="image" data-dark="{img["dark"]}"{light}'
+    return f'class="image" data-dark="{img["dark"]}"{light} data-file="{html.escape(img["file"])}"'
 
 def image_size(path, data):
     """Pixel size of an image, or (None, None) for an SVG that does not state it."""
