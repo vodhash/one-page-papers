@@ -1,0 +1,8 @@
+/* The heading of the proclamation centered; the two paragraphs quoted from the preliminary
+   proclamation indented; the signatures at the right */
+p.heading{text-align:center;font-style:italic;margin-bottom:.9em;hyphens:manual}
+p.heading .procl{font-style:normal;font-variant:small-caps;letter-spacing:.08em;font-size:1.1em}
+.quoted{margin-left:.9em;padding-left:.9em;border-left:.35mm solid var(--rule)}
+p.signed{text-align:right;font-variant-caps:all-small-caps;letter-spacing:.05em;margin-top:.8em;hyphens:manual}
+.kick{letter-spacing:.3em}
+footer>div:first-child{max-width:42%;line-height:1.3}
