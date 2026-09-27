@@ -30,7 +30,7 @@ jobs:
           cache: pip
       - name: poppler-utils, whose pdftoppm draws the previews from the PDFs
         run: sudo apt-get update -qq && sudo apt-get install -y --no-install-recommends poppler-utils
-      - run: npm ci
+      - run: npm ci --omit=optional
       - run: pip install -r requirements.txt
       - name: Write the site into site/, which fails on a dead link or on a PDF missing from dist/
         run: python engine/site.py

@@ -1,9 +1,11 @@
-/* one-page-papers: the theme button, the menu on small screens, the filters of the collection
-   and the themes of a poster. Every page works without it: the colours follow the system, the
-   whole collection shows, and a poster page offers the PDF of each theme. */
+/* one-page-papers: the theme button, the menu on small screens, the filters of the collection,
+   the themes of a poster and its wallpapers. Every page works without it: the colours follow the
+   system, the whole collection shows, and a poster page offers the PDF of each theme. */
 (function () {
   'use strict';
   var root = document.documentElement;
+  // the folder of this script, where pdf.js is (assets/pdfjs/)
+  var assets = document.currentScript ? document.currentScript.src : location.href;
   var KEY = 'one-page-papers:theme';
   var system = window.matchMedia('(prefers-color-scheme: dark)');
   var onMode = [];
@@ -108,6 +110,12 @@
       each('[data-pick]', function (p) { p.setAttribute('aria-pressed', String(p.getAttribute('data-pick') === t)); }, poster);
       each('.dl a[data-t]', function (a) { a.classList.toggle('on', a.getAttribute('data-t') === t); }, poster);
       each('.shown', function (s) { s.textContent = t; }, poster);
+      // the wallpaper starts in the theme shown
+      var radio = poster.querySelector('input[name=wp-theme][value="' + t + '"]');
+      if (radio && !radio.checked) {
+        radio.checked = true;
+        radio.dispatchEvent(new Event('change', { bubbles: true }));
+      }
     };
     each('[data-pick]', function (p) {
       p.addEventListener('click', function () {
@@ -117,6 +125,98 @@
       });
     }, poster);
     onMode.push(render);
+  }
+
+  // The wallpaper of a poster: its A PDF in the theme chosen, drawn by pdf.js (loaded on the first
+  // request) on a canvas of the size of the screen, filled with the paper colour of the theme, the
+  // poster centred and as large as a margin allows. Nothing is sent anywhere: the PNG is made here.
+  var wall = document.querySelector('[data-wallpaper]');
+  if (wall && window.HTMLCanvasElement && window.Promise && window.URL) {
+    var form = wall.querySelector('.wp-form');
+    var status = wall.querySelector('.wp-status');
+    var result = wall.querySelector('.wp-result');
+    var button = form.querySelector('button[type=submit]');
+    var lib = null, docs = {}, blobUrl = null, busy = false;
+    var pdfjs = function () {
+      if (!lib) {
+        lib = import(new URL('pdfjs/pdf.min.mjs', assets).href).then(function (m) {
+          m.GlobalWorkerOptions.workerSrc = new URL('pdfjs/pdf.worker.min.mjs', assets).href;
+          return m;
+        });
+        lib.catch(function () { lib = null; });
+      }
+      return lib;
+    };
+    var load = function (url) {
+      if (!docs[url]) {
+        docs[url] = Promise.all([pdfjs(), fetch(url).then(function (r) {
+          if (!r.ok) throw new Error('HTTP ' + r.status);
+          return r.arrayBuffer();
+        })]).then(function (both) {
+          return both[0].getDocument({ data: new Uint8Array(both[1]), isEvalSupported: false }).promise;
+        });
+        docs[url].catch(function () { delete docs[url]; });
+      }
+      return docs[url];
+    };
+    var picked = function (name) { return form.querySelector('input[name=' + name + ']:checked'); };
+    var say = function (text) { status.textContent = text; };
+    form.hidden = false;
+    form.addEventListener('change', function () { result.hidden = true; say(''); });
+    form.addEventListener('submit', function (e) {
+      e.preventDefault();
+      if (busy) return;
+      var size = picked('wp-size'), theme = picked('wp-theme');
+      var W = +size.getAttribute('data-w'), H = +size.getAttribute('data-h');
+      var paper = theme.getAttribute('data-paper');
+      busy = true;
+      button.disabled = true;
+      result.hidden = true;
+      say('Loading the poster\u2026');
+      load(theme.getAttribute('data-pdf')).then(function (doc) {
+        return doc.getPage(1);
+      }).then(function (page) {
+        say('Drawing it\u2026');
+        var one = page.getViewport({ scale: 1 });
+        var margin = Math.round(Math.min(W, H) * 0.07);
+        var scale = Math.min((W - 2 * margin) / one.width, (H - 2 * margin) / one.height);
+        var viewport = page.getViewport({ scale: scale });
+        var sheet = document.createElement('canvas');
+        sheet.width = Math.floor(viewport.width);
+        sheet.height = Math.floor(viewport.height);
+        return page.render({ canvas: sheet, canvasContext: sheet.getContext('2d'), viewport: viewport,
+          background: paper }).promise.then(function () { return sheet; });
+      }).then(function (sheet) {
+        var canvas = document.createElement('canvas');
+        canvas.width = W;
+        canvas.height = H;
+        var ctx = canvas.getContext('2d');
+        ctx.fillStyle = paper;
+        ctx.fillRect(0, 0, W, H);
+        ctx.drawImage(sheet, Math.round((W - sheet.width) / 2), Math.round((H - sheet.height) / 2));
+        return new Promise(function (resolve, reject) {
+          canvas.toBlob(function (b) { if (b) resolve(b); else reject(new Error('toBlob')); }, 'image/png');
+        });
+      }).then(function (blob) {
+        if (blobUrl) URL.revokeObjectURL(blobUrl);
+        blobUrl = URL.createObjectURL(blob);
+        var name = wall.getAttribute('data-slug') + '-' + theme.value + '-' + W + 'x' + H + '.png';
+        var img = result.querySelector('img');
+        img.src = blobUrl;
+        img.alt = 'The wallpaper, ' + W + ' by ' + H + ' pixels, in the ' + theme.value + ' theme';
+        var a = result.querySelector('a');
+        a.href = blobUrl;
+        a.download = name;
+        a.textContent = 'Download the PNG \u00b7 ' + (blob.size / 1e6).toFixed(1) + ' MB';
+        result.hidden = false;
+        say('Ready: ' + W + '\u00a0\u00d7\u00a0' + H + ' pixels.');
+      }).catch(function () {
+        say('The wallpaper could not be made. Check the connection, or download the PDF above.');
+      }).then(function () {
+        busy = false;
+        button.disabled = false;
+      });
+    });
   }
 
   apply(mode());

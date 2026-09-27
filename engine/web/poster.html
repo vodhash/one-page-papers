@@ -13,6 +13,7 @@
 <p class="authors">{{AUTHORS}}</p>
 {{SUBTITLE}}
 <p class="summary">{{SUMMARY}}</p>
+<p class="read-link"><a class="btn btn-line" href="read/">Read the text</a> <span>The whole poster as a web page</span></p>
 </header>
 <figure class="wall">
 <div class="mat">{{PICTURE}}</div>
@@ -35,6 +36,29 @@
 </ul>
 <p class="zip"><a href="{{ZIP}}">Every {{CATEGORY_TITLE}} poster</a>, in every format and theme, as one zip from the latest release.</p>
 <p class="note">{{PRINT_NOTE}}</p>
+</section>
+<section class="wallpaper" aria-labelledby="wall-title" data-wallpaper data-slug="{{SLUG}}">
+<h2 id="wall-title" class="eyebrow">Wallpaper</h2>
+<p class="wp-nojs">Wallpapers are drawn in your browser from the PDF of the poster: this needs JavaScript.</p>
+<form class="wp-form" hidden>
+<fieldset>
+<legend>Screen</legend>
+<div class="pills">
+{{WP_SIZES}}
+</div>
+</fieldset>
+<fieldset>
+<legend>Theme</legend>
+<div class="pills">
+{{WP_THEMES}}
+</div>
+</fieldset>
+<p class="wp-go"><button type="submit" class="btn btn-solid">Make the wallpaper</button> <span class="wp-status" role="status"></span></p>
+<div class="wp-result" hidden>
+<img alt="">
+<a class="btn btn-line" download>Download the PNG</a>
+</div>
+</form>
 </section>
 <section class="provenance" aria-labelledby="edition-title">
 <h2 id="edition-title" class="eyebrow">Edition</h2>

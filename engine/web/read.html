@@ -1,0 +1,34 @@
+<div class="wrap">
+<nav class="crumbs" aria-label="Breadcrumb">
+<ol>
+<li><a href="{{ROOT}}#collection">Collection</a><span class="slash" aria-hidden="true">/</span></li>
+<li><a href="{{ROOT}}?category={{CATEGORY}}#collection">{{CATEGORY_TITLE}}</a><span class="slash" aria-hidden="true">/</span></li>
+<li><a href="../">{{TITLE}}</a><span class="slash" aria-hidden="true">/</span></li>
+<li><span aria-current="page">The text</span></li>
+</ol>
+</nav>
+<article class="reading">
+<header class="read-head">
+<p class="eyebrow">{{CATEGORY_TITLE}} · {{YEAR}}</p>
+<h1 lang="{{LANG}}">{{TITLE_H1}}</h1>
+<p class="authors">{{AUTHORS}}</p>
+{{KICKER}}{{BYLINE}}<p class="actions"><a class="btn btn-line" href="../">The poster <span class="size">PDF, wallpaper</span></a></p>
+<dl class="facts">
+{{FACTS}}
+</dl>
+{{NOTICES}}<details class="edition">
+<summary>About this edition and its rights</summary>
+<h2 class="eyebrow">Edition</h2>
+<p>{{EDITION}}</p>
+<h2 class="eyebrow">Rights</h2>
+{{RIGHTS}}
+</details>
+</header>
+<div class="text" lang="{{LANG}}" data-paper="{{SLUG}}">
+{{ABSTRACT}}{{TEXT}}
+</div>
+<footer class="read-foot">
+<p class="actions"><a class="btn btn-solid" href="../">Back to the poster</a> <a class="btn btn-line" href="#main">To the top</a></p>
+</footer>
+</article>
+</div>

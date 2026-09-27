@@ -1,6 +1,7 @@
 #!/usr/bin/env python3
 """The showcase site of the collection, for GitHub Pages: static pages written from the
-meta.yaml of every paper, with previews rasterized from its A PDFs in dist/.
+meta.yaml of every paper, with previews rasterized from its A PDFs in dist/, and a reading page
+for each paper (<slug>/read/), its text rendered by markdown.py and KaTeX as for its poster.
 
     python3 engine/site.py                # write site/, after checking it
     python3 engine/site.py --check        # write it into a temporary directory and check it, as CI does
@@ -8,7 +9,8 @@ meta.yaml of every paper, with previews rasterized from its A PDFs in dist/.
     python3 engine/site.py --contrast     # print the contrast of every text colour of the site
 
 The check fails on a dead internal link (page, image, font, stylesheet, script, anchor), on a
-resource loaded from another site but the analytics script (ANALYTICS), and on a PDF link whose file is not in dist/. Links inside
+resource loaded from another site but the analytics script (ANALYTICS) and the PDFs that site.js
+fetches to draw a wallpaper (WALL_PDF_URL), and on a PDF link whose file is not in dist/. Links inside
 the site are relative, so that it works at https://onepagepapers.com/ (GitHub Pages) as well as at
 the root of `make serve`. Previews need pdftoppm (poppler-utils); they are cached in
 build/site-previews/, keyed on the content of each PDF, so an unchanged collection builds fast.
@@ -23,7 +25,7 @@ from PIL import Image, ImageDraw, ImageFilter
 
 sys.path.insert(0, str(pathlib.Path(__file__).resolve().parent))
 import markdown
-from build import MIN_BODY, PRINT_SIZES, BuildError, load_meta, substitute, themes_of
+from build import MIN_BODY, PRINT_SIZES, BuildError, katex, load_figures, load_meta, substitute, themes_of
 from papers import CATEGORIES, ROOT, SHOWCASE, Paper, discover
 from readme import pending, year_key, year_text
 from themes import FORMATS, THEMES, colour
@@ -34,6 +36,11 @@ BASE_URL = "https://onepagepapers.com/"  # only for canonical, Open Graph and si
 # poster is pushed. For the assets of the latest release instead, which only has the posters
 # of the last tag: REPO + "/releases/latest/download/{file}"
 PDF_URL = REPO + "/raw/master/dist/{category}/{file}"
+# The same files for the wallpapers, which the browser fetches: github.com/.../raw/ redirects here
+# without the Access-Control-Allow-Origin header that raw.githubusercontent.com sends
+WALL_PDF_URL = "https://raw.githubusercontent.com/vodhash/one-page-papers/master/dist/{category}/{file}"
+# The wallpapers that a poster page draws in the browser: name, width and height in pixels
+WALLPAPERS = (("Phone", 1170, 2532), ("Desktop", 2560, 1440), ("4K", 3840, 2160))
 ZIP_URL = REPO + "/releases/latest/download/{category}.zip"  # the zips only exist in releases
 RELEASE_URL = REPO + "/releases/latest"
 # Umami, the analytics of the site: no cookie, no personal data. The only resource the site loads
@@ -66,7 +73,7 @@ THUMB_H = round(600 * A_H / A_W)  # height of the 600 px preview, the size state
 # draws (None: any text of the site); a face is kept in every subset that covers one of them
 FONTS = {
     "EB Garamond": ("eb-garamond", ("400", "400-italic", "500", "500-italic", "600", "600-italic"), None),
-    "JetBrains Mono": ("jetbrains-mono", ("400",), GENESIS_HASH),
+    "JetBrains Mono": ("jetbrains-mono", ("400", "700"), None),  # the hash of the footer, and the code of the texts
 }
 PRELOAD = ("eb-garamond-latin-400-normal.woff2", "eb-garamond-latin-500-normal.woff2")
 
@@ -88,6 +95,10 @@ EXTRA_TOKENS = {  # not colours of text or surfaces: the shadow of a passe-parto
     "shadow": ("0 1px 2px rgba(29,27,23,.08),0 14px 30px -14px rgba(29,27,23,.34)",
                "0 1px 2px rgba(0,0,0,.5),0 16px 34px -14px rgba(0,0,0,.8)"),
     "edge": ("rgba(29,27,23,.09)", "rgba(236,230,216,.07)"),
+    # the accent boxes of the figures and the code blocks of the reading pages: those of the ivory
+    # and genesis themes, whose colours the site takes
+    "boxa": ("#f6dcb4", "#3d2a12"),
+    "code": ("#ede5d5", "#1e1c19"),
 }
 LANGUAGES = {"en": "English", "de": "German", "fr": "French", "la": "Latin", "el": "Greek",
              "it": "Italian", "es": "Spanish", "nl": "Dutch", "pt": "Portuguese", "ru": "Russian"}
@@ -119,6 +130,10 @@ def pdf_file(p, fmt, theme):
 def pdf_url(p, fmt, theme):
     f = pdf_file(p, fmt, theme)
     return PDF_URL.format(category=f.parent.name, file=f.name)
+
+def wall_pdf_url(p, theme):
+    f = pdf_file(p, "A", theme)
+    return WALL_PDF_URL.format(category=f.parent.name, file=f.name)
 
 def collect(only_built):
     """The posters of the site, in the order of the catalog of the README, and the papers left
@@ -353,6 +368,7 @@ class Page(NamedTuple):
     image: str = ""    # site path of the Open Graph image
     current: str = ""  # "collection" or "about": the link of the menu marked as the current page
     image_alt: str = ""
+    head: str = ""     # more elements for the <head>, such as the stylesheet of KaTeX
 
 SUN = ('<svg width="22" height="22" viewBox="0 0 24 24" aria-hidden="true" focusable="false"><circle cx="12" cy="12" '
        'r="4.2" fill="none" stroke="currentColor" stroke-width="1.5"/><path d="M12 2.6v2.3M12 19.1v2.3M2.6 12h2.3M19.1 '
@@ -396,7 +412,8 @@ def render(pg, css_v, js_v):
         "CSS_V": css_v, "JS_V": js_v, "SOCIAL": "\n".join(social), "ANALYTICS": ANALYTICS,
         "SKIP": "" if not_found else '<a class="skip" href="#main">Skip to content</a>',
         "CUR_COLLECTION": cur["collection"], "CUR_ABOUT": cur["about"], "REPO": REPO,
-        "SUN": SUN, "BURGER": BURGER, "MAIN": pg.main, "HASH": GENESIS_HASH})
+        "SUN": SUN, "BURGER": BURGER, "MAIN": pg.main, "HASH": GENESIS_HASH,
+        "HEAD": pg.head.replace("{{ROOT}}", root)})
 
 def home_page(posters, previews):
     show = next(p for p in posters if p.slug == SHOWCASE)
@@ -457,7 +474,15 @@ def poster_page(p, posters, previews):
               else f'<p>{esc(lic["basis"])}</p>')
     if lic.get("note"):
         rights += f'\n<p>{esc(lic["note"])}</p>'
+    sizes = [f'<label class="pill"><input type="radio" name="wp-size" value="{n.lower()}" data-w="{w}" data-h="{h}"'
+             f'{" checked" if i == 0 else ""}>{n} <span class="count">{w}\u00a0×\u00a0{h}</span></label>'
+             for i, (n, w, h) in enumerate(WALLPAPERS)]
+    wthemes = [f'<label class="pill"><input type="radio" name="wp-theme" value="{t}"{" checked" if t == p.light else ""} '
+               f'data-paper="{hexcolour(t, "paper")}" data-pdf="{wall_pdf_url(p.paper, t)}"><span class="swatch" '
+               f'style="--sw:{hexcolour(t, "paper")};--sa:{hexcolour(t, "acc")}" aria-hidden="true"></span>{t}</label>'
+               for t in p.themes]
     main = substitute((WEB / "poster.html").read_text(), {
+        "SLUG": p.slug, "WP_SIZES": "\n".join(sizes), "WP_THEMES": "\n".join(wthemes),
         "CATEGORY": p.category, "CATEGORY_TITLE": esc(CATEGORIES[p.category]), "TITLE": esc(m["title"]),
         "TITLE_H1": title(m["title"]),
         "YEAR": esc(year_text(m["year"])), "AUTHORS": esc(", ".join(m["authors"])),
@@ -474,6 +499,210 @@ def poster_page(p, posters, previews):
     return Page(f"{p.slug}/index.html", f"{esc(m['title'])} · {NAME}",
                 f"{esc(m['summary'])} A one-page poster, free to download as a vector PDF.", main,
                 f"previews/{p.slug}-share.jpg", "", esc(alt(p)))
+
+# ---------------------------------------------------------------- reading edition
+
+READ_IMAGE_W = 2000  # px: the raster images of a reading page are reduced to this width at most
+READ_VERSION = 1  # part of the cache key of the images of the reading pages
+KATEX_CSS = ROOT / "node_modules" / "katex" / "dist" / "katex.min.css"
+PDFJS = ROOT / "node_modules" / "pdfjs-dist"
+PDFJS_FILES = ("build/pdf.min.mjs", "build/pdf.worker.min.mjs", "LICENSE")  # into assets/pdfjs/
+
+class RawText(NamedTuple):
+    """The text of a poster, rendered as build.py renders it, before KaTeX."""
+    body: str
+    math: list
+
+def texts(posters):
+    """{slug: html of the text}, with its math set by one run of KaTeX for the whole collection.
+    The text goes through markdown.render with the figures and the folder of the paper, as in
+    build.py, but without the hero: its image stays in the flow of the text."""
+    raw = {}
+    for p in posters:
+        path = p.paper.dir / "text.md"
+        try:
+            body, math, _ = markdown.render(path.read_text(), load_figures(p.paper.dir), p.meta.get("numbered", False),
+                                            assets=p.paper.dir)
+        except markdown.MarkdownError as e:
+            raise SiteError(f"{path.relative_to(ROOT)}:{e.line}: {e.msg}") from None
+        raw[p.slug] = RawText(body, math)
+    try:
+        done = iter(katex([x for t in raw.values() for x in t.math]))
+    except BuildError as e:
+        raise SiteError(e) from None
+    out = {}
+    for slug, t in raw.items():
+        body = t.body
+        for i in range(len(t.math)):
+            body = body.replace(f"<!--MATH:{i}-->", next(done), 1)
+        out[slug] = body
+    return out
+
+def plain(fragment):
+    """The text of an HTML fragment, for an attribute."""
+    return html.escape(" ".join(html.unescape(re.sub(r"<[^>]+>", "", fragment)).split()))
+
+def web_image(path):
+    """An image of a text for the web, in the cache: an SVG as it is, a raster image as WebP at
+    most READ_IMAGE_W wide. Returns (path in the cache, width, height)."""
+    data = path.read_bytes()
+    key = f"read-{hashlib.sha256(data).hexdigest()[:24]}-v{READ_VERSION}"
+    if path.suffix.lower() == ".svg":
+        dst = CACHE / f"{key}.svg"
+        if not dst.exists():
+            save_atomic(dst, data)
+        w, h = markdown.image_size(path, data)
+        return dst, w, h
+    dst = CACHE / f"{key}.webp"
+    if dst.exists():
+        with Image.open(dst) as im:
+            return dst, *im.size
+    im = Image.open(io.BytesIO(data))
+    im = im.convert("RGBA" if im.mode in ("RGBA", "LA", "PA") or "transparency" in im.info else "RGB")
+    if im.width > READ_IMAGE_W:
+        im = im.resize((READ_IMAGE_W, round(im.height * READ_IMAGE_W / im.width)), Image.LANCZOS)
+    buf = io.BytesIO()
+    im.save(buf, "WEBP", quality=84, method=6)
+    save_atomic(dst, buf.getvalue())
+    return dst, im.width, im.height
+
+IMAGE_FIGURE = re.compile(r'<figure class="image" data-dark="(\w+)"( data-light="\w+")? data-file="([^"]+)"( style="[^"]*")?>'
+                          r'<img src="data:[^"]+"(?: width="\d+" height="\d+")? alt="">(<figcaption>.*?</figcaption>)?</figure>', re.S)
+SVG_FIGURE = re.compile(r'<figure><svg\b.*?</svg></figure>', re.S)
+HEADING = re.compile(r'<h([234])((?:\s[^>]*)?)>(.*?)</h\1>', re.S)
+
+def reading_body(p, body, files):
+    """The text of a poster made for a web page: its images as files (added to files, {site
+    path: path in the cache}) with their size and an alt taken from their caption, the ids of each
+    SVG figure made its own, an anchor on every heading, and footnotes linked both ways."""
+    folder = f"{p.slug}/read/"
+    def image(k):
+        src = p.paper.dir / html.unescape(k.group(3))
+        cached, w, h = web_image(src)
+        name = pathlib.PurePath(html.unescape(k.group(3))).with_suffix(cached.suffix).as_posix()
+        files[folder + name] = cached
+        cap = k.group(5) or ""
+        text = plain(cap) or esc(f"Image from “{p.meta['title']}”")
+        size = f' width="{w}" height="{h}"' if w else ""
+        return (f'<figure class="image" data-dark="{k.group(1)}"{k.group(2) or ""}{k.group(4) or ""}>'
+                f'<img src="{html.escape(name)}"{size} alt="{text}" loading="lazy" decoding="async">{cap}</figure>')
+    body = IMAGE_FIGURE.sub(image, body)
+    if "data:image/" in body:
+        raise SiteError(f"papers/{p.category}/{p.slug}: an image of the text was left as a data URI")
+    # the figures of svg.py all define the same markers: each figure gets ids of its own
+    n = iter(range(1, 1000))
+    def figure(k):
+        i, svg = next(n), k.group(0)
+        ids = re.findall(r'\bid="([^"]+)"', svg)
+        for x in ids:
+            svg = re.sub(rf'\bid="{re.escape(x)}"', f'id="fig{i}-{x}"', svg)
+            svg = re.sub(rf'(url\(#|href="#){re.escape(x)}([)"])', rf'\g<1>fig{i}-{x}\2', svg)
+        return svg.replace("<svg ", '<svg role="img" aria-label="Figure" ', 1).replace('<figure>', '<figure class="fig">', 1)
+    body = SVG_FIGURE.sub(figure, body)
+    # a Morse code drawn with empty elements (morse-phonetic-alphabet) is read out as its dots and dashes
+    body = re.sub(r'(<span class="m" data-m="([.\-]+)")>', r'\1 role="img" aria-label="\2">', body)
+    # numbered anchors: s1, s1-2, s1-2-3, from the place of each heading in the text
+    nums = [0, 0, 0]
+    def heading(k):
+        level, attrs, inner = int(k.group(1)), k.group(2), k.group(3)
+        nums[level - 2] += 1
+        nums[level - 1:] = [0] * (4 - level)
+        m = re.search(r'\bid="([^"]+)"', attrs)
+        hid = m.group(1) if m else "s" + "-".join(str(x) for x in nums[:level - 1])
+        if not m:
+            attrs += f' id="{hid}"'
+        return (f'<h{level}{attrs}>{inner}<a class="anchor" href="#{hid}" aria-label="Link to this section">#</a>'
+                f'</h{level}>')
+    body = HEADING.sub(heading, body)
+    # footnotes: a call links to its note, the note back to its first call
+    called = set()
+    def call(k):
+        num = k.group(1)
+        back = "" if num in called else f' id="fnref-{num}"'
+        called.add(num)
+        return f'<sup class="fn"><a href="#fn-{num}"{back} aria-label="Note {num}">{num}</a></sup>'
+    body = re.sub(r'<sup class="fn">(\d+)</sup>', call, body)
+    def note(k):
+        num = k.group(1)
+        back = f' <a class="back" href="#fnref-{num}" aria-label="Back to the call of note {num}">↑</a>' if num in called else ""
+        return f'<li id="fn-{num}"><span>{num}</span><div>{k.group(2)}{back}</div></li>'
+    if '<div class="footnotes">' in body:
+        head, notes = body.rsplit('<div class="footnotes">', 1)
+        notes = re.sub(r'<li><span>(\d+)</span><div>(.*?)</div></li>', note, notes, flags=re.S)
+        body = f'{head}<div class="footnotes">{notes}'
+    return body
+
+def read_page(p, body, files, katex_head):
+    """The reading edition of a poster: its whole text as a web page, under /<slug>/read/."""
+    m, root = p.meta, "../../"
+    lic, src = m["license"], m["source"]
+    lang = m.get("lang", "en")
+    host = urlsplit(src["url"]).netloc.removeprefix("www.")
+    text = reading_body(p, body, files)
+    facts = [("Source", f'<a href="{html.escape(src["url"])}">{esc(host)}</a>'),
+             ("Retrieved", date_text(src["retrieved"])), ("License", esc(lic["text"]))]
+    if lic.get("holder"):
+        facts.append(("Rights holder", esc(lic["holder"])))
+    facts.append(("Language", LANGUAGES.get(lang, lang)))
+    # what the license asks to carry with the text, in sight: its notice, and the footer of the
+    # poster (attribution, license URI); why a text is free, and the notes, are in the details
+    notices = []
+    if lic.get("notice"):
+        notices.append(f'<blockquote class="notice"><p>{esc(lic["notice"])}</p></blockquote>')
+    footer = [c for c in (m.get("footer") or []) if c]
+    if footer:
+        notices.append('<ul class="read-footer" aria-label="The footer of the poster">'
+                       + "".join(f"<li>{c}</li>" for c in footer) + "</ul>")
+    rights = [f'<p>{esc(lic["basis"])}</p>'] if lic.get("basis") else []
+    if lic.get("notice"):
+        rights.append(f'<p>License notice: “{esc(lic["notice"])}”</p>')
+    if lic.get("note"):
+        rights.append(f'<p>{esc(lic["note"])}</p>')
+    kicker = f'<p class="subtitle" lang="{lang}">{m["kicker"]}</p>\n' if m.get("kicker") else ""
+    byline = f'<p class="byline">{m["byline"]}</p>\n' if m.get("byline") else ""
+    abstract = ""
+    if m.get("abstract"):
+        label = m.get("abstract_label", "Abstract.")
+        abstract = f'<p class="abstract"><b>{label}</b> {markdown.inline(m["abstract"])}</p>\n'
+    main = substitute((WEB / "read.html").read_text(), {
+        "CATEGORY": p.category, "CATEGORY_TITLE": esc(CATEGORIES[p.category]), "TITLE": esc(m["title"]),
+        "TITLE_H1": title(m["title"]), "LANG": lang, "YEAR": esc(year_text(m["year"])),
+        "AUTHORS": esc(", ".join(m["authors"])), "KICKER": kicker, "BYLINE": byline,
+        "FACTS": "\n".join(f"<div><dt>{k}</dt><dd>{v}</dd></div>" for k, v in facts),
+        "EDITION": esc(src["edition"]), "RIGHTS": "\n".join(rights),
+        "NOTICES": "".join(x + "\n" for x in notices),
+        "ABSTRACT": abstract, "TEXT": text, "ROOT": root, "SLUG": p.slug})
+    return Page(f"{p.slug}/read/index.html", f"{esc(m['title'])}, the text · {NAME}",
+                esc(f"The full text of “{m['title']}” ({authors_short(m)}, {year_text(m['year'])}), "
+                    "as set on its poster, to read on screen."),
+                main, f"previews/{p.slug}-share.jpg", "", esc(alt(p)), katex_head if "katex" in text else "")
+
+def katex_css(pages_html):
+    """The stylesheet of KaTeX for the site, and the font files it needs: the families that the
+    classes of the math of the pages use, in WOFF2 only."""
+    if not KATEX_CSS.exists():
+        raise SiteError(f"{KATEX_CSS.relative_to(ROOT)} is missing, run `make deps`")
+    css = KATEX_CSS.read_text()
+    classes = set()
+    for h in pages_html:
+        for attr in re.findall(r'class="([^"]*)"', h):
+            classes.update(attr.split())
+    used = {"KaTeX_Main"}
+    for sel, decl in re.findall(r"([^{}@]+)\{([^{}]*font(?:-family)?:[^{}]*)\}", css):
+        fam = re.findall(r"KaTeX_\w+", decl)
+        if fam and any(all(c in classes for c in re.findall(r"\.([\w-]+)", one)) for one in sel.split(",")):
+            used.update(fam)
+    files = []
+    def face(k):
+        block = k.group(0)
+        fam = re.search(r"font-family:\"?(KaTeX_\w+)", block).group(1)
+        if fam not in used:
+            return ""
+        woff2 = re.search(r"url\((fonts/[^)]+\.woff2)\)", block).group(1)
+        files.append(KATEX_CSS.parent / woff2)
+        return re.sub(r"src:[^;}]+", f'src:url({woff2}) format("woff2")', block)
+    css = re.sub(r"@font-face\{[^}]*\}", face, css)
+    return css, files
 
 def origin():
     """The Origin section of README.md, in HTML. Links are made absolute: a relative one points
@@ -605,26 +834,44 @@ def write(out, posters):
         shutil.copyfile(f, out / f"previews/{p.slug}-share.jpg")
     shares.append(share_image([cached[q.slug, q.light][1200] for q in trio]))
     shutil.copyfile(shares[-1], out / "previews/share.jpg")
-    prune({f for paths in cached.values() for f in paths.values()} | set(shares))
 
     pages = [home_page(posters, previews), about_page(posters, previews), not_found_page()]
     pages += [poster_page(p, posters, previews) for p in posters]
+    # the reading pages, with their images and the stylesheet of KaTeX for those that have math
+    bodies, images = texts(posters), {}
+    katex_head = '<link rel="stylesheet" href="{{ROOT}}assets/katex.css?v={katex}">\n'
+    reads = [read_page(p, bodies[p.slug], images, katex_head) for p in posters]
+    pages += reads
+    for dst, src in images.items():
+        (out / dst).parent.mkdir(parents=True, exist_ok=True)
+        shutil.copyfile(src, out / dst)
+    prune({f for paths in cached.values() for f in paths.values()} | set(shares) | set(images.values()))
     drafts = {pg.path: render(pg, "{css}", "{js}") for pg in pages}
     chars = set().union(*(text_of(h) for h in drafts.values())) | {chr(c) for c in range(0x20, 0x7f)}
     rules, files = font_faces(chars)
     (out / "assets" / "fonts").mkdir(parents=True)
-    for f in files:
+    kcss, kfiles = katex_css([drafts[pg.path] for pg in reads if pg.head])
+    for f in files + kfiles:
         shutil.copyfile(f, out / "assets" / "fonts" / f.name)
+    (out / "assets" / "katex.css").write_text(kcss)
+    (out / "assets" / "katex.LICENSE").write_text((KATEX_CSS.parent.parent / "LICENSE").read_text())
+    # pdf.js, which a poster page loads to draw a wallpaper, only when it is asked for one
+    (out / "assets" / "pdfjs").mkdir()
+    for f in PDFJS_FILES:
+        if not (PDFJS / f).exists():
+            raise SiteError(f"{(PDFJS / f).relative_to(ROOT)} is missing, run `make deps`")
+        shutil.copyfile(PDFJS / f, out / "assets" / "pdfjs" / pathlib.PurePath(f).name)
     css = "\n".join(["/* one-page-papers: written by engine/site.py from engine/web/site.css */",
                      mode_css(), *rules, (WEB / "site.css").read_text()])
     js = (WEB / "site.js").read_text()
     (out / "assets" / "site.css").write_text(css)
     (out / "assets" / "site.js").write_text(js)
-    css_v, js_v = (hashlib.sha256(s.encode()).hexdigest()[:10] for s in (css, js))
+    css_v, js_v, katex_v = (hashlib.sha256(s.encode()).hexdigest()[:10] for s in (css, js, kcss))
     for path, h in drafts.items():
         dst = out / path
         dst.parent.mkdir(parents=True, exist_ok=True)
-        dst.write_text(h.replace("?v={css}", f"?v={css_v}").replace("?v={js}", f"?v={js_v}"))
+        dst.write_text(h.replace("?v={css}", f"?v={css_v}").replace("?v={js}", f"?v={js_v}")
+                        .replace("?v={katex}", f"?v={katex_v}"))
 
     light_bg, acc = TOKENS["bg"][0], TOKENS["acc"][0]
     ink = TOKENS["ink"][0]
@@ -648,7 +895,8 @@ def write(out, posters):
         '<?xml version="1.0" encoding="UTF-8"?>\n<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">\n'
         + "".join(f"<url><loc>{u}</loc></url>\n" for u in urls) + "</urlset>\n")
     (out / "robots.txt").write_text(f"User-agent: *\nAllow: /\n\nSitemap: {BASE_URL}sitemap.xml\n")
-    return f"{len(pages)} pages, {sum(len(v) for v in previews.values())} previews, {len(files)} font files"
+    return (f"{len(pages)} pages ({len(reads)} to read), {sum(len(v) for v in previews.values())} previews, "
+            f"{len(images)} images, {len(files) + len(kfiles)} font files")
 
 # ---------------------------------------------------------------- the check
 
@@ -675,7 +923,7 @@ class Scan(HTMLParser):
         for k, v in attrs:
             if v is None:
                 continue
-            if k in ("href", "src", "data-src"):
+            if k in ("href", "src", "data-src", "data-pdf"):  # data-pdf: the PDF that site.js fetches for a wallpaper
                 urls = [v]
             elif k.endswith("srcset"):  # also data-srcset, which site.js loads
                 urls = [c.split()[0] for c in v.split(",") if c.strip()]
@@ -688,16 +936,16 @@ class Scan(HTMLParser):
 
     handle_startendtag = handle_starttag
 
-def pdf_pattern():
-    """PDF_URL as a regular expression, which gives back the category and the file."""
-    parts = re.split(r"(\{category\}|\{file\})", PDF_URL)
+def pdf_pattern(template=PDF_URL):
+    """PDF_URL, or WALL_PDF_URL, as a regular expression, which gives back the category and the file."""
+    parts = re.split(r"(\{category\}|\{file\})", template)
     group = {"{category}": "(?P<category>[^/?#]+)", "{file}": r"(?P<file>[^/?#]+\.pdf)"}
     return re.compile("".join(group.get(s, re.escape(s)) for s in parts) + "$")
 
 def check(out):
     """Every problem of the site written in out, as messages."""
     site = "https://site.invalid" + BASE_PATH  # where the check places the site to resolve its URLs
-    pdf = pdf_pattern()
+    pdf, wall = pdf_pattern(), pdf_pattern(WALL_PDF_URL)
     pages, errors = {}, []
     for f in sorted(out.rglob("*.html")):
         scan = Scan()
@@ -736,6 +984,12 @@ def check(out):
                 errors.append(f"{path}: {what} {url}: no id {parts.fragment} in {file}")
         elif parts.netloc == "site.invalid":
             errors.append(f"{path}: {what} {url}: outside the site, which lives under {BASE_PATH}")
+        elif what.endswith("data-pdf"):  # the only other request: a PDF of dist/, for a wallpaper
+            k = wall.match(target)
+            if not k:
+                errors.append(f"{path}: {what} {url}: not a PDF of dist/ at {WALL_PDF_URL}")
+            elif not (ROOT / "dist" / k["category"] / k["file"]).is_file():
+                errors.append(f"{path}: {what} {url}: no such file in dist/")
         elif loaded and target != ANALYTICS_SRC:
             errors.append(f"{path}: {what} {url}: loaded from another site")
         elif k := pdf.match(target):

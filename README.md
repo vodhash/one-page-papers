@@ -2,7 +2,7 @@
 
 **Foundational papers, typeset on a single poster. Print them, frame them, hang them.**
 
-Browse the collection at **[onepagepapers.com](https://onepagepapers.com/)**.
+Browse the collection at **[onepagepapers.com](https://onepagepapers.com/)**, where each poster also has its full text as a web page to read on screen, and a wallpaper for a phone, a desktop or a 4K screen, drawn in the browser from its PDF.
 
 A text is missing? [Request a poster](https://github.com/vodhash/one-page-papers/issues/new?template=request-a-poster.yml), or make it yourself: [CONTRIBUTING.md](CONTRIBUTING.md) has the checklists.
 

@@ -17,7 +17,7 @@ jobs:
         with:
           python-version: "3.12"
           cache: pip
-      - run: npm ci
+      - run: npm ci --omit=optional
       - run: pip install -r requirements.txt
       - run: python -m playwright install --with-deps --only-shell chromium
       - name: Every poster fits its page, uses bundled fonts only and matches its PDFs in dist/

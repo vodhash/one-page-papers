@@ -11,7 +11,7 @@
 <script>/* the theme before the first paint: the one chosen with the button, else the system's */(function(d){var t;try{t=localStorage.getItem("one-page-papers:theme")}catch(e){}if(t!=="dark"&&t!=="light")t=matchMedia("(prefers-color-scheme: dark)").matches?"dark":"light";d.setAttribute("data-theme",t);d.classList.add("js")})(document.documentElement)</script>
 {{PRELOAD}}
 <link rel="stylesheet" href="{{ROOT}}assets/site.css?v={{CSS_V}}">
-<script src="{{ROOT}}assets/site.js?v={{JS_V}}" defer></script>
+{{HEAD}}<script src="{{ROOT}}assets/site.js?v={{JS_V}}" defer></script>
 <link rel="icon" href="{{ROOT}}favicon.svg" type="image/svg+xml">
 <link rel="apple-touch-icon" href="{{ROOT}}apple-touch-icon.png">
 {{SOCIAL}}
