@@ -1,0 +1,19 @@
+/* Each entry of the transcript: the time and, under it, the speaker in the margin, the words beside
+   them, as on the typed pages */
+.loop p{position:relative;padding-left:5.3em;min-height:2.05em;text-align:left;hyphens:manual;
+ margin-bottom:.3em;break-inside:avoid}
+.loop .t,.loop .s{position:absolute;left:0;font-family:'JetBrains Mono',monospace;font-size:.7em;
+ line-height:1.2;white-space:nowrap}
+.loop .t{top:.3em;color:var(--mute)}
+.loop .s{top:1.5em;color:var(--acc)}
+.loop .s i{font-style:normal;font-size:.8em;color:var(--mute);margin-left:.35em}
+/* the words that tell Houston the Eagle is down */
+.loop p:has(.key){font-weight:600;font-size:1.3em;padding-left:4.1em;margin:.25em 0 .4em}
+.loop p:has(.key) .t,.loop p:has(.key) .s{font-size:.54em;font-weight:400}
+/* the communicator list of the Introduction */
+table.who{border-collapse:collapse;font-size:.84em;margin:.2em 0 .8em;line-height:1.25}
+table.who th{text-align:left;font-weight:400;font-style:italic;padding:.35em 0 .1em}
+table.who td{padding:.05em .8em 0 0;vertical-align:top;text-align:left;hyphens:none}
+table.who td:nth-child(3){white-space:nowrap;padding-right:0}
+table.who td:first-child{font-family:'JetBrains Mono',monospace;font-size:.84em;color:var(--acc);padding-left:.8em}
+footer>div:first-child{max-width:40%;line-height:1.3}
