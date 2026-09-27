@@ -1,0 +1,9 @@
+/* The Greek title in spaced capitals, as Littre heads the Oath */
+h1{letter-spacing:.18em;margin-right:-.18em}
+/* The Oath in one justified paragraph, on a measure narrower than the page, its last line
+   centered and never a single word */
+.flow{max-width:470mm;margin:0 auto}
+.flow p{text-align:justify;text-align-last:center;line-height:1.42;text-wrap:pretty}
+/* Footer cells: balanced lines, and a page range that does not break */
+footer>div{text-wrap:balance}
+.nw{white-space:nowrap}

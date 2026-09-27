@@ -1,0 +1,45 @@
+title: "The Hippocratic Oath"
+summary: "The physician's oath of the Hippocratic Collection, in the ancient Greek text edited by Émile Littré in 1844."
+title_html: "ΟΡΚΟΣ"
+title_size: 150pt
+kicker: "The Hippocratic Oath"
+author: "Attributed to Hippocrates"
+byline: "Greek text edited by É. Littré · <i>Œuvres complètes d’Hippocrate</i>, tome IV, 1844"
+emblem: "Ὄ"
+header_scale: 1.6
+layout: centered
+lang: el
+max_font: 47
+footer:
+  - "Littré, tome IV, Paris, J.-B. Baillière, 1844, <span class=\"nw\">pp. 628-632</span>"
+  - "<i>Public domain. Littré’s critical notes and French translation are left out.</i>"
+  - "<span class=\"mono\">archive.org/details/oeuvrescomplte04hippuoft</span>"
+year: "c. 400 BC"
+authors: [Hippocrates]
+min_print: A3
+source:
+  url: https://archive.org/details/oeuvrescomplte04hippuoft
+  retrieved: 2026-09-27
+  edition: >-
+    Greek text of the Oath in Émile Littré, Œuvres complètes d'Hippocrate, tome IV (Paris,
+    J.-B. Baillière, 1844), pp. 628, 630 and 632, from the scan of the University of Toronto copy
+    on the Internet Archive. The text of the Greek Wikisource (el.wikisource.org, page
+    "Ιπποκράτειος όρκος"), which follows this edition, served as a base and was checked letter
+    by letter against the scan: Littré's diaeresis is restored in χρηΐζοντι, χρηΐζωσι and
+    θεραπηΐης, and his raised dots (·) after τήνδε, τοιήνδε and χρόνον, where Wikisource has
+    none or full stops. Littré's heading ΟΡΚΟΣ is the title of the poster; his superscript note
+    numbers and critical notes, and his French translation on the facing pages, are left out;
+    words hyphenated at line ends are joined. The Oath is one paragraph, as printed.
+license:
+  text: "Public domain"
+  holder: "Émile Littré (edition), 1844"
+  basis: >-
+    An ancient Greek text, which Littré assigns to the age of Hippocrates ("l'âge
+    hippocratique", tome IV, p. 611); he dates the birth of Hippocrates to 460 BC (tome I, 1839,
+    p. 34). The edition used was published in 1844, before 1931, and its editor, Émile Littré,
+    died in 1881, before 1956: public domain in France and in the United States.
+  note: >-
+    The Internet Archive marks the scan NOT_IN_COPYRIGHT. The Greek Wikisource, whose text was
+    checked against it, states in its footer: "Όλα τα κείμενα είναι διαθέσιμα υπό την Άδεια
+    Creative Commons Αναφορά Δημιουργού-Παρόμοια Διανομή 4.0· μπορεί να ισχύουν πρόσθετοι
+    όροι." A letter-for-letter transcription of a public domain text adds no protected work.

@@ -8,7 +8,7 @@ Each paper is laid out in full on one page: every section, equation, code listin
 
 <!-- catalog:start -->
 
-29 posters in 9 categories. Each one comes in 4 themes, shown here with *Bitcoin: A Peer-to-Peer Electronic Cash System*, and in 3 formats (see [Download](#download)).
+30 posters in 9 categories. Each one comes in 4 themes, shown here with *Bitcoin: A Peer-to-Peer Electronic Cash System*, and in 3 formats (see [Download](#download)).
 
 | ivory | white | genesis | blueprint |
 |:-:|:-:|:-:|:-:|
@@ -71,6 +71,7 @@ A click on a poster opens its PDF in the A format and in its first theme, and th
 
 | &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; | Paper | Authors | Year | Print from | License |
 |---|---|---|---|---|---|
+| <a href="dist/life-sciences/hippocratic-oath-A-ivory.pdf"><img src="docs/life-sciences/hippocratic-oath.png" width="90" alt=""></a> | [The Hippocratic Oath](dist/life-sciences/hippocratic-oath-A-ivory.pdf)<br>The physician's oath of the Hippocratic Collection, in the ancient Greek text edited by Émile Littré in 1844.<br>[ivory](dist/life-sciences/hippocratic-oath-A-ivory.pdf)&nbsp;·&nbsp;[white](dist/life-sciences/hippocratic-oath-A-white.pdf)&nbsp;·&nbsp;[genesis](dist/life-sciences/hippocratic-oath-A-genesis.pdf)&nbsp;·&nbsp;[blueprint](dist/life-sciences/hippocratic-oath-A-blueprint.pdf) | Hippocrates | c. 400 BC | A3 | Public domain |
 | <a href="dist/life-sciences/darwin-wallace-1858-A-ivory.pdf"><img src="docs/life-sciences/darwin-wallace-1858.png" width="90" alt=""></a> | [On the Tendency of Species to form Varieties; and on the Perpetuation of Varieties and Species by Natural Means of Selection](dist/life-sciences/darwin-wallace-1858-A-ivory.pdf)<br>Darwin's and Wallace's papers on natural selection, read together at the Linnean Society on 1 July 1858.<br>[ivory](dist/life-sciences/darwin-wallace-1858-A-ivory.pdf)&nbsp;·&nbsp;[white](dist/life-sciences/darwin-wallace-1858-A-white.pdf)&nbsp;·&nbsp;[genesis](dist/life-sciences/darwin-wallace-1858-A-genesis.pdf)&nbsp;·&nbsp;[blueprint](dist/life-sciences/darwin-wallace-1858-A-blueprint.pdf) | Charles Darwin, Alfred Russel Wallace | 1858 | A1 | Public domain |
 
 ### Historical data visualization
