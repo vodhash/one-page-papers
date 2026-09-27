@@ -12,8 +12,6 @@ import argparse, base64, concurrent.futures, functools, importlib.util, io, json
 import yaml
 from html import unescape
 from PIL import Image
-from playwright.sync_api import sync_playwright
-from pypdf import PdfReader, PdfWriter
 
 ROOT = pathlib.Path(__file__).resolve().parent.parent
 ENGINE = ROOT / "engine"
@@ -21,13 +19,10 @@ sys.path.insert(0, str(ENGINE))
 import markdown
 from papers import SHOWCASE, discover
 from themes import THEMES, FORMATS, US_FORMATS, colour, dark
+from onepage_engine import FontLoadError, PX, chromium, design_height, print_pdf, same_pdf, system_fonts, to_format
+from onepage_engine import load as load_url
 
 DESIGN_W = 594  # every poster is laid out 594 mm wide, then scaled to the target format
-MM = 72 / 25.4  # PDF points per mm
-PX = 96 / 25.4  # CSS pixels per mm
-# Without this flag Chromium lays text out with the hinting of the local fontconfig setup,
-# so the fitted size and the line breaks would change from one machine to another.
-CHROMIUM_ARGS = ["--font-render-hinting=none"]
 BUNDLED_FONTS = ("EBGaramond", "JetBrainsMono", "KaTeX_")  # PostScript names of the node_modules fonts
 META_KEYS = {"title", "title_html", "title_size", "kicker", "author", "byline", "emblem", "abstract",
              "abstract_label", "numbered", "columns", "header_scale", "font_range", "max_font", "layout",
@@ -266,13 +261,6 @@ def poster(paper_dir, m):
                                 "TONE": "dark" if dark(theme) else "light", "PH": f"{height:.2f}", "FS": f"{fs}pt"})
     return html
 
-LOAD_JS = """async () => {
-    document.body.offsetHeight;  // lay out first, so that every font in use starts loading
-    await document.fonts.ready;
-    const faces = [...document.fonts];
-    return {loaded: faces.filter(f => f.status === 'loaded').map(f => f.family),
-            failed: faces.filter(f => f.status === 'error').map(f => f.family)};
-}"""
 FITS_JS = """async fs => {
     document.documentElement.style.setProperty('--fs', fs + 'pt');
     document.body.offsetHeight;
@@ -285,12 +273,12 @@ FITS_JS = """async fs => {
 }"""
 
 def load(page, path, html):
+    """Writes html to path and opens it in page, once its fonts, EB Garamond first, have loaded."""
     path.write_text(html)
-    page.goto(path.as_uri())
-    fonts = page.evaluate(LOAD_JS)
-    if fonts["failed"] or not any("EB Garamond" in f for f in fonts["loaded"]):
-        missing = ", ".join(sorted(set(fonts["failed"]))) or "EB Garamond"
-        raise BuildError(f"fonts did not load ({missing}), run `make deps`")
+    try:
+        load_url(page, path.as_uri(), required_fonts=("EB Garamond",))
+    except FontLoadError as e:
+        raise BuildError(f"fonts did not load ({e.missing}), run `make deps`") from None
 
 def fits(page, fs):
     """Whether the text fits on the loaded page at body size fs (pt)."""
@@ -338,78 +326,6 @@ def settle(browser, viewport, tmp, html, fs, hi, what):
         if page := trial(fs):
             return fs, page
     raise BuildError(f"{what}: no body size fits a freshly loaded page")
-
-def font_name(font):
-    """PostScript name of a PDF font without its subset tag. Chromium embeds some glyphs
-    (synthetic bold, for instance) as Type 3 fonts, whose name is only in the descriptor."""
-    fd = font.get("/FontDescriptor")
-    name = font.get("/BaseFont") or (fd.get_object().get("/FontName") if fd is not None else None)
-    return str(name or "an unnamed font").lstrip("/").split("+")[-1]
-
-def system_fonts(pdf):
-    """Maps each font of the PDF that does not come from node_modules to the characters it draws."""
-    found = {}
-    def visit(text, cm, tm, font, size):
-        if font is not None and text.strip():
-            name = font_name(font)
-            if not name.startswith(BUNDLED_FONTS):
-                found.setdefault(name, set()).update(c for c in text if not c.isspace())
-    PdfReader(pdf).pages[0].extract_text(visitor_text=visit)
-    return found
-
-def same_line(x, y):
-    """Whether two lines of the content stream of a page differ only in ways that do not show:
-    the last digits of a number, which vary with the processor (the matrix of a rotation, for
-    instance, as the CI and a laptop compute its sine), or the vertical offset of a text matrix
-    (Tm) by less than a pixel, which Chromium now and then rounds (see same_poster)."""
-    tx, ty = x.split(), y.split()
-    if len(tx) != len(ty) or tx[-1:] != ty[-1:]:
-        return False
-    for i, (u, v) in enumerate(zip(tx, ty)):
-        if u == v:
-            continue
-        try:
-            fu, fv = float(u), float(v)
-        except ValueError:
-            return False
-        if abs(fu - fv) > 1e-6 * max(1, abs(fu), abs(fv)) and not (tx[-1] == b"Tm" and i == 5 and abs(fu - fv) < 1):
-            return False
-    return True
-
-def same_poster(old, new):
-    """Whether two PDFs of a poster are the same, but for differences that do not show: now and
-    then, in about one print in twenty of a page full of formulas, Chromium sets one run of
-    glyphs of a KaTeX formula (in a fraction, or an equation number) on a baseline rounded to a
-    whole pixel, and the last digits of some numbers depend on the processor. Line by line, the
-    content stream of the page may differ only in that way (same_line), and everything else
-    must be the same byte for byte."""
-    if old == new:
-        return True
-    try:
-        a, b = PdfReader(io.BytesIO(old)), PdfReader(io.BytesIO(new))
-        ca = a.pages[0].get_contents().get_data().split(b"\n")
-        cb = b.pages[0].get_contents().get_data().split(b"\n")
-    except Exception:
-        return False
-    if len(ca) != len(cb) or not all(x == y or same_line(x, y) for x, y in zip(ca, cb)):
-        return False
-    def objects(data, r):
-        """Every object but the content stream of the page, as the file writes it."""
-        skip = r.pages[0].raw_get("/Contents").idnum
-        starts = sorted((offset, num) for num, offset in r.xref[0].items())
-        ends = [offset for offset, _ in starts[1:]] + [data.rindex(b"\nxref\n")]
-        return {num: data[start:end] for (start, num), end in zip(starts, ends) if num != skip}
-    return objects(old, a) == objects(new, b)
-
-def write_pdf(raw, dst, size, m):
-    """Scales the PDF printed by Chromium to the target format (width, height in mm), into dst,
-    a path or a binary stream."""
-    w = PdfWriter()
-    pg = w.add_page(PdfReader(raw).pages[0])
-    pg.scale_to(size[0] * MM, size[1] * MM)
-    pg.compress_content_streams()  # lossless; pypdf would store the rescaled stream uncompressed
-    w.add_metadata({"/Title": m["title"], "/Author": m.get("author", ""), "/Creator": "one-page-papers"})
-    w.write(dst)
 
 def save_preview(page, png):
     png.parent.mkdir(parents=True, exist_ok=True)
@@ -482,7 +398,7 @@ def build_format(paper, m, fmt, themes, allowed, page, html, tmp, raw, lo, hi, c
     """Settles the body size of one format, then prints its PDFs (print_format)."""
     slug = paper.slug
     W, H = SIZES[fmt]
-    height = DESIGN_W * H / W
+    height = design_height(DESIGN_W, (W, H))
     viewport = {"width": round(DESIGN_W * PX), "height": round(height * PX)}
     page.set_viewport_size(viewport)
     us = fmt in US_FORMATS
@@ -502,7 +418,7 @@ def print_format(paper, m, fmt, fs, themes, allowed, page, html, tmp, raw, out, 
     """Prints the PDFs of one format, and the previews, on the fresh page that settled its size."""
     slug, paper_dir = paper.slug, paper.dir
     W, H = SIZES[fmt]
-    height = DESIGN_W * H / W
+    height = design_height(DESIGN_W, (W, H))
     cap = ", the cap" if at_cap else ""
     print(f"{slug} {fmt}: body {fs:.2f} pt at design size{cap} ({printed(fmt, fs)})")
     if fmt == "A" and min_print(fs) != m["min_print"]:
@@ -512,27 +428,25 @@ def print_format(paper, m, fmt, fs, themes, allowed, page, html, tmp, raw, out, 
         load(page, tmp, html(th, height, fs))
         if not fits(page, fs):
             raise BuildError(f"{slug} {fmt} {th}: the text overflows at {fs} pt")
-        page.pdf(path=str(raw), width=f"{DESIGN_W}mm", height=f"{height:.2f}mm",
-                 print_background=True, page_ranges="1")
+        print_pdf(page, DESIGN_W, height, path=raw)
         if i == 0:  # themes only change colours, every PDF uses the same fonts
-            for font, chars in system_fonts(raw).items():
+            for font, chars in system_fonts(raw, BUNDLED_FONTS).items():
                 warn(f"{slug} {fmt}: {''.join(sorted(chars))} drawn with {font}, a system font, so the "
                      "PDF depends on the machine; give these characters a bundled font in style.css")
         dst = out / f"{slug}-{fmt}-{th}.pdf"
-        pdf = io.BytesIO()
-        write_pdf(raw, pdf, (W, H), m)
-        same = dst.exists() and same_poster(dst.read_bytes(), pdf.getvalue())
+        pdf = to_format(raw, (W, H), title=m["title"], author=m.get("author", ""), creator="one-page-papers")
+        same = dst.exists() and same_pdf(dst.read_bytes(), pdf)
         if check and not same:
             if dst.exists():  # kept for a look at the difference; the CI uploads build/check/
                 kept = ROOT / "build" / "check" / paper.category / dst.name
                 kept.parent.mkdir(parents=True, exist_ok=True)
-                kept.write_bytes(pdf.getvalue())
+                kept.write_bytes(pdf)
                 raise BuildError(f"{rel(dst)}: out of date, run `make {slug}` (the new PDF is {rel(kept)})")
             raise BuildError(f"{rel(dst)}: missing, run `make {slug}`")
         if not check:
             if not same:  # an unchanged poster keeps its file, so that git sees no change
                 out.mkdir(parents=True, exist_ok=True)
-                dst.write_bytes(pdf.getvalue())
+                dst.write_bytes(pdf)
             print("  ", rel(dst), "(unchanged)" if same else "")
         if previews and fmt == "A":
             # the thumbnail of the catalog, and the showcase of the themes above it
@@ -548,8 +462,7 @@ def print_format(paper, m, fmt, fs, themes, allowed, page, html, tmp, raw, out, 
 def build_all(targets, a):
     """Builds the papers of targets in one browser. Returns the slugs that failed and the warnings."""
     failed = []
-    with sync_playwright() as pw:
-        browser = pw.chromium.launch(args=CHROMIUM_ARGS)
+    with chromium() as browser:
         page = browser.new_page()
         for paper in targets:
             try:
@@ -557,7 +470,6 @@ def build_all(targets, a):
             except BuildError as e:
                 failed.append(paper.slug)
                 print(f"error: {e}", file=sys.stderr, flush=True)
-        browser.close()
     return failed, list(WARNINGS)
 
 def main():

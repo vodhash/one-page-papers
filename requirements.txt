@@ -1,5 +1,7 @@
-# Exact versions: playwright decides the Chromium build, which decides the layout.
-playwright==1.63.0
-pypdf==6.19.0
+# Exact versions. The engine package pins Playwright, which decides the Chromium build, and so
+# the layout, and pypdf, which writes the PDFs: see engine/pyproject.toml.
+-e ./engine
 pyyaml==6.0.3
 pillow==12.3.0
+# the tests of the engine package (make engine-test, and the CI)
+pytest==9.1.1

@@ -1,6 +1,8 @@
 """Colour themes (CSS variables) and print formats (width, height in mm)."""
 import re
 
+from onepage_engine import SIZES
+
 THEMES = {
     "ivory":     "--paper:#f6f1e6;--ink:#1d1b17;--mute:#6b645a;--acc:#e0800d;--onacc:#f6f1e6;--rule:#c9bfae;--box:#fbf8f1;--boxa:#f6dcb4;--code:#ede5d5",
     "white":     "--paper:#ffffff;--ink:#111111;--mute:#666666;--acc:#f7931a;--onacc:#ffffff;--rule:#d4d4d4;--box:#ffffff;--boxa:#fde6c6;--code:#f2f2f2",
@@ -8,10 +10,10 @@ THEMES = {
     "blueprint": "--paper:#12304f;--ink:#e8f0f8;--mute:#9db4cc;--acc:#7fd1ff;--onacc:#12304f;--rule:#2f5277;--box:#16395d;--boxa:#1f5680;--code:#0f2944",
 }
 # "A" prints at any ISO A size (A0 to A3); the file itself is A1.
-FORMATS = {"A": (594, 841), "50x70": (500, 700), "60x80": (600, 800)}
+FORMATS = {"A": SIZES["A1"], "50x70": SIZES["50x70"], "60x80": SIZES["60x80"]}
 # US print sizes, built on demand (build.py --us) into release/us/, which git ignores: only the
 # formats above are versioned in dist/. Letter, Tabloid, 18 x 24 in and 24 x 36 in.
-US_FORMATS = {"letter": (215.9, 279.4), "tabloid": (279.4, 431.8), "18x24": (457.2, 609.6), "24x36": (609.6, 914.4)}
+US_FORMATS = {name: SIZES[name] for name in ("letter", "tabloid", "18x24", "24x36")}
 
 def colour(theme, name):
     """A colour of a theme as (r, g, b), each from 0 to 1."""
