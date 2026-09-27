@@ -1,0 +1,14 @@
+/* The JSON templates of the NIP have lines longer than a column: each line wraps and hangs
+   under its own indentation */
+pre.nip{white-space:pre-wrap;overflow-wrap:anywhere;text-align:left}
+pre.nip .l{display:block;padding-left:2em;text-indent:-2em}
+/* the hex ids quoted in the paragraphs break anywhere rather than stretch a justified line; the
+   list items, made mostly of code, are set ragged right and break their code between words */
+p code{word-break:break-all}
+li{text-align:left;hyphens:manual}
+li code{overflow-wrap:anywhere}
+/* no ligatures: >= and <= stay two characters, as in the source */
+code,pre{font-variant-ligatures:none;font-feature-settings:"calt" 0,"liga" 0}
+ul ul{margin:.2em 0 .3em}
+ul li{margin-bottom:.2em}
+.kick{letter-spacing:.18em}

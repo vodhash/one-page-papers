@@ -10,7 +10,7 @@ Each paper is laid out in full on one page: every section, equation, code listin
 
 <!-- catalog:start -->
 
-53 posters in 11 categories. Each one comes in 4 themes, shown here with *Bitcoin: A Peer-to-Peer Electronic Cash System*, and in 3 formats (see [Download](#download)).
+54 posters in 11 categories. Each one comes in 4 themes, shown here with *Bitcoin: A Peer-to-Peer Electronic Cash System*, and in 3 formats (see [Download](#download)).
 
 | ivory | white | genesis | blueprint |
 |:-:|:-:|:-:|:-:|
@@ -31,6 +31,7 @@ A click on a poster opens its PDF in the A format and in its first theme, and th
 | <a href="dist/crypto/sha-256-A-ivory.pdf"><img src="docs/crypto/sha-256.png" width="90" alt=""></a> | [Secure Hash Standard (SHS): SHA-256](dist/crypto/sha-256-A-ivory.pdf)<br>Specifies SHA-256: its functions, constants, message padding and parsing, initial hash value and hash computation.<br>[ivory](dist/crypto/sha-256-A-ivory.pdf)&nbsp;·&nbsp;[white](dist/crypto/sha-256-A-white.pdf)&nbsp;·&nbsp;[genesis](dist/crypto/sha-256-A-genesis.pdf)&nbsp;·&nbsp;[blueprint](dist/crypto/sha-256-A-blueprint.pdf) | National Institute of Standards and Technology | 2015 | A3 | Public domain (U.S. Government work) |
 | <a href="dist/crypto/bip-173-A-ivory.pdf"><img src="docs/crypto/bip-173.png" width="90" alt=""></a> | [BIP 173: Base32 address format for native v0-16 witness outputs](dist/crypto/bip-173-A-ivory.pdf)<br>Defines Bech32, a checksummed base32 format, and the segwit addresses built on it, starting with bc1.<br>[ivory](dist/crypto/bip-173-A-ivory.pdf)&nbsp;·&nbsp;[white](dist/crypto/bip-173-A-white.pdf)&nbsp;·&nbsp;[genesis](dist/crypto/bip-173-A-genesis.pdf)&nbsp;·&nbsp;[blueprint](dist/crypto/bip-173-A-blueprint.pdf) | Pieter Wuille, Greg Maxwell | 2017 | A2 | BSD-2-Clause |
 | <a href="dist/crypto/bip-340-A-ivory.pdf"><img src="docs/crypto/bip-340.png" width="90" alt=""></a> | [BIP 340: Schnorr Signatures for secp256k1](dist/crypto/bip-340-A-ivory.pdf)<br>Specifies 64-byte Schnorr signatures and 32-byte public keys over the secp256k1 curve, with batch verification.<br>[ivory](dist/crypto/bip-340-A-ivory.pdf)&nbsp;·&nbsp;[white](dist/crypto/bip-340-A-white.pdf)&nbsp;·&nbsp;[genesis](dist/crypto/bip-340-A-genesis.pdf)&nbsp;·&nbsp;[blueprint](dist/crypto/bip-340-A-blueprint.pdf) | Pieter Wuille, Jonas Nick, Tim Ruffing | 2020 | A1 | BSD-2-Clause |
+| <a href="dist/crypto/nostr-nip-01-A-ivory.pdf"><img src="docs/crypto/nostr-nip-01.png" width="90" alt=""></a> | [NIP-01: Basic protocol flow description](dist/crypto/nostr-nip-01-A-ivory.pdf)<br>Defines the Nostr event, its signed JSON serialization, tags, kinds, and the messages between clients and relays.<br>[ivory](dist/crypto/nostr-nip-01-A-ivory.pdf)&nbsp;·&nbsp;[white](dist/crypto/nostr-nip-01-A-white.pdf)&nbsp;·&nbsp;[genesis](dist/crypto/nostr-nip-01-A-genesis.pdf)&nbsp;·&nbsp;[blueprint](dist/crypto/nostr-nip-01-A-blueprint.pdf) | fiatjaf | 2022 | A2 | Public domain dedication |
 
 ### Computing pioneers
 

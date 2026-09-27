@@ -1,0 +1,48 @@
+title: "NIP-01: Basic protocol flow description"
+summary: "Defines the Nostr event, its signed JSON serialization, tags, kinds, and the messages between clients and relays."
+title_html: "NIP-01<br><em>Basic protocol flow description</em>"
+title_size: 96pt
+kicker: "Nostr Implementation Possibilities · draft · mandatory · relay · version of 4 September 2026"
+author: "fiatjaf and the contributors to the nips repository"
+byline: "github.com/nostr-protocol/nips · 01.md"
+emblem: "01"
+header_scale: 1.3
+columns: 3
+footer:
+  - "NIP-01 · draft · mandatory · relay · first committed to the nips repository on 1 May 2022, last changed on 4 September 2026"
+  - "<i>All NIPs are public domain.</i>"
+  - '<span class="mono">github.com/nostr-protocol/nips · 01.md</span>'
+year: 2022
+authors: [fiatjaf]
+min_print: A2
+source:
+  url: https://github.com/nostr-protocol/nips/blob/b82211e96c6dad616ed2ea43034c1c621256b745/01.md
+  retrieved: 2026-09-27
+  edition: >-
+    The Markdown source of NIP-01 in the repository github.com/nostr-protocol/nips at commit
+    b82211e of 25 September 2026, its current version; the file was last changed by commit
+    c3fd9af of 4 September 2026 (SHA-256 of the file
+    6cd76682e7ec2d635f1f46b3660f621cdad1193d9174d316674b91f8d683af26). Its first lines are in
+    the header: the title NIP-01, the subtitle "Basic protocol flow description" and the three
+    status labels draft, mandatory and relay. Links show their text only (the Schnorr signature
+    standard, NIP-10 and the extra metadata fields of NIP-24), underscores for emphasis are set
+    in italics, and straight quotes outside code are set as typographic quotes. Lists nested in
+    another list are set as nested bulleted lists; the two bullet styles of the source (- and
+    *) are both set as bullets, ragged right. Code blocks and code spans are kept character for
+    character: a line of a code block longer than the column wraps and hangs under its own
+    indentation, and a long code span may break between two characters at a line end.
+    The authors: the file was moved from fiatjaf's earlier nostr repository by fiatjaf on
+    1 May 2022, and 44 author names (a few of them one person under two names) appear in its
+    history since.
+license:
+  text: Public domain dedication
+  holder: fiatjaf and the contributors to github.com/nostr-protocol/nips
+  notice: "## License All NIPs are public domain."
+  note: >-
+    Section License of the README of the repository (https://github.com/nostr-protocol/nips/blob/master/README.md),
+    added by fiatjaf, the author of the protocol, in commit c053670 of 2 May 2022, the day after
+    NIP-01 was moved into the repository, and unchanged since, so every later change to NIP-01
+    was contributed under it. The repository has no LICENSE file (GitHub reports no license).
+    Issue 1732 (https://github.com/nostr-protocol/nips/issues/1732, open since 31 January 2025)
+    proposes to replace the statement by CC0 because "public domain" is not standardized across
+    jurisdictions; it has no answer. The poster carries the statement in its footer.
