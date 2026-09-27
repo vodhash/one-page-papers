@@ -1,0 +1,59 @@
+title: "Advanced Encryption Standard (AES)"
+summary: "Specifies the AES block cipher: the state, its four round transformations with the S-box, and the key expansion."
+title_html: "Advanced Encryption<br><em>Standard (AES)</em>"
+kicker: "Excerpt · FIPS 197 · Published 26 November 2001 · Updated 9 May 2023"
+author: "National Institute of Standards and Technology"
+byline: "Information Technology Laboratory · Federal Information Processing Standards Publication 197"
+emblem: "AES"
+abstract_label: Explanation
+abstract: "The Advanced Encryption Standard (AES) specifies a FIPS-approved cryptographic algorithm that can be used to protect electronic data. The AES algorithm is a symmetric block cipher that can encrypt (encipher) and decrypt (decipher) digital information. The AES algorithm is capable of using cryptographic keys of 128, 192, and 256 bits to encrypt and decrypt data in blocks of 128 bits."
+columns: 4
+footer:
+  - "Federal Information Processing Standards Publication 197 · Computer Security Standard, Cryptography"
+  - "<i>Excerpt: Sections 3.4, 3.5, 4.2, 5, 5.1 and 5.2 of the Standard, as updated in 2023.</i>"
+  - '<span class="mono">doi.org/10.6028/NIST.FIPS.197-upd1</span>'
+year: 2001
+authors: [National Institute of Standards and Technology]
+min_print: A2
+source:
+  url: https://nvlpubs.nist.gov/nistpubs/FIPS/NIST.FIPS.197-upd1.pdf
+  retrieved: 2026-09-27
+  edition: >-
+    FIPS 197, Advanced Encryption Standard (AES), published 26 November 2001 and updated 9 May
+    2023 (NIST FIPS 197-upd1, https://doi.org/10.6028/NIST.FIPS.197-upd1), the PDF published by
+    NIST (46 pages, 1184436 bytes, SHA-256 62c86eb567f13edb8f71826e985da870b04ef6381634f303cdb16e84d47becd1).
+    The update is used rather than the 2001 text: its algorithm is the same, and its text,
+    notation and figures are the current ones. Excerpt: item 3 (Explanation) of the announcement
+    in the header, then, complete and in their order, Sections 3.4 The State, 3.5 Arrays of Words,
+    4.2 Multiplication in GF(2^8), the introduction of Section 5 with Table 3 and its footnote,
+    5.1 CIPHER() with Algorithm 1, 5.1.1 to 5.1.4 with Table 4 (the S-box) and Figures 1 to 5, and
+    5.2 KEYEXPANSION() with Table 5 and Algorithm 2; the closing sentence of 5.2, which points to
+    Figures 6 to 8 (not reproduced), and all other sections are left out. The prose comes from
+    pdftotext and was checked word for word against the pages; the PDF gives no text for the fi
+    and ffi ligatures, which were restored as printed (specified, first, final, fixed, field,
+    coefficient and the like), and two words split at a line end are rejoined as printed
+    (four-by-four, appropriate). Formulas, matrices and the pseudocode are set in KaTeX from the
+    page scans (the words of the pseudocode were compared with the extracted text by script), with
+    function names in small capitals as in the Standard. Tables 3, 4 and 5 are set from the
+    extracted text; the S-box and the round constants were checked by computing them. The
+    sentence that Table 4 interrupts in the Standard is set whole before the table. The footnote
+    is numbered 1 on the poster (2 in the Standard). Figures 1 to 5 are redrawn as vector graphics
+    after the figures of the Standard, without their shadows; their captions are set below them.
+license:
+  text: "Public domain (U.S. Government work)"
+  holder: "National Institute of Standards and Technology, 2001, 2023"
+  basis: >-
+    In the United States, a work of the federal government (17 U.S.C. 105): the Standard was
+    prepared and issued by the National Institute of Standards and Technology, an agency of the
+    U.S. Department of Commerce, and carries no copyright notice. In France, the rule of the
+    shorter term (article L. 123-12 of the Code de la propriété intellectuelle, after article
+    7(8) of the Berne Convention): for a work whose country of origin is outside the European
+    Union and whose author is not a national of a member state, the protection lasts as long as
+    in the country of origin, which grants none.
+  note: >-
+    NIST, Copyrights and Disclaimers (https://www.nist.gov/oism/copyrights, read on 27 September
+    2026): "With the exception of material marked as copyrighted, information presented on NIST
+    sites are considered public information and may be distributed or copied. Use of appropriate
+    byline/photo/image credits is requested." The PDF has no copyright mark. The algorithm is
+    Rijndael, designed by Joan Daemen and Vincent Rijmen, Belgian nationals; the text of the
+    Standard is NIST's.

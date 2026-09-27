@@ -1,0 +1,41 @@
+/* function names in small capitals, as in the Standard */
+.sc{font-variant:small-caps;letter-spacing:.02em}
+h2 .sc,h3 .sc{font-variant:small-caps}
+/* figure and table captions */
+p:has(>.cap:first-child){text-align:center;font-size:.9em;margin:.2em 0 .9em;hyphens:manual}
+figure{margin:.8em 0 .2em;break-inside:avoid}
+svg.fig{width:100%;height:auto}
+p:has(>.cap:first-child):has(+table){margin-bottom:.3em;break-after:avoid}
+/* the steps of SubBytes */
+p:has(>.in1:first-child){padding-left:1.1em;text-indent:-1.1em;text-align:left}
+/* the pseudocode: numbered lines, indented blocks, comments on the right */
+p:has(>.ah:first-child){border-top:.35mm solid var(--ink);border-bottom:.2mm solid var(--ink);margin:.6em 0 .2em;padding:.1em 0;break-after:avoid;text-align:left}
+p:has(>.ln:first-child){margin:0;text-align:left;hyphens:manual;font-size:.8em;line-height:1.3;break-inside:avoid;padding-left:2.6em;text-indent:-2.6em}
+p:has(>.ln:first-child):not(:has(+p>.ln:first-child)){border-bottom:.35mm solid var(--ink);padding-bottom:.25em;margin-bottom:.7em}
+.ln{display:inline-block;width:2.1em;margin-right:.5em;text-indent:0;text-align:right;color:var(--mute);font-size:.85em}
+.i1{display:inline-block;width:1.2em}.i2{display:inline-block;width:2.4em}.i3{display:inline-block;width:3.6em}
+.cm{float:right;color:var(--mute);font-size:.92em;text-indent:0}
+/* tables */
+table.t3,table.t5,table.sbox{border-collapse:collapse;margin:.2em auto .9em;break-inside:avoid;text-align:center}
+table.t3 td,table.t3 th{padding:.05em .45em}
+table.t3 th{font-weight:600}
+table.t3 tr:nth-child(2) td{border-bottom:.35mm double var(--ink)}
+table.t3 tr>:first-child{border-right:.2mm solid var(--ink)}
+table.t3 tr>:nth-child(3),table.t3 tr>:nth-child(5){border-right:.2mm solid var(--ink)}
+table.t3 tr:first-child>:nth-child(2),table.t3 tr:first-child>:nth-child(3){border-right:.2mm solid var(--ink)}
+table.t5 td,table.t5 th{padding:0 .5em;font-weight:400}
+table.t5 tr:first-child th{border-bottom:.2mm solid var(--ink)}
+table.t5 tr>:nth-child(1),table.t5 tr>:nth-child(3){border-right:.2mm solid var(--ink)}
+table.t5 tr>:nth-child(2){border-right:.2mm solid var(--ink)}
+table.sbox{font-family:'JetBrains Mono',monospace;font-size:calc(var(--fs)*.62);border-top:.35mm solid var(--ink);border-bottom:.35mm solid var(--ink)}
+table.sbox td,table.sbox th{padding:0 .28em;font-weight:400;line-height:1.3}
+table.sbox tr:nth-child(2) th{border-bottom:.2mm solid var(--ink)}
+table.sbox tr:nth-child(n+3) th:not(.yx){border-right:.2mm solid var(--ink)}
+table.sbox th.yx{color:var(--mute)}
+.kick{letter-spacing:.25em}
+.eq{font-size:.84em}
+/* displays sit at the left with an indent, which leaves room for the equation numbers */
+.eq .katex-display>.katex{text-align:left;padding-left:.8em}
+/* an equation number that does not fit beside its equation goes below it, flush right */
+.eq .katex-display>.katex>.katex-html>.tag{position:static;float:right;margin-left:.8em}
+.nw{white-space:nowrap}
