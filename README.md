@@ -10,7 +10,7 @@ Each paper is laid out in full on one page: every section, equation, code listin
 
 <!-- catalog:start -->
 
-80 posters in 13 categories. Each one comes in 4 themes, shown here with *Bitcoin: A Peer-to-Peer Electronic Cash System*, and in 3 formats (see [Download](#download)).
+81 posters in 13 categories. Each one comes in 4 themes, shown here with *Bitcoin: A Peer-to-Peer Electronic Cash System*, and in 3 formats (see [Download](#download)).
 
 | ivory | white | genesis | blueprint |
 |:-:|:-:|:-:|:-:|
@@ -109,6 +109,7 @@ A click on a poster opens its PDF in the A format and in its first theme, and th
 | <a href="dist/mathematics/riemann-1859-A-ivory.pdf"><img src="docs/mathematics/riemann-1859.png" width="90" alt=""></a> | [Ueber die Anzahl der Primzahlen unter einer gegebenen Grösse](dist/mathematics/riemann-1859-A-ivory.pdf)<br>Extends the zeta function to complex values, relates its zeros to the count of primes and states the Riemann hypothesis.<br>[ivory](dist/mathematics/riemann-1859-A-ivory.pdf)&nbsp;·&nbsp;[white](dist/mathematics/riemann-1859-A-white.pdf)&nbsp;·&nbsp;[genesis](dist/mathematics/riemann-1859-A-genesis.pdf)&nbsp;·&nbsp;[blueprint](dist/mathematics/riemann-1859-A-blueprint.pdf) | Bernhard Riemann | 1859 | A2 | Public domain |
 | <a href="dist/mathematics/cantor-diagonal-A-ivory.pdf"><img src="docs/mathematics/cantor-diagonal.png" width="90" alt=""></a> | [Ueber eine elementare Frage der Mannigfaltigkeitslehre](dist/mathematics/cantor-diagonal-A-ivory.pdf)<br>Cantor's diagonal argument: the sequences of two symbols cannot be listed, and no set has the greatest cardinality.<br>[ivory](dist/mathematics/cantor-diagonal-A-ivory.pdf)&nbsp;·&nbsp;[white](dist/mathematics/cantor-diagonal-A-white.pdf)&nbsp;·&nbsp;[genesis](dist/mathematics/cantor-diagonal-A-genesis.pdf)&nbsp;·&nbsp;[blueprint](dist/mathematics/cantor-diagonal-A-blueprint.pdf) | Georg Cantor | 1891 | A3 | Public domain |
 | <a href="dist/mathematics/hilbert-problems-A-ivory.pdf"><img src="docs/mathematics/hilbert-problems.png" width="90" alt=""></a> | [Mathematische Probleme](dist/mathematics/hilbert-problems-A-ivory.pdf)<br>Excerpt of the printed text of Hilbert's 1900 Paris lecture, which sets out 23 problems for the new century.<br>[ivory](dist/mathematics/hilbert-problems-A-ivory.pdf)&nbsp;·&nbsp;[white](dist/mathematics/hilbert-problems-A-white.pdf)&nbsp;·&nbsp;[genesis](dist/mathematics/hilbert-problems-A-genesis.pdf)&nbsp;·&nbsp;[blueprint](dist/mathematics/hilbert-problems-A-blueprint.pdf) | David Hilbert | 1900 | A1 | Public domain |
+| <a href="dist/mathematics/ramanujan-letter-A-ivory.pdf"><img src="docs/mathematics/ramanujan-letter.png" width="90" alt=""></a> | [Letter to G. H. Hardy, 16 January 1913](dist/mathematics/ramanujan-letter-A-ivory.pdf)<br>Ramanujan, a clerk in Madras, introduces himself to Hardy and sends him his theorems.<br>[ivory](dist/mathematics/ramanujan-letter-A-ivory.pdf)&nbsp;·&nbsp;[white](dist/mathematics/ramanujan-letter-A-white.pdf)&nbsp;·&nbsp;[genesis](dist/mathematics/ramanujan-letter-A-genesis.pdf)&nbsp;·&nbsp;[blueprint](dist/mathematics/ramanujan-letter-A-blueprint.pdf) | Srinivasa Ramanujan | 1913 | A3 | Public domain |
 
 ### Biology & medicine
 

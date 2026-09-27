@@ -1,0 +1,5 @@
+/* A letter: date to the right, signature to the right, small capitals as printed */
+.sc{font-variant:small-caps}
+p.date,p.close{text-align:right;text-indent:0}
+p.salut{text-indent:0}
+main{text-align:left}

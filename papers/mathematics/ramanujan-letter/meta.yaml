@@ -1,0 +1,47 @@
+title: "Letter to G. H. Hardy, 16 January 1913"
+summary: "Ramanujan, a clerk in Madras, introduces himself to Hardy and sends him his theorems."
+title_html: "Letter to G. H. Hardy<br><em>Madras, 16 January 1913</em>"
+title_size: 88pt
+kicker: "Excerpt · The covering letter of Ramanujan’s first letter to Hardy"
+author: "Srinivasa Ramanujan"
+byline: "As printed in the Collected Papers of Srinivasa Ramanujan, Cambridge University Press, 1927, p. xxiii"
+emblem: "Γ"
+layout: centered
+columns: 1
+max_font: 44
+footer:
+  - "Quoted by G. H. Hardy in his obituary notice of Ramanujan (Proceedings of the London Mathematical Society, 1921), reprinted in the Collected Papers, 1927."
+  - "<i>Excerpt: the letter, without the papers of theorems enclosed with it. Public domain.</i>"
+  - '<span class="mono">archive.org</span>'
+year: 1913
+authors: [Srinivasa Ramanujan]
+min_print: A3
+source:
+  url: https://archive.org/details/pli.kerala.rare.28155
+  retrieved: 2026-09-27
+  edition: >-
+    The letter as printed in Collected Papers of Srinivasa Ramanujan, edited by G. H. Hardy,
+    P. V. Seshu Aiyar and B. M. Wilson (Cambridge University Press, 1927), p. xxiii, in Hardy's
+    notice of Ramanujan, first printed in the Proceedings of the London Mathematical Society
+    (2), xix (1921). Kept: the letter itself, complete as printed there, from "Madras, 16th
+    January 1913" to the postscript; left out: Hardy's text around it and the extracts from
+    "the papers enclosed" and from later letters that he prints after it. The text comes from
+    the OCR of the Internet Archive item pli.kerala.rare.28155 (Kerala State Library copy),
+    corrected on the scan of that page and compared with the OCR of a second scan of the same
+    edition on the Internet Archive; the line with the integral, which both OCRs garble, and
+    the formulas were set from the scan. Words hyphenated at line ends are rejoined; the
+    formulas and the italic n are set with KaTeX and italics; the place and date, the
+    salutation and the signature, set in small capitals as printed, keep their lines.
+license:
+  text: "Public domain"
+  holder: "Srinivasa Ramanujan, 1913"
+  basis: >-
+    Srinivasa Ramanujan died on 26 April 1920 (Wikidata Q83163); the letter was first printed
+    in 1921 and in this edition in 1927. It is in the public domain in France, where the author
+    died before 1 January 1956, and in the United States, where it was published before
+    1 January 1931. Hardy (died 1 December 1947, Wikidata Q184337), who printed it, would also
+    be in the public domain in France, but none of his text is reproduced.
+  note: >-
+    Hardy writes, just before the letter, that Ramanujan's letters were probably not entirely
+    his own and that friends gave him some assistance with the English; those friends are not
+    named.
