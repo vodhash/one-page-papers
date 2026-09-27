@@ -1,0 +1,48 @@
+[build-system]
+requires = ["hatchling>=1.27"]
+build-backend = "hatchling.build"
+
+[project]
+name = "onepage-engine"
+dynamic = ["version"]
+description = "Renders a single HTML page to a vector PDF at a fixed design width, scaled to print formats, with embedded fonts and the same layout on every machine."
+readme = "README.md"
+license = "MIT"
+license-files = ["LICENSE"]
+requires-python = ">=3.12"
+authors = [{ name = "vodhash" }]
+keywords = ["pdf", "poster", "print", "chromium", "playwright"]
+classifiers = [
+    "Development Status :: 4 - Beta",
+    "Programming Language :: Python :: 3",
+    "Programming Language :: Python :: 3.12",
+    "Topic :: Printing",
+    "Topic :: Multimedia :: Graphics",
+    "Typing :: Typed",
+]
+# Exact versions: Playwright decides the Chromium build, which decides the layout, and pypdf
+# writes the bytes of the PDF. Changing either one is a new minor version (CHANGELOG.md).
+dependencies = ["playwright==1.63.0", "pypdf==6.19.0"]
+
+[project.optional-dependencies]
+test = ["pytest>=8"]
+
+[project.urls]
+Homepage = "https://github.com/vodhash/one-page-papers"
+Source = "https://github.com/vodhash/one-page-papers/tree/master/engine"
+Changelog = "https://github.com/vodhash/one-page-papers/blob/master/engine/CHANGELOG.md"
+
+[tool.hatch.version]
+path = "onepage_engine/__init__.py"
+
+[tool.hatch.build.targets.wheel]
+packages = ["onepage_engine"]
+# an editable install exposes the package alone, not the scripts of engine/ beside it
+dev-mode-exact = true
+
+[tool.hatch.build.targets.sdist]
+include = ["onepage_engine/", "tests/", "README.md", "CHANGELOG.md", "LICENSE"]
+
+[tool.pytest.ini_options]
+testpaths = ["tests"]
+pythonpath = ["."]
