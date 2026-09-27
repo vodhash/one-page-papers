@@ -13,6 +13,8 @@
 html,body{margin:0;padding:0}body{position:relative}
 body{width:594mm;height:{{PH}}mm;background:var(--paper);color:var(--ink);font-family:'EB Garamond',serif;
  font-size:var(--fs);line-height:1.34;-webkit-print-color-adjust:exact;print-color-adjust:exact;overflow:hidden}
+/* in Latin, the localized forms of EB Garamond draw every u as a v: the text keeps its own letters */
+:lang(la) body{font-feature-settings:"locl" 0}
 .page{position:absolute;inset:0;padding:30mm 34mm 21mm 34mm;display:flex;flex-direction:column}
 .frame{position:absolute;inset:14mm;border:0.5mm solid var(--ink);pointer-events:none}
 .frame::after{content:"";position:absolute;inset:2.2mm;border:0.2mm solid var(--ink)}
