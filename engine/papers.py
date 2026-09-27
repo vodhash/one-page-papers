@@ -5,7 +5,7 @@ from typing import NamedTuple
 ROOT = pathlib.Path(__file__).resolve().parent.parent
 # folder name: title in the README, in the order of the README
 CATEGORIES = {
-    "crypto": "Cryptocurrency",
+    "crypto": "Cryptography & Bitcoin",
     "computing": "Computing pioneers",
     "internet": "Internet & networking",
     "software": "Software practice",
