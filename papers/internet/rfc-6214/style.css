@@ -1,0 +1,5 @@
+/* References are labelled [RFC1149] and the like, wider than numbers */
+ol.refs li{grid-template-columns:8.6em 1fr}
+.addr{text-align:left;font-variant:small-caps;letter-spacing:.03em}
+.kick{letter-spacing:.22em}
+footer>div:first-child{max-width:34%;line-height:1.3}

@@ -10,7 +10,7 @@ Each paper is laid out in full on one page: every section, equation, code listin
 
 <!-- catalog:start -->
 
-75 posters in 13 categories. Each one comes in 4 themes, shown here with *Bitcoin: A Peer-to-Peer Electronic Cash System*, and in 3 formats (see [Download](#download)).
+76 posters in 13 categories. Each one comes in 4 themes, shown here with *Bitcoin: A Peer-to-Peer Electronic Cash System*, and in 3 formats (see [Download](#download)).
 
 | ivory | white | genesis | blueprint |
 |:-:|:-:|:-:|:-:|
@@ -56,6 +56,7 @@ A click on a poster opens its PDF in the A format and in its first theme, and th
 | <a href="dist/internet/rfc-2324-A-ivory.pdf"><img src="docs/internet/rfc-2324.png" width="90" alt=""></a> | [RFC 2324: Hyper Text Coffee Pot Control Protocol (HTCPCP/1.0)](dist/internet/rfc-2324-A-ivory.pdf)<br>An April Fools' RFC extending HTTP to control coffee pots; it defined the 418 I'm a teapot status code.<br>[ivory](dist/internet/rfc-2324-A-ivory.pdf)&nbsp;·&nbsp;[white](dist/internet/rfc-2324-A-white.pdf)&nbsp;·&nbsp;[genesis](dist/internet/rfc-2324-A-genesis.pdf)&nbsp;·&nbsp;[blueprint](dist/internet/rfc-2324-A-blueprint.pdf) | Larry Masinter | 1998 | A2 | © The Internet Society 1998, copies allowed |
 | <a href="dist/internet/rfc-2549-A-ivory.pdf"><img src="docs/internet/rfc-2549.png" width="90" alt=""></a> | [RFC 2549: IP over Avian Carriers with Quality of Service](dist/internet/rfc-2549-A-ivory.pdf)<br>An April Fools' RFC amending RFC 1149 with quality of service levels for IP datagrams carried by birds.<br>[ivory](dist/internet/rfc-2549-A-ivory.pdf)&nbsp;·&nbsp;[white](dist/internet/rfc-2549-A-white.pdf)&nbsp;·&nbsp;[genesis](dist/internet/rfc-2549-A-genesis.pdf)&nbsp;·&nbsp;[blueprint](dist/internet/rfc-2549-A-blueprint.pdf) | David Waitzman | 1999 | A3 | © The Internet Society 1999, copies allowed |
 | <a href="dist/internet/rfc-2795-A-ivory.pdf"><img src="docs/internet/rfc-2795.png" width="90" alt=""></a> | [RFC 2795: The Infinite Monkey Protocol Suite (IMPS)](dist/internet/rfc-2795-A-ivory.pdf)<br>An April Fools' RFC specifying protocols for infinite monkeys at typewriters, their zoos, bards and critics.<br>[ivory](dist/internet/rfc-2795-A-ivory.pdf)&nbsp;·&nbsp;[white](dist/internet/rfc-2795-A-white.pdf)&nbsp;·&nbsp;[genesis](dist/internet/rfc-2795-A-genesis.pdf)&nbsp;·&nbsp;[blueprint](dist/internet/rfc-2795-A-blueprint.pdf) | S. Christey | 2000 | A1 | © The Internet Society 2000, copies allowed |
+| <a href="dist/internet/rfc-6214-A-ivory.pdf"><img src="docs/internet/rfc-6214.png" width="90" alt=""></a> | [RFC 6214: Adaptation of RFC 1149 for IPv6](dist/internet/rfc-6214-A-ivory.pdf)<br>An April Fools' RFC adapting the transmission of IP datagrams by avian carriers to IPv6.<br>[ivory](dist/internet/rfc-6214-A-ivory.pdf)&nbsp;·&nbsp;[white](dist/internet/rfc-6214-A-white.pdf)&nbsp;·&nbsp;[genesis](dist/internet/rfc-6214-A-genesis.pdf)&nbsp;·&nbsp;[blueprint](dist/internet/rfc-6214-A-blueprint.pdf) | Brian Carpenter, Robert M. Hinden | 2011 | A3 | © 2011 IETF Trust and the authors, IETF Trust Legal Provisions |
 
 ### Software practice
 

@@ -1,0 +1,45 @@
+title: "RFC 6214: Adaptation of RFC 1149 for IPv6"
+summary: "An April Fools' RFC adapting the transmission of IP datagrams by avian carriers to IPv6."
+title_html: "Adaptation of RFC 1149<br><em>for IPv6</em>"
+title_size: 100pt
+kicker: "Request for Comments 6214 · Informational · 1 April 2011"
+author: "B. Carpenter · R. Hinden"
+byline: "Independent Submission · Univ. of Auckland · Check Point Software"
+emblem: "v6"
+abstract_label: "Abstract."
+abstract: "This document specifies a method for transmission of IPv6 datagrams over the same medium as specified for IPv4 datagrams in RFC 1149."
+header_scale: 1.6
+columns: 3
+footer:
+  - "Independent Submission · Request for Comments: 6214 · Category: Informational · ISSN: 2070-1721"
+  - "<b>Copyright Notice.</b> Copyright (c) 2011 IETF Trust and the persons identified as the document authors.  All rights reserved."
+  - '<span class="mono">doi:10.17487/RFC6214</span>'
+year: 2011
+authors: [Brian Carpenter, Robert M. Hinden]
+min_print: A3
+source:
+  url: https://www.rfc-editor.org/rfc/rfc6214.txt
+  retrieved: 2026-09-27
+  edition: >-
+    RFC Editor plain-text edition, complete except for the table of contents, whose page
+    numbers have no meaning on a single page. The heading block and the abstract are set as
+    the header of the poster; the status of the memo and the copyright notice stay at the head
+    of the text, and the copyright line is repeated in the footer; page headers and footers
+    are left out.
+license:
+  text: "© 2011 IETF Trust and the authors, IETF Trust Legal Provisions"
+  holder: "IETF Trust and the persons identified as the document authors, 2011"
+  notice: >-
+    Copyright (c) 2011 IETF Trust and the persons identified as the document authors.  All rights reserved. This document is subject to BCP 78 and the IETF Trust's Legal Provisions Relating to IETF Documents (http://trustee.ietf.org/license-info) in effect on the date of publication of this document.  Please review these documents carefully, as they describe your rights and restrictions with respect to this document.
+  note: >-
+    RFC 6214 is an Independent Submission published on 1 April 2011, so the IETF Trust Legal
+    Provisions (TLP) version 4.0, effective 28 December 2009, apply
+    (https://web.archive.org/web/20140919033142/http://trustee.ietf.org/license-info/IETF-TLP-4.pdf).
+    Section 8.f applies them to the Independent Submission Stream from 28 December 2009, and
+    section 8.c.iii says that for Alternate Stream documents the grant of section 3.a "shall
+    not be limited to the IETF Standards Process": a non-exclusive, royalty-free, worldwide
+    license "to copy, publish, display and distribute IETF Contributions and IETF Documents, in
+    whole or in part". Section 3.d.ii grants no license to distribute them "without the required
+    legends and notices", so the poster keeps the copyright notice of the RFC in full (at the
+    head of the text, and its first line in the footer). The code component (BSD) terms of
+    section 4 do not apply to this stream (section 8.f) and the RFC contains no code.
