@@ -389,5 +389,45 @@
     kit.querySelector('.teach-print').hidden = false;
   }
 
+  // The images of a poster page and of a reading page open large on a click: the preview at its
+  // largest width, a figure at the size of its file. A click on the large image shows it at full
+  // size, to scroll; Escape, the close button or a click beside it closes it.
+  var zoomable = document.querySelectorAll('.wall picture img, .text figure.image img');
+  if (zoomable.length && window.HTMLDialogElement) {
+    var box = document.createElement('dialog');
+    box.className = 'zoom';
+    box.innerHTML = '<button type="button" class="zoom-close" aria-label="Close">\u00d7</button><img alt="">';
+    document.body.appendChild(box);
+    var big = box.querySelector('img');
+    var close = function () { box.close(); };
+    box.addEventListener('close', function () { box.classList.remove('full'); big.removeAttribute('src'); });
+    box.addEventListener('click', function (e) {
+      if (e.target === big) box.classList.toggle('full');
+      else if (e.target === box) close();
+    });
+    box.querySelector('.zoom-close').addEventListener('click', close);
+    Array.prototype.forEach.call(zoomable, function (img) {
+      img.classList.add('zoomable');
+      img.tabIndex = 0;
+      img.setAttribute('role', 'button');
+      img.setAttribute('aria-label', 'Enlarge: ' + img.alt);
+      var open = function () {
+        var src = img.currentSrc || img.src;
+        // a preview: its largest width, in the theme shown
+        if (img.closest('.wall')) src = src.replace(/-600(\.\w+)$/, '-1200$1');
+        var look = getComputedStyle(img);
+        big.style.filter = look.filter;
+        big.style.backgroundColor = look.backgroundColor;
+        big.alt = img.alt;
+        big.src = src;
+        box.showModal();
+      };
+      img.addEventListener('click', open);
+      img.addEventListener('keydown', function (e) {
+        if (e.key === 'Enter' || e.key === ' ') { e.preventDefault(); open(); }
+      });
+    });
+  }
+
   apply(mode());
 })();
