@@ -1,0 +1,245 @@
+# Margin notes for the Déclaration des droits de l'homme et du citoyen (1789).
+# Each note: `anchor` is copied from text.md and occurs there exactly once;
+# `sources` are keys of `references` below. A note that starts with
+# "Translation:" gives our own English rendering of the anchor.
+published: true
+license: "CC BY 4.0, written for One Page Papers"
+authors: [One Page Papers]
+lang: en
+paper: declaration-droits-homme
+
+notes:
+  - anchor: "constitués en Assemblée nationale"
+    note: >-
+      Translation: "constituted as a National Assembly" (ours). On 20 June 1789, in
+      the Jeu de paume at Versailles, the deputies of the Third Estate at the Estates
+      General, later joined by those of the nobility and the clergy, swore not to
+      separate before they had given France a constitution. From then on this
+      Constituent Assembly represented the nation.
+    sources: [an-archives-ddhc]
+
+  - anchor: "les droits naturels, inaliénables et sacrés de l'homme"
+    note: >-
+      Translation: "the natural, inalienable and sacred rights of man" (ours).
+      "Inalienable" means that they cannot be taken away. The Élysée presents the
+      Declaration as inspired by the American Declaration of Independence of 1776
+      and by the Enlightenment; the American text also speaks of "unalienable
+      Rights".
+    sources: [cambridge-inalienable, elysee-ddhc, nara-declaration]
+
+  - anchor: "sous les auspices de l'Être suprême"
+    note: >-
+      Translation: "under the auspices of the Supreme Being" (ours; the English
+      version published by the Élysée also says "Supreme Being"). The Declaration
+      names no church and no particular religion. Olympe de Gouges kept the same
+      formula in her Declaration of the Rights of Woman and of the Female Citizen
+      in 1791.
+    sources: [elysee-ddhc, an-gouges]
+
+  - anchor: "l'Assemblée nationale reconnaît et déclare"
+    note: >-
+      On 9 July 1789 the deputy Jean-Joseph Mounier proposed that the future
+      constitution open with a declaration of rights, and on 4 August the Assembly
+      decided it would. Among many drafts, by La Fayette, Mirabeau and Sieyès
+      among others, the Assembly debated one article by article from 20 to 26
+      August; only two of its 24 original articles came through unchanged. Louis
+      XVI ratified the text on 5 October, under pressure from the Assembly and from
+      the crowd that had come to Versailles.
+    sources: [an-assemblee-ddhc, an-archives-ddhc]
+
+  - anchor: "Les hommes naissent et demeurent libres et égaux en droits"
+    note: >-
+      Translation: "Men are born and remain free and equal in rights" (ours). The
+      Conseil constitutionnel quotes this article when it calls equality the "right
+      of rights", and it first applied the constitutional principle of equality in
+      a tax case decided on 27 December 1973. In 1791 Olympe de Gouges answered
+      with "La femme naît libre et demeure égale à l'homme en droits", contesting
+      the exclusion of women from national representation.
+    sources: [cc-egalite, cc-73-51, bnf-gouges]
+
+  - anchor: "la liberté, la propriété, la sûreté, et la résistance à l'oppression"
+    note: >-
+      Translation: "liberty, property, security, and resistance to oppression"
+      (ours). French judges still apply this list: in 1999 the Conseil
+      constitutionnel held that the liberty proclaimed in this article implies
+      respect for private life.
+    sources: [cc-99-416, cc-ddhc-page]
+
+  - anchor: "réside essentiellement dans la nation"
+    note: >-
+      Translation: "resides essentially in the nation" (ours). The article makes the
+      nation the only source of authority: no body and no individual may exercise
+      power that does not come from it. The Constitution of 1958 still names "the
+      principles of national sovereignty as defined by the Declaration of 1789" in
+      the first sentence of its Preamble, and its article 3 gives national
+      sovereignty to the people, who exercise it through representatives and by
+      referendum.
+    sources: [cc-souverainete]
+
+  - anchor: "La loi est l'expression de la volonté générale"
+    note: >-
+      The "general will" is the central idea of Jean-Jacques Rousseau's The Social
+      Contract (1762): the collective will of the citizen body taken as a whole,
+      which is the source of law, so that a citizen who obeys the law obeys his own
+      will. The article adds that every citizen may take part in making the law, in
+      person or through representatives.
+    sources: [sep-rousseau]
+
+  - anchor: "Tous les citoyens ont droit de concourir personnellement"
+    note: >-
+      The Constitution of 1791, which opens with this Declaration, gave the vote
+      only to "active citizens". Among other conditions, they had to be at least 25
+      years old, pay a direct tax equal to at least three days of work, and not be
+      domestic servants.
+    sources: [cc-constitution-1791, an-archives-ddhc]
+
+  - anchor: "ordres arbitraires"
+    note: >-
+      Under the Ancien Régime a lettre de cachet allowed a person to be locked up on
+      the king's decision alone, without stated grounds and without trial. The
+      Bastille, taken by the crowd in July 1789, was a symbol of this kind of
+      imprisonment, although it then held only seven prisoners.
+    sources: [histoire-image-bastille]
+
+  - anchor: "présumé innocent"
+    note: >-
+      Translation: "presumed innocent" (ours). A person is treated as innocent until
+      declared guilty. The Conseil constitutionnel reads this presumption of
+      innocence as a condemnation of the lettres de cachet.
+    sources: [cc-ddhc-page]
+
+  - anchor: "même religieuses"
+    note: >-
+      Translation: "even religious ones" (ours). The Conseil constitutionnel now
+      attaches freedom of conscience to this article (decisions of 2013 and 2018);
+      in 1977 it had treated it as a fundamental principle recognised by the laws
+      of the Republic.
+    sources: [cc-conscience]
+
+  - anchor: "la quotité, l'assiette, le recouvrement et la durée"
+    note: >-
+      The official English version published by the Élysée renders these words as
+      "its proportion, basis, collection and duration". The Conseil constitutionnel
+      counts this consent to taxation among the principles of political
+      organisation set by the Declaration. Montesquieu had argued in The Spirit of
+      the Laws (1748) that the legislative power alone should have the power to
+      tax.
+    sources: [elysee-ddhc, cc-ddhc-page, sep-montesquieu]
+
+  - anchor: "ni la séparation des pouvoirs déterminée"
+    note: >-
+      Montesquieu, in The Spirit of the Laws (1748), argued that liberty requires the
+      legislative, executive and judicial powers to be held by different persons or
+      bodies, so that each can check the others. The Conseil constitutionnel
+      founds the constitutional value of the separation of powers on this article,
+      and has struck down provisions of laws for breaching it, for instance in 2009
+      and 2012.
+    sources: [sep-montesquieu, cc-separation]
+
+  - anchor: "juste et préalable indemnité"
+    note: >-
+      Translation: "a just and prior indemnity" (ours): property may be taken only
+      when a public necessity, established by law, clearly requires it, and after
+      fair compensation. In January 1982, reviewing the law that nationalised five industrial
+      companies, two financial companies and banks, the Conseil constitutionnel held that the principles
+      of this article have "full constitutional value", while leaving to Parliament
+      the assessment of public necessity unless it made a manifest error.
+    sources: [cc-81-132]
+
+references:
+  cc-ddhc-page:
+    title: "La Déclaration des droits de l'homme et du citoyen du 26 août 1789"
+    publisher: Conseil constitutionnel
+    url: https://www.conseil-constitutionnel.fr/la-constitution/la-declaration-des-droits-de-l-homme-et-du-citoyen-du-26-aout-1789
+    retrieved: 2026-09-27
+  cc-egalite:
+    title: "L'égalité"
+    publisher: Conseil constitutionnel
+    url: https://www.conseil-constitutionnel.fr/la-constitution/l-egalite
+    retrieved: 2026-09-27
+  cc-souverainete:
+    title: "La souveraineté nationale"
+    publisher: Conseil constitutionnel
+    url: https://www.conseil-constitutionnel.fr/la-constitution/la-souverainete-nationale
+    retrieved: 2026-09-27
+  cc-separation:
+    title: "La séparation des pouvoirs"
+    publisher: Conseil constitutionnel
+    url: https://www.conseil-constitutionnel.fr/la-constitution/la-separation-des-pouvoirs
+    retrieved: 2026-09-27
+  cc-conscience:
+    title: "La liberté de conscience"
+    publisher: Conseil constitutionnel
+    url: https://www.conseil-constitutionnel.fr/la-constitution/la-liberte-de-conscience
+    retrieved: 2026-09-27
+  cc-73-51:
+    title: "Décision n° 73-51 DC du 27 décembre 1973 (Taxation d'office)"
+    publisher: Conseil constitutionnel
+    url: https://www.conseil-constitutionnel.fr/decision/1973/7351DC.htm
+    retrieved: 2026-09-27
+  cc-81-132:
+    title: "Décision n° 81-132 DC du 16 janvier 1982 (Loi de nationalisation)"
+    publisher: Conseil constitutionnel
+    url: https://www.conseil-constitutionnel.fr/decision/1982/81132DC.htm
+    retrieved: 2026-09-27
+  cc-99-416:
+    title: "Décision n° 99-416 DC du 23 juillet 1999 (Couverture maladie universelle)"
+    publisher: Conseil constitutionnel
+    url: https://www.conseil-constitutionnel.fr/decision/1999/99416DC.htm
+    retrieved: 2026-09-27
+  cc-constitution-1791:
+    title: "Constitution de 1791"
+    publisher: Conseil constitutionnel (Les Constitutions dans l'histoire)
+    url: https://www.conseil-constitutionnel.fr/les-constitutions-dans-l-histoire/constitution-de-1791
+    retrieved: 2026-09-27
+  an-assemblee-ddhc:
+    title: "Août 1789: La Déclaration des droits de l'homme et du citoyen"
+    publisher: Assemblée nationale
+    url: https://www.assemblee-nationale.fr/dyn/histoire-et-patrimoine/revolution-francaise/la-declaration-des-droits-de-l-homme-et-du-citoyen
+    retrieved: 2026-09-27
+  an-archives-ddhc:
+    title: "La Déclaration des droits de l'homme et du citoyen de 1789"
+    publisher: Archives nationales
+    url: https://www.archives-nationales.culture.gouv.fr/evenements/la-declaration-des-droits-de-lhomme-et-du-citoyen-de-1789
+    retrieved: 2026-09-27
+  elysee-ddhc:
+    title: "The Declaration of the Rights of Man and of the Citizen"
+    publisher: Élysée (Présidence de la République)
+    url: https://www.elysee.fr/en/french-presidency/the-declaration-of-the-rights-of-man-and-of-the-citizen
+    retrieved: 2026-09-27
+  an-gouges:
+    title: "5 septembre 1791: Déclaration des droits de la femme et de la citoyenne, Olympe de Gouges"
+    publisher: Assemblée nationale
+    url: https://www.assemblee-nationale.fr/dyn/histoire-et-patrimoine/revolution-francaise/declaration-des-droits-de-la-femme-et-de-la-citoyenne-olympe-de-gouges
+    retrieved: 2026-09-27
+  bnf-gouges:
+    title: "Olympe de Gouges et la Déclaration des droits de la femme et de la citoyenne"
+    publisher: BnF Essentiels (Bibliothèque nationale de France)
+    url: https://essentiels.bnf.fr/fr/litterature/18e-siecle/d82c8468-ea13-484f-8e2e-5c17066e32fa-litterature-en-revolution/article/bdb2b184-e606-4b8c-b7b3-8e740827ae0d-olympe-gouges-et-declaration-droits-la-femme-et-la-citoyenne
+    retrieved: 2026-09-27
+  histoire-image-bastille:
+    title: "La Bastille dans les premiers jours de sa démolition"
+    author: Stéphane Blond
+    publisher: Histoire par l'image
+    url: https://histoire-image.org/etudes/bastille-premiers-jours-sa-demolition
+    retrieved: 2026-09-27
+  sep-rousseau:
+    title: "Jean Jacques Rousseau"
+    publisher: Stanford Encyclopedia of Philosophy
+    url: https://plato.stanford.edu/entries/rousseau/
+    retrieved: 2026-09-27
+  sep-montesquieu:
+    title: "Montesquieu"
+    publisher: Stanford Encyclopedia of Philosophy
+    url: https://plato.stanford.edu/entries/montesquieu/
+    retrieved: 2026-09-27
+  nara-declaration:
+    title: "Declaration of Independence: A Transcription"
+    publisher: U.S. National Archives
+    url: https://www.archives.gov/founding-docs/declaration-transcript
+    retrieved: 2026-09-27
+  cambridge-inalienable:
+    title: "inalienable"
+    publisher: Cambridge Dictionary
+    url: https://dictionary.cambridge.org/dictionary/english/inalienable
+    retrieved: 2026-09-27

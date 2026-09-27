@@ -1,0 +1,202 @@
+# Teaching kit for the Gettysburg Address (the Bliss copy).
+# `sources` are keys of `references` below; "text" means the poster's own text.
+published: true
+license: "CC BY 4.0, written for One Page Papers"
+authors: [One Page Papers]
+lang: en
+paper: gettysburg-address
+
+level: "Ages 14 to 18 (secondary)"
+subject: "History, and English (rhetoric)"
+duration: 50
+
+context:
+  - point: >-
+      From July 1 to 3, 1863, the Union army of George Meade and the Confederate
+      army of Robert E. Lee fought at Gettysburg, Pennsylvania; more than 51,000 men
+      were killed, wounded or missing.
+    sources: [cornell-never-forget]
+  - point: >-
+      A cemetery for the Union dead was laid out on the battlefield, and it was
+      dedicated on November 19, 1863. The main speaker was the orator Edward
+      Everett; President Lincoln was invited to give "a few appropriate remarks".
+    sources: [nps-cemetery, abt-cemetery]
+  - point: >-
+      Ten months earlier, on January 1, 1863, Lincoln had issued the Emancipation
+      Proclamation, which declared free the people enslaved in the rebelling states.
+    sources: [nara-emancipation]
+  - point: >-
+      Lincoln wrote out five known copies of the address. The poster shows the last,
+      the Bliss copy of 1864, the only one with a title and his signature. Nobody
+      knows exactly which words he spoke on the day.
+    sources: [cornell-lincoln-exhibit, cornell-dedication]
+
+glossary:
+  - term: "score"
+    definition: "Twenty. \"Four score and seven\" is 87."
+  - term: "conceived"
+    definition: "Formed or created, as an idea or a child is conceived."
+  - term: "proposition"
+    definition: "A statement put forward as true, to be tested or proved."
+  - term: "endure"
+    definition: "To last, to continue to exist."
+  - term: "dedicate"
+    definition: "To open a place in a ceremony that states its purpose."
+  - term: "consecrate, hallow"
+    definition: "To make holy."
+  - term: "detract"
+    definition: "To take away from the value of something."
+  - term: "resolve"
+    definition: "To decide firmly."
+  - term: "in vain"
+    definition: "For nothing, without result."
+  - term: "perish"
+    definition: "To die, to disappear."
+
+questions:
+  - question: "Which year does \"Four score and seven years ago\" point to, and what happened then?"
+    kind: locate
+    answer: >-
+      87 years before 1863 is 1776, the year of the Declaration of Independence
+      (adopted July 4, 1776), which Lincoln quotes: "all men are created equal".
+    sources: [text, nara-declaration]
+  - question: "Why, according to the second paragraph, have the people come to Gettysburg?"
+    kind: locate
+    answer: >-
+      "to dedicate a portion of that field, as a final resting place for those who
+      here gave their lives that that nation might live" (second paragraph).
+    sources: [text]
+  - question: "Lincoln says \"we can not dedicate\" the ground. Who, according to him, has already done so?"
+    kind: understand
+    answer: >-
+      "The brave men, living and dead, who struggled here, have consecrated it, far
+      above our poor power to add or detract" (third paragraph).
+    sources: [text]
+  - question: >-
+      The address moves through three times: past, present and future. Find where
+      each begins.
+    kind: understand
+    answer: >-
+      Past: the founding, "Four score and seven years ago" (first paragraph).
+      Present: "Now we are engaged in a great civil war" (second paragraph). Future:
+      "the great task remaining before us" and what "shall not perish from the
+      earth" (third paragraph).
+    sources: [text]
+  - question: >-
+      Count how often the words "here" and "dedicate" or "dedicated" occur. What does
+      the repetition do?
+    kind: analyse
+    answer: >-
+      "here" occurs 8 times; "dedicate" twice and "dedicated" 4 times. The repetition
+      ties the words to the place, and it turns the dedication from the ground to the
+      living: the audience are asked to be "dedicated here to the unfinished work".
+    sources: [text]
+  - question: "What does Lincoln ask the living to do in the last sentence?"
+    kind: understand
+    answer: >-
+      To take "increased devotion" to the cause the dead fought for; to "highly
+      resolve that these dead shall not have died in vain"; that the nation "shall
+      have a new birth of freedom"; and that "government of the people, by the
+      people, for the people, shall not perish from the earth".
+    sources: [text]
+  - question: "\"The world will little note, nor long remember what we say here\": was Lincoln right?"
+    kind: reflect
+    answer: >-
+      Not in the long run. At first newspapers judged the address along party lines,
+      some mocking it and others praising it, and a generation passed before most
+      Americans counted it among the greatest speeches in their history. Senator
+      Charles Sumner later wrote that Lincoln "was mistaken".
+    sources: [cornell-lincoln-exhibit, cornell-ideas]
+  - question: >-
+      The draft kept by John Nicolay does not contain "under God", and it sets "all
+      men are created equal" in quotation marks. Why can copies of the same speech
+      differ?
+    kind: analyse
+    answer: >-
+      Lincoln wrote five copies at different times, some before the speech and three
+      after it for charity, and changed words between them. Nobody knows which copy
+      he read from or exactly what he said on the day.
+    sources: [loc-nicolay, cornell-lincoln-exhibit, cornell-dedication]
+  - question: >-
+      Lincoln speaks of "a new birth of freedom" ten months after the Emancipation
+      Proclamation. What did freedom mean for the millions then enslaved, and what
+      was still to be done?
+    kind: reflect
+    answer: >-
+      Open discussion. Facts to bring in: the Proclamation freed the people enslaved
+      in the rebelling states only, and its promise depended on Union victory;
+      slavery was abolished nationwide by the Thirteenth Amendment, passed by the
+      House on January 31, 1865. The text itself does not say what Lincoln meant.
+    sources: [nara-emancipation, cornell-ideas]
+
+activity:
+  title: "Two minutes against two hours"
+  duration: 15
+  instructions: >-
+    One student reads the address aloud while another times it (it has about 270
+    words). Compare with Edward Everett's oration of about two hours. In groups,
+    students mark on a copy of the text the past, the present and the future, and
+    circle every "here"; each group then explains in two sentences why a speech so
+    short could be remembered longer than the long one.
+  sources: [cornell-never-forget, cornell-bancroft-copy]
+
+references:
+  text:
+    title: "The text on the poster (text.md)"
+    note: >-
+      The Bliss copy as printed in The Collected Works of Abraham Lincoln, volume 7;
+      the edition and its checks are described in meta.yaml.
+  cornell-lincoln-exhibit:
+    title: "The Gettysburg Address (The Lincoln Presidency)"
+    publisher: Cornell University Library, online exhibitions
+    url: https://exhibits.library.cornell.edu/lincoln/feature/the-gettysburg-address
+    retrieved: 2026-09-27
+  cornell-bancroft-copy:
+    title: "Cornell University's Copy"
+    publisher: Cornell University Library, online exhibitions
+    url: https://exhibits.library.cornell.edu/gettysburg/feature/cornell-university-s-copy
+    retrieved: 2026-09-27
+  cornell-never-forget:
+    title: "Never Forget What They Did Here"
+    publisher: Cornell University Library, online exhibitions
+    url: https://exhibits.library.cornell.edu/gettysburg/feature/never-forget-what-they-did-here
+    retrieved: 2026-09-27
+  cornell-ideas:
+    title: "Ideas Are Always More Than Battles"
+    publisher: Cornell University Library, online exhibitions
+    url: https://exhibits.library.cornell.edu/gettysburg/feature/ideas-are-always-more-than-battles
+    retrieved: 2026-09-27
+  cornell-dedication:
+    title: "Dedication of the Soldiers' National Cemetery (Remembering Lincoln at Gettysburg)"
+    publisher: Cornell University Library, online exhibitions
+    url: https://exhibits.library.cornell.edu/gettysburg150/feature/dedication-of-the-soldiers-national-cemetery
+    retrieved: 2026-09-27
+  loc-nicolay:
+    title: "Transcription of the Nicolay Copy"
+    publisher: Library of Congress
+    url: https://web.archive.org/web/2024/https://www.loc.gov/exhibits/gettysburg-address/ext/trans-nicolay-copy.html
+    original_url: https://www.loc.gov/exhibits/gettysburg-address/ext/trans-nicolay-copy.html
+    note: >-
+      Read from the Internet Archive capture: loc.gov refused automated requests
+      (HTTP 403) on 27 September 2026.
+    retrieved: 2026-09-27
+  nps-cemetery:
+    title: "Soldiers' National Cemetery"
+    publisher: U.S. National Park Service
+    url: https://home.nps.gov/places/soldiers-national-cemetery.htm
+    retrieved: 2026-09-27
+  abt-cemetery:
+    title: "The Soldiers' National Cemetery at Gettysburg"
+    publisher: American Battlefield Trust
+    url: https://www.battlefields.org/learn/articles/soldiers-national-cemetery-gettysburg
+    retrieved: 2026-09-27
+  nara-declaration:
+    title: "Declaration of Independence: A Transcription"
+    publisher: U.S. National Archives
+    url: https://www.archives.gov/founding-docs/declaration-transcript
+    retrieved: 2026-09-27
+  nara-emancipation:
+    title: "The Emancipation Proclamation"
+    publisher: U.S. National Archives
+    url: https://www.archives.gov/exhibits/featured-documents/emancipation-proclamation
+    retrieved: 2026-09-27

@@ -1,0 +1,200 @@
+# Margin notes for the Gettysburg Address (the Bliss copy).
+# Each note: `anchor` is copied from text.md and occurs there exactly once;
+# `sources` are keys of `references` below.
+published: true
+license: "CC BY 4.0, written for One Page Papers"
+authors: [One Page Papers]
+lang: en
+paper: gettysburg-address
+
+notes:
+  - anchor: "Address delivered at the dedication of the Cemetery at Gettysburg."
+    note: >-
+      Lincoln wrote out five known copies of the address. This one, the Bliss copy,
+      is the only one with a formal title and his signature. It is the last of the
+      five, made in 1864 to be reproduced in a book sold for Union soldiers, and it
+      is kept in the Lincoln Bedroom of the White House.
+    sources: [cornell-lincoln-exhibit]
+
+  - anchor: "Four score and seven years ago"
+    note: >-
+      A "score" is twenty, so four score and seven is 87. Counting back 87 years from
+      1863 gives 1776, the year of the Declaration of Independence, adopted in
+      Congress on July 4, 1776.
+    sources: [cambridge-score, nara-declaration]
+
+  - anchor: "all men are created equal"
+    note: >-
+      Lincoln quotes the Declaration of Independence: "We hold these truths to be
+      self-evident, that all men are created equal". In the draft kept by his
+      secretary John Nicolay, the words stand in quotation marks.
+    sources: [nara-declaration, loc-nicolay]
+
+  - anchor: "Now we are engaged in a great civil war"
+    note: >-
+      The war set the United States (the Union) against the Southern states that had
+      seceded, the Confederacy. On January 1, 1863, as the war approached its third
+      year, Lincoln had issued the Emancipation Proclamation.
+    sources: [nara-emancipation]
+
+  - anchor: "We are met on a great battle-field of that war."
+    note: >-
+      From July 1 to 3, 1863, the Confederate army of General Robert E. Lee fought
+      the Union army of General George Meade at Gettysburg, Pennsylvania. The
+      battle left more than 51,000 men killed, wounded or missing; the National Park
+      Service counts roughly 10,000 killed or mortally wounded.
+    sources: [cornell-never-forget, nps-cemetery]
+
+  - anchor: "as a final resting place"
+    note: >-
+      After the battle many dead lay in shallow graves on the fields. Pennsylvania's
+      governor, Andrew Curtin, bought 17 acres for a cemetery for the Union dead,
+      and reburials began on
+      October 27, 1863; at the dedication, fewer than half had been moved.
+      Confederate dead were not buried there; their remains were later taken to
+      cemeteries in the South.
+    sources: [nps-cemetery, cornell-never-forget, abt-cemetery]
+
+  - anchor: "we can not hallow"
+    note: >-
+      To "dedicate" a place is to open it in a ceremony that states its purpose; to
+      "consecrate" and to "hallow" are to make it holy. Lincoln says the ceremony cannot do this,
+      because the soldiers who fought there already have.
+    sources: [cambridge-dedicate, cambridge-consecrate, cambridge-hallow]
+
+  - anchor: "The world will little note, nor long remember what we say here"
+    note: >-
+      The main speaker that day, the orator Edward Everett, spoke for about two
+      hours; Lincoln spoke for about two minutes. Newspapers judged the address
+      along party lines, some mocking it and others praising it. The next day
+      Everett wrote to Lincoln that he wished he had come "as near to the central
+      idea of the occasion, in two hours, as you did in two minutes."
+    sources: [loc-exhibit, cornell-lincoln-exhibit, cornell-ideas]
+
+  - anchor: "the last full measure of devotion"
+    note: >-
+      The American Battlefield Trust counts 3,354 bodies buried in the Soldiers'
+      National Cemetery, 979 of them unknown. With the veterans of later American
+      wars buried there since, the cemetery now holds more than 6,000 people.
+    sources: [abt-cemetery, nps-cemetery]
+
+  - anchor: "under God"
+    note: >-
+      These two words are not in the draft kept by John Nicolay, now at the Library
+      of Congress. They appear in this copy and in the Bancroft copy at Cornell. Lincoln's exact spoken words are not known.
+    sources: [loc-nicolay, cornell-bancroft-copy, cornell-dedication]
+
+  - anchor: "a new birth of freedom"
+    note: >-
+      The Emancipation Proclamation of January 1, 1863, declared free the people
+      enslaved in the rebelling states, but it did not end slavery in the whole
+      nation. The Thirteenth Amendment, which abolished slavery in the United
+      States, passed the House of Representatives on January 31, 1865.
+    sources: [nara-emancipation, cornell-ideas]
+
+  - anchor: "government of the people, by the people, for the people"
+    note: >-
+      The phrase travelled far: article 2 of the French Constitution of 1958 gives
+      the principle of the Republic as "gouvernement du peuple, par le peuple et
+      pour le peuple".
+    sources: [cc-constitution-1958]
+
+  - anchor: "November 19. 1863."
+    note: >-
+      The date is that of the speech, not of this copy. Lincoln wrote this copy in
+      March 1864 at the request of the historian George Bancroft and his stepson
+      Alexander Bliss, for a volume of facsimiles, Autograph Leaves of Our
+      Country's Authors, sold at the Baltimore Sanitary Fair. The Bliss family sold
+      it at auction in 1949; its buyer, Oscar Cintas, left it to the American
+      people, and it reached the White House in 1959.
+    sources: [cornell-bancroft-copy, cornell-lincoln-exhibit]
+
+references:
+  cornell-lincoln-exhibit:
+    title: "The Gettysburg Address (The Lincoln Presidency)"
+    publisher: Cornell University Library, online exhibitions
+    url: https://exhibits.library.cornell.edu/lincoln/feature/the-gettysburg-address
+    retrieved: 2026-09-27
+  cornell-bancroft-copy:
+    title: "Cornell University's Copy"
+    publisher: Cornell University Library, online exhibitions
+    url: https://exhibits.library.cornell.edu/gettysburg/feature/cornell-university-s-copy
+    retrieved: 2026-09-27
+  cornell-never-forget:
+    title: "Never Forget What They Did Here"
+    publisher: Cornell University Library, online exhibitions
+    url: https://exhibits.library.cornell.edu/gettysburg/feature/never-forget-what-they-did-here
+    retrieved: 2026-09-27
+  cornell-ideas:
+    title: "Ideas Are Always More Than Battles"
+    publisher: Cornell University Library, online exhibitions
+    url: https://exhibits.library.cornell.edu/gettysburg/feature/ideas-are-always-more-than-battles
+    retrieved: 2026-09-27
+  cornell-dedication:
+    title: "Dedication of the Soldiers' National Cemetery (Remembering Lincoln at Gettysburg)"
+    publisher: Cornell University Library, online exhibitions
+    url: https://exhibits.library.cornell.edu/gettysburg150/feature/dedication-of-the-soldiers-national-cemetery
+    retrieved: 2026-09-27
+  loc-exhibit:
+    title: "Gettysburg Address (exhibition)"
+    publisher: Library of Congress
+    url: https://web.archive.org/web/2024/https://www.loc.gov/exhibits/gettysburg-address/
+    original_url: https://www.loc.gov/exhibits/gettysburg-address/
+    note: >-
+      Read from the Internet Archive capture: loc.gov refused automated requests
+      (HTTP 403) on 27 September 2026.
+    retrieved: 2026-09-27
+  loc-nicolay:
+    title: "Transcription of the Nicolay Copy"
+    publisher: Library of Congress
+    url: https://web.archive.org/web/2024/https://www.loc.gov/exhibits/gettysburg-address/ext/trans-nicolay-copy.html
+    original_url: https://www.loc.gov/exhibits/gettysburg-address/ext/trans-nicolay-copy.html
+    note: >-
+      Read from the Internet Archive capture: loc.gov refused automated requests
+      (HTTP 403) on 27 September 2026.
+    retrieved: 2026-09-27
+  nps-cemetery:
+    title: "Soldiers' National Cemetery"
+    publisher: U.S. National Park Service
+    url: https://home.nps.gov/places/soldiers-national-cemetery.htm
+    retrieved: 2026-09-27
+  abt-cemetery:
+    title: "The Soldiers' National Cemetery at Gettysburg"
+    publisher: American Battlefield Trust
+    url: https://www.battlefields.org/learn/articles/soldiers-national-cemetery-gettysburg
+    retrieved: 2026-09-27
+  nara-declaration:
+    title: "Declaration of Independence: A Transcription"
+    publisher: U.S. National Archives
+    url: https://www.archives.gov/founding-docs/declaration-transcript
+    retrieved: 2026-09-27
+  nara-emancipation:
+    title: "The Emancipation Proclamation"
+    publisher: U.S. National Archives
+    url: https://www.archives.gov/exhibits/featured-documents/emancipation-proclamation
+    retrieved: 2026-09-27
+  cc-constitution-1958:
+    title: "Texte intégral de la Constitution du 4 octobre 1958 en vigueur"
+    publisher: Conseil constitutionnel
+    url: https://www.conseil-constitutionnel.fr/le-bloc-de-constitutionnalite/texte-integral-de-la-constitution-du-4-octobre-1958-en-vigueur
+    retrieved: 2026-09-27
+  cambridge-score:
+    title: "score"
+    publisher: Cambridge Dictionary
+    url: https://dictionary.cambridge.org/dictionary/english/score
+    retrieved: 2026-09-27
+  cambridge-dedicate:
+    title: "dedicate"
+    publisher: Cambridge Dictionary
+    url: https://dictionary.cambridge.org/dictionary/english/dedicate
+    retrieved: 2026-09-27
+  cambridge-consecrate:
+    title: "consecrate"
+    publisher: Cambridge Dictionary
+    url: https://dictionary.cambridge.org/dictionary/english/consecrate
+    retrieved: 2026-09-27
+  cambridge-hallow:
+    title: "hallow"
+    publisher: Cambridge Dictionary
+    url: https://dictionary.cambridge.org/dictionary/english/hallow
+    retrieved: 2026-09-27

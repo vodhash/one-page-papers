@@ -1,0 +1,240 @@
+# Teaching kit for the Déclaration des droits de l'homme et du citoyen (1789).
+# `sources` are keys of `references` below; "text" means the poster's own text.
+published: true
+license: "CC BY 4.0, written for One Page Papers"
+authors: [One Page Papers]
+lang: en
+paper: declaration-droits-homme
+
+level: "Ages 15 to 18 (upper secondary)"
+subject: "History and civics"
+duration: 55
+prerequisites: >-
+  None. The text is in French; students who do not read French can use the official
+  English version published by the Élysée (see references) next to the poster.
+
+context:
+  - point: >-
+      On 20 June 1789 the deputies of the Third Estate at the Estates General, later
+      joined by those of the nobility and the clergy, swore not to separate before
+      they had given France a constitution. This Constituent Assembly wrote the
+      Declaration.
+    sources: [an-archives-ddhc]
+  - point: >-
+      In the summer of 1789 the Great Fear, together with a food crisis, spread riots
+      across the country; in the night of 4 August the Assembly voted the abolition
+      of feudal privileges, and the same day it decided that the constitution would
+      open with a declaration of rights.
+    sources: [an-archives-ddhc]
+  - point: >-
+      The Assembly voted the preamble and the seventeen articles one by one from 20
+      to 26 August 1789. Louis XVI ratified them on 5 October, and the Declaration
+      became the preamble of the Constitution of 1791.
+    sources: [an-assemblee-ddhc]
+  - point: >-
+      The text is still law. The Preamble of the Constitution of 1958 refers to it,
+      and since decisions of 1971 and 1973 the Conseil constitutionnel reviews laws
+      against it, as a norm with "full constitutional value".
+    sources: [cc-ddhc-page, cc-73-51]
+  - point: >-
+      It inspired later texts such as the Universal Declaration of Human Rights,
+      adopted by the United Nations General Assembly on 10 December 1948. UNESCO
+      added it to its Memory of the World Register in 2003.
+    sources: [cc-ddhc-page, an-archives-ddhc]
+
+glossary:
+  - term: "Assemblée nationale constituante"
+    definition: >-
+      The assembly formed in 1789 from the deputies of the Estates General to give
+      France a written constitution.
+  - term: "droits naturels"
+    definition: >-
+      Natural rights: rights that people hold because they are human, which the
+      Declaration says it "recognises and declares" rather than creates.
+  - term: "imprescriptible"
+    definition: "That cannot be lost, even after a long time without being used."
+  - term: "souveraineté"
+    definition: "Sovereignty: the supreme power in a state, from which all authority comes."
+  - term: "volonté générale"
+    definition: >-
+      The general will: in Rousseau's sense, the collective will of all citizens
+      taken as a whole, which is the source of law.
+  - term: "lettre de cachet"
+    definition: >-
+      Under the Ancien Régime, an order of the king that could send a person to
+      prison without stated grounds and without trial.
+  - term: "présomption d'innocence"
+    definition: "The rule that a person is treated as innocent until a court has found them guilty."
+  - term: "séparation des pouvoirs"
+    definition: >-
+      The division of the legislative, executive and judicial powers between
+      different persons or bodies, so that each can check the others.
+  - term: "contribution publique"
+    definition: "A tax paid by citizens to fund the public force and the administration."
+  - term: "Conseil constitutionnel"
+    definition: >-
+      The French court, created in 1958, that checks whether laws respect the
+      Constitution and the texts its Preamble refers to, among them this
+      Declaration.
+
+questions:
+  - question: "Which four natural rights does article 2 list?"
+    kind: locate
+    answer: >-
+      Liberty, property, security (sûreté) and resistance to oppression (article 2).
+    sources: [text]
+  - question: "According to article 4, what is liberty, and who may set its limits?"
+    kind: locate
+    answer: >-
+      Liberty is being able to do anything that does not harm others; its limits are
+      those that let others enjoy the same rights, and only the law may set them
+      (article 4).
+    sources: [text]
+  - question: "The preamble gives three reasons for writing these rights down. What are they?"
+    kind: understand
+    answer: >-
+      So that the Declaration constantly reminds members of society of their rights
+      and duties; so that the acts of the legislative and executive powers can be
+      compared at any moment with the aim of every political institution; and so
+      that citizens' demands, founded on simple principles, serve the constitution
+      and the happiness of all (preamble).
+    sources: [text]
+  - question: >-
+      Articles 7, 8 and 9 protect a person facing justice. What does each guarantee,
+      and which practice of the Ancien Régime do they reject?
+    kind: understand
+    answer: >-
+      Article 7: arrest and detention only in the cases and forms set by law, and
+      punishment for those who give or carry out arbitrary orders. Article 8: only
+      necessary penalties, under a law passed before the offence. Article 9: the
+      presumption of innocence and no needless harshness. They reject imprisonment
+      by lettre de cachet, on the king's decision alone and without trial; the
+      Conseil constitutionnel reads article 9 as a condemnation of it.
+    sources: [text, histoire-image-bastille, cc-ddhc-page]
+  - question: "Where does article 3 place sovereignty, and what does it forbid?"
+    kind: understand
+    answer: >-
+      In the nation. No body and no individual may exercise authority that does not
+      expressly come from the nation (article 3).
+    sources: [text]
+  - question: >-
+      Article 6 says that all citizens may take part in making the law. Who could
+      actually vote under the Constitution of 1791?
+    kind: analyse
+    answer: >-
+      Only "active citizens": among other conditions, they had to be at least 25, pay
+      a direct tax equal to at least three days of work, and not be domestic
+      servants (Constitution of 1791, title III, chapter I, section II, article 2).
+      Students can discuss the gap between the principle and its first
+      application.
+    sources: [cc-constitution-1791]
+  - question: >-
+      In 1791 Olympe de Gouges rewrote article 1. What did she change, and what did
+      she criticise in the Declaration of 1789?
+    kind: analyse
+    answer: >-
+      Her article 1 reads "La femme naît libre et demeure égale à l'homme en droits".
+      She contested the universal claim of the 1789 text and denounced the exclusion
+      of women from national representation, asking citizenship and its rights for
+      them.
+    sources: [bnf-gouges]
+  - question: "Use Montesquieu to explain article 16."
+    kind: reflect
+    answer: >-
+      For Montesquieu, anyone who holds power tends to abuse it, so the legislative,
+      executive and judicial powers must be held by different bodies that can check
+      one another. Article 16 turns this into a definition: without guaranteed
+      rights and separated powers, a society "has no Constitution".
+    sources: [sep-montesquieu, text]
+  - question: "Is this Declaration of 1789 still law in France today? Give two examples."
+    kind: reflect
+    answer: >-
+      Yes. The Preamble of the Constitution of 1958 refers to it, and the Conseil
+      constitutionnel reviews laws against it. In 1999 it derived the right to
+      respect for private life from article 2; in 2013 and 2018 it attached freedom
+      of conscience to article 10; it has struck down provisions for breaching the
+      separation of powers of article 16.
+    sources: [cc-ddhc-page, cc-99-416, cc-conscience, cc-separation]
+
+activity:
+  title: "Two declarations side by side"
+  duration: 15
+  instructions: >-
+    In pairs, students compare the preamble and articles 1 to 3 of this Declaration
+    with the same passages in Olympe de Gouges's Declaration of the Rights of Woman
+    and of the Female Citizen (1791), also on a One Page Papers poster. They list
+    every word she added or changed, then write one sentence saying what each change
+    claims. Share two or three findings with the class.
+  sources: [an-gouges]
+
+references:
+  text:
+    title: "The poster's text (Conseil constitutionnel edition)"
+    url: https://www.conseil-constitutionnel.fr/le-bloc-de-constitutionnalite/declaration-des-droits-de-l-homme-et-du-citoyen-de-1789
+    retrieved: 2026-09-27
+  cc-ddhc-page:
+    title: "La Déclaration des droits de l'homme et du citoyen du 26 août 1789"
+    publisher: Conseil constitutionnel
+    url: https://www.conseil-constitutionnel.fr/la-constitution/la-declaration-des-droits-de-l-homme-et-du-citoyen-du-26-aout-1789
+    retrieved: 2026-09-27
+  cc-73-51:
+    title: "Décision n° 73-51 DC du 27 décembre 1973 (Taxation d'office)"
+    publisher: Conseil constitutionnel
+    url: https://www.conseil-constitutionnel.fr/decision/1973/7351DC.htm
+    retrieved: 2026-09-27
+  cc-99-416:
+    title: "Décision n° 99-416 DC du 23 juillet 1999 (Couverture maladie universelle)"
+    publisher: Conseil constitutionnel
+    url: https://www.conseil-constitutionnel.fr/decision/1999/99416DC.htm
+    retrieved: 2026-09-27
+  cc-conscience:
+    title: "La liberté de conscience"
+    publisher: Conseil constitutionnel
+    url: https://www.conseil-constitutionnel.fr/la-constitution/la-liberte-de-conscience
+    retrieved: 2026-09-27
+  cc-separation:
+    title: "La séparation des pouvoirs"
+    publisher: Conseil constitutionnel
+    url: https://www.conseil-constitutionnel.fr/la-constitution/la-separation-des-pouvoirs
+    retrieved: 2026-09-27
+  cc-constitution-1791:
+    title: "Constitution de 1791"
+    publisher: Conseil constitutionnel (Les Constitutions dans l'histoire)
+    url: https://www.conseil-constitutionnel.fr/les-constitutions-dans-l-histoire/constitution-de-1791
+    retrieved: 2026-09-27
+  an-assemblee-ddhc:
+    title: "Août 1789: La Déclaration des droits de l'homme et du citoyen"
+    publisher: Assemblée nationale
+    url: https://www.assemblee-nationale.fr/dyn/histoire-et-patrimoine/revolution-francaise/la-declaration-des-droits-de-l-homme-et-du-citoyen
+    retrieved: 2026-09-27
+  an-archives-ddhc:
+    title: "La Déclaration des droits de l'homme et du citoyen de 1789"
+    publisher: Archives nationales
+    url: https://www.archives-nationales.culture.gouv.fr/evenements/la-declaration-des-droits-de-lhomme-et-du-citoyen-de-1789
+    retrieved: 2026-09-27
+  elysee-ddhc:
+    title: "The Declaration of the Rights of Man and of the Citizen (official English version)"
+    publisher: Élysée (Présidence de la République)
+    url: https://www.elysee.fr/en/french-presidency/the-declaration-of-the-rights-of-man-and-of-the-citizen
+    retrieved: 2026-09-27
+  an-gouges:
+    title: "5 septembre 1791: Déclaration des droits de la femme et de la citoyenne, Olympe de Gouges"
+    publisher: Assemblée nationale
+    url: https://www.assemblee-nationale.fr/dyn/histoire-et-patrimoine/revolution-francaise/declaration-des-droits-de-la-femme-et-de-la-citoyenne-olympe-de-gouges
+    retrieved: 2026-09-27
+  bnf-gouges:
+    title: "Olympe de Gouges et la Déclaration des droits de la femme et de la citoyenne"
+    publisher: BnF Essentiels (Bibliothèque nationale de France)
+    url: https://essentiels.bnf.fr/fr/litterature/18e-siecle/d82c8468-ea13-484f-8e2e-5c17066e32fa-litterature-en-revolution/article/bdb2b184-e606-4b8c-b7b3-8e740827ae0d-olympe-gouges-et-declaration-droits-la-femme-et-la-citoyenne
+    retrieved: 2026-09-27
+  histoire-image-bastille:
+    title: "La Bastille dans les premiers jours de sa démolition"
+    author: Stéphane Blond
+    publisher: Histoire par l'image
+    url: https://histoire-image.org/etudes/bastille-premiers-jours-sa-demolition
+    retrieved: 2026-09-27
+  sep-montesquieu:
+    title: "Montesquieu"
+    publisher: Stanford Encyclopedia of Philosophy
+    url: https://plato.stanford.edu/entries/montesquieu/
+    retrieved: 2026-09-27

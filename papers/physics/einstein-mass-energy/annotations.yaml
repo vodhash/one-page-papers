@@ -1,0 +1,183 @@
+# Margin notes for Einstein, "Ist die Trägheit eines Körpers von seinem
+# Energieinhalt abhängig?" (1905).
+# Each note: `anchor` is copied from text.md and occurs there exactly once;
+# `sources` are keys of `references` below; "text" means the paper itself.
+# A note that starts with "Translation:" gives our own English rendering.
+published: true
+license: "CC BY 4.0, written for One Page Papers"
+authors: [One Page Papers]
+lang: en
+paper: einstein-mass-energy
+
+notes:
+  - anchor: "elektrodynamischen Untersuchung"
+    note: >-
+      Translation: "electrodynamical investigation" (ours). Einstein means "Zur
+      Elektrodynamik bewegter Körper" (On the Electrodynamics of Moving Bodies),
+      Annalen der Physik 17, pages 891 to 921, received on 30 June 1905: the paper
+      that set out special relativity. This short paper, submitted in September, is
+      its sequel.
+    sources: [wikisource-electrodynamics, aps-1905]
+
+  - anchor: "Gleichungen für den leeren Raum"
+    note: >-
+      Translation: "equations for empty space" (ours). Maxwell's equations state the
+      fundamentals of electricity and magnetism. Einstein's second footnote adds that the constancy of the speed of
+      light is contained in them.
+    sources: [hyperphysics-maxwell, text]
+
+  - anchor: "(Relativitätsprinzip)"
+    note: >-
+      Translation (ours): "The laws by which the states of physical systems change
+      do not depend on which of two coordinate systems, in uniform parallel
+      translation relative to each other, these changes are referred to (principle
+      of relativity)." It is, almost word for word, the first of the two principles
+      of the June paper; the second is the constancy of the speed of light.
+    sources: [wikisource-electrodynamics]
+
+  - anchor: "die Lichtgeschwindigkeit bedeutet"
+    note: >-
+      Einstein writes V for the speed of light; the English translation of 1923
+      already replaced it with c, the letter used today. Its value is exactly
+      299 792 458 metres per second, about 3 × 10^10 centimetres per second.
+    sources: [fourmilab-translation, nist-c]
+
+  - anchor: "(l. c. § 8)"
+    note: >-
+      "l. c." (loco citato, "in the place cited") points back to the paper already
+      named, here the June paper. Its § 8 is "Transformation der Energie der
+      Lichtstrahlen", on how the energy of light changes from one coordinate system
+      to another; the formula for l* above comes from it.
+    sources: [cambridge-loc-cit, wikisource-electrodynamics]
+
+  - anchor: "muß das Energieprinzip gelten"
+    note: >-
+      Translation: "the principle of energy must hold" (ours), that is, the
+      conservation of energy. Einstein applies it in both coordinate systems, as
+      the principle of relativity demands. In the system where the body is at rest
+      it loses L; in the moving system the two light pulses together carry
+      L/√(1 − (v/V)²), a little more than L.
+    sources: [text, fourmilab-translation]
+
+  - anchor: "nur durch eine additive Konstante"
+    note: >-
+      Energy is only defined up to an arbitrary added constant. So the difference
+      H − E, the energy of the body seen from the moving system minus its energy
+      at rest, is its kinetic energy K plus a constant C, which cancels out when the
+      state before emission is compared with the state after.
+    sources: [text, fourmilab-translation]
+
+  - anchor: "Unter Vernachlässigung von Größen vierter und höherer Ordnung"
+    note: >-
+      Translation: "Neglecting quantities of fourth and higher order" (ours). For
+      speeds v much smaller than V, the binomial expansion gives
+      1/√(1 − (v/V)²) ≈ 1 + ½(v/V)², and the relativistic kinetic energy approaches
+      the classical ½mv². The loss of kinetic energy then has the form ½mv², with
+      L/V² in place of m.
+    sources: [hyperphysics-energy, text]
+
+  - anchor: "so verkleinert sich seine Masse um"
+    note: >-
+      Translation: "If a body gives off the energy L in the form of radiation, its
+      mass decreases by L/V²" (ours). The body stays at rest and keeps its speed
+      relative to the moving system, so the only way its kinetic energy there can
+      drop is for its mass to drop. In today's notation, a change of energy ΔE
+      changes the mass by ΔE/c², the relation now written E = mc².
+    sources: [text, aps-1905]
+
+  - anchor: "Die Masse eines Körpers ist ein Maß für dessen Energieinhalt"
+    note: >-
+      Translation: "The mass of a body is a measure of its energy content" (ours).
+      Einstein goes from light to any form of energy. To a friend he wrote that
+      the thought was "amusing and infectious, but I cannot possibly know whether
+      the good Lord does not laugh at it and has led me up the garden path"
+      (translation quoted by the American Physical Society).
+    sources: [aps-1905]
+
+  - anchor: "wenn die Energie in Erg und die Masse in Grammen gemessen wird"
+    note: >-
+      The erg is the unit of energy of the centimetre-gram-second system: 1 erg =
+      10^-7 joule. With V about 3 × 10^10 cm/s, V² is about 9 × 10^20 cm²/s², the
+      number in the text. A body that gives off 1 joule (10^7 erg) thus loses about
+      1.1 × 10^-14 gram.
+    sources: [nist-sp811, nist-c, cambridge-erg]
+
+  - anchor: "bei den Radiumsalzen"
+    note: >-
+      Radium, a strongly radioactive element that Marie and Pierre Curie had
+      extracted from the mineral pitchblende, gives off energy as radiation.
+      Einstein proposed its salts as a test, but the loss of mass proved far too small to observe. The first explicit
+      check came in 1932, when John Cockcroft and E. T. S. Walton split lithium
+      nuclei with protons and compared the masses before and after with the energy
+      released.
+    sources: [nobel-curie, aps-1905]
+
+  - anchor: "so überträgt die Strahlung Trägheit"
+    note: >-
+      Translation: "radiation carries inertia between the emitting and the absorbing
+      bodies" (ours). In his letter Einstein put it as "light transfers mass". In
+      2005 a direct test by MIT, NIST and the Institut Laue-Langevin found that E and
+      mc² differ by at most 4 parts in 10 million.
+    sources: [aps-1905, nist-2005]
+
+references:
+  text:
+    title: "The text on the poster (text.md)"
+    note: >-
+      Annalen der Physik, 4th series, vol. 18 (1905), pp. 639-641; the edition is
+      described in meta.yaml.
+  fourmilab-translation:
+    title: "Does the Inertia of a Body Depend upon its Energy-Content? (English translation of 1923, W. Perrett and G. B. Jeffery)"
+    publisher: Fourmilab (John Walker), public domain edition
+    url: https://www.fourmilab.ch/etexts/einstein/E_mc2/www/
+    retrieved: 2026-09-27
+  wikisource-electrodynamics:
+    title: "Zur Elektrodynamik bewegter Körper (Annalen der Physik 17, 1905)"
+    publisher: Wikisource (German)
+    url: https://de.wikisource.org/wiki/Zur_Elektrodynamik_bewegter_K%C3%B6rper
+    retrieved: 2026-09-27
+  aps-1905:
+    title: "This Month in Physics History: September 1905: Energy and Mass are Equivalent"
+    publisher: APS News, American Physical Society
+    url: https://www.aps.org/apsnews/2005/04/september-1905-energy-mass-equivalent
+    retrieved: 2026-09-27
+  nist-2005:
+    title: "Einstein Was Right (Again): Experiments Confirm that E= mc2"
+    publisher: National Institute of Standards and Technology
+    url: https://www.nist.gov/news-events/news/2005/12/einstein-was-right-again-experiments-confirm-e-mc2
+    retrieved: 2026-09-27
+  nist-c:
+    title: "CODATA value: speed of light in vacuum"
+    publisher: NIST, Fundamental Physical Constants
+    url: https://physics.nist.gov/cgi-bin/cuu/Value?c
+    retrieved: 2026-09-27
+  nist-sp811:
+    title: "NIST Guide to the SI, Appendix B.9: Factors for units listed by kind of quantity"
+    publisher: National Institute of Standards and Technology
+    url: https://www.nist.gov/pml/special-publication-811/nist-guide-si-appendix-b-conversion-factors/nist-guide-si-appendix-b9
+    retrieved: 2026-09-27
+  hyperphysics-maxwell:
+    title: "Maxwell's Equations"
+    publisher: HyperPhysics, Georgia State University
+    url: http://hyperphysics.phy-astr.gsu.edu/hbase/electric/maxeq.html
+    retrieved: 2026-09-27
+  hyperphysics-energy:
+    title: "Relativistic Energy"
+    publisher: HyperPhysics, Georgia State University
+    url: http://hyperphysics.phy-astr.gsu.edu/hbase/Relativ/releng.html
+    retrieved: 2026-09-27
+  nobel-curie:
+    title: "Marie Curie: Facts"
+    publisher: NobelPrize.org
+    url: https://www.nobelprize.org/prizes/physics/1903/marie-curie/facts/
+    retrieved: 2026-09-27
+  cambridge-loc-cit:
+    title: "loc. cit."
+    publisher: Cambridge Dictionary
+    url: https://dictionary.cambridge.org/dictionary/english/loc-cit
+    retrieved: 2026-09-27
+  cambridge-erg:
+    title: "erg"
+    publisher: Cambridge Dictionary
+    url: https://dictionary.cambridge.org/dictionary/english/erg
+    retrieved: 2026-09-27

@@ -1,0 +1,201 @@
+# Teaching kit for Einstein, "Ist die Trägheit eines Körpers von seinem
+# Energieinhalt abhängig?" (1905).
+# `sources` are keys of `references` below; "text" means the paper itself.
+published: true
+license: "CC BY 4.0, written for One Page Papers"
+authors: [One Page Papers]
+lang: en
+paper: einstein-mass-energy
+
+level: "Ages 16 to 18 (upper secondary physics)"
+subject: "Physics"
+duration: 55
+prerequisites: >-
+  Kinetic energy ½mv², conservation of energy, square roots and powers of ten. The
+  paper is in German: students who do not read German can follow the English
+  translation of 1923 (see references), which writes c where Einstein writes V.
+
+context:
+  - point: >-
+      In June 1905 Einstein submitted the paper that set out special relativity,
+      "Zur Elektrodynamik bewegter Körper"; in September he submitted this short
+      sequel, where he derived the relation now written E = mc².
+    sources: [aps-1905, wikisource-electrodynamics]
+  - point: >-
+      Einstein was not the first to link mass and energy: from 1881 J. J. Thomson,
+      then Max Abraham, Lorentz and Poincaré, studied an "electromagnetic mass" of
+      charged bodies such as the electron. Relativity showed that the relation holds
+      for any body, whatever it is made of.
+    sources: [aps-1905]
+  - point: >-
+      The paper uses the units of the time, the centimetre, the gram and the erg (10^-7
+      joule), and the letter V for the speed of light.
+    sources: [nist-sp811, fourmilab-translation]
+  - point: >-
+      Confirmation was slow: the mass changes were too small to measure in radium
+      salts. John Cockcroft and E. T. S. Walton checked the relation explicitly in
+      1932 with lithium nuclei, and in 2005 a direct test found agreement to 4 parts
+      in 10 million. The relation underlies nuclear fission and fusion.
+    sources: [aps-1905, nist-2005]
+
+glossary:
+  - term: "Trägheit"
+    definition: "Inertia: a body's resistance to a change in its motion, measured by its mass."
+  - term: "Energieinhalt"
+    definition: "Energy content: all the energy a body contains."
+  - term: "Koordinatensystem"
+    definition: >-
+      Coordinate system, or frame of reference: the axes and clocks from which
+      positions, speeds and energies are measured.
+  - term: "gleichförmige Paralleltranslation"
+    definition: "Uniform motion in a straight line, without rotation."
+  - term: "Relativitätsprinzip"
+    definition: >-
+      Principle of relativity: the laws of physics are the same in all frames moving
+      uniformly relative to one another.
+  - term: "Lichtgeschwindigkeit (V)"
+    definition: "The speed of light, written c today: 299 792 458 m/s, about 3 × 10^10 cm/s."
+  - term: "kinetische Energie"
+    definition: "Energy of motion; ½mv² at speeds small compared with the speed of light."
+  - term: "Erg"
+    definition: "Unit of energy of the centimetre-gram-second system; 1 erg = 10^-7 joule."
+  - term: "Größen vierter Ordnung"
+    definition: >-
+      Quantities of fourth order: terms in (v/V)⁴ and beyond, negligible when v is
+      small compared with V.
+  - term: "Radiumsalze"
+    definition: "Salts of radium, a strongly radioactive element extracted by Marie and Pierre Curie."
+
+questions:
+  - question: "Which result from his earlier paper does Einstein take as his starting point, and where is it found?"
+    kind: locate
+    answer: >-
+      The formula for the energy l* of a packet of plane light waves measured from a
+      coordinate system moving with speed v, taken from § 8 of the June paper
+      ("l. c. § 8").
+    sources: [text, wikisource-electrodynamics]
+  - question: "Describe the thought experiment: what does the body do, and in which system is it at rest?"
+    kind: locate
+    answer: >-
+      A body at rest in the system (x, y, z) sends out two equal packets of light,
+      each of energy L/2, in opposite directions. It stays at rest in (x, y, z)
+      while the system (ξ, η, ζ) moves along the x axis with speed v.
+    sources: [text]
+  - question: >-
+      Show that the two light packets together carry L/√(1 − (v/V)²) in the moving
+      system.
+    kind: calculate
+    answer: >-
+      Add the two terms of the second equation: the terms in (v/V)cos φ have opposite
+      signs and cancel, leaving (L/2 + L/2)/√(1 − (v/V)²) = L/√(1 − (v/V)²).
+    sources: [text]
+  - question: >-
+      Why can Einstein say that H − E differs from the kinetic energy K only by a
+      constant?
+    kind: understand
+    answer: >-
+      H and E are the energies of the same body measured from two systems, and the
+      body is at rest in one of them, so their difference is its energy of motion
+      in the other; energies are fixed only up to an arbitrary added constant, so a
+      constant C remains, and it does not change during the emission.
+    sources: [text]
+  - question: >-
+      Using 1/√(1 − x²) ≈ 1 + x²/2 for small x, derive K₀ − K₁ ≈ (L/V²)(v²/2) and
+      explain what it says about the mass.
+    kind: calculate
+    answer: >-
+      K₀ − K₁ = L(1/√(1 − (v/V)²) − 1) ≈ L(v/V)²/2 = (L/V²)(v²/2). This has the form
+      ½mv² with m replaced by L/V². The speed v is the same before and after, so the
+      kinetic energy can fall only if the mass falls, by L/V².
+    sources: [text, hyperphysics-energy]
+  - question: >-
+      Where does the number 9 · 10^20 come from? How much mass does a body lose when
+      it gives off 1 kilowatt hour?
+    kind: calculate
+    answer: >-
+      It is V² in cm²/s², with V about 3 × 10^10 cm/s. 1 kWh = 3.6 × 10^6 J
+      = 3.6 × 10^13 erg, so the loss is 3.6 × 10^13 / 9 × 10^20 = 4 × 10^-8 gram,
+      or 4 × 10^-11 kg with c² = 9 × 10^16 m²/s².
+    sources: [text, nist-sp811, nist-c]
+  - question: "Why did Einstein suggest radium salts as a test, and why did the test not work at first?"
+    kind: understand
+    answer: >-
+      Its energy content changes a great deal ("in hohem Maße veränderlich") as it
+      gives off radiation, so its mass should change the most. Because c² is so large, the loss
+      of mass proved much too small to observe with the methods of the time.
+    sources: [text, aps-1905]
+  - question: >-
+      Einstein ends with "Wenn die Theorie den Tatsachen entspricht" (if the theory
+      matches the facts). How was the relation tested later?
+    kind: reflect
+    answer: >-
+      In 1932 Cockcroft and Walton compared the masses of lithium and a proton with
+      the two alpha particles they produced and their energy; in 2005 researchers
+      at MIT, NIST and the Institut Laue-Langevin compared the energy of gamma rays
+      emitted by silicon and sulfur with measured atomic masses, and found E and mc²
+      equal to within 4 parts in 10 million.
+    sources: [aps-1905, nist-2005]
+  - question: >-
+      The paper says it does not matter that the energy leaves as radiation. Why is
+      this generalisation the heart of the result?
+    kind: reflect
+    answer: >-
+      Einstein concludes that the mass of any body measures its energy content,
+      whatever form the energy takes; earlier ideas of electromagnetic mass
+      concerned only particular kinds of energy, whereas relativity makes the
+      relation hold for any body, whatever its internal make-up.
+    sources: [text, aps-1905]
+
+activity:
+  title: "How heavy is a charge?"
+  duration: 15
+  instructions: >-
+    In groups, students estimate the change of mass of everyday objects when their
+    energy changes, using Δm = ΔE/c² with c² = 9 × 10^16 m²/s²: a phone battery
+    charged with 0.02 kWh, a household using 10 kWh in a day (1 kWh = 3.6 × 10^6 J).
+    They compare the results with the smallest mass a kitchen scale can show and
+    explain why Einstein looked for bodies whose energy content changes a great
+    deal. Expected answers: about 8 × 10^-13 kg and 4 × 10^-10 kg.
+  sources: [nist-sp811, nist-c]
+
+references:
+  text:
+    title: "The text on the poster (text.md)"
+    note: >-
+      Annalen der Physik, 4th series, vol. 18 (1905), pp. 639-641; the edition is
+      described in meta.yaml.
+  fourmilab-translation:
+    title: "Does the Inertia of a Body Depend upon its Energy-Content? (English translation of 1923, W. Perrett and G. B. Jeffery)"
+    publisher: Fourmilab (John Walker), public domain edition
+    url: https://www.fourmilab.ch/etexts/einstein/E_mc2/www/
+    retrieved: 2026-09-27
+  wikisource-electrodynamics:
+    title: "Zur Elektrodynamik bewegter Körper (Annalen der Physik 17, 1905)"
+    publisher: Wikisource (German)
+    url: https://de.wikisource.org/wiki/Zur_Elektrodynamik_bewegter_K%C3%B6rper
+    retrieved: 2026-09-27
+  aps-1905:
+    title: "This Month in Physics History: September 1905: Energy and Mass are Equivalent"
+    publisher: APS News, American Physical Society
+    url: https://www.aps.org/apsnews/2005/04/september-1905-energy-mass-equivalent
+    retrieved: 2026-09-27
+  nist-2005:
+    title: "Einstein Was Right (Again): Experiments Confirm that E= mc2"
+    publisher: National Institute of Standards and Technology
+    url: https://www.nist.gov/news-events/news/2005/12/einstein-was-right-again-experiments-confirm-e-mc2
+    retrieved: 2026-09-27
+  nist-c:
+    title: "CODATA value: speed of light in vacuum"
+    publisher: NIST, Fundamental Physical Constants
+    url: https://physics.nist.gov/cgi-bin/cuu/Value?c
+    retrieved: 2026-09-27
+  nist-sp811:
+    title: "NIST Guide to the SI, Appendix B.9: Factors for units listed by kind of quantity"
+    publisher: National Institute of Standards and Technology
+    url: https://www.nist.gov/pml/special-publication-811/nist-guide-si-appendix-b-conversion-factors/nist-guide-si-appendix-b9
+    retrieved: 2026-09-27
+  hyperphysics-energy:
+    title: "Relativistic Energy"
+    publisher: HyperPhysics, Georgia State University
+    url: http://hyperphysics.phy-astr.gsu.edu/hbase/Relativ/releng.html
+    retrieved: 2026-09-27
