@@ -81,6 +81,7 @@ Texts that wait for a license allowing their redistribution; [PENDING.md](PENDIN
 - Apollo 11: the master ignition routine of Luminary 099 (MIT Instrumentation Laboratory, 1969)
 - Computing Machinery and Intelligence (Alan Turing, 1950)
 - The Conscience of a Hacker (The Mentor, 1986)
+- What would you like to see most in minix? (Linus Torvalds, 1991)
 
 <!-- catalog:end -->
 

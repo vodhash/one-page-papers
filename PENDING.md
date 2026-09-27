@@ -66,3 +66,10 @@ missing. The catalog of the README lists them under *Coming soon*.
 - Source: https://phrack.org/issues/7/hackers-manifesto.html (Phrack, vol. 1, issue 7, 25 September 1986; the text is dated 8 January 1986)
 - Status: under copyright (published in 1986), no license found. The "Copyleft" line in the footer of phrack.org gives no terms, and the issue leaves each article to the responsibility of its author.
 - Missing: a license or a permission from its author, Loyd Blankenship, that allows its redistribution.
+
+## What would you like to see most in minix? (Linus Torvalds, 1991)
+
+- Category: manifestos
+- Source: https://groups.google.com/g/comp.os.minix/c/dlNtH7RRrGA (the announcement of Linux on comp.os.minix, 25 August 1991)
+- Status: under copyright (published in 1991), no license found.
+- Missing: a license or a permission from Linus Torvalds that allows its redistribution.
