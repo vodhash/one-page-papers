@@ -1,0 +1,57 @@
+title: "Catalogue des Nébuleuses et des amas d'Étoiles"
+summary: "Charles Messier's catalogue of 103 nebulae, star clusters and other objects observed from Paris, with positions and descriptions."
+title_html: "Catalogue des Nébuleuses<br><em>et des amas d'Étoiles</em>"
+kicker: "Connoissance des Temps pour l'année bissextile 1784 · Paris, 1781"
+author: "Charles Messier"
+byline: "Observées à Paris, par M. Messier, à l'Observatoire de la Marine, hôtel de Clugni, rue des Mathurins."
+emblem: "M"
+lang: fr
+columns: 5
+footer:
+  - "<i>Connoissance des Temps pour l'année bissextile 1784</i>, computed by Edme-Sébastien Jeaurat (Paris: Imprimerie royale, 1781), pp. 227-269."
+  - "<i>Public domain in France and in the United States. The positions of each object, printed on the left-hand pages, are set here at the head of its description, printed on the right-hand pages.</i>"
+  - '<span class="mono">MDZ bsb10538209</span>'
+year: 1781
+authors: [Charles Messier]
+min_print: A1
+source:
+  url: https://www.digitale-sammlungen.de/en/details/bsb10538209
+  retrieved: 2026-09-27
+  edition: >-
+    Complete text of the catalogue, pp. 227-269 of the Connoissance des Temps, ou Connoissance
+    des Mouvemens Célestes, pour l'Année bissextile 1784, computed by Edme-Sébastien Jeaurat (Paris, de
+    l'Imprimerie royale, 1781), from the scan of the copy of the Bayerische Staatsbibliothek
+    (MDZ, bsb10538209, digitized by Google), cross-checked against the Gallica scan of the copy
+    of the Observatoire de Paris (ark:/12148/bpt6k6514280n, views 235-277): the heading and
+    preface (p. 227), the table of positions of nos. 1 to 101 on the left-hand pages 228-266,
+    the details of nos. 1 to 103 on the right-hand pages 229-267, and the nebulae sought in
+    vain (pp. 268-269). The prose was built from the OCR of the BSB scan and corrected page by
+    page against the page images, with the OCR of the Gallica scan as a cross-check (every
+    accent on which the two OCRs disagree was looked up on the image); the table was read from
+    the page images, number by number, and compared with the positions and dates of the
+    English translation of Messier's own copy on messier.seds.org (four rows where they differ,
+    nos. 11, 71, 97 and 101, were checked again: the print is kept). Layout changes: the
+    positions of each object are set at the head of its description, with the positions
+    that M. Méchain gave for some objects under those of M. Messier, instead of on the facing
+    page; the column heads of the table are set once in a key, with the heading of the
+    details column ("N.os des Nébul."); the headings repeated on each page ("Détails des
+    Nébuleuses & des amas d'Étoiles." as a section title, set once, and "Les positions sont
+    rapportées ci-contre", once "ci-après") are left out, as are running heads, page numbers
+    and signatures; the title lines of p. 227 are in the header. Normalizations: long s set
+    as s; hyphens at line ends rejoined, and the word "instru-mens" split across pp. 239 and
+    241 joined; the guillemets repeated at the start of each line of a quotation are set once
+    at its start and end; the dates of the table are as printed, with the day alone when the
+    month is that of the row above. Spelling, accents, punctuation and misprints are kept,
+    among them "dtoit" (no. 8), "d étoiles" (p. 227), "étoilés" (no. 83), the double period after the
+    page range of p. 255, and the declination of no. 97 marked A (australe).
+license:
+  text: "Public domain"
+  holder: "Charles Messier, 1781"
+  basis: >-
+    Charles Messier died on 12 April 1817, so his works are in the public domain in France
+    (70 years counted from 1 January 1818). The catalogue was published in 1781, before 1
+    January 1931, so it is in the public domain in the United States.
+  note: >-
+    No image of the scans is reproduced. The BSB digitization is marked with the rights
+    statement NoC-NC 1.0 (no copyright, non-commercial use) in its IIIF manifest; the Gallica
+    scan is a public-domain document of the Bibliothèque nationale de France.

@@ -1,0 +1,32 @@
+/* Each object: its number and the positions of the left-hand table on one line, in the columns of
+   the print, then its description from the right-hand page */
+main p{hyphens:auto}
+.entry{display:grid;grid-template-columns:auto 1fr;align-items:baseline;margin:0 0 .05em;font-size:.8em;line-height:1.25;
+  font-variant-numeric:tabular-nums lining-nums;white-space:nowrap;text-indent:0}
+.no{display:inline-block;width:2.6em;font-weight:600;font-size:1.25em}
+.pos{display:flex;flex:1;justify-content:space-between}
+.pos>span{display:inline-block}
+.pos .d{width:7.4em}
+.pos .t{width:5.2em;text-align:right}
+.pos .g{width:6.2em;text-align:right}
+.pos .c{width:6.6em;text-align:right}
+.pos .m{width:3em;text-align:right}
+/* the positions of M. Méchain, printed under those of M. Messier */
+.mech{grid-column:2}
+/* 102 and 103 have no line in the table */
+p>.no:first-child{font-size:1em}
+/* the key: the headings of the table columns as printed, on the grid of the positions */
+.key{display:flex;align-items:flex-end;font-size:.8em;line-height:1.1;margin:.2em 0 .8em;
+  padding-bottom:.3em;border-bottom:.2mm solid var(--ink);font-variant:small-caps}
+.key .no,.key .pos>span{font-size:.72em;font-weight:400;white-space:normal}
+.key .no{width:4.5em;text-align:left}
+.key .pos{display:flex;flex:1;justify-content:space-between}
+.key .d{width:10.3em;text-align:left}.key .t{width:7.2em;text-align:right}.key .g{width:8.6em;text-align:right}
+.key .c{width:9.2em;text-align:right}.key .m{width:4.2em;text-align:right}
+/* headings set in the print in italic, centered */
+p.hd,p.it{text-align:center;hyphens:manual;margin:.6em 0 .4em}
+p.hd{font-size:1.1em}
+p.it{font-style:italic}
+.sc{font-variant:small-caps;letter-spacing:.04em}
+h2{text-align:center}
+sup{line-height:0;font-size:.62em}
