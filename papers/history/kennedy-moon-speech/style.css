@@ -1,0 +1,6 @@
+/* The emblem is a crescent Moon, drawn rather than taken from a font: none of the bundled
+   fonts has a Moon symbol. An inset shadow of the accent colour inside an empty disc draws
+   it as a single shape */
+.rule b{background:none;box-shadow:inset calc(2.8mm*var(--hs)) calc(-1.1mm*var(--hs)) 0 0 var(--acc)}
+.kick{letter-spacing:.3em}
+footer>div:first-child{max-width:40%;line-height:1.3}
