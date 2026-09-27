@@ -80,3 +80,10 @@ missing. The catalog of the README lists them under *Coming soon*.
 - Source: https://web.archive.org/web/2009/http://rpow.net/theory.html (rpow.net, as archived by the Internet Archive)
 - Status: under copyright (published in 2004), no license found. Only the RPOW code carries a license, and it does not cover the pages.
 - Missing: a license or a permission from the estate of Hal Finney that allows its redistribution.
+
+## Universal Declaration of Human Rights (United Nations General Assembly, 1948)
+
+- Category: history
+- Source: https://www.un.org/en/about-us/universal-declaration-of-human-rights
+- Status: no license allowing redistribution found. The terms of the UN sites allow personal, non-commercial use only; the permission printed in the illustrated edition of 2015 covers free distribution of that edition only.
+- Missing: an explicit license or permission of the United Nations for its redistribution.

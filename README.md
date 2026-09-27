@@ -148,6 +148,7 @@ Texts that wait for a license allowing their redistribution; [PENDING.md](PENDIN
 - The Conscience of a Hacker (The Mentor, 1986)
 - What would you like to see most in minix? (Linus Torvalds, 1991)
 - RPOW: Reusable Proofs of Work (Hal Finney, 2004)
+- Universal Declaration of Human Rights (United Nations General Assembly, 1948)
 
 <!-- catalog:end -->
 
