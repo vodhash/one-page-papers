@@ -1,0 +1,21 @@
+/* The English wordlist, in its order down the columns like a dictionary. Its type follows the body
+   size, and the number of columns follows its type: a column is as wide as an eight-letter word
+   (4.8 em) plus a gap */
+.wordlist{columns:5.6em auto;column-gap:0;column-fill:balance;font-family:'JetBrains Mono',monospace;
+ font-size:calc(var(--fs)*.8);line-height:1.22;text-align:left;hyphens:none;color:var(--mute)}
+.wordlist span{display:block;white-space:nowrap;break-inside:avoid}
+/* the first four letters identify the word */
+.wordlist b{font-weight:400;color:var(--ink)}
+.wl-cap{font-family:'JetBrains Mono',monospace;font-size:.62em;color:var(--acc);letter-spacing:.06em;
+ text-align:left;margin:0 0 .5em}
+/* the MIT License text, in small print under the wordlist */
+p.mit{font-size:.56em;line-height:1.35;color:var(--mute);margin:1.1em 0 0;text-align:justify}
+p.mit b{font-weight:600;color:var(--ink)}
+/* a), b), c) stay with their bullets */
+p:has(+ul){break-after:avoid}
+p+ul{margin-top:-.25em}
+ul li{margin-bottom:.2em}
+/* bare URLs break anywhere, so that a line never stretches before one */
+code.url{word-break:break-all;hyphens:none}
+.kick{letter-spacing:.22em}
+footer>div:first-child{max-width:48%;line-height:1.3}
