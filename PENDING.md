@@ -101,3 +101,10 @@ missing. The catalog of the README lists them under *Coming soon*.
 - Source: Icarus 26 (1975), p. 462, and the National Astronomy and Ionosphere Center (Cornell University)
 - Status: no public domain or license established. It was made at Cornell under NSF funding, which does not make it a federal work, and the copies found are redrawings under GFDL or CC BY-SA.
 - Missing: a statement of Cornell, NAIC or NSF on its reuse, or the original bits from a source whose terms allow redistribution.
+
+## I think: the tree sketch of Notebook B (Charles Darwin, 1837)
+
+- Category: life-sciences
+- Source: https://darwin-online.org.uk/ (Notebook B, p. 36) and https://commons.wikimedia.org/wiki/File:Darwin_Tree_1837.png
+- Status: status in the United States not established. The notebook was not published in Darwin's lifetime, and the earliest edition found dates from 1960; Darwin Online reproduces it "with the permission of" Cambridge University Library and the Darwin family.
+- Missing: the date and place of the first publication of the page, or an explicit statement of Cambridge University Library on its reuse.
