@@ -1,0 +1,42 @@
+title: "Ueber eine elementare Frage der Mannigfaltigkeitslehre"
+summary: "Cantor's diagonal argument: the sequences of two symbols cannot be listed, and no set has the greatest cardinality."
+title_html: "Ueber eine elementare Frage<br><em>der Mannigfaltigkeitslehre</em>"
+title_size: 88pt
+kicker: "Deutsche Mathematiker-Vereinigung · Versammlung zu Halle, September 1891"
+author: "Georg Cantor"
+byline: "Jahresbericht der Deutschen Mathematiker-Vereinigung, Erster Band, 1890-91, Berlin, 1892, pp. 75-78"
+emblem: "ℵ"
+lang: de
+header_scale: 1.3
+columns: 3
+footer:
+  - "Printed in the report on the scientific sessions of the meeting held at Halle, 22 to 26 September 1891."
+  - "<i>Text of the Jahresbericht, Berlin, Georg Reimer, 1892. Public domain.</i>"
+  - '<span class="mono">archive.org</span>'
+year: 1891
+authors: [Georg Cantor]
+min_print: A3
+source:
+  url: https://archive.org/details/jahresberichtder1218deut
+  retrieved: 2026-09-27
+  edition: >-
+    The paper as printed in the Jahresbericht der Deutschen Mathematiker-Vereinigung, Erster
+    Band, 1890-91 (Berlin, Georg Reimer, 1892), pp. 75-78, in the report on the scientific
+    sessions of the meeting at Halle, 22 to 26 September 1891; complete. The text comes from
+    the OCR of the Internet Archive item jahresberichtder1218deut (University of Illinois
+    copy, leaves 84 to 87), corrected on the scan of the same pages: every line was read
+    against the page images, and the lines that the OCR garbles (the formulas and every
+    subscript) were set from the scan. Running heads and page numbers are dropped, words
+    hyphenated at line ends are rejoined, and the paragraph breaks and centred displays
+    follow the print. The byline "Von Georg Cantor (Halle a. S.)." is in the header.
+    Typography: variables are upright, as printed, with HTML subscripts and superscripts;
+    the leaders of the print (". . .") are set as ellipses; the signs "≧" and "≦" are set
+    with KaTeX; the rows of dots under the display of E1, E2, ..., Eμ are kept.
+license:
+  text: "Public domain"
+  holder: "Georg Cantor, 1892"
+  basis: >-
+    Georg Cantor died on 6 January 1918 (Wikidata Q76420) and the paper was published in
+    1892: it is in the public domain in France, where the author died before 1 January 1956,
+    and in the United States, where it was published before 1 January 1931. The scan is a
+    faithful reproduction of that public domain printing.

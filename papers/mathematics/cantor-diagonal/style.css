@@ -1,0 +1,6 @@
+/* Centred display lines of the print; the text that follows a display continues its paragraph */
+p.f{text-align:center;text-indent:0;margin:.35em 0;hyphens:manual}
+p.f + p{text-indent:0}
+/* EB Garamond has no aleph: take it from the KaTeX font, which the formulas load */
+.rule b{font-family:'KaTeX_Main'}
+p.f.m{display:table;margin:.35em auto;text-align:left}
