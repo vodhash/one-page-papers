@@ -52,3 +52,10 @@ missing. The catalog of the README lists them under *Coming soon*.
 - Source: https://github.com/chrislgarry/Apollo-11/blob/master/Luminary099/BURN_BABY_BURN--MASTER_IGNITION_ROUTINE.agc
 - Status: no public domain or license established. The program was "prepared by the Instrumentation Laboratory, Massachusetts Institute of Technology" under NASA contract NAS 9-4065, by MIT staff rather than federal employees, so it is not a work of the United States government. The Public Domain Mark of the repository was applied by its maintainer, not by a rights holder, and the Virtual AGC project calls the code public domain only "to the best of my non-lawyer understanding". In France, its authors did not die before 1956.
 - Missing: a license or a permission from the rights holder (the Draper Laboratory, formerly the MIT Instrumentation Laboratory, or NASA if the rights passed to it), or the rights-in-data clause of contract NAS 9-4065 showing that the code is in the public domain.
+
+## Computing Machinery and Intelligence (Alan Turing, 1950)
+
+- Category: computing
+- Source: https://doi.org/10.1093/mind/LIX.236.433 (Mind, vol. LIX, no. 236, pp. 433-460, October 1950)
+- Status: in the public domain in France since 1 January 2025, Turing having died in 1954, but under copyright in the United States until the end of 2045, 95 years after its publication: the URAA restored in 1996 the copyright of foreign works still protected in their country, as this one was in the United Kingdom.
+- Missing: time, until 1 January 2046, or a license from its rights holders that allows its redistribution.
