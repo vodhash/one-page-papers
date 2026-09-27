@@ -1,0 +1,48 @@
+title: "BIP 340: Schnorr Signatures for secp256k1"
+summary: "Specifies 64-byte Schnorr signatures and 32-byte public keys over the secp256k1 curve, with batch verification."
+title_html: "Schnorr Signatures<br><em>for secp256k1</em>"
+title_size: 96pt
+kicker: "Bitcoin Improvement Proposal 340 · Specification · 19 January 2020"
+author: "Pieter Wuille · Jonas Nick · Tim Ruffing"
+byline: "pieter.wuille@gmail.com · jonasd.nick@gmail.com · crypto@timruffing.de"
+emblem: "340"
+header_scale: 1.3
+columns: 4
+footer:
+  - "BIP: 340 · Status: Deployed · Type: Specification · Assigned: 2020-01-19 · License: BSD-2-Clause · License-Code: BSD-2-Clause OR MIT OR CC0-1.0 · Discussion: 2018-07-06: [bitcoin-dev] Schnorr signatures BIP"
+  - "<i>This document is licensed under the 2-clause BSD license.</i>"
+  - '<span class="mono">github.com/bitcoin/bips · bip-0340.mediawiki</span>'
+year: 2020
+authors: [Pieter Wuille, Jonas Nick, Tim Ruffing]
+min_print: A1
+source:
+  url: https://github.com/bitcoin/bips/blob/02bebeb5ef53dc21a52d5706c6b4c17b6af6c1cc/bip-0340.mediawiki
+  retrieved: 2026-09-27
+  edition: >-
+    The MediaWiki source of BIP 340 in the repository github.com/bitcoin/bips at commit 02bebeb
+    of 25 September 2026, its current version (status Deployed; last changed on 12 January 2026,
+    when its license fields were written as SPDX codes). The full text. The preamble is in the
+    header (title, number, type, assigned date, authors and their addresses) and in the footer
+    (its other fields but Comments-Summary and Comments-URI, a link to the wiki of the
+    repository). The 17 notes, which the source sets as numbered footnotes under the heading
+    Footnotes between the Changelog and the Acknowledgements, are numbered in the same order and
+    listed at the end of the text, under that heading. Links show their text, and the bare URL is
+    set in monospace; the files that the section Test Vectors and Reference Code links to (test
+    vectors in CSV, reference code in Python) are not reproduced. Lists nested in lists are kept
+    nested. Straight quotes of the text are set as typographic quotes. After the Copyright section
+    is the text of the BSD 2-Clause License as SPDX gives it
+    (https://spdx.org/licenses/BSD-2-Clause.html), without its template copyright line, as the
+    BIP has no copyright line.
+    The signs ≥, ± and ⋅, which EB Garamond lacks in italic (and ⋅ in every style), are set in
+    the KaTeX_Main font, and ≠, which no bundled font has, is drawn by KaTeX as \neq.
+license:
+  text: BSD-2-Clause
+  holder: Pieter Wuille, Jonas Nick, Tim Ruffing
+  notice: "License: BSD-2-Clause [...] This document is licensed under the 2-clause BSD license."
+  note: >-
+    Preamble and Copyright section of BIP 340
+    (https://github.com/bitcoin/bips/blob/master/bip-0340.mediawiki), present since its first
+    version, merged on 19 January 2020 (commit 1faa4b1). The License-Code field (BSD-2-Clause OR
+    MIT OR CC0-1.0 since April 2025) covers the test vectors and reference code, which the poster
+    does not reproduce. The BSD 2-Clause License asks redistributions to reproduce "this list of
+    conditions and the following disclaimer": the poster carries its full text.

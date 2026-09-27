@@ -10,7 +10,7 @@ Each paper is laid out in full on one page: every section, equation, code listin
 
 <!-- catalog:start -->
 
-51 posters in 11 categories. Each one comes in 4 themes, shown here with *Bitcoin: A Peer-to-Peer Electronic Cash System*, and in 3 formats (see [Download](#download)).
+52 posters in 11 categories. Each one comes in 4 themes, shown here with *Bitcoin: A Peer-to-Peer Electronic Cash System*, and in 3 formats (see [Download](#download)).
 
 | ivory | white | genesis | blueprint |
 |:-:|:-:|:-:|:-:|
@@ -29,6 +29,7 @@ A click on a poster opens its PDF in the A format and in its first theme, and th
 | <a href="dist/crypto/bip-39-A-ivory.pdf"><img src="docs/crypto/bip-39.png" width="90" alt=""></a> | [BIP 39: Mnemonic code for generating deterministic keys](dist/crypto/bip-39-A-ivory.pdf)<br>Encodes entropy as a sentence of words from a 2048-word list, shown in full, then derives a binary seed.<br>[ivory](dist/crypto/bip-39-A-ivory.pdf)&nbsp;·&nbsp;[white](dist/crypto/bip-39-A-white.pdf)&nbsp;·&nbsp;[genesis](dist/crypto/bip-39-A-genesis.pdf)&nbsp;·&nbsp;[blueprint](dist/crypto/bip-39-A-blueprint.pdf) | Marek Palatinus, Pavol Rusnak, Aaron Voisine, Sean Bowe | 2013 | A2 | MIT |
 | <a href="dist/crypto/ethereum-A-ivory.pdf"><img src="docs/crypto/ethereum.png" width="90" alt=""></a> | [Ethereum: A Next-Generation Smart Contract and Decentralized Application Platform](dist/crypto/ethereum-A-ivory.pdf)<br>Proposes Ethereum, a blockchain with a built-in Turing-complete language for contracts that encode arbitrary state transition functions.<br>[ivory](dist/crypto/ethereum-A-ivory.pdf)&nbsp;·&nbsp;[white](dist/crypto/ethereum-A-white.pdf)&nbsp;·&nbsp;[genesis](dist/crypto/ethereum-A-genesis.pdf)&nbsp;·&nbsp;[blueprint](dist/crypto/ethereum-A-blueprint.pdf) | Vitalik Buterin | 2014 | A0 | CC BY 4.0 (text, figures); MIT (code) |
 | <a href="dist/crypto/sha-256-A-ivory.pdf"><img src="docs/crypto/sha-256.png" width="90" alt=""></a> | [Secure Hash Standard (SHS): SHA-256](dist/crypto/sha-256-A-ivory.pdf)<br>Specifies SHA-256: its functions, constants, message padding and parsing, initial hash value and hash computation.<br>[ivory](dist/crypto/sha-256-A-ivory.pdf)&nbsp;·&nbsp;[white](dist/crypto/sha-256-A-white.pdf)&nbsp;·&nbsp;[genesis](dist/crypto/sha-256-A-genesis.pdf)&nbsp;·&nbsp;[blueprint](dist/crypto/sha-256-A-blueprint.pdf) | National Institute of Standards and Technology | 2015 | A3 | Public domain (U.S. Government work) |
+| <a href="dist/crypto/bip-340-A-ivory.pdf"><img src="docs/crypto/bip-340.png" width="90" alt=""></a> | [BIP 340: Schnorr Signatures for secp256k1](dist/crypto/bip-340-A-ivory.pdf)<br>Specifies 64-byte Schnorr signatures and 32-byte public keys over the secp256k1 curve, with batch verification.<br>[ivory](dist/crypto/bip-340-A-ivory.pdf)&nbsp;·&nbsp;[white](dist/crypto/bip-340-A-white.pdf)&nbsp;·&nbsp;[genesis](dist/crypto/bip-340-A-genesis.pdf)&nbsp;·&nbsp;[blueprint](dist/crypto/bip-340-A-blueprint.pdf) | Pieter Wuille, Jonas Nick, Tim Ruffing | 2020 | A1 | BSD-2-Clause |
 
 ### Computing pioneers
 
