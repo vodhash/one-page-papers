@@ -1,0 +1,7 @@
+/* Names in small caps, as in the Verhandlungen (the bundled EB Garamond has no small-caps
+   feature, so Chromium scales its capitals) */
+.sc{font-variant:small-caps;letter-spacing:.03em}
+/* A formula and the punctuation that touches it stay on one line; as an inline-block, since
+   the text that follows a formula inside a plain inline span is painted a fraction of a pixel
+   higher or lower from one run to the next, which makes the PDFs differ between builds */
+.nw{white-space:nowrap;display:inline-block}

@@ -1,0 +1,45 @@
+title: "Zur Theorie des Gesetzes der Energieverteilung im Normalspectrum"
+summary: "Planck derives the spectral energy distribution by dividing resonator energy into finite elements hν and counting complexions."
+title_html: "Zur Theorie des Gesetzes<br>der <em>Energieverteilung</em> im Normalspectrum"
+kicker: "Verhandlungen der Deutschen Physikalischen Gesellschaft · vol. 2, no. 17 · 1900"
+author: "M. Planck"
+header_scale: 1.3
+byline: "Vorgetragen in der Sitzung vom 14. December 1900"
+emblem: "h"
+lang: de
+columns: 3
+footer:
+  - "Verhandlungen der Deutschen Physikalischen Gesellschaft, vol. 2, no. 17, pp. 237-245. Leipzig: Johann Ambrosius Barth, 1900."
+  - "<i>Public domain in France and in the United States. Set as printed: the exponents 8 of ν and c in the second formula for u<sub>ν</sub>&nbsp;dν are misprints for 3.</i>"
+  - '<span class="mono">archive.org/details/verhandlungende01goog</span>'
+year: 1900
+authors: [Max Planck]
+min_print: A2
+source:
+  url: https://archive.org/details/verhandlungende01goog
+  retrieved: 2026-09-27
+  edition: >-
+    Scan of the Verhandlungen der Deutschen Physikalischen Gesellschaft, Zweiter Jahrgang
+    (Leipzig: Johann Ambrosius Barth, 1900), no. 17, pp. 237-245, digitized by Google from the
+    Harvard College Library copy (Internet Archive, verhandlungende01goog, 600 ppi). No proofread
+    transcription was found (German Wikisource has only the later paper in Annalen der Physik
+    4, 1901): the text was transcribed line by line from the scan and checked word by word
+    against it, with the OCR of the Internet Archive as a cross-check. The title, "von M.
+    Planck." and "(Vorgetragen in der Sitzung vom 14. December 1900.)" are in the header; the
+    cross-reference "(Vgl. oben S. 235.)" to the minutes of the session is left out; running
+    heads and page numbers are left out and hyphens at line ends are rejoined. The footnotes,
+    numbered from 1 on each page of the scan, are numbered 1 to 12 and follow the text. Names in
+    small caps stay in small caps. Spelling, punctuation and misprints are kept, among them the
+    exponents 8 of nu and c in the formula for u dnu of p. 242, where 3 is meant (checked on the
+    bilevel scan: both glyphs have two closed bowls, while the superscript 3 of c^3 on p. 241 and
+    of 10^23 on p. 244 has an open lower bowl, and their bitmaps occur nowhere else in their
+    JBIG2 symbol group, so they are not a compression artifact), and "die einzige ist. welche"
+    in the note of p. 243. The equations are set with KaTeX, and the example of a
+    complexion as a two-row array.
+license:
+  text: "Public domain"
+  holder: "Max Planck, 1900"
+  basis: >-
+    Max Planck died on 4 October 1947, so his works are in the public domain in France since
+    1 January 2018 (70 years counted from 1 January 1948). The paper was published in 1900,
+    before 1 January 1931, so it is in the public domain in the United States.
