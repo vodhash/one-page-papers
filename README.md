@@ -44,6 +44,12 @@ A click on a poster opens its PDF in the A format and in its first theme, and th
 |---|---|---|---|---|---|
 | <a href="dist/data-viz/snow-cholera-map-A-ivory.pdf"><img src="docs/data-viz/snow-cholera-map.png" width="90" alt=""></a> | [John Snow: the Broad Street cholera map](dist/data-viz/snow-cholera-map-A-ivory.pdf)<br>John Snow's map of the 1854 cholera deaths around Broad Street, which pointed to a single public water pump.<br>[ivory](dist/data-viz/snow-cholera-map-A-ivory.pdf)&nbsp;·&nbsp;[white](dist/data-viz/snow-cholera-map-A-white.pdf)&nbsp;·&nbsp;[genesis](dist/data-viz/snow-cholera-map-A-genesis.pdf)&nbsp;·&nbsp;[blueprint](dist/data-viz/snow-cholera-map-A-blueprint.pdf) | John Snow | 1854 | A3 | Public domain (map); notice: MIT |
 
+## Coming soon
+
+Texts that wait for a license allowing their redistribution; [PENDING.md](PENDING.md) says what is missing.
+
+- A Cypherpunk's Manifesto (Eric Hughes, 1993)
+
 <!-- catalog:end -->
 
 ## Download
