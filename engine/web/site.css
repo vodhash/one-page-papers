@@ -99,6 +99,8 @@ button{font:inherit;color:inherit}
 .filters{display:none;flex-wrap:wrap;gap:10px;margin-bottom:56px}
 .js .filters{display:flex}
 .cards{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:64px 40px;margin:0;padding:0;list-style:none}
+.pager{display:flex;flex-wrap:wrap;justify-content:center;gap:10px;margin-top:72px}
+.pager .pill[aria-current=page]{background:var(--ink);border-color:var(--ink);color:var(--bg)}
 .band{background:var(--wall);border-top:1px solid var(--rule)}
 .points{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));column-gap:32px;padding-top:80px;padding-bottom:88px}
 .num{font-size:24px;font-style:italic;color:var(--accText)}

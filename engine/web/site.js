@@ -67,34 +67,83 @@
     });
   }
 
-  // The filters of the collection, which ?category= in the address also sets
+  // The filters of the collection, which ?category= in the address also sets, and its pages of
+  // PER_PAGE posters, which ?page= sets. Without this script the whole collection shows.
   var filters = document.querySelector('.filters');
   if (filters) {
+    var PER_PAGE = 24;
     var status = document.getElementById('filter-status');
-    var show = function (category, announce) {
-      var n = 0;
+    var list = document.querySelector('.cards');
+    var pager = document.createElement('nav');
+    pager.className = 'pager';
+    pager.setAttribute('aria-label', 'Pages of the collection');
+    list.parentNode.insertBefore(pager, list.nextSibling);
+    var state = { category: '', page: 1 };
+    var address = function () {
+      var q = new URLSearchParams();
+      if (state.category) q.set('category', state.category);
+      if (state.page > 1) q.set('page', state.page);
+      var search = q.toString();
+      history.replaceState(null, '', (search ? '?' + search : location.pathname) + '#collection');
+    };
+    var button = function (label, page, current, name) {
+      var b = document.createElement('button');
+      b.type = 'button';
+      b.className = 'pill';
+      b.textContent = label;
+      b.setAttribute('data-page', page);
+      if (name) b.setAttribute('aria-label', name);
+      if (current) b.setAttribute('aria-current', 'page');
+      return b;
+    };
+    var show = function (announce) {
+      var hits = [];
       each('button', function (b) {
-        b.setAttribute('aria-pressed', String(b.getAttribute('data-filter') === category));
+        b.setAttribute('aria-pressed', String(b.getAttribute('data-filter') === state.category));
       }, filters);
       each('.cards > li', function (card) {
-        var hit = !category || card.getAttribute('data-category') === category;
-        card.hidden = !hit;
-        if (hit) n += 1;
+        if (!state.category || card.getAttribute('data-category') === state.category) hits.push(card);
+        else card.hidden = true;
       });
-      if (announce && status) status.textContent = n + (n === 1 ? ' poster' : ' posters');
+      var pages = Math.max(1, Math.ceil(hits.length / PER_PAGE));
+      state.page = Math.min(Math.max(1, state.page), pages);
+      hits.forEach(function (card, i) { card.hidden = Math.floor(i / PER_PAGE) + 1 !== state.page; });
+      pager.textContent = '';
+      pager.hidden = pages < 2;
+      if (pages > 1) {
+        if (state.page > 1) pager.appendChild(button('Previous', state.page - 1, false));
+        for (var k = 1; k <= pages; k += 1) pager.appendChild(button(String(k), k, k === state.page, 'Page ' + k));
+        if (state.page < pages) pager.appendChild(button('Next', state.page + 1, false));
+      }
+      if (announce && status) {
+        status.textContent = hits.length + (hits.length === 1 ? ' poster' : ' posters') +
+          (pages > 1 ? ', page ' + state.page + ' of ' + pages : '');
+      }
     };
     filters.addEventListener('click', function (e) {
       var b = e.target.closest('button');
       if (!b) return;
-      var category = b.getAttribute('data-filter');
-      show(category, true);
-      history.replaceState(null, '', (category ? '?category=' + category : location.pathname) + '#collection');
+      state.category = b.getAttribute('data-filter');
+      state.page = 1;
+      show(true);
+      address();
     });
-    var asked = new URLSearchParams(location.search).get('category');
+    pager.addEventListener('click', function (e) {
+      var b = e.target.closest('button');
+      if (!b) return;
+      state.page = Number(b.getAttribute('data-page'));
+      show(true);
+      address();
+      document.getElementById('collection').scrollIntoView();
+    });
+    var params = new URLSearchParams(location.search);
+    var asked = params.get('category');
     var known = Array.prototype.some.call(filters.querySelectorAll('button'), function (b) {
       return b.getAttribute('data-filter') === asked;
     });
-    if (asked && known) show(asked, false);
+    if (asked && known) state.category = asked;
+    state.page = parseInt(params.get('page'), 10) || 1;
+    show(false);
   }
 
   // A poster page: the pills choose the theme of the preview and of the download buttons.
