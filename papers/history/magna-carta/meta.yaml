@@ -1,0 +1,53 @@
+title: "Magna Carta"
+summary: "The charter of liberties granted by King John to the barons of England at Runnymede in June 1215."
+title_html: "Magna <em>Carta</em>"
+title_size: 120pt
+kicker: "Runnymede · 15 June 1215"
+author: "King John of England"
+emblem: "63"
+lang: la
+columns: 4
+footer:
+  - "Charles Bémont, <i>Chartes des libertés anglaises (1100-1305)</i> (Paris: Alphonse Picard, 1892), pp. 26-39, after the original of the British Museum, Cotton Augustus II. 106"
+  - "<i>Clauses numbered as in the modern editions; Bémont’s italics, which mark what the reissue of 1225 leaves out, are set in roman.</i>"
+  - "<span class=\"mono\">Bémont 1892, V</span>"
+year: 1215
+authors: [King John of England]
+min_print: A2
+source:
+  url: https://archive.org/details/chartesdeslibert00bmuoft
+  retrieved: 2026-09-27
+  edition: >-
+    Charles Bémont, Chartes des libertés anglaises (1100-1305), Paris, Alphonse Picard, 1892,
+    text V (Grande Charte de Jean sans Terre), pp. 26-39. Bémont follows the photographic
+    facsimile of the British Museum: "Ce fac-similé reproduit l'original du manuscrit Cotton
+    Aug. II, 106; c'est lui que nous avons suivi dans la présente édition" (p. 25), and gives
+    the clauses "la numérotation des éditions modernes" (p. 26). The text comes from the OCR
+    of the archive.org scan above (University of Toronto copy), collated word by word with
+    the OCR of a second scan (archive.org chartesdeslibert00bemo) and with the transcription
+    of la.wikisource (Magna Carta (Bémont)), and every page (pp. 26-39) was read against the
+    page images; some 240 words and clause numbers misread by the OCR were corrected. The spelling of the edition is kept
+    (gracia, Anglie, tocius, Sarrisberie, justitiam and peregrinatione beside justiciam and
+    peregrinacione), as are Bémont's square brackets in clauses 48 and 53 (words that the
+    original writes at the foot of the charter, as his note says) and the mark after
+    "trethingi’" (clause 25), printed in both copies. Differences: Bémont's italics, which
+    mark the words and clauses absent from the reissue of 1225, are set in roman; the words
+    divided at line ends are joined; the spaces that the French typography of the edition
+    puts before commas, full stops, semicolons and colons are removed; the clause numbers
+    "1." to "63." are set as labels. Left out: the heading "Concordia inter Regem Johannem et
+    Barones pro concessione libertatum ecclesie et regni Anglie", which Bémont's note calls an
+    endorsement on the back of the Lincoln original ("Cote mise au dos de l'original de
+    Lincoln"), not part of the text; the editorial "(sic)" after the second "centum libras"
+    (clause 2); the footnote calls and the footnotes (including the text of the letters
+    testimonial quoted under clause 62), running heads and page numbers. Two damaged letters
+    printed in both copies are read as the words they belong to: "quinaue" (p. 38, clause 61)
+    is set as "quinque" and "gravandc" (same page) as "gravando".
+license:
+  text: "Public domain"
+  holder: "King John, 1215; edition Charles Bémont, 1892"
+  basis: >-
+    The charter was granted in June 1215. The edition was published in Paris in 1892; its
+    editor Charles Bémont was born on 16 November 1848 and died on 21 September 1939
+    (Wikidata Q2958663; the archive.org record names him "Bémont, Charles, 1848-1939"). The
+    text is in the public domain in France (the editor died before 1 January 1956) and in the
+    United States (published before 1931).

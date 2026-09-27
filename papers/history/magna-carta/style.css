@@ -1,0 +1,6 @@
+/* The preamble, then the sixty-three clauses in justified Latin with their number in the margin */
+.item{grid-template-columns:1.6em 1fr;margin-bottom:.45em}
+.item>div{text-align:justify;hyphens:auto}
+.item .lbl{text-align:right;padding-right:.35em}
+.kick{letter-spacing:.3em}
+footer>div:first-child{max-width:42%;line-height:1.3}
