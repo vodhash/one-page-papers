@@ -1,0 +1,5 @@
+/* The long title: its first clause as the title, the rest below it, smaller and italic */
+h1 .tsub{display:block;font-size:.6em;font-style:italic;font-weight:400;margin-top:.25em}
+/* The case headings, in spaced italic capitals as in the print */
+h2{font-style:italic;font-weight:500;letter-spacing:.08em;text-align:center}
+footer>div{text-wrap:balance}
