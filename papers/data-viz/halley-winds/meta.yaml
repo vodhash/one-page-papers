@@ -1,0 +1,49 @@
+title: "Edmond Halley: An Historical Account of the Trade Winds, and Monsoons"
+summary: "Halley's 1686 account of the trade winds and monsoons, with his map of the winds between and near the tropics."
+title_html: 'An Historical Account of the <em>Trade Winds</em>, and Monsoons<span class="tsub">observable in the Seas between and near the Tropicks, with an attempt to assign the Phisical cause of the said Winds</span>'
+title_size: 84pt
+kicker: "Excerpt · Philosophical Transactions, no. 183 · 1686"
+author: "Edmond Halley"
+byline: "<i>Philosophical Transactions</i>, vol. 16, pp. 153-168, with a map of the winds"
+emblem: "H"
+header_scale: 1.8
+layout: hero
+hero_height: 25
+columns: 3
+footer:
+  - "Map and text: Edmond Halley, 1686. Public domain. Map: scan of Princeton University Library on Wikimedia Commons, levels adjusted. Text: JSTOR Early Journal Content scan on the Internet Archive."
+  - "<i>Excerpt: the opening of the paper (p. 153) and its explanation of the map (pp. 162-163), in the spelling of 1686.</i>"
+  - "<span class=\"mono\">doi.org/10.1098/rstl.1686.0026</span>"
+year: 1686
+authors: [Edmond Halley]
+min_print: A3
+source:
+  url: https://archive.org/details/philtrans09399630
+  retrieved: 2026-09-27
+  edition: >-
+    Text: "An Historical Account of the Trade Winds, and Monsoons, observable in the Seas between
+    and near the Tropicks, with an attempt to assign the Phisical cause of the said Winds, by E.
+    Halley", Philosophical Transactions, vol. 16, no. 183 (1686), pp. 153-168
+    (doi:10.1098/rstl.1686.0026), in the scan of JSTOR's Early Journal Content on the Internet
+    Archive (philtrans09399630, which dates it 1753 by mistake). Excerpt: the first two
+    paragraphs of p. 153, and the two paragraphs of pp. 162-163 that explain the map; the rest of
+    the paper is left out. Transcribed from the OCR of the scan, corrected against the page
+    images word by word (65 substitutions, most for the long s). The long s is set as s; the
+    drop capital and small capital of "AN exact" are set as "An exact"; the space printed before
+    semicolons and colons is dropped; words hyphenated at line ends are joined; the italics of
+    the print are kept. "Monſ ons" on p. 163, where a letter is missing in the print, is read
+    as Monsoons, as two lines below; "Æthiopick" on the same page, damaged in the print, is read
+    as three lines above. Image: File:Edmond Halley's map of the trade winds, 1686.jpg on
+    Wikimedia Commons (3323 x 1103 px, grayscale, from Princeton University Library), with its
+    levels stretched (60 to 185) to remove the show-through of the text printed on the back.
+license:
+  text: "Public domain"
+  holder: "Edmond Halley, 1686"
+  basis: >-
+    Edmond Halley died in 1742 and the paper and its map were published in 1686: they are in the
+    public domain in France and in the United States.
+  note: >-
+    The Internet Archive marks the scan with the Public Domain Mark
+    (https://archive.org/details/philtrans09399630); Wikimedia Commons marks the image
+    PD-old-70-1923
+    (https://commons.wikimedia.org/wiki/File:Edmond_Halley%27s_map_of_the_trade_winds,_1686.jpg).
