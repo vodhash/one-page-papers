@@ -4,7 +4,7 @@ CATEGORIES := $(notdir $(wildcard papers/*))
 PY = $(if $(wildcard .venv/bin/python),.venv/bin/python,python3)
 # papers built at a time, each in a browser of its own: one per processor, up to 8, by default
 JOBS ?= $(shell n=$$(nproc 2>/dev/null || echo 1); [ $$n -gt 8 ] && n=8; echo $$n)
-.PHONY: all check readme us deps clean site serve $(PAPERS) $(CATEGORIES)
+.PHONY: all check readme us changed deps clean site serve $(PAPERS) $(CATEGORIES)
 
 all:
 	$(PY) engine/build.py --jobs $(JOBS)
@@ -16,6 +16,10 @@ check:
 
 readme:
 	$(PY) engine/readme.py
+
+# the PDFs and previews that differ from the last commit: what the next commit would carry
+changed:
+	@git status --short -- dist docs
 
 # the US formats (letter, tabloid, 18x24, 24x36) into release/us/, which git ignores
 us:
@@ -41,6 +45,7 @@ deps:
 		python3 -m venv .venv && .venv/bin/pip install -r requirements.txt; \
 	fi
 	.venv/bin/python -m playwright install --only-shell chromium
+	git config core.hooksPath .githooks
 
 clean:
 	rm -rf build

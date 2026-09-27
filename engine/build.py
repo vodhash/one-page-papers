@@ -411,7 +411,10 @@ def save_preview(page, png):
     im = Image.open(io.BytesIO(page.screenshot())).convert("RGB")
     im.thumbnail((600, 900))
     # at this size a 256-colour palette looks the same and makes the file 2.5 times smaller
-    im.quantize(256, method=Image.Quantize.MEDIANCUT, dither=Image.Dither.NONE).save(png, optimize=True)
+    buf = io.BytesIO()
+    im.quantize(256, method=Image.Quantize.MEDIANCUT, dither=Image.Dither.NONE).save(buf, "PNG", optimize=True)
+    if not png.exists() or png.read_bytes() != buf.getvalue():  # an unchanged preview keeps its file
+        png.write_bytes(buf.getvalue())
 
 def min_print(fs):
     """Smallest ISO A size at which a body of fs pt at design size (A1) prints at MIN_BODY pt or more."""

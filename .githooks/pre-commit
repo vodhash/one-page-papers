@@ -1,0 +1,12 @@
+#!/bin/sh
+# Lists the PDFs and previews that the commit changes, adds or removes, so that none goes into the
+# history by surprise: each rewritten PDF adds its full size to the repository. It never blocks a
+# commit. Enabled by `make deps` (git config core.hooksPath .githooks).
+changes=$(git diff --cached --name-status -- dist docs)
+[ -z "$changes" ] && exit 0
+count=$(printf '%s\n' "$changes" | wc -l)
+size=$(git diff --cached --name-only --diff-filter=AM -z -- dist docs | xargs -0 -r du -cb 2>/dev/null | tail -1 | cut -f1)
+echo "pre-commit: this commit touches $count file(s) of dist/ and docs/ (${size:-0} bytes added or rewritten):"
+printf '%s\n' "$changes" | sed 's/^A\t/  added     /; s/^M\t/  rewritten /; s/^D\t/  removed   /' | head -40
+[ "$count" -gt 40 ] && echo "  ... and $((count - 40)) more"
+exit 0

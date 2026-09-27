@@ -20,7 +20,7 @@ Each paper is laid out in full on one page: every section, equation, code listin
 
 A click on a poster opens its PDF in the A format and in its first theme, and the links under its summary open the other themes. *Print from* is the smallest A size at which its body text is at least 8 pt.
 
-### Cryptocurrency
+### Cryptography & Bitcoin
 
 | &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; | Paper | Authors | Year | Print from | License |
 |---|---|---|---|---|---|
@@ -244,11 +244,12 @@ make site      # the showcase site into site/ (needs pdftoppm, from poppler-util
 make serve     # the site on http://localhost:8000/
 make check     # fit every poster, compare it with dist/ and docs/, check the catalog; writes nothing
 make JOBS=2    # any target, with 2 papers built at a time instead of one per processor (up to 8)
+make changed   # the PDFs and previews that differ from the last commit
 make us        # the US formats into release/us/, which git ignores (engine/build.py bitcoin --us for one paper)
 .venv/bin/python engine/build.py rfc-1925 --formats A --themes genesis
 ```
 
-Builds are deterministic, but for two differences that do not show: in about one print in twenty of a page full of formulas, Chromium sets one run of glyphs on a baseline rounded to a whole pixel, and the last digits of some numbers, such as the matrix of a rotation, depend on the processor. So a PDF is only rewritten when it differs from the one in `dist/` by more than that, and a commit only carries the PDFs and previews of the posters that changed. Pushing a `v*` tag makes GitHub Actions build every poster again, in the formats of `dist/` and in the US formats, and attach them to a release as two zips per category, `<category>.zip` and `<category>-us.zip`: a release takes fewer files than there are PDFs. Versions are pinned (`package-lock.json`, and `requirements.txt`, whose Playwright version fixes the Chromium build), and Chromium lays text out without the local font hinting settings, to keep the layout independent of the machine.
+Builds are deterministic, but for two differences that do not show: in about one print in twenty of a page full of formulas, Chromium sets one run of glyphs on a baseline rounded to a whole pixel, and the last digits of some numbers, such as the matrix of a rotation, depend on the processor. So a PDF is only rewritten when it differs from the one in `dist/` by more than that, a preview only when its bytes change, and a commit only carries the PDFs and previews of the posters that changed. The PDFs are versioned on purpose, so that they can be seen and taken while browsing the repository; every rewritten PDF adds its full size to the history, so the pre-commit hook of `.githooks/`, which `make deps` enables, lists the files of `dist/` and `docs/` that a commit adds, rewrites or removes. On 27 September 2026, with 100 posters, the repository weighs 571 MB once packed (`git count-objects -vH`: 3,333 objects, size-pack 570.77 MiB). Pushing a `v*` tag makes GitHub Actions build every poster again, in the formats of `dist/` and in the US formats, and attach them to a release as two zips per category, `<category>.zip` and `<category>-us.zip`: a release takes fewer files than there are PDFs. Versions are pinned (`package-lock.json`, and `requirements.txt`, whose Playwright version fixes the Chromium build), and Chromium lays text out without the local font hinting settings, to keep the layout independent of the machine.
 
 `make check` also runs on GitHub Actions for every push and pull request. It fails when a poster overflows its page, when it still fits at the largest allowed body size, when a character is drawn with a system font, when `min_print` does not match the body size, when a PDF of `dist/` differs from a fresh build (beyond those differences) or a preview is missing from `docs/`, when either holds a file that no paper makes, or when the catalog of this README is out of date.
 
