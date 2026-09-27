@@ -1,0 +1,46 @@
+title: "Ernst Haeckel: Stammbaum des Menschen"
+summary: "Ernst Haeckel's 1874 tree of the descent of man, from the Moneren to the Menschen, plate XII of his Anthropogenie."
+title_html: "Stammbaum <em>des Menschen</em>"
+title_size: 110pt
+kicker: "Leipzig · 1874"
+author: "Ernst Haeckel"
+byline: "Plate XII of <i>Anthropogenie oder Entwickelungsgeschichte des Menschen</i>, first edition, 1874"
+emblem: "†"
+header_scale: 1.8
+layout: hero
+hero_height: 54
+columns: 3
+lang: de
+footer:
+  - "Plate: Ernst Haeckel, 1874, lithograph by J.&nbsp;G.&nbsp;Bach, Leipzig. Public domain. Scan: Wellcome Library, on the Internet Archive; paper tone whitened."
+  - "<i>The notice is not a period text: it was written for this poster in 2026.</i>"
+  - "<span class=\"mono\">archive.org/details/b28059189</span>"
+year: 1874
+authors: [Ernst Haeckel]
+min_print: A3
+source:
+  url: https://archive.org/details/b28059189
+  retrieved: 2026-09-27
+  edition: >-
+    Ernst Haeckel, Anthropogenie oder Entwickelungsgeschichte des Menschen (Leipzig, Wilhelm
+    Engelmann, 1874, first edition), in the scan of the Wellcome Library copy on the Internet
+    Archive (b28059189): plate XII, "Stammbaum des Menschen", bound between pages 496 and 497
+    (scan n540, 2620 x 4323 px), cropped to the plate with its title and imprints and with its
+    paper tone scaled to white (one gain per channel); the foxing of the paper is left as it
+    is. The names printed on the plate are transcribed from the scan, grouped
+    under the four divisions marked on its right edge and listed from the root to the crown,
+    an order chosen for the poster, and separated by middle dots; the brackets are set as parentheses, the full stop after
+    "Gastraeaden" is kept, and "Jnfusionsthiere", "Jnfusoria" and "Jnsecten" keep the J of the
+    print. The plate's title and "Taf. XII." are in the header and the caption, not in the text.
+    The entry of the plate in the list of plates (p. VI) is transcribed without its dotted
+    leader. No transcription was found to compare with: the names were read on the scan word by
+    word. The notice is not a period text: it was written for this poster from the title page,
+    the list of plates, the plate and page 378 of this scan.
+license:
+  text: "Public domain (plate); notice: MIT"
+  holder: "Ernst Haeckel, 1874"
+  basis: >-
+    Ernst Haeckel died in 1919 and the book was published in 1874: it is in the public domain in
+    France and in the United States. The Internet Archive marks the Wellcome Library scan with
+    the Public Domain Mark.
+  note: "The notice written for the poster is covered by the MIT license of this repository."
