@@ -1,0 +1,11 @@
+/* The items a) to c) of sections 2 and 3 are indented, as in the source */
+p:has(>.sub){padding-left:1.4em;text-indent:-1.4em}
+/* The centred headings of the license */
+h2{text-align:center;font-size:1.05em;letter-spacing:.03em}
+/* The sample notices of the appendix: each line of the source wraps at the width of its column,
+   its continuation indented */
+pre.sample{white-space:normal;text-align:left;hyphens:none;font-size:calc(var(--fs)*.74)}
+pre.sample .l{display:block;white-space:pre-wrap;padding-left:1.6em;text-indent:-1.6em;min-height:1.2em}
+/* The emblem holds three letters */
+.rule b{font-size:calc(11pt*var(--hs));letter-spacing:.02em}
+footer>div:nth-child(2){max-width:46%;line-height:1.3}

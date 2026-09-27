@@ -1,0 +1,47 @@
+title: "GNU General Public License, Version 2"
+summary: "The Free Software Foundation license of 1991 letting anyone copy, change and share a program, provided derived works keep it."
+title_html: "GNU General <em>Public License</em>"
+title_size: 104pt
+kicker: "Version 2, June 1991"
+author: "Free Software Foundation"
+emblem: "GPL"
+abstract_label: ""
+abstract: >-
+  Copyright (C) 1989, 1991 Free Software Foundation, Inc.,
+  &lt;https://fsf.org/&gt;<br>
+  Everyone is permitted to copy and distribute verbatim copies
+  of this license document, but changing it is not allowed.
+header_scale: 1.4
+columns: 4
+footer:
+  - "Copyright (C) 1989, 1991 Free Software Foundation, Inc."
+  - "Everyone is permitted to copy and distribute verbatim copies of this license document, but changing it is not allowed."
+  - '<span class="mono">gnu.org/licenses/old-licenses/gpl-2.0.txt</span>'
+year: 1991
+authors: [Free Software Foundation]
+min_print: A2
+source:
+  url: https://www.gnu.org/licenses/old-licenses/gpl-2.0.txt
+  retrieved: 2026-09-27
+  edition: >-
+    The plain-text edition of the license published by the Free Software Foundation on
+    gnu.org (the HTML page gpl-2.0.en.html, last updated on 30 November 2023, has the same
+    text). The title and the version line are the title and the kicker of the poster; the
+    copyright and permission lines are set under the header, their web address in angle
+    brackets as in the source, and repeated in the footer. The lines of each paragraph are
+    joined; the section numbers 0 to 12 are set in bold and the items a) to c) indented;
+    straight quotes and apostrophes are set as typographic ones, and the backquote of `show w'
+    and the like is kept. The sample notices of the appendix are set in monospace, line for
+    line, without their indentation; a line longer than its column wraps, its continuation
+    indented. Nothing is left out.
+license:
+  text: "© FSF, verbatim copies allowed"
+  holder: "Free Software Foundation, Inc."
+  notice: >-
+    Everyone is permitted to copy and distribute verbatim copies of this license document, but
+    changing it is not allowed.
+  note: >-
+    Stated under the copyright notice "Copyright (C) 1989, 1991 Free Software Foundation, Inc."
+    at the head of https://www.gnu.org/licenses/old-licenses/gpl-2.0.txt. The poster copies
+    the whole license without changing its words; both notices are under the header and in
+    the footer.
