@@ -1,0 +1,61 @@
+title: "Nikola Tesla: Electro-Magnetic Motor, US Patent 381,968"
+summary: "Tesla's patent for a motor turned by poles shifted around its field by alternating currents in independent circuits."
+title_html: "Electro-Magnetic Motor"
+title_size: 110pt
+kicker: "United States Patent Office · Letters Patent No. 381,968"
+author: "Nikola Tesla, of New York, N. Y., assignor of one-half to Charles F. Peck"
+byline: "Specification forming part of Letters Patent No. 381,968, dated May 1, 1888 · Application filed October 12, 1887; Serial No. 252,132"
+emblem: "T"
+header_scale: 1.5
+layout: hero
+hero_height: 32
+columns: 3
+footer:
+  - "United States Patent 381,968, Nikola Tesla, Electro-Magnetic Motor: four sheets of drawings and specification, from the scan of the printed patent."
+  - "<i>The spelling and punctuation are those of the printed patent. Text and drawings in the public domain.</i>"
+  - "<span class=\"mono\">patents.google.com/patent/US381968A</span>"
+year: 1888
+authors: [Nikola Tesla]
+lang: en
+min_print: A1
+source:
+  url: https://patents.google.com/patent/US381968A/en
+  retrieved: 2026-09-27
+  edition: >-
+    Scan of the printed patent linked from Google Patents
+    (https://patentimages.storage.googleapis.com/c9/47/b2/d2a511b818d8a6/US381968.pdf, 1-bit, 300 dpi,
+    nine pages). Its first four pages, the sheets of drawings, are set side by side in the image at
+    the top, each cropped to the drawing, its heading and its signatures (the scanner's borders are
+    left out) and kept in black and white. The specification (pages 1 to 5) is transcribed in full,
+    word for word from the scan: an OCR made for this poster (RapidOCR) served as a base, every line
+    was read against the page images, and the text was then compared by script with the OCR of Google
+    Patents, each disagreement being settled on the scan. The printed heading ("UNITED STATES PATENT
+    OFFICE." / "NIKOLA TESLA, OF NEW YORK, N. Y., ASSIGNOR OF ONE-HALF TO CHARLES F. PECK, OF
+    ENGLEWOOD, NEW JERSEY." / "ELECTRO-MAGNETIC MOTOR." / "SPECIFICATION forming part of Letters Patent
+    No. 381,968, dated May 1, 1888." / "Application filed October 12, 1887. Serial No. 252,132. (No
+    model.)") is set in the header of the poster. Normalizations: words divided at line ends are
+    rejoined without their hyphen, except in compounds divided at their own hyphen
+    (generator-coils, three-quarters, contact-rings, generator-ring, alternating-current,
+    field-magnet, circuit-connections, generator-shaft, energizing-coils); two words divided at a
+    line end without a printed hyphen ("posi / tion", "effect / ively") are rejoined; the running
+    heads, page numbers and the line numbers of the margins are dropped; the spacing of tightly set
+    lines is normalized (as in "E E′" and "field-magnet", set "field - magnet" once); the reference
+    letters set in italics in the print are in italics, their primes and seconds are prime signs, and
+    the superior letters of the figure numbers (1ᵃ to 8ᵃ) are superscripts. A damaged word read
+    "typic.." on the scan is given as "typical". The wording of the print is kept, including "the
+    generator C′ C′ of the motor", "to these of the motor", "in side of the field-magnet" and
+    "electro magnet" without a hyphen. Small capitals are kept for the inventor's name in the
+    preamble and for the witnesses. The caption of the drawings is not a period text: it was written
+    for this poster from the specification.
+license:
+  text: "Public domain"
+  holder: "Nikola Tesla, 1888"
+  basis: >-
+    US Patent 381,968 was granted to Nikola Tesla on 1 May 1888 and printed by the United States
+    Patent Office. In the United States, it was published before 1931, and patents are publications
+    of the federal government. In France, its author died on 7 January 1943, before 1 January 1956
+    (Wikidata Q9036), so the term of protection has expired.
+  note: >-
+    The USPTO states: "Subject to limited exceptions reflected in 37 CFR 1.71(d) & (e) and 1.84(s),
+    the text and drawings of a patent are typically not subject to copyright restrictions."
+    (https://www.uspto.gov/terms-use-uspto-websites, section "Patent information", retrieved 2026-09-27.)
