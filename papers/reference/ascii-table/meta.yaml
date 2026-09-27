@@ -1,0 +1,50 @@
+title: "ASCII: USA Standard Code for Information Interchange"
+summary: "The 128 codes of 7-bit ASCII with their decimal and hexadecimal values and names, as RFC 20 gives them."
+title_html: "USA Standard Code<br><em>for Information Interchange</em>"
+title_size: 88pt
+kicker: "Reference sheet · RFC 20 · USAS X3.4-1968"
+author: "Vint Cerf · UCLA"
+byline: "Network Working Group · RFC 20, <i>ASCII format for Network Interchange</i> · 16 October 1969"
+emblem: "7"
+header_scale: 1.4
+columns: 4
+footer:
+  - "Data: RFC 20 (Vint Cerf, UCLA, 1969; Internet Standard STD 80), which copies the code of USAS X3.4-1968. Compilation: MIT."
+  - "<i>Names, abbreviations and notes as in the legend of RFC 20; the text was written for this sheet in 2026.</i>"
+  - '<span class="mono">rfc-editor.org/rfc/rfc20</span>'
+year: 1969
+authors: [Vint Cerf]
+min_print: A3
+source:
+  url: https://www.rfc-editor.org/rfc/rfc20.txt
+  retrieved: 2026-09-27
+  edition: >-
+    RFC Editor plain-text edition of RFC 20 (put into machine readable form by Robbie Bennet in
+    September 1999), sections 2 (Standard Code) and 4 (Legend). The 128 positions of the code
+    table, the control abbreviations and names of legend 4.1 and the graphic names of legend 4.2,
+    with their group marks (CC), (FE) and (IS) and their note numbers, were extracted by script
+    from that file. The decimal and hexadecimal values are computed from the column and row of
+    each position (16 times the column plus the row), as section 3 defines them. In each cell
+    the group mark is set as a tag after the name, the note numbers as a superscript, and the
+    alternative names in parentheses in italic. The legend's "File Separator IS)" is set as
+    "File Separator (IS)". Letters and digits have no name in the legend and get none. The
+    notes, the explanation of the table and the lists of groups were written for this sheet
+    from sections 1, 3, 4, 5 and 6 of RFC 20; the Internet Standard status comes from the RFC
+    Editor's page https://www.rfc-editor.org/info/rfc20 (STD 80).
+license:
+  text: "MIT (compilation); data: RFC 20 (USAS X3.4-1968)"
+  holder: "vodhash, 2026 (compilation); RFC 20: Vint Cerf, 1969"
+  notice: "Permission is hereby granted, free of charge, to any person obtaining a copy of this software and associated documentation files (the \"Software\"), to deal in the Software without restriction [...] (MIT License of this repository, LICENSE)"
+  note: >-
+    The sheet follows RFC 20, https://www.rfc-editor.org/rfc/rfc20.txt, which carries no
+    copyright notice and no distribution statement; the code values and names are facts of
+    the standard. RFC Editor FAQ (https://www.rfc-editor.org/faq/): "All RFCs may be freely
+    reproduced and translated (unmodified)." IETF Trust FAQ (https://trustee.ietf.org/about/faq/):
+    "Since the beginning of the RFC series, reproduction of whole RFCs (including translation
+    into a language other than English) has been allowed and encouraged. The IETF Trust and the
+    RFC Editor place no restrictions on this.", and on RFCs that predate the IETF: "numerous RFCs
+    were published prior to the existence of the IETF (i.e. prior to January 1986). The IETF
+    Trust cannot offer definitive advice in these cases." For extracts, the same FAQ says that
+    "the IETF Trust will tolerate fair use of other extracts, but you must indicate the source
+    of the extract": the footer names RFC 20 and its URL. The names of the legend are the only
+    words taken from the RFC.

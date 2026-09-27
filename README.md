@@ -10,7 +10,7 @@ Each paper is laid out in full on one page: every section, equation, code listin
 
 <!-- catalog:start -->
 
-63 posters in 12 categories. Each one comes in 4 themes, shown here with *Bitcoin: A Peer-to-Peer Electronic Cash System*, and in 3 formats (see [Download](#download)).
+64 posters in 13 categories. Each one comes in 4 themes, shown here with *Bitcoin: A Peer-to-Peer Electronic Cash System*, and in 3 formats (see [Download](#download)).
 
 | ivory | white | genesis | blueprint |
 |:-:|:-:|:-:|:-:|
@@ -140,6 +140,12 @@ A click on a poster opens its PDF in the A format and in its first theme, and th
 | <a href="dist/history/emancipation-proclamation-A-ivory.pdf"><img src="docs/history/emancipation-proclamation.png" width="90" alt=""></a> | [The Emancipation Proclamation](dist/history/emancipation-proclamation-A-ivory.pdf)<br>Lincoln's proclamation declaring free the persons held as slaves within the States then in rebellion.<br>[ivory](dist/history/emancipation-proclamation-A-ivory.pdf)&nbsp;·&nbsp;[white](dist/history/emancipation-proclamation-A-white.pdf)&nbsp;·&nbsp;[genesis](dist/history/emancipation-proclamation-A-genesis.pdf)&nbsp;·&nbsp;[blueprint](dist/history/emancipation-proclamation-A-blueprint.pdf) | Abraham Lincoln | 1863 | A3 | Public domain (U.S. Government work) |
 | <a href="dist/history/gettysburg-address-A-ivory.pdf"><img src="docs/history/gettysburg-address.png" width="90" alt=""></a> | [The Gettysburg Address](dist/history/gettysburg-address-A-ivory.pdf)<br>Lincoln's address at the dedication of the Cemetery at Gettysburg, in the final text he wrote out in 1864.<br>[ivory](dist/history/gettysburg-address-A-ivory.pdf)&nbsp;·&nbsp;[white](dist/history/gettysburg-address-A-white.pdf)&nbsp;·&nbsp;[genesis](dist/history/gettysburg-address-A-genesis.pdf)&nbsp;·&nbsp;[blueprint](dist/history/gettysburg-address-A-blueprint.pdf) | Abraham Lincoln | 1863 | A3 | Public domain |
 | <a href="dist/history/kennedy-moon-speech-A-ivory.pdf"><img src="docs/history/kennedy-moon-speech.png" width="90" alt=""></a> | [Address at Rice University on the Nation's Space Effort](dist/history/kennedy-moon-speech-A-ivory.pdf)<br>President Kennedy explains why the United States chooses to go to the Moon in this decade.<br>[ivory](dist/history/kennedy-moon-speech-A-ivory.pdf)&nbsp;·&nbsp;[white](dist/history/kennedy-moon-speech-A-white.pdf)&nbsp;·&nbsp;[genesis](dist/history/kennedy-moon-speech-A-genesis.pdf)&nbsp;·&nbsp;[blueprint](dist/history/kennedy-moon-speech-A-blueprint.pdf) | John F. Kennedy | 1962 | A3 | Public domain (U.S. Government work) |
+
+### Reference sheets
+
+| &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; | Paper | Authors | Year | Print from | License |
+|---|---|---|---|---|---|
+| <a href="dist/reference/ascii-table-A-ivory.pdf"><img src="docs/reference/ascii-table.png" width="90" alt=""></a> | [ASCII: USA Standard Code for Information Interchange](dist/reference/ascii-table-A-ivory.pdf)<br>The 128 codes of 7-bit ASCII with their decimal and hexadecimal values and names, as RFC 20 gives them.<br>[ivory](dist/reference/ascii-table-A-ivory.pdf)&nbsp;·&nbsp;[white](dist/reference/ascii-table-A-white.pdf)&nbsp;·&nbsp;[genesis](dist/reference/ascii-table-A-genesis.pdf)&nbsp;·&nbsp;[blueprint](dist/reference/ascii-table-A-blueprint.pdf) | Vint Cerf | 1969 | A3 | MIT (compilation); data: RFC 20 (USAS X3.4-1968) |
 
 ## Coming soon
 
