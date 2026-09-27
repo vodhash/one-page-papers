@@ -226,6 +226,12 @@
     var say = function (text) { status.textContent = text; };
     form.hidden = false;
     form.addEventListener('change', function () { result.hidden = true; say(''); });
+    // counted here rather than with data-umami-event, whose handler would open the PNG in place
+    // of downloading it: Umami follows a link itself, which drops its download attribute
+    var made = null;
+    result.querySelector('a').addEventListener('click', function () {
+      if (made) track('wallpaper-download', made);
+    });
     form.addEventListener('submit', function (e) {
       e.preventDefault();
       if (busy) return;
@@ -270,10 +276,7 @@
         var a = result.querySelector('a');
         a.href = blobUrl;
         a.download = name;
-        a.setAttribute('data-umami-event', 'wallpaper-download');
-        a.setAttribute('data-umami-event-slug', wall.getAttribute('data-slug'));
-        a.setAttribute('data-umami-event-screen', size.value);
-        a.setAttribute('data-umami-event-theme', theme.value);
+        made = { slug: wall.getAttribute('data-slug'), screen: size.value, theme: theme.value };
         a.textContent = 'Download the PNG \u00b7 ' + (blob.size / 1e6).toFixed(1) + ' MB';
         result.hidden = false;
         say('Ready: ' + W + '\u00a0\u00d7\u00a0' + H + ' pixels.');
