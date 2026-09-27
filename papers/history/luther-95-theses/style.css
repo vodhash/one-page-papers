@@ -1,0 +1,11 @@
+/* The preamble across the columns, in heavier type as in the edition, "Amen." centered */
+.wide p{font-size:1.18em;font-weight:500;line-height:1.36;text-align:justify;hyphens:auto;margin:0 auto .3em;max-width:88%}
+.wide p:last-child{text-align:center;margin-bottom:0}
+/* The theses: justified Latin, the number in the margin */
+.item{grid-template-columns:1.6em 1fr;margin-bottom:.5em}
+.item>div{text-align:justify;hyphens:auto}
+.item .lbl{text-align:right;padding-right:.35em}
+/* The numbering starts again at 1 three times, as in print A: a little space before each series */
+.series{height:.9em}
+p.end{text-align:center;letter-spacing:.08em;margin-top:.8em}
+.kick{letter-spacing:.3em}

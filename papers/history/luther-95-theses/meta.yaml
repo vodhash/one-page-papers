@@ -1,0 +1,45 @@
+title: "Disputatio pro declaratione virtutis indulgentiarum"
+summary: "Luther's ninety-five Latin theses against the preaching of indulgences, proposed for a disputation at Wittenberg in 1517."
+title_html: "Disputatio pro declaratione<br><em>virtutis indulgentiarum</em>"
+title_size: 92pt
+kicker: "The Ninety-Five Theses · 1517"
+author: "Martin Luther"
+emblem: "95"
+lang: la
+columns: 4
+footer:
+  - "D. Martin Luthers Werke, Kritische Gesammtausgabe, vol. 1, ed. J. K. F. Knaake (Weimar: Hermann Böhlau, 1883), pp. 233-238"
+  - "<i>Numbered as in print A, the single-sheet print that the edition follows: three series of 1 to 25, then 1 to 20.</i>"
+  - "<span class=\"mono\">WA 1, 233-238</span>"
+year: 1517
+authors: [Martin Luther]
+min_print: A3
+source:
+  url: https://archive.org/details/luther_dmartinlutherswerke_1bd_1883
+  retrieved: 2026-09-27
+  edition: >-
+    D. Martin Luthers Werke, Kritische Gesammtausgabe (Weimar edition), vol. 1, Weimar,
+    Hermann Böhlau, 1883, pp. 233-238, edited by J. K. F. Knaake, whose text follows print A
+    (a single-sheet print in folio ending "M.D.Xvij.", copy of the British Museum). The text
+    comes from the OCR of the archive.org scan above; every line was read against its page
+    scans and checked against a second copy (archive.org dmartinlutherswe11luth, Getty
+    Research Institute), and 75 OCR errors were corrected. The spelling of the edition is
+    kept (e for ae, Lutther, Hiesu, spiritussanctus, charitas, rhetia). The numbering is
+    that of print A and of the edition, three series of 1 to 25 then 1 to 20; the edition
+    gives the running numbers 1 to 95 only in its page heads, and the poster leaves a space
+    between the series. Left out: running heads and page numbers, the line numbers of the
+    edition, its critical apparatus (variants of prints B and C) and its marginal Bible
+    references (Matth. 4, 17 at thesis 1; Hes. 13, 10. 16 at the 17th of the fourth series;
+    Apgsch. 14, 22 at its 20th). Words divided at line ends are joined. One misprint of the
+    edition, printed in both copies, is corrected: "iudulgentias" (6th thesis of the third
+    series, p. 236) is set as "indulgentias". The preamble ("Amore et studio...") and the
+    closing "M.D.Xvij." are set as in the edition, the preamble across the columns.
+license:
+  text: "Public domain"
+  holder: "Martin Luther, 1517; edition J. K. F. Knaake, 1883"
+  basis: >-
+    Martin Luther died on 18 February 1546 (Wikidata Q9554). The Weimar edition, vol. 1, was
+    published in 1883; its editor J. K. F. Knaake, who signs the preface (p. XXII), died on
+    6 April 1905 (de.wikipedia.org/wiki/Karl_Knaake). The text is in the public domain in
+    France (authors died before 1 January 1956) and in the United States (published before
+    1931). The archive.org item is marked with the Public Domain Mark 1.0.

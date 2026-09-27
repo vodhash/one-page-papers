@@ -1,0 +1,205 @@
+::: wide
+
+Amore et studio elucidande veritatis hec subscripta disputabuntur Wittenberge, Presidente R. P. Martino Lutther, Artium et S. Theologie Magistro eiusdemque ibidem lectore Ordinario. Quare petit, ut qui non possunt verbis presentes nobiscum disceptare agant id literis absentes. In nomine domini nostri Hiesu Christi.
+
+Amen.
+
+:::
+
+(1) Dominus et magister noster Iesus Christus dicendo ‘Penitentiam agite &amp;c.’ omnem vitam fidelium penitentiam esse voluit.
+
+(2) Quod verbum de penitentia sacramentali (id est confessionis et satisfactionis, que sacerdotum ministerio celebratur) non potest intelligi.
+
+(3) Non tamen solam intendit interiorem, immo interior nulla est, nisi foris operetur varias carnis mortificationes.
+
+(4) Manet itaque pena, donec manet odium sui (id est penitentia vera intus), scilicet usque ad introitum regni celorum.
+
+(5) Papa non vult nec potest ullas penas remittere preter eas, quas arbitrio vel suo vel canonum imposuit.
+
+(6) Papa non potest remittere ullam culpam nisi declarando et approbando remissam a deo Aut certe remittendo casus reservatos sibi, quibus contemptis culpa prorsus remaneret.
+
+(7) Nulli prorsus remittit deus culpam, quin simul eum subiiciat humiliatum in omnibus sacerdoti suo vicario.
+
+(8) Canones penitentiales solum viventibus sunt impositi nihilque morituris secundum eosdem debet imponi.
+
+(9) Inde bene nobis facit spiritussanctus in papa excipiendo in suis decretis semper articulum mortis et necessitatis.
+
+(10) Indocte et male faciunt sacerdotes ii, qui morituris penitentias canonicas in purgatorium reservant.
+
+(11) Zizania illa de mutanda pena Canonica in penam purgatorii videntur certe dormientibus episcopis seminata.
+
+(12) Olim pene canonice non post, sed ante absolutionem imponebantur tanquam tentamenta vere contritionis. 
+
+(13) Morituri per mortem omnia solvunt et legibus canonum mortui iam sunt, habentes iure earum relaxationem.
+
+(14) Imperfecta sanitas seu charitas morituri necessario secum fert magnum timorem, tantoque maiorem, quanto minor fuerit ipsa.
+
+(15) Hic timor et horror satis est se solo (ut alia taceam) facere penam purgatorii, cum sit proximus desperationis horrori.
+
+(16) Videntur infernus, purgatorium, celum differre, sicut desperatio, prope desperatio, securitas differunt.
+
+(17) Necessarium videtur animabus in purgatorio sicut minui horrorem ita augeri charitatem.
+
+(18) Nec probatum videtur ullis aut rationibus aut scripturis, quod sint extra statum meriti seu augende charitatis.
+
+(19) Nec hoc probatum esse videtur, quod sint de sua beatitudine certe et secure, saltem omnes, licet nos certissimi simus.
+
+(20) Igitur papa per remissionem plenariam omnium penarum non simpliciter omnium intelligit, sed a seipso tantummodo impositarum.
+
+(21) Errant itaque indulgentiarum predicatores ii, qui dicunt per pape indulgentias hominem ab omni pena solvi et salvari.
+
+(22) Quin nullam remittit animabus in purgatorio, quam in hac vita debuissent secundum Canones solvere.
+
+(23) Si remissio ulla omnium omnino penarum potest alicui dari, certum est eam non nisi perfectissimis, i. e. paucissimis, dari.
+
+(24) Falli ob id necesse est maiorem partem populi per indifferentem illam et magnificam pene solute promissionem.
+
+(25) Qualem potestatem habet papa in purgatorium generaliter, talem habet quilibet Episcopus et Curatus in sua diocesi et parochia specialiter.
+
+<div class="series"></div>
+
+(1) Optime facit papa, quod non potestate clavis (quam nullam habet) sed per modum suffragii dat animabus remissionem.
+
+(2) Hominem predicant, qui statim ut iactus nummus in cistam tinnierit evolare dicunt animam.
+
+(3) Certum est, nummo in cistam tinniente augeri questum et avariciam posse: suffragium autem ecclesie est in arbitrio dei solius.
+
+(4) Quis scit, si omnes anime in purgatorio velint redimi, sicut de s. Severino et Paschali factum narratur.
+
+(5) Nullus securus est de veritate sue contritionis, multominus de consecutione plenarie remissionis.
+
+(6) Quam rarus est vere penitens, tam rarus est vere indulgentias redimens, i. e. rarissimus.
+
+(7) Damnabuntur ineternum cum suis magistris, qui per literas veniarum securos sese credunt de sua salute. 
+
+(8) Cavendi sunt nimis, qui dicunt venias illas Pape donum esse illud dei inestimabile, quo reconciliatur homo deo.
+
+(9) Gratie enim ille veniales tantum respiciunt penas satisfactionis sacramentalis ab homine constitutas.
+
+(10) Non christiana predicant, qui docent, quod redempturis animas vel confessionalia non sit necessaria contritio.
+
+(11) Quilibet christianus vere compunctus habet remissionem plenariam a pena et culpa etiam sine literis veniarum sibi debitam.
+
+(12) Quilibet verus christianus, sive vivus sive mortuus, habet participationem omnium bonorum Christi et Ecclesie etiam sine literis veniarum a deo sibi datam.
+
+(13) Remissio tamen et participatio Pape nullo modo est contemnenda, quia (ut dixi) est declaratio remissionis divine.
+
+(14) Difficillimum est etiam doctissimis Theologis simul extollere veniarum largitatem et contritionis veritatem coram populo.
+
+(15) Contritionis veritas penas querit et amat, Veniarum autem largitas relaxat et odisse facit, saltem occasione.
+
+(16) Caute sunt venie apostolice predicande, ne populus false intelligat eas preferri ceteris bonis operibus charitatis.
+
+(17) Docendi sunt christiani, quod Pape mens non est, redemptionem veniarum ulla ex parte comparandam esse operibus misericordie.
+
+(18) Docendi sunt christiani, quod dans pauperi aut mutuans egenti melius facit quam si venias redimeret.
+
+(19) Quia per opus charitatis crescit charitas et fit homo melior, sed per venias non fit melior sed tantummodo a pena liberior.
+
+(20) Docendi sunt christiani, quod, qui videt egenum et neglecto eo dat pro veniis, non indulgentias Pape sed indignationem dei sibi vendicat.
+
+(21) Docendi sunt christiani, quod nisi superfluis abundent necessaria tenentur domui sue retinere et nequaquam propter venias effundere.
+
+(22) Docendi sunt christiani, quod redemptio veniarum est libera, non precepta.
+
+(23) Docendi sunt christiani, quod Papa sicut magis eget ita magis optat in veniis dandis pro se devotam orationem quam promptam pecuniam.
+
+(24) Docendi sunt christiani, quod venie Pape sunt utiles, si non in eas confidant, Sed nocentissime, si timorem dei per eas amittant.
+
+(25) Docendi sunt christiani, quod, si Papa nosset exactiones venialium predicatorum, mallet Basilicam s. Petri in cineres ire quam edificari cute, carne et ossibus ovium suarum.
+
+<div class="series"></div>
+
+(1) Docendi sunt christiani, quod Papa sicut debet ita vellet, etiam vendita (si opus sit) Basilica s. Petri, de suis pecuniis dare illis, a quorum plurimis quidam concionatores veniarum pecuniam eliciunt. 
+
+(2) Vana est fiducia salutis per literas veniarum, etiam si Commissarius, immo Papa ipse suam animam pro illis impigneraret.
+
+(3) Hostes Christi et Pape sunt ii, qui propter venias predicandas verbum dei in aliis ecclesiis penitus silere iubent.
+
+(4) Iniuria fit verbo dei, dum in eodem sermone equale vel longius tempus impenditur veniis quam illi.
+
+(5) Mens Pape necessario est, quod, si venie (quod minimum est) una campana, unis pompis et ceremoniis celebrantur, Euangelium (quod maximum est) centum campanis, centum pompis, centum ceremoniis predicetur.
+
+(6) Thesauri ecclesie, unde Papa dat indulgentias, neque satis nominati sunt neque cogniti apud populum Christi.
+
+(7) Temporales certe non esse patet, quod non tam facile eos profundunt, sed tantummodo colligunt multi concionatorum.
+
+(8) Nec sunt merita Christi et sanctorum, quia hec semper sine Papa operantur gratiam hominis interioris et crucem, mortem infernumque exterioris.
+
+(9) Thesauros ecclesie s. Laurentius dixit esse pauperes ecclesie, sed locutus est usu vocabuli suo tempore.
+
+(10) Sine temeritate dicimus claves ecclesie (merito Christi donatas) esse thesaurum istum.
+
+(11) Clarum est enim, quod ad remissionem penarum et casuum sola sufficit potestas Pape.
+
+(12) Verus thesaurus ecclesie est sacrosanctum euangelium glorie et gratie dei.
+
+(13) Hic autem est merito odiosissimus, quia ex primis facit novissimos.
+
+(14) Thesaurus autem indulgentiarum merito est gratissimus, quia ex novissimis facit primos.
+
+(15) Igitur thesauri Euangelici rhetia sunt, quibus olim piscabantur viros divitiarum.
+
+(16) Thesauri indulgentiarum rhetia sunt, quibus nunc piscantur divitias virorum.
+
+(17) Indulgentie, quas concionatores vociferantur maximas gratias, intelliguntur vere tales quoad questum promovendum.
+
+(18) Sunt tamen re vera minime ad gratiam dei et crucis pietatem comparate.
+
+(19) Tenentur Episcopi et Curati veniarum apostolicarum Commissarios cum omni reverentia admittere.
+
+(20) Sed magis tenentur omnibus oculis intendere, omnibus auribus advertere, ne pro commissione Pape sua illi somnia predicent.
+
+(21) Contra veniarum apostolicarum veritatem qui loquitur, sit ille anathema et maledictus. 
+
+(22) Qui vero contra libidinem ac licentiam verborum Concionatoris veniarum curam agit, sit ille benedictus.
+
+(23) Sicut Papa iuste fulminat eos, qui in fraudem negocii veniarum quacunque arte machinantur,
+
+(24) Multomagis fulminare intendit eos, qui per veniarum pretextum in fraudem sancte charitatis et veritatis machinantur.
+
+(25) Opinari venias papales tantas esse, ut solvere possint hominem, etiam si quis per impossibile dei genitricem violasset, Est insanire.
+
+<div class="series"></div>
+
+(1) Dicimus contra, quod venie papales nec minimum venialium peccatorum tollere possint quo ad culpam.
+
+(2) Quod dicitur, nec si s. Petrus modo Papa esset maiores gratias donare posset, est blasphemia in sanctum Petrum et Papam.
+
+(3) Dicimus contra, quod etiam iste et quilibet papa maiores habet, scilicet Euangelium, virtutes, gratias curationum &amp;c. ut 1. Co. xij.
+
+(4) Dicere, Crucem armis papalibus insigniter erectam cruci Christi equivalere, blasphemia est.
+
+(5) Rationem reddent Episcopi, Curati et Theologi, Qui tales sermones in populum licere sinunt.
+
+(6) Facit hec licentiosa veniarum predicatio, ut nec reverentiam Pape facile sit etiam doctis viris redimere a calumniis aut certe argutis questionibus laicorum.
+
+(7) Scilicet. Cur Papa non evacuat purgatorium propter sanctissimam charitatem et summam animarum necessitatem ut causam omnium iustissimam, Si infinitas animas redimit propter pecuniam funestissimam ad structuram Basilice ut causam levissimam?
+
+(8) Item. Cur permanent exequie et anniversaria defunctorum et non reddit aut recipi permittit beneficia pro illis instituta, cum iam sit iniuria pro redemptis orare?
+
+(9) Item. Que illa nova pietas Dei et Pape, quod impio et inimico propter pecuniam concedunt animam piam et amicam dei redimere, Et tamen propter necessitatem ipsius met pie et dilecte anime non redimunt eam gratuita charitate?
+
+(10) Item. Cur Canones penitentiales re ipsa et non usu iam diu in semet abrogati et mortui adhuc tamen pecuniis redimuntur per concessionem indulgentiarum tanquam vivacissimi?
+
+(11) Item. Cur Papa, cuius opes hodie sunt opulentissimis Crassis crassiores, non de suis pecuniis magis quam pauperum fidelium struit unam tantummodo Basilicam sancti Petri? 
+
+(12) Item. Quid remittit aut participat Papa iis, qui per contritionem perfectam ius habent plenarie remissionis et participationis?
+
+(13) Item. Quid adderetur ecclesie boni maioris, Si Papa, sicut semel facit, ita centies in die cuilibet fidelium has remissiones et participationes tribueret?
+
+(14) Ex quo Papa salutem querit animarum per venias magis quam pecunias, Cur suspendit literas et venias iam olim concessas, cum sint eque efficaces?
+
+(15) Hec scrupulosissima laicorum argumenta sola potestate compescere nec reddita ratione diluere, Est ecclesiam et Papam hostibus ridendos exponere et infelices christianos facere.
+
+(16) Si ergo venie secundum spiritum et mentem Pape predicarentur, facile illa omnia solverentur, immo non essent.
+
+(17) Valeant itaque omnes illi prophete, qui dicunt populo Christi ‘Pax pax’, et non est pax.
+
+(18) Bene agant omnes illi prophete, qui dicunt populo Christi ‘Crux crux’, et non est crux.
+
+(19) Exhortandi sunt Christiani, ut caput suum Christum per penas, mortes infernosque sequi studeant,
+
+(20) Ac sic magis per multas tribulationes intrare celum quam per securitatem pacis confidant.
+
+<p class="end">M.D.Xvij.</p>
