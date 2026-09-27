@@ -8,7 +8,7 @@ Each paper is laid out in full on one page: every section, equation, code listin
 
 <!-- catalog:start -->
 
-17 posters in 5 categories. Each one comes in 4 themes, shown here with *Bitcoin: A Peer-to-Peer Electronic Cash System*, and in 3 formats (see [Download](#download)).
+18 posters in 6 categories. Each one comes in 4 themes, shown here with *Bitcoin: A Peer-to-Peer Electronic Cash System*, and in 3 formats (see [Download](#download)).
 
 | ivory | white | genesis | blueprint |
 |:-:|:-:|:-:|:-:|
@@ -24,6 +24,12 @@ A click on a poster opens its PDF in the A format and in its first theme, and th
 | <a href="dist/crypto/peercoin-A-ivory.pdf"><img src="docs/crypto/peercoin.png" width="90" alt=""></a> | [PPCoin: Peer-to-Peer Crypto-Currency with Proof-of-Stake](dist/crypto/peercoin-A-ivory.pdf)<br>Proposes a crypto-currency derived from Bitcoin in which proof-of-stake, based on coin age, provides most of the network security.<br>[ivory](dist/crypto/peercoin-A-ivory.pdf)&nbsp;·&nbsp;[white](dist/crypto/peercoin-A-white.pdf)&nbsp;·&nbsp;[genesis](dist/crypto/peercoin-A-genesis.pdf)&nbsp;·&nbsp;[blueprint](dist/crypto/peercoin-A-blueprint.pdf) | Sunny King, Scott Nadal | 2012 | A3 | CC BY-ND 4.0 |
 | <a href="dist/crypto/bip-39-A-ivory.pdf"><img src="docs/crypto/bip-39.png" width="90" alt=""></a> | [BIP 39: Mnemonic code for generating deterministic keys](dist/crypto/bip-39-A-ivory.pdf)<br>Encodes entropy as a sentence of words from a 2048-word list, shown in full, then derives a binary seed.<br>[ivory](dist/crypto/bip-39-A-ivory.pdf)&nbsp;·&nbsp;[white](dist/crypto/bip-39-A-white.pdf)&nbsp;·&nbsp;[genesis](dist/crypto/bip-39-A-genesis.pdf)&nbsp;·&nbsp;[blueprint](dist/crypto/bip-39-A-blueprint.pdf) | Marek Palatinus, Pavol Rusnak, Aaron Voisine, Sean Bowe | 2013 | A2 | MIT |
 | <a href="dist/crypto/ethereum-A-ivory.pdf"><img src="docs/crypto/ethereum.png" width="90" alt=""></a> | [Ethereum: A Next-Generation Smart Contract and Decentralized Application Platform](dist/crypto/ethereum-A-ivory.pdf)<br>Proposes Ethereum, a blockchain with a built-in Turing-complete language for contracts that encode arbitrary state transition functions.<br>[ivory](dist/crypto/ethereum-A-ivory.pdf)&nbsp;·&nbsp;[white](dist/crypto/ethereum-A-white.pdf)&nbsp;·&nbsp;[genesis](dist/crypto/ethereum-A-genesis.pdf)&nbsp;·&nbsp;[blueprint](dist/crypto/ethereum-A-blueprint.pdf) | Vitalik Buterin | 2014 | A0 | CC BY 4.0 (text, figures); MIT (code) |
+
+### Computing pioneers
+
+| &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; | Paper | Authors | Year | Print from | License |
+|---|---|---|---|---|---|
+| <a href="dist/computing/lovelace-note-g-A-ivory.pdf"><img src="docs/computing/lovelace-note-g.png" width="90" alt=""></a> | [Sketch of the Analytical Engine: Note G](dist/computing/lovelace-note-g-A-ivory.pdf)<br>Lovelace's last note on the Analytical Engine: its limits, and how it would compute the Bernoulli numbers.<br>[ivory](dist/computing/lovelace-note-g-A-ivory.pdf)&nbsp;·&nbsp;[white](dist/computing/lovelace-note-g-A-white.pdf)&nbsp;·&nbsp;[genesis](dist/computing/lovelace-note-g-A-genesis.pdf)&nbsp;·&nbsp;[blueprint](dist/computing/lovelace-note-g-A-blueprint.pdf) | Ada Lovelace | 1843 | A1 | Public domain |
 
 ### Internet & networking
 

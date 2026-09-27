@@ -1,0 +1,21 @@
+/* The heading of the note, centred in small capitals as in the volume */
+.flow>.wide:first-child+h2{text-align:center;font-weight:500;letter-spacing:.03em}
+.sc{font-variant:small-caps;letter-spacing:.05em}
+/* The two centred lines of page 726 */
+.centred p{text-align:center;hyphens:manual}
+/* The signature at the end of the note */
+.sig{text-align:right;margin-top:.2em;letter-spacing:.08em}
+.kick{letter-spacing:.3em}
+/* The table of cycles of page 730: one line per paragraph, dot leaders up to the columns */
+.cycles{margin:.5em 0 .9em;font-size:.94em}
+.cycles p{display:flex;align-items:baseline;margin:0;text-align:left;hyphens:manual;white-space:nowrap}
+.cycles .lead,.cycles .dotline{flex:1;min-width:1.5em;overflow:hidden}
+.cycles .lead{margin:0 .3em}
+.cycles .lead::after,.cycles .dotline::after{content:"................................................................................................................................................................";letter-spacing:.32em}
+.cycles .b{width:3.9em;text-align:right}
+.cycles .k{width:7em;padding-left:.5em}
+.cycles .v{width:6.2em}
+.cycles .dd{letter-spacing:.22em}
+/* The long reference of the volume in the footer: balanced lines */
+footer>div{text-wrap:balance;line-height:1.3}
+footer>div:first-child{max-width:44%}

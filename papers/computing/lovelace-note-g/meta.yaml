@@ -1,0 +1,55 @@
+title: "Sketch of the Analytical Engine: Note G"
+summary: "Lovelace's last note on the Analytical Engine: its limits, and how it would compute the Bernoulli numbers."
+title_html: "Note G"
+title_size: 150pt
+kicker: "Sketch of the Analytical Engine · Notes by the Translator · Excerpt"
+author: "Ada Lovelace"
+byline: "Scientific Memoirs, Vol. III, Article XXIX, pages 722 to 731 · London, 1843"
+emblem: "G"
+header_scale: 1.5
+footer:
+  - "<i>Scientific Memoirs, selected from the Transactions of Foreign Academies of Science and Learned Societies, and from Foreign Journals.</i> Edited by Richard Taylor, F.S.A. Vol. III. London: printed by Richard and John E. Taylor, 1843."
+  - "<i>The notes are signed A.&nbsp;A.&nbsp;L., Note G A.&nbsp;L.&nbsp;L. Text and diagram in the public domain.</i>"
+  - "<span class=\"mono\">archive.org/details/scientificmemoir03memo</span>"
+year: 1843
+authors: [Ada Lovelace]
+lang: en
+min_print: A1
+source:
+  url: https://en.wikisource.org/wiki/Scientific_Memoirs/3/Sketch_of_the_Analytical_Engine_invented_by_Charles_Babbage,_Esq./Notes_by_the_Translator
+  retrieved: 2026-09-27
+  edition: >-
+    Excerpt: Note G, the last of the translator's notes (pages 722 to 731) to L. F. Menabrea's
+    Sketch of the Analytical Engine, Scientific Memoirs, vol. 3, London, 1843, article 29. Text:
+    the Wikisource transcription of the 1843 volume (pages 732 and 735 to 743 of its Index), checked
+    word for word against the scan of the Natural History Museum copy
+    (archive.org/details/scientificmemoir03memo, 400 ppi) and, where that copy is unclear, the
+    Digital Library of India copy (archive.org/details/india.history.resource.53369). Corrections
+    to Wikisource from the scans: "mathematical" (not "Mathematical", p. 722); "Operation 21, which"
+    (not "21;", p. 728); "to make the number on V3" (the word "the" was missing, p. 728); "the sign
+    at the top of V8" (not "V3", p. 728); the closing parenthesis of "(for any even power of x.)"
+    (p. 726); the "+" before the dots of formula (6.) and the period after x to the power -1 in the
+    last formula (p. 731); the base of formulas (1.) and (4.) printed as an epsilon; and the values of n
+    at the end of each line of the table of cycles (p. 730), which the NHM copy loses in its gutter
+    and the DLI copy shows. Misprints of the volume are kept: "hovever", "sucessively", "the
+    integral of a x_n", "2n.(2n-1" without its closing parenthesis in formula (3.), and the signature
+    "A. L. L." (the other notes are signed "A. A. L."). Formulas are set with KaTeX, capitals of
+    variables upright and the V of the diagrams in bold as printed; dot leaders keep their printed
+    number of dots, except the two dotted lines of the table of cycles, shorter. The three footnotes,
+    marked with an asterisk on their pages, are numbered and set at the end. The diagram is the
+    folding plate of the volume: the photograph on Wikimedia Commons (from sophiararebooks.com), the
+    same printing as the plate of the NHM copy (leaf 754) but sharper, cropped to the plate, enlarged
+    twice (Lanczos) and turned to black on white to remove the show-through of the facing page. The
+    plate is set at the head of the text, across the columns; in the volume it follows page 722.
+license:
+  text: "Public domain"
+  holder: "Ada Lovelace, 1843"
+  basis: >-
+    Ada Lovelace died on 27 November 1852 and Note G was published in London in 1843: the text is
+    in the public domain in France (the author died before 1 January 1956) and in the United
+    States (published before 1 January 1931). The diagram is the plate of the same publication;
+    its Wikimedia Commons file page marks it as public domain (PD-old-100).
+  note: >-
+    Diagram: https://commons.wikimedia.org/wiki/File:Diagram_for_the_computation_of_Bernoulli_numbers.jpg,
+    public domain (PD-old-100). Scan of the text: the Biodiversity Heritage Library states "Public
+    domain. The BHL considers that this work is no longer under copyright protection".
