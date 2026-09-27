@@ -1,0 +1,62 @@
+title: "Douglas C. Engelbart: X–Y Position Indicator for a Display System, US Patent 3,541,541"
+summary: "Engelbart's patent for a hand-held position indicator whose two perpendicular wheels move a cursor on a computer display."
+title_html: "X–Y Position Indicator for a Display System"
+title_size: 76pt
+kicker: "United States Patent Office · Patent 3,541,541"
+author: "Douglas C. Engelbart, Palo Alto, Calif."
+byline: "Assignor to Stanford Research Institute · Patented Nov. 17, 1970 · Filed June 21, 1967, Ser. No. 647,872 · 8 Claims"
+emblem: "E"
+header_scale: 1.5
+layout: hero
+hero_height: 30
+columns: 3
+footer:
+  - "United States Patent 3,541,541, Douglas C. Engelbart, X–Y Position Indicator for a Display System: three sheets of drawings and specification, from the scan of the printed patent."
+  - "<i>The spelling and punctuation are those of the printed patent. Text and drawings of a US patent, typically not subject to copyright (USPTO).</i>"
+  - "<span class=\"mono\">patents.google.com/patent/US3541541A</span>"
+year: 1970
+authors: [Douglas C. Engelbart]
+lang: en
+min_print: A1
+source:
+  url: https://patents.google.com/patent/US3541541A/en
+  retrieved: 2026-09-27
+  edition: >-
+    Scan of the printed patent linked from Google Patents
+    (https://patentimages.storage.googleapis.com/7d/13/7e/3fd1de4c37ed12/US3541541.pdf, 1-bit, 300 dpi,
+    seven pages). Its first three pages, the sheets of drawings, are set side by side in the image at
+    the top, each cropped to the drawing, its heading and its signatures and kept in black and white.
+    The specification and the eight claims (pages 1 to 4, columns 1 to 8) are transcribed in full,
+    word for word from the scan: the text of Google Patents served as a base, an OCR made for this
+    poster (RapidOCR) was compared with it by script, every disagreement was settled on the scan, and
+    every line was then read against the page images. The printed heading ("United States Patent
+    Office" / "3,541,541" / "Patented Nov. 17, 1970" / "X–Y POSITION INDICATOR FOR A DISPLAY SYSTEM" /
+    "Douglas C. Engelbart, Palo Alto, Calif., assignor to Stanford Research Institute, Menlo Park,
+    Calif., a corporation of California" / "Filed June 21, 1967, Ser. No. 647,872" / "8 Claims", and classification numbers) is set in the header of the poster, without the
+    classification numbers, the place of the assignee and its state of incorporation. The list of references cited, the
+    names of the examiners and the cross-reference classes printed after the claims are left out.
+    Normalizations: words divided at line ends are rejoined without their hyphen ("up-down" and
+    "on-off" keep their own); the running heads, column numbers and the line numbers of the margins
+    are dropped; the bold type of the reference numerals is not kept; the section headings keep the
+    capitals of the print. The spelling of the print is kept, including "digita output", "directon",
+    "registation", "Schmidt trigger", "One subject of the invention", "the readout scheme of FIG. 6"
+    and "In the readout circuit of FIG. 5" (where FIG. 5 and FIG. 6 seem exchanged), "the disc 100 has
+    its axes fixed" and "delay line 124". The caption of the drawings is not a period text: it was
+    written for this poster from the specification.
+license:
+  text: "Public domain (US patent)"
+  holder: "Douglas C. Engelbart, assignor to Stanford Research Institute, 1970"
+  basis: >-
+    US Patent 3,541,541 was granted on 17 November 1970 and printed by the United States Patent
+    Office. In the United States, the USPTO states that the text and drawings of a patent are
+    typically not subject to copyright restrictions, the exceptions (37 CFR 1.71(d) and (e), 1.84(s))
+    applying only to a copyright or mask work notice printed in the patent, and this one carries none.
+    In France, the rule of the shorter term (article L. 123-12 of the Code de la propriété
+    intellectuelle, after article 7(8) of the Berne Convention): for a work whose country of origin is
+    outside the European Union and whose author is not a national of a member state (Engelbart was a
+    US national, Wikidata Q92614), the protection lasts no longer than in the country of origin, which
+    grants none.
+  note: >-
+    The USPTO states: "Subject to limited exceptions reflected in 37 CFR 1.71(d) & (e) and 1.84(s),
+    the text and drawings of a patent are typically not subject to copyright restrictions."
+    (https://www.uspto.gov/terms-use-uspto-websites, section "Patent information", retrieved 2026-09-27.)
