@@ -24,3 +24,10 @@ jobs:
         run: python engine/build.py --check
       - name: The catalog of the README is up to date
         run: python engine/readme.py --check
+      - name: Keep the PDFs that differ from dist/
+        if: failure()
+        uses: actions/upload-artifact@v4
+        with:
+          name: check
+          path: build/check/
+          if-no-files-found: ignore

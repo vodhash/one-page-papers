@@ -476,7 +476,12 @@ def print_format(paper, m, fmt, fs, themes, allowed, page, html, tmp, raw, out, 
         write_pdf(raw, pdf, (W, H), m)
         same = dst.exists() and same_poster(dst.read_bytes(), pdf.getvalue())
         if check and not same:
-            raise BuildError(f"{rel(dst)}: {'out of date' if dst.exists() else 'missing'}, run `make {slug}`")
+            if dst.exists():  # kept for a look at the difference; the CI uploads build/check/
+                kept = ROOT / "build" / "check" / paper.category / dst.name
+                kept.parent.mkdir(parents=True, exist_ok=True)
+                kept.write_bytes(pdf.getvalue())
+                raise BuildError(f"{rel(dst)}: out of date, run `make {slug}` (the new PDF is {rel(kept)})")
+            raise BuildError(f"{rel(dst)}: missing, run `make {slug}`")
         if not check:
             if not same:  # an unchanged poster keeps its file, so that git sees no change
                 out.mkdir(parents=True, exist_ok=True)
