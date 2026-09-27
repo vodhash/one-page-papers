@@ -158,6 +158,7 @@ Texts that wait for a license allowing their redistribution; [PENDING.md](PENDIN
 - RPOW: Reusable Proofs of Work (Hal Finney, 2004)
 - Universal Declaration of Human Rights (United Nations General Assembly, 1948)
 - The Pioneer plaque (Carl Sagan, Frank Drake, Linda Salzman Sagan, 1972)
+- The Arecibo message (Frank Drake and colleagues, 1974)
 
 <!-- catalog:end -->
 

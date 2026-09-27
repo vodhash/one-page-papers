@@ -94,3 +94,10 @@ missing. The catalog of the README lists them under *Coming soon*.
 - Source: https://science.nasa.gov/resource/pioneer-plaque/ and Science 175 (1972), p. 881
 - Status: no public domain or license established. Its designers were not federal employees, no transfer to NASA is documented, and Linda Salzman Sagan, who drew it, is living.
 - Missing: a license or a permission from its designers, or evidence that the rights passed to the United States government.
+
+## The Arecibo message (Frank Drake and colleagues, 1974)
+
+- Category: space
+- Source: Icarus 26 (1975), p. 462, and the National Astronomy and Ionosphere Center (Cornell University)
+- Status: no public domain or license established. It was made at Cornell under NSF funding, which does not make it a federal work, and the copies found are redrawings under GFDL or CC BY-SA.
+- Missing: a statement of Cornell, NAIC or NSF on its reuse, or the original bits from a source whose terms allow redistribution.
