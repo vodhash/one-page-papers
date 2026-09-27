@@ -1,0 +1,49 @@
+title: "Lettre de Galois à M. Auguste Chevalier"
+summary: "Dated 29 May 1832, two days before his death, Galois's letter summarizes his work on equations, groups and algebraic integrals."
+title_html: "Lettre de Galois<br><em>à M. Auguste Chevalier</em>"
+title_size: 96pt
+kicker: "Letter of 29 May 1832"
+author: "Évariste Galois"
+byline: "Journal de mathématiques pures et appliquées, vol. XI, November 1846, pp. 408-415"
+emblem: "G"
+lang: fr
+header_scale: 1.4
+columns: 3
+footer:
+  - "Dated 29 May 1832; first printed in the <i>Revue encyclopédique</i>, September 1832, p. 568."
+  - "<i>Text and notes (J. L.) of the Journal de mathématiques pures et appliquées, 1846. Public domain.</i>"
+  - '<span class="mono">numdam.org</span>'
+year: 1832
+authors: [Évariste Galois]
+min_print: A2
+source:
+  url: https://www.numdam.org/item/JMPA_1846_1_11__381_0/
+  retrieved: 2026-09-27
+  edition: >-
+    The letter as printed in the Journal de mathématiques pures et appliquées, 1re série, tome
+    XI (November 1846), pp. 408-415, within the Œuvres mathématiques d'Évariste Galois (pp.
+    381-444), not the first printing of the Revue encyclopédique (September 1832, p. 568), whose
+    text differs in places. The text comes from the text layer (OCR) of the NUMDAM PDF of that
+    printing, corrected word by word, and every formula read again, against two scans: NUMDAM
+    (digitized by the BnF for Gallica) and the Internet Archive item s1journaldemat11liou
+    (University of Toronto copy); the proofread text of the 1897 Gauthier-Villars edition on
+    French Wikisource served as a cross-check only. The heading "Lettre de Galois à M. Auguste
+    Chevalier" is the title of the poster; the line under it, "(Insérée en 1832 dans la Revue
+    encyclopédique ...)", opens the text and carries the note that the print calls from the
+    heading. The two notes signed (J. L.) are kept as footnotes; the Note de M. Liouville that
+    follows the letter is left out. Running heads, page numbers, the foot line of p. 409 and the
+    signature marks of the sheets are dropped; words hyphenated at line ends are rejoined; the
+    spaces that the typesetter put before commas are not kept, and a colon keeps its space
+    before it, made unbreakable. The formulas are set with KaTeX: the capitals of groups and
+    functions are upright, as printed, the minus signs, printed with a dash, are set as minus
+    signs, and "M² = 1" is set as text.
+license:
+  text: "Public domain"
+  holder: "Évariste Galois, 1832; notes by Joseph Liouville, 1846"
+  basis: >-
+    Évariste Galois died on 31 May 1832 (Wikidata Q7091) and Joseph Liouville, who signed the
+    notes (J. L.), on 8 September 1882 (Wikidata Q214549); the letter was published in 1832 and
+    this edition in 1846. The text is in the public domain in France, where both authors died
+    before 1 January 1956, and in the United States, where it was published before 1 January
+    1931. The NUMDAM conditions of use state that "les documents du domaine public" may be
+    republished without explicit permission (https://www.numdam.org/conditions/).
