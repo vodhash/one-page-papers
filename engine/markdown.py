@@ -49,7 +49,8 @@ def smart(s):
     return ''.join(parts)
 
 def inline(s):
-    s = ' '.join(s.split())
+    # the line breaks and indents of the source collapse, but not the no-break or thin spaces
+    s = re.sub(r'[ \t\r\n]+', ' ', s).strip(' ')
     # code spans stand aside while the rest is marked up: `S[0]` is no citation, `a*b*c` no italics
     codes = []
     def code(m):
