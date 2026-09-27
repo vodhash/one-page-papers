@@ -1,0 +1,7 @@
+/* The reference that the print sets under the title, in the header like there */
+h1 .ref{display:block;font-size:.3em;font-style:normal;letter-spacing:.06em;color:var(--mute);margin-top:.55em}
+/* Letter-spaced words of the Fraktur print (Sperrsatz) */
+.sp{letter-spacing:.14em}
+/* The signature and the dateline that close the essay */
+p.sig{text-align:right;margin:.5em 1.5em .1em 0}
+p.date{text-align:left;hyphens:manual;padding-left:1.5em;margin-bottom:.4em}
