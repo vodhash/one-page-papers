@@ -63,9 +63,10 @@ def catalog():
             m = metas[p]
             themes = [t for t in THEMES if t in m.get("themes", THEMES)]  # the first one makes the thumbnail
             thumb = f'<a href="{pdf(p, themes[0])}"><img src="docs/{cat}/{p.slug}.png" width="90" alt=""></a>'
+            year = year_text(m['year']).replace(' ', '&nbsp;')  # "c. 400 BC" on one line in its narrow column
             links = "&nbsp;·&nbsp;".join(f"[{t}]({pdf(p, t)})" for t in themes)  # on one line
             out.append(f"| {thumb} | [{cell(m['title'])}]({pdf(p, themes[0])})<br>{cell(m['summary'])}<br>{links} | "
-                       f"{cell(', '.join(m['authors']))} | {year_text(m['year'])} | {m['min_print']} | "
+                       f"{cell(', '.join(m['authors']))} | {year} | {m['min_print']} | "
                        f"{cell(m['license']['text'])} |")
     if waiting := pending():
         out += ["", "## Coming soon", "",
