@@ -1,0 +1,48 @@
+title: "BIP 173: Base32 address format for native v0-16 witness outputs"
+summary: "Defines Bech32, a checksummed base32 format, and the segwit addresses built on it, starting with bc1."
+title_html: "Base32 address format for<br><em>native v0-16 witness outputs</em>"
+title_size: 96pt
+kicker: "Bitcoin Improvement Proposal 173 · Applications · Informational · 20 March 2017"
+author: "Pieter Wuille · Greg Maxwell"
+byline: "pieter.wuille@gmail.com · greg@xiph.org"
+emblem: "173"
+header_scale: 1.3
+columns: 4
+footer:
+  - "BIP: 173 · Layer: Applications · Status: Deployed · Type: Informational · Assigned: 2017-03-20 · License: BSD-2-Clause · Replaces: 142 · Proposed-Replacement: 350"
+  - "<i>This BIP is licensed under the 2-clause BSD license.</i>"
+  - '<span class="mono">github.com/bitcoin/bips · bip-0173.mediawiki</span>'
+year: 2017
+authors: [Pieter Wuille, Greg Maxwell]
+min_print: A2
+source:
+  url: https://github.com/bitcoin/bips/blob/02bebeb5ef53dc21a52d5706c6b4c17b6af6c1cc/bip-0173.mediawiki
+  retrieved: 2026-09-27
+  edition: >-
+    The MediaWiki source of BIP 173 in the repository github.com/bitcoin/bips at commit 02bebeb
+    of 25 September 2026, its current version (status Deployed, with the section Disclosures
+    added in 2024; last changed on 12 January 2026, when its preamble fields were renamed). The
+    full text. The preamble is in the header (title, number, layer, type, assigned date, authors
+    and their addresses) and in the footer (its other fields but Comments-Summary and
+    Comments-URI, a link to the wiki of the repository). The eight notes, which the source
+    sets as numbered footnotes forming its section Rationale, between the Compatibility and
+    Reference implementations sections, are numbered in the same order and listed at the end of
+    the text, under that heading. Links show their text, and bare URLs are set in monospace.
+    Lists nested in lists are kept nested, tables are set as tables, and preformatted blocks
+    (Python code, test vectors) in monospace. Straight quotes of the text are set as typographic
+    quotes. After the Copyright section is the text of the BSD 2-Clause License as SPDX gives it
+    (https://spdx.org/licenses/BSD-2-Clause.html), without its template copyright line, as the
+    BIP has no copyright line.
+    The signs ≤ and ≥ of the table headings are set in the KaTeX_Main font, as EB Garamond lacks
+    them in italic, and the brackets of [33-126] are written as HTML entities, so that the engine
+    does not take the range for a citation.
+license:
+  text: BSD-2-Clause
+  holder: Pieter Wuille, Greg Maxwell
+  notice: "License: BSD-2-Clause [...] This BIP is licensed under the 2-clause BSD license."
+  note: >-
+    Preamble and Copyright section of BIP 173
+    (https://github.com/bitcoin/bips/blob/master/bip-0173.mediawiki), present since its first
+    version in the repository, merged on 7 May 2017 (commit b93d9ea). The BSD 2-Clause License
+    asks redistributions to reproduce "this list of conditions and the following disclaimer":
+    the poster carries its full text.

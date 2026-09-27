@@ -1,0 +1,21 @@
+/* the BSD 2-Clause License, in small print after the Copyright section */
+.bsd{font-size:.56em;line-height:1.35;color:var(--mute);margin:.2em 0 1em;text-align:justify}
+.bsd p{margin:0 0 .4em;text-indent:0}
+.bsd b{font-weight:600;color:var(--ink)}
+/* nested lists, and long hexadecimal constants that must break anywhere */
+li ul,li ol{margin:.15em 0 .15em 1.1em;padding:0}
+li i{overflow-wrap:anywhere}
+li li{text-align:left;hyphens:manual}
+code.url,li code,p code{word-break:break-all;hyphens:none}
+/* the notes are listed at the end of the text: the source's heading of their section above them */
+.footnotes::before{content:"Rationale";display:block;font-weight:600;margin:.6em 0 .3em}
+table.bip{border-collapse:collapse;margin:.4em auto .8em;font-size:.9em}
+table.bip td,table.bip th{padding:.1em .45em;text-align:center}
+table.bip th{font-weight:400;font-style:italic}
+table.bip tr:first-child th{border-bottom:1px solid var(--mute)}
+.kick{letter-spacing:.22em}
+footer>div:first-child{max-width:48%;line-height:1.3}
+/* signs that the italic and bold of EB Garamond lack, from KaTeX_Main */
+.op{font-family:'KaTeX_Main';font-style:normal;font-weight:400}
+/* the code blocks, wide for the columns, in a smaller type */
+pre.code{font-size:calc(var(--fs)*.56)}
