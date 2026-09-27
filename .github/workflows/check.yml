@@ -31,7 +31,7 @@ jobs:
           name: check
           path: build/check/
           if-no-files-found: ignore
-      - name: The site has no dead internal link, loads nothing from another site, and every PDF it links is in dist/
+      - name: The site has no dead internal link, loads nothing from another site but its analytics, and every PDF it links is in dist/
         run: |
           sudo apt-get update -qq && sudo apt-get install -y --no-install-recommends poppler-utils
           python engine/site.py --check

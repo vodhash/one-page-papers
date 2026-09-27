@@ -8,7 +8,7 @@ meta.yaml of every paper, with previews rasterized from its A PDFs in dist/.
     python3 engine/site.py --contrast     # print the contrast of every text colour of the site
 
 The check fails on a dead internal link (page, image, font, stylesheet, script, anchor), on a
-resource loaded from another site, and on a PDF link whose file is not in dist/. Links inside
+resource loaded from another site but the analytics script (ANALYTICS), and on a PDF link whose file is not in dist/. Links inside
 the site are relative, so that it works under /one-page-papers/ on GitHub Pages as well as at
 the root of `make serve`. Previews need pdftoppm (poppler-utils); they are cached in
 build/site-previews/, keyed on the content of each PDF, so an unchanged collection builds fast.
@@ -36,6 +36,11 @@ BASE_URL = "https://vodhash.github.io/one-page-papers/"  # only for canonical, O
 PDF_URL = REPO + "/raw/master/dist/{category}/{file}"
 ZIP_URL = REPO + "/releases/latest/download/{category}.zip"  # the zips only exist in releases
 RELEASE_URL = REPO + "/releases/latest"
+# Umami, the owner's own analytics: no cookie, no personal data. The only resource the site loads
+# from another site; data-domains keeps make serve and other hosts out of the counts
+ANALYTICS_SRC = "https://umami.vodhash.com/script.js"
+ANALYTICS = (f'<script defer src="{ANALYTICS_SRC}" data-website-id="3adaa9da-4979-4ea1-931d-e55966529929" '
+             'data-domains="vodhash.github.io"></script>')
 GENESIS_HASH = "000000000019d6689c085ae165831e934ff763ae46a2a6c172b3f1b60a8ce26f"  # of the Bitcoin block 0
 
 WEB = ROOT / "engine" / "web"
@@ -375,7 +380,7 @@ def render(pg, css_v, js_v):
         "BG_LIGHT": TOKENS["bg"][0], "BG_DARK": TOKENS["bg"][1], "ROOT": root, "HOME": home,
         "PRELOAD": "\n".join(f'<link rel="preload" href="{root}assets/fonts/{f}" as="font" type="font/woff2" '
                              'crossorigin>' for f in PRELOAD),
-        "CSS_V": css_v, "JS_V": js_v, "SOCIAL": "\n".join(social),
+        "CSS_V": css_v, "JS_V": js_v, "SOCIAL": "\n".join(social), "ANALYTICS": ANALYTICS,
         "SKIP": "" if not_found else '<a class="skip" href="#main">Skip to content</a>',
         "CUR_COLLECTION": cur["collection"], "CUR_ABOUT": cur["about"], "REPO": REPO,
         "SUN": SUN, "BURGER": BURGER, "MAIN": pg.main, "HASH": GENESIS_HASH})
@@ -708,7 +713,7 @@ def check(out):
                 errors.append(f"{path}: {what} {url}: no id {parts.fragment} in {file}")
         elif parts.netloc == "site.invalid":
             errors.append(f"{path}: {what} {url}: outside the site, which lives under {BASE_PATH}")
-        elif loaded:
+        elif loaded and target != ANALYTICS_SRC:
             errors.append(f"{path}: {what} {url}: loaded from another site")
         elif k := pdf.match(target):
             where = sorted((ROOT / "dist").glob(f"{k.groupdict().get('category', '*')}/{k['file']}"))
