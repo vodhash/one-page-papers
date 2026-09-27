@@ -164,7 +164,7 @@ Builds are deterministic, but for two differences that do not show: in about one
 
 ## Add a paper
 
-A paper is a folder `papers/<category>/<slug>/`. The slug names its PDFs and its `make` target, so it is unique across categories. The categories are the folders of `papers/`: `crypto`, `computing`, `internet`, `software`, `manifestos`, `physics`, `mathematics`, `life-sciences`, `data-viz`, `patents` and `history`; `engine/papers.py` gives their titles in the catalog.
+A paper is a folder `papers/<category>/<slug>/`. The slug names its PDFs and its `make` target, so it is unique across categories. The categories are the folders of `papers/`: `crypto`, `computing`, `internet`, `software`, `manifestos`, `physics`, `space`, `mathematics`, `life-sciences`, `data-viz`, `patents`, `history` and `reference` (reference sheets compiled for the project from the standards they cite); `engine/papers.py` gives their titles in the catalog.
 
 | File | Purpose |
 |---|---|

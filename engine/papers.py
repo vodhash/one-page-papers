@@ -11,11 +11,13 @@ CATEGORIES = {
     "software": "Software practice",
     "manifestos": "Manifestos & announcements",
     "physics": "Physics & astronomy",
+    "space": "Space exploration",
     "mathematics": "Mathematics",
     "life-sciences": "Biology & medicine",
     "data-viz": "Historical data visualization",
     "patents": "Patents",
     "history": "History & philosophy",
+    "reference": "Reference sheets",
 }
 SHOWCASE = "bitcoin"  # the paper that the catalog of the README shows in every theme
 
