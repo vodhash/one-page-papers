@@ -1,0 +1,53 @@
+title: "Versuche über Pflanzen-Hybriden"
+summary: "Gregor Mendel's 1866 paper on crosses of garden peas, which set out the laws of inheritance."
+title_html: "Versuche über Pflanzen-Hybriden"
+title_size: 110pt
+kicker: "Naturforschender Verein in Brünn · read 8 February and 8 March 1865"
+author: "Gregor Mendel"
+byline: "<i>Verhandlungen des naturforschenden Vereines in Brünn</i>, IV. Band, 1865, Abhandlungen, pp. 3-47 · Brünn, 1866"
+emblem: "M"
+header_scale: 1.5
+columns: 6
+lang: de
+footer:
+  - "Verhandlungen des naturforschenden Vereines in Brünn, vol. IV (1865), Brünn, 1866, Abhandlungen, pp. 3-47"
+  - "<i>Public domain. Text of the Deutsches Textarchiv (CC BY-SA 4.0), checked against the page images of its scan and the Internet Archive scan.</i>"
+  - '<span class="mono">deutschestextarchiv.de/mendel_pflanzenhybriden_1866</span>'
+year: 1866
+authors: [Gregor Mendel]
+min_print: A0
+source:
+  url: https://www.deutschestextarchiv.de/book/show/mendel_pflanzenhybriden_1866
+  retrieved: 2026-09-27
+  edition: >-
+    The paper as printed in the Verhandlungen des naturforschenden Vereines in Brünn, IV. Band
+    (1865, published Brünn 1866), Abhandlungen, pp. 3-47. Text of the Deutsches Textarchiv
+    (mendel_pflanzenhybriden_1866, TEI XML, double-keyed from the copy of the BBAW, shelfmark
+    Z 981), checked against its page images and against the independent OCR of the Internet
+    Archive scan of the Smithsonian Libraries copy (versucheberpflan00mend): every disagreement
+    was read on the page images. Corrected against the print: "Anforderungen" (DTA
+    Auforderungen, p. 6), "ähnlich" (DTA ähulich, p. 35), "sorgfältigsten" (DTA sorgfaltigsten,
+    p. 39). Kept as printed: "Resnltate" and "nnd", which DTA marks as errors of the print, "die
+    her besprochen", "gefarbte", "Versuchsjahse". The eleven tables, the eight fraction formulas
+    and the arrow diagram of p. 30, which DTA leaves empty, were transcribed from the page images
+    (the diagram redrawn as a vector figure); the two tables of p. 21 follow DTA. The title and
+    author are set in the header of the poster; running heads, page numbers and signature marks
+    are left out; words hyphenated at line ends are joined, except compounds whose second part
+    starts with a capital (Befruchtungs-Organe, Stamm-Merkmale...) and the suspended "Keim- und";
+    "vor-/der" (p. 5), a division of two words, is set "vor der". Letter-spaced words are set
+    letter-spaced; centred and indented lines keep their lines; ditto marks are set as „; dotted
+    leaders are set with a short leader of five dots; numbered paragraphs keep their numbers; the
+    two footnotes marked *) are numbered by the poster and set at the end of the text.
+license:
+  text: "Public domain"
+  holder: "Gregor Mendel, 1866"
+  basis: >-
+    Published in 1866, before 1931: public domain in the United States. Gregor Mendel died in
+    1884, before 1956: public domain in France.
+  note: >-
+    The Deutsches Textarchiv distributes its transcription "under the Creative Commons
+    Attribution-ShareAlike 4.0 License" (TEI header, availability); the footer credits it. A
+    faithful transcription of a public domain text adds no protected work; the tables, formulas
+    and figure the poster adds were transcribed from the page images. The Internet Archive marks
+    its scan (versucheberpflan00mend) NOT_IN_COPYRIGHT.
+font_range: [5, 40]

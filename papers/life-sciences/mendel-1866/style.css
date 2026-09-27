@@ -1,0 +1,21 @@
+/* Letter-spaced words: the emphasis of the print (Sperrsatz) */
+.sp{letter-spacing:.16em;margin-right:-.16em}
+/* Section headings in bold, as printed */
+h2{font-size:1.05em;text-align:center}
+/* Centred lines (formulas, lists of forms) and indented lines, as set in the print */
+.c{display:block;text-align:center;text-indent:0;margin:.3em 0}
+.et{display:block;padding-left:1.2em;text-indent:0;margin:.2em 0}
+/* A paragraph that continues after a centred block has no indent */
+p:has(> span.cont:first-child){text-indent:0}
+/* Dotted leader of the print */
+.ld::before{content:" . . . . . "}
+/* Tables of counts: compact, as in the print */
+table.m{border-collapse:collapse;margin:.4em auto;font-size:.92em;line-height:1.2}
+table.m td{padding:.02em .35em;text-align:center;white-space:nowrap;vertical-align:bottom}
+table.m td.gap{width:1.2em}
+table.m tr.h td,table.m td.h{font-size:.9em}
+footer>div{text-wrap:balance}
+/* The arrow diagram of p. 30 at the size of the print, not across the column */
+svg.fig{display:block;width:62%;margin:.3em auto}
+table.m td.r{text-align:right;padding-right:.15em}
+table.m td[rowspan]{vertical-align:top}
