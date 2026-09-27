@@ -6,22 +6,13 @@ on:
 
 jobs:
   posters:
-    runs-on: ubuntu-24.04
+    # pull requests may come from anyone: they run on GitHub's runners, not on the self-hosted one
+    runs-on: ${{ github.event_name == 'pull_request' && fromJSON('["ubuntu-24.04"]') || fromJSON('["self-hosted", "opp"]') }}
     steps:
       - uses: actions/checkout@v5
-      - uses: actions/setup-node@v5
-        with:
-          node-version: 22
-          cache: npm
-      - uses: actions/setup-python@v6
-        with:
-          python-version: "3.12"
-          cache: pip
-      - run: npm ci --omit=optional
-      - run: pip install -r requirements.txt
-      - run: python -m playwright install --with-deps --only-shell chromium
+      - uses: ./.github/actions/setup
       - name: Every poster fits its page, uses bundled fonts only and matches its PDFs in dist/
-        run: python engine/build.py --check
+        run: python engine/build.py --check --jobs "$(nproc)"
       - name: The catalog of the README is up to date
         run: python engine/readme.py --check
       - name: Keep the PDFs that differ from dist/
@@ -32,6 +23,4 @@ jobs:
           path: build/check/
           if-no-files-found: ignore
       - name: The site has no dead internal link, loads nothing from another site but its analytics, and every PDF it links is in dist/
-        run: |
-          sudo apt-get update -qq && sudo apt-get install -y --no-install-recommends poppler-utils
-          python engine/site.py --check
+        run: python engine/site.py --check

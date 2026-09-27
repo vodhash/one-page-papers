@@ -1,0 +1,20 @@
+name: setup
+description: >-
+  Node, the node modules, a Python virtualenv with the requirements on the PATH, and headless
+  Chromium. A GitHub-hosted runner also installs the system packages (the libraries of Chromium,
+  poppler-utils) that the self-hosted runner has installed once.
+runs:
+  using: composite
+  steps:
+    - uses: actions/setup-node@v5
+      with:
+        node-version: 22
+    - shell: bash
+      run: |
+        hosted=$([ "$RUNNER_ENVIRONMENT" = github-hosted ] && echo 1 || true)
+        [ -n "$hosted" ] && sudo apt-get update -qq && sudo apt-get install -y --no-install-recommends poppler-utils
+        npm ci --omit=optional
+        python3 -m venv .venv
+        .venv/bin/pip install -q -r requirements.txt
+        echo "$PWD/.venv/bin" >> "$GITHUB_PATH"
+        .venv/bin/python -m playwright install ${hosted:+--with-deps} --only-shell chromium

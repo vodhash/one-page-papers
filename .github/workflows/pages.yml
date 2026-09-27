@@ -17,25 +17,14 @@ concurrency:
 
 jobs:
   build:
-    runs-on: ubuntu-24.04
+    runs-on: [self-hosted, opp]
     steps:
       - uses: actions/checkout@v5
         with:
           # the history, for the lastmod dates of the sitemap, without the files of past commits
           fetch-depth: 0
           filter: blob:none
-      - uses: actions/setup-node@v5
-        with:
-          node-version: 22
-          cache: npm
-      - uses: actions/setup-python@v6
-        with:
-          python-version: "3.12"
-          cache: pip
-      - name: poppler-utils, whose pdftoppm draws the previews from the PDFs
-        run: sudo apt-get update -qq && sudo apt-get install -y --no-install-recommends poppler-utils
-      - run: npm ci --omit=optional
-      - run: pip install -r requirements.txt
+      - uses: ./.github/actions/setup
       - name: Write the site into site/, which fails on a dead link or on a PDF missing from dist/
         run: python engine/site.py
       - uses: actions/configure-pages@v5
@@ -45,7 +34,7 @@ jobs:
 
   deploy:
     needs: build
-    runs-on: ubuntu-24.04
+    runs-on: [self-hosted, opp]
     environment:
       name: github-pages
       url: ${{ steps.deployment.outputs.page_url }}
