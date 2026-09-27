@@ -1,0 +1,71 @@
+<div class="wrap">
+<nav class="crumbs" aria-label="Breadcrumb">
+<ol>
+<li><a href="../../#collection">Collection</a><span class="slash" aria-hidden="true">/</span></li>
+<li><a href="../">Series</a><span class="slash" aria-hidden="true">/</span></li>
+<li><span aria-current="page">{{TITLE}}</span></li>
+</ol>
+</nav>
+<header class="series-head">
+<p class="eyebrow">Series · {{META}}</p>
+<h1>{{TITLE_H1}}</h1>
+<p class="lede">{{INTRO}}</p>
+</header>
+<section class="planner" aria-labelledby="plan-title" data-planner data-hang="{{HANG}}">
+<h2 id="plan-title">Plan the wall</h2>
+<p class="pl-nojs">The wall planner draws the series to scale in your browser: this needs JavaScript. The posters and their PDFs are listed below.</p>
+<div class="pl-body" hidden>
+<form class="pl-form" aria-label="Wall planner">
+<fieldset>
+<legend>Print format</legend>
+{{FORMATS}}
+</fieldset>
+<fieldset>
+<legend>Layout</legend>
+<div class="pills">
+{{LAYOUTS}}
+</div>
+</fieldset>
+<fieldset class="pl-sizes">
+<legend>Spacing, in centimetres</legend>
+<label class="pl-num"><span>Gap between frames</span><input type="number" name="pl-gap" value="6" min="0" max="60" step="0.5" inputmode="decimal"></label>
+<label class="pl-num"><span>Frame border</span><input type="number" name="pl-frame" value="2" min="0" max="15" step="0.5" inputmode="decimal"></label>
+<label class="pl-num"><span>Mat</span><input type="number" name="pl-mat" value="5" min="0" max="30" step="0.5" inputmode="decimal"></label>
+</fieldset>
+<fieldset>
+<legend>Theme</legend>
+{{THEMES}}
+</fieldset>
+</form>
+<figure class="pl-wall">
+<div class="pl-canvas"></div>
+<figcaption>
+<dl class="pl-sum" aria-live="polite"></dl>
+<p class="pl-note">{{NOTE}}</p>
+</figcaption>
+</figure>
+</div>
+</section>
+<section class="series-dl" aria-labelledby="sdl-title">
+<h2 id="sdl-title">The posters</h2>
+<p class="sdl-now" aria-live="polite"></p>
+<p class="sdl-nojs">Each poster in its first theme; its page has the others, and a wallpaper.</p>
+<ol class="sdl" role="list">
+{{ROWS}}
+</ol>
+<div class="sdl-us">
+<h3 class="eyebrow">US formats</h3>
+<p>Letter, Tabloid, 18&nbsp;×&nbsp;24 and 24&nbsp;×&nbsp;36&nbsp;in are not in the repository but in the latest release, in one zip per category, with every theme:</p>
+<ul class="sdl-zips" role="list">
+{{US_ZIPS}}
+</ul>
+</div>
+<p class="zip">The A, 50&nbsp;×&nbsp;70 and 60&nbsp;×&nbsp;80&nbsp;cm PDFs of these posters, in every theme, are also in the latest release, in one zip per category: {{ZIPS}}.</p>
+</section>
+<section class="more" aria-labelledby="more-title">
+<h2 id="more-title">Other series</h2>
+<ul class="scards" role="list">
+{{MORE}}
+</ul>
+</section>
+</div>

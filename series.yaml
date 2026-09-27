@@ -1,0 +1,103 @@
+# The series of the site: posters that hang well together. engine/site.py makes a page for each
+# one, /series/<slug>/, with a wall planner, and links it from the pages of its posters.
+#
+#   slug:   the address of its page (lowercase letters, digits and hyphens)
+#   title:  its name
+#   intro:  one or two factual sentences
+#   papers: the slugs of its posters, in the order they hang (at least 3)
+
+- slug: bitcoin-building-blocks
+  title: Bitcoin, piece by piece
+  intro: >-
+    The standard that specifies SHA-256, the hash function of Bitcoin, Satoshi Nakamoto's
+    whitepaper of 31 October 2008 and the first block, mined on 3 January 2009, followed by two Bitcoin Improvement Proposals:
+    BIP 39 (2013) for recovery words and BIP 340 (2020) for Schnorr signatures.
+  papers: [sha-256, bitcoin, genesis-block, bip-39, bip-340]
+
+- slug: annus-mirabilis
+  title: 1905, the miraculous year
+  intro: >-
+    Four papers that Albert Einstein published in the Annalen der Physik in 1905: on light
+    quanta and the photoelectric effect, on Brownian motion, on the electrodynamics of moving
+    bodies, and on the equivalence of mass and energy.
+  papers: [einstein-photoelectric, einstein-brownian, einstein-electrodynamics, einstein-mass-energy]
+
+- slug: declarations
+  title: Declarations
+  intro: >-
+    Five charters of rights, from Magna Carta, granted at Runnymede in June 1215, to the United
+    States Declaration of Independence (1776), the French Declaration of 1789, Olympe de Gouges's
+    Declaration of the rights of woman (1791) and the Bill of Rights, ratified on December 15, 1791.
+  papers: [magna-carta, us-declaration-of-independence, declaration-droits-homme, declaration-droits-femme, us-bill-of-rights]
+
+- slug: internet-origins
+  title: The origins of the Internet
+  intro: >-
+    From RFC 1, dated 7 April 1969, to Tim Berners-Lee's announcement of the WorldWideWeb project
+    on 6 August 1991, by way of ASCII for the ARPA network (1969) and the headers of IP and TCP,
+    specified in September 1981.
+  papers: [rfc-1, rfc-20-ascii, rfc-791, rfc-793-tcp, www-announcement]
+
+- slug: april-fools-rfcs
+  title: The April Fools' RFCs
+  intro: >-
+    Five Requests for Comments published on the first of April between 1990 and 2011: IP
+    datagrams carried by birds, with quality of service and then over IPv6, a protocol for coffee
+    pots, and one for infinite monkeys at typewriters.
+  papers: [rfc-1149, rfc-2324, rfc-2549, rfc-2795, rfc-6214]
+
+- slug: patents-that-changed-the-world
+  title: Patents that changed the world
+  intro: >-
+    Six United States patents, from Bell's telephone (1876) and Edison's electric lamp (1880) to
+    the Wrights' flying machine (1906), the point-contact transistor (1950), Kilby's integrated
+    circuit (1964) and Engelbart's mouse (1970).
+  papers: [bell-telephone, edison-lamp, wright-flying-machine, transistor, kilby-integrated-circuit, engelbart-mouse]
+
+- slug: looking-up
+  title: Looking up
+  intro: >-
+    Galileo's observations of the Moon (1610), Newton's laws of motion (1687), Messier's catalogue
+    of nebulae and star clusters (1781), Hubble's relation between distance and velocity (1929)
+    and the cover of the record carried by the two Voyager probes (1977).
+  papers: [sidereus-nuncius, newton-laws, messier-catalogue, hubble-1929, voyager-golden-record]
+
+- slug: first-data-visualizations
+  title: The first data visualizations
+  intro: >-
+    Four charts and maps drawn between 1786 and 1869: William Playfair's trade charts, John Snow's
+    map of the Broad Street cholera deaths (1854), Florence Nightingale's diagram of the causes of
+    mortality in the army (1858) and Charles Joseph Minard's map of the French army in Russia in 1812 and 1813.
+  papers: [playfair-charts, snow-cholera-map, nightingale-rose, minard-russia]
+
+- slug: life
+  title: Life
+  intro: >-
+    Jenner on vaccination against smallpox (1798), Darwin and Wallace on natural selection, read
+    at the Linnean Society on 1 July 1858, Mendel on the crosses of garden peas (1866) and
+    Fleming on penicillin (1929).
+  papers: [jenner-vaccination, darwin-wallace-1858, mendel-1866, fleming-penicillin]
+
+- slug: from-binary-to-the-mouse
+  title: From binary to the mouse
+  intro: >-
+    Leibniz's binary arithmetic (1703), Ada Lovelace's Note G on the Analytical Engine (1843),
+    Hollerith's patent for tabulating census data on punched paper (1889), the transistor (1950)
+    and Engelbart's mouse (1970).
+  papers: [leibniz-binary, lovelace-note-g, hollerith-tabulating, transistor, engelbart-mouse]
+
+- slug: free-software-and-practice
+  title: Free software and ways of working
+  intro: >-
+    Richard Stallman's GNU Manifesto (1985), the Free Software Definition, the Open Source
+    Definition, the Manifesto for Agile Software Development (2001) and Tim Peters's Zen of
+    Python (2004).
+  papers: [gnu-manifesto, free-software-definition, open-source-definition, agile-manifesto, zen-of-python]
+
+- slug: mathematics
+  title: Mathematics
+  intro: >-
+    Six texts from Euclid's Elements (c. 300 BC) to Hilbert's 23 problems (1900), by way of
+    Fermat's marginal note, Euler on the bridges of Königsberg (1736), Galois's letter of 29 May
+    1832 and Riemann on the number of primes (1859).
+  papers: [euclid-elements-i, fermat-marginal-note, euler-koenigsberg, galois-letter, riemann-1859, hilbert-problems]

@@ -1,7 +1,8 @@
 #!/usr/bin/env python3
 """The showcase site of the collection, for GitHub Pages: static pages written from the
 meta.yaml of every paper, with previews rasterized from its A PDFs in dist/, and a reading page
-for each paper (<slug>/read/), its text rendered by markdown.py and KaTeX as for its poster.
+for each paper (<slug>/read/), its text rendered by markdown.py and KaTeX as for its poster, and a
+page for each series of series.yaml (series/<slug>/), with a wall planner (planner.js).
 
     python3 engine/site.py                # write site/, after checking it
     python3 engine/site.py --check        # write it into a temporary directory and check it, as CI does
@@ -28,7 +29,7 @@ import markdown
 from build import MIN_BODY, PRINT_SIZES, BuildError, katex, load_figures, load_meta, substitute, themes_of
 from papers import CATEGORIES, ROOT, SHOWCASE, Paper, discover
 from readme import pending, year_key, year_text
-from themes import FORMATS, THEMES, colour
+from themes import FORMATS, THEMES, US_FORMATS, colour
 
 REPO = "https://github.com/vodhash/one-page-papers"
 BASE_URL = "https://onepagepapers.com/"  # only for canonical, Open Graph and sitemap URLs
@@ -42,6 +43,7 @@ WALL_PDF_URL = "https://raw.githubusercontent.com/vodhash/one-page-papers/master
 # The wallpapers that a poster page draws in the browser: name, width and height in pixels
 WALLPAPERS = (("Phone", 1170, 2532), ("Desktop", 2560, 1440), ("4K", 3840, 2160))
 ZIP_URL = REPO + "/releases/latest/download/{category}.zip"  # the zips only exist in releases
+US_ZIP_URL = REPO + "/releases/latest/download/{category}-us.zip"  # the US formats, which dist/ leaves out
 RELEASE_URL = REPO + "/releases/latest"
 # Umami, the analytics of the site: no cookie, no personal data. The only resource the site loads
 # from another site; data-domains keeps make serve and other hosts out of the counts
@@ -67,6 +69,13 @@ WEB = ROOT / "engine" / "web"
 CACHE = ROOT / "build" / "site-previews"
 PREVIEW_WIDTHS = (600, 1200)
 PREVIEW_VERSION = 2  # part of the cache key: bump it when the rendering of the previews changes
+SMALL_W = 160  # px: the small previews of the series cards, reduced from the 600 px ones
+SERIES_FILE = ROOT / "series.yaml"
+SERIES_SLUG = re.compile(r"[a-z0-9]+(?:-[a-z0-9]+)*$")
+MIN_SERIES = 3  # posters in a series, at least
+# the sizes at which the A file prints (PRINT_SIZES), in mm, for the wall planner
+A_SIZES = {"A3": (297, 420), "A2": (420, 594), "A1": (594, 841), "A0": (841, 1189)}
+US_NAMES = {"letter": "Letter", "tabloid": "Tabloid", "18x24": "18\u00a0×\u00a024\u00a0in", "24x36": "24\u00a0×\u00a036\u00a0in"}
 A_W, A_H = FORMATS["A"]
 THUMB_H = round(600 * A_H / A_W)  # height of the 600 px preview, the size stated in the pages
 # family: the @fontsource package, its CSS files that declare the faces, and the characters it
@@ -95,6 +104,7 @@ EXTRA_TOKENS = {  # not colours of text or surfaces: the shadow of a passe-parto
     "shadow": ("0 1px 2px rgba(29,27,23,.08),0 14px 30px -14px rgba(29,27,23,.34)",
                "0 1px 2px rgba(0,0,0,.5),0 16px 34px -14px rgba(0,0,0,.8)"),
     "edge": ("rgba(29,27,23,.09)", "rgba(236,230,216,.07)"),
+    "moulding": ("#1d1b17", "#0b0a09"),  # the frames that the wall planner draws around the posters
     # the accent boxes of the figures and the code blocks of the reading pages: those of the ivory
     # and genesis themes, whose colours the site takes
     "boxa": ("#f6dcb4", "#3d2a12"),
@@ -170,6 +180,87 @@ def collect(only_built):
     order = list(CATEGORIES)
     posters.sort(key=lambda p: (order.index(p.category), year_key(p.meta["year"]), p.meta["title"]))
     return posters, skipped
+
+class Series(NamedTuple):
+    slug: str
+    title: str
+    intro: str
+    posters: list  # in the order they hang
+
+def load_series(posters, only_built):
+    """The series of series.yaml, with their posters, and the series left out. An unknown paper,
+    a series slug used twice or a series of fewer than MIN_SERIES papers is an error; with
+    only_built, a paper left out of the site is left out of its series, and a series left with
+    fewer than MIN_SERIES posters is left out."""
+    where = SERIES_FILE.name
+    if not SERIES_FILE.exists():
+        raise SiteError(f"{where} is missing: it lists the series of the site")
+    try:
+        data = yaml.safe_load(SERIES_FILE.read_text())
+    except yaml.YAMLError as e:
+        raise SiteError(f"{where}: {' '.join(str(e).split())}") from None
+    if not isinstance(data, list) or not data:
+        raise SiteError(f"{where}: expected a list of series, each with slug, title, intro and papers")
+    try:
+        known = {p.slug: p for p in discover()}
+    except ValueError as e:
+        raise SiteError(e) from None
+    if "series" in known:
+        raise SiteError(f"papers/{known['series'].category}/series: the slug series is the folder of the series pages")
+    by_slug = {p.slug: p for p in posters}
+    errors, series, skipped, seen = [], [], [], set()
+    for i, s in enumerate(data, 1):
+        if not isinstance(s, dict):
+            errors.append(f"{where}: series {i} is not a mapping of slug, title, intro and papers")
+            continue
+        name = s.get("slug")
+        at = f"{where}: series {name!r}" if name else f"{where}: series {i}"
+        if set(s) != {"slug", "title", "intro", "papers"}:
+            extra, missing = sorted(set(s) - {"slug", "title", "intro", "papers"}), \
+                sorted({"slug", "title", "intro", "papers"} - set(s))
+            errors.append(at + "".join([f": missing {', '.join(missing)}" if missing else "",
+                                        f": unknown key {', '.join(map(str, extra))}" if extra else ""]))
+            continue
+        if not isinstance(name, str) or not SERIES_SLUG.match(name):
+            errors.append(f"{at}: the slug must be lowercase letters, digits and hyphens")
+            continue
+        if name in seen:
+            errors.append(f"{at}: slug used by another series")
+            continue
+        seen.add(name)
+        for key in ("title", "intro"):
+            if not isinstance(s[key], str) or not s[key].strip():
+                errors.append(f"{at}: {key} must be a text")
+        papers = s["papers"]
+        if not isinstance(papers, list) or not all(isinstance(x, str) for x in papers):
+            errors.append(f"{at}: papers must be a list of paper slugs")
+            continue
+        unknown = [x for x in papers if x not in known]
+        if unknown:
+            errors.append(f"{at}: unknown paper{'s' * (len(unknown) > 1)} {', '.join(unknown)} "
+                          "(no folder papers/<category>/<slug>/ has this name)")
+        twice = sorted({x for x in papers if papers.count(x) > 1})
+        if twice:
+            errors.append(f"{at}: {', '.join(twice)} listed twice")
+        if len(set(papers)) < MIN_SERIES:
+            errors.append(f"{at}: {len(set(papers))} paper{'s' * (len(set(papers)) != 1)}, "
+                          f"a series needs at least {MIN_SERIES}")
+        if unknown or twice or len(set(papers)) < MIN_SERIES:
+            continue
+        missing = [x for x in papers if x not in by_slug]
+        if missing and not only_built:  # collect() has failed already on such a paper
+            errors.append(f"{at}: {', '.join(missing)} not on the site")
+            continue
+        if len(papers) - len(missing) < MIN_SERIES:
+            skipped.append(f"{at}: only {len(papers) - len(missing)} of its posters are built")
+            continue
+        if missing:
+            skipped.append(f"{at}: without {', '.join(missing)}, not built")
+        series.append(Series(name, s["title"].strip(), " ".join(s["intro"].split()),
+                             [by_slug[x] for x in papers if x in by_slug]))
+    if errors:
+        raise SiteError("\nerror: ".join(errors))
+    return series, skipped
 
 # ---------------------------------------------------------------- previews
 
@@ -302,6 +393,26 @@ def make_previews(out, posters):
             previews[p.slug, t][w] = dst
     return previews, {(q.slug, t): paths for (q, t), paths in zip(jobs, done)}
 
+SMALL_H = round(SMALL_W * A_H / A_W)
+
+def make_thumbs(out, series, cached):
+    """Writes out/previews/<slug>-<theme>-<SMALL_W>.webp, the small previews of the series cards,
+    for the light and dark theme of every poster of a series, reduced from the cached 600 px
+    previews. Returns ({(slug, theme): path in the site}, the files of the cache it used)."""
+    thumbs, used = {}, set()
+    for p in {p.slug: p for s in series for p in s.posters}.values():
+        for t in dict.fromkeys((p.light, p.dark)):
+            src = cached[p.slug, t][600]
+            path = CACHE / f"{src.stem.removesuffix('-600')}-{SMALL_W}.webp"
+            if not path.exists():
+                with Image.open(src) as im:
+                    save_atomic(path, webp(im.convert("RGB").resize((SMALL_W, SMALL_H), Image.LANCZOS)))
+            dst = f"previews/{p.slug}-{t}-{SMALL_W}.webp"
+            shutil.copyfile(path, out / dst)
+            thumbs[p.slug, t] = dst
+            used.add(path)
+    return thumbs, used
+
 # ---------------------------------------------------------------- text helpers
 
 def esc(s):
@@ -392,6 +503,43 @@ def neighbours(p, posters, n=5):
                 others.append(q.pop(0))
     return (same + others)[:n]
 
+def small_picture(thumbs, p, root, alt_text):
+    """A small preview of a series card, in the theme of the mode of the site."""
+    source = (f'<source data-dark media="(prefers-color-scheme: dark)" srcset="{root}{thumbs[p.slug, p.dark]}">'
+              if p.dark != p.light else "")
+    return (f'<picture>{source}<img src="{root}{thumbs[p.slug, p.light]}" width="{SMALL_W}" height="{SMALL_H}" '
+            f'alt="{alt_text}" loading="lazy" decoding="async"></picture>')
+
+def years_span(posters):
+    years = sorted((p.meta["year"] for p in posters), key=year_key)
+    first, last = year_text(years[0]), year_text(years[-1])
+    return first if first == last else f"{first} to {last}"
+
+def series_meta(s):
+    return f"{len(s.posters)} posters · {esc(years_span(s.posters))}"
+
+def series_strip(s, thumbs, root):
+    """The posters of a series side by side, small, on a strip of wall."""
+    return ('<div class="strip">' + "".join(
+        f'<div class="mat">{small_picture(thumbs, p, root, esc(p.meta["title"]))}</div>' for p in s.posters)
+        + "</div>")
+
+def series_card(s, thumbs, root, intro=False, level=3):
+    extra = f'<p class="scard-intro">{esc(s.intro)}</p>\n' if intro else ""
+    return (f'<li class="scard">\n{series_strip(s, thumbs, root)}\n<div class="cartel">\n'
+            f'<p class="eyebrow">{series_meta(s)}</p>\n'
+            f'<h{level} class="card-title"><a href="{root}series/{s.slug}/">{title(s.title)}</a></h{level}>\n'
+            f'{extra}</div>\n</li>')
+
+def series_links(p, series, root):
+    """The series of a poster, as the links of its page."""
+    mine = [s for s in series if any(q.slug == p.slug for q in s.posters)]
+    if not mine:
+        return ""
+    links = [f'<a href="{root}series/{s.slug}/">{title(s.title)}</a>' for s in mine]
+    both = links[0] if len(links) == 1 else ", ".join(links[:-1]) + " and " + links[-1]
+    return f'<p class="in-series">Part of the series {both}.</p>\n'
+
 # ---------------------------------------------------------------- pages
 
 def last_changes():
@@ -417,7 +565,7 @@ class Page(NamedTuple):
     description: str   # escaped
     main: str
     image: str = ""    # site path of the Open Graph image
-    current: str = ""  # "collection" or "about": the link of the menu marked as the current page
+    current: str = ""  # "collection", "series" or "about": the link of the menu marked as the current page
     image_alt: str = ""
     head: str = ""     # more elements for the <head>, such as the stylesheet of KaTeX
 
@@ -454,7 +602,7 @@ def render(pg, css_v, js_v):
                        '<meta name="twitter:card" content="summary_large_image">']
     else:
         social.append('<meta name="robots" content="noindex">')
-    cur = {k: ' aria-current="page"' if pg.current == k else "" for k in ("collection", "about")}
+    cur = {k: ' aria-current="page"' if pg.current == k else "" for k in ("collection", "series", "about")}
     return substitute(tpl, {
         "BASE": NOT_FOUND_BASE if not_found else "", "MARK": mark_svg(), "TITLE": pg.title, "DESCRIPTION": pg.description,
         "BG_LIGHT": TOKENS["bg"][0], "BG_DARK": TOKENS["bg"][1], "ROOT": root, "HOME": home,
@@ -462,11 +610,11 @@ def render(pg, css_v, js_v):
                              'crossorigin>' for f in PRELOAD),
         "CSS_V": css_v, "JS_V": js_v, "SOCIAL": "\n".join(social), "ANALYTICS": ANALYTICS,
         "SKIP": "" if not_found else '<a class="skip" href="#main">Skip to content</a>',
-        "CUR_COLLECTION": cur["collection"], "CUR_ABOUT": cur["about"], "REPO": REPO,
+        "CUR_COLLECTION": cur["collection"], "CUR_SERIES": cur["series"], "CUR_ABOUT": cur["about"], "REPO": REPO,
         "SUN": SUN, "BURGER": BURGER, "MAIN": pg.main, "HASH": GENESIS_HASH,
         "HEAD": pg.head.replace("{{ROOT}}", root)})
 
-def home_page(posters, previews):
+def home_page(posters, previews, series, thumbs):
     show = next(p for p in posters if p.slug == SHOWCASE)
     m = show.meta
     years = sorted((p.meta["year"] for p in posters), key=year_key)
@@ -486,14 +634,17 @@ def home_page(posters, previews):
         "RELEASE": RELEASE_URL, "FORMATS": esc(formats), "FEATURED": featured,
         "INTRO": esc(f"{len(posters)} posters in {len(cats)} categories, from {year_text(years[0])} to "
                      f"{year_text(years[-1])}, each a free PDF to print and frame."),
-        "FILTERS": "\n".join(filters), "CARDS": "\n".join(card(previews, p, "") for p in posters)})
+        "FILTERS": "\n".join(filters), "CARDS": "\n".join(card(previews, p, "") for p in posters),
+        "SERIES_INTRO": esc(f"{number(len(series)).capitalize()} sets of posters that hang together, each with a "
+                            "planner that draws them on a wall to scale."),
+        "SERIES": "\n".join(series_card(s, thumbs, "") for s in series)})
     return Page("index.html", f"{NAME} · Foundational papers, one page each",
                 esc("Foundational papers of science, computing and history, each typeset on a single poster. "
                     f"Free vector PDFs to print from {PRINT_SIZES[0]} to {PRINT_SIZES[-1]}, or at "
                     + " or ".join(format_name(f).replace("\u00a0", " ") for f in FORMATS if f != "A") + "."),
                 main, "previews/share.jpg", "collection", "Three posters of the collection side by side on a wall")
 
-def poster_page(p, posters, previews):
+def poster_page(p, posters, previews, series):
     m, root = p.meta, "../"
     lic, src = m["license"], m["source"]
     host = urlsplit(src["url"]).netloc.removeprefix("www.")
@@ -540,7 +691,7 @@ def poster_page(p, posters, previews):
         "TITLE_H1": title(m["title"]),
         "YEAR": esc(year_text(m["year"])), "AUTHORS": esc(", ".join(m["authors"])),
         "SUBTITLE": f'<p class="subtitle">{m["kicker"]}</p>' if m.get("kicker") else "",
-        "SUMMARY": esc(m["summary"]), "LIGHT": p.light, "DARK": p.dark,
+        "SUMMARY": esc(m["summary"]), "LIGHT": p.light, "DARK": p.dark, "SERIES": series_links(p, series, root),
         "PICTURE": picture(previews, p, root, "(min-width: 1200px) 480px, (min-width: 768px) 52vw, 86vw", eager=True),
         "SHOWN": shown, "FACTS": "\n".join(f"<div><dt>{k}</dt><dd>{v}</dd></div>" for k, v in facts),
         "PILLS": "\n".join(pills), "ROWS": "\n".join(rows),
@@ -552,6 +703,123 @@ def poster_page(p, posters, previews):
     return Page(f"{p.slug}/index.html", f"{esc(m['title'])} · {NAME}",
                 f"{esc(m['summary'])} A one-page poster, free to download as a vector PDF.", main,
                 f"previews/{p.slug}-share.jpg", "", esc(alt(p)))
+
+# ---------------------------------------------------------------- series
+
+HANG_CM = 145  # the centre of a composition, from the floor, as galleries hang
+
+def layout_icon(rows, centred=False):
+    """A small drawing of a layout: rows is the number of frames of each row."""
+    cols = max(rows)
+    w, h = 6 * cols + 2 * (cols - 1), 8 * len(rows) + 2 * (len(rows) - 1)
+    rects = []
+    for r, k in enumerate(rows):
+        x0 = (w - (6 * k + 2 * (k - 1))) / 2 if centred else 0
+        rects += [f'<rect x="{x0 + 8 * j:g}" y="{10 * r}" width="6" height="8" rx=".6"/>' for j in range(k)]
+    return (f'<svg class="lay" width="{w * 1.4:g}" height="{h * 1.4:g}" viewBox="0 0 {w} {h}" aria-hidden="true" '
+            f'focusable="false">{"".join(rects)}</svg>')
+
+def layouts(n):
+    """The layouts that the planner offers for n posters: (value, label, rows of the icon)."""
+    out = [("row", "One row", [n])]
+    out.append(("cols2", "2 columns", [2] * (n // 2) + [1] * (n % 2)))
+    if n > 3:
+        out.append(("cols3", "3 columns", [3] * (n // 3) + ([n % 3] if n % 3 else [])))
+    if n == 5:
+        out.append(("3over2", "3 over 2", [3, 2]))
+    return out
+
+def default_layout(n):
+    return "3over2" if n == 5 else "cols3" if n == 6 else "row"
+
+def radio(name, value, label, checked=False, attrs="", count=""):
+    count = f' <span class="count">{count}</span>' if count else ""
+    return (f'<label class="pill"><input type="radio" name="{name}" value="{value}"{" checked" if checked else ""}'
+            f'{attrs}>{label}{count}</label>')
+
+def cm_text(mm):
+    return f"{mm / 10:g}"
+
+def series_page(s, series, previews, thumbs):
+    root = "../../"
+    n = len(s.posters)
+    # formats: the A sizes that the A file prints at, the other formats of dist/, the US formats
+    groups = [("ISO A, from the A PDF", [
+                  (k, k, w, h, "A", f"{cm_text(w)} × {cm_text(h)}") for k, (w, h) in A_SIZES.items()]),
+              ("Frames in centimetres", [
+                  (f, format_name(f), *FORMATS[f], f, "") for f in FORMATS if f != "A"]),
+              ("US, in inches", [
+                  (f, US_NAMES[f], *US_FORMATS[f], f, "") for f in US_FORMATS])]
+    fmts = []
+    for name, items in groups:
+        pills = [radio("pl-format", k, label, k == "A2",
+                       f' data-w="{w:g}" data-h="{h:g}" data-file="{f}" data-label="{label}"'
+                       f'{" data-us" if f in US_FORMATS else ""}', count)
+                 for k, label, w, h, f, count in items]
+        fmts.append(f'<div class="pl-group"><p class="pl-glabel">{name}</p><div class="pills">{"".join(pills)}</div></div>')
+    lays = [radio("pl-layout", v, layout_icon(rows, v == "3over2") + label, v == default_layout(n))
+            for v, label, rows in layouts(n)]
+    common = [t for t in THEMES if all(t in p.themes for p in s.posters)]
+    if common:
+        themes = '<div class="pills">' + "".join(
+            radio("pl-theme", t, f'<span class="swatch" style="--sw:{hexcolour(t, "paper")};--sa:{hexcolour(t, "acc")}" '
+                  f'aria-hidden="true"></span>{t}', i == 0) for i, t in enumerate(common)) + "</div>"
+    else:
+        themes = ('<input type="hidden" name="pl-theme" value="">'
+                  '<p class="pl-glabel">No theme is common to all these posters: each one is shown in its first theme.</p>')
+    # the posters, with every PDF of dist/ (site.js shows those of the format and theme chosen)
+    rows = []
+    for i, p in enumerate(s.posters, 1):
+        m = p.meta
+        links = []
+        for fmt in FORMATS:
+            for t in p.themes:
+                cls = " d0" if t == p.light else ""
+                links.append(f'<a class="btn btn-line{cls}" data-f="{fmt}" data-t="{t}" href="{pdf_url(p.paper, fmt, t)}" '
+                             f'type="application/pdf">{format_name(fmt)} · {t} <span class="size">'
+                             f'{size_text(pdf_file(p.paper, fmt, t))}</span></a>')
+        srcs = "".join(f' data-src-{t}="{root}{previews[p.slug, t][600]}"' for t in p.themes)
+        us_zip = US_ZIP_URL.format(category=p.category)
+        rows.append(
+            f'<li data-slug="{p.slug}" data-min="{m["min_print"]}" data-light="{p.light}" '
+            f'data-title="{esc(m["title"])}"{srcs}>\n'
+            f'<div class="mat">{small_picture(thumbs, p, root, "")}</div>\n'
+            f'<div class="sdl-what">\n<p class="eyebrow">{i} · {esc(CATEGORIES[p.category])}</p>\n'
+            f'<h3 class="card-title"><a href="{root}{p.slug}/">{title(m["title"])}</a></h3>\n'
+            f'<p class="by">{by_line(m)}</p>\n<p class="print">Print from {m["min_print"]}</p>\n'
+            f'<p class="sdl-warn" hidden></p>\n</div>\n'
+            f'<div class="dl-links">{"".join(links)}'
+            f'<p class="sdl-in-us" hidden>In <a href="{us_zip}">{p.category}-us.zip</a>, below</p></div>\n</li>')
+    cats = list(dict.fromkeys(p.category for p in s.posters))
+    us_zips = []
+    for c in cats:
+        names = ", ".join(esc(p.meta["title"]) for p in s.posters if p.category == c)
+        us_zips.append(f'<li><a href="{US_ZIP_URL.format(category=c)}">{esc(CATEGORIES[c])}, US formats</a> '
+                       f'<span class="size">{c}-us.zip · {names}</span></li>')
+    zips = ", ".join(f'<a href="{ZIP_URL.format(category=c)}">{esc(CATEGORIES[c])}</a>' for c in cats)
+    others = [o for o in series if o.slug != s.slug]
+    note = ("The previews show each poster as laid out for the A formats, stretched to the chosen format; "
+            "the PDF of each format is laid out to fill its own page. The figure is 170 cm tall.")
+    main = substitute((WEB / "series.html").read_text(), {
+        "TITLE": esc(s.title), "TITLE_H1": title(s.title), "META": series_meta(s), "INTRO": esc(s.intro),
+        "HANG": HANG_CM, "FORMATS": "\n".join(fmts), "LAYOUTS": "\n".join(lays), "THEMES": themes, "NOTE": esc(note),
+        "ROWS": "\n".join(rows), "US_ZIPS": "\n".join(us_zips), "ZIPS": zips,
+        "MORE": "\n".join(series_card(o, thumbs, root) for o in others)})
+    names = ", ".join(p.meta["title"] for p in s.posters[:3]) + (", ..." if n > 3 else "")
+    return Page(f"series/{s.slug}/index.html", f"{esc(s.title)} · Series · {NAME}",
+                esc(f"{s.intro} A series of {n} one-page posters, with a planner to hang them together."),
+                main, f"previews/series-{s.slug}-share.jpg", "series",
+                esc(f"The posters of the series side by side on a wall: {names}"),
+                '<script src="{{ROOT}}assets/planner.js?v={planner}" defer></script>\n')
+
+def series_index_page(series, thumbs):
+    main = substitute((WEB / "series-index.html").read_text(), {
+        "COUNT": f"{len(series)} series",
+        "CARDS": "\n".join(series_card(s, thumbs, "../", intro=True, level=2) for s in series)})
+    return Page("series/index.html", f"Series · {NAME}",
+                esc("Posters of the collection that hang together, each series with a wall planner that draws them "
+                    "to scale in the format, layout and frames you choose."),
+                main, "previews/share.jpg", "series", "Three posters of the collection side by side on a wall")
 
 # ---------------------------------------------------------------- reading edition
 
@@ -875,9 +1143,10 @@ def contrasts():
 
 # ---------------------------------------------------------------- the site
 
-def write(out, posters):
+def write(out, posters, series):
     """Writes the whole site into the empty folder out. Returns a summary."""
     previews, cached = make_previews(out, posters)
+    thumbs, thumb_files = make_thumbs(out, series, cached)
     show = next(p for p in posters if p.slug == SHOWCASE)
     # the home page shows three posters: the showcase between the first ones of two other categories
     firsts = [next(q for q in posters if q.category == c) for c in dict.fromkeys(q.category for q in posters)]
@@ -889,9 +1158,13 @@ def write(out, posters):
         shutil.copyfile(f, out / f"previews/{p.slug}-share.jpg")
     shares.append(share_image([cached[q.slug, q.light][1200] for q in trio], brand=True))
     shutil.copyfile(shares[-1], out / "previews/share.jpg")
+    for s in series:  # a series: its first three posters
+        shares.append(share_image([cached[q.slug, q.light][1200] for q in s.posters[:3]]))
+        shutil.copyfile(shares[-1], out / f"previews/series-{s.slug}-share.jpg")
 
-    pages = [home_page(posters, previews), about_page(posters, previews), not_found_page()]
-    pages += [poster_page(p, posters, previews) for p in posters]
+    pages = [home_page(posters, previews, series, thumbs), about_page(posters, previews), not_found_page()]
+    pages += [poster_page(p, posters, previews, series) for p in posters]
+    pages += [series_index_page(series, thumbs)] + [series_page(s, series, previews, thumbs) for s in series]
     # the reading pages, with their images and the stylesheet of KaTeX for those that have math
     bodies, images = texts(posters), {}
     katex_head = '<link rel="stylesheet" href="{{ROOT}}assets/katex.css?v={katex}">\n'
@@ -900,7 +1173,7 @@ def write(out, posters):
     for dst, src in images.items():
         (out / dst).parent.mkdir(parents=True, exist_ok=True)
         shutil.copyfile(src, out / dst)
-    prune({f for paths in cached.values() for f in paths.values()} | set(shares) | set(images.values()))
+    prune({f for paths in cached.values() for f in paths.values()} | set(shares) | set(images.values()) | thumb_files)
     drafts = {pg.path: render(pg, "{css}", "{js}") for pg in pages}
     chars = set().union(*(text_of(h) for h in drafts.values())) | {chr(c) for c in range(0x20, 0x7f)}
     rules, files = font_faces(chars)
@@ -918,15 +1191,16 @@ def write(out, posters):
         shutil.copyfile(PDFJS / f, out / "assets" / "pdfjs" / pathlib.PurePath(f).name)
     css = "\n".join(["/* one-page-papers: written by engine/site.py from engine/web/site.css */",
                      mode_css(), *rules, (WEB / "site.css").read_text()])
-    js = (WEB / "site.js").read_text()
+    js, planner = (WEB / "site.js").read_text(), (WEB / "planner.js").read_text()
     (out / "assets" / "site.css").write_text(css)
     (out / "assets" / "site.js").write_text(js)
-    css_v, js_v, katex_v = (hashlib.sha256(s.encode()).hexdigest()[:10] for s in (css, js, kcss))
+    (out / "assets" / "planner.js").write_text(planner)
+    css_v, js_v, katex_v, planner_v = (hashlib.sha256(s.encode()).hexdigest()[:10] for s in (css, js, kcss, planner))
     for path, h in drafts.items():
         dst = out / path
         dst.parent.mkdir(parents=True, exist_ok=True)
         dst.write_text(h.replace("?v={css}", f"?v={css_v}").replace("?v={js}", f"?v={js_v}")
-                        .replace("?v={katex}", f"?v={katex_v}"))
+                        .replace("?v={katex}", f"?v={katex_v}").replace("?v={planner}", f"?v={planner_v}"))
 
     light_bg, acc = TOKENS["bg"][0], TOKENS["acc"][0]
     ink = TOKENS["ink"][0]
@@ -951,7 +1225,8 @@ def write(out, posters):
         '<?xml version="1.0" encoding="UTF-8"?>\n<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">\n'
         + "".join(entry(pg) for pg in pages if pg.path != "404.html") + "</urlset>\n")
     (out / "robots.txt").write_text(f"User-agent: *\nAllow: /\n\nSitemap: {BASE_URL}sitemap.xml\n")
-    return (f"{len(pages)} pages ({len(reads)} to read), {sum(len(v) for v in previews.values())} previews, "
+    return (f"{len(pages)} pages ({len(reads)} to read, {len(series)} series), "
+            f"{sum(len(v) for v in previews.values())} previews, "
             f"{len(images)} images, {len(files) + len(kfiles)} font files")
 
 # ---------------------------------------------------------------- the check
@@ -979,7 +1254,8 @@ class Scan(HTMLParser):
         for k, v in attrs:
             if v is None:
                 continue
-            if k in ("href", "src", "data-src", "data-pdf"):  # data-pdf: the PDF that site.js fetches for a wallpaper
+            # data-pdf: the PDF that site.js fetches for a wallpaper; data-src-<theme>: the previews of the planner
+            if k in ("href", "src", "data-src", "data-pdf") or k.startswith("data-src-"):
                 urls = [v]
             elif k.endswith("srcset"):  # also data-srcset, which site.js loads
                 urls = [c.split()[0] for c in v.split(",") if c.strip()]
@@ -1071,12 +1347,14 @@ def main():
         return
     try:
         posters, skipped = collect(a.only_built)
+        series, left = load_series(posters, a.only_built)
+        skipped += left
         for msg in skipped:
             print(f"left out: {msg}", file=sys.stderr)
         (ROOT / "build").mkdir(exist_ok=True)
         tmp = pathlib.Path(tempfile.mkdtemp(prefix="site-", dir=ROOT / "build"))
         try:
-            summary = write(tmp, posters)
+            summary = write(tmp, posters, series)
             errors, n = check(tmp)
             for e in errors:
                 print(f"error: {e}", file=sys.stderr)
