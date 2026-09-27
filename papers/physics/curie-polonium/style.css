@@ -1,0 +1,3 @@
+/* The note on the title, set under the header without its call, in the size of the text notes */
+.abs{font-size:calc(var(--fs)*.9);max-width:330mm;text-align:center;hyphens:manual;text-wrap:balance}
+.sc{font-variant:small-caps}
