@@ -1,0 +1,50 @@
+title: "Caroli Linnæi Regnum Animale"
+summary: "The animal kingdom table of the first edition of Linnaeus's Systema Naturae, 1735, with its six classes and its paradoxes."
+title_html: 'Caroli Linnæi<span class="tsub">Regnum Animale</span>'
+title_size: 80pt
+kicker: "Excerpt · Systema Naturæ · Leiden, 1735"
+author: "Carl Linnaeus"
+byline: "<i>Systema Naturæ, sive Regna Tria Naturæ Systematice Proposita per Classes, Ordines, Genera, &amp; Species</i>, Leiden, Theodor Haak, 1735"
+emblem: "L"
+header_scale: 1.5
+layout: hero
+hero_height: 49
+columns: 3
+lang: la
+footer:
+  - "Table: Carl Linnaeus, 1735. Public domain. Scan of the copy of the U.S. National Agricultural Library, on the Internet Archive."
+  - "<i>Below the table, its six class headings and its Paradoxa, transcribed from the same scan.</i>"
+  - "<span class=\"mono\">archive.org/details/Cat31011605</span>"
+year: 1735
+authors: [Carl Linnaeus]
+min_print: A3
+source:
+  url: https://archive.org/details/Cat31011605
+  retrieved: 2026-09-27
+  edition: >-
+    Excerpt: the double-page table Regnum Animale of the first edition of Systema Naturæ (Leiden,
+    Theodor Haak, 1735), from the scan of the copy of the U.S. Department of Agriculture,
+    National Agricultural Library, on the Internet Archive (Cat31011605, 400 ppi). In that copy
+    the two pages of the table are leaves 10 and 13 of the scan, separated by the Observationes
+    in Regnum Animale; for the poster they are cropped to the printed frame and joined as a
+    spread, the right page scaled by 97.8% to the height of the left, in grayscale with the
+    paper whitened (levels 6% to 88%) and reduced to 6400 px wide. Below the image, the headings
+    of the six classes and the section PARADOXA of column III are transcribed from the OCR of
+    the same scan, corrected word by word against its page images: the long s is set as s and
+    the ligature ct as c t; the spaces before , ; : and . are not kept; words hyphenated at line
+    ends are joined; the accents (valdè, verò, temerè, allegoricè, fabulosè, à, è) and italics
+    of the print are kept, and its small capitals are set as small capitals. A new paragraph
+    starts at each paradox, as in the print. The genera, characters and species of the table,
+    and the note on the class Amphibia above the Paradoxa, are only in the image.
+license:
+  text: "Public domain"
+  holder: "Carl Linnaeus, 1735"
+  basis: >-
+    Published in 1735, before 1931: public domain in the United States. Carl Linnaeus died in
+    1778, before 1956: public domain in France.
+  note: >-
+    The scan was made by the U.S. Department of Agriculture, National Agricultural Library, a
+    federal agency (17 U.S.C. 105), and the Internet Archive item states no rights; a
+    photographic reproduction of a public domain page adds no protected work. Wikimedia Commons
+    marks another reproduction of the same table, File:Linnaeus - Regnum Animale (1735).png,
+    "PD-Art" (PD-old-100-1923).

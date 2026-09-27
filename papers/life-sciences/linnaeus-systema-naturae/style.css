@@ -1,0 +1,7 @@
+/* The names that open each paradox, in small capitals as in the print */
+.sc{font-variant:small-caps;letter-spacing:.03em}
+/* The six classes: headings spaced as in the table */
+.wide h2{letter-spacing:.12em;font-weight:500;text-align:left}
+footer>div{text-wrap:balance}
+/* The title of the table: the author's name, then the kingdom below it, larger */
+h1 .tsub{display:block;font-size:1em;margin-top:.1em}
