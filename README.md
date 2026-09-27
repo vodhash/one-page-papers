@@ -49,6 +49,7 @@ A click on a poster opens its PDF in the A format and in its first theme, and th
 Texts that wait for a license allowing their redistribution; [PENDING.md](PENDING.md) says what is missing.
 
 - A Cypherpunk's Manifesto (Eric Hughes, 1993)
+- Hashcash: A Denial of Service Counter-Measure (Adam Back, 2002)
 
 <!-- catalog:end -->
 
