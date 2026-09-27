@@ -1,0 +1,10 @@
+/* The grievances, set apart as in the indented block of the National Archives transcription */
+.grievances{margin-left:.9em;padding-left:.9em;border-left:.35mm solid var(--rule)}
+.grievances p{margin-bottom:.4em}
+/* The signers, grouped by state in the four columns of the transcription */
+.signers{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));column-gap:13mm;border-top:.2mm solid var(--rule);
+ padding-top:1em;font-size:.86em;line-height:1.28;text-align:left;hyphens:manual}
+.signers p{margin:0 0 .7em}
+.signers b{font-weight:600;font-variant:small-caps;letter-spacing:.05em;color:var(--acc)}
+.kick{letter-spacing:.3em}
+footer>div:first-child{max-width:40%;line-height:1.3}

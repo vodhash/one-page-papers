@@ -1,0 +1,44 @@
+title: "The Declaration of Independence"
+summary: "The Continental Congress declares the thirteen colonies independent of Great Britain and lists their grievances against the King."
+title_html: "The unanimous Declaration<br><em>of the thirteen united States of America</em>"
+title_size: 80pt
+kicker: "In Congress, July 4, 1776"
+emblem: "13"
+header_scale: 1.5
+columns: 3
+footer:
+  - "Transcription of the Stone Engraving of the parchment Declaration of Independence, the document on display in the Rotunda at the National Archives Museum."
+  - "<i>The spelling and punctuation reflect the original.</i>"
+  - '<span class="mono">archives.gov/founding-docs</span>'
+lang: en
+year: 1776
+authors: [Thomas Jefferson, Second Continental Congress]
+min_print: A3
+source:
+  url: https://www.archives.gov/founding-docs/declaration-transcript
+  retrieved: 2026-09-27
+  edition: >-
+    Transcription by the National Archives of the Stone Engraving of the parchment Declaration
+    of Independence, the document on display in the Rotunda at the National Archives Museum,
+    whose "spelling and punctuation reflect the original." The heading "In Congress, July 4,
+    1776" is the kicker of the poster, and the title that opens the first paragraph, "The
+    unanimous Declaration of the thirteen united States of America," is the title of the
+    poster, without its comma. The rest follows the transcription word for word, with its
+    three double hyphens (--) kept as they are; the grievances are set apart, as in the
+    indented block of the transcription. The 56 signers are grouped by state in the four
+    columns and in the order of the transcription, where Massachusetts and New Hampshire
+    each head two groups.
+license:
+  text: "Public domain"
+  holder: "Second Continental Congress, 1776"
+  basis: >-
+    Adopted by the Continental Congress on 4 July 1776 and published the same year. In the
+    United States, it was published before 1931, and the transcription is a work of the
+    National Archives, a federal agency (17 U.S.C. 105). In France, it is an official act of a
+    public authority, and its authors, delegates of 1776, all died long before 1 January 1956
+    (Thomas Jefferson, who drafted it, on 4 July 1826).
+  note: >-
+    The National Archives state: "Works of the U.S. Government that have been produced by the
+    National Archives and Records Administration are in the public domain and may be copied
+    and distributed without permission."
+    (https://www.archives.gov/global-pages/privacy.html)
