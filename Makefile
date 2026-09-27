@@ -4,7 +4,7 @@ CATEGORIES := $(notdir $(wildcard papers/*))
 PY = $(if $(wildcard .venv/bin/python),.venv/bin/python,python3)
 # papers built at a time, each in a browser of its own: one per processor, up to 8, by default
 JOBS ?= $(shell n=$$(nproc 2>/dev/null || echo 1); [ $$n -gt 8 ] && n=8; echo $$n)
-.PHONY: all check readme us changed deps clean site serve $(PAPERS) $(CATEGORIES)
+.PHONY: all check readme us changed deps clean site serve engine-test engine-dist engine-publish $(PAPERS) $(CATEGORIES)
 
 all:
 	$(PY) engine/build.py --jobs $(JOBS)
@@ -49,3 +49,15 @@ deps:
 
 clean:
 	rm -rf build
+
+# the onepage-engine package of engine/: its tests, its wheel and sdist in engine/dist/, and their
+# upload to the index of UV_PUBLISH_URL, as UV_PUBLISH_USERNAME with UV_PUBLISH_PASSWORD
+engine-test:
+	$(PY) -m pytest -q engine/tests
+
+engine-dist:
+	rm -rf engine/dist
+	uv build engine --out-dir engine/dist
+
+engine-publish: engine-dist
+	uv publish engine/dist/*

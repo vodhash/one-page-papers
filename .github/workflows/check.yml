@@ -11,6 +11,8 @@ jobs:
     steps:
       - uses: actions/checkout@v5
       - uses: ./.github/actions/setup
+      - name: The engine package passes its tests
+        run: python -m pytest -q engine/tests
       - name: Every poster fits its page, uses bundled fonts only and matches its PDFs in dist/
         run: python engine/build.py --check --jobs "$(nproc)"
       - name: The catalog of the README is up to date
