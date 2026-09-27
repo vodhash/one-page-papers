@@ -1,0 +1,5 @@
+/* The disc is cut out of the black background of the photograph (transparent around it), and a
+   gold disc reads well on a dark paper: no light plate behind it */
+[data-tone=dark] .hero figure[data-dark=plate] img{background:none;box-shadow:none}
+.kick{letter-spacing:.26em}
+footer>div:first-child{max-width:40%;line-height:1.3}

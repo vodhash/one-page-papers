@@ -1,0 +1,63 @@
+title: "The Voyager Golden Record: the cover"
+summary: "The engraved cover of the record carried by Voyager 1 and 2, with a notice on each of its diagrams."
+title_html: "The Voyager Golden Record<br><em>The Cover</em>"
+title_size: 92pt
+kicker: "The Sounds of Earth · Voyager 1 and Voyager 2 · 1977"
+author: "NASA · Jet Propulsion Laboratory"
+byline: "Gold-plated aluminium cover of the record, engraved on both faces"
+emblem: ""
+header_scale: 1.6
+layout: hero
+hero_height: 58
+columns: 3
+footer:
+  - "Photograph: NASA/JPL, 4 September 1977, GPN-2000-001978 (JPL p24652b). Public domain (U.S. Government work). Courtesy NASA/JPL-Caltech."
+  - "<i>The notice is not a period text: it was written for this poster in 2026, from NASA’s descriptions.</i>"
+  - '<span class="mono">science.nasa.gov/mission/voyager</span>'
+year: 1977
+authors: [NASA, Jet Propulsion Laboratory]
+min_print: A3
+source:
+  url: https://commons.wikimedia.org/wiki/File:The_Sounds_of_Earth_Record_Cover_-_GPN-2000-001978.jpg
+  retrieved: 2026-09-27
+  edition: >-
+    Photograph GPN-2000-001978 of NASA's Great Images in NASA collection (JPL number p24652b,
+    dated 4 September 1977, "Creator/Photographer: NASA", NASA Center: Jet Propulsion Laboratory;
+    record read from its capture of 11 September 2011 by the Internet Archive,
+    https://web.archive.org/web/20110911125940/http://grin.hq.nasa.gov/ABSTRACTS/GPN-2000-001978.html),
+    as uploaded to Wikimedia Commons (2215 x 2215 px, SHA-256
+    89f8666e15f201cf4d428bc3e4d9bd11e064cedcac212a13f2124bc556055cff). For the poster the black
+    background around the disc is made transparent: an ellipse fitted by eye to the rim of the
+    disc (centre 1106, 1110; radii 1071 and 1065 px) keeps the disc, antialiased, and the image is
+    cropped to it (2151 x 2139 px) and saved as WebP at quality 90. The part of the flare at the
+    upper right that lies outside the rim is dropped with the background. The colours are those of
+    the photograph. The cover bears no words, only engraved diagrams and binary numbers, so the
+    poster has no text to transcribe. The notice below the image is not a period text: it was
+    written for this poster, and every fact in it comes from two NASA pages, "The Golden Record
+    Cover" (https://science.nasa.gov/mission/voyager/golden-record-cover/) and "Golden Record
+    Overview" (https://science.nasa.gov/mission/voyager/voyager-golden-record-overview/), both
+    retrieved on 27 September 2026, and from the NASA description of GPN-2000-001978.
+license:
+  text: "Public domain (U.S. Government work); notice: MIT"
+  holder: "NASA/JPL, 1977"
+  basis: >-
+    In the United States, a photograph and a design of NASA (17 U.S.C. 105): the Great Images in
+    NASA record credits the photograph to NASA ("Creator/Photographer: NASA", NASA Center: Jet
+    Propulsion Laboratory), and the Wikimedia Commons file page marks it PD-USGov-NASA. In France,
+    the rule of the shorter term (article L. 123-12 of the Code de la propriété intellectuelle,
+    after article 7(8) of the Berne Convention): for a work whose country of origin is outside the
+    European Union and whose author is not a national of a member state, the protection lasts as
+    long as in the country of origin, which grants none.
+  note: >-
+    NASA Images and Media Usage Guidelines (https://www.nasa.gov/nasa-brand-center/images-and-media/,
+    read on 27 September 2026): "NASA content [...] generally are not subject to copyright in the
+    United States." and "NASA should be acknowledged as the source of the material."; material of third
+    parties is "marked identified as copyright protected with the name of the copyright holder",
+    and this image is not. JPL Image Use Policy (https://www.jpl.nasa.gov/jpl-image-use-policy/,
+    read from its capture of 13 May 2026 by the Internet Archive): "Unless otherwise noted, images
+    and video on JPL public web sites (public sites ending with a jpl.nasa.gov address) may be used
+    for any purpose without prior permission", with the credit line "Courtesy NASA/JPL-Caltech.",
+    which the footer gives. JPL is operated for NASA by the California Institute of Technology, so
+    the design team was not only federal employees; NASA and JPL publish the image without any
+    third-party notice. The notice written for the poster is covered by the MIT license of this
+    repository.

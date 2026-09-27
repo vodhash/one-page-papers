@@ -10,7 +10,7 @@ Each paper is laid out in full on one page: every section, equation, code listin
 
 <!-- catalog:start -->
 
-60 posters in 11 categories. Each one comes in 4 themes, shown here with *Bitcoin: A Peer-to-Peer Electronic Cash System*, and in 3 formats (see [Download](#download)).
+61 posters in 12 categories. Each one comes in 4 themes, shown here with *Bitcoin: A Peer-to-Peer Electronic Cash System*, and in 3 formats (see [Download](#download)).
 
 | ivory | white | genesis | blueprint |
 |:-:|:-:|:-:|:-:|
@@ -80,6 +80,12 @@ A click on a poster opens its PDF in the A format and in its first theme, and th
 | <a href="dist/physics/einstein-mass-energy-A-ivory.pdf"><img src="docs/physics/einstein-mass-energy.png" width="90" alt=""></a> | [Ist die Trägheit eines Körpers von seinem Energieinhalt abhängig?](dist/physics/einstein-mass-energy-A-ivory.pdf)<br>Shows that a body emitting energy L as radiation loses mass L/V², so its mass measures its energy content.<br>[ivory](dist/physics/einstein-mass-energy-A-ivory.pdf)&nbsp;·&nbsp;[white](dist/physics/einstein-mass-energy-A-white.pdf)&nbsp;·&nbsp;[genesis](dist/physics/einstein-mass-energy-A-genesis.pdf)&nbsp;·&nbsp;[blueprint](dist/physics/einstein-mass-energy-A-blueprint.pdf) | Albert Einstein | 1905 | A3 | Public domain |
 | <a href="dist/physics/einstein-electrodynamics-A-ivory.pdf"><img src="docs/physics/einstein-electrodynamics.png" width="90" alt=""></a> | [Zur Elektrodynamik bewegter Körper](dist/physics/einstein-electrodynamics-A-ivory.pdf)<br>Derives special relativity from the relativity principle and the constant speed of light, and applies it to electrodynamics and optics.<br>[ivory](dist/physics/einstein-electrodynamics-A-ivory.pdf)&nbsp;·&nbsp;[white](dist/physics/einstein-electrodynamics-A-white.pdf)&nbsp;·&nbsp;[genesis](dist/physics/einstein-electrodynamics-A-genesis.pdf)&nbsp;·&nbsp;[blueprint](dist/physics/einstein-electrodynamics-A-blueprint.pdf) | Albert Einstein | 1905 | A0 | Public domain |
 | <a href="dist/physics/hubble-1929-A-ivory.pdf"><img src="docs/physics/hubble-1929.png" width="90" alt=""></a> | [A Relation between Distance and Radial Velocity among Extra-Galactic Nebulae](dist/physics/hubble-1929-A-ivory.pdf)<br>Finds a roughly linear relation between the distances of extra-galactic nebulae and their radial velocities.<br>[ivory](dist/physics/hubble-1929-A-ivory.pdf)&nbsp;·&nbsp;[white](dist/physics/hubble-1929-A-white.pdf)&nbsp;·&nbsp;[genesis](dist/physics/hubble-1929-A-genesis.pdf)&nbsp;·&nbsp;[blueprint](dist/physics/hubble-1929-A-blueprint.pdf) | Edwin Hubble | 1929 | A3 | Public domain |
+
+### Space exploration
+
+| &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; | Paper | Authors | Year | Print from | License |
+|---|---|---|---|---|---|
+| <a href="dist/space/voyager-golden-record-A-ivory.pdf"><img src="docs/space/voyager-golden-record.png" width="90" alt=""></a> | [The Voyager Golden Record: the cover](dist/space/voyager-golden-record-A-ivory.pdf)<br>The engraved cover of the record carried by Voyager 1 and 2, with a notice on each of its diagrams.<br>[ivory](dist/space/voyager-golden-record-A-ivory.pdf)&nbsp;·&nbsp;[white](dist/space/voyager-golden-record-A-white.pdf)&nbsp;·&nbsp;[genesis](dist/space/voyager-golden-record-A-genesis.pdf)&nbsp;·&nbsp;[blueprint](dist/space/voyager-golden-record-A-blueprint.pdf) | NASA, Jet Propulsion Laboratory | 1977 | A3 | Public domain (U.S. Government work); notice: MIT |
 
 ### Mathematics
 
