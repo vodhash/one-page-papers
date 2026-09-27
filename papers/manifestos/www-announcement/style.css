@@ -1,0 +1,9 @@
+/* The two posts as they were sent: plain text, line for line, in a monospaced font at body size.
+   They may run from one column into the next, between two lines. */
+pre.code{font-size:1em;line-height:1.5;background:none;padding:0;margin:0;border-radius:0;
+ break-inside:auto;tab-size:8;color:var(--ink);overflow:visible}
+pre.code+pre.code{margin-top:2.2em;padding-top:1.6em;border-top:.2mm solid var(--rule)}
+.kick{letter-spacing:.3em}
+.rule b{font-size:calc(10pt*var(--hs));letter-spacing:0}
+footer>div:first-child{max-width:40%;line-height:1.35}
+footer>div:last-child{text-align:right;line-height:1.5}

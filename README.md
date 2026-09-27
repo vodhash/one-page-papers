@@ -8,7 +8,7 @@ Each paper is laid out in full on one page: every section, equation, code listin
 
 <!-- catalog:start -->
 
-22 posters in 6 categories. Each one comes in 4 themes, shown here with *Bitcoin: A Peer-to-Peer Electronic Cash System*, and in 3 formats (see [Download](#download)).
+23 posters in 7 categories. Each one comes in 4 themes, shown here with *Bitcoin: A Peer-to-Peer Electronic Cash System*, and in 3 formats (see [Download](#download)).
 
 | ivory | white | genesis | blueprint |
 |:-:|:-:|:-:|:-:|
@@ -50,6 +50,12 @@ A click on a poster opens its PDF in the A format and in its first theme, and th
 | <a href="dist/software/zen-of-python-A-ivory.pdf"><img src="docs/software/zen-of-python.png" width="90" alt=""></a> | [PEP 20: The Zen of Python](dist/software/zen-of-python-A-ivory.pdf)<br>Nineteen aphorisms by Tim Peters on the principles behind the design of the Python language.<br>[ivory](dist/software/zen-of-python-A-ivory.pdf)&nbsp;·&nbsp;[white](dist/software/zen-of-python-A-white.pdf)&nbsp;·&nbsp;[genesis](dist/software/zen-of-python-A-genesis.pdf)&nbsp;·&nbsp;[blueprint](dist/software/zen-of-python-A-blueprint.pdf) | Tim Peters | 2004 | A3 | Public domain |
 | <a href="dist/software/twelve-factor-app-A-ivory.pdf"><img src="docs/software/twelve-factor-app.png" width="90" alt=""></a> | [The Twelve-Factor App](dist/software/twelve-factor-app-A-ivory.pdf)<br>A methodology of twelve factors for building software-as-a-service apps, drawn from experience with hundreds of apps on Heroku.<br>[ivory](dist/software/twelve-factor-app-A-ivory.pdf)&nbsp;·&nbsp;[white](dist/software/twelve-factor-app-A-white.pdf)&nbsp;·&nbsp;[genesis](dist/software/twelve-factor-app-A-genesis.pdf)&nbsp;·&nbsp;[blueprint](dist/software/twelve-factor-app-A-blueprint.pdf) | Adam Wiggins | 2011 | A1 | MIT |
 | <a href="dist/software/semver-A-ivory.pdf"><img src="docs/software/semver.png" width="90" alt=""></a> | [Semantic Versioning 2.0.0](dist/software/semver-A-ivory.pdf)<br>Rules and requirements that dictate how MAJOR.MINOR.PATCH version numbers are assigned and incremented, with a grammar and a FAQ.<br>[ivory](dist/software/semver-A-ivory.pdf)&nbsp;·&nbsp;[white](dist/software/semver-A-white.pdf)&nbsp;·&nbsp;[genesis](dist/software/semver-A-genesis.pdf)&nbsp;·&nbsp;[blueprint](dist/software/semver-A-blueprint.pdf) | Tom Preston-Werner | 2013 | A2 | CC BY 3.0 |
+
+### Manifestos & announcements
+
+| &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; | Paper | Authors | Year | Print from | License |
+|---|---|---|---|---|---|
+| <a href="dist/manifestos/www-announcement-A-ivory.pdf"><img src="docs/manifestos/www-announcement.png" width="90" alt=""></a> | [WorldWideWeb: the announcement on alt.hypertext](dist/manifestos/www-announcement-A-ivory.pdf)<br>Tim Berners-Lee's two Usenet posts of 6 August 1991 that described the WorldWideWeb project and offered its software.<br>[ivory](dist/manifestos/www-announcement-A-ivory.pdf)&nbsp;·&nbsp;[white](dist/manifestos/www-announcement-A-white.pdf)&nbsp;·&nbsp;[genesis](dist/manifestos/www-announcement-A-genesis.pdf)&nbsp;·&nbsp;[blueprint](dist/manifestos/www-announcement-A-blueprint.pdf) | Tim Berners-Lee | 1991 | A2 | W3C Document License |
 
 ### Historical data visualization
 

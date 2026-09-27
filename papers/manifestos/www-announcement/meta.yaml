@@ -1,0 +1,54 @@
+title: "WorldWideWeb: the announcement on alt.hypertext"
+summary: "Tim Berners-Lee's two Usenet posts of 6 August 1991 that described the WorldWideWeb project and offered its software."
+title_html: "WorldWideWeb"
+title_size: 150pt
+kicker: "alt.hypertext · 6 August 1991"
+author: "Tim Berners-Lee"
+byline: "World Wide Web project · CERN · 1211 Geneva 23, Switzerland"
+emblem: "WWW"
+header_scale: 1.8
+columns: 2
+footer:
+  - "Copyright © 1991 World Wide Web Consortium. https://www.w3.org/copyright/document-license-2023/"
+  - ""
+  - '<span class="mono">https://www.w3.org/People/Berners-Lee/1991/08/art-6484.txt<br>https://www.w3.org/People/Berners-Lee/1991/08/art-6487.txt</span>'
+year: 1991
+authors: [Tim Berners-Lee]
+min_print: A2
+source:
+  url: https://www.w3.org/People/Berners-Lee/1991/08/art-6484.txt
+  retrieved: 2026-09-27
+  edition: >-
+    The two articles that Tim Berners-Lee posted to alt.hypertext on 6 August 1991, as archived
+    in plain text on w3.org and linked from https://www.w3.org/History.html: art-6484.txt ("Re:
+    Qualifiers on Hypertext links...", which https://web30.web.cern.ch/web-history.html calls the
+    first announcement) and art-6487.txt ("WorldWideWeb: Summary"). They are reproduced line for
+    line in a monospaced font, headers and signatures included, tabs at eight columns; only the
+    line ends (CR LF) and the blank lines at the end of each file are dropped. The kicker, the
+    title, the author line and the byline come from the headers and signatures of the posts.
+license:
+  text: "W3C Document License"
+  holder: "Tim Berners-Lee, 1991"
+  notice: >-
+    Permission to copy, and distribute the contents of this document, or the W3C document from which
+    this statement is linked, in any medium for any purpose and without fee or royalty is hereby
+    granted, provided that you include the following on ALL copies of the document, or portions
+    thereof, that you use:
+
+    A link or URL to the original W3C document.
+
+    The pre-existing copyright notice of the original author, or if it doesn't exist, a notice
+    (hypertext is preferred, but a textual representation is permitted) of the form: "Copyright ©
+    [$date-of-document] World Wide Web Consortium.
+    https://www.w3.org/copyright/document-license-2023/"
+
+    If it exists, the STATUS of the W3C document.
+  note: >-
+    W3C document license, https://www.w3.org/copyright/document-license-2023/, which opens with
+    "Public documents on the W3C site are provided by the copyright holders under the following
+    license."; the W3C intellectual rights page, https://www.w3.org/copyright/intellectual-rights/,
+    adds "Unless otherwise stated, documents on the W3C site are published under the W3C document
+    license." The two files state nothing else and carry no copyright notice of their own, so the
+    footer gives the notice in the form the license prescribes, with the URLs of both documents;
+    they have no STATUS. The license grants no right to modify them, and they are reproduced
+    unchanged.
