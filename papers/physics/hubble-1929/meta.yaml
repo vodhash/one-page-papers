@@ -1,0 +1,50 @@
+title: "A Relation between Distance and Radial Velocity among Extra-Galactic Nebulae"
+summary: "Finds a roughly linear relation between the distances of extra-galactic nebulae and their radial velocities."
+title_html: "A Relation between Distance and Radial Velocity<br><em>among Extra-Galactic Nebulae</em>"
+title_size: 68pt
+kicker: "Proceedings of the National Academy of Sciences · Vol. 15, No. 3 · 15 March 1929"
+author: "Edwin Hubble"
+byline: "Mount Wilson Observatory, Carnegie Institution of Washington · Communicated January 17, 1929"
+emblem: "K"
+lang: en
+columns: 4
+footer:
+  - "Proceedings of the National Academy of Sciences, vol. 15, no. 3, pp. 168-173, 15 March 1929."
+  - "<i>Public domain in France and in the United States.</i>"
+  - '<span class="mono">doi:10.1073/pnas.15.3.168</span>'
+year: 1929
+authors: [Edwin Hubble]
+min_print: A3
+source:
+  url: https://pmc.ncbi.nlm.nih.gov/articles/PMC522427/
+  retrieved: 2026-09-27
+  edition: >-
+    Page scans of the article in PubMed Central (pnas01016-0006.pdf, 600 ppi) and their OCR
+    layer, corrected word by word, number by number, against the scans. The title, printed in
+    italic capitals, is set in upper and lower case in the header, with the author line "By
+    Edwin Hubble" (as "Edwin Hubble"), the affiliation and the date line "Communicated January
+    17, 1929"; the volume, issue and date of the kicker and the footer are those of the PubMed
+    Central record. Page 168 opens with the end of another article, left out. Running heads and
+    page numbers are dropped, words hyphenated at line ends are rejoined (the hyphens of "extra-galactic" and
+    "velocity-distance", which fall at line ends, belong to the words and are kept), and the
+    superscript footnote numbers are footnote calls, the notes being listed at the end of the
+    text. Tables 1 and 2 and the two solutions of page 170 are set as tables in the type of the
+    poster, the equation of condition with KaTeX. Figure 1 is the file
+    Edwin_Hubble_velocity-distance_relation_1929.png of Wikimedia Commons (1323 x 796 px, taken
+    from the PNAS edition at https://www.pnas.org/doi/epdf/10.1073/pnas.15.3.168), stored as
+    8-bit grayscale without its opaque alpha channel, every pixel unchanged; in the journal it
+    interrupts the paragraph that starts "Secondly," after "N. G. C. 404", on the poster it
+    comes just before that paragraph. Its number, title and caption are those printed under it.
+license:
+  text: "Public domain"
+  holder: "Edwin Hubble, 1929"
+  basis: >-
+    Edwin Hubble died on 28 September 1953 (Wikidata, https://www.wikidata.org/wiki/Q43027): his
+    works are in the public domain in France since 1 January 2024. The article was published in
+    the United States on 15 March 1929, before 1 January 1931: it is in the public domain there.
+  note: >-
+    Figure 1: https://commons.wikimedia.org/wiki/File:Edwin_Hubble_velocity-distance_relation_1929.png,
+    marked public domain on its Wikimedia Commons file page ({{PD-US-expired}} and {{PD-old-70}}),
+    source https://www.pnas.org/doi/epdf/10.1073/pnas.15.3.168. The PubMed Central scans, which
+    the text was checked against, carry no license: PMC asks users to assume standard copyright
+    unless stated otherwise, so no image is taken from them.

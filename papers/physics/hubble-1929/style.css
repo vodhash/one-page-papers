@@ -1,0 +1,34 @@
+/* Tables 1 and 2 and the two solutions, set as in the journal: smaller type, tabular figures,
+   and in a signed column the sign at the left of the field and the digits at its right */
+.tbl{break-inside:avoid;margin:.8em 0 1.1em;font-size:.8em;line-height:1.28}
+.tbl p{margin:0;text-align:center;hyphens:manual}
+.tbl .tno{font-variant:all-small-caps;letter-spacing:.12em;font-size:1.05em}
+.tbl .ttl{font-variant:small-caps;letter-spacing:.03em;margin:.1em 0 .5em}
+table.hub{border-collapse:collapse;margin:0 auto;font-variant-numeric:tabular-nums;break-inside:avoid}
+table.hub th{font-weight:400;padding:0 .45em .3em;text-align:center}
+table.hub th.obj{font-variant:all-small-caps;letter-spacing:.1em}
+table.hub td{padding:0 .45em;text-align:right;white-space:nowrap}
+table.hub td.sg{text-align:justify;text-align-last:justify}
+table.hub td.c{text-align:center}
+table.hub td.l{text-align:left}
+table.hub td.above{border-bottom:.2mm solid var(--ink)}
+table.hub tr.mean td{padding-top:.1em}
+table.hubnotes{border-collapse:collapse;margin:.6em 0 0;text-align:left}
+table.hubnotes td{vertical-align:top;padding:0 .35em .12em 0;hyphens:auto}
+table.hubnotes td:first-child{white-space:nowrap}
+/* Exponents and indices must not open up the lines that carry them */
+sub,sup{line-height:0}
+/* The equation of condition is as wide as a column at the default size */
+.eq{font-size:.84em}
+/* The two solutions of page 170, a small table within the text */
+table.sol{font-size:.86em;margin:.4em auto 1em}
+table.sol td{vertical-align:baseline}
+table.sol td.var{text-align:left;padding-right:.9em}
+table.sol td.unit{text-align:left;white-space:normal;min-width:7em}
+table.sol tr.gap td{padding-top:.4em}
+/* Figure 1: its number and title centred above the caption, as in the journal */
+figure.image figcaption{font-style:normal;color:var(--ink);font-size:.8em;text-align:justify;hyphens:auto}
+figcaption .fno{display:block;text-align:center;letter-spacing:.08em}
+figcaption .fti{display:block;text-align:center;margin-bottom:.35em}
+.sc{font-variant:small-caps}
+.kick{letter-spacing:.3em}
