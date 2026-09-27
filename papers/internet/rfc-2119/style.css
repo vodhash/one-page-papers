@@ -1,0 +1,6 @@
+/* The boilerplate sentence that authors copy into their documents */
+.quote{padding-left:.8em;border-left:.6mm solid var(--acc);font-style:italic}
+/* The five key words lead their definitions, as in the RFC */
+p>b:first-child{font-family:'JetBrains Mono',monospace;font-size:.9em;font-weight:700;color:var(--acc);letter-spacing:.02em}
+.addr{text-align:left;font-variant:small-caps;letter-spacing:.03em}
+.kick{letter-spacing:.22em}
