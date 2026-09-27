@@ -96,8 +96,13 @@ button{font:inherit;color:inherit}
 .section-head{display:grid;grid-template-columns:repeat(12,minmax(0,1fr));column-gap:32px;align-items:end;margin-bottom:40px}
 .section-head h2{grid-column:1/span 6;font-size:52px}
 .section-head p{grid-column:7/span 6;font-size:21px;color:var(--ink2)}
-.filters{display:none;flex-wrap:wrap;gap:10px;margin-bottom:56px}
-.js .filters{display:flex}
+.filters{display:flex;flex-wrap:wrap;gap:10px;margin-bottom:56px}
+a.pill{text-decoration:none}
+a.pill:hover{color:var(--ink)}
+.filters .pill[aria-current=true],.categories .pill[aria-current=page]{background:var(--ink);border-color:var(--ink);color:var(--bg)}
+.filters .pill[aria-current=true] .count,.categories .pill[aria-current=page] .count{color:inherit}
+.categories{padding:96px 0 128px}
+.categories .pills{margin:18px 0 0;padding:0;list-style:none}
 .cards{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:64px 40px;margin:0;padding:0;list-style:none}
 .pager{display:flex;flex-wrap:wrap;justify-content:center;gap:10px;margin-top:72px}
 .pager .pill[aria-current=page]{background:var(--ink);border-color:var(--ink);color:var(--bg)}

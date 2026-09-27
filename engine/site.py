@@ -212,7 +212,7 @@ def load_series(posters, only_built):
         known = {p.slug: p for p in discover()}
     except ValueError as e:
         raise SiteError(e) from None
-    for folder in ("series", "print", "about"):
+    for folder in ("series", "print", "about", "assets", "previews", *CATEGORIES):
         if folder in known:
             raise SiteError(f"papers/{known[folder].category}/{folder}: the slug {folder} is a folder of the site")
     by_slug = {p.slug: p for p in posters}
@@ -776,6 +776,7 @@ class Page(NamedTuple):
     current: str = ""  # "collection", "series" or "about": the link of the menu marked as the current page
     image_alt: str = ""
     head: str = ""     # more elements for the <head>, such as the stylesheet of KaTeX
+    ld: tuple = ()     # schema.org objects, written as JSON-LD for search engines
 
 SUN = ('<svg width="22" height="22" viewBox="0 0 24 24" aria-hidden="true" focusable="false"><circle cx="12" cy="12" '
        'r="4.2" fill="none" stroke="currentColor" stroke-width="1.5"/><path d="M12 2.6v2.3M12 19.1v2.3M2.6 12h2.3M19.1 '
@@ -789,6 +790,10 @@ BURGER = ('<svg width="22" height="22" viewBox="0 0 24 24" aria-hidden="true" fo
 BASE_PATH = urlsplit(BASE_URL).path
 NOT_FOUND_BASE = (f'<base href="{BASE_PATH}">\n<script>if(location.pathname.indexOf("{BASE_PATH}")!==0)'
                   'document.querySelector("base").href="/"</script>\n')
+
+def json_ld(o):
+    data = json.dumps({"@context": "https://schema.org", **o}, ensure_ascii=False, separators=(",", ":"))
+    return '<script type="application/ld+json">' + data.replace("</", "<\\/") + "</script>"
 
 def render(pg, css_v, js_v):
     tpl = (WEB / "page.html").read_text()
@@ -808,6 +813,7 @@ def render(pg, css_v, js_v):
                        '<meta property="og:image:height" content="630">',
                        f'<meta property="og:image:alt" content="{pg.image_alt}">',
                        '<meta name="twitter:card" content="summary_large_image">']
+        social += [json_ld(o) for o in pg.ld]
     else:
         social.append('<meta name="robots" content="noindex">')
     cur = {k: ' aria-current="page"' if pg.current == k else "" for k in ("collection", "series", "about")}
@@ -822,6 +828,75 @@ def render(pg, css_v, js_v):
         "SUN": SUN, "BURGER": BURGER, "MAIN": pg.main, "HASH": GENESIS_HASH,
         "HEAD": pg.head.replace("{{ROOT}}", root)})
 
+# the lede of each category page, which is also the start of its description for search engines
+CATEGORY_LEDES = {
+    "crypto": "The papers, standards and proposals of modern cryptography and of Bitcoin: the white paper, "
+              "the genesis block, SHA-256, AES and the BIPs that shaped wallets and signatures.",
+    "computing": "The first texts of computing: Leibniz on binary arithmetic, Ada Lovelace's Note G on the "
+                 "Analytical Engine, and the ASCII of RFC 20.",
+    "internet": "The Requests for Comments that built the Internet, from RFC 1 to IP and TCP, and the April "
+                "Fools' RFCs that made engineers laugh.",
+    "software": "The texts that shape how software is written and shared: the GNU Manifesto, the GPL, the Open "
+                "Source Definition, the Agile Manifesto, Semantic Versioning and more.",
+    "manifestos": "Announcements and declarations of the digital age, such as the first post about the World Wide "
+                  "Web and the Declaration of the Independence of Cyberspace.",
+    "physics": "Landmark papers of physics and astronomy: Newton's laws of motion, Galileo's Moon, Einstein's "
+               "papers of 1905, Planck, Röntgen, Curie, Michelson and Morley, Hubble.",
+    "space": "Texts of the space age: Tsiolkovsky's rocket equation, the Apollo 11 landing as it was heard on "
+             "the ground and the cover of the Voyager Golden Record.",
+    "mathematics": "Founding texts of mathematics: Euclid's Elements, Euler's bridges of Königsberg, Pascal's "
+                   "triangle, Fermat, Galois, Riemann, Cantor, Hilbert and Ramanujan.",
+    "life-sciences": "Founding texts of biology and medicine: the Hippocratic Oath, Linnaeus, Jenner's vaccine, "
+                     "Darwin and Wallace, Mendel's peas and Fleming's penicillin.",
+    "data-viz": "The charts and maps that invented data visualization: Halley's winds, Playfair's charts, "
+                "Snow's cholera map, Nightingale's rose, Minard's Russian campaign and Mendeleev's table.",
+    "patents": "Patents of inventions that changed the world: Lincoln's, Bell's telephone, Edison's lamp, "
+               "Tesla's motor, the Wright brothers' flying machine, the transistor and the mouse.",
+    "history": "Charters, declarations and speeches that changed history: Magna Carta, the Declaration of "
+               "Independence, the rights of man and of woman, Gettysburg, and texts of philosophy.",
+    "reference": "Reference sheets to hang by a desk: the ASCII table, the HTTP status codes, the SI base units, "
+                 "the phonetic alphabet and Morse code.",
+}
+
+# an author of these words is an organization, not a person
+ORGANIZATION = re.compile(r"Assembl|Bureau|contributors|Administration|Congress|Convention|Foundation|IANA|Board|NASA|"
+                          r"Institute|Council|Committee|Office|Society|Agency")
+
+def agent(name):
+    return {"@type": "Organization" if ORGANIZATION.search(name) else "Person", "name": name}
+
+def crumbs_ld(*items):
+    """A schema.org BreadcrumbList of (name, site path) items."""
+    return {"@type": "BreadcrumbList", "itemListElement": [
+        {"@type": "ListItem", "position": i, "name": name, "item": BASE_URL + path}
+        for i, (name, path) in enumerate(items, 1)]}
+
+def category_page(c, posters, previews):
+    """The page of a category, under /<category>/: its posters, and links to the other categories."""
+    mine = [p for p in posters if p.category == c]
+    cats = [k for k in CATEGORIES if any(p.category == k for p in posters)]
+    years = sorted((p.meta["year"] for p in mine), key=year_key)
+    span = (year_text(years[0]) if year_text(years[0]) == year_text(years[-1])
+            else f"{year_text(years[0])} to {year_text(years[-1])}")
+    def link(k):
+        current = ' aria-current="page"' if k == c else ""
+        return (f'<li><a class="pill" href="../{k}/"{current}>{esc(CATEGORIES[k])} '
+                f'<span class="count">{sum(p.category == k for p in posters)}</span></a></li>')
+    main = substitute((WEB / "category.html").read_text(), {
+        "TITLE": esc(CATEGORIES[c]), "COUNT": esc(f"{len(mine)} posters · {span}"), "LEDE": esc(CATEGORY_LEDES[c]),
+        "CARDS": "\n".join(card(previews, p, "../") for p in mine), "OTHERS": "\n".join(link(k) for k in cats)})
+    names = ", ".join(p.meta["title"] for p in mine[:3])
+    ld = ({"@type": "CollectionPage", "name": f"{CATEGORIES[c]} posters", "url": f"{BASE_URL}{c}/",
+           "description": CATEGORY_LEDES[c], "isPartOf": {"@type": "WebSite", "name": NAME, "url": BASE_URL},
+           "mainEntity": {"@type": "ItemList", "numberOfItems": len(mine), "itemListElement": [
+               {"@type": "ListItem", "position": i, "url": f"{BASE_URL}{p.slug}/", "name": p.meta["title"]}
+               for i, p in enumerate(mine, 1)]}},
+          crumbs_ld(("Collection", ""), (CATEGORIES[c], f"{c}/")))
+    return Page(f"{c}/index.html", f"{esc(CATEGORIES[c])} posters · {NAME}",
+                esc(f"{CATEGORY_LEDES[c]} {len(mine)} one-page posters, free vector PDFs to print and frame."),
+                main, f"previews/category-{c}-share.jpg", "collection",
+                esc(f"Three posters of {CATEGORIES[c]} side by side on a wall: {names}"), ld=ld)
+
 def home_page(posters, previews, series, thumbs):
     show = next(p for p in posters if p.slug == SHOWCASE)
     m = show.meta
@@ -829,10 +904,11 @@ def home_page(posters, previews, series, thumbs):
     cats = [c for c in CATEGORIES if any(p.category == c for p in posters)]
     formats = " · ".join(s.replace(" ", "\u00a0") for s in ["Vector PDF"] + [
         f"{PRINT_SIZES[-1]} to {PRINT_SIZES[0]}" if f == "A" else format_name(f) for f in FORMATS] + [f"{len(THEMES)} themes"])
-    filters = [f'<button type="button" class="pill" data-filter="" aria-pressed="true">All '
-               f'<span class="count">{len(posters)}</span></button>']
-    filters += [f'<button type="button" class="pill" data-filter="{c}" aria-pressed="false">{esc(CATEGORIES[c])} '
-                f'<span class="count">{sum(p.category == c for p in posters)}</span></button>' for c in cats]
+    # links to the category pages, which site.js turns into filters of the collection
+    filters = [f'<a class="pill" href="./#collection" data-filter="" aria-current="true">All '
+               f'<span class="count">{len(posters)}</span></a>']
+    filters += [f'<a class="pill" href="{c}/" data-filter="{c}">{esc(CATEGORIES[c])} '
+                f'<span class="count">{sum(p.category == c for p in posters)}</span></a>' for c in cats]
     featured = (f'<div class="mat">{picture(previews, show, "", "(min-width: 1200px) 360px, (min-width: 768px) 34vw, 86vw", eager=True)}</div>\n'
                 f'<figcaption class="cartel"><b>{esc(", ".join(m["authors"]))}</b>\n'
                 f'<a href="{show.slug}/"><i>{title(m["title"])}</i></a>\n'
@@ -850,7 +926,12 @@ def home_page(posters, previews, series, thumbs):
                 esc("Foundational papers of science, computing and history, each typeset on a single poster. "
                     f"Free vector PDFs to print from {PRINT_SIZES[0]} to {PRINT_SIZES[-1]}, or at "
                     + " or ".join(format_name(f).replace("\u00a0", " ") for f in FORMATS if f != "A") + "."),
-                main, "previews/share.jpg", "collection", "Three posters of the collection side by side on a wall")
+                main, "previews/share.jpg", "collection", "Three posters of the collection side by side on a wall",
+                ld=({"@type": "WebSite", "name": NAME, "url": BASE_URL,
+                     "description": "Foundational papers of science, computing and history, each typeset on a "
+                                    "single poster, free to download as vector PDFs."},
+                    {"@type": "Organization", "name": NAME, "url": BASE_URL, "logo": BASE_URL + "apple-touch-icon.png",
+                     "sameAs": [REPO]}))
 
 def poster_page(p, posters, previews, series, extras=None):
     m, root = p.meta, "../"
@@ -915,7 +996,13 @@ def poster_page(p, posters, previews, series, extras=None):
         "MORE": "\n".join(card(previews, q, root, mini=True) for q in neighbours(p, posters))})
     return Page(f"{p.slug}/index.html", f"{esc(m['title'])} · {NAME}",
                 f"{esc(m['summary'])} A one-page poster, free to download as a vector PDF.", main,
-                f"previews/{p.slug}-share.jpg", "", esc(alt(p)))
+                f"previews/{p.slug}-share.jpg", "", esc(alt(p)),
+                ld=({"@type": "CreativeWork", "name": m["title"], "url": f"{BASE_URL}{p.slug}/",
+                     "description": m["summary"], "image": f"{BASE_URL}{previews[p.slug, p.light][1200]}",
+                     "inLanguage": m.get("lang", "en"), "author": [agent(a) for a in m["authors"]],
+                     "isPartOf": {"@type": "WebSite", "name": NAME, "url": BASE_URL}},
+                    crumbs_ld(("Collection", ""), (CATEGORIES[p.category], f"{p.category}/"),
+                              (m["title"], f"{p.slug}/"))))
 
 # ---------------------------------------------------------------- series
 
@@ -1619,6 +1706,10 @@ def write(out, posters, series, extras=None):
     for s in series:  # a series: its first three posters
         shares.append(share_image([cached[q.slug, q.light][1200] for q in s.posters[:3]]))
         shutil.copyfile(shares[-1], out / f"previews/series-{s.slug}-share.jpg")
+    cats = list(dict.fromkeys(q.category for q in sorted(posters, key=lambda q: list(CATEGORIES).index(q.category))))
+    for c in cats:  # a category: its first three posters
+        shares.append(share_image([cached[q.slug, q.light][1200] for q in posters if q.category == c][:3]))
+        shutil.copyfile(shares[-1], out / f"previews/category-{c}-share.jpg")
 
     pages = [home_page(posters, previews, series, thumbs), about_page(posters, previews), not_found_page(),
              print_page(posters, previews)]
@@ -1627,6 +1718,7 @@ def write(out, posters, series, extras=None):
              if p.slug in extras and extras[p.slug].teaching]
     pages += teach
     pages += [series_index_page(series, thumbs)] + [series_page(s, series, previews, thumbs) for s in series]
+    pages += [category_page(c, posters, previews) for c in cats]
     # the reading pages, with their images and the stylesheet of KaTeX for those that have math
     bodies, images = texts(posters), {}
     katex_head = '<link rel="stylesheet" href="{{ROOT}}assets/katex.css?v={katex}">\n'
@@ -1636,6 +1728,20 @@ def write(out, posters, series, extras=None):
         (out / dst).parent.mkdir(parents=True, exist_ok=True)
         shutil.copyfile(src, out / dst)
     prune({f for paths in cached.values() for f in paths.values()} | set(shares) | set(images.values()) | thumb_files)
+    by_slug, by_series = {p.slug: p for p in posters}, {f"series/{s.slug}/index.html": s for s in series}
+    def trail(pg):
+        parts = pg.path.split("/")
+        if parts[0] in by_slug and len(parts) == 3:  # a reading page or a teaching kit
+            q = by_slug[parts[0]]
+            last = "The text" if parts[1] == "read" else "Teaching kit"
+            return (crumbs_ld(("Collection", ""), (CATEGORIES[q.category], f"{q.category}/"),
+                              (q.meta["title"], f"{q.slug}/"), (last, f"{q.slug}/{parts[1]}/")),)
+        if pg.path in by_series:
+            return (crumbs_ld(("Collection", ""), ("Series", "series/"), (by_series[pg.path].title, pg.path[:-10])),)
+        if pg.path != "index.html" and pg.path.endswith("/index.html") and pg.path.count("/") == 1:
+            return (crumbs_ld(("Collection", ""), (html.unescape(pg.title).split(" · ")[0], pg.path[:-10])),)
+        return ()
+    pages = [pg if pg.ld or pg.path == "404.html" else pg._replace(ld=trail(pg)) for pg in pages]
     drafts = {pg.path: render(pg, "{css}", "{js}") for pg in pages}
     chars = set().union(*(text_of(h) for h in drafts.values())) | {chr(c) for c in range(0x20, 0x7f)}
     rules, files = font_faces(chars)
@@ -1678,13 +1784,26 @@ def write(out, posters, series, extras=None):
     small.resize((32, 32), Image.LANCZOS).save(out / "favicon-32.png", optimize=True)
     (out / "logo.svg").write_text(mark_svg(ink, acc, light_bg).replace(' aria-hidden="true"', "") + "\n")
     dates, head = last_changes()
-    def entry(pg):  # a poster and its reading page date from their paper, the other pages from the repository
-        day = dates.get(pg.path.split("/")[0]) or (head if pg.path.split("/")[0] not in slugs else None)
+    def entry(pg):
+        # a poster and its pages date from their paper, a category from its latest poster, the other
+        # pages from the repository; a poster page lists the previews of its themes
+        top = pg.path.split("/")[0]
+        if top in CATEGORIES:
+            days = [dates[q.slug] for q in posters if q.category == top and q.slug in dates]
+            day = max(days) if days else head
+        else:
+            day = dates.get(top) or (head if top not in slugs else None)
         mod = f"<lastmod>{day}</lastmod>" if day else ""
-        return f"<url><loc>{BASE_URL + pg.path.removesuffix('index.html')}</loc>{mod}</url>\n"
-    slugs = {p.slug for p in posters}
+        pics = ""
+        if top in slugs and pg.path == f"{top}/index.html":
+            q = by_slug[top]
+            pics = "".join(f"<image:image><image:loc>{BASE_URL}{previews[q.slug, t][1200]}</image:loc></image:image>"
+                           for t in dict.fromkeys((q.light, q.dark)))
+        return f"<url><loc>{BASE_URL + pg.path.removesuffix('index.html')}</loc>{mod}{pics}</url>\n"
+    slugs = set(by_slug)
     (out / "sitemap.xml").write_text(
-        '<?xml version="1.0" encoding="UTF-8"?>\n<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">\n'
+        '<?xml version="1.0" encoding="UTF-8"?>\n<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9" '
+        'xmlns:image="http://www.google.com/schemas/sitemap-image/1.1">\n'
         + "".join(entry(pg) for pg in pages if pg.path != "404.html") + "</urlset>\n")
     (out / "robots.txt").write_text(f"User-agent: *\nAllow: /\n\nSitemap: {BASE_URL}sitemap.xml\n")
     notes = sum(len(x.annotations["notes"]) for x in extras.values() if x.annotations)

@@ -68,7 +68,8 @@
   }
 
   // The filters of the collection, which ?category= in the address also sets, and its pages of
-  // PER_PAGE posters, which ?page= sets. Without this script the whole collection shows.
+  // PER_PAGE posters, which ?page= sets. Without this script the whole collection shows, and the
+  // filters lead to the pages of the categories.
   var filters = document.querySelector('.filters');
   if (filters) {
     var PER_PAGE = 24;
@@ -98,8 +99,9 @@
     };
     var show = function (announce) {
       var hits = [];
-      each('button', function (b) {
-        b.setAttribute('aria-pressed', String(b.getAttribute('data-filter') === state.category));
+      each('[data-filter]', function (a) {
+        if (a.getAttribute('data-filter') === state.category) a.setAttribute('aria-current', 'true');
+        else a.removeAttribute('aria-current');
       }, filters);
       each('.cards > li', function (card) {
         if (!state.category || card.getAttribute('data-category') === state.category) hits.push(card);
@@ -120,9 +122,11 @@
           (pages > 1 ? ', page ' + state.page + ' of ' + pages : '');
       }
     };
+    // the filters are links to the pages of the categories: here they filter the page in place
     filters.addEventListener('click', function (e) {
-      var b = e.target.closest('button');
-      if (!b) return;
+      var b = e.target.closest('[data-filter]');
+      if (!b || e.metaKey || e.ctrlKey || e.shiftKey || e.altKey) return;
+      e.preventDefault();
       state.category = b.getAttribute('data-filter');
       state.page = 1;
       show(true);
@@ -138,7 +142,7 @@
     });
     var params = new URLSearchParams(location.search);
     var asked = params.get('category');
-    var known = Array.prototype.some.call(filters.querySelectorAll('button'), function (b) {
+    var known = Array.prototype.some.call(filters.querySelectorAll('[data-filter]'), function (b) {
       return b.getAttribute('data-filter') === asked;
     });
     if (asked && known) state.category = asked;
