@@ -1,0 +1,88 @@
+name: Request a poster
+description: Propose a foundational text for the collection.
+title: "Request: "
+labels: ["poster request"]
+body:
+  - type: markdown
+    attributes:
+      value: |
+        Thanks for the proposal. A text joins the collection only when it may be redistributed:
+        in the public domain in both France and the United States, or under a license or a
+        permission that allows it. The more of the checklist of
+        [CONTRIBUTING.md](https://github.com/vodhash/one-page-papers/blob/master/CONTRIBUTING.md)
+        you can answer, the faster it goes.
+  - type: input
+    id: title
+    attributes:
+      label: Title
+      description: The title of the text as first published.
+      placeholder: "Über eine neue Art von Strahlen"
+    validations:
+      required: true
+  - type: input
+    id: authors
+    attributes:
+      label: Authors and year
+      placeholder: "Wilhelm Conrad Röntgen, 1895"
+    validations:
+      required: true
+  - type: dropdown
+    id: category
+    attributes:
+      label: Category
+      options:
+        - crypto
+        - computing
+        - internet
+        - software
+        - manifestos
+        - physics
+        - space
+        - mathematics
+        - life-sciences
+        - data-viz
+        - patents
+        - history
+        - reference
+        - other (say which in the notes)
+    validations:
+      required: true
+  - type: input
+    id: source
+    attributes:
+      label: Source
+      description: >-
+        A link to the primary source or a reference edition: a scan of the first printing, the
+        official text, the author's own publication. Not a retyped copy on a blog.
+      placeholder: "https://archive.org/details/..."
+    validations:
+      required: true
+  - type: dropdown
+    id: license
+    attributes:
+      label: License status
+      options:
+        - Public domain in France and in the United States
+        - Under a license or permission that allows redistribution
+        - Not sure
+    validations:
+      required: true
+  - type: textarea
+    id: evidence
+    attributes:
+      label: License evidence
+      description: >-
+        For the public domain: the date of death of every author, translator and editor, and
+        the date of first publication. For a license: its exact wording and the link where it is
+        stated.
+    validations:
+      required: false
+  - type: textarea
+    id: notes
+    attributes:
+      label: Notes
+      description: >-
+        Why it deserves a poster, whether an excerpt would be better than the whole text, the
+        figures or images it needs.
+    validations:
+      required: false

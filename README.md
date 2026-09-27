@@ -4,6 +4,8 @@
 
 Browse the collection at **[onepagepapers.com](https://onepagepapers.com/)**.
 
+A text is missing? [Request a poster](https://github.com/vodhash/one-page-papers/issues/new?template=request-a-poster.yml), or make it yourself: [CONTRIBUTING.md](CONTRIBUTING.md) has the checklists.
+
 Each paper is laid out in full on one page: every section, equation, code listing, table and reference, with figures redrawn as vector graphics. The body size is computed automatically so the text fills the page exactly.
 
 ## Papers
