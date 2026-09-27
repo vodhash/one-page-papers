@@ -1,0 +1,6 @@
+/* The legend in italic, as the engraved script of the plate, each item with a hanging indent */
+.legend p{font-style:italic;text-align:left;padding-left:1.2em;text-indent:-1.2em;margin-bottom:.4em;hyphens:manual}
+.legend sup{font-size:.62em;line-height:0}
+/* A short notice in large type reads better ragged than justified, as on Snow's map */
+main{text-align:left}
+footer>div{text-wrap:balance}
