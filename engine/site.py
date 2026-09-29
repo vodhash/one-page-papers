@@ -4,7 +4,8 @@ meta.yaml of every paper, with previews rasterized from its A PDFs in dist/ (bui
 kept in git: the PDFs are served from FILES_URL, where the CI uploads them), and a reading page
 for each paper (<slug>/read/), its text rendered by markdown.py and KaTeX as for its poster, and a
 page for each series of series.yaml (series/<slug>/), with a wall planner (planner.js), and a guide
-to having a poster printed (print/).
+to having a poster printed (print/). see-also.yaml links some poster pages to a site that belongs
+with them (plain links, without tracking).
 
 A paper may also have an annotations.yaml, margin notes shown on its reading page, and a
 teaching.yaml, a teaching kit printable on A4 (<slug>/teach/). Both are checked (each anchor occurs
@@ -25,7 +26,7 @@ the site are relative, so that it works at https://onepagepapers.com/ (GitHub Pa
 the root of `make serve`. Previews need pdftoppm (poppler-utils); they are cached in
 build/site-previews/, keyed on the content of each PDF, so an unchanged collection builds fast.
 """
-import argparse, concurrent.futures, datetime, hashlib, html, io, json, os, pathlib, re, shutil, subprocess, sys, tempfile, time
+import argparse, concurrent.futures, datetime, functools, hashlib, html, io, json, os, pathlib, re, shutil, subprocess, sys, tempfile, time
 from html.parser import HTMLParser
 from typing import NamedTuple
 from urllib.parse import unquote, urljoin, urlsplit
@@ -284,6 +285,53 @@ def load_series(posters, only_built):
     if errors:
         raise SiteError("\nerror: ".join(errors))
     return series, skipped
+
+SEE_ALSO_FILE = ROOT / "see-also.yaml"
+SEE_ALSO_KEYS = {"papers", "text", "link", "url"}
+
+@functools.cache
+def load_see_also():
+    """The links of see-also.yaml, as {paper slug: [paragraph]}: a site that belongs with some posters, linked from
+    their pages (plain links, without tracking). An unknown paper, a text without {link} or a URL that is not https
+    is an error; without the file, no link."""
+    where = SEE_ALSO_FILE.name
+    if not SEE_ALSO_FILE.exists():
+        return {}
+    try:
+        data = yaml.safe_load(SEE_ALSO_FILE.read_text()) or []
+    except yaml.YAMLError as e:
+        raise SiteError(f"{where}: {' '.join(str(e).split())}") from None
+    if not isinstance(data, list):
+        raise SiteError(f"{where}: expected a list of links, each with papers, text, link and url")
+    known = {p.slug for p in discover()}
+    errors, links = [], {}
+    for i, s in enumerate(data, 1):
+        at = f"{where}: link {i}"
+        if not isinstance(s, dict) or set(s) != SEE_ALSO_KEYS:
+            errors.append(f"{at}: expected exactly {', '.join(sorted(SEE_ALSO_KEYS))}")
+            continue
+        if not (isinstance(s["text"], str) and s["text"].count("{link}") == 1):
+            errors.append(f"{at}: text must be one sentence with {{link}} once")
+            continue
+        if not (isinstance(s["url"], str) and re.match(r"https://\S+$", s["url"])):
+            errors.append(f"{at}: url must be an https URL")
+            continue
+        if not (isinstance(s["link"], str) and s["link"].strip()):
+            errors.append(f"{at}: link must be a text")
+            continue
+        papers = s["papers"] if isinstance(s["papers"], list) else []
+        unknown = [x for x in papers if x not in known]
+        if not papers or unknown:
+            errors.append(f"{at}: papers must list known paper slugs" + (f" (unknown: {', '.join(map(str, unknown))})"
+                                                                          if unknown else ""))
+            continue
+        before, after = (esc(part) for part in s["text"].split("{link}"))
+        paragraph = f'<p class="see-also">{before}<a href="{esc(s["url"])}">{esc(s["link"])}</a>{after}</p>\n'
+        for x in papers:
+            links.setdefault(x, []).append(paragraph)
+    if errors:
+        raise SiteError("\nerror: ".join(errors))
+    return links
 
 # ---------------------------------------------------------------- notes and teaching kits
 
@@ -1008,7 +1056,7 @@ def poster_page(p, posters, previews, series, extras=None):
         "TEACH": ('<p class="read-link"><a class="btn btn-line" href="teach/">Teaching kit</a> '
                   '<span>Context, glossary, questions and answers, on A4</span></p>\n'
                   if extras and extras.teaching else ""),
-        "SUMMARY": esc(m["summary"]), "LIGHT": p.light, "DARK": p.dark, "SERIES": series_links(p, series, root),
+        "SUMMARY": esc(m["summary"]), "LIGHT": p.light, "DARK": p.dark, "SERIES": series_links(p, series, root) + "".join(load_see_also().get(p.slug, [])),
         "PICTURE": picture(previews, p, root, "(min-width: 1200px) 480px, (min-width: 768px) 52vw, 86vw", eager=True),
         "SHOWN": shown, "FACTS": "\n".join(f"<div><dt>{k}</dt><dd>{v}</dd></div>" for k, v in facts),
         "PILLS": "\n".join(pills), "ROWS": "\n".join(rows), "US_ROWS": "\n".join(us_rows),

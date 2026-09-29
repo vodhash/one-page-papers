@@ -461,8 +461,8 @@ a.pill:hover{color:var(--ink)}
 .series-head{max-width:880px;padding:28px 0 48px}
 .series-head h1{margin:14px 0 20px;font-size:64px;line-height:1.04}
 .series-head .lede{font-size:23px}
-.in-series{margin-top:18px;font-size:17px;color:var(--ink2)}
-.in-series a{padding:11px 0}
+.in-series,.see-also{margin-top:18px;font-size:17px;color:var(--ink2)}
+.in-series a,.see-also a{padding:11px 0}
 
 /* the wall planner */
 .planner{padding-top:40px;border-top:1px solid var(--rule)}

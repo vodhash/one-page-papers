@@ -1,0 +1,17 @@
+# Links from the pages of some posters to a site that belongs with them: plain links, without tracking.
+# engine/site.py writes each one on the pages of its papers, below the series.
+#
+#   papers: the slugs of the posters whose pages carry the link
+#   text:   one sentence, with {link} where the link goes
+#   link:   the words of the link
+#   url:    where it leads (https)
+
+- papers: [bitcoin, sha-256, bip-39, bip-173, bip-340]
+  text: "Any block of the Bitcoin chain, as a typographic poster read from a full node: {link}."
+  link: Blockmemento
+  url: https://blockmemento.com/
+
+- papers: [genesis-block]
+  text: "This block, and every block after it, as a typographic poster read from a full node: {link}."
+  link: Blockmemento
+  url: https://blockmemento.com/block/0
