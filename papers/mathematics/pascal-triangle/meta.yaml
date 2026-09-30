@@ -12,13 +12,13 @@ hero_height: 50
 columns: 3
 footer:
   - "Found already printed among Pascal’s papers after his death in 1662 (Avertissement of the 1665 edition), and published by Guillaume Desprez in 1665."
-  - "<i>Excerpt: the definitions and the first consequence, pp. 1-3, and the folding plate. Public domain. Text: Source gallica.bnf.fr / BnF. Plate: Cliché Bibliothèque de la Sorbonne.</i>"
-  - '<span class="mono">gallica.bnf.fr/ark:/12148/btv1b86262012 · nubis.bis-sorbonne.fr/ark:/15733/nqpm</span>'
+  - "<i>Excerpt: the definitions and the first consequence, pp. 1-3, and the folding plate. Public domain. Plate: Cliché Bibliothèque de la Sorbonne. Text: Source gallica.bnf.fr / BnF.</i>"
+  - '<span class="mono">nubis.bis-sorbonne.fr/ark:/15733/nqpm · gallica.bnf.fr/ark:/12148/btv1b86262012</span>'
 year: 1665
 authors: [Blaise Pascal]
 min_print: A3
 source:
-  url: https://gallica.bnf.fr/ark:/12148/btv1b86262012
+  url: https://nubis.bis-sorbonne.fr/ark:/15733/nqpm
   retrieved: 2026-09-27
   edition: >-
     Excerpt of the Traitté du Triangle Arithmetique, the first piece of Traité du triangle
@@ -27,12 +27,15 @@ source:
     all its paragraphs (pp. 1-2, "I'Appelle Triangle Arithmetique" to "conuiendra à tous les
     autres"), and the Consequence premiere with its proof and its four lines of examples (pp.
     2-3); left out: the Consequences seconde to dixneufiesme, the Definition of the cells of the
-    dividend, the Problesme and the other treatises of the volume. The hero image is the
+    dividend, the Problesme and the other treatises of the volume. The copy reproduced is that of
+    the Bibliothèque interuniversitaire de la Sorbonne, as its library asked on 30 September
+    2026 (the source above is its NuBIS record). The hero image is the
     folding plate "Triangle Arithmetique" of the copy of the Bibliothèque interuniversitaire
     de la Sorbonne (RRA 4= 184, NuBIS ark:/15733/nqpm, view 10, 3360 x 2800 px), straightened
     by 1.22 degree, cropped to the triangle and its legends, turned to greyscale and its paper
-    whitened; the library stamp beside the legend is kept. The text was read
-    line by line on the BnF scan (views 7 to 9) and on the Internet Archive scan of the
+    whitened; the library stamp beside the legend is kept. The text, of the same printing, was
+    read line by line on the BnF scan (Réserve des livres rares, RES-V-860,
+    ark:/12148/btv1b86262012, views 7 to 9) and on the Internet Archive scan of the
     Lausanne copy (bub_gb_UqgUAAAAQAAJ), whose OCR served as the working base: that OCR
     garbles nearly all the italic, so most lines were set from the page images. The
     definitions are set in italics with the defined terms in roman, as printed; the
@@ -49,14 +52,14 @@ license:
   text: "Public domain"
   holder: "Blaise Pascal, 1665"
   basis: >-
-    Blaise Pascal died on 19 August 1662 (Wikidata Q1290) and the treatise was published in
+    The plate is reproduced from the scan of the Bibliothèque interuniversitaire de la Sorbonne,
+    under the Licence Ouverte Etalab 2.0 (NuBIS record ark:/15733/nqpm, "Droits: Licence ouverte
+    Etalab"), which allows commercial reuse with the credit "Cliché Bibliothèque de la
+    Sorbonne". Blaise Pascal died on 19 August 1662 (Wikidata Q1290) and the treatise was published in
     1665: it is in the public domain in France, where the author died before 1 January 1956,
     and in the United States, where it was published before 1 January 1931. Gallica gives the
     scan the rights statement "domaine public" (OAI record of ark:/12148/btv1b86262012); the
-    Internet Archive marks the Lausanne scan with the Public Domain Mark 1.0. The Sorbonne scan
-    of the plate is under the Licence Ouverte Etalab 2.0 (NuBIS record ark:/15733/nqpm, "Droits:
-    Licence ouverte Etalab"), which allows commercial reuse with the credit "Cliché
-    Bibliothèque de la Sorbonne".
+    Internet Archive marks the Lausanne scan with the Public Domain Mark 1.0.
 commercial: true
 commercial_basis: >-
   The text is in the public domain and the plate is reproduced from the scan of the Bibliothèque interuniversitaire de la Sorbonne, under the Licence Ouverte Etalab 2.0, which allows commercial reuse with credit.
