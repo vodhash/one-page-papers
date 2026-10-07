@@ -210,13 +210,22 @@
       }
       return lib;
     };
+    // An error says what failed: loading the PDF (the connection), or drawing it (pdf.js needs a
+    // recent browser, Promise.try and Math.sumPrecise for instance, and an older one fails there)
+    var failed = function (what) {
+      return function (e) { throw { what: what, error: e }; };
+    };
     var load = function (url) {
       if (!docs[url]) {
-        docs[url] = Promise.all([pdfjs(), fetch(url).then(function (r) {
+        // cache: reload, since a PDF opened from its button may be in the cache of the browser
+        // without the Access-Control-Allow-Origin header, which the bucket only sends to a request
+        // from the site: taken from there, it would be refused to this script
+        docs[url] = Promise.all([pdfjs().catch(failed('draw')), fetch(url, { cache: 'reload' }).then(function (r) {
           if (!r.ok) throw new Error('HTTP ' + r.status);
           return r.arrayBuffer();
-        })]).then(function (both) {
-          return both[0].getDocument({ data: new Uint8Array(both[1]), isEvalSupported: false }).promise;
+        }).catch(failed('load'))]).then(function (both) {
+          return both[0].getDocument({ data: new Uint8Array(both[1]), isEvalSupported: false }).promise
+            .catch(failed('draw'));
         });
         docs[url].catch(function () { delete docs[url]; });
       }
@@ -281,8 +290,10 @@
         result.hidden = false;
         say('Ready: ' + W + '\u00a0\u00d7\u00a0' + H + ' pixels.');
         track('wallpaper', { slug: wall.getAttribute('data-slug'), screen: size.value, theme: theme.value });
-      }).catch(function () {
-        say('The wallpaper could not be made. Check the connection, or download the PDF above.');
+      }).catch(function (e) {
+        say(e && e.what === 'load'
+          ? 'The poster could not be loaded. Check the connection, or download the PDF above.'
+          : 'This browser could not draw the wallpaper: an up-to-date one can, or download the PDF above.');
       }).then(function () {
         busy = false;
         button.disabled = false;

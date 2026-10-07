@@ -116,3 +116,10 @@ the bucket has this CORS policy (R2, the bucket, Settings, CORS policy):
 ```
 
 A wallpaper therefore does not draw on `make serve`, whose origin is `http://localhost:8000`.
+
+R2 sends `Access-Control-Allow-Origin` only to a request that carries an `Origin` header, and not to
+the click on a PDF button, so a browser may hold a PDF without it. site.js fetches the PDF of a
+wallpaper past the cache of the browser for that reason, but the cache of Cloudflare may still serve
+such a copy. A response header rule of the zone closes that gap (Rules, Transform Rules, Modify
+Response Header): when the hostname is `files.onepagepapers.com`, set
+`Access-Control-Allow-Origin` to `https://onepagepapers.com` and `Vary` to `Origin`.
