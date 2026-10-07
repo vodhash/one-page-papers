@@ -314,7 +314,7 @@ The optional keys:
 | `max_font` | none | hard cap on the body size, in pt, so that a short text does not end up in giant type; reaching it is expected |
 | `numbered` | `false` | number the `##` sections |
 | `title_html`, `title_size`, `header_scale` | `title`, `76pt`, `1` | title with HTML markup, its size, and the scale of the other header lines |
-| `kicker`, `author`, `byline`, `emblem`, `abstract`, `abstract_label`, `footer` | | header and footer content (see existing papers) |
+| `kicker`, `author`, `byline`, `emblem`, `abstract`, `abstract_label`, `footer` | | header and footer content (see existing papers): inline HTML only, the tags `b`, `br`, `em`, `i`, `small`, `span`, `strong`, `sub` and `sup` with at most a `class`, and entities (`&lt;` for a `<`); the abstract takes inline marks but no math, which only `text.md` renders |
 
 Every text comes from a primary source or a reference edition, never from memory, and its words are counted against that source; an excerpt says so on the poster. A text is only added when it is in the public domain in France and in the United States, or when a license or permission allows its redistribution, in which case the poster keeps the notices that the license requires. The other texts wait in [PENDING.md](PENDING.md), which says what is missing for each, and are listed under *Coming soon*.
 

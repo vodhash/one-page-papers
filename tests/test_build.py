@@ -53,10 +53,29 @@ def test_a_valid_meta_loads(tmp_path):
     ("hero_height: 95", "hero_height must be a percentage of the page height"),
     ("contributors: ['@someone']", "contributors must be a list of GitHub user names"),
     ("footer: [a, b, c, d]", "footer takes at most 3 cells"),
+    ('lang: fr" onmouseover="alert(1)', "lang must be a language tag"),
+    ("kicker: <img src=x onerror=alert(1)>", "kicker holds '<img src=x onerror=alert(1)>'"),
+    ('byline: <span onclick="x()">By</span>', "byline holds '<span onclick=\"x()\">'"),
+    ("footer: [ok, a < b]", "footer holds '< b'"),
+    ("columns: 9", "columns must be a number of columns, from 1 to 8"),
+    ("columns: true", "columns must be a number of columns, from 1 to 8"),
+    ("header_scale: true", "header_scale must be a number"),
+    ("title: <script>alert(1)</script>", "title holds '<script>'"),
+    ("abstract: An <img src=x onerror=alert(1)> abstract.", "abstract holds '<img src=x onerror=alert(1)>'"),
+    ("source: {url: 'javascript:alert(1)', retrieved: 2026-01-01, edition: x}", "source url must be an http"),
+    ("header_scale: '</style><script>x</script>'", "header_scale must be a number"),
+    ("title_size: 76pt;}body{color:red", "title_size must be a size in points"),
 ])
 def test_a_meta_that_breaks_a_rule_is_refused(tmp_path, line, message):
     with pytest.raises(BuildError, match=re.escape(message)):
         load_meta(make_paper(tmp_path, VALID + line + "\n").dir)  # the last of two keys wins
+
+
+@pytest.mark.parametrize("line", ["lang: EN", "lang: x-private", "lang: en-u-ca-gregory",
+                                  'kicker: <i>Excerpt</i> &amp; <span class="mono">notes</span><br>',
+                                  "footer: [<sup>1</sup>, H<sub>2</sub>O, '&lt; 3']", "title_size: 64.5pt"])
+def test_a_meta_within_the_rules_is_accepted(tmp_path, line):
+    load_meta(make_paper(tmp_path, VALID + line + "\n").dir)
 
 
 @pytest.mark.parametrize("meta, message", [
@@ -227,3 +246,8 @@ def test_invert_turns_white_into_the_paper_and_black_into_the_ink(black_and_whit
 
 def test_multiply_melts_white_into_the_paper_and_keeps_black(black_and_white):
     assert pixels(build.treated(black_and_white, "multiply", "ivory")) == [rgb("ivory", "paper"), (0, 0, 0)]
+
+
+def test_math_in_the_abstract_is_refused_rather_than_left_raw(tmp_path):
+    with pytest.raises(BuildError, match="abstract cannot hold math"):
+        load_meta(make_paper(tmp_path, VALID + "abstract: The energy \\\\( E = mc^2 \\\\).\n").dir)

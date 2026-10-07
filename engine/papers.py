@@ -79,6 +79,23 @@ MIN_BODY = 8  # pt: min_print is the smallest size at which the body prints at l
 # centered: short texts, one column by default, vertically centered;
 # hero: the first image of the text across the top of the page, the text in columns below
 LAYOUTS = ("columns", "centered", "hero")
+# The fields of meta.yaml that the poster and the site show as HTML, and the markup they may hold:
+# the inline tags of the posters, a class on a span, entities. A value outside it, such as a tag with
+# an event handler, is refused: these strings reach every page of a poster.
+MARKUP_KEYS = ("title", "title_html", "kicker", "author", "byline", "emblem", "abstract", "abstract_label")
+INLINE_TAGS = {"b", "br", "em", "i", "small", "span", "strong", "sub", "sup"}
+
+def markup_error(text):
+    """The first piece of text that is not inline markup a page may show as it is, or None."""
+    for t in re.finditer(r"<[^>]*>?", str(text)):
+        k = re.fullmatch(r'<(/?)([a-z]+)((?:\s+class="[\w -]*")?)\s*/?>', t.group())
+        if not k or k.group(2) not in INLINE_TAGS or (k.group(1) and k.group(3)):
+            return t.group()
+    return None
+
+def is_number(v):
+    """Whether v is a number of YAML, not true or false, which Python counts as 1 and 0."""
+    return isinstance(v, (int, float)) and not isinstance(v, bool)
 
 class BuildError(Exception):
     """A paper that cannot be built as it is: the message names the file and what is wrong."""
@@ -119,6 +136,8 @@ def load_meta(paper_dir):
     src = m.get("source")
     if src and not (isinstance(src, dict) and set(src) == {"url", "retrieved", "edition"} and all(src.values())):
         errors.append("source needs exactly url, retrieved (a date) and edition")
+    elif src and not re.match(r"https?://\S+$", str(src["url"])):
+        errors.append("source url must be an http or https address")
     lic = m.get("license")
     if lic and not (isinstance(lic, dict) and lic.get("text") and (lic.get("notice") or lic.get("basis"))
                     and set(lic) <= LICENSE_KEYS):
@@ -126,18 +145,32 @@ def load_meta(paper_dir):
                       f"basis (why the text is in the public domain); its keys are {', '.join(sorted(LICENSE_KEYS))}")
     if len(m.get("footer") or []) > 3:
         errors.append("footer takes at most 3 cells")
+    if not (isinstance(m.get("lang", "en"), str) and re.fullmatch(r"[A-Za-z]{1,8}(?:-[A-Za-z0-9]{1,8})*", m.get("lang", "en"))):
+        errors.append("lang must be a language tag, such as en, de, fr or la")
+    for k in MARKUP_KEYS + ("footer",):
+        for v in (m.get(k) if isinstance(m.get(k), list) else [m.get(k)]):
+            if v is not None and (bad := markup_error(v)):
+                errors.append(f"{k} holds {bad!r}: only the tags {', '.join(sorted(INLINE_TAGS))}, a class on "
+                              "them, and &...; entities (&lt; for a <)")
+    if not (is_number(m.get("columns", 1)) and isinstance(m.get("columns", 1), int) and 1 <= m.get("columns", 1) <= 8):
+        errors.append("columns must be a number of columns, from 1 to 8")
+    if not (is_number(m.get("header_scale", 1)) and 0.5 <= m.get("header_scale", 1) <= 4):
+        errors.append("header_scale must be a number from 0.5 to 4")
+    if not (isinstance(m.get("title_size", "76pt"), str) and re.fullmatch(r"\d+(?:\.\d+)?pt", m.get("title_size", "76pt"))):
+        errors.append("title_size must be a size in points, such as 76pt")
+    if "\\(" in str(m.get("abstract", "")):
+        errors.append("abstract cannot hold math, which only text.md renders")
     fr = m.get("font_range", [8, 40])
-    if not (isinstance(fr, list) and len(fr) == 2 and all(isinstance(v, (int, float)) for v in fr)
-            and 0 < fr[0] < fr[1]):
+    if not (isinstance(fr, list) and len(fr) == 2 and all(is_number(v) for v in fr) and 0 < fr[0] < fr[1]):
         errors.append("font_range must be [min, max] in pt")
-    elif not isinstance(m.get("max_font", fr[1]), (int, float)) or m.get("max_font", fr[1]) <= fr[0]:
+    elif not is_number(m.get("max_font", fr[1])) or m.get("max_font", fr[1]) <= fr[0]:
         errors.append("max_font must be a size in pt above the minimum of font_range")
     if m.get("layout", "columns") not in LAYOUTS:
         errors.append(f"layout must be one of {', '.join(LAYOUTS)}")
     themes = m.get("themes", list(THEMES))
     if not (isinstance(themes, list) and themes and set(themes) <= set(THEMES)):
         errors.append(f"themes must be a list of some of {', '.join(THEMES)}")
-    if not isinstance(m.get("hero_height", 50), (int, float)) or not 10 <= m.get("hero_height", 50) <= 90:
+    if not is_number(m.get("hero_height", 50)) or not 10 <= m.get("hero_height", 50) <= 90:
         errors.append("hero_height must be a percentage of the page height, from 10 to 90")
     if errors:
         raise BuildError(f"{rel(path)}: {'; '.join(errors)}")

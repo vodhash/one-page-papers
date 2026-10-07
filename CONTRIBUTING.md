@@ -79,6 +79,9 @@ make test         # after a change to engine/: the tests of the scripts and of t
   them and publishes them on the site and in the releases.
 - An image of a paper stays under 5 MiB, and any other binary file under 1 MiB: the pre-commit
   hook and the CI refuse larger ones (`engine/sizes.py`). Reduce a scan to what the poster prints.
+- Review `figures.py` and `text.md` as code: the build runs `figures.py`, and the raw HTML of
+  `text.md` goes as it is into the poster and its reading page. The HTML fields of `meta.yaml`
+  are checked (inline tags only), `lang` and the sizes of the header too.
 
 ## Where the PDFs are published
 
