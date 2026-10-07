@@ -1,6 +1,8 @@
-/* one-page-papers: the theme button, the menu on small screens, the filters of the collection,
-   the themes of a poster and its wallpapers. Every page works without it: the colours follow the
-   system, the whole collection shows, and a poster page offers the PDF of each theme. */
+/* one-page-papers: the theme button, the menu on small screens, the filters of the collection, the
+   themes of a poster and its wallpapers, the print guide, the margin notes, the teaching kits and
+   the large images. Every page works without it: the colours follow the system, the whole
+   collection shows, and a poster page offers the PDF of each theme. Each part is a function of its
+   own, which does nothing on a page that lacks what it needs. */
 (function () {
   'use strict';
   var root = document.documentElement;
@@ -35,23 +37,27 @@
     if (button) button.setAttribute('aria-pressed', String(m === 'dark'));
     onMode.forEach(function (f) { f(m); });
   }
-  var modeButton = document.querySelector('.mode');
-  if (modeButton) {
-    modeButton.addEventListener('click', function () {
-      var m = mode() === 'dark' ? 'light' : 'dark';
-      try { localStorage.setItem(KEY, m); } catch (e) { /* private mode: the choice lasts for this page */ }
-      apply(m);
+
+  function themeButton() {
+    var button = document.querySelector('.mode');
+    if (button) {
+      button.addEventListener('click', function () {
+        var m = mode() === 'dark' ? 'light' : 'dark';
+        try { localStorage.setItem(KEY, m); } catch (e) { /* private mode: the choice lasts for this page */ }
+        apply(m);
+      });
+    }
+    system.addEventListener('change', function (e) {
+      var s = saved();
+      if (s !== 'dark' && s !== 'light') apply(e.matches ? 'dark' : 'light');
     });
   }
-  system.addEventListener('change', function (e) {
-    var s = saved();
-    if (s !== 'dark' && s !== 'light') apply(e.matches ? 'dark' : 'light');
-  });
 
   // The menu of small screens
-  var burger = document.querySelector('.burger');
-  var nav = document.getElementById('nav');
-  if (burger && nav) {
+  function menu() {
+    var burger = document.querySelector('.burger');
+    var nav = document.getElementById('nav');
+    if (!burger || !nav) return;
     var setOpen = function (open) {
       burger.setAttribute('aria-expanded', String(open));
       nav.classList.toggle('open', open);
@@ -76,8 +82,9 @@
   // The filters of the collection, which ?category= in the address also sets, and its pages of
   // PER_PAGE posters, which ?page= sets. Without this script the whole collection shows, and the
   // filters lead to the pages of the categories.
-  var filters = document.querySelector('.filters');
-  if (filters) {
+  function collection() {
+    var filters = document.querySelector('.filters');
+    if (!filters) return;
     var PER_PAGE = 24;
     var status = document.getElementById('filter-status');
     var list = document.querySelector('.cards');
@@ -158,8 +165,9 @@
 
   // A poster page: the pills choose the theme of the preview and of the download buttons.
   // Until one is pressed, the theme shown follows the mode of the site (the CSS shows its buttons).
-  var poster = document.querySelector('[data-poster]');
-  if (poster) {
+  function posterThemes() {
+    var poster = document.querySelector('[data-poster]');
+    if (!poster) return;
     var picture = poster.querySelector('.wall picture');
     var current = function () {
       return poster.getAttribute('data-picked') || poster.getAttribute(mode() === 'dark' ? 'data-dark' : 'data-light');
@@ -193,8 +201,9 @@
   // The wallpaper of a poster: its A PDF in the theme chosen, drawn by pdf.js (loaded on the first
   // request) on a canvas of the size of the screen, filled with the paper colour of the theme, the
   // poster centred and as large as a margin allows. Nothing is sent anywhere: the PNG is made here.
-  var wall = document.querySelector('[data-wallpaper]');
-  if (wall && window.HTMLCanvasElement && window.Promise && window.URL) {
+  function wallpaper() {
+    var wall = document.querySelector('[data-wallpaper]');
+    if (!wall || !window.HTMLCanvasElement || !window.Promise || !window.URL) return;
     var form = wall.querySelector('.wp-form');
     var status = wall.querySelector('.wp-status');
     var result = wall.querySelector('.wp-result');
@@ -290,8 +299,8 @@
         result.hidden = false;
         say('Ready: ' + W + '\u00a0\u00d7\u00a0' + H + ' pixels.');
         track('wallpaper', { slug: wall.getAttribute('data-slug'), screen: size.value, theme: theme.value });
-      }).catch(function (e) {
-        say(e && e.what === 'load'
+      }).catch(function (err) {
+        say(err && err.what === 'load'
           ? 'The poster could not be loaded. Check the connection, or download the PDF above.'
           : 'This browser could not draw the wallpaper: an up-to-date one can, or download the PDF above.');
       }).then(function () {
@@ -303,101 +312,102 @@
 
   // The print guide, opened from the Print it button of a poster (?poster=<slug>&theme=<theme>):
   // a box with the Print from of that poster, a theme to choose and the links to its PDFs.
-  var box = document.getElementById('for-poster');
-  var dataEl = document.getElementById('print-data');
-  if (box && dataEl) {
+  function printGuide() {
+    var box = document.getElementById('for-poster');
+    var dataEl = document.getElementById('print-data');
+    if (!box || !dataEl) return;
     var params = new URLSearchParams(location.search);
     var printData = null;
     try { printData = JSON.parse(dataEl.textContent); } catch (e) { /* the guide shows on its own */ }
     var slug = params.get('poster');
     var info = printData && Object.prototype.hasOwnProperty.call(printData.posters, slug) ? printData.posters[slug] : null;
-    if (info) {
-      var name = info[0], category = info[1], min = info[2], themes = info[3], version = info[4];
-      var theme = themes.indexOf(params.get('theme')) >= 0 ? params.get('theme') : themes[0];
-      var make = function (tag, cls, content) {
-        var e = document.createElement(tag);
-        if (cls) e.className = cls;
-        if (content) e.textContent = content;
-        return e;
-      };
-      var posterLink = box.querySelector('.fp-link');
-      posterLink.href = '../' + slug + '/';
-      posterLink.textContent = name;
-      // Print from: the body is 8 to 11 pt at that size, and grows by about 1.4 at each size up
-      var sizes = printData.sizes.slice(printData.sizes.indexOf(min));
-      var floors = [11, 16, 22];
-      var printFrom = 'Print from ' + min + ': its body text is 8 to 11 pt at ' + min;
-      var up = sizes.slice(1).map(function (s, i) { return 'at least ' + floors[i] + ' pt at ' + s; });
-      if (up.length) printFrom += ', ' + up.join(', ');
-      box.querySelector('.fp-print').textContent = printFrom + '.';
-      var boxImg = document.createElement('img');
-      boxImg.width = 600;
-      boxImg.height = 849;
-      boxImg.decoding = 'async';
-      box.querySelector('.fp-mat').appendChild(boxImg);
-      var pills = box.querySelector('.fp-themes');
-      var files = box.querySelector('.fp-files');
-      var advice = box.querySelector('.fp-advice');
-      var showBox = function () {
-        boxImg.src = '../previews/' + slug + '-' + theme + '-600.webp';
-        boxImg.alt = 'Preview of the poster in the ' + theme + ' theme';
-        each('button', function (b) { b.setAttribute('aria-pressed', String(b.value === theme)); }, pills);
-        advice.textContent = printData.themes[theme][2]
-          ? 'A dark theme: best printed by a lab that prints deep blacks. On white aluminium, prefer a light theme.'
-          : 'A light theme: it suits paper, and it is the one to choose on white aluminium.';
-        files.textContent = '';
-        printData.formats.forEach(function (f) {
-          var li = make('li');
-          var a = make('a', 'btn btn-line', f[1] + ' · ' + theme);
-          a.href = printData.pdf.replace('{category}', category).replace('{file}', slug + '-' + f[0] + '-' + theme + '.pdf') +
-            '?v=' + version;
-          a.type = 'application/pdf';
-          a.setAttribute('data-umami-event', 'download');
-          a.setAttribute('data-umami-event-slug', slug);
-          a.setAttribute('data-umami-event-format', f[0]);
-          a.setAttribute('data-umami-event-theme', theme);
-          a.target = '_blank';
-          a.rel = 'noopener';
-          li.appendChild(a);
-          li.appendChild(make('span', 'fp-what', f[0] === 'A' ? 'Any ISO A size; body at 8 pt or more at ' + sizes.join(', ') : 'Its own layout'));
-          files.appendChild(li);
-        });
+    if (!info) return;
+    var name = info[0], category = info[1], min = info[2], themes = info[3], version = info[4];
+    var theme = themes.indexOf(params.get('theme')) >= 0 ? params.get('theme') : themes[0];
+    var make = function (tag, cls, content) {
+      var e = document.createElement(tag);
+      if (cls) e.className = cls;
+      if (content) e.textContent = content;
+      return e;
+    };
+    var posterLink = box.querySelector('.fp-link');
+    posterLink.href = '../' + slug + '/';
+    posterLink.textContent = name;
+    // Print from: the body is 8 to 11 pt at that size, and grows by about 1.4 at each size up
+    var sizes = printData.sizes.slice(printData.sizes.indexOf(min));
+    var floors = [11, 16, 22];
+    var printFrom = 'Print from ' + min + ': its body text is 8 to 11 pt at ' + min;
+    var up = sizes.slice(1).map(function (s, i) { return 'at least ' + floors[i] + ' pt at ' + s; });
+    if (up.length) printFrom += ', ' + up.join(', ');
+    box.querySelector('.fp-print').textContent = printFrom + '.';
+    var boxImg = document.createElement('img');
+    boxImg.width = 600;
+    boxImg.height = 849;
+    boxImg.decoding = 'async';
+    box.querySelector('.fp-mat').appendChild(boxImg);
+    var pills = box.querySelector('.fp-themes');
+    var files = box.querySelector('.fp-files');
+    var advice = box.querySelector('.fp-advice');
+    var showBox = function () {
+      boxImg.src = '../previews/' + slug + '-' + theme + '-600.webp';
+      boxImg.alt = 'Preview of the poster in the ' + theme + ' theme';
+      each('button', function (b) { b.setAttribute('aria-pressed', String(b.value === theme)); }, pills);
+      advice.textContent = printData.themes[theme][2]
+        ? 'A dark theme: best printed by a lab that prints deep blacks. On white aluminium, prefer a light theme.'
+        : 'A light theme: it suits paper, and it is the one to choose on white aluminium.';
+      files.textContent = '';
+      printData.formats.forEach(function (f) {
         var li = make('li');
-        var a = make('a', 'btn btn-line', 'US formats, zip');
-        a.href = printData.us.replace('{category}', category);
-        a.setAttribute('data-umami-event', 'download-zip');
-        a.setAttribute('data-umami-event-category', category + '-us');
+        var a = make('a', 'btn btn-line', f[1] + ' · ' + theme);
+        a.href = printData.pdf.replace('{category}', category).replace('{file}', slug + '-' + f[0] + '-' + theme + '.pdf') +
+          '?v=' + version;
+        a.type = 'application/pdf';
+        a.setAttribute('data-umami-event', 'download');
+        a.setAttribute('data-umami-event-slug', slug);
+        a.setAttribute('data-umami-event-format', f[0]);
+        a.setAttribute('data-umami-event-theme', theme);
+        a.target = '_blank';
+        a.rel = 'noopener';
         li.appendChild(a);
-        li.appendChild(make('span', 'fp-what', 'Every poster of its category, in the zip ' + category + '-us.zip'));
+        li.appendChild(make('span', 'fp-what', f[0] === 'A' ? 'Any ISO A size; body at 8 pt or more at ' + sizes.join(', ') : 'Its own layout'));
         files.appendChild(li);
-      };
-      themes.forEach(function (t) {
-        var b = make('button', 'pill');
-        b.type = 'button';
-        b.value = t;
-        var sw = make('span', 'swatch');
-        sw.setAttribute('aria-hidden', 'true');
-        sw.style.setProperty('--sw', printData.themes[t][0]);
-        sw.style.setProperty('--sa', printData.themes[t][1]);
-        b.appendChild(sw);
-        b.appendChild(document.createTextNode(t));
-        b.addEventListener('click', function () {
-          theme = t;
-          showBox();
-          try { history.replaceState(null, '', '?poster=' + slug + '&theme=' + t); } catch (e) { /* file: */ }
-        });
-        pills.appendChild(b);
       });
-      showBox();
-      box.hidden = false;
-    }
+      var li = make('li');
+      var a = make('a', 'btn btn-line', 'US formats, zip');
+      a.href = printData.us.replace('{category}', category);
+      a.setAttribute('data-umami-event', 'download-zip');
+      a.setAttribute('data-umami-event-category', category + '-us');
+      li.appendChild(a);
+      li.appendChild(make('span', 'fp-what', 'Every poster of its category, in the zip ' + category + '-us.zip'));
+      files.appendChild(li);
+    };
+    themes.forEach(function (t) {
+      var b = make('button', 'pill');
+      b.type = 'button';
+      b.value = t;
+      var sw = make('span', 'swatch');
+      sw.setAttribute('aria-hidden', 'true');
+      sw.style.setProperty('--sw', printData.themes[t][0]);
+      sw.style.setProperty('--sa', printData.themes[t][1]);
+      b.appendChild(sw);
+      b.appendChild(document.createTextNode(t));
+      b.addEventListener('click', function () {
+        theme = t;
+        showBox();
+        try { history.replaceState(null, '', '?poster=' + slug + '&theme=' + t); } catch (e) { /* file: */ }
+      });
+      pills.appendChild(b);
+    });
+    showBox();
+    box.hidden = false;
   }
 
   // An annotated reading page: the notes in the margin of a wide screen, pushed down so that none
   // covers the one above it, and a button to hide them, remembered. Without this script, or on a
   // small screen, the number after each marked phrase opens its note in the text.
-  var annotated = document.querySelector('.annotated');
-  if (annotated) {
+  function marginNotes() {
+    var annotated = document.querySelector('.annotated');
+    if (!annotated) return;
     var NOTES = 'one-page-papers:notes';
     var textEl = annotated.querySelector('.text');
     var notes = Array.prototype.slice.call(annotated.querySelectorAll('.sidenote'));
@@ -467,8 +477,9 @@
 
   // A teaching kit: print it without the answers, with them, or the answers alone. Without this
   // script, printing the page prints it all, the answers on a page of their own.
-  var kit = document.querySelector('[data-teach]');
-  if (kit && window.print) {
+  function teachingKit() {
+    var kit = document.querySelector('[data-teach]');
+    if (!kit || !window.print) return;
     var PRINT_MODES = ['print-no-answers', 'print-answers-only'];
     var clear = function () { PRINT_MODES.forEach(function (c) { root.classList.remove(c); }); };
     window.addEventListener('afterprint', clear);
@@ -487,20 +498,21 @@
   // The images of a poster page and of a reading page open large on a click: the preview at its
   // largest width, a figure at the size of its file. A click on the large image shows it at full
   // size, to scroll; Escape, the close button or a click beside it closes it.
-  var zoomable = document.querySelectorAll('.wall picture img, .text figure.image img');
-  if (zoomable.length && window.HTMLDialogElement) {
-    var box = document.createElement('dialog');
-    box.className = 'zoom';
-    box.innerHTML = '<button type="button" class="zoom-close" aria-label="Close">\u00d7</button><img alt="">';
-    document.body.appendChild(box);
-    var big = box.querySelector('img');
-    var close = function () { box.close(); };
-    box.addEventListener('close', function () { box.classList.remove('full'); big.removeAttribute('src'); });
-    box.addEventListener('click', function (e) {
-      if (e.target === big) box.classList.toggle('full');
-      else if (e.target === box) close();
+  function zoom() {
+    var zoomable = document.querySelectorAll('.wall picture img, .text figure.image img');
+    if (!zoomable.length || !window.HTMLDialogElement) return;
+    var dialog = document.createElement('dialog');
+    dialog.className = 'zoom';
+    dialog.innerHTML = '<button type="button" class="zoom-close" aria-label="Close">\u00d7</button><img alt="">';
+    document.body.appendChild(dialog);
+    var big = dialog.querySelector('img');
+    var close = function () { dialog.close(); };
+    dialog.addEventListener('close', function () { dialog.classList.remove('full'); big.removeAttribute('src'); });
+    dialog.addEventListener('click', function (e) {
+      if (e.target === big) dialog.classList.toggle('full');
+      else if (e.target === dialog) close();
     });
-    box.querySelector('.zoom-close').addEventListener('click', close);
+    dialog.querySelector('.zoom-close').addEventListener('click', close);
     Array.prototype.forEach.call(zoomable, function (img) {
       img.classList.add('zoomable');
       img.tabIndex = 0;
@@ -515,7 +527,7 @@
         big.style.backgroundColor = look.backgroundColor;
         big.alt = img.alt;
         big.src = src;
-        box.showModal();
+        dialog.showModal();
       };
       img.addEventListener('click', open);
       img.addEventListener('keydown', function (e) {
@@ -524,5 +536,14 @@
     });
   }
 
+  themeButton();
+  menu();
+  collection();
+  posterThemes();
+  wallpaper();
+  printGuide();
+  marginNotes();
+  teachingKit();
+  zoom();
   apply(mode());
 })();
