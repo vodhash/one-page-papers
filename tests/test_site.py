@@ -117,6 +117,10 @@ def test_a_figure_is_named_by_the_words_drawn_in_it():
     assert figure_label(1, "<svg><rect/></svg>") == "Figure 1"
 
 
+def test_the_404_page_has_a_base_but_no_script_at_the_root_of_the_domain():
+    assert pages.NOT_FOUND_BASE == '<base href="/">\n'
+
+
 def test_the_pdf_links_of_the_readme_carry_the_version_of_the_files_of_the_paper(tmp_path):
     import readme
     from papers import source_version

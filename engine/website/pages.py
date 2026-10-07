@@ -123,10 +123,11 @@ BURGER = ('<svg width="22" height="22" viewBox="0 0 24 24" aria-hidden="true" fo
           'd="M4 7h16M4 12h16M4 17h16" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/><path '
           'class="close" d="M6 6l12 12M18 6 6 18" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/></svg>')
 # 404.html is served for every missing path of the site, at any depth: its links resolve against
-# the root of the site on GitHub Pages, and against / when it is opened from `make serve`
+# the root of the site on GitHub Pages and, when the site lives under a path, against / when it is
+# opened from `make serve`
 BASE_PATH = urlsplit(BASE_URL).path
-NOT_FOUND_BASE = (f'<base href="{BASE_PATH}">\n<script>if(location.pathname.indexOf("{BASE_PATH}")!==0)'
-                  'document.querySelector("base").href="/"</script>\n')
+NOT_FOUND_BASE = f'<base href="{BASE_PATH}">\n' + ("" if BASE_PATH == "/" else (
+    f'<script>if(location.pathname.indexOf("{BASE_PATH}")!==0)document.querySelector("base").href="/"</script>\n'))
 
 def json_ld(o):
     data = json.dumps({"@context": "https://schema.org", **o}, ensure_ascii=False, separators=(",", ":"))
@@ -440,8 +441,7 @@ def series_page(s, series, previews, thumbs):
                              f'{size_text(pdf_file(p.paper, fmt, t))}</span></a>')
         srcs = "".join(f' data-src-{t}="{root}{previews[p.slug, t][600]}"' for t in p.themes)
         rows.append(
-            f'<li data-slug="{p.slug}" data-min="{m["min_print"]}" data-light="{p.light}" '
-            f'data-title="{esc(m["title"])}"{srcs}>\n'
+            f'<li data-slug="{p.slug}" data-min="{m["min_print"]}" data-light="{p.light}"{srcs}>\n'
             f'<div class="mat">{small_picture(thumbs, p, root, "")}</div>\n'
             f'<div class="sdl-what">\n<p class="eyebrow">{i} · {esc(CATEGORIES[p.category])}</p>\n'
             f'<h3 class="card-title"><a href="{root}{p.slug}/"{lang_of(m)}>{title(m["title"])}</a></h3>\n'
@@ -526,7 +526,7 @@ def print_page(posters, previews):
         # the previews of the box are previews/<slug>-<theme>-600.webp, which make_previews writes
         "posters": {p.slug: [markdown.smart(p.meta["title"]), p.category, p.meta["min_print"], p.themes,
                              pdf_version(p.paper), p.meta.get("lang", "en")]
-                    for p in posters if all((p.slug, t) in previews for t in p.themes)}}
+                    for p in posters}}
     js = json.dumps(data, ensure_ascii=False, separators=(",", ":")).replace("</", "<\\/")
     rows = [f'<tr><td>{k}</td><td>{cm_text(w)} × {cm_text(h)}</td><td>The A PDF</td></tr>'
             for k, (w, h) in A_SIZES.items()]
