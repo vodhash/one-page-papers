@@ -14,7 +14,7 @@ in a cache, build/cache/ by default (--cache), one entry per paper and format, k
 the paper and on those of the engine (ENGINE_FILES): an unchanged poster is copied from there instead
 of being laid out again.
 """
-import argparse, base64, concurrent.futures, functools, hashlib, importlib.util, io, json, os, pathlib, re, shutil, subprocess, sys
+import argparse, base64, concurrent.futures, functools, hashlib, importlib.util, io, json, os, pathlib, re, shutil, subprocess, sys, traceback
 import yaml
 from html import unescape
 from PIL import Image
@@ -70,7 +70,12 @@ def rel(path):
 
 def load_meta(paper_dir):
     path = paper_dir / "meta.yaml"
-    m = yaml.safe_load(path.read_text()) or {}
+    try:
+        m = yaml.safe_load(path.read_text()) or {}
+    except yaml.YAMLError as e:
+        raise BuildError(f"{rel(path)}: {' '.join(str(e).split())}") from None
+    if not isinstance(m, dict):
+        raise BuildError(f"{rel(path)}: expected a mapping of keys")
     errors = [f"unknown key '{k}'" for k in sorted(set(m) - META_KEYS)]
     errors += [f"missing '{k}'" for k in ("title", "summary", "license", "year", "authors", "min_print", "source")
                if not m.get(k)]
@@ -495,11 +500,12 @@ def build_format(paper, m, fmt, themes, allowed, page, html, tmp, raw, lo, hi, c
     page.set_viewport_size(viewport)
     us = fmt in US_FORMATS
     low = min(lo, US_MIN_FONT) if us else lo
+    # every warning from here on goes into the cache entry, so that a cached build gives it again
+    warned = len(WARNINGS)
     load(page, tmp, html(themes[0], height, low))
     fs = best_font(page, low, hi, f"{slug} {fmt}", capped or us)
     fs, fresh = settle(page.context.browser, viewport, tmp, lambda size: html(themes[0], height, size),
                        fs, hi, f"{slug} {fmt}")
-    warned = len(WARNINGS)
     try:
         line, made = print_format(paper, m, fmt, fs, themes, allowed, fresh, html, tmp, raw, out_dir(paper, fmt),
                                   (capped or us) and fs == hi, previews, check)
@@ -545,16 +551,32 @@ def print_format(paper, m, fmt, fs, themes, allowed, page, html, tmp, raw, out, 
     return line, made
 
 def build_all(targets, a):
-    """Builds the papers of targets in one browser. Returns the slugs that failed and the warnings."""
-    failed = []
-    with chromium() as browser:
-        page = browser.new_page()
-        for paper in targets:
-            try:
-                build(paper, a.formats, a.themes, page, not a.no_previews, a.check, a.cache)
-            except BuildError as e:
-                failed.append(paper.slug)
-                print(f"error: {e}", file=sys.stderr, flush=True)
+    """Builds the papers of targets in one browser. Returns the slugs that failed and the warnings.
+    A paper that fails, whatever the reason (a figures.py that raises, a corrupt image, a browser
+    that times out), is reported and the others are built all the same."""
+    failed, done = [], set()
+    try:
+        with chromium() as browser:
+            page = browser.new_page()
+            for paper in targets:
+                try:
+                    build(paper, a.formats, a.themes, page, not a.no_previews, a.check, a.cache)
+                except BuildError as e:
+                    failed.append(paper.slug)
+                    print(f"error: {e}", file=sys.stderr, flush=True)
+                except Exception as e:
+                    failed.append(paper.slug)
+                    print(f"error: papers/{paper.category}/{paper.slug}: {type(e).__name__}: {e}\n"
+                          f"{traceback.format_exc()}", file=sys.stderr, flush=True)
+                    page.close()  # it may be left half loaded: the next paper gets a page of its own
+                    page = browser.new_page()
+                finally:
+                    done.add(paper.slug)
+    except Exception as e:  # Chromium did not start, or died: the papers left are not built
+        left = [p.slug for p in targets if p.slug not in done]
+        failed += left
+        print(f"error: the browser failed ({type(e).__name__}: {e}), {len(left)} paper(s) not built: "
+              f"{', '.join(left)}", file=sys.stderr, flush=True)
     return failed, list(WARNINGS)
 
 def main():
