@@ -19,10 +19,14 @@
 <h2 id="collection-title">The collection</h2>
 <p>{{INTRO}}</p>
 </div>
+<div class="finder" role="search" hidden>
+<div class="search"><svg width="20" height="20" viewBox="0 0 24 24" aria-hidden="true" focusable="false"><circle cx="10.5" cy="10.5" r="6.5" fill="none" stroke="currentColor" stroke-width="1.6"/><path d="M15.5 15.5 21 21" stroke="currentColor" stroke-width="1.6" stroke-linecap="round"/></svg><label class="sr-only" for="search">Search the collection</label><input id="search" type="search" name="q" placeholder="Search by title, author, year or subject" autocomplete="off" spellcheck="false" enterkeyhint="search"><button type="button" class="search-clear" aria-label="Clear the search" hidden>×</button></div>
+</div>
 <div class="filters" role="group" aria-label="Show one category">
 {{FILTERS}}
 </div>
 <p id="filter-status" class="sr-only" aria-live="polite"></p>
+<p class="no-hits" hidden>No poster matches this search. <button type="button" class="link-btn" data-clear>Show the whole collection</button></p>
 <ul class="cards" role="list">
 {{CARDS}}
 </ul>

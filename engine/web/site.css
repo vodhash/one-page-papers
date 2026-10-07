@@ -96,6 +96,23 @@ button{font:inherit;color:inherit}
 .section-head{display:grid;grid-template-columns:repeat(12,minmax(0,1fr));column-gap:32px;align-items:end;margin-bottom:40px}
 .section-head h2{grid-column:1/span 6;font-size:52px}
 .section-head p{grid-column:7/span 6;font-size:21px;color:var(--ink2)}
+.finder{margin-bottom:18px}
+.search{display:flex;align-items:center;gap:12px;max-width:520px;height:48px;padding:0 6px 0 18px;border:1px solid var(--rule);
+ border-radius:24px;background:var(--frame);color:var(--mute);cursor:text}
+.search:hover{border-color:var(--mute)}
+.search:focus-within{border-color:var(--ink);outline:2px solid var(--accText);outline-offset:3px}
+.search svg{flex:none}
+.search input{flex:1;min-width:0;height:100%;padding:0;border:0;background:transparent;color:var(--ink);font:inherit;font-size:18px;
+ outline:none}
+.search input::placeholder{color:var(--mute);opacity:1}
+.search input::-webkit-search-cancel-button{-webkit-appearance:none;appearance:none}
+.search-clear{display:grid;place-items:center;flex:none;width:36px;height:36px;padding:0;border:0;border-radius:50%;
+ background:transparent;color:var(--mute);font-size:24px;line-height:1;cursor:pointer}
+.search-clear:hover{background:var(--wall);color:var(--ink)}
+.no-hits{margin:-24px 0 48px;font-size:19px;color:var(--ink2)}
+.link-btn{padding:0;border:0;background:none;color:var(--accText);font:inherit;text-decoration:underline;
+ text-decoration-thickness:1px;text-underline-offset:.2em;cursor:pointer}
+.link-btn:hover{color:var(--ink)}
 .filters{display:flex;flex-wrap:wrap;gap:10px;margin-bottom:56px}
 a.pill{text-decoration:none}
 a.pill:hover{color:var(--ink)}
@@ -826,6 +843,8 @@ mark.anno.hot{background:var(--boxa)}
  .text svg.fig{min-width:540px}
  .wallpaper .pill{padding:0 14px 0 11px}
  .series-home{padding-bottom:88px}
+ .search{max-width:none}
+ .no-hits{margin:-16px 0 36px;font-size:18px}
  .scards,.scards-index{grid-template-columns:repeat(2,minmax(0,1fr));gap:40px 20px}
  .scards-index{grid-template-columns:1fr;padding-bottom:88px}
  .strip{gap:5px;padding:0 12px}

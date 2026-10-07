@@ -1,8 +1,8 @@
-/* one-page-papers: the theme button, the menu on small screens, the filters of the collection, the
-   themes of a poster and its wallpapers, the print guide, the margin notes, the teaching kits and
-   the large images. Every page works without it: the colours follow the system, the whole
-   collection shows, and a poster page offers the PDF of each theme. Each part is a function of its
-   own, which does nothing on a page that lacks what it needs. */
+/* one-page-papers: the theme button, the menu on small screens, the search and the filters of the
+   collection, the themes of a poster and its wallpapers, the print guide, the margin notes, the
+   teaching kits and the large images. Every page works without it: the colours follow the system,
+   the whole collection shows, and a poster page offers the PDF of each theme. Each part is a
+   function of its own, which does nothing on a page that lacks what it needs. */
 (function () {
   'use strict';
   var root = document.documentElement;
@@ -79,22 +79,40 @@
     });
   }
 
-  // The filters of the collection, which ?category= in the address also sets, and its pages of
-  // PER_PAGE posters, which ?page= sets. Without this script the whole collection shows, and the
-  // filters lead to the pages of the categories.
+  // The collection of the home page: a search (?q= in the address), the filters (?category=) and
+  // pages of PER_PAGE posters (?page=). The search keeps the posters whose category, title,
+  // authors, year, summary or slug hold every word typed, accents and case aside, and the count of
+  // each filter follows it. Without this script the whole collection shows, and the filters lead to
+  // the pages of the categories.
   function collection() {
     var filters = document.querySelector('.filters');
-    if (!filters) return;
+    var list = document.querySelector('.cards');
+    if (!filters || !list) return;
     var PER_PAGE = 24;
     var status = document.getElementById('filter-status');
-    var list = document.querySelector('.cards');
+    var finder = document.querySelector('.finder');
+    var input = finder ? finder.querySelector('input') : null;
+    var clear = finder ? finder.querySelector('.search-clear') : null;
+    var noHits = document.querySelector('.no-hits');
+    var cards = Array.prototype.slice.call(list.children);
+    var fold = function (s) {
+      return s.normalize('NFD').replace(/[\u0300-\u036f]/g, '').toLowerCase().replace(/[\u2018\u2019]/g, "'");
+    };
+    var words = cards.map(function (card) {
+      var parts = Array.prototype.map.call(card.querySelectorAll('.eyebrow, .card-title, .by, .sum, .adds'),
+        function (e) { return e.textContent; });
+      var link = card.querySelector('.card-title a');
+      if (link) parts.push(link.getAttribute('href').replace(/[\/-]/g, ' '));  // the slug: rfc 1149
+      return fold(parts.join(' ').replace(/\s+/g, ' '));
+    });
     var pager = document.createElement('nav');
     pager.className = 'pager';
     pager.setAttribute('aria-label', 'Pages of the collection');
     list.parentNode.insertBefore(pager, list.nextSibling);
-    var state = { category: '', page: 1 };
+    var state = { category: '', page: 1, query: '' };
     var address = function () {
       var q = new URLSearchParams();
+      if (state.query) q.set('q', state.query);
       if (state.category) q.set('category', state.category);
       if (state.page > 1) q.set('page', state.page);
       var search = q.toString();
@@ -110,16 +128,35 @@
       if (current) b.setAttribute('aria-current', 'page');
       return b;
     };
-    var show = function (announce) {
-      var hits = [];
-      each('[data-filter]', function (a) {
-        if (a.getAttribute('data-filter') === state.category) a.setAttribute('aria-current', 'true');
-        else a.removeAttribute('aria-current');
-      }, filters);
-      each('.cards > li', function (card) {
-        if (!state.category || card.getAttribute('data-category') === state.category) hits.push(card);
+    // what the screen reader hears: at once after a click, once the typing pauses for a search
+    var later = null;
+    var announce = function (text, wait) {
+      clearTimeout(later);
+      if (!status) return;
+      if (wait) later = setTimeout(function () { status.textContent = text; }, 700);
+      else status.textContent = text;
+    };
+    // shows the cards of the state; announcement is false, 'now' or 'later'
+    var show = function (announcement) {
+      var terms = fold(state.query).split(/\s+/).filter(Boolean);
+      var counts = {}, found = 0, hits = [];
+      cards.forEach(function (card, i) {
+        var match = terms.every(function (t) { return words[i].indexOf(t) >= 0; });
+        var category = card.getAttribute('data-category');
+        if (match) {
+          counts[category] = (counts[category] || 0) + 1;
+          found += 1;
+        }
+        if (match && (!state.category || category === state.category)) hits.push(card);
         else card.hidden = true;
       });
+      each('[data-filter]', function (a) {
+        var category = a.getAttribute('data-filter');
+        var count = a.querySelector('.count');
+        if (count) count.textContent = category ? counts[category] || 0 : found;
+        if (category === state.category) a.setAttribute('aria-current', 'true');
+        else a.removeAttribute('aria-current');
+      }, filters);
       var pages = Math.max(1, Math.ceil(hits.length / PER_PAGE));
       state.page = Math.min(Math.max(1, state.page), pages);
       hits.forEach(function (card, i) { card.hidden = Math.floor(i / PER_PAGE) + 1 !== state.page; });
@@ -130,10 +167,21 @@
         for (var k = 1; k <= pages; k += 1) pager.appendChild(button(String(k), k, k === state.page, 'Page ' + k));
         if (state.page < pages) pager.appendChild(button('Next', state.page + 1, false));
       }
-      if (announce && status) {
-        status.textContent = hits.length + (hits.length === 1 ? ' poster' : ' posters') +
-          (pages > 1 ? ', page ' + state.page + ' of ' + pages : '');
+      if (noHits) noHits.hidden = hits.length > 0;
+      if (clear) clear.hidden = !state.query;
+      if (announcement) {
+        announce((hits.length ? hits.length : 'No') + (hits.length === 1 ? ' poster' : ' posters') +
+          (state.query ? ' found' : '') + (pages > 1 ? ', page ' + state.page + ' of ' + pages : ''),
+          announcement === 'later');
       }
+    };
+    var reset = function (everything) {
+      state.query = '';
+      if (input) input.value = '';
+      if (everything) state.category = '';
+      state.page = 1;
+      show('now');
+      address();
     };
     // the filters are links to the pages of the categories: here they filter the page in place
     filters.addEventListener('click', function (e) {
@@ -142,17 +190,46 @@
       e.preventDefault();
       state.category = b.getAttribute('data-filter');
       state.page = 1;
-      show(true);
+      show('now');
       address();
     });
     pager.addEventListener('click', function (e) {
       var b = e.target.closest('button');
       if (!b) return;
       state.page = Number(b.getAttribute('data-page'));
-      show(true);
+      show('now');
       address();
       document.getElementById('collection').scrollIntoView();
     });
+    if (input) {
+      finder.hidden = false;
+      input.addEventListener('input', function () {
+        state.query = input.value.trim();
+        state.page = 1;
+        show('later');
+        address();
+      });
+      input.addEventListener('keydown', function (e) {
+        if (e.key === 'Escape' && input.value) {
+          e.preventDefault();
+          reset(false);
+        }
+      });
+      // a click on the field, around the input, is a click in it
+      finder.querySelector('.search').addEventListener('click', function (e) {
+        if (!e.target.closest('button, input')) input.focus();
+      });
+      clear.addEventListener('click', function () {
+        reset(false);
+        input.focus();
+      });
+    }
+    if (noHits) {
+      noHits.querySelector('[data-clear]').addEventListener('click', function () {
+        reset(true);
+        if (input) input.focus();
+      });
+    }
     var params = new URLSearchParams(location.search);
     var asked = params.get('category');
     var known = Array.prototype.some.call(filters.querySelectorAll('[data-filter]'), function (b) {
@@ -160,6 +237,8 @@
     });
     if (asked && known) state.category = asked;
     state.page = parseInt(params.get('page'), 10) || 1;
+    state.query = (params.get('q') || '').trim();
+    if (input) input.value = state.query;
     show(false);
   }
 
