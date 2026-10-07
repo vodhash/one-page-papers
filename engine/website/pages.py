@@ -37,11 +37,16 @@ def picture(previews, p, root, sizes, eager=False, alt_text=None):
 CARD_SIZES = "(min-width: 1200px) 260px, (min-width: 768px) 28vw, 44vw"
 MINI_SIZES = "(min-width: 1200px) 200px, (min-width: 768px) 26vw, 44vw"
 
-def card(previews, p, root, mini=False, level=3):
+def card(previews, p, root, mini=False, extras=None, level=3):
     """A poster in a list of cards: its preview, whose alt is empty since its title follows, then its
-    category, title, authors and year, and on a full card its summary and its Print from."""
+    category, title, authors and year, and on a full card its summary, its Print from and what the
+    site adds to it (extras: {slug: Extras}), which the search of the home page reads too."""
     m = p.meta
-    extra = "" if mini else f'<p class="sum">{esc(m["summary"])}</p>\n<p class="print">Print from {m["min_print"]}</p>\n'
+    x = (extras or {}).get(p.slug)
+    adds = [name for name, there in (("Annotated text", x and x.annotations), ("Teaching kit", x and x.teaching))
+            if there]
+    extra = "" if mini else (f'<p class="sum">{esc(m["summary"])}</p>\n<p class="print">Print from {m["min_print"]}</p>\n'
+                             + (f'<p class="adds">{" · ".join(adds)}</p>\n' if adds else ""))
     return (f'<li class="card" data-category="{p.category}">\n'
             f'<div class="mat">{picture(previews, p, root, MINI_SIZES if mini else CARD_SIZES, alt_text="")}</div>\n'
             f'<div class="cartel">\n<p class="eyebrow">{esc(CATEGORIES[p.category])}</p>\n'
@@ -203,7 +208,7 @@ def crumbs_ld(*items):
         {"@type": "ListItem", "position": i, "name": name, "item": BASE_URL + path}
         for i, (name, path) in enumerate(items, 1)]}
 
-def category_page(c, posters, previews):
+def category_page(c, posters, previews, extras=None):
     """The page of a category, under /<category>/: its posters, and links to the other categories."""
     mine = [p for p in posters if p.category == c]
     cats = [k for k in CATEGORIES if any(p.category == k for p in posters)]
@@ -214,7 +219,7 @@ def category_page(c, posters, previews):
                 f'<span class="count">{sum(p.category == k for p in posters)}</span></a></li>')
     main = substitute((WEB / "category.html").read_text(), {
         "TITLE": esc(CATEGORIES[c]), "COUNT": esc(f"{len(mine)} posters · {span}"), "LEDE": esc(CATEGORY_LEDES[c]),
-        "CARDS": "\n".join(card(previews, p, "../", level=2) for p in mine),
+        "CARDS": "\n".join(card(previews, p, "../", extras=extras, level=2) for p in mine),
         "OTHERS": "\n".join(link(k) for k in cats)})
     names = ", ".join(p.meta["title"] for p in mine[:3])
     ld = ({"@type": "CollectionPage", "name": f"{CATEGORIES[c]} posters", "url": f"{BASE_URL}{c}/",
@@ -228,7 +233,33 @@ def category_page(c, posters, previews):
                 main, f"previews/category-{c}-share.jpg", "collection",
                 esc(f"Three posters of {CATEGORIES[c]} side by side on a wall: {names}"), ld=ld)
 
-def home_page(posters, previews, series, thumbs):
+def extras_section(posters, extras):
+    """The annotated editions and the teaching kits of the collection, for the home page: empty
+    when there are none."""
+    notes = [p for p in posters if p.slug in extras and extras[p.slug].annotations]
+    kits = [p for p in posters if p.slug in extras and extras[p.slug].teaching]
+    if not notes and not kits:
+        return ""
+    def item(p, href, what):
+        return (f'<li><a href="{href}"{lang_of(p.meta)}>{title(p.meta["title"])}</a>\n<span class="by">{by_line(p.meta)}</span>\n'
+                f'<span class="what">{what}</span></li>')
+    cols = []
+    if notes:
+        cols.append('<div class="extras-col">\n<h3 class="eyebrow">Annotated editions</h3>\n<ul role="list">\n' + "\n".join(
+            item(p, f"{p.slug}/read/", f'{len(extras[p.slug].annotations["notes"])} notes in the margin')
+            for p in notes) + "\n</ul>\n</div>")
+    if kits:
+        cols.append('<div class="extras-col">\n<h3 class="eyebrow">Teaching kits</h3>\n<ul role="list">\n' + "\n".join(
+            item(p, f"{p.slug}/teach/", f'{esc(extras[p.slug].teaching["level"])} · '
+                                        f'{len(extras[p.slug].teaching["questions"])} questions · A4')
+            for p in kits) + "\n</ul>\n</div>")
+    intro = (f"{number(len(notes)).capitalize()} texts with notes in the margin, and {number(len(kits))} teaching "
+             "kits with their context, a glossary, questions and their answers.")
+    return (f'<section id="read-and-teach" class="extras-home wrap" aria-labelledby="extras-title">\n'
+            f'<div class="section-head">\n<h2 id="extras-title">Read and teach</h2>\n<p>{esc(intro)}</p>\n</div>\n'
+            f'<div class="extras-cols">\n{chr(10).join(cols)}\n</div>\n</section>\n')
+
+def home_page(posters, previews, series, thumbs, extras=None):
     show = next(p for p in posters if p.slug == SHOWCASE)
     m = show.meta
     years = sorted((p.meta["year"] for p in posters), key=year_key)
@@ -249,7 +280,8 @@ def home_page(posters, previews, series, thumbs):
         "RELEASE": RELEASE_URL, "FORMATS": esc(formats), "FEATURED": featured,
         "INTRO": esc(f"{len(posters)} posters in {len(cats)} categories, from {year_text(years[0])} to "
                      f"{year_text(years[-1])}, each a free PDF to print and frame."),
-        "FILTERS": "\n".join(filters), "CARDS": "\n".join(card(previews, p, "") for p in posters),
+        "FILTERS": "\n".join(filters), "CARDS": "\n".join(card(previews, p, "", extras=extras) for p in posters),
+        "EXTRAS": extras_section(posters, extras or {}),
         "SERIES_INTRO": esc(f"{number(len(series)).capitalize()} sets of posters that hang together, each with a "
                             "planner that draws them on a wall to scale."),
         "SERIES": "\n".join(series_card(s, thumbs, "") for s in series)})

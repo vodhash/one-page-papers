@@ -87,14 +87,14 @@ def write(out, posters, series, extras=None):
         shares.append(share_image([cached[q.slug, q.light][1200] for q in posters if q.category == c][:3]))
         shutil.copyfile(shares[-1], out / f"previews/category-{c}-share.jpg")
 
-    pages = [home_page(posters, previews, series, thumbs), about_page(posters, previews), not_found_page(),
+    pages = [home_page(posters, previews, series, thumbs, extras), about_page(posters, previews), not_found_page(),
              print_page(posters, previews)]
     pages += [poster_page(p, posters, previews, series, extras.get(p.slug)) for p in posters]
     teach = [teach_page(p, previews, extras[p.slug].teaching) for p in posters
              if p.slug in extras and extras[p.slug].teaching]
     pages += teach
     pages += [series_index_page(series, thumbs)] + [series_page(s, series, previews, thumbs) for s in series]
-    pages += [category_page(c, posters, previews) for c in cats]
+    pages += [category_page(c, posters, previews, extras) for c in cats]
     # the reading pages, with their images and the stylesheet of KaTeX for those that have math
     bodies, images = texts(posters), {}
     katex_head = '<link rel="stylesheet" href="{{ROOT}}assets/katex.css?v={katex}">\n'

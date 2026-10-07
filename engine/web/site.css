@@ -75,6 +75,7 @@ button{font:inherit;color:inherit}
 .by{font-size:17px;font-style:italic;color:var(--ink2)}
 .sum{margin-top:10px;font-size:16px;line-height:1.45;color:var(--mute)}
 .print{margin-top:12px;font-size:13px;letter-spacing:.14em;text-transform:uppercase;color:var(--mute)}
+.adds{margin-top:6px;font-size:13px;letter-spacing:.14em;text-transform:uppercase;color:var(--accText)}
 
 /* home */
 .hero{display:grid;grid-template-columns:repeat(12,minmax(0,1fr));column-gap:32px;align-items:center;padding-top:96px;padding-bottom:104px}
@@ -459,6 +460,13 @@ a.pill:hover{color:var(--ink)}
 
 /* series: the cards (home, index, other series), and the page of a series */
 .series-home{padding-bottom:128px}
+.extras-home{padding-bottom:128px}
+.extras-cols{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:40px 64px}
+.extras-col ul{margin:14px 0 0;padding:0;list-style:none;border-top:1px solid var(--rule)}
+.extras-col li{display:grid;gap:4px;padding:18px 0;border-bottom:1px solid var(--rule)}
+.extras-col li a{justify-self:start;font-size:22px;font-weight:500;line-height:1.25;color:var(--ink);text-decoration:none}
+.extras-col li a:hover{text-decoration:underline 1px var(--acc);text-underline-offset:.2em}
+.extras-col .what{font-size:13px;letter-spacing:.14em;text-transform:uppercase;color:var(--mute)}
 .series-home .section-head p a{white-space:nowrap}
 .scards{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:48px 32px;margin:0;padding:0;list-style:none}
 .scards-index{grid-template-columns:repeat(3,minmax(0,1fr));gap:64px 40px;padding-bottom:128px}
@@ -842,7 +850,8 @@ mark.anno.hot{background:var(--boxa)}
  .text figure.fig{margin-left:-20px;margin-right:-20px;padding:0 20px}
  .text svg.fig{min-width:540px}
  .wallpaper .pill{padding:0 14px 0 11px}
- .series-home{padding-bottom:88px}
+ .series-home,.extras-home{padding-bottom:88px}
+ .extras-cols{grid-template-columns:1fr;gap:32px}
  .search{max-width:none}
  .no-hits{margin:-16px 0 36px;font-size:18px}
  .scards,.scards-index{grid-template-columns:repeat(2,minmax(0,1fr));gap:40px 20px}

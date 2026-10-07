@@ -76,6 +76,40 @@ def test_the_facts_of_a_poster_come_in_the_order_asked():
         "<div><dt>Rights holder</dt><dd>Someone</dd></div>"]
 
 
+@pytest.fixture
+def poster():
+    from website.common import Poster
+    m = {"title": "Ist die Trägheit eines Körpers von seinem Energieinhalt abhängig?", "lang": "de", "year": 1905,
+         "authors": ["Albert Einstein"], "summary": "Shows that a body loses mass when it gives off energy.",
+         "min_print": "A3", "layout": "centered"}
+    return Poster(Paper("physics", "einstein-mass-energy", None), m, ["ivory", "genesis"], "ivory", "genesis")
+
+
+@pytest.fixture
+def previews(poster):
+    return {(poster.slug, t): {600: f"previews/{poster.slug}-{t}-600.webp", 1200: f"previews/{poster.slug}-{t}-1200.webp"}
+            for t in poster.themes}
+
+
+def test_a_card_names_its_poster_once_in_its_language(poster, previews):
+    from website.content import Extras
+    html_ = pages.card(previews, poster, "", extras={poster.slug: Extras({"notes": [1]}, {"level": "x"})}, level=2)
+    assert 'alt=""' in html_  # the title that follows says what the preview shows
+    assert '<h2 class="card-title"><a href="einstein-mass-energy/" lang="de">' in html_
+    assert '<p class="adds">Annotated text · Teaching kit</p>' in html_
+    assert 'class="adds"' not in pages.card(previews, poster, "")
+
+
+def test_the_home_page_lists_the_annotated_editions_and_the_teaching_kits(poster):
+    from website.content import Extras
+    none = pages.extras_section([poster], {})
+    both = pages.extras_section([poster], {poster.slug: Extras({"notes": [1, 2]}, {"level": "Ages 16 to 18",
+                                                                                     "questions": [1] * 9})})
+    assert none == ""
+    assert 'href="einstein-mass-energy/read/" lang="de"' in both and "2 notes in the margin" in both
+    assert 'href="einstein-mass-energy/teach/" lang="de"' in both and "Ages 16 to 18 · 9 questions · A4" in both
+
+
 def test_a_figure_is_named_by_the_words_drawn_in_it():
     from website.reading import figure_label
     svg = '<svg><text x="1">Owner 1&#x27;s</text><text>Hash</text><text><tspan>Hash</tspan></text><text> </text></svg>'
