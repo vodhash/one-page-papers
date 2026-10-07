@@ -128,6 +128,8 @@ A wallpaper therefore does not draw on `make serve`, whose origin is `http://loc
 R2 sends `Access-Control-Allow-Origin` only to a request that carries an `Origin` header, and not to
 the click on a PDF button, so a browser may hold a PDF without it. site.js fetches the PDF of a
 wallpaper past the cache of the browser for that reason, but the cache of Cloudflare may still serve
-such a copy. A response header rule of the zone closes that gap (Rules, Transform Rules, Modify
-Response Header): when the hostname is `files.onepagepapers.com`, set
-`Access-Control-Allow-Origin` to `https://onepagepapers.com` and `Vary` to `Origin`.
+such a copy. A response header transform rule of the zone closes that gap (Rules, Create rule,
+Response Header Transform Rule): when the hostname equals `files.onepagepapers.com`, set the static
+header `Access-Control-Allow-Origin` to `https://onepagepapers.com`, on every response, in place of
+the one of R2. `curl -sI https://files.onepagepapers.com/crypto/bitcoin-A-ivory.pdf` then shows it,
+though the request has no `Origin`.
