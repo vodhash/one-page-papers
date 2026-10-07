@@ -53,6 +53,10 @@ class Site:
         monkeypatch.setenv("CLOUDFLARE_API_TOKEN", "token")
         monkeypatch.setenv("CLOUDFLARE_ZONE_ID", "zone")
         monkeypatch.setattr(upload, "cloudflare", self.cloudflare)
+        # the papers make every PDF of the test, but those named stale-*
+        monkeypatch.setattr(upload, "expected_keys", lambda: {
+            f"crypto/{f.name}" for d in (self.dist, self.us) for f in (d / "crypto").glob("*.pdf")
+            if not f.name.startswith("stale-")})
         self.monkeypatch, self.calls, self.fail = monkeypatch, [], False
 
     def cloudflare(self, path, body=None):
@@ -101,6 +105,20 @@ def test_a_file_of_the_bucket_that_dist_lacks_is_kept(site, capsys):
     assert "kept crypto/renamed-A-ivory.pdf" in capsys.readouterr().out
 
 
+def test_a_pdf_that_no_paper_makes_is_not_uploaded(site, capsys):
+    site.write("bitcoin-A-ivory.pdf", b"v1")
+    site.write("stale-A-ivory.pdf", b"a renamed paper")
+    site.run()
+    assert list(site.bucket.objects) == ["crypto/bitcoin-A-ivory.pdf"]
+    assert "not uploaded crypto/stale-A-ivory.pdf: no paper makes it any more" in capsys.readouterr().out
+
+
+def test_the_papers_make_a_pdf_per_format_and_theme():
+    keys = upload.expected_keys()
+    assert "crypto/bitcoin-A-ivory.pdf" in keys and "crypto/bitcoin-letter-blueprint.pdf" in keys
+    assert all(k.count("/") == 1 and k.endswith(".pdf") for k in keys)
+
+
 def test_purges_go_in_batches(site):
     names = [f"p{i:02}-A-ivory.pdf" for i in range(upload.PURGE_BATCH + 1)]
     for n in names:
@@ -126,14 +144,17 @@ def test_a_purge_that_fails_is_done_by_the_next_run(site):
     assert upload.PENDING_KEY not in site.bucket.objects
 
 
-def test_without_a_cloudflare_token_nothing_waits_for_a_purge(site, monkeypatch, capsys):
-    monkeypatch.delenv("CLOUDFLARE_API_TOKEN")
+def test_a_run_without_a_cloudflare_token_leaves_its_purge_to_one_that_has_it(site, monkeypatch, capsys):
     site.write("bitcoin-A-ivory.pdf", b"v1")
     site.run()
+    monkeypatch.delenv("CLOUDFLARE_API_TOKEN")
     site.write("bitcoin-A-ivory.pdf", b"v2")
     assert site.run() == []
+    assert json.loads(site.bucket.objects[upload.PENDING_KEY]) == [BITCOIN]
+    assert "wait in purge-pending.json" in capsys.readouterr().out
+    monkeypatch.setenv("CLOUDFLARE_API_TOKEN", "token")
+    assert site.run() == [[BITCOIN]]  # the file is unchanged since, and purged all the same
     assert upload.PENDING_KEY not in site.bucket.objects
-    assert "not purged from the Cloudflare cache" in capsys.readouterr().out
 
 
 def test_a_dry_run_writes_nothing(site, capsys):

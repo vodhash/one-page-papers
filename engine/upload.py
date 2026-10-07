@@ -11,17 +11,19 @@ R2_ACCESS_KEY_ID, R2_SECRET_ACCESS_KEY and R2_ENDPOINT (https://<account id>.r2.
 and R2_BUCKET (default onepagepapers-pdf). With CLOUDFLARE_API_TOKEN (Zone, Cache Purge) and
 CLOUDFLARE_ZONE_ID as well, the files that changed are purged from the cache of Cloudflare, which
 otherwise serves the old file until its cache runs out (a year, by the cache rule of the zone). Their
-URLs wait in the bucket (PENDING_KEY) from before the upload until the purge succeeds, so that a run
-that fails in between leaves them to the next one, which would otherwise find the files unchanged
-and purge nothing. A file of the bucket that dist/ no longer has is reported, never deleted: a link
-to it may still be around.
+URLs wait in the bucket (PENDING_KEY) from before the upload until a purge succeeds, so that a run
+that fails in between, or that runs without those credentials, leaves them to the next one, which
+would otherwise find the files unchanged and purge nothing. A file of the bucket that dist/ no longer has is reported, never deleted: a link
+to it may still be around. A PDF of dist/ or release/us/ that no paper makes any more, left there by
+an earlier build (a renamed paper, a theme dropped), is reported and not uploaded.
 
 Needs boto3 (requirements-deploy.txt), which only the deployment installs.
 """
 import argparse, hashlib, json, os, pathlib, sys, urllib.error, urllib.request
 
 sys.path.insert(0, str(pathlib.Path(__file__).resolve().parent))
-from papers import FILES_URL, ROOT
+from papers import FILES_URL, ROOT, discover, load_meta, pdf_name, themes_of
+from themes import FORMATS, US_FORMATS
 
 DIST = ROOT / "dist"
 US = ROOT / "release" / "us"  # build.py --us
@@ -37,6 +39,11 @@ def local_files():
     """{key in the bucket: path} of every PDF of dist/ and release/us/: their names never collide,
     since a file name holds its format."""
     return {f.relative_to(d).as_posix(): f for d in (DIST, US) for f in sorted(d.glob("*/*.pdf"))}
+
+def expected_keys():
+    """The keys of the PDFs that the papers make, in every format and in their themes."""
+    return {f"{p.category}/{pdf_name(p.slug, fmt, t)}" for p in discover()
+            for t in themes_of(load_meta(p.dir)) for fmt in [*FORMATS, *US_FORMATS]}
 
 def md5(path):
     return hashlib.md5(path.read_bytes()).hexdigest()
@@ -97,8 +104,8 @@ def can_purge():
 def purge(urls):
     zone = os.environ.get("CLOUDFLARE_ZONE_ID")
     if not can_purge():
-        print(f"not purged from the Cloudflare cache (no CLOUDFLARE_API_TOKEN or CLOUDFLARE_ZONE_ID): "
-              f"Cloudflare serves the old version of the {len(urls)} changed file(s) until its cache runs out")
+        print(f"not purged from the Cloudflare cache (no CLOUDFLARE_API_TOKEN or CLOUDFLARE_ZONE_ID): the "
+              f"{len(urls)} URL(s) wait in {PENDING_KEY} for a run that has them")
         return
     for i in range(0, len(urls), PURGE_BATCH):
         cloudflare(f"zones/{zone}/purge_cache", {"files": urls[i:i + PURGE_BATCH]})
@@ -108,7 +115,10 @@ def main():
     ap = argparse.ArgumentParser(description="Upload the PDFs of dist/ that changed to the bucket of FILES_URL.")
     ap.add_argument("--dry-run", action="store_true", help="say what would be uploaded, write nothing")
     a = ap.parse_args()
-    files = local_files()
+    files, expected = local_files(), expected_keys()
+    for k in sorted(set(files) - expected):
+        print(f"not uploaded {k}: no paper makes it any more")
+    files = {k: f for k, f in files.items() if k in expected}
     if not any(f.is_relative_to(DIST) for f in files.values()):
         sys.exit("error: dist/ holds no PDF, build them first (make)")
     if not any(f.is_relative_to(US) for f in files.values()):
@@ -128,7 +138,7 @@ def main():
     changed = [k for k, f in files.items() if remote.get(k) != md5(f)]
     # a new file was never in the cache of Cloudflare: only those that change need a purge
     urls = sorted(set(left) | {FILES_URL + k for k in changed if k in remote})
-    if urls and not a.dry_run and can_purge():  # kept until the purge has succeeded
+    if urls and not a.dry_run:  # kept until a purge succeeds, in this run or a later one
         s3.put_object(Bucket=bucket, Key=PENDING_KEY, Body=json.dumps(urls).encode(),
                       ContentType="application/json", CacheControl="no-store")
     for k in changed:
@@ -144,7 +154,7 @@ def main():
         if urls:
             print(f"would purge {len(urls)} URL(s) from the Cloudflare cache")
     elif urls:
-        purge(urls)  # exits when a call fails, leaving PENDING_KEY to the next run
+        purge(urls)  # exits when a call fails, and does nothing without credentials: PENDING_KEY stays
         if can_purge():
             s3.delete_object(Bucket=bucket, Key=PENDING_KEY)
 
