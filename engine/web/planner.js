@@ -186,16 +186,16 @@
     sum.innerHTML = html;
   }
 
-  // the downloads: the PDF of each poster in the format and theme chosen, or the zips of the US formats
+  // the downloads: the PDF of each poster in the format and theme chosen, and with a US format the
+  // zips of the US formats too
   function downloads(s) {
     var themeName = s.theme || 'first';
     list.classList.toggle('us', s.us);
     rows.forEach(function (row) {
       var theme = s.theme || row.getAttribute('data-light');
       Array.prototype.forEach.call(row.querySelectorAll('a[data-t]'), function (a) {
-        a.classList.toggle('on', !s.us && a.getAttribute('data-f') === s.file && a.getAttribute('data-t') === theme);
+        a.classList.toggle('on', a.getAttribute('data-f') === s.file && a.getAttribute('data-t') === theme);
       });
-      row.querySelector('.sdl-in-us').hidden = !s.us;
       var warn = row.querySelector('.sdl-warn');
       var min = row.getAttribute('data-min');
       var low = A_ORDER.indexOf(s.key) >= 0 && A_ORDER.indexOf(s.key) < A_ORDER.indexOf(min);
@@ -203,9 +203,7 @@
       warn.textContent = low ? 'At ' + s.key + ', its body text prints under 8 pt: print it from ' + min + '.' : '';
     });
     var fmt = A_ORDER.indexOf(s.key) >= 0 ? s.key + ', from the A PDF, which prints at A3 to A0' : s.label;
-    now.textContent = s.us
-      ? s.label + ': the US formats are in the zips of the latest release, below, with every theme.'
-      : fmt + ', in the ' + themeName + ' theme' + (s.theme ? '' : ' of each poster') + '.';
+    now.textContent = fmt + ', in the ' + themeName + ' theme' + (s.theme ? '' : ' of each poster') + '.';
   }
 
   var last = null;

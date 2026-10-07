@@ -532,9 +532,6 @@ a.pill:hover{color:var(--ink)}
 html:not(.js) .sdl a[data-t]:not(.d0){display:none}
 .js .sdl a[data-t]{display:none}
 .js .sdl a[data-t].on{display:inline-flex}
-.sdl-in-us{font-size:16.5px;font-style:italic;color:var(--ink2);white-space:nowrap}
-.sdl-in-us{flex:none}
-.sdl-in-us a{padding:11px 0;font-style:normal}
 .sdl-us{margin-top:32px}
 .sdl-us>p{margin-top:8px;font-size:17px;color:var(--ink2)}
 .sdl-zips{margin:12px 0 0;padding:0;list-style:none}

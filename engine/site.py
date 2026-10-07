@@ -85,7 +85,6 @@ SERIES_SLUG = re.compile(r"[a-z0-9]+(?:-[a-z0-9]+)*$")
 MIN_SERIES = 3  # posters in a series, at least
 # the sizes at which the A file prints (PRINT_SIZES), in mm, for the wall planner
 A_SIZES = {"A3": (297, 420), "A2": (420, 594), "A1": (594, 841), "A0": (841, 1189)}
-US_NAMES = {"letter": "Letter", "tabloid": "Tabloid", "18x24": "18\u00a0×\u00a024\u00a0in", "24x36": "24\u00a0×\u00a036\u00a0in"}
 A_W, A_H = FORMATS["A"]
 THUMB_H = round(600 * A_H / A_W)  # height of the 600 px preview, the size stated in the pages
 # family: the @fontsource package, its CSS files that declare the faces, and the characters it
@@ -1060,7 +1059,7 @@ def poster_page(p, posters, previews, series, extras=None):
         "PICTURE": picture(previews, p, root, "(min-width: 1200px) 480px, (min-width: 768px) 52vw, 86vw", eager=True),
         "SHOWN": shown, "FACTS": "\n".join(f"<div><dt>{k}</dt><dd>{v}</dd></div>" for k, v in facts),
         "PILLS": "\n".join(pills), "ROWS": "\n".join(rows), "US_ROWS": "\n".join(us_rows),
-        "ZIP": ZIP_URL.format(category=p.category),
+        "ZIP": ZIP_URL.format(category=p.category), "US_ZIP": US_ZIP_URL.format(category=p.category),
         "PRINT_NOTE": esc(f"Print from {m['min_print']}: the smallest A size at which the body text is at least "
                           f"{MIN_BODY} pt."),
         "EDITION": esc(src["edition"]), "RIGHTS": rights,
@@ -1120,7 +1119,7 @@ def series_page(s, series, previews, thumbs):
               ("Frames in centimetres", [
                   (f, format_name(f), *FORMATS[f], f, "") for f in FORMATS if f != "A"]),
               ("US, in inches", [
-                  (f, US_NAMES[f], *US_FORMATS[f], f, "") for f in US_FORMATS])]
+                  (f, format_name(f), *US_FORMATS[f], f, "") for f in US_FORMATS])]
     fmts = []
     for name, items in groups:
         pills = [radio("pl-format", k, label, k == "A2",
@@ -1138,20 +1137,20 @@ def series_page(s, series, previews, thumbs):
     else:
         themes = ('<input type="hidden" name="pl-theme" value="">'
                   '<p class="pl-glabel">No theme is common to all these posters: each one is shown in its first theme.</p>')
-    # the posters, with every PDF of dist/ (site.js shows those of the format and theme chosen)
+    # the posters, with every PDF, US formats included (planner.js shows those of the format and
+    # theme chosen; without it, those of dist/ in the first theme of each poster show)
     rows = []
     for i, p in enumerate(s.posters, 1):
         m = p.meta
         links = []
-        for fmt in FORMATS:
+        for fmt in [*FORMATS, *US_FORMATS]:
             for t in p.themes:
-                cls = " d0" if t == p.light else ""
+                cls = " d0" if t == p.light and fmt in FORMATS else ""
                 links.append(f'<a class="btn btn-line{cls}" data-f="{fmt}" data-t="{t}" href="{pdf_url(p.paper, fmt, t)}" '
                              f'type="application/pdf" {download_event(p.slug, fmt, t)}>{format_name(fmt)} · {t} '
                              '<span class="size">'
                              f'{size_text(pdf_file(p.paper, fmt, t))}</span></a>')
         srcs = "".join(f' data-src-{t}="{root}{previews[p.slug, t][600]}"' for t in p.themes)
-        us_zip = US_ZIP_URL.format(category=p.category)
         rows.append(
             f'<li data-slug="{p.slug}" data-min="{m["min_print"]}" data-light="{p.light}" '
             f'data-title="{esc(m["title"])}"{srcs}>\n'
@@ -1160,8 +1159,7 @@ def series_page(s, series, previews, thumbs):
             f'<h3 class="card-title"><a href="{root}{p.slug}/">{title(m["title"])}</a></h3>\n'
             f'<p class="by">{by_line(m)}</p>\n<p class="print">Print from {m["min_print"]}</p>\n'
             f'<p class="sdl-warn" hidden></p>\n</div>\n'
-            f'<div class="dl-links">{"".join(links)}'
-            f'<p class="sdl-in-us" hidden>In <a href="{us_zip}">{p.category}-us.zip</a>, below</p></div>\n</li>')
+            f'<div class="dl-links">{"".join(links)}</div>\n</li>')
     cats = list(dict.fromkeys(p.category for p in s.posters))
     us_zips = []
     for c in cats:
@@ -1669,7 +1667,7 @@ def print_page(posters, previews):
             for k, (w, h) in A_SIZES.items()]
     rows += [f'<tr><td>{format_name(f)}</td><td>{cm_text(w)} × {cm_text(h)}</td><td>Its own PDF</td></tr>'
              for f, (w, h) in FORMATS.items() if f != "A"]
-    rows += [f'<tr><td>{US_NAMES[f]}</td><td>{w / 10:.1f} × {h / 10:.1f}</td><td>In the US zip of the release</td></tr>'
+    rows += [f'<tr><td>{format_name(f)}</td><td>{w / 10:.1f} × {h / 10:.1f}</td><td>Its own PDF</td></tr>'
              for f, (w, h) in US_FORMATS.items()]
     main = substitute((WEB / "print.html").read_text(), {
         "NAME": NAME, "DATA": js, "SIZES": "\n".join(rows), "RELEASE": RELEASE_URL})
