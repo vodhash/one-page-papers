@@ -323,9 +323,12 @@ def poster_page(p, posters, previews, series, extras=None):
               else f'<p>{esc(lic["basis"])}</p>')
     if lic.get("note"):
         rights += f'\n<p>{esc(lic["note"])}</p>'
-    sizes = [f'<label class="pill"><input type="radio" name="wp-size" value="{n.lower()}" data-w="{w}" data-h="{h}"'
-             f'{" checked" if i == 0 else ""}>{n} <span class="count">{w}\u00a0×\u00a0{h}</span></label>'
-             for i, (n, w, h) in enumerate(WALLPAPERS)]
+    # the size of the screen, which site.js measures and checks, then the common ones
+    sizes = ['<label class="pill" hidden><input type="radio" name="wp-size" value="screen" data-screen>This screen '
+             '<span class="count"></span></label>']
+    sizes += [f'<label class="pill"><input type="radio" name="wp-size" value="{n.lower()}" data-w="{w}" data-h="{h}"'
+              f'{" checked" if i == 0 else ""}>{n} <span class="count">{w}\u00a0×\u00a0{h}</span></label>'
+              for i, (n, w, h) in enumerate(WALLPAPERS)]
     wthemes = [f'<label class="pill"><input type="radio" name="wp-theme" value="{t}"{" checked" if t == p.light else ""} '
                f'data-paper="{hexcolour(t, "paper")}" data-pdf="{wall_pdf_url(p.paper, t)}"><span class="swatch" '
                f'style="--sw:{hexcolour(t, "paper")};--sa:{hexcolour(t, "acc")}" aria-hidden="true"></span>{t}</label>'

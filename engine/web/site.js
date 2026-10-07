@@ -281,16 +281,33 @@
   }
 
   // The wallpaper of a poster: its A PDF in the theme chosen, drawn by pdf.js (loaded on the first
-  // request) on a canvas of the size of the screen, filled with the paper colour of the theme, the
-  // poster centred and as large as a margin allows. Nothing is sent anywhere: the PNG is made here.
+  // request) on a canvas of the size chosen, This screen being that of the screen in device pixels,
+  // filled with the paper colour of the theme, the poster centred and as large as a margin allows.
+  // Nothing is sent anywhere: the PNG is made here. Only the PDF of the theme last asked for is kept,
+  // and every canvas is emptied once used, so that a phone that makes several does not run out of
+  // the memory its browser gives to canvases.
   function wallpaper() {
     var wall = document.querySelector('[data-wallpaper]');
     if (!wall || !window.HTMLCanvasElement || !window.Promise || !window.URL) return;
+    var MAX_PIXELS = 16777216;  // the largest canvas that Safari draws on iOS
     var form = wall.querySelector('.wp-form');
     var status = wall.querySelector('.wp-status');
     var result = wall.querySelector('.wp-result');
     var button = form.querySelector('button[type=submit]');
     var lib = null, docs = {}, blobUrl = null, busy = false;
+    var screenSize = form.querySelector('input[data-screen]');
+    if (screenSize && window.screen && screen.width && screen.height) {
+      var ratio = window.devicePixelRatio || 1;
+      var w = Math.round(screen.width * ratio), h = Math.round(screen.height * ratio);
+      var fit = Math.min(1, Math.sqrt(MAX_PIXELS / (w * h)));
+      w = Math.floor(w * fit);
+      h = Math.floor(h * fit);
+      screenSize.setAttribute('data-w', w);
+      screenSize.setAttribute('data-h', h);
+      screenSize.parentNode.querySelector('.count').textContent = w + '\u00a0\u00d7\u00a0' + h;
+      screenSize.parentNode.hidden = false;
+      screenSize.checked = true;
+    }
     var pdfjs = function () {
       if (!lib) {
         lib = import(new URL('pdfjs/pdf.min.mjs', assets).href).then(function (m) {
@@ -307,6 +324,11 @@
       return function (e) { throw { what: what, error: e }; };
     };
     var load = function (url) {
+      Object.keys(docs).forEach(function (other) {
+        if (other === url) return;
+        docs[other].then(function (doc) { doc.loadingTask.destroy(); }, function () { /* it never loaded */ });
+        delete docs[other];
+      });
       if (!docs[url]) {
         // cache: reload, since a PDF opened from its button may be in the cache of the browser
         // without the Access-Control-Allow-Origin header, which the bucket only sends to a request
@@ -354,7 +376,10 @@
         sheet.width = Math.floor(viewport.width);
         sheet.height = Math.floor(viewport.height);
         return page.render({ canvas: sheet, canvasContext: sheet.getContext('2d'), viewport: viewport,
-          background: paper }).promise.then(function () { return sheet; });
+          background: paper }).promise.then(function () {
+          page.cleanup();
+          return sheet;
+        });
       }).then(function (sheet) {
         var canvas = document.createElement('canvas');
         canvas.width = W;
@@ -363,8 +388,12 @@
         ctx.fillStyle = paper;
         ctx.fillRect(0, 0, W, H);
         ctx.drawImage(sheet, Math.round((W - sheet.width) / 2), Math.round((H - sheet.height) / 2));
+        sheet.width = sheet.height = 0;
         return new Promise(function (resolve, reject) {
-          canvas.toBlob(function (b) { if (b) resolve(b); else reject(new Error('toBlob')); }, 'image/png');
+          canvas.toBlob(function (b) {
+            canvas.width = canvas.height = 0;
+            if (b) resolve(b); else reject(new Error('toBlob'));
+          }, 'image/png');
         });
       }).then(function (blob) {
         if (blobUrl) URL.revokeObjectURL(blobUrl);
