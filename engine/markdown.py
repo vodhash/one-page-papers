@@ -16,7 +16,8 @@ Blocks (separated by blank lines):
   :::                        by side on a grid of N columns, one section per cell, in order
   $$ ... $$                  display math (KaTeX), may span several lines
   ```lang ... ```            code block, may contain blank lines
-  1. item                    ordered list (after "## References": reference list)
+  1. item                    ordered list (after "## References": reference list), numbered
+                             from its first item, so that a list split by blank lines goes on
   - item                     unordered list
   (1) text / (2a) text       labelled items; a label ending with a letter makes a sub-item,
                              kept in the same column as the item before it
@@ -170,13 +171,17 @@ class Renderer:
             elif RAW.match(b):
                 out.append(b)
             elif re.match(r'^\d+\.\s', b):
+                # a list goes on from the number of its first item, so that the items of a list
+                # split by blank lines, one block each, keep the numbers of the source
+                first = int(re.match(r'\d+', b).group())
                 items = re.split(r'\n(?=\d+\.\s)', b)
                 items = [self.inline(re.sub(r'^\d+\.\s+', '', x), line) for x in items]
                 if self.in_refs:
                     out.append('<ol class="refs">' + ''.join(
-                        f'<li><span>[{n+1}]</span>{x}</li>' for n, x in enumerate(items)) + '</ol>')
+                        f'<li><span>[{n}]</span>{x}</li>' for n, x in enumerate(items, first)) + '</ol>')
                 else:
-                    out.append('<ol>' + ''.join(f'<li>{x}</li>' for x in items) + '</ol>')
+                    start = f' start="{first}"' if first != 1 else ''
+                    out.append(f'<ol{start}>' + ''.join(f'<li>{x}</li>' for x in items) + '</ol>')
             elif re.match(r'^-\s', b):
                 items = re.split(r'\n(?=-\s)', b)
                 out.append('<ul>' + ''.join(f'<li>{self.inline(x[2:], line)}</li>' for x in items) + '</ul>')
