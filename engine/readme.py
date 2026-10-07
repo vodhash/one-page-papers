@@ -5,10 +5,10 @@
     python3 engine/readme.py --check    # fail when README.md is not up to date
 """
 import argparse, pathlib, re, sys
-import yaml
 
 sys.path.insert(0, str(pathlib.Path(__file__).resolve().parent))
-from papers import CATEGORIES, FILES_URL, GENERATED_IN_REPO, ROOT, SHOWCASE, SITE_URL, discover
+from papers import (CATEGORIES, GENERATED_IN_REPO, ROOT, SHOWCASE, SITE_URL, BuildError, discover, load_meta,
+                    pdf_url, themes_of)
 from themes import FORMATS, THEMES
 
 START, END = "<!-- catalog:start -->", "<!-- catalog:end -->"
@@ -28,7 +28,7 @@ def cell(text):
 
 def pdf(paper, theme):
     """The A PDF of a theme, as the CI uploads it: git does not keep the PDFs."""
-    return f"{FILES_URL}{paper.category}/{paper.slug}-A-{theme}.pdf"
+    return pdf_url(paper, "A", theme)
 
 def page(paper):
     """The page of a poster on the site, with every format and theme."""
@@ -41,7 +41,7 @@ def pending():
 
 def catalog():
     papers = discover()
-    metas = {p: yaml.safe_load((p.dir / "meta.yaml").read_text()) for p in papers}
+    metas = {p: load_meta(p.dir) for p in papers}  # checked, as build.py checks them
     show = next((p for p in papers if p.slug == SHOWCASE), None)
     if not show:
         raise ValueError(f"the paper {SHOWCASE}, shown in every theme above the catalog, does not exist")
@@ -66,7 +66,7 @@ def catalog():
                 "|---|---|---|---|---|---|"]
         for p in mine:
             m = metas[p]
-            themes = [t for t in THEMES if t in m.get("themes", THEMES)]  # the first one makes the thumbnail
+            themes = themes_of(m)  # the first one makes the thumbnail
             thumb = f'<a href="{page(p)}"><img src="docs/{cat}/{p.slug}.png" width="90" alt=""></a>'
             year = year_text(m['year']).replace(' ', '&nbsp;')  # "c. 400 BC" on one line in its narrow column
             links = "&nbsp;·&nbsp;".join(f"[{t}]({pdf(p, t)})" for t in themes)  # on one line
@@ -106,7 +106,7 @@ def main():
         sys.exit(f"error: README.md needs one {START} and one {END}")
     try:
         new = text[:text.index(START)] + catalog() + text[text.index(END) + len(END):]
-    except ValueError as e:
+    except (ValueError, BuildError) as e:
         sys.exit(f"error: {e}")
     if a.check:
         if new != text:

@@ -14,8 +14,7 @@ in a cache, build/cache/ by default (--cache), one entry per paper and format, k
 the paper and on those of the engine (ENGINE_FILES): an unchanged poster is copied from there instead
 of being laid out again.
 """
-import argparse, base64, concurrent.futures, functools, hashlib, importlib.util, io, json, os, pathlib, re, shutil, subprocess, sys, traceback
-import yaml
+import argparse, base64, concurrent.futures, dataclasses, functools, hashlib, importlib.util, io, json, os, pathlib, re, shutil, subprocess, sys, traceback
 from html import unescape
 from PIL import Image
 
@@ -23,29 +22,18 @@ ROOT = pathlib.Path(__file__).resolve().parent.parent
 ENGINE = ROOT / "engine"
 sys.path.insert(0, str(ENGINE))
 import markdown
-from papers import SHOWCASE, discover
+from papers import (MIN_BODY, PRINT_SIZES, SHOWCASE, BuildError, Paper, discover, load_meta, pdf_name, rel,
+                    themes_of)
 from themes import THEMES, FORMATS, US_FORMATS, colour, dark
 from onepage_engine import FontLoadError, PX, chromium, design_height, print_pdf, system_fonts, to_format
 from onepage_engine import load as load_url
 
 DESIGN_W = 594  # every poster is laid out 594 mm wide, then scaled to the target format
 BUNDLED_FONTS = ("EBGaramond", "JetBrainsMono", "KaTeX_")  # PostScript names of the node_modules fonts
-META_KEYS = {"title", "title_html", "title_size", "kicker", "author", "byline", "emblem", "abstract",
-             "abstract_label", "numbered", "columns", "header_scale", "font_range", "max_font", "layout",
-             "footer", "lang", "license", "themes", "hero_height", "year", "authors", "min_print", "source",
-             "summary", "contributors",
-             "commercial", "commercial_basis"}
-LICENSE_KEYS = {"text", "holder", "notice", "basis", "note"}
-PRINT_SIZES = ("A3", "A2", "A1", "A0")  # the A file prints at each of them
-MIN_BODY = 8  # pt: min_print is the smallest size at which the body prints at least this large
 # font_range is tuned on the formats of dist/: a US format, whose ratio differs, may fit the text
 # only below its minimum (Letter is squatter than A), or leave space above its maximum (Tabloid is
 # taller); there the minimum falls to this size and the maximum is a ceiling, not a warning
 US_MIN_FONT = 4
-# centered: short texts, one column by default, vertically centered;
-# hero: the first image of the text across the top of the page, the text in columns below
-LAYOUTS = ("columns", "centered", "hero")
-WARNINGS = []
 SIZES = {**FORMATS, **US_FORMATS}  # every format the engine prints, (width, height) in mm
 
 # the files of the engine that a poster depends on: a change to one of them builds every poster again
@@ -58,70 +46,9 @@ def out_dir(paper, fmt):
     """Where the PDFs of a format go: dist/ for the versioned formats, release/us/ for the others."""
     return ROOT / ("dist" if fmt in FORMATS else "release/us") / paper.category
 
-class BuildError(Exception):
-    pass
-
-def warn(msg):
-    WARNINGS.append(msg)
-    print(f"warning: {msg}", file=sys.stderr)
-
-def rel(path):
-    return path.relative_to(ROOT)
-
-def load_meta(paper_dir):
-    path = paper_dir / "meta.yaml"
-    try:
-        m = yaml.safe_load(path.read_text()) or {}
-    except yaml.YAMLError as e:
-        raise BuildError(f"{rel(path)}: {' '.join(str(e).split())}") from None
-    if not isinstance(m, dict):
-        raise BuildError(f"{rel(path)}: expected a mapping of keys")
-    errors = [f"unknown key '{k}'" for k in sorted(set(m) - META_KEYS)]
-    errors += [f"missing '{k}'" for k in ("title", "summary", "license", "year", "authors", "min_print", "source")
-               if not m.get(k)]
-    if not isinstance(m.get("commercial"), bool) or not isinstance(m.get("commercial_basis"), str) \
-            or not m["commercial_basis"].strip():
-        errors.append("commercial must be true or false, whether the licenses of the text and of every image "
-                      "allow selling prints, with the reason in commercial_basis")
-    if m.get("summary") and not (isinstance(m["summary"], str) and len(m["summary"].split()) <= 20
-                                 and m["summary"].rstrip().endswith(".") and "\n" not in m["summary"].strip()):
-        errors.append("summary must be one sentence of 20 words at most")
-    if m.get("authors") and not (isinstance(m["authors"], list) and all(isinstance(a, str) for a in m["authors"])):
-        errors.append("authors must be a list of names")
-    handles = m.get("contributors", [])
-    if not (isinstance(handles, list) and all(isinstance(h, str) and re.fullmatch(r"[A-Za-z0-9](?:-?[A-Za-z0-9]){0,38}", h)
-                                             for h in handles)):
-        errors.append("contributors must be a list of GitHub user names, without @")
-    if m.get("year") and not isinstance(m["year"], (int, str)):
-        errors.append("year must be a number, or a text such as \"c. 400 BC\"")
-    if m.get("min_print") and m["min_print"] not in PRINT_SIZES:
-        errors.append(f"min_print must be one of {', '.join(PRINT_SIZES)}")
-    src = m.get("source")
-    if src and not (isinstance(src, dict) and set(src) == {"url", "retrieved", "edition"} and all(src.values())):
-        errors.append("source needs exactly url, retrieved (a date) and edition")
-    lic = m.get("license")
-    if lic and not (isinstance(lic, dict) and lic.get("text") and (lic.get("notice") or lic.get("basis"))
-                    and set(lic) <= LICENSE_KEYS):
-        errors.append("license needs text, and either notice (the license or permission, word for word) or "
-                      f"basis (why the text is in the public domain); its keys are {', '.join(sorted(LICENSE_KEYS))}")
-    if len(m.get("footer") or []) > 3:
-        errors.append("footer takes at most 3 cells")
-    fr = m.get("font_range", [8, 40])
-    if not (isinstance(fr, list) and len(fr) == 2 and all(isinstance(v, (int, float)) for v in fr)
-            and 0 < fr[0] < fr[1]):
-        errors.append("font_range must be [min, max] in pt")
-    elif not isinstance(m.get("max_font", fr[1]), (int, float)) or m.get("max_font", fr[1]) <= fr[0]:
-        errors.append("max_font must be a size in pt above the minimum of font_range")
-    if m.get("layout", "columns") not in LAYOUTS:
-        errors.append(f"layout must be one of {', '.join(LAYOUTS)}")
-    themes = m.get("themes", list(THEMES))
-    if not (isinstance(themes, list) and themes and set(themes) <= set(THEMES)):
-        errors.append(f"themes must be a list of some of {', '.join(THEMES)}")
-    if not isinstance(m.get("hero_height", 50), (int, float)) or not 10 <= m.get("hero_height", 50) <= 90:
-        errors.append("hero_height must be a percentage of the page height, from 10 to 90")
-    if errors:
-        raise BuildError(f"{rel(path)}: {'; '.join(errors)}")
-    return m
+def page_height(fmt):
+    """The height of the page of a format, in mm: DESIGN_W wide, in the ratio of the format."""
+    return design_height(DESIGN_W, SIZES[fmt])
 
 def load_figures(paper_dir):
     f = paper_dir / "figures.py"
@@ -301,23 +228,21 @@ def fits(page, fs):
     """Whether the text fits on the loaded page at body size fs (pt)."""
     return page.evaluate(FITS_JS, fs)
 
-def best_font(page, lo, hi, what, capped):
+def best_font(page, lo, hi, what):
     """Largest body size at which the text still fits on the loaded page, in whole hundredths
-    of a point. When capped, hi is a deliberate ceiling and reaching it is not a problem.
-    Chromium lays a size out with the font of a previous size less than about 0.01 px away,
-    so candidates that are not on a 0.01 pt grid can be measured with the wrong glyph widths."""
+    of a point, and whether that is hi: then the text may leave space, unless hi is a deliberate
+    ceiling. Chromium lays a size out with the font of a previous size less than about 0.01 px
+    away, so candidates that are not on a 0.01 pt grid can be measured with the wrong glyph widths."""
     lo, hi = round(lo * 100), round(hi * 100)
     if not fits(page, lo / 100):
         raise BuildError(f"{what}: the text overflows even at {lo / 100} pt, lower font_range in meta.yaml")
     if fits(page, hi / 100):
-        if not capped:
-            warn(f"{what}: the text still fits at {hi / 100} pt and leaves space, raise font_range in meta.yaml")
-        return hi / 100
+        return hi / 100, True
     while hi - lo > 1:
         mid = (lo + hi) // 2
         if fits(page, mid / 100): lo = mid
         else: hi = mid
-    return lo / 100
+    return lo / 100, False
 
 def settle(browser, viewport, tmp, html, fs, hi, what):
     """The largest size on the 0.01 pt grid, from fs up or down, at which the text fits a page
@@ -367,10 +292,6 @@ def printed(fmt, fs):
     if fmt == "A":
         return ", ".join(f"A{n} {fs * 2 ** ((1 - n) / 2):.1f}" for n in range(4)) + " pt printed"
     return f"{fs * SIZES[fmt][0] / DESIGN_W:.1f} pt printed"
-
-def themes_of(m):
-    """The themes of a paper, in the order of THEMES: the first one makes its thumbnail."""
-    return [t for t in THEMES if t in m.get("themes", THEMES)]
 
 def strays(papers):
     """Previews of docs/ that no paper makes, such as the one of a renamed paper."""
@@ -423,144 +344,183 @@ class Cache:
             if old != self.dir:
                 shutil.rmtree(old, ignore_errors=True)
 
-def build(paper, formats, themes, page, previews, check, cache_root=None):
-    """Writes the PDFs and the previews of a paper. With check, writes nothing and fails when a
-    PDF of dist/ differs from the one it would write or when a preview is missing: previews
+class Log:
+    """What the build of one format says: its line, and its warnings, also added to sink, the
+    warnings of the whole build. Both are printed, and kept in the cache entry of the format, so
+    that a build taken from the cache says them again."""
+    def __init__(self, sink):
+        self.line, self.warnings, self.sink = "", [], sink
+
+    def say(self, line):
+        self.line = line
+        print(line)
+
+    def warn(self, msg):
+        self.warnings.append(msg)
+        self.sink.append(msg)
+        print(f"warning: {msg}", file=sys.stderr)
+
+@dataclasses.dataclass
+class Job:
+    """A paper being built, and what its formats share."""
+    paper: Paper
+    meta: dict
+    themes: list        # the themes to print, in the order of THEMES
+    allowed: list       # every theme of the paper: the first one makes its thumbnail
+    previews: bool      # whether to make the previews of docs/
+    check: bool         # build as the CI does: a missing preview is an error, and docs/ is left alone
+    tmp: pathlib.Path   # the page being laid out, and the PDF that Chromium prints of it, per paper and
+    raw: pathlib.Path   # per process, so that two builds of the same paper at once cannot mix their files
+    lo: float           # the bounds of the body size, in pt
+    hi: float
+    capped: bool        # whether hi is a ceiling that the text may reach (max_font, or a centered layout)
+    warnings: list      # the warnings of the whole build, where the Log of each format adds its own
+
+    @functools.cached_property
+    def html(self):
+        """html(theme, page height in mm, body size in pt), the page of the poster: made for the
+        first format that is not in the cache, since it runs figures.py and KaTeX."""
+        return poster(self.paper.dir, self.meta)
+
+    def preview_names(self, fmt, theme):
+        """The previews that the PDF of a theme makes, as {name in the cache: path in docs/}: the
+        thumbnail of the catalog, and the showcase of the themes above it."""
+        if not self.previews or fmt != "A":
+            return {}
+        p = self.paper
+        out = {"preview.png": ROOT / "docs" / p.category / f"{p.slug}.png"} if theme == self.allowed[0] else {}
+        if p.slug == SHOWCASE:
+            out[f"theme-{theme}.png"] = ROOT / "docs" / "themes" / f"{theme}.png"
+        return out
+
+    def need_preview(self, png):
+        """With check, a preview missing from docs/ is an error: the CI does not write docs/."""
+        if self.check and not png.exists():
+            raise BuildError(f"{rel(png)}: missing, run `make {self.paper.slug}`")
+
+def build(paper, a, page, warnings):
+    """Writes the PDFs and the previews of a paper, in the formats and themes of a (the options of
+    the command line: formats, themes, no_previews, check, cache), and adds its warnings to
+    warnings. With check, leaves docs/ alone and fails when a preview is missing from it: previews
     are only checked for presence, since screenshots may differ from one machine to another."""
-    paper_dir, slug = paper.dir, paper.slug
-    m = load_meta(paper_dir)
+    m = load_meta(paper.dir)
     allowed = themes_of(m)
-    if slug == SHOWCASE and allowed != list(THEMES):
-        raise BuildError(f"{rel(paper_dir / 'meta.yaml')}: {slug} shows every theme in the README, "
+    if paper.slug == SHOWCASE and allowed != list(THEMES):
+        raise BuildError(f"{rel(paper.dir / 'meta.yaml')}: {paper.slug} shows every theme in the README, "
                          "so it cannot restrict its themes")
-    themes = [t for t in themes if t in allowed]
+    themes = [t for t in a.themes if t in allowed]
     if not themes:
-        print(f"{slug}: skipped, its themes are {', '.join(allowed)}")
+        print(f"{paper.slug}: skipped, its themes are {', '.join(allowed)}")
         return
-    html = poster(paper_dir, m)
-    key = paper_key(paper_dir) if cache_root else None
-    # per paper and per process, so that two builds of the same paper at once cannot mix their files
-    tmp, raw = (ROOT / "build" / f"{slug}-{os.getpid()}{ext}" for ext in (".html", ".pdf"))
+    key = paper_key(paper.dir) if a.cache else None
+    tmp, raw = (ROOT / "build" / f"{paper.slug}-{os.getpid()}{ext}" for ext in (".html", ".pdf"))
     tmp.parent.mkdir(exist_ok=True)
     lo, hi = m.get("font_range", [8, 40])
-    hi = m.get("max_font", hi)
-    capped = "max_font" in m or m.get("layout") == "centered"
+    job = Job(paper, m, themes, allowed, not a.no_previews, a.check, tmp, raw, lo, m.get("max_font", hi),
+              "max_font" in m or m.get("layout") == "centered", warnings)
     try:
-        for fmt in formats:
-            cache = Cache(cache_root, slug, fmt, key)
-            if not from_cache(paper, fmt, themes, allowed, previews, check, cache):
-                build_format(paper, m, fmt, themes, allowed, page, html, tmp, raw, lo, hi, capped, previews, check,
-                             cache)
+        for fmt in a.formats:
+            cache = Cache(a.cache, paper.slug, fmt, key)
+            if not from_cache(job, fmt, cache):
+                build_format(job, fmt, page, cache)
     finally:
         tmp.unlink(missing_ok=True)
         raw.unlink(missing_ok=True)
 
-def preview_names(paper, fmt, th, allowed, previews):
-    """The previews that the PDF of a theme makes, as {name in the cache: path in docs/}: the
-    thumbnail of the catalog, and the showcase of the themes above it."""
-    if not previews or fmt != "A":
-        return {}
-    out = {"preview.png": ROOT / "docs" / paper.category / f"{paper.slug}.png"} if th == allowed[0] else {}
-    if paper.slug == SHOWCASE:
-        out[f"theme-{th}.png"] = ROOT / "docs" / "themes" / f"{th}.png"
-    return out
-
-def from_cache(paper, fmt, themes, allowed, previews, check, cache):
-    """Copies the PDFs of a format from the cache, when it holds all of them. A preview is only
-    written when docs/ lacks it, so that one made on another machine keeps its file."""
-    slug = paper.slug
-    pdfs = {f"{slug}-{fmt}-{th}.pdf": th for th in themes}
-    pngs = {n: png for th in themes for n, png in preview_names(paper, fmt, th, allowed, previews).items()}
+def from_cache(job, fmt, cache):
+    """Copies the PDFs of a format from the cache, when it holds all of them, and says again what
+    the build that made them said. A preview is only written when docs/ lacks it, so that one made
+    on another machine keeps its file."""
+    pdfs = [pdf_name(job.paper.slug, fmt, th) for th in job.themes]
+    pngs = {n: png for th in job.themes for n, png in job.preview_names(fmt, th).items()}
     hit = cache.get([*pdfs, *pngs, "log.json"])
     if not hit:
         return False
-    log = json.loads(hit["log.json"].read_text())
-    print(f"{log['line']} (cached)")
-    for w in log["warnings"]:
-        warn(w)
-    out = out_dir(paper, fmt)
+    saved = json.loads(hit["log.json"].read_text())
+    print(f"{saved['line']} (cached)")
+    log = Log(job.warnings)
+    for w in saved["warnings"]:
+        log.warn(w)
+    out = out_dir(job.paper, fmt)
     out.mkdir(parents=True, exist_ok=True)
     for name in pdfs:
         shutil.copyfile(hit[name], out / name)
     for name, png in pngs.items():
-        if check and not png.exists():
-            raise BuildError(f"{rel(png)}: missing, run `make {slug}`")
+        job.need_preview(png)
         if not png.exists():
             png.parent.mkdir(parents=True, exist_ok=True)
             shutil.copyfile(hit[name], png)
     return True
 
-def build_format(paper, m, fmt, themes, allowed, page, html, tmp, raw, lo, hi, capped, previews, check, cache):
+def build_format(job, fmt, page, cache):
     """Settles the body size of one format, then prints its PDFs (print_format) and keeps them in
-    the cache."""
-    slug = paper.slug
-    W, H = SIZES[fmt]
-    height = design_height(DESIGN_W, (W, H))
+    the cache, with every warning of the format."""
+    what, log = f"{job.paper.slug} {fmt}", Log(job.warnings)
+    height = page_height(fmt)
     viewport = {"width": round(DESIGN_W * PX), "height": round(height * PX)}
     page.set_viewport_size(viewport)
     us = fmt in US_FORMATS
-    low = min(lo, US_MIN_FONT) if us else lo
-    # every warning from here on goes into the cache entry, so that a cached build gives it again
-    warned = len(WARNINGS)
-    load(page, tmp, html(themes[0], height, low))
-    fs = best_font(page, low, hi, f"{slug} {fmt}", capped or us)
-    fs, fresh = settle(page.context.browser, viewport, tmp, lambda size: html(themes[0], height, size),
-                       fs, hi, f"{slug} {fmt}")
+    low = min(job.lo, US_MIN_FONT) if us else job.lo
+    capped = job.capped or us
+    load(page, job.tmp, job.html(job.themes[0], height, low))
+    fs, at_max = best_font(page, low, job.hi, what)
+    if at_max and not capped:
+        log.warn(f"{what}: the text still fits at {fs} pt and leaves space, raise font_range in meta.yaml")
+    fs, fresh = settle(page.context.browser, viewport, job.tmp, lambda size: job.html(job.themes[0], height, size),
+                       fs, job.hi, what)
     try:
-        line, made = print_format(paper, m, fmt, fs, themes, allowed, fresh, html, tmp, raw, out_dir(paper, fmt),
-                                  (capped or us) and fs == hi, previews, check)
+        made = print_format(job, fmt, fs, fresh, capped and fs == job.hi, log)
     finally:
         fresh.context.close()
-    cache.put({**made, "log.json": json.dumps({"line": line, "warnings": WARNINGS[warned:]}).encode()})
+    cache.put({**made, "log.json": json.dumps({"line": log.line, "warnings": log.warnings}).encode()})
 
-def print_format(paper, m, fmt, fs, themes, allowed, page, html, tmp, raw, out, at_cap, previews, check):
+def print_format(job, fmt, fs, page, at_cap, log):
     """Prints the PDFs of one format, and the previews, on the fresh page that settled its size.
-    With check, a missing preview is an error and docs/ is left alone. Returns the line printed
-    about the format and what was made, {name in the cache: bytes}."""
-    slug, paper_dir = paper.slug, paper.dir
-    W, H = SIZES[fmt]
-    height = design_height(DESIGN_W, (W, H))
+    With check, a missing preview is an error and docs/ is left alone. Returns what was made,
+    {name in the cache: bytes}."""
+    paper, m = job.paper, job.meta
+    slug = paper.slug
+    height = page_height(fmt)
     cap = ", the cap" if at_cap else ""
-    line = f"{slug} {fmt}: body {fs:.2f} pt at design size{cap} ({printed(fmt, fs)})"
-    print(line)
+    log.say(f"{slug} {fmt}: body {fs:.2f} pt at design size{cap} ({printed(fmt, fs)})")
     made = {}
     if fmt == "A" and min_print(fs) != m["min_print"]:
-        raise BuildError(f"{rel(paper_dir / 'meta.yaml')}: min_print must be {min_print(fs) or 'larger than A0'}, "
+        raise BuildError(f"{rel(paper.dir / 'meta.yaml')}: min_print must be {min_print(fs) or 'larger than A0'}, "
                          f"the smallest size at which the body of {fs:.2f} pt prints at {MIN_BODY} pt or more")
-    for i, th in enumerate(themes):
-        load(page, tmp, html(th, height, fs))
+    out = out_dir(paper, fmt)
+    for i, th in enumerate(job.themes):
+        load(page, job.tmp, job.html(th, height, fs))
         if not fits(page, fs):
             raise BuildError(f"{slug} {fmt} {th}: the text overflows at {fs} pt")
-        print_pdf(page, DESIGN_W, height, path=raw)
+        print_pdf(page, DESIGN_W, height, path=job.raw)
         if i == 0:  # themes only change colours, every PDF uses the same fonts
-            for font, chars in system_fonts(raw, BUNDLED_FONTS).items():
-                warn(f"{slug} {fmt}: {''.join(sorted(chars))} drawn with {font}, a system font, so the "
-                     "PDF depends on the machine; give these characters a bundled font in style.css")
-        dst = out / f"{slug}-{fmt}-{th}.pdf"
-        pdf = to_format(raw, (W, H), title=m["title"], author=m.get("author", ""), creator="one-page-papers")
+            for font, chars in system_fonts(job.raw, BUNDLED_FONTS).items():
+                log.warn(f"{slug} {fmt}: {''.join(sorted(chars))} drawn with {font}, a system font, so the "
+                         "PDF depends on the machine; give these characters a bundled font in style.css")
+        dst = out / pdf_name(slug, fmt, th)
+        pdf = to_format(job.raw, SIZES[fmt], title=m["title"], author=m.get("author", ""), creator="one-page-papers")
         out.mkdir(parents=True, exist_ok=True)
         dst.write_bytes(pdf)
         made[dst.name] = pdf
         print("  ", rel(dst))
-        for name, png in preview_names(paper, fmt, th, allowed, previews).items():
-            if check and not png.exists():
-                raise BuildError(f"{rel(png)}: missing, run `make {slug}`")
+        for name, png in job.preview_names(fmt, th).items():
+            job.need_preview(png)
             made[name] = preview(page)
-            if not check:
+            if not job.check:
                 save_preview(png, made[name])
-    return line, made
+    return made
 
 def build_all(targets, a):
     """Builds the papers of targets in one browser. Returns the slugs that failed and the warnings.
     A paper that fails, whatever the reason (a figures.py that raises, a corrupt image, a browser
     that times out), is reported and the others are built all the same."""
-    failed, done = [], set()
+    failed, done, warnings = [], set(), []
     try:
         with chromium() as browser:
             page = browser.new_page()
             for paper in targets:
                 try:
-                    build(paper, a.formats, a.themes, page, not a.no_previews, a.check, a.cache)
+                    build(paper, a, page, warnings)
                 except BuildError as e:
                     failed.append(paper.slug)
                     print(f"error: {e}", file=sys.stderr, flush=True)
@@ -577,7 +537,7 @@ def build_all(targets, a):
         failed += left
         print(f"error: the browser failed ({type(e).__name__}: {e}), {len(left)} paper(s) not built: "
               f"{', '.join(left)}", file=sys.stderr, flush=True)
-    return failed, list(WARNINGS)
+    return failed, warnings
 
 def main():
     try:
@@ -622,12 +582,11 @@ def main():
         with concurrent.futures.ProcessPoolExecutor(jobs) as ex:
             done = list(ex.map(build_all, [targets[i::jobs] for i in range(jobs)], [a] * jobs))
         failed, warnings = [f for d in done for f in d[0]], [w for d in done for w in d[1]]
-    WARNINGS[:] = warnings
     stray = strays(papers) if a.check and not a.names and not a.us else []
     for f in stray:
         print(f"error: {rel(f)}: made by no paper, remove it", file=sys.stderr)
-    if failed or stray or (a.check and WARNINGS):
-        sys.exit(f"{len(failed)} paper(s) failed, {len(stray)} stray file(s), {len(WARNINGS)} warning(s)")
+    if failed or stray or (a.check and warnings):
+        sys.exit(f"{len(failed)} paper(s) failed, {len(stray)} stray file(s), {len(warnings)} warning(s)")
 
 if __name__ == "__main__":
     main()
