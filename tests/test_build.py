@@ -251,3 +251,28 @@ def test_multiply_melts_white_into_the_paper_and_keeps_black(black_and_white):
 def test_math_in_the_abstract_is_refused_rather_than_left_raw(tmp_path):
     with pytest.raises(BuildError, match="abstract cannot hold math"):
         load_meta(make_paper(tmp_path, VALID + "abstract: The energy \\\\( E = mc^2 \\\\).\n").dir)
+
+
+def test_the_caption_of_the_hero_image_gets_its_math(tmp_path, monkeypatch):
+    monkeypatch.setattr(build, "katex", lambda exprs: [f"<k>{e['tex']}</k>" for e in exprs])
+    paper = make_paper(tmp_path, VALID + "layout: hero\n",
+                       text='::: image plate.png caption="The curve \\( y = x^2 \\)"\n\nText with \\( a + b \\).')
+    Image.new("RGB", (40, 20), "white").save(paper.dir / "plate.png")
+    page = build.poster(paper.dir, load_meta(paper.dir))("ivory", 841, 10)
+    assert "The curve <k>y = x^2</k>" in page and "Text with <k>a + b</k>" in page
+    assert "<!--MATH:" not in page
+
+
+def test_a_cache_entry_that_vanishes_while_it_is_read_is_laid_out_again(tmp_path, monkeypatch, no_browser):
+    a, page = no_browser
+    paper = make_paper(tmp_path)
+    build.build(paper, a, page, [])
+
+    def vanished(src, dst):  # another build sharing the cache removed the entry
+        raise FileNotFoundError(src)
+    monkeypatch.setattr(build.shutil, "copyfile", vanished)
+    laid_out, original = [], build.build_format
+    monkeypatch.setattr(build, "build_format", lambda job, fmt, *rest: laid_out.append(fmt) or original(job, fmt, *rest))
+    warnings = []
+    build.build(paper, a, page, warnings)
+    assert laid_out == ["A"] and len(warnings) == 1  # said once, by the new layout, not by the cache as well

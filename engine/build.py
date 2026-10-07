@@ -189,6 +189,8 @@ def poster(paper_dir, m):
         raise BuildError(f"{rel(text)}: layout: hero takes the first ::: image of the text, and there is none")
     for i, h in enumerate(katex(tex)):
         body = body.replace(f"<!--MATH:{i}-->", h)
+        if hero:  # the caption of the hero image, which the text leaves out
+            hero["caption"] = hero["caption"].replace(f"<!--MATH:{i}-->", h)
     css = paper_dir / "style.css"
     tpl = (ENGINE / "template.html").read_text()
     values = {"HEADER": header_html(m), "FOOTER": footer_html(m), "LAYOUT": layout,
@@ -436,20 +438,23 @@ def from_cache(job, fmt, cache):
     hit = cache.get([*pdfs, *pngs, "log.json"])
     if not hit:
         return False
-    saved = json.loads(hit["log.json"].read_text())
+    out = out_dir(job.paper, fmt)
+    out.mkdir(parents=True, exist_ok=True)
+    try:
+        saved = json.loads(hit["log.json"].read_text())
+        for name in pdfs:
+            shutil.copyfile(hit[name], out / name)
+        for name, png in pngs.items():
+            job.need_preview(png)
+            if not png.exists():
+                png.parent.mkdir(parents=True, exist_ok=True)
+                shutil.copyfile(hit[name], png)
+    except FileNotFoundError:  # another build sharing the cache replaced the entry meanwhile
+        return False
     print(f"{saved['line']} (cached)")
     log = Log(job.warnings)
     for w in saved["warnings"]:
         log.warn(w)
-    out = out_dir(job.paper, fmt)
-    out.mkdir(parents=True, exist_ok=True)
-    for name in pdfs:
-        shutil.copyfile(hit[name], out / name)
-    for name, png in pngs.items():
-        job.need_preview(png)
-        if not png.exists():
-            png.parent.mkdir(parents=True, exist_ok=True)
-            shutil.copyfile(hit[name], png)
     return True
 
 def build_format(job, fmt, page, cache):
