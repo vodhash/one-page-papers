@@ -133,3 +133,8 @@ Response Header Transform Rule): when the hostname equals `files.onepagepapers.c
 header `Access-Control-Allow-Origin` to `https://onepagepapers.com`, on every response, in place of
 the one of R2. `curl -sI https://files.onepagepapers.com/crypto/bitcoin-A-ivory.pdf` then shows it,
 though the request has no `Origin`.
+
+The same rule (CORS for the PDFs) sets `X-Robots-Tag` to `noindex`: a poster has 28 PDFs of one
+text, which search engines would take for duplicates, so they index the pages of the site instead,
+whose reading page holds the whole text. A redirect rule (Files root to the site) sends the root of
+`files.onepagepapers.com`, which serves no file, to `https://onepagepapers.com/` (301).
