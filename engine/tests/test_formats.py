@@ -1,3 +1,6 @@
+import subprocess
+import sys
+
 import pytest
 
 from onepage_engine import ISO_A, SIZES, design_height
@@ -27,3 +30,19 @@ def test_resolve_takes_a_name_or_a_pair():
     assert resolve((100, 150)) == (100, 150)
     with pytest.raises(ValueError, match="unknown format 'B5'"):
         resolve("B5")
+
+
+def test_the_formats_need_neither_playwright_nor_pypdf():
+    code = ("import sys, onepage_engine; onepage_engine.SIZES; onepage_engine.FontLoadError; "
+            "print(sorted(m for m in ('playwright', 'pypdf') if m in sys.modules))")
+    out = subprocess.run([sys.executable, "-c", code], capture_output=True, text=True, check=True).stdout
+    assert out.strip() == "[]"
+
+
+def test_the_rest_of_the_api_is_imported_on_first_use():
+    import onepage_engine
+    assert onepage_engine.same_pdf.__module__ == "onepage_engine.pdf"
+    assert onepage_engine.Renderer.__module__ == "onepage_engine.render"
+    assert set(onepage_engine.__all__) <= set(dir(onepage_engine))
+    with pytest.raises(AttributeError, match="no attribute 'nothing'"):
+        onepage_engine.nothing

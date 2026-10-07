@@ -2,6 +2,12 @@
 
 The versions of the `onepage-engine` package, tagged `engine-vX.Y.Z`.
 
+## Unreleased
+
+- The parts that need Playwright (`chromium`, `load`, `print_pdf`, `screenshot`, `wait_for_fonts`,
+  `Renderer`) or pypdf (`to_format`, `same_pdf`, `system_fonts`, `font_name`) are imported on first
+  use: `SIZES`, `design_height` and the errors no longer need either.
+
 ## 0.1.0 (2026-09-27)
 
 The rendering core of one-page-papers, as a package; `engine/build.py` now uses it.
