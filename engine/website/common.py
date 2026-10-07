@@ -131,6 +131,12 @@ def wall_pdf_url(p, theme):
     f = pdf_file(p, "A", theme)
     return WALL_PDF_URL.format(category=f.parent.name, file=f.name) + f"?v={pdf_version(p)}"
 
+def lang_of(m):
+    """The lang attribute of the title of a poster in a page of the site, which is in English: none
+    for a text in English."""
+    lang = m.get("lang", "en")
+    return "" if lang == "en" else f' lang="{html.escape(lang)}"'
+
 def poster_facts(m, order):
     """The facts of a poster that its page and its reading page list, in the order given, as the
     items of a <dl>: those that the poster lacks (a rights holder, contributors) are left out."""

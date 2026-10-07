@@ -15,6 +15,7 @@
   var canvas = box.querySelector('.pl-canvas');
   var sum = box.querySelector('.pl-sum');
   var now = list.querySelector('.sdl-now');
+  var heard = box.querySelector('[data-pl-status]');
   var rows = Array.prototype.slice.call(list.querySelectorAll('.sdl > li'));
   var n = rows.length;
 
@@ -206,11 +207,26 @@
     now.textContent = fmt + ', in the ' + themeName + ' theme' + (s.theme ? '' : ' of each poster') + '.';
   }
 
+  // what a screen reader hears of a change, once the choices pause: neither the summary nor the
+  // line above the downloads is a live region, so that a size being typed is not read at every key
+  var said = null;
+  function announce(s, d) {
+    if (!heard) return;
+    clearTimeout(said);
+    said = setTimeout(function () {
+      heard.textContent = s.label + (s.theme ? ', ' + s.theme + ' theme' : '') + ': ' + n + ' posters, ' +
+        size(d.c.w, d.c.h, s) + ' in all, the top edge ' + len(d.top, s) + ' from the floor' +
+        (d.bottom < 0 ? ', too tall to centre: the bottom goes below the floor.' : '.');
+    }, 700);
+  }
+
   var last = null;
   function update() {
     var s = state();
-    summary(s, draw(s));
+    var d = draw(s);
+    summary(s, d);
     downloads(s);
+    if (last) announce(s, d);  // not the first drawing, when the page opens
     last = s;
   }
 

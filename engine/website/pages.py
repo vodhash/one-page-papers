@@ -11,8 +11,8 @@ from readme import pending, year_key, year_text
 from themes import FORMATS, THEMES, US_FORMATS, dark as theme_is_dark
 from .common import (ANALYTICS, A_SIZES, BASE_URL, GENESIS_HASH, NAME, PREVIEW_WIDTHS, RELEASE_URL, REPO, SMALL_W,
                      SiteError, THUMB_H, TOKENS, US_NAMES, US_ZIP_URL, WEB, ZIP_URL, alt, by_line, download_event, esc,
-                     format_name, hexcolour, mark_svg, number, pdf_file, pdf_url, pdf_version, poster_facts, size_text,
-                     title, wall_pdf_url)
+                     format_name, hexcolour, lang_of, mark_svg, number, pdf_file, pdf_url, pdf_version, poster_facts,
+                     size_text, title, wall_pdf_url)
 from .content import load_see_also
 from .images import SMALL_H
 from .assets import PRELOAD
@@ -23,26 +23,29 @@ WALLPAPERS = (("Phone", 1170, 2532), ("Desktop", 2560, 1440), ("4K", 3840, 2160)
 def srcset(previews, p, theme, root):
     return ", ".join(f"{root}{previews[p.slug, theme][w]} {w}w" for w in PREVIEW_WIDTHS)
 
-def picture(previews, p, root, sizes, eager=False):
+def picture(previews, p, root, sizes, eager=False, alt_text=None):
     """A preview in the theme of the mode of the site: the <source> takes over in the dark mode,
-    of the system or, with site.js, of the theme button."""
+    of the system or, with site.js, of the theme button. Its alt says what the poster looks like,
+    unless alt_text is given ("" where the title that follows says it all)."""
     src = f"{root}{previews[p.slug, p.light][600]}"
     source = (f'<source data-dark media="(prefers-color-scheme: dark)" srcset="{srcset(previews, p, p.dark, root)}" '
               f'sizes="{sizes}">' if p.dark != p.light else "")
     load = 'fetchpriority="high"' if eager else 'loading="lazy" decoding="async"'
     return (f'<picture>{source}<img src="{src}" srcset="{srcset(previews, p, p.light, root)}" sizes="{sizes}" '
-            f'width="600" height="{THUMB_H}" alt="{esc(alt(p))}" {load}></picture>')
+            f'width="600" height="{THUMB_H}" alt="{esc(alt(p)) if alt_text is None else alt_text}" {load}></picture>')
 
 CARD_SIZES = "(min-width: 1200px) 260px, (min-width: 768px) 28vw, 44vw"
 MINI_SIZES = "(min-width: 1200px) 200px, (min-width: 768px) 26vw, 44vw"
 
-def card(previews, p, root, mini=False):
+def card(previews, p, root, mini=False, level=3):
+    """A poster in a list of cards: its preview, whose alt is empty since its title follows, then its
+    category, title, authors and year, and on a full card its summary and its Print from."""
     m = p.meta
     extra = "" if mini else f'<p class="sum">{esc(m["summary"])}</p>\n<p class="print">Print from {m["min_print"]}</p>\n'
     return (f'<li class="card" data-category="{p.category}">\n'
-            f'<div class="mat">{picture(previews, p, root, MINI_SIZES if mini else CARD_SIZES)}</div>\n'
+            f'<div class="mat">{picture(previews, p, root, MINI_SIZES if mini else CARD_SIZES, alt_text="")}</div>\n'
             f'<div class="cartel">\n<p class="eyebrow">{esc(CATEGORIES[p.category])}</p>\n'
-            f'<h3 class="card-title"><a href="{root}{p.slug}/">{title(m["title"])}</a></h3>\n'
+            f'<h{level} class="card-title"><a href="{root}{p.slug}/"{lang_of(m)}>{title(m["title"])}</a></h{level}>\n'
             f'<p class="by">{by_line(m)}</p>\n{extra}</div>\n</li>')
 
 def neighbours(p, posters, n=5):
@@ -211,7 +214,8 @@ def category_page(c, posters, previews):
                 f'<span class="count">{sum(p.category == k for p in posters)}</span></a></li>')
     main = substitute((WEB / "category.html").read_text(), {
         "TITLE": esc(CATEGORIES[c]), "COUNT": esc(f"{len(mine)} posters · {span}"), "LEDE": esc(CATEGORY_LEDES[c]),
-        "CARDS": "\n".join(card(previews, p, "../") for p in mine), "OTHERS": "\n".join(link(k) for k in cats)})
+        "CARDS": "\n".join(card(previews, p, "../", level=2) for p in mine),
+        "OTHERS": "\n".join(link(k) for k in cats)})
     names = ", ".join(p.meta["title"] for p in mine[:3])
     ld = ({"@type": "CollectionPage", "name": f"{CATEGORIES[c]} posters", "url": f"{BASE_URL}{c}/",
            "description": CATEGORY_LEDES[c], "isPartOf": {"@type": "WebSite", "name": NAME, "url": BASE_URL},
@@ -238,7 +242,7 @@ def home_page(posters, previews, series, thumbs):
                 f'<span class="count">{sum(p.category == c for p in posters)}</span></a>' for c in cats]
     featured = (f'<div class="mat">{picture(previews, show, "", "(min-width: 1200px) 360px, (min-width: 768px) 34vw, 86vw", eager=True)}</div>\n'
                 f'<figcaption class="cartel"><b>{esc(", ".join(m["authors"]))}</b>\n'
-                f'<a href="{show.slug}/"><i>{title(m["title"])}</i></a>\n'
+                f'<a href="{show.slug}/"><i{lang_of(m)}>{title(m["title"])}</i></a>\n'
                 f'<span class="meta">{esc(year_text(m["year"]))} · {esc(CATEGORIES[show.category])} · '
                 f'Print from {m["min_print"]}</span></figcaption>')
     main = substitute((WEB / "home.html").read_text(), {
@@ -297,9 +301,9 @@ def poster_page(p, posters, previews, series, extras=None):
     main = substitute((WEB / "poster.html").read_text(), {
         "SLUG": p.slug, "WP_SIZES": "\n".join(sizes), "WP_THEMES": "\n".join(wthemes),
         "CATEGORY": p.category, "CATEGORY_TITLE": esc(CATEGORIES[p.category]), "TITLE": esc(m["title"]),
-        "TITLE_H1": title(m["title"]),
+        "TITLE_H1": title(m["title"]), "LANG": m.get("lang", "en"),
         "YEAR": esc(year_text(m["year"])), "AUTHORS": esc(", ".join(m["authors"])),
-        "SUBTITLE": f'<p class="subtitle">{m["kicker"]}</p>' if m.get("kicker") else "",
+        "SUBTITLE": f'<p class="subtitle" lang="{m.get("lang", "en")}">{m["kicker"]}</p>' if m.get("kicker") else "",
         "READ_NOTE": "The whole poster as a web page" + (", with notes in the margin"
                                                           if extras and extras.annotations else ""),
         "TEACH": ('<p class="read-link"><a class="btn btn-line" href="teach/">Teaching kit</a> '
@@ -405,14 +409,14 @@ def series_page(s, series, previews, thumbs):
             f'data-title="{esc(m["title"])}"{srcs}>\n'
             f'<div class="mat">{small_picture(thumbs, p, root, "")}</div>\n'
             f'<div class="sdl-what">\n<p class="eyebrow">{i} · {esc(CATEGORIES[p.category])}</p>\n'
-            f'<h3 class="card-title"><a href="{root}{p.slug}/">{title(m["title"])}</a></h3>\n'
+            f'<h3 class="card-title"><a href="{root}{p.slug}/"{lang_of(m)}>{title(m["title"])}</a></h3>\n'
             f'<p class="by">{by_line(m)}</p>\n<p class="print">Print from {m["min_print"]}</p>\n'
             f'<p class="sdl-warn" hidden></p>\n</div>\n'
             f'<div class="dl-links">{"".join(links)}</div>\n</li>')
     cats = list(dict.fromkeys(p.category for p in s.posters))
     us_zips = []
     for c in cats:
-        names = ", ".join(esc(p.meta["title"]) for p in s.posters if p.category == c)
+        names = ", ".join(f'<span{lang_of(p.meta)}>{esc(p.meta["title"])}</span>' for p in s.posters if p.category == c)
         us_zips.append(f'<li><a href="{US_ZIP_URL.format(category=c)}">{esc(CATEGORIES[c])}, US formats</a> '
                        f'<span class="size">{c}-us.zip · {names}</span></li>')
     zips = ", ".join(f'<a href="{ZIP_URL.format(category=c)}">{esc(CATEGORIES[c])}</a>' for c in cats)
@@ -465,7 +469,7 @@ def about_page(posters, previews):
                 + "".join(f"<li>{esc(t)}</li>" for t in waiting) + "</ul>")
     figure = (f'<div class="mat">{picture(previews, show, "../", "(min-width: 1200px) 360px, 86vw")}</div>\n'
               f'<figcaption class="cartel"><b>{esc(", ".join(show.meta["authors"]))}</b>\n'
-              f'<a href="../{show.slug}/"><i>{title(show.meta["title"])}</i></a>\n'
+              f'<a href="../{show.slug}/"><i{lang_of(show.meta)}>{title(show.meta["title"])}</i></a>\n'
               f'<span class="meta">The poster that started the collection</span></figcaption>')
     main = substitute((WEB / "about.html").read_text(), {
         "ORIGIN": origin(), "REPO": REPO, "PENDING": pend, "FIGURE": figure})
@@ -486,7 +490,7 @@ def print_page(posters, previews):
         "themes": {t: [hexcolour(t, "paper"), hexcolour(t, "acc"), int(theme_is_dark(t))] for t in THEMES},
         # the previews of the box are previews/<slug>-<theme>-600.webp, which make_previews writes
         "posters": {p.slug: [markdown.smart(p.meta["title"]), p.category, p.meta["min_print"], p.themes,
-                             pdf_version(p.paper)]
+                             pdf_version(p.paper), p.meta.get("lang", "en")]
                     for p in posters if all((p.slug, t) in previews for t in p.themes)}}
     js = json.dumps(data, ensure_ascii=False, separators=(",", ":")).replace("</", "<\\/")
     rows = [f'<tr><td>{k}</td><td>{cm_text(w)} × {cm_text(h)}</td><td>The A PDF</td></tr>'

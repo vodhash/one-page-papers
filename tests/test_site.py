@@ -76,6 +76,13 @@ def test_the_facts_of_a_poster_come_in_the_order_asked():
         "<div><dt>Rights holder</dt><dd>Someone</dd></div>"]
 
 
+def test_a_figure_is_named_by_the_words_drawn_in_it():
+    from website.reading import figure_label
+    svg = '<svg><text x="1">Owner 1&#x27;s</text><text>Hash</text><text><tspan>Hash</tspan></text><text> </text></svg>'
+    assert figure_label(3, svg) == "Figure 3: Owner 1's, Hash"
+    assert figure_label(1, "<svg><rect/></svg>") == "Figure 1"
+
+
 def test_the_pdf_links_of_the_readme_carry_the_version_of_the_files_of_the_paper(tmp_path):
     import readme
     from papers import source_version

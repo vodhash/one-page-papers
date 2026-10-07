@@ -53,6 +53,16 @@ IMAGE_FIGURE = re.compile(r'<figure class="image" data-dark="(\w+)"( data-light=
 SVG_FIGURE = re.compile(r'<figure><svg\b.*?</svg></figure>', re.S)
 HEADING = re.compile(r'<h([234])((?:\s[^>]*)?)>(.*?)</h\1>', re.S)
 
+def figure_label(n, svg):
+    """What a drawn figure says to a screen reader, which reads it as one image: its number and the
+    words drawn in it, once each and in the order of the drawing."""
+    words = []
+    for t in re.findall(r"<text\b[^>]*>(.*?)</text>", svg, re.S):
+        w = " ".join(html.unescape(re.sub(r"<[^>]+>", "", t)).split())
+        if w and w not in words:
+            words.append(w)
+    return f"Figure {n}" + (f": {', '.join(words)}" if words else "")
+
 def reading_body(p, body, files):
     """The text of a poster made for a web page: its images as files (added to files, {site
     path: path in the cache}) with their size and an alt taken from their caption, the ids of each
@@ -79,7 +89,8 @@ def reading_body(p, body, files):
         for x in ids:
             svg = re.sub(rf'\bid="{re.escape(x)}"', f'id="fig{i}-{x}"', svg)
             svg = re.sub(rf'(url\(#|href="#){re.escape(x)}([)"])', rf'\g<1>fig{i}-{x}\2', svg)
-        return svg.replace("<svg ", '<svg role="img" aria-label="Figure" ', 1).replace('<figure>', '<figure class="fig">', 1)
+        label = html.escape(figure_label(i, svg))
+        return svg.replace("<svg ", f'<svg role="img" aria-label="{label}" ', 1).replace('<figure>', '<figure class="fig">', 1)
     body = SVG_FIGURE.sub(figure, body)
     # a Morse code drawn with empty elements (morse-phonetic-alphabet) is read out as its dots and dashes
     body = re.sub(r'(<span class="m" data-m="([.\-]+)")>', r'\1 role="img" aria-label="\2">', body)

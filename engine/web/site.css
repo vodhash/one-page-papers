@@ -301,7 +301,7 @@ a.pill:hover{color:var(--ink)}
 .footnotes ol{margin:0;padding:0;list-style:none}
 .footnotes li{display:grid;grid-template-columns:1.8em 1fr;margin-bottom:.5em;scroll-margin-top:16px}
 .footnotes li>span{color:var(--accText)}
-.footnotes .back{padding:0 .2em;text-decoration:none}
+.footnotes .back{padding:0 .2em}
 /* math: a display equation that is wider than the column scrolls */
 .text .eq{margin:.2em 0 1em;overflow-x:auto;overflow-y:hidden;padding:.3em 0}
 .text .katex{font-size:1.08em}

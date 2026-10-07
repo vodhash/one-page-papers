@@ -1,8 +1,8 @@
 /* one-page-papers: the theme button, the menu on small screens, the search and the filters of the
    collection, the themes of a poster and its wallpapers, the print guide, the margin notes, the
-   teaching kits and the large images. Every page works without it: the colours follow the system,
-   the whole collection shows, and a poster page offers the PDF of each theme. Each part is a
-   function of its own, which does nothing on a page that lacks what it needs. */
+   teaching kits, the blocks that scroll and the large images. Every page works without it: the
+   colours follow the system, the whole collection shows, and a poster page offers the PDF of each
+   theme. Each part is a function of its own, which does nothing on a page that lacks what it needs. */
 (function () {
   'use strict';
   var root = document.documentElement;
@@ -90,6 +90,7 @@
     if (!filters || !list) return;
     var PER_PAGE = 24;
     var status = document.getElementById('filter-status');
+    var heading = document.getElementById('collection-title');
     var finder = document.querySelector('.finder');
     var input = finder ? finder.querySelector('input') : null;
     var clear = finder ? finder.querySelector('.search-clear') : null;
@@ -200,6 +201,8 @@
       show('now');
       address();
       document.getElementById('collection').scrollIntoView();
+      // the buttons of the pager are made anew: the focus goes to the top of the page now shown
+      if (heading) heading.focus({ preventScroll: true });
     });
     if (input) {
       finder.hidden = false;
@@ -401,7 +404,7 @@
     var slug = params.get('poster');
     var info = printData && Object.prototype.hasOwnProperty.call(printData.posters, slug) ? printData.posters[slug] : null;
     if (!info) return;
-    var name = info[0], category = info[1], min = info[2], themes = info[3], version = info[4];
+    var name = info[0], category = info[1], min = info[2], themes = info[3], version = info[4], lang = info[5];
     var theme = themes.indexOf(params.get('theme')) >= 0 ? params.get('theme') : themes[0];
     var make = function (tag, cls, content) {
       var e = document.createElement(tag);
@@ -412,6 +415,7 @@
     var posterLink = box.querySelector('.fp-link');
     posterLink.href = '../' + slug + '/';
     posterLink.textContent = name;
+    if (lang !== 'en') posterLink.lang = lang;
     // Print from: the body is 8 to 11 pt at that size, and grows by about 1.4 at each size up
     var sizes = printData.sizes.slice(printData.sizes.indexOf(min));
     var floors = [11, 16, 22];
@@ -574,6 +578,49 @@
     kit.querySelector('.teach-print').hidden = false;
   }
 
+  // The blocks of a reading page or a teaching kit that scroll sideways on a narrow screen
+  // (equations, figures, tables, code) take the focus of the keyboard while they scroll, so that
+  // the arrow keys reach what they hide; a block without a role of its own gets one, and a name.
+  function scrollables() {
+    var main = document.querySelector('.text, .teach');
+    if (!main) return;
+    var BLOCKS = 'pre, .eq, .fm, figure, table, .table-wrap, .dump, .ascii, .key, .entry';
+    var name = function (e) {
+      return (e.matches('pre, .dump') ? 'Code' : e.matches('.eq, .fm') ? 'Equation' : 'Table') + ', scrolls sideways';
+    };
+    var mark = function () {
+      each(BLOCKS, function (e) {
+        var scrolls = e.scrollWidth > e.clientWidth + 1 && /auto|scroll/.test(getComputedStyle(e).overflowX);
+        if (scrolls && !e.hasAttribute('tabindex')) {
+          e.setAttribute('tabindex', '0');
+          e.setAttribute('data-scrolls', '');
+          if (!e.matches('figure, table')) {
+            e.setAttribute('role', 'group');
+            e.setAttribute('aria-label', name(e));
+          }
+        } else if (!scrolls && e.hasAttribute('data-scrolls')) {
+          e.removeAttribute('tabindex');
+          e.removeAttribute('data-scrolls');
+          if (!e.matches('figure, table')) {
+            e.removeAttribute('role');
+            e.removeAttribute('aria-label');
+          }
+        }
+      }, main);
+    };
+    var pending = false;
+    var later = function () {
+      if (pending) return;
+      pending = true;
+      requestAnimationFrame(function () { pending = false; mark(); });
+    };
+    mark();
+    window.addEventListener('load', later);
+    if (document.fonts && document.fonts.ready) document.fonts.ready.then(later);
+    if (window.ResizeObserver) new ResizeObserver(later).observe(main);
+    else window.addEventListener('resize', later);
+  }
+
   // The images of a poster page and of a reading page open large on a click: the preview at its
   // largest width, a figure at the size of its file. A click on the large image shows it at full
   // size, to scroll; Escape, the close button or a click beside it closes it.
@@ -623,6 +670,7 @@
   printGuide();
   marginNotes();
   teachingKit();
+  scrollables();
   zoom();
   apply(mode());
 })();
