@@ -4,7 +4,8 @@ import pytest
 
 from papers import Paper
 from website import common, pages
-from website.check import pdf_pattern
+from website import check
+from website.check import pdf_pattern, version_error
 
 
 @pytest.mark.parametrize("fmt, name", [("A", "A series"), ("50x70", "50 × 70 cm"),
@@ -38,17 +39,31 @@ def test_a_pdf_link_ends_with_the_version_of_the_pdfs_of_its_poster(pdfs):
     (us / "bitcoin-letter-ivory.pdf").write_bytes(b"us")
     url = common.pdf_url(paper, "A", "ivory")
     k = pdf_pattern().match(url)
-    assert (k["category"], k["file"]) == ("crypto", "bitcoin-A-ivory.pdf") and len(k["v"]) == 10
-    assert common.pdf_url(paper, "letter", "ivory").endswith(f"?v={k['v']}")  # one version per poster
+    assert (k["category"], k["file"]) == ("crypto", "bitcoin-A-ivory.pdf") and version_error(k) is None
+    assert common.pdf_url(paper, "letter", "ivory").endswith(f"?{k['query']}")  # one version per poster
     (us / "bitcoin-letter-ivory.pdf").write_bytes(b"us, corrected")
     common.pdf_version.cache_clear()
-    assert pdf_pattern().match(common.pdf_url(paper, "A", "ivory"))["v"] != k["v"]
+    assert pdf_pattern().match(common.pdf_url(paper, "A", "ivory"))["query"] != k["query"]
 
 
-def test_the_check_tells_a_versioned_link_from_one_without_version():
-    k = pdf_pattern().match("https://files.onepagepapers.com/crypto/bitcoin-A-ivory.pdf")
-    assert k["file"] == "bitcoin-A-ivory.pdf" and k["v"] is None
-    assert not pdf_pattern().match("https://files.onepagepapers.com/crypto/bitcoin-A-ivory.pdf?v=nothex")
+@pytest.mark.parametrize("query, error", [
+    ("", "no version (?v=)"), ("?v=nothex", "?v=nothex is not a version"), ("?v=0123456789", None),
+    ("?v=nothex#page=1", "?v=nothex is not a version"), ("?v=0123456789#page=2", None)])
+def test_the_check_tells_a_versioned_link_from_one_without_version(query, error):
+    k = pdf_pattern().match("https://files.onepagepapers.com/crypto/bitcoin-A-ivory.pdf" + query)
+    assert k["file"] == "bitcoin-A-ivory.pdf"
+    assert (version_error(k) or "").startswith(error or "") and bool(version_error(k)) == bool(error)
+
+
+def test_the_check_of_the_site_reads_a_pdf_link_whatever_its_query(tmp_path, monkeypatch):
+    monkeypatch.setattr(check, "PDF_DIRS", (tmp_path / "dist", tmp_path / "release" / "us"))
+    (tmp_path / "index.html").write_text(
+        '<title>x</title><h1>x</h1><a href="https://files.onepagepapers.com/crypto/missing-A-ivory.pdf?v=nothex">PDF</a>')
+    (tmp_path / "sitemap.xml").write_text("<urlset></urlset>")
+    (tmp_path / "robots.txt").write_text("")
+    errors, _ = check.check(tmp_path)
+    assert errors == ["index.html: a href https://files.onepagepapers.com/crypto/missing-A-ivory.pdf?v=nothex: "
+                      "no such file in dist/ or release/us/"]
 
 
 def test_the_facts_of_a_poster_come_in_the_order_asked():
