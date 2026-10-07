@@ -4,7 +4,7 @@ CATEGORIES := $(notdir $(wildcard papers/*))
 PY = $(if $(wildcard .venv/bin/python),.venv/bin/python,python3)
 # papers built at a time, each in a browser of its own: one per processor, up to 8, by default
 JOBS ?= $(shell n=$$(nproc 2>/dev/null || echo 1); [ $$n -gt 8 ] && n=8; echo $$n)
-.PHONY: all check readme us changed deps clean site serve upload engine-test engine-dist engine-publish $(PAPERS) $(CATEGORIES)
+.PHONY: all check test readme us changed deps clean site serve upload engine-test engine-dist engine-publish $(PAPERS) $(CATEGORIES)
 
 all:
 	$(PY) engine/build.py --jobs $(JOBS)
@@ -18,6 +18,11 @@ check:
 
 readme:
 	$(PY) engine/readme.py
+
+# the tests of the scripts of engine/ (tests/), then those of the onepage-engine package, as the CI
+test:
+	$(PY) -m pytest -q tests
+	$(PY) -m pytest -q engine/tests
 
 # the previews that differ from the last commit: what the next commit would carry (dist/ is not in git)
 changed:

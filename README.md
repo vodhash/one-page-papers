@@ -243,6 +243,7 @@ make readme    # the catalog of this README, from the meta.yaml files and PENDIN
 make site      # the showcase site into site/, after make and make us (needs pdftoppm, from poppler-utils)
 make serve     # the site on http://localhost:8000/
 make check     # as the CI: file sizes, every poster fits (into dist/, leaving docs/ alone), the catalog
+make test      # the tests of the scripts (tests/) and of the engine package (engine/tests/)
 make JOBS=2    # any target, with 2 papers built at a time instead of one per processor (up to 8)
 make changed   # the previews that differ from the last commit
 make upload    # the PDFs of dist/ and release/us/ that differ from files.onepagepapers.com (needs its R2 credentials)
@@ -257,7 +258,7 @@ A build keeps what it makes in `build/cache/` (`--cache` names another folder), 
 
 The pre-commit hook of `.githooks/`, which `make deps` enables, refuses a binary file over 1 MiB, an image of a paper over 5 MiB and any file of `dist/`; the CI runs the same check (`engine/sizes.py`).
 
-`make check` also runs on GitHub Actions for every push and pull request. It fails when a poster overflows its page, when it still fits at the largest allowed body size, when a character is drawn with a system font, when `min_print` does not match the body size, when a preview is missing from `docs/` or `docs/` holds one that no paper makes, when the catalog of this README is out of date, or when a document links a file that git does not keep.
+`make check` also runs on GitHub Actions for every push and pull request. It fails when a poster overflows its page, when it still fits at the largest allowed body size, when a character is drawn with a system font, when `min_print` does not match the body size, when a preview is missing from `docs/` or `docs/` holds one that no paper makes, when the catalog of this README is out of date, or when a document links a file that git does not keep. The CI also runs `make test`, the tests of the scripts and of the engine package, and checks the site.
 
 ## Add a paper
 

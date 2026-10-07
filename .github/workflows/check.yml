@@ -13,6 +13,8 @@ jobs:
       - uses: ./.github/actions/setup
       - name: No binary file over 1 MiB (5 MiB for an image of a paper), and nothing of dist/, in git
         run: python engine/sizes.py
+      - name: The scripts of engine/ pass their tests (markdown, build, upload, the site), without a browser
+        run: python -m pytest -q tests
       - name: The engine package passes its tests
         run: python -m pytest -q engine/tests
       # the cache of the self-hosted runner keeps each poster, keyed on its files and those of the

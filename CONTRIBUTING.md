@@ -68,6 +68,7 @@ make deps         # once
 make <slug>       # the PDFs and the preview of your paper
 make check        # file sizes, every poster fits and uses bundled fonts, the catalog
 make readme       # the catalog of the README
+make test         # after a change to engine/: the tests of the scripts and of the engine package
 ```
 
 - Look at the A format in a light and a dark theme: nothing overflows, the footer sits inside
