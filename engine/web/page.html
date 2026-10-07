@@ -8,7 +8,7 @@
 <meta name="color-scheme" content="light dark">
 <meta name="theme-color" content="{{BG_LIGHT}}" media="(prefers-color-scheme: light)">
 <meta name="theme-color" content="{{BG_DARK}}" media="(prefers-color-scheme: dark)">
-<script>/* the theme before the first paint: the one chosen with the button, else the system's */(function(d){var t;try{t=localStorage.getItem("one-page-papers:theme")}catch(e){}if(t!=="dark"&&t!=="light")t=matchMedia("(prefers-color-scheme: dark)").matches?"dark":"light";d.setAttribute("data-theme",t);d.classList.add("js")})(document.documentElement)</script>
+<script>/* the theme before the first paint: the one chosen with the button, else the system's, and the colour of the browser bar */(function(d){var t;try{t=localStorage.getItem("one-page-papers:theme")}catch(e){}if(t!=="dark"&&t!=="light")t=matchMedia("(prefers-color-scheme: dark)").matches?"dark":"light";d.setAttribute("data-theme",t);d.classList.add("js");var c=t==="dark"?"{{BG_DARK}}":"{{BG_LIGHT}}";Array.prototype.forEach.call(document.querySelectorAll("meta[name=theme-color]"),function(m){m.setAttribute("content",c)})})(document.documentElement)</script>
 {{PRELOAD}}
 <link rel="stylesheet" href="{{ROOT}}assets/site.css?v={{CSS_V}}">
 {{HEAD}}<script src="{{ROOT}}assets/site.js?v={{JS_V}}" defer></script>

@@ -28,13 +28,16 @@
     try { if (window.umami && window.umami.track) window.umami.track(name, data); } catch (e) { /* not counted */ }
   }
 
-  // The theme of the site. The dark <source> of each preview follows it rather than the system.
+  // The theme of the site. The dark <source> of each preview follows it rather than the system, and
+  // so does the colour of the bar of the browser (theme-color), which the head of the page sets first.
   function apply(m) {
     root.setAttribute('data-theme', m);
     var media = m === 'dark' ? 'all' : 'not all';
     each('source[data-dark]', function (s) { if (s.media !== media) s.media = media; });
     var button = document.querySelector('.mode');
     if (button) button.setAttribute('aria-pressed', String(m === 'dark'));
+    var bar = getComputedStyle(document.body).backgroundColor;
+    each('meta[name=theme-color]', function (meta) { meta.setAttribute('content', bar); });
     onMode.forEach(function (f) { f(m); });
   }
 
