@@ -118,8 +118,9 @@ def blocks(text, first=1):
             if i == len(lines):
                 raise MarkdownError(first + start, 'wide block is never closed with a ":::" line')
             i += 1
-        else:
-            while i < len(lines) and lines[i].strip():
+        else:  # a paragraph, a list, ...: a code fence ends it, as in CommonMark
+            i += 1
+            while i < len(lines) and lines[i].strip() and not lines[i].startswith('```'):
                 i += 1
         yield first + start, '\n'.join(lines[start:i])
 

@@ -126,3 +126,8 @@ def test_the_hero_takes_the_first_image_out_of_the_text(folder):
 def test_image_mistakes(folder, head, message):
     with pytest.raises(MarkdownError, match=message):
         markdown.render(head, assets=folder)
+
+
+def test_a_code_fence_ends_the_paragraph_before_it():
+    assert html("A line of text\n```\nint a;\n```\nand text after") == \
+        '<p>A line of text</p>\n<pre class="code">int a;</pre>\n<p>and text after</p>'
