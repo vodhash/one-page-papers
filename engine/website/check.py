@@ -5,7 +5,8 @@ from html.parser import HTMLParser
 from urllib.parse import unquote, urljoin, urlsplit
 
 from papers import GENERATED_IN_REPO, ROOT
-from .common import ANALYTICS_SRC, BASE_URL, MIN_CONTRAST, PDF_DIRS, PDF_URL, WALL_PDF_URL
+from papers import PDF_URL
+from .common import ANALYTICS_SRC, BASE_URL, MIN_CONTRAST, PDF_DIRS, WALL_PDF_URL
 from .assets import contrasts
 from .pages import BASE_PATH
 
@@ -47,10 +48,11 @@ class Scan(HTMLParser):
     handle_startendtag = handle_starttag
 
 def pdf_pattern(template=PDF_URL):
-    """PDF_URL, or WALL_PDF_URL, as a regular expression, which gives back the category and the file."""
+    """PDF_URL, or WALL_PDF_URL, as a regular expression, which gives back the category, the file and
+    the version that ends the link (common.pdf_version), when it has one."""
     parts = re.split(r"(\{category\}|\{file\})", template)
     group = {"{category}": "(?P<category>[^/?#]+)", "{file}": r"(?P<file>[^/?#]+\.pdf)"}
-    return re.compile("".join(group.get(s, re.escape(s)) for s in parts) + "$")
+    return re.compile("".join(group.get(s, re.escape(s)) for s in parts) + r"(?:\?v=(?P<v>[0-9a-f]{10}))?$")
 
 def check(out):
     """Every problem of the site written in out, as messages."""
@@ -103,6 +105,8 @@ def check(out):
                 errors.append(f"{path}: {what} {url}: not a PDF of dist/ at {WALL_PDF_URL}")
             elif not (ROOT / "dist" / k["category"] / k["file"]).is_file():
                 errors.append(f"{path}: {what} {url}: no such file in dist/")
+            elif not k["v"]:
+                errors.append(f"{path}: {what} {url}: no version (?v=), so a browser may keep an old PDF")
         elif loaded and target != ANALYTICS_SRC:
             errors.append(f"{path}: {what} {url}: loaded from another site")
         elif k := pdf.match(target):
@@ -110,6 +114,8 @@ def check(out):
             if len(where) != 1:
                 errors.append(f"{path}: {what} {url}: "
                               f"{'no such file' if not where else 'several files'} in dist/ or release/us/")
+            elif not k["v"]:
+                errors.append(f"{path}: {what} {url}: no version (?v=), so a browser may keep an old PDF")
     errors += [f"contrast of {t} on {s} in the {m} mode: {r:.2f}, below {MIN_CONTRAST}"
                for m, t, s, r in contrasts() if r < MIN_CONTRAST]
     return errors, len(refs)

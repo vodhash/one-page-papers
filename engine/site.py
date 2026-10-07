@@ -20,9 +20,9 @@ they say `published: true`, or with --drafts, for review.
 
 The check fails on a dead internal link (page, image, font, stylesheet, script, anchor), on a
 resource loaded from another site but the analytics script (ANALYTICS) and the PDFs that site.js
-fetches to draw a wallpaper (WALL_PDF_URL), on a PDF link whose file is not in dist/ or release/us/,
-and on a link to a generated file through the repository (GENERATED_IN_REPO), which git does not
-keep. Links inside the site are relative, so that it works at
+fetches to draw a wallpaper (WALL_PDF_URL), on a PDF link whose file is not in dist/ or release/us/
+or that lacks the version of its PDFs (?v=), and on a link to a generated file through the repository
+(GENERATED_IN_REPO), which git does not keep. Links inside the site are relative, so that it works at
 https://onepagepapers.com/ (GitHub Pages) as well as at the root of `make serve`. Previews need
 pdftoppm (poppler-utils); they are cached in build/site-previews/, keyed on the content of each PDF,
 so an unchanged collection builds fast.

@@ -312,7 +312,7 @@
     var slug = params.get('poster');
     var info = printData && Object.prototype.hasOwnProperty.call(printData.posters, slug) ? printData.posters[slug] : null;
     if (info) {
-      var name = info[0], category = info[1], min = info[2], themes = info[3];
+      var name = info[0], category = info[1], min = info[2], themes = info[3], version = info[4];
       var theme = themes.indexOf(params.get('theme')) >= 0 ? params.get('theme') : themes[0];
       var make = function (tag, cls, content) {
         var e = document.createElement(tag);
@@ -349,7 +349,8 @@
         printData.formats.forEach(function (f) {
           var li = make('li');
           var a = make('a', 'btn btn-line', f[1] + ' · ' + theme);
-          a.href = printData.pdf.replace('{category}', category).replace('{file}', slug + '-' + f[0] + '-' + theme + '.pdf');
+          a.href = printData.pdf.replace('{category}', category).replace('{file}', slug + '-' + f[0] + '-' + theme + '.pdf') +
+            '?v=' + version;
           a.type = 'application/pdf';
           a.setAttribute('data-umami-event', 'download');
           a.setAttribute('data-umami-event-slug', slug);

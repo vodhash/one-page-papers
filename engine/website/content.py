@@ -1,13 +1,12 @@
 """What the site is written from, read and checked: the posters (meta.yaml, and their PDFs in dist/
 and release/us/), the series of series.yaml, the links of see-also.yaml, and the margin notes
 and teaching kits of a paper (annotations.yaml, teaching.yaml)."""
-import functools, re
+import functools, html, re
 from typing import NamedTuple
 
 import yaml
 
-from build import BuildError, load_meta, themes_of
-from papers import CATEGORIES, ROOT, SHOWCASE, discover
+from papers import CATEGORIES, ROOT, SHOWCASE, BuildError, discover, load_meta, themes_of
 from readme import year_key
 from themes import FORMATS, US_FORMATS
 from .common import LANGUAGES, Poster, SiteError, esc, pdf_file, short
@@ -29,11 +28,8 @@ def collect(only_built):
         where = f"papers/{p.category}/{p.slug}"
         try:
             m = load_meta(p.dir)
-        except BuildError as e:
+        except BuildError as e:  # an invalid meta.yaml, or one being written
             (skipped if only_built else errors).append(str(e))
-            continue
-        except yaml.YAMLError as e:  # such as a meta.yaml being written
-            (skipped if only_built else errors).append(f"{where}/meta.yaml: {' '.join(str(e).split())}")
             continue
         themes = themes_of(m)
         missing = [f.name for f in (pdf_file(p, fmt, t) for fmt in FORMATS for t in themes) if not f.exists()]
@@ -178,7 +174,7 @@ def load_see_also():
                                                                           if unknown else ""))
             continue
         before, after = (esc(part) for part in s["text"].split("{link}"))
-        paragraph = f'<p class="see-also">{before}<a href="{esc(s["url"])}">{esc(s["link"])}</a>{after}</p>\n'
+        paragraph = f'<p class="see-also">{before}<a href="{html.escape(s["url"])}">{esc(s["link"])}</a>{after}</p>\n'
         for x in papers:
             links.setdefault(x, []).append(paragraph)
     if errors:

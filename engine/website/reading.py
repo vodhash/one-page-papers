@@ -8,7 +8,7 @@ import markdown
 from build import BuildError, katex, load_figures, substitute
 from papers import CATEGORIES, ROOT
 from readme import year_text
-from .common import (LANGUAGES, NAME, SiteError, WEB, alt, authors_short, date_text, download_event, esc, pdf_url,
+from .common import (NAME, SiteError, WEB, alt, authors_short, date_text, download_event, esc, pdf_url, poster_facts,
                      short, title)
 from .content import LICENSE_URLS
 from .images import web_image
@@ -234,7 +234,6 @@ def read_page(p, body, files, katex_head, extras=None):
     m, root = p.meta, "../../"
     lic, src = m["license"], m["source"]
     lang = m.get("lang", "en")
-    host = urlsplit(src["url"]).netloc.removeprefix("www.")
     text = reading_body(p, body, files)
     notes = extras.annotations if extras else None
     intro = ""
@@ -250,13 +249,6 @@ def read_page(p, body, files, katex_head, extras=None):
                  '<p class="anno-switch" hidden><button type="button" class="pill" aria-pressed="true" '
                  'data-notes-toggle>Show the notes</button></p>\n</aside>\n')
     teach = extras.teaching if extras else None
-    facts = [("Source", f'<a href="{html.escape(src["url"])}">{esc(host)}</a>'),
-             ("Retrieved", date_text(src["retrieved"])), ("License", esc(lic["text"]))]
-    if lic.get("holder"):
-        facts.append(("Rights holder", esc(lic["holder"])))
-    if m.get("contributors"):
-        facts.append(("Proposed by", ", ".join(f'<a href="https://github.com/{h}">@{h}</a>' for h in m["contributors"])))
-    facts.append(("Language", LANGUAGES.get(lang, lang)))
     # what the license asks to carry with the text, in sight: its notice, and the footer of the
     # poster (attribution, license URI); why a text is free, and the notes, are in the details
     notices = []
@@ -281,7 +273,7 @@ def read_page(p, body, files, katex_head, extras=None):
         "CATEGORY": p.category, "CATEGORY_TITLE": esc(CATEGORIES[p.category]), "TITLE": esc(m["title"]),
         "TITLE_H1": title(m["title"]), "LANG": lang, "YEAR": esc(year_text(m["year"])),
         "AUTHORS": esc(", ".join(m["authors"])), "KICKER": kicker, "BYLINE": byline,
-        "FACTS": "\n".join(f"<div><dt>{k}</dt><dd>{v}</dd></div>" for k, v in facts),
+        "FACTS": poster_facts(m, ("Source", "Retrieved", "License", "Rights holder", "Proposed by", "Language")),
         "EDITION": esc(src["edition"]), "RIGHTS": "\n".join(rights),
         "NOTICES": "".join(x + "\n" for x in notices),
         "ABSTRACT": abstract, "TEXT": text, "ROOT": root, "SLUG": p.slug, "NOTES_INTRO": intro,

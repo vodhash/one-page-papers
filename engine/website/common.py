@@ -1,18 +1,18 @@
 """What every part of the site shares: its addresses, names and colours, the posters as the site
 sees them, their PDFs, and the helpers that write text into HTML."""
-import datetime, html, os, re
+import datetime, functools, hashlib, html, os, re
 from typing import NamedTuple
+from urllib.parse import urlsplit
 
 import markdown
-from papers import FILES_URL, Paper, ROOT, SITE_URL
+from papers import PDF_URL, ROOT, SITE_URL, Paper, pdf_name
 from readme import year_text
-from themes import FORMATS, US_FORMATS, colour
+from themes import FORMATS, THEMES, US_FORMATS, colour
 
 REPO = "https://github.com/vodhash/one-page-papers"
 BASE_URL = SITE_URL  # only for canonical, Open Graph and sitemap URLs
-# Where the PDF buttons point: the bucket where the CI uploads the PDFs of dist/ before it deploys
-# the site, so that a link works as soon as its page is online
-PDF_URL = FILES_URL + "{category}/{file}"
+# The PDF buttons point to the bucket where the CI uploads the PDFs of dist/ before it deploys the
+# site (PDF_URL), so that a link works as soon as its page is online.
 # The same files for the wallpapers, which the browser fetches: the bucket answers with the
 # Access-Control-Allow-Origin header of the site (its CORS rule, see CONTRIBUTING.md)
 WALL_PDF_URL = PDF_URL
@@ -103,7 +103,19 @@ class Poster(NamedTuple):
 PDF_DIRS = (ROOT / "dist", ROOT / "release" / "us")
 
 def pdf_file(p, fmt, theme):
-    return PDF_DIRS[fmt in US_FORMATS] / p.category / f"{p.slug}-{fmt}-{theme}.pdf"
+    return PDF_DIRS[fmt in US_FORMATS] / p.category / pdf_name(p.slug, fmt, theme)
+
+@functools.cache
+def pdf_version(p):
+    """The version of the PDFs of a paper, as they are in dist/ and release/us/: the CI uploads them
+    before it writes the site. It ends every link to one of them (?v=), which the bucket ignores, so
+    that a corrected poster has new links: a browser keeps a PDF a week (upload.CACHE_CONTROL), and a
+    purge of the Cloudflare cache does not reach it."""
+    h = hashlib.sha256()
+    for f in (pdf_file(p, fmt, t) for fmt in [*FORMATS, *US_FORMATS] for t in THEMES):
+        if f.exists():
+            h.update(f.name.encode() + b"\0" + hashlib.sha256(f.read_bytes()).digest())
+    return h.hexdigest()[:10]
 
 def download_event(slug, fmt, theme):
     """The attributes of a PDF link: it opens in a new tab, and Umami counts a click on it as the
@@ -113,11 +125,25 @@ def download_event(slug, fmt, theme):
 
 def pdf_url(p, fmt, theme):
     f = pdf_file(p, fmt, theme)
-    return PDF_URL.format(category=f.parent.name, file=f.name)
+    return PDF_URL.format(category=f.parent.name, file=f.name) + f"?v={pdf_version(p)}"
 
 def wall_pdf_url(p, theme):
     f = pdf_file(p, "A", theme)
-    return WALL_PDF_URL.format(category=f.parent.name, file=f.name)
+    return WALL_PDF_URL.format(category=f.parent.name, file=f.name) + f"?v={pdf_version(p)}"
+
+def poster_facts(m, order):
+    """The facts of a poster that its page and its reading page list, in the order given, as the
+    items of a <dl>: those that the poster lacks (a rights holder, contributors) are left out."""
+    lic, src, lang = m["license"], m["source"], m.get("lang", "en")
+    host = urlsplit(src["url"]).netloc.removeprefix("www.")
+    facts = {"Print from": m["min_print"], "License": esc(lic["text"]),
+             "Source": f'<a href="{html.escape(src["url"])}">{esc(host)}</a>',
+             "Retrieved": date_text(src["retrieved"]), "Language": LANGUAGES.get(lang, lang)}
+    if lic.get("holder"):
+        facts["Rights holder"] = esc(lic["holder"])
+    if m.get("contributors"):
+        facts["Proposed by"] = ", ".join(f'<a href="https://github.com/{h}">@{h}</a>' for h in m["contributors"])
+    return "\n".join(f"<div><dt>{k}</dt><dd>{facts[k]}</dd></div>" for k in order if k in facts)
 
 def short(s, n=48):
     s = " ".join(str(s).split())

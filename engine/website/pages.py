@@ -5,14 +5,14 @@ from typing import NamedTuple
 from urllib.parse import urlsplit
 
 import markdown
-from build import MIN_BODY, PRINT_SIZES, substitute
-from papers import CATEGORIES, ROOT, SHOWCASE
+from build import substitute
+from papers import CATEGORIES, MIN_BODY, PDF_URL, PRINT_SIZES, ROOT, SHOWCASE
 from readme import pending, year_key, year_text
 from themes import FORMATS, THEMES, US_FORMATS, dark as theme_is_dark
-from .common import (ANALYTICS, A_SIZES, BASE_URL, GENESIS_HASH, LANGUAGES, NAME, PDF_URL, PREVIEW_WIDTHS, RELEASE_URL,
-                     REPO, SMALL_W, SiteError, THUMB_H, TOKENS, US_NAMES, US_ZIP_URL, WEB, ZIP_URL, alt, by_line,
-                     date_text, download_event, esc, format_name, hexcolour, mark_svg, number, pdf_file, pdf_url,
-                     size_text, title, wall_pdf_url)
+from .common import (ANALYTICS, A_SIZES, BASE_URL, GENESIS_HASH, NAME, PREVIEW_WIDTHS, RELEASE_URL, REPO, SMALL_W,
+                     SiteError, THUMB_H, TOKENS, US_NAMES, US_ZIP_URL, WEB, ZIP_URL, alt, by_line, download_event, esc,
+                     format_name, hexcolour, mark_svg, number, pdf_file, pdf_url, pdf_version, poster_facts, size_text,
+                     title, wall_pdf_url)
 from .content import load_see_also
 from .images import SMALL_H
 from .assets import PRELOAD
@@ -204,9 +204,7 @@ def category_page(c, posters, previews):
     """The page of a category, under /<category>/: its posters, and links to the other categories."""
     mine = [p for p in posters if p.category == c]
     cats = [k for k in CATEGORIES if any(p.category == k for p in posters)]
-    years = sorted((p.meta["year"] for p in mine), key=year_key)
-    span = (year_text(years[0]) if year_text(years[0]) == year_text(years[-1])
-            else f"{year_text(years[0])} to {year_text(years[-1])}")
+    span = years_span(mine)
     def link(k):
         current = ' aria-current="page"' if k == c else ""
         return (f'<li><a class="pill" href="../{k}/"{current}>{esc(CATEGORIES[k])} '
@@ -265,15 +263,6 @@ def home_page(posters, previews, series, thumbs):
 def poster_page(p, posters, previews, series, extras=None):
     m, root = p.meta, "../"
     lic, src = m["license"], m["source"]
-    host = urlsplit(src["url"]).netloc.removeprefix("www.")
-    facts = [("Print from", m["min_print"]), ("License", esc(lic["text"])),
-             ("Source", f'<a href="{html.escape(src["url"])}">{esc(host)}</a>'),
-             ("Retrieved", date_text(src["retrieved"])),
-             ("Language", LANGUAGES.get(m.get("lang", "en"), m.get("lang", "en")))]
-    if lic.get("holder"):
-        facts.append(("Rights holder", esc(lic["holder"])))
-    if m.get("contributors"):
-        facts.append(("Proposed by", ", ".join(f'<a href="https://github.com/{h}">@{h}</a>' for h in m["contributors"])))
     both = p.light != p.dark
     shown = (f'<span class="shown if-light">{p.light}</span><span class="shown if-dark">{p.dark}</span>' if both
              else f'<span class="shown">{p.light}</span>')
@@ -318,7 +307,8 @@ def poster_page(p, posters, previews, series, extras=None):
                   if extras and extras.teaching else ""),
         "SUMMARY": esc(m["summary"]), "LIGHT": p.light, "DARK": p.dark, "SERIES": series_links(p, series, root) + "".join(load_see_also().get(p.slug, [])),
         "PICTURE": picture(previews, p, root, "(min-width: 1200px) 480px, (min-width: 768px) 52vw, 86vw", eager=True),
-        "SHOWN": shown, "FACTS": "\n".join(f"<div><dt>{k}</dt><dd>{v}</dd></div>" for k, v in facts),
+        "SHOWN": shown, "FACTS": poster_facts(m, ("Print from", "License", "Source", "Retrieved", "Language",
+                                                    "Rights holder", "Proposed by")),
         "PILLS": "\n".join(pills), "ROWS": "\n".join(rows), "US_ROWS": "\n".join(us_rows),
         "ZIP": ZIP_URL.format(category=p.category), "US_ZIP": US_ZIP_URL.format(category=p.category),
         "PRINT_NOTE": esc(f"Print from {m['min_print']}: the smallest A size at which the body text is at least "
@@ -487,7 +477,7 @@ def about_page(posters, previews):
 def print_page(posters, previews):
     """The guide to having a poster printed, /print/. With ?poster=<slug> (the Print it button of a
     poster page), site.js adds a box for that poster, from the data of #print-data: its Print from,
-    its themes and the links to its PDFs."""
+    its themes and the links to its PDFs, which end with the version of its PDFs (pdf_version)."""
     fmts = [("A", format_name("A").replace(" ", " "))] + [(f, format_name(f)) for f in FORMATS if f != "A"]
     fmts += [(f, format_name(f)) for f in US_FORMATS]  # in release/us/, served from FILES_URL too
     data = {
@@ -495,7 +485,8 @@ def print_page(posters, previews):
         "formats": [[f, n.replace(" ", " ")] for f, n in fmts],
         "themes": {t: [hexcolour(t, "paper"), hexcolour(t, "acc"), int(theme_is_dark(t))] for t in THEMES},
         # the previews of the box are previews/<slug>-<theme>-600.webp, which make_previews writes
-        "posters": {p.slug: [markdown.smart(p.meta["title"]), p.category, p.meta["min_print"], p.themes]
+        "posters": {p.slug: [markdown.smart(p.meta["title"]), p.category, p.meta["min_print"], p.themes,
+                             pdf_version(p.paper)]
                     for p in posters if all((p.slug, t) in previews for t in p.themes)}}
     js = json.dumps(data, ensure_ascii=False, separators=(",", ":")).replace("</", "<\\/")
     rows = [f'<tr><td>{k}</td><td>{cm_text(w)} × {cm_text(h)}</td><td>The A PDF</td></tr>'
