@@ -10,9 +10,11 @@ The bucket is Cloudflare R2, through its S3 API, with the credentials of the env
 R2_ACCESS_KEY_ID, R2_SECRET_ACCESS_KEY and R2_ENDPOINT (https://<account id>.r2.cloudflarestorage.com),
 and R2_BUCKET (default onepagepapers-pdf). With CLOUDFLARE_API_TOKEN (Zone, Cache Purge) and
 CLOUDFLARE_ZONE_ID as well, the files that changed are purged from the cache of Cloudflare, which
-otherwise serves the old file until its cache runs out (a year, by the cache rule of the zone). A
-file of the bucket that dist/ no longer has is reported, never deleted: a link to it may still be
-around.
+otherwise serves the old file until its cache runs out (a year, by the cache rule of the zone). Their
+URLs wait in the bucket (PENDING_KEY) from before the upload until the purge succeeds, so that a run
+that fails in between leaves them to the next one, which would otherwise find the files unchanged
+and purge nothing. A file of the bucket that dist/ no longer has is reported, never deleted: a link
+to it may still be around.
 
 Needs boto3 (requirements-deploy.txt), which only the deployment installs.
 """
@@ -29,6 +31,7 @@ BUCKET = "onepagepapers-pdf"
 # above empties; browsers keep the week, since a purge cannot reach them
 CACHE_CONTROL = "public, max-age=604800, stale-while-revalidate=86400"
 PURGE_BATCH = 30  # URLs per purge request, the most that every Cloudflare plan takes
+PENDING_KEY = "purge-pending.json"  # the URLs still to purge, a JSON list, while there are some
 
 def local_files():
     """{key in the bucket: path} of every PDF of dist/ and release/us/: their names never collide,
@@ -52,12 +55,17 @@ def client():
                         aws_secret_access_key=os.environ["R2_SECRET_ACCESS_KEY"])
 
 def remote_files(s3, bucket):
-    """{key: ETag} of the bucket. A file put in one request has the MD5 of its content as ETag."""
+    """{key: ETag} of the bucket, PENDING_KEY included. A file put in one request has the MD5 of
+    its content as ETag."""
     out = {}
     for page in s3.get_paginator("list_objects_v2").paginate(Bucket=bucket):
         for o in page.get("Contents", []):
             out[o["Key"]] = o["ETag"].strip('"')
     return out
+
+def pending_purge(s3, bucket):
+    """The URLs that an earlier run uploaded but could not purge."""
+    return json.loads(s3.get_object(Bucket=bucket, Key=PENDING_KEY)["Body"].read())
 
 def cloudflare(path, body=None):
     """A call to the API of Cloudflare with CLOUDFLARE_API_TOKEN; fails unless it succeeds."""
@@ -71,18 +79,24 @@ def cloudflare(path, body=None):
     except urllib.error.HTTPError as e:
         ok = False
         print(f"Cloudflare API {path}: HTTP {e.code}", file=sys.stderr)
+    except (urllib.error.URLError, TimeoutError) as e:
+        ok = False
+        print(f"Cloudflare API {path}: {getattr(e, 'reason', e)}", file=sys.stderr)
     if not ok:
         sys.exit(f"error: the Cloudflare API call {path} failed, check CLOUDFLARE_API_TOKEN and CLOUDFLARE_ZONE_ID")
 
 def check_purge():
     """Fails at once on a token or zone that cannot purge, rather than on the day a PDF changes:
     purges the root of FILES_URL, which serves no file."""
-    if os.environ.get("CLOUDFLARE_API_TOKEN") and os.environ.get("CLOUDFLARE_ZONE_ID"):
+    if can_purge():
         cloudflare(f"zones/{os.environ['CLOUDFLARE_ZONE_ID']}/purge_cache", {"files": [FILES_URL]})
 
+def can_purge():
+    return bool(os.environ.get("CLOUDFLARE_API_TOKEN") and os.environ.get("CLOUDFLARE_ZONE_ID"))
+
 def purge(urls):
-    token, zone = os.environ.get("CLOUDFLARE_API_TOKEN"), os.environ.get("CLOUDFLARE_ZONE_ID")
-    if not (token and zone):
+    zone = os.environ.get("CLOUDFLARE_ZONE_ID")
+    if not can_purge():
         print(f"not purged from the Cloudflare cache (no CLOUDFLARE_API_TOKEN or CLOUDFLARE_ZONE_ID): "
               f"Cloudflare serves the old version of the {len(urls)} changed file(s) until its cache runs out")
         return
@@ -108,7 +122,15 @@ def main():
         remote = remote_files(s3, bucket)
         if not a.dry_run:
             check_purge()
+    left = pending_purge(s3, bucket) if remote.pop(PENDING_KEY, None) is not None else []
+    if left:
+        print(f"{len(left)} URL(s) uploaded by an earlier run and not purged yet: purged with this run's")
     changed = [k for k, f in files.items() if remote.get(k) != md5(f)]
+    # a new file was never in the cache of Cloudflare: only those that change need a purge
+    urls = sorted(set(left) | {FILES_URL + k for k in changed if k in remote})
+    if urls and not a.dry_run and can_purge():  # kept until the purge has succeeded
+        s3.put_object(Bucket=bucket, Key=PENDING_KEY, Body=json.dumps(urls).encode(),
+                      ContentType="application/json", CacheControl="no-store")
     for k in changed:
         print(("would upload" if a.dry_run else "upload"), k, "(new)" if k not in remote else "(changed)")
         if not a.dry_run:
@@ -118,8 +140,13 @@ def main():
         print(f"kept {k}: in the bucket, not in dist/ or release/us/")
     print(f"{len(changed)} of {len(files)} PDF(s) {'to upload' if a.dry_run else 'uploaded'}, "
           f"{len(files) - len(changed)} unchanged")
-    if not a.dry_run and (updated := [FILES_URL + k for k in changed if k in remote]):
-        purge(updated)
+    if a.dry_run:
+        if urls:
+            print(f"would purge {len(urls)} URL(s) from the Cloudflare cache")
+    elif urls:
+        purge(urls)  # exits when a call fails, leaving PENDING_KEY to the next run
+        if can_purge():
+            s3.delete_object(Bucket=bucket, Key=PENDING_KEY)
 
 if __name__ == "__main__":
     main()

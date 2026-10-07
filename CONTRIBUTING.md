@@ -96,8 +96,10 @@ needs these secrets of the repository (Settings, Secrets and variables, Actions)
 
 A cache rule of the zone keeps the files of `files.onepagepapers.com` a year in the cache of
 Cloudflare, so the workflow purges every PDF that changed, with the last two secrets, which each
-deployment checks. Browsers keep a PDF a week (its `Cache-Control`, which the rule should respect):
-a purge does not reach them.
+deployment checks. The URLs to purge wait in the bucket, in `purge-pending.json`, from before the
+upload until the purge succeeds: a deployment that fails in between leaves them to the next one.
+Browsers keep a PDF a week (its `Cache-Control`, which the rule should respect): a purge does not
+reach them.
 
 The wallpapers of the site fetch a PDF from the bucket, which is another origin than the site, so
 the bucket has this CORS policy (R2, the bucket, Settings, CORS policy):
