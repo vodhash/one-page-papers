@@ -46,8 +46,10 @@ serve: site
 upload:
 	$(PY) engine/upload.py
 
+# a paper, or a category, then the catalog, whose PDF links carry the version of the files of each paper
 $(PAPERS) $(CATEGORIES):
 	$(PY) engine/build.py $@ --jobs $(JOBS)
+	$(PY) engine/readme.py
 
 # uv when available: the stock Python of Debian and Ubuntu has neither pip nor venv
 deps:

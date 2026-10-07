@@ -1,6 +1,6 @@
 """Where the papers live, papers/<category>/<slug>/, the category coming from the folder; what the
 meta.yaml of each one holds; and where its PDFs go. build.py, readme.py and the site share them."""
-import pathlib, re
+import hashlib, pathlib, re, shlex
 from typing import NamedTuple
 
 import yaml
@@ -65,6 +65,37 @@ def pdf_name(slug, fmt, theme):
 def pdf_url(paper, fmt, theme):
     """Where the PDF of a paper is served (PDF_URL), as the CI uploads it: git does not keep the PDFs."""
     return PDF_URL.format(category=paper.category, file=pdf_name(paper.slug, fmt, theme))
+
+def poster_files(paper):
+    """The files that the poster of a paper is made from: meta.yaml, text.md, figures.py, style.css
+    and the images that text.md shows (::: image), as build.py reads them."""
+    names = ["meta.yaml", "text.md", "figures.py", "style.css"]
+    text = paper.dir / "text.md"
+    code = False  # in a code block, which shows a directive rather than running it
+    for line in text.read_text().splitlines() if text.is_file() else []:
+        code ^= line.startswith("```")
+        if not code and line.startswith(":::") and line.split()[1:2] == ["image"]:
+            try:
+                names.append(shlex.split(line)[2])
+            except (ValueError, IndexError):  # build.py reports it
+                pass
+    return sorted({paper.dir / n for n in names if (paper.dir / n).is_file()})
+
+def source_version(paper):
+    """The version of the files that make the poster of a paper, the same on every machine: the
+    links of the README to its PDFs end with it (?v=, which the bucket ignores), so that a corrected
+    poster gets new links, which a browser that kept the old PDF (a week, upload.CACHE_CONTROL)
+    cannot answer from its cache. The site versions its links on the PDFs themselves. Only the files
+    that make the poster count (poster_files), so that a draft or an editor's backup left in the
+    folder does not change the README of one machine. The line ends of a text file count as \n, as a
+    checkout with \r\n (core.autocrlf on Windows) has them otherwise."""
+    h = hashlib.sha256()
+    for f in poster_files(paper):
+        data = f.read_bytes()
+        if f.suffix.lower() in (".yaml", ".md", ".py", ".css", ".svg"):
+            data = data.replace(b"\r\n", b"\n")
+        h.update(f"{f.relative_to(paper.dir).as_posix()}\0".encode() + data + b"\0")
+    return h.hexdigest()[:10]
 
 # ---------------------------------------------------------------- meta.yaml
 

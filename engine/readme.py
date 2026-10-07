@@ -8,7 +8,7 @@ import argparse, pathlib, re, sys
 
 sys.path.insert(0, str(pathlib.Path(__file__).resolve().parent))
 from papers import (CATEGORIES, GENERATED_IN_REPO, ROOT, SHOWCASE, SITE_URL, BuildError, discover, load_meta,
-                    pdf_url, themes_of)
+                    pdf_url, source_version, themes_of)
 from themes import FORMATS, THEMES
 
 START, END = "<!-- catalog:start -->", "<!-- catalog:end -->"
@@ -27,8 +27,9 @@ def cell(text):
     return str(text).replace("|", "\\|")
 
 def pdf(paper, theme):
-    """The A PDF of a theme, as the CI uploads it: git does not keep the PDFs."""
-    return pdf_url(paper, "A", theme)
+    """The A PDF of a theme, as the CI uploads it (git does not keep the PDFs), with the version of the
+    files of the paper, so that a corrected poster gets new links."""
+    return f"{pdf_url(paper, 'A', theme)}?v={source_version(paper)}"
 
 def page(paper):
     """The page of a poster on the site, with every format and theme."""

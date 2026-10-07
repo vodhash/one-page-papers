@@ -59,3 +59,44 @@ def test_the_facts_of_a_poster_come_in_the_order_asked():
         '<div><dt>Source</dt><dd><a href="https://www.example.org/x?a=1&amp;b=2">example.org</a></dd></div>',
         "<div><dt>Language</dt><dd>French</dd></div>",
         "<div><dt>Rights holder</dt><dd>Someone</dd></div>"]
+
+
+def test_the_pdf_links_of_the_readme_carry_the_version_of_the_files_of_the_paper(tmp_path):
+    import readme
+    from papers import source_version
+    d = tmp_path / "bitcoin"
+    d.mkdir()
+    (d / "text.md").write_text("v1")
+    paper = Paper("crypto", "bitcoin", d)
+    v1 = source_version(paper)
+    assert readme.pdf(paper, "ivory") == f"https://files.onepagepapers.com/crypto/bitcoin-A-ivory.pdf?v={v1}"
+    (d / "annotations.yaml").write_text("notes: []")  # read by the site only: the PDF does not change
+    (d / "text.md~").write_text("v0")  # an editor's backup, a draft, an unused image: not the poster
+    (d / "draft.md").write_text("v0")
+    (d / "unused.png").write_bytes(b"png")
+    assert source_version(paper) == v1
+    (d / "plate.png").write_bytes(b"png")
+    (d / "text.md").write_text("v1\n\n::: image plate.png")
+    assert source_version(paper) != v1  # an image that the poster shows counts
+    v1 = source_version(paper)
+    (d / "plate.png").write_bytes(b"png, retouched")
+    assert source_version(paper) != v1
+    (d / "text.md").write_text("v1")
+    (d / "text.md").write_text("v2")
+    assert source_version(paper) != v1
+
+
+def test_the_version_of_a_paper_is_the_same_whatever_its_line_ends_and_its_code_blocks(tmp_path):
+    from papers import source_version
+    d = tmp_path / "rfc-1"
+    d.mkdir()
+    paper = Paper("internet", "rfc-1", d)
+    (d / "text.md").write_bytes(b"line\nline\n")
+    lf = source_version(paper)
+    (d / "text.md").write_bytes(b"line\r\nline\r\n")  # a checkout with core.autocrlf, on Windows
+    assert source_version(paper) == lf
+    (d / "text.md").write_text("```\n::: image unused.png\n```\n")  # a directive shown in a code block
+    (d / "unused.png").write_bytes(b"png")
+    shown = source_version(paper)
+    (d / "unused.png").write_bytes(b"png, changed")
+    assert source_version(paper) == shown

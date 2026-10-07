@@ -65,7 +65,7 @@ When any point is unclear, the text goes to PENDING.md rather than into the coll
 
 ```bash
 make deps         # once
-make <slug>       # the PDFs and the preview of your paper
+make <slug>       # the PDFs and the preview of your paper, and the catalog of the README
 make check        # file sizes, every poster fits and uses bundled fonts, the catalog
 make readme       # the catalog of the README
 make test         # after a change to engine/: the tests of the scripts and of the engine package
@@ -103,9 +103,11 @@ Cloudflare, so the workflow purges every PDF that changed, with the last two sec
 deployment checks. The URLs to purge wait in the bucket, in `purge-pending.json`, from before the
 upload until the purge succeeds: a deployment that fails in between leaves them to the next one.
 Browsers keep a PDF a week (its `Cache-Control`, which the rule should respect), and a purge does not
-reach them, so every link of the site to a PDF ends with the version of the PDFs of its poster
-(`?v=`, which the bucket ignores): a corrected poster has new links. The links of the README, which
-have none, may show the old PDF for that week.
+reach them, so every link to a PDF carries a version (`?v=`, which the bucket ignores) and a
+corrected poster gets new links. On the site it is the version of the PDFs of the poster. In the
+README, which git keeps, it is that of the files of its paper, the same on every machine: `make
+<slug>` and `make readme` write it, and the CI fails on a README that is not up to date. A change to
+the engine alone leaves those links as they are, and their old PDF may show for that week.
 
 The wallpapers of the site fetch a PDF from the bucket, which is another origin than the site, so
 the bucket has this CORS policy (R2, the bucket, Settings, CORS policy):
